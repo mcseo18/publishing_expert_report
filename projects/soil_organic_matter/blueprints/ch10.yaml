@@ -1,0 +1,42 @@
+# =============================================================================
+# 제10장 단원 청사진 — 토양 탄소 분해 모델의 이론 (1차 다중풀 ~ 미생물 명시형) [심화]
+# =============================================================================
+chapter_id: "ch10"
+chapter_number: 10
+title: "제10장. 토양 탄소 분해 모델의 이론 — 1차 다중 풀(RothC·CENTURY)에서 미생물 명시형(MIMICS)까지"
+target_pages: 38
+target_audience: "농학·토양환경학 대학원생 및 토양탄소·기후변화 모델링 연구자"
+evidence_packet: "data/evidence/ch10_evidence.json"
+
+learning_objectives:
+  - "선형 구획 미분방정식 행렬 이론(dC/dt = I + A·C, SoilR)으로 다중 풀 탄소 분해 모델을 통합 정식화할 수 있다."
+  - "RothC 5-풀과 CENTURY/DayCent 3-풀의 분해상수·점토 분배식·온도/수분 보정함수를 유도하고 비교할 수 있다."
+  - "차세대 비선형 미생물 명시형 모델(MIMICS·CORPSE)의 Michaelis-Menten 효소 역학과 POM-MAOM 연계 원리를 설명할 수 있다."
+
+sections:
+  - section_id: "10.1"
+    title: "토양 유기물 분해의 수학적 기초: 1차 선형 구획 행렬 이론(SoilR)"
+    target_chars: 2000
+    key_points:
+      - "단일 풀 1차 감쇠식 dC/dt = I - kC의 한계와 다중 풀 행렬 방정식 dC/dt = I(t) + A(t)C(t) (Sierra et al., 2012; Manzoni & Porporato, 2009)"
+      - "연령 분포(Age distribution)와 평균 체류시간(Transit time)의 수학적 정의 및 14C 방사성탄소 검증 원리"
+      - "온도(Q10·Arrhenius·RothC a-인자) 및 수분 보정 함수의 비선형성"
+    required_table: "표 10-1: 선형 구획 모델의 대표 구조(직렬·병렬·피드백) 및 평균체류시간 특성"
+
+  - section_id: "10.2"
+    title: "표준 1세대 다중 풀 모델: RothC와 CENTURY/DayCent의 이론 구조"
+    target_chars: 2200
+    key_points:
+      - "RothC-26.3(Jenkinson 1990; Rothamsted): DPM(k=10), RPM(k=0.3), BIO(k=0.66), HUM(k=0.02), IOM 5-풀 구조와 점토 함량 기반 CO2/(BIO+HUM) 분배식"
+      - "CENTURY / DayCent(Parton et al., 1987): 구조성/대사성 잔사 분할(리그닌/N 비)과 활성·완효·수동 3-풀 및 C-N 상호작용"
+      - "정방향(Forward) 모드(탄소 변화 예측)와 역방향(Inverse) 모드(현장 평형 탄소유입량 역산)의 이론적 의의"
+    required_table: "표 10-2: RothC vs CENTURY/DayCent의 풀 구조·시간간격·분해상수·점토효과 비교"
+
+  - section_id: "10.3"
+    title: "차세대 미생물 명시형(Microbial-Explicit) 비선형 모델: MIMICS와 POM·MAOM 연계"
+    target_chars: 2000
+    key_points:
+      - "1세대 선형 모델의 한계: 미생물 생체량·효소·프라이밍 효과 및 광물 포화 한계 미반영"
+      - "MIMICS(Wieder et al., 2013/2015): r-전략·K-전략 미생물 기능군, 역(Reverse) Michaelis-Menten 동역학, 온도 의존 미생물 CUE"
+      - "물리적 측정 가능 풀(POM·MAOM)과 모델 풀의 정합화 전략 및 온난화 피드백 예측 차이"
+    required_table: "표 10-3: 1세대 선형(RothC·CENTURY) vs 2세대 미생물명시형(MIMICS·CORPSE) 이론·예측 특성 비교"

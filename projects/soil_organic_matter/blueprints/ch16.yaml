@@ -1,0 +1,39 @@
+chapter_id: ch16
+chapter_number: 16
+title: 제16장. 기후변화, 토양 탄소격리와 국제 MRV·탄소크레딧 정책(FAO·EU·일본 J-Credit·한국)
+target_pages: 32
+target_audience: 농학·토양환경학 대학 전공 심화(학부 3~4학년·대학원생), 농업연구사, 토양·비료·탄소중립 모델링 실무 전문가
+evidence_packet: data/evidence/ch16_evidence.json
+learning_objectives:
+- FAO GSOCseq, 프랑스 4 per 1000, EU Soil Strategy(EEA·EJP SOIL), 일본 J-Credit(AG-004)의
+  정책 구조와 과학적 제약을 비교할 수 있다.
+- IPCC Tier 1~3 국가 온실가스 인벤토리 산정 및 등가토양질량(ESM) 기반 토양탄소 저장량(t C/ha) 계산을 수행할 수 있다.
+- 국내 저탄소 농산물 인증 및 자발적 탄소시장 MRV(측정·보고·검증)의 영속성·추가성·누출 쟁점을 분석할 수 있다.
+sections:
+- section_id: '16.1'
+  title: '국제 토양탄소 격리 이니셔티브: FAO GSOCseq, 4 per 1000, EU EEA·EJP SOIL'
+  target_chars: 1800
+  key_points:
+  - '국제 토양탄소 격리 이니셔티브: FAO GSOCseq, 4 per 1000, EU EEA·EJP SOIL의 핵심 원리와 과학적 메커니즘'
+  - '핵심 개념 연계: FAO GSOCseq · 4 per 1000 · EU EEA/EJP SOIL · 일본 J-Credit, IPCC Tier
+    1~3 및 등가토양질량(ESM) 기반 SOC 스톡 산정, 저탄소 농산물 인증 및 농업 탄소크레딧 MRV'
+  - 근거 패킷 내 국내외 실증 사례 및 현장 적용 시 트레이드오프
+  required_table: '표 16-1: 주요 국제·유럽 토양탄소 정책(FAO·4p1000·EU EEA·EJP SOIL) 비교'
+- section_id: '16.2'
+  title: IPCC 인벤토리(Tier 1~3), 등가토양질량(ESM) 산정 및 일본 J-Credit 사례
+  target_chars: 1800
+  key_points:
+  - IPCC 인벤토리(Tier 1~3), 등가토양질량(ESM) 산정 및 일본 J-Credit 사례의 핵심 원리와 과학적 메커니즘
+  - '핵심 개념 연계: FAO GSOCseq · 4 per 1000 · EU EEA/EJP SOIL · 일본 J-Credit, IPCC Tier
+    1~3 및 등가토양질량(ESM) 기반 SOC 스톡 산정, 저탄소 농산물 인증 및 농업 탄소크레딧 MRV'
+  - 근거 패킷 내 국내외 실증 사례 및 현장 적용 시 트레이드오프
+  required_table: '표 16-2: 토양탄소 산정 Tier 1·2·3 방법론 및 MRV 핵심 요건'
+- section_id: '16.3'
+  title: 국내 저탄소 농산물 인증과 농업 탄소크레딧 MRV의 영속성·추가성 쟁점
+  target_chars: 1800
+  key_points:
+  - 국내 저탄소 농산물 인증과 농업 탄소크레딧 MRV의 영속성·추가성 쟁점의 핵심 원리와 과학적 메커니즘
+  - '핵심 개념 연계: FAO GSOCseq · 4 per 1000 · EU EEA/EJP SOIL · 일본 J-Credit, IPCC Tier
+    1~3 및 등가토양질량(ESM) 기반 SOC 스톡 산정, 저탄소 농산물 인증 및 농업 탄소크레딧 MRV'
+  - 근거 패킷 내 국내외 실증 사례 및 현장 적용 시 트레이드오프
+  required_table: '표 16-3: 농업 토양탄소 크레딧 도입 시 핵심 리스크(영속성·포화·측정비용)와 대응'

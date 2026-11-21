@@ -1,0 +1,582 @@
+{
+  "generated_at": "2026-11-21T10:01:26+00:00",
+  "topic": "스마트팜 양액재배학 (검증 테스트)",
+  "queried_terms": [
+    "양액재배",
+    "EC",
+    "pH",
+    "근권환경",
+    "hydroponics",
+    "nutrient solution"
+  ],
+  "smc_graphrag_root": "C:\\SMC_GRAPHRAG",
+  "lightrag_working_dir": "C:\\SMC_GRAPHRAG\\lightrag_store",
+  "lightrag_server_online": false,
+  "reuse_ratio_percent": 100.0,
+  "reusable_knowledge": [
+    {
+      "term": "양액재배",
+      "origin": "C:\\SMC_GRAPHRAG",
+      "entity_match_count": 8,
+      "relation_match_count": 8,
+      "top_entities": [
+        {
+          "name": "양액재배",
+          "type": "CONCEPT",
+          "mentions": 5,
+          "graphs": [
+            "graph_eco_lite.json",
+            "graph_main_com.json"
+          ]
+        },
+        {
+          "name": "양액재배 시설",
+          "type": "OTHER",
+          "mentions": 2,
+          "graphs": [
+            "graph_eco_lite.json"
+          ]
+        },
+        {
+          "name": "양액재배시스템",
+          "type": "PRODUCT",
+          "mentions": 2,
+          "graphs": [
+            "graph_main_com.json"
+          ]
+        },
+        {
+          "name": "汤捯씨감자 간이 양액재배기술 개발 및 보급",
+          "type": "OTHER",
+          "mentions": 1,
+          "graphs": [
+            "graph_main_com.json"
+          ]
+        },
+        {
+          "name": "汤捯씨감자 생산기반 구축을 위한 양액재배 기술이전 및 재래종 감자의 바이러스 무독화 연구",
+          "type": "OTHER",
+          "mentions": 1,
+          "graphs": [
+            "graph_main_com.json"
+          ]
+        }
+      ],
+      "sample_relations": [
+        {
+          "source": "장미",
+          "relation": "수행한다",
+          "target": "양액재배 정식",
+          "source_doc": "주간농사정보 제8호(2025.3.3.~3.9.).pdf",
+          "graph_file": "graph_eco_lite.json"
+        },
+        {
+          "source": "장미",
+          "relation": "재배한다",
+          "target": "양액재배",
+          "source_doc": "주간농사정보제8회.hwp",
+          "graph_file": "graph_eco_lite.json"
+        },
+        {
+          "source": "양액재배 시설",
+          "relation": "청소 및 소독한다",
+          "target": "베드",
+          "source_doc": "주간농사정보제29회.hwp",
+          "graph_file": "graph_eco_lite.json"
+        },
+        {
+          "source": "시설 하우스",
+          "relation": "관리하다",
+          "target": "양액재배 시설",
+          "source_doc": "주간농사정보제31회.hwp",
+          "graph_file": "graph_eco_lite.json"
+        },
+        {
+          "source": "네덜란드",
+          "relation": "도입함",
+          "target": "순환식 양액재배 시스템",
+          "source_doc": "20180512_핵심기술 4-4-2 대체용수.hwp",
+          "graph_file": "graph_main_com.json"
+        }
+      ],
+      "source_docs": [
+        "1.14년_세부시행계획서(작물환경과)-4.11.hwp",
+        "150210 2015년도 공무국외여행 및 해외과학자 초청 기본계획vF(결재본).hwp",
+        "20180512_핵심기술 4-4-2 대체용수.hwp",
+        "3-4-2.hwp",
+        "주간농사정보 제8호(2025.3.3.~3.9.).pdf",
+        "주간농사정보제29회.hwp",
+        "주간농사정보제31회.hwp",
+        "주간농사정보제8회.hwp"
+      ]
+    },
+    {
+      "term": "EC",
+      "origin": "C:\\SMC_GRAPHRAG",
+      "entity_match_count": 8,
+      "relation_match_count": 8,
+      "top_entities": [
+        {
+          "name": "OECD",
+          "type": "ORG",
+          "mentions": 418,
+          "graphs": [
+            "graph_backup001.json",
+            "graph_lecture_dedup.json",
+            "graph_main_com.json",
+            "graph_myblog.json"
+          ]
+        },
+        {
+          "name": "IPCC Secretariat",
+          "type": "ORG",
+          "mentions": 354,
+          "graphs": [
+            "graph_main_com.json"
+          ]
+        },
+        {
+          "name": "food security",
+          "type": "CONCEPT",
+          "mentions": 254,
+          "graphs": [
+            "graph_backup001.json",
+            "graph_china_materials.json",
+            "graph_main_com.json",
+            "graph_platform_incremental.json"
+          ]
+        },
+        {
+          "name": "Secretariat",
+          "type": "ORG",
+          "mentions": 116,
+          "graphs": [
+            "graph_main_com.json"
+          ]
+        },
+        {
+          "name": "ecosystems",
+          "type": "CONCEPT",
+          "mentions": 106,
+          "graphs": [
+            "graph_main_com.json"
+          ]
+        }
+      ],
+      "sample_relations": [
+        {
+          "source": "퇴비",
+          "relation": "발휘한다",
+          "target": "양이온교환용량(CEC)",
+          "source_doc": "제2강 교재 집필(1).docx",
+          "graph_file": "graph.json"
+        },
+        {
+          "source": "퇴비",
+          "relation": "가진다",
+          "target": "CEC",
+          "source_doc": "제14강 강의 교재 작성.docx",
+          "graph_file": "graph.json"
+        },
+        {
+          "source": "퇴비",
+          "relation": "높인다",
+          "target": "CEC",
+          "source_doc": "제14강 강의 교재 작성.docx",
+          "graph_file": "graph.json"
+        },
+        {
+          "source": "퇴비",
+          "relation": "증대시킨다",
+          "target": "양이온교환용량(Cation Exchange Capacity, CEC)",
+          "source_doc": "제14강 강의 교재 작성.docx",
+          "graph_file": "graph.json"
+        },
+        {
+          "source": "퇴비",
+          "relation": "유발한다",
+          "target": "장기 지연효과(Legacy N effect)",
+          "source_doc": "제15강 퇴비학 강의 교재 작성.docx",
+          "graph_file": "graph.json"
+        }
+      ],
+      "source_docs": [
+        "제14강 강의 교재 작성.docx",
+        "제15강 퇴비학 강의 교재 작성.docx",
+        "제2강 교재 집필(1).docx"
+      ]
+    },
+    {
+      "term": "pH",
+      "origin": "C:\\SMC_GRAPHRAG",
+      "entity_match_count": 8,
+      "relation_match_count": 8,
+      "top_entities": [
+        {
+          "name": "Phoebe",
+          "type": "PERSON",
+          "mentions": 889,
+          "graphs": [
+            "graph_main_com.json"
+          ]
+        },
+        {
+          "name": "Philippines",
+          "type": "PLACE",
+          "mentions": 147,
+          "graphs": [
+            "graph_backup001.json",
+            "graph_lecture_dedup.json",
+            "graph_main_com.json"
+          ]
+        },
+        {
+          "name": "pH",
+          "type": "OTHER",
+          "mentions": 108,
+          "graphs": [
+            "graph.json",
+            "graph_composting.json",
+            "graph_main_com.json"
+          ]
+        },
+        {
+          "name": "atmosphere",
+          "type": "PLACE",
+          "mentions": 106,
+          "graphs": [
+            "graph_main_com.json"
+          ]
+        },
+        {
+          "name": "PHOEBE",
+          "type": "PERSON",
+          "mentions": 99,
+          "graphs": [
+            "graph_main_com.json"
+          ]
+        }
+      ],
+      "sample_relations": [
+        {
+          "source": "퇴비",
+          "relation": "향상시킨다",
+          "target": "토양 pH 완충능(Buffering capacity)",
+          "source_doc": "제14강 강의 교재 작성.docx",
+          "graph_file": "graph.json"
+        },
+        {
+          "source": "퇴비",
+          "relation": "억제함",
+          "target": "Phytophthora",
+          "source_doc": "제14강 강의 교재 작성.docx",
+          "graph_file": "graph.json"
+        },
+        {
+          "source": "퇴비",
+          "relation": "높인다",
+          "target": "pH 완충능",
+          "source_doc": "제14강 강의 교재 작성.docx",
+          "graph_file": "graph.json"
+        },
+        {
+          "source": "휘발성 지방산(VFA)",
+          "relation": "유발한다",
+          "target": "저pH 정체 현상(Low pH lag)",
+          "source_doc": "제3강 퇴비 미생물학 교재 작성.docx",
+          "graph_file": "graph.json"
+        },
+        {
+          "source": "부숙(Maturation)",
+          "relation": "분해하다",
+          "target": "식물독성 물질(Phytotoxins)",
+          "source_doc": "제1강 교재 작성.docx",
+          "graph_file": "graph.json"
+        }
+      ],
+      "source_docs": [
+        "제14강 강의 교재 작성.docx",
+        "제1강 교재 작성.docx",
+        "제3강 퇴비 미생물학 교재 작성.docx",
+        "제7강 가축분뇨 퇴비화 교재 집필.docx"
+      ]
+    },
+    {
+      "term": "근권환경",
+      "origin": "C:\\SMC_GRAPHRAG",
+      "entity_match_count": 6,
+      "relation_match_count": 8,
+      "top_entities": [
+        {
+          "name": "Smart 농업을 위한 근권환경부 모니터링 시스템",
+          "type": "PRODUCT",
+          "mentions": 1,
+          "graphs": [
+            "graph_main_com.json"
+          ]
+        },
+        {
+          "name": "Smart 농업을 위한 근권환경부 모니터링 시스템 연구",
+          "type": "CONCEPT",
+          "mentions": 1,
+          "graphs": [
+            "graph_main_com.json"
+          ]
+        },
+        {
+          "name": "근권환경",
+          "type": "CONCEPT",
+          "mentions": 1,
+          "graphs": [
+            "graph_main_com.json"
+          ]
+        },
+        {
+          "name": "근권환경부",
+          "type": "OTHER",
+          "mentions": 1,
+          "graphs": [
+            "graph_main_com.json"
+          ]
+        },
+        {
+          "name": "근권환경부 모니터링 시스템",
+          "type": "PRODUCT",
+          "mentions": 1,
+          "graphs": [
+            "graph_main_com.json"
+          ]
+        }
+      ],
+      "sample_relations": [
+        {
+          "source": "김주희",
+          "relation": "저술하다",
+          "target": "Smart 농업을 위한 근권환경부 모니터링 시스템 연구",
+          "source_doc": "Smart 농업을 위한 근권환경부 모니터링 시스템 연구.pdf",
+          "graph_file": "graph_main_com.json"
+        },
+        {
+          "source": "이기영",
+          "relation": "저술하다",
+          "target": "Smart 농업을 위한 근권환경부 모니터링 시스템 연구",
+          "source_doc": "Smart 농업을 위한 근권환경부 모니터링 시스템 연구.pdf",
+          "graph_file": "graph_main_com.json"
+        },
+        {
+          "source": "임창목",
+          "relation": "저술하다",
+          "target": "Smart 농업을 위한 근권환경부 모니터링 시스템 연구",
+          "source_doc": "Smart 농업을 위한 근권환경부 모니터링 시스템 연구.pdf",
+          "graph_file": "graph_main_com.json"
+        },
+        {
+          "source": "DBpia",
+          "relation": "제공하다",
+          "target": "Smart 농업을 위한 근권환경부 모니터링 시스템 연구",
+          "source_doc": "Smart 농업을 위한 근권환경부 모니터링 시스템 연구.pdf",
+          "graph_file": "graph_main_com.json"
+        },
+        {
+          "source": "근권환경",
+          "relation": "측정한다",
+          "target": "근권수분",
+          "source_doc": "붙임 1_20년 스마트농업 빅데이터 활용 우수사례 공모전 개최 계획(안).hwp",
+          "graph_file": "graph_main_com.json"
+        }
+      ],
+      "source_docs": [
+        "Smart 농업을 위한 근권환경부 모니터링 시스템 연구.pdf",
+        "붙임 1_20년 스마트농업 빅데이터 활용 우수사례 공모전 개최 계획(안).hwp"
+      ]
+    },
+    {
+      "term": "hydroponics",
+      "origin": "C:\\SMC_GRAPHRAG",
+      "entity_match_count": 7,
+      "relation_match_count": 8,
+      "top_entities": [
+        {
+          "name": "Soilless Culture and Hydroponics",
+          "type": "OTHER",
+          "mentions": 2,
+          "graphs": [
+            "graph_lecture_dedup.json"
+          ]
+        },
+        {
+          "name": "hydroponics",
+          "type": "CONCEPT",
+          "mentions": 2,
+          "graphs": [
+            "graph_lecture_dedup.json",
+            "graph_main_com.json"
+          ]
+        },
+        {
+          "name": "순환식 수경재배 (Closed-loop Recirculating Hydroponics)",
+          "type": "CONCEPT",
+          "mentions": 2,
+          "graphs": [
+            "graph_lecture_dedup.json"
+          ]
+        },
+        {
+          "name": "순환식 수경재배(Closed-loop Hydroponics)",
+          "type": "CONCEPT",
+          "mentions": 2,
+          "graphs": [
+            "graph_lecture_dedup.json"
+          ]
+        },
+        {
+          "name": "ep01_03_high_value_strawberry_hydroponics.jpg",
+          "type": "PRODUCT",
+          "mentions": 1,
+          "graphs": [
+            "graph_lecture_dedup.json"
+          ]
+        }
+      ],
+      "sample_relations": [
+        {
+          "source": "오존(O₃)",
+          "relation": "멸균한다",
+          "target": "순환식 수경재배(Closed Hydroponics)",
+          "source_doc": "02_greenhouse_hardware_climate_control_logic_naver.html",
+          "graph_file": "graph_lecture_dedup.json"
+        },
+        {
+          "source": "ep01_03_high_value_strawberry_hydroponics.jpg",
+          "relation": "포함된다",
+          "target": "제1강 시각자료 13선",
+          "source_doc": "00_comparison_curriculum_research_report.md",
+          "graph_file": "graph_lecture_dedup.json"
+        },
+        {
+          "source": "자외선(UV-C)",
+          "relation": "멸균한다",
+          "target": "순환식 수경재배(Closed Hydroponics)",
+          "source_doc": "02_greenhouse_hardware_climate_control_logic_naver.html",
+          "graph_file": "graph_lecture_dedup.json"
+        },
+        {
+          "source": "순환식 수경재배 (Closed-loop Recirculating Hydroponics)",
+          "relation": "정의된다",
+          "target": "밀폐형 수경재배 시스템",
+          "source_doc": "02_csa_global_policy_korean_trials_naver.html",
+          "graph_file": "graph_lecture_dedup.json"
+        },
+        {
+          "source": "International Society for Horticultural Science (ISHS)",
+          "relation": "발행하다",
+          "target": "Soilless Culture and Hydroponics",
+          "source_doc": "03_rootzone_nutrient_and_salinity_stress_naver.html",
+          "graph_file": "graph_lecture_dedup.json"
+        }
+      ],
+      "source_docs": [
+        "00_comparison_curriculum_research_report.md",
+        "02_csa_global_policy_korean_trials_naver.html",
+        "02_greenhouse_hardware_climate_control_logic_naver.html",
+        "03_rootzone_nutrient_and_salinity_stress_naver.html",
+        "03_루트존_양분결핍_과잉_및_염류스트레스_생육장해.docx",
+        "08_field_trials_practical_challenges_future_naver.html"
+      ]
+    },
+    {
+      "term": "nutrient solution",
+      "origin": "C:\\SMC_GRAPHRAG",
+      "entity_match_count": 5,
+      "relation_match_count": 8,
+      "top_entities": [
+        {
+          "name": "Hoagland nutrient solution",
+          "type": "OTHER",
+          "mentions": 4,
+          "graphs": [
+            "graph_main_com.json"
+          ]
+        },
+        {
+          "name": "Hoagland's nutrient solution",
+          "type": "OTHER",
+          "mentions": 4,
+          "graphs": [
+            "graph_main_com.json"
+          ]
+        },
+        {
+          "name": "Hoagland’s nutrient solution",
+          "type": "PRODUCT",
+          "mentions": 1,
+          "graphs": [
+            "graph_main_com.json"
+          ]
+        },
+        {
+          "name": "Nutrient solutions and water quality for soilless cultures of vegetables and flowers",
+          "type": "OTHER",
+          "mentions": 1,
+          "graphs": [
+            "graph_lecture_dedup.json"
+          ]
+        },
+        {
+          "name": "nutrient solution",
+          "type": "OTHER",
+          "mentions": 1,
+          "graphs": [
+            "graph_main_com.json"
+          ]
+        }
+      ],
+      "sample_relations": [
+        {
+          "source": "Voogt, W.",
+          "relation": "저술하였다",
+          "target": "Nutrient solutions and water quality for soilless cultures of vegetables and flowers",
+          "source_doc": "08_field_trials_practical_challenges_future_naver.html",
+          "graph_file": "graph_lecture_dedup.json"
+        },
+        {
+          "source": "De Kreij, C.",
+          "relation": "저술하였다",
+          "target": "Nutrient solutions and water quality for soilless cultures of vegetables and flowers",
+          "source_doc": "08_field_trials_practical_challenges_future_naver.html",
+          "graph_file": "graph_lecture_dedup.json"
+        },
+        {
+          "source": "Baas, R.",
+          "relation": "저술하였다",
+          "target": "Nutrient solutions and water quality for soilless cultures of vegetables and flowers",
+          "source_doc": "08_field_trials_practical_challenges_future_naver.html",
+          "graph_file": "graph_lecture_dedup.json"
+        },
+        {
+          "source": "Nutrient solutions and water quality for soilless cultures of vegetables and flowers",
+          "relation": "발행하였다",
+          "target": "Research Station for Floriculture and Glasshouse Vegetables (PBG)",
+          "source_doc": "08_field_trials_practical_challenges_future_naver.html",
+          "graph_file": "graph_lecture_dedup.json"
+        },
+        {
+          "source": "plants",
+          "relation": "received",
+          "target": "nutrient solution",
+          "source_doc": "Agronomy - T influence on leaf and branch in canopy potato.pdf",
+          "graph_file": "graph_main_com.json"
+        }
+      ],
+      "source_docs": [
+        "08_field_trials_practical_challenges_future_naver.html",
+        "Agronomy - T influence on leaf and branch in canopy potato.pdf",
+        "KJ00004506941 (1).pdf",
+        "KJ00004506941 (2).pdf",
+        "KJ00004506941.pdf"
+      ]
+    }
+  ],
+  "missing_or_outdated_gaps": [],
+  "lightrag_query_result": null
+}

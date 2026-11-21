@@ -1,0 +1,38 @@
+chapter_id: ch06
+chapter_number: 6
+title: 제6장. 토양 미생물 군집, 근권 생태계 및 프라이밍 효과
+target_pages: 34
+target_audience: 농학·토양환경학 대학 전공 심화(학부 3~4학년·대학원생), 농업연구사, 토양·비료·탄소중립 모델링 실무 전문가
+evidence_packet: data/evidence/ch06_evidence.json
+learning_objectives:
+- 세균·균근균(AMF)·PGPR·지렁이(토양대형동물)가 유기물 분해와 생태계 서비스에 미치는 역할을 설명할 수 있다.
+- 신선 유기물 투입 시 기존 SOM 분해가 가속·억제되는 양성·음성 프라이밍 효과(Priming Effect)의 조건을 분석할 수 있다.
+- 토양 효소 활성과 미생물 생체량 탄소(MBC)·대사계수(qCO2) 지표를 해석할 수 있다.
+sections:
+- section_id: '6.1'
+  title: 토양 미생물 군집(세균·균근균 AMF·PGPR)과 근권 생태계 상호작용
+  target_chars: 1800
+  key_points:
+  - 토양 미생물 군집(세균·균근균 AMF·PGPR)과 근권 생태계 상호작용의 핵심 원리와 과학적 메커니즘
+  - '핵심 개념 연계: 근권(Rhizosphere)·균근균(AMF)·지렁이 생태계 공학, 양성·음성 프라이밍 효과(Priming Effect),
+    미생물 생체량 탄소(MBC)와 토양 효소'
+  - 근거 패킷 내 국내외 실증 사례 및 현장 적용 시 트레이드오프
+  required_table: '표 6-1: 세균·균근균(AMF)·PGPR의 유기물 변환 및 작물 양분흡수 기여'
+- section_id: '6.2'
+  title: 토양 대형동물(지렁이 등)의 생태계 공학과 토양 먹이망
+  target_chars: 1800
+  key_points:
+  - 토양 대형동물(지렁이 등)의 생태계 공학과 토양 먹이망의 핵심 원리와 과학적 메커니즘
+  - '핵심 개념 연계: 근권(Rhizosphere)·균근균(AMF)·지렁이 생태계 공학, 양성·음성 프라이밍 효과(Priming Effect),
+    미생물 생체량 탄소(MBC)와 토양 효소'
+  - 근거 패킷 내 국내외 실증 사례 및 현장 적용 시 트레이드오프
+  required_table: '표 6-2: 지렁이 활동이 토양 단립·유기물 혼합·생태계 서비스에 미치는 영향'
+- section_id: '6.3'
+  title: 프라이밍 효과(Priming Effect)와 미생물 생체량·토양 효소 진단
+  target_chars: 1800
+  key_points:
+  - 프라이밍 효과(Priming Effect)와 미생물 생체량·토양 효소 진단의 핵심 원리와 과학적 메커니즘
+  - '핵심 개념 연계: 근권(Rhizosphere)·균근균(AMF)·지렁이 생태계 공학, 양성·음성 프라이밍 효과(Priming Effect),
+    미생물 생체량 탄소(MBC)와 토양 효소'
+  - 근거 패킷 내 국내외 실증 사례 및 현장 적용 시 트레이드오프
+  required_table: '표 6-3: 양성·음성 프라이밍 효과 발생 조건 및 관리 시사점'

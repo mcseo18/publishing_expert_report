@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>제1장. 디지털 밀 재배의 핵심 개념, 정의 및 학문적 체계 — 네이버 블로그 게재용 웹 교재</title>
+  <style>
+    :root { --bg:#f4f6f8; --paper:#ffffff; --border:#e5e7eb; --text:#222222; --muted:#6b7280; --naver:#03C75A; --naver-dark:#029f48; --accent:#1d4ed8; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:'Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif; background:var(--bg); color:var(--text); line-height:1.85; overflow-x:hidden; }
+    .topbar { position:sticky; top:0; z-index:40; background:#ffffff; border-bottom:2px solid var(--naver); padding:10px 20px; display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap; box-shadow:0 2px 8px rgba(0,0,0,0.04); }
+    .topbar .title-wrap { display:flex; align-items:center; gap:8px; min-width:0; }
+    .naver-badge { background:var(--naver); color:#ffffff; font-size:11px; font-weight:800; padding:3px 8px; border-radius:6px; white-space:nowrap; }
+    .topbar h1 { margin:0; font-size:15.5px; color:#111827; }
+    .topbar .actions { display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
+    .topbar input { background:#f9fafb; color:var(--text); border:1px solid #d1d5db; border-radius:8px; padding:6px 10px; font-size:13px; width:190px; }
+    .topbar a.btn, .topbar button.btn { background:var(--naver); color:#fff; border:none; text-decoration:none; padding:6px 12px; border-radius:8px; font-size:12.5px; font-weight:700; cursor:pointer; }
+    .topbar a.btn-sec { background:#f3f4f6; color:#374151; border:1px solid #d1d5db; }
+    .layout { display:grid; grid-template-columns:230px minmax(0, 820px) 290px; justify-content:center; gap:18px; max-width:1420px; margin:0 auto; padding:18px 14px 48px; }
+    .sidebar, .cite-drawer { position:sticky; top:68px; max-height:calc(100vh - 86px); overflow-y:auto; background:var(--paper); border:1px solid var(--border); border-radius:12px; padding:14px; }
+    .sidebar h3, .cite-drawer h3 { margin:0 0 10px; font-size:13.5px; color:var(--naver-dark); border-bottom:1px solid var(--border); padding-bottom:6px; }
+    .sidebar a { display:block; color:#374151; text-decoration:none; font-size:12.5px; padding:5px 8px; border-radius:6px; margin-bottom:2px; line-height:1.45; }
+    .sidebar a:hover { background:#eef7f1; color:#0b6b3a; }
+    .sidebar a.toc-h3 { padding-left:16px; font-size:11.8px; color:var(--muted); }
+    main.article { background:var(--paper); border:1px solid var(--border); border-radius:14px; padding:28px 34px; min-width:0; box-shadow:0 4px 18px rgba(0,0,0,0.03); }
+    main.article p, main.article li { overflow-wrap:anywhere; word-break:keep-all; }
+    main.article svg { max-width:100%; height:auto !important; display:block; }
+    .nb-guide-banner { background:#f4fbf6; border:1px solid #bbf7d0; border-radius:10px; padding:10px 14px; margin-bottom:20px; font-size:13px; color:#166534; display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap; }
+    .nb-section-card { margin-bottom:28px; padding-bottom:22px; border-bottom:2px solid #f1f5f9; }
+    .nb-sec-toolbar { display:flex; justify-content:space-between; align-items:center; gap:8px; flex-wrap:wrap; background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:7px 12px; margin-bottom:14px; }
+    .nb-sec-num { font-size:12px; font-weight:800; color:#475569; }
+    .nb-sec-btns { display:flex; gap:6px; flex-wrap:wrap; }
+    .nb-btn { border-radius:6px; padding:5px 10px; font-size:12px; font-weight:700; cursor:pointer; border:none; }
+    .nb-btn-green { background:var(--naver); color:#ffffff; }
+    .nb-btn-green:hover { background:var(--naver-dark); }
+    .nb-btn-outline { background:#ffffff; color:#03a84e; border:1px solid #86efac; }
+    .nb-btn-outline:hover { background:#eef7f1; }
+    .cite-btn { background:#eff6ff; color:#1d4ed8; border:1px solid #bfdbfe; border-radius:4px; padding:0 5px; font-size:12px; font-weight:700; cursor:pointer; margin:0 1px; }
+    .cite-btn:hover { background:#1d4ed8; color:#ffffff; }
+    .cite-card { font-size:12.5px; color:#374151; line-height:1.6; }
+    .cite-card .ctitle { font-weight:700; color:#111827; font-size:13.5px; margin-bottom:6px; }
+    .cite-card .cexcerpt { background:#f8fafc; border:1px solid var(--border); border-radius:8px; padding:10px; margin-top:8px; white-space:pre-wrap; font-size:12px; color:#4b5563; }
+    .toast { position:fixed; bottom:20px; right:20px; background:#111827; color:#ffffff; padding:10px 16px; border-radius:10px; font-size:13px; font-weight:600; display:none; z-index:999; box-shadow:0 8px 24px rgba(0,0,0,0.2); }
+    sub, sup { font-size:74%; line-height:0; position:relative; vertical-align:baseline; }
+    sup { top:-0.45em; }
+    sub { bottom:-0.22em; }
+    .m-frac { display:inline-flex; flex-direction:column; align-items:center; vertical-align:middle; margin:0 3px; font-size:90%; line-height:1.2; }
+    .m-frac .m-num { border-bottom:1px solid currentColor; padding:0 4px 1px; }
+    .m-frac .m-den { padding:1px 4px 0; }
+    .m-rxn { display:inline-flex; flex-direction:column; align-items:center; vertical-align:middle; margin:0 3px; line-height:1.05; }
+    .m-rxn .m-rxn-lbl { font-size:72%; }
+    @media (max-width: 1120px) {
+      .layout { grid-template-columns:minmax(0, 1fr); padding:10px; }
+      .sidebar, .cite-drawer { position:static; max-height:none; }
+      main.article { padding:16px 14px; }
+      .topbar input { width:100%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="title-wrap">
+      <span class="naver-badge">NAVER BLOG READY</span>
+      <h1>제1장. 디지털 밀 재배의 핵심 개념, 정의 및 학문적 체계</h1>
+    </div>
+    <div class="actions">
+      <input id="searchBox" type="search" placeholder="본문 키워드 검색..." oninput="filterSearch(this.value)" />
+      <button type="button" class="btn" onclick="copyWholeChapterForNaver()">단원 전체 블로그 복사</button>
+      <a class="btn btn-sec" href="/blog/ch01" target="_blank">순수 블로그 HTML</a>
+      <a class="btn btn-sec" href="/">← 대시보드</a>
+    </div>
+  </div>
+  <div class="layout">
+    <aside class="sidebar">
+      <h3>소단원 목차 (TOC)</h3>
+      <a class="toc-h2" href="#sec-1">1.1 핵심 원리와 구조</a>
+<a class="toc-h2" href="#sec-2">1.2 정량 분석 및 메커니즘</a>
+<a class="toc-h2" href="#sec-3">1.3 현장 적용과 국내외 비교</a>
+<a class="toc-h2" href="#sec-4">이해도 점검 연습문제 및 해설</a>
+<a class="toc-h3" href="#sec-5">문제 1</a>
+<a class="toc-h2" href="#sec-6">1.4 오해와 진실: 현장·이론 핵심 오해 교정</a>
+<a class="toc-h3" href="#sec-7">오해 1-1. &quot;디지털 밀 재배은 단일 요인만으로 결정된다&quot;</a>
+<a class="toc-h2" href="#sec-8">참고문헌 및 근거 출처 목록</a>
+    </aside>
+    <main class="article" id="articleBody">
+      <div class="nb-guide-banner" data-no-copy="1">
+        <span><b>네이버 블로그 바로 게재 안내:</b> 각 소단원 상단의 <b>[네이버 블로그 서식 복사]</b> 버튼을 누른 뒤 네이버 스마트에디터 ONE 본문에 <code>Ctrl+V</code>로 붙여넣으세요. 각 소단원 말미에 <b>관련 해시태그 20개</b>가 자동 포함되어 있습니다.</span>
+      </div>
+      <div id="nbPreamble"><h1 style="font-size:24px;font-weight:800;color:#111111;line-height:1.45;margin:0 0 18px;padding-bottom:14px;border-bottom:2px solid #03C75A;">제1장. 디지털 밀 재배의 핵심 개념, 정의 및 학문적 체계</h1>
+<blockquote style="margin:16px 0;padding:14px 18px;background:#f4fbf6;border-left:4px solid #03C75A;border-radius:0 8px 8px 0;color:#2d3748;font-size:15px;line-height:1.85;">
+<p style="margin:0 0 14px;font-size:15.5px;line-height:1.9;color:#222222;word-break:keep-all;"><strong>학습 목표:</strong> 디지털 밀 재배의 핵심 원리와 현장 적용 기준을 1차 학술 근거에 기반해 설명할 수 있다.</p>
+</blockquote>
+</div>
+      <article class="nb-section-card"><div class="nb-sec-toolbar" data-no-copy="1"><span class="nb-sec-num">소단원 1</span><div class="nb-sec-btns"><button type="button" class="nb-btn nb-btn-green" onclick="copySectionForNaver('nb-copy-1')">네이버 블로그 서식 복사</button><button type="button" class="nb-btn nb-btn-outline" onclick="copyHashtagsOnly('nb-copy-1')">해시태그 20개 복사</button></div></div><div class="nb-copy-area" id="nb-copy-1"><h2 id="sec-1" style="font-size:20px;font-weight:800;color:#111111;line-height:1.45;margin:8px 0 16px;padding:6px 0 6px 14px;border-left:5px solid #03C75A;background:#f9fdfb;">1.1 핵심 원리와 구조</h2>
+<p style="margin:0 0 14px;font-size:15.5px;line-height:1.9;color:#222222;word-break:keep-all;">본 절은 디지털 밀 재배의 핵심 메커니즘과 최신 연구 결과를 다룬다 <button type="button" class="cite-btn" data-sid="SRC-95" onclick="showCite('SRC-95')">[SRC-95]</button>.</p>
+
+<div class="nb-hashtag-block" data-sec-idx="1" style="margin-top:24px;padding:14px 16px;background:#f8fafc;border:1px dashed #cbd5e1;border-radius:8px;"><div style="font-size:12.5px;font-weight:700;color:#475569;margin-bottom:6px;">관련 해시태그 (20개)</div><p class="nb-hashtag-text" style="margin:0;font-size:14px;line-height:1.85;color:#03a84e;font-weight:600;word-break:keep-all;">#토양유기물 #토양유기탄소 #SOM #SOC #POM #MAOM #입자성유기물 #광물결합유기물 #토양연속체모델 #부식질 #토양생태계 #토양건강 #흙토람 #탄소저장 #토양학 #토양관리 #친환경농업 #탄소중립농업 #농촌진흥청 #토양비옥도</p></div></div></article><article class="nb-section-card"><div class="nb-sec-toolbar" data-no-copy="1"><span class="nb-sec-num">소단원 2</span><div class="nb-sec-btns"><button type="button" class="nb-btn nb-btn-green" onclick="copySectionForNaver('nb-copy-2')">네이버 블로그 서식 복사</button><button type="button" class="nb-btn nb-btn-outline" onclick="copyHashtagsOnly('nb-copy-2')">해시태그 20개 복사</button></div></div><div class="nb-copy-area" id="nb-copy-2"><h2 id="sec-2" style="font-size:20px;font-weight:800;color:#111111;line-height:1.45;margin:8px 0 16px;padding:6px 0 6px 14px;border-left:5px solid #03C75A;background:#f9fdfb;">1.2 정량 분석 및 메커니즘</h2>
+<p style="margin:0 0 14px;font-size:15.5px;line-height:1.9;color:#222222;word-break:keep-all;">본 절은 디지털 밀 재배의 핵심 메커니즘과 최신 연구 결과를 다룬다 <button type="button" class="cite-btn" data-sid="SRC-95" onclick="showCite('SRC-95')">[SRC-95]</button>.</p>
+
+<div class="nb-hashtag-block" data-sec-idx="2" style="margin-top:24px;padding:14px 16px;background:#f8fafc;border:1px dashed #cbd5e1;border-radius:8px;"><div style="font-size:12.5px;font-weight:700;color:#475569;margin-bottom:6px;">관련 해시태그 (20개)</div><p class="nb-hashtag-text" style="margin:0;font-size:14px;line-height:1.85;color:#03a84e;font-weight:600;word-break:keep-all;">#토양유기물 #토양유기탄소 #SOM #SOC #POM #MAOM #입자성유기물 #광물결합유기물 #토양연속체모델 #부식질 #토양생태계 #토양건강 #흙토람 #탄소저장 #토양학 #토양관리 #친환경농업 #탄소중립농업 #농촌진흥청 #토양비옥도</p></div></div></article><article class="nb-section-card"><div class="nb-sec-toolbar" data-no-copy="1"><span class="nb-sec-num">소단원 3</span><div class="nb-sec-btns"><button type="button" class="nb-btn nb-btn-green" onclick="copySectionForNaver('nb-copy-3')">네이버 블로그 서식 복사</button><button type="button" class="nb-btn nb-btn-outline" onclick="copyHashtagsOnly('nb-copy-3')">해시태그 20개 복사</button></div></div><div class="nb-copy-area" id="nb-copy-3"><h2 id="sec-3" style="font-size:20px;font-weight:800;color:#111111;line-height:1.45;margin:8px 0 16px;padding:6px 0 6px 14px;border-left:5px solid #03C75A;background:#f9fdfb;">1.3 현장 적용과 국내외 비교</h2>
+<p style="margin:0 0 14px;font-size:15.5px;line-height:1.9;color:#222222;word-break:keep-all;">본 절은 디지털 밀 재배의 핵심 메커니즘과 최신 연구 결과를 다룬다 <button type="button" class="cite-btn" data-sid="SRC-95" onclick="showCite('SRC-95')">[SRC-95]</button>.</p>
+
+<div class="nb-hashtag-block" data-sec-idx="3" style="margin-top:24px;padding:14px 16px;background:#f8fafc;border:1px dashed #cbd5e1;border-radius:8px;"><div style="font-size:12.5px;font-weight:700;color:#475569;margin-bottom:6px;">관련 해시태그 (20개)</div><p class="nb-hashtag-text" style="margin:0;font-size:14px;line-height:1.85;color:#03a84e;font-weight:600;word-break:keep-all;">#토양유기물 #토양유기탄소 #SOM #SOC #POM #MAOM #입자성유기물 #광물결합유기물 #토양연속체모델 #부식질 #토양생태계 #토양건강 #흙토람 #탄소저장 #토양학 #토양관리 #친환경농업 #탄소중립농업 #농촌진흥청 #토양비옥도</p></div></div></article><article class="nb-section-card"><div class="nb-sec-toolbar" data-no-copy="1"><span class="nb-sec-num">소단원 4</span><div class="nb-sec-btns"><button type="button" class="nb-btn nb-btn-green" onclick="copySectionForNaver('nb-copy-4')">네이버 블로그 서식 복사</button><button type="button" class="nb-btn nb-btn-outline" onclick="copyHashtagsOnly('nb-copy-4')">해시태그 20개 복사</button></div></div><div class="nb-copy-area" id="nb-copy-4"><h2 id="sec-4" style="font-size:20px;font-weight:800;color:#111111;line-height:1.45;margin:8px 0 16px;padding:6px 0 6px 14px;border-left:5px solid #03C75A;background:#f9fdfb;">이해도 점검 연습문제 및 해설</h2>
+<h3 id="sec-5" style="font-size:17.5px;font-weight:700;color:#0b6b3a;margin:24px 0 10px;line-height:1.5;">문제 1</h3>
+<p style="margin:0 0 14px;font-size:15.5px;line-height:1.9;color:#222222;word-break:keep-all;">디지털 밀 재배의 핵심 원리에 대한 설명으로 가장 적절한 것은?
+① 근거 기반 정량 관리가 중요하다 <button type="button" class="cite-btn" data-sid="SRC-95" onclick="showCite('SRC-95')">[SRC-95]</button>
+② 환경 요인은 고려하지 않는다</p>
+<details class="quiz-ans" open style="margin:10px 0 22px;padding:12px 16px;background:#f4fbf6;border:1px solid #bbf7d0;border-left:4px solid #03C75A;border-radius:0 8px 8px 0;"><summary style="cursor:pointer;font-weight:800;color:#047857;font-size:15px;">▶ 문제 1 정답 및 상세 풀이 (접기/펼치기)</summary><div class="quiz-body" style="margin-top:10px;padding-top:8px;border-top:1px dashed #bbf7d0;"><p style="margin:0 0 14px;font-size:15.5px;line-height:1.9;color:#222222;word-break:keep-all;"><strong>정답: ①</strong> — 1차 학술 근거에 기반한 정량 관리가 핵심이다 <button type="button" class="cite-btn" data-sid="SRC-95" onclick="showCite('SRC-95')">[SRC-95]</button>.</p></div></details>
+<div class="nb-hashtag-block" data-sec-idx="4" style="margin-top:24px;padding:14px 16px;background:#f8fafc;border:1px dashed #cbd5e1;border-radius:8px;"><div style="font-size:12.5px;font-weight:700;color:#475569;margin-bottom:6px;">관련 해시태그 (20개)</div><p class="nb-hashtag-text" style="margin:0;font-size:14px;line-height:1.85;color:#03a84e;font-weight:600;word-break:keep-all;">#토양학연습문제 #토양유기물 #토양유기탄소 #SOM #SOC #POM #MAOM #입자성유기물 #광물결합유기물 #토양연속체모델 #부식질 #토양생태계 #토양건강 #흙토람 #탄소저장 #토양학 #토양관리 #친환경농업 #탄소중립농업 #농촌진흥청</p></div></div></article><article class="nb-section-card"><div class="nb-sec-toolbar" data-no-copy="1"><span class="nb-sec-num">소단원 5</span><div class="nb-sec-btns"><button type="button" class="nb-btn nb-btn-green" onclick="copySectionForNaver('nb-copy-5')">네이버 블로그 서식 복사</button><button type="button" class="nb-btn nb-btn-outline" onclick="copyHashtagsOnly('nb-copy-5')">해시태그 20개 복사</button></div></div><div class="nb-copy-area" id="nb-copy-5"><h2 id="sec-6" style="font-size:20px;font-weight:800;color:#111111;line-height:1.45;margin:8px 0 16px;padding:6px 0 6px 14px;border-left:5px solid #03C75A;background:#f9fdfb;">1.4 오해와 진실: 현장·이론 핵심 오해 교정</h2>
+<h3 id="sec-7" style="font-size:17.5px;font-weight:700;color:#0b6b3a;margin:24px 0 10px;line-height:1.5;">오해 1-1. &quot;디지털 밀 재배은 단일 요인만으로 결정된다&quot;</h3>
+<ul style="margin:0 0 16px;padding-left:22px;font-size:15.5px;line-height:1.85;color:#222222;">
+<li style="margin-bottom:8px;padding:8px 12px;background:#fef2f2;border-left:4px solid #ef4444;border-radius:0 6px 6px 0;list-style:none;margin-left:-18px;"><strong style="color:#b91c1c;">❌ 오해 (Myth):</strong> 하나의 지표만 관리하면 충분하다고 생각한다.</li>
+<li style="margin-bottom:8px;padding:8px 12px;background:#f0fdf4;border-left:4px solid #03C75A;border-radius:0 6px 6px 0;list-style:none;margin-left:-18px;"><strong style="color:#047857;">✅ 진실 (Fact):</strong> 디지털 밀 재배은 물리·화학·생물·환경 요인의 복합 상호작용으로 결정된다 <button type="button" class="cite-btn" data-sid="SRC-95" onclick="showCite('SRC-95')">[SRC-95]</button>.</li>
+<li style="margin-bottom:10px;padding:8px 12px;background:#eff6ff;border-left:4px solid #2563eb;border-radius:0 6px 6px 0;list-style:none;margin-left:-18px;"><strong style="color:#1d4ed8;">💡 현장 교정 포인트:</strong> 다중 지표와 정량 검정을 연계해 통합 관리해야 한다 <button type="button" class="cite-btn" data-sid="SRC-95" onclick="showCite('SRC-95')">[SRC-95]</button>.</li>
+</ul>
+
+<div class="nb-hashtag-block" data-sec-idx="5" style="margin-top:24px;padding:14px 16px;background:#f8fafc;border:1px dashed #cbd5e1;border-radius:8px;"><div style="font-size:12.5px;font-weight:700;color:#475569;margin-bottom:6px;">관련 해시태그 (20개)</div><p class="nb-hashtag-text" style="margin:0;font-size:14px;line-height:1.85;color:#03a84e;font-weight:600;word-break:keep-all;">#토양학오해와진실 #토양상식교정 #토양유기물 #토양유기탄소 #SOM #SOC #POM #MAOM #입자성유기물 #광물결합유기물 #토양연속체모델 #부식질 #토양생태계 #토양건강 #흙토람 #탄소저장 #토양학 #토양관리 #친환경농업 #탄소중립농업</p></div></div></article><article class="nb-section-card"><div class="nb-sec-toolbar" data-no-copy="1"><span class="nb-sec-num">소단원 6</span><div class="nb-sec-btns"><button type="button" class="nb-btn nb-btn-green" onclick="copySectionForNaver('nb-copy-6')">네이버 블로그 서식 복사</button></div></div><div class="nb-copy-area" id="nb-copy-6"><h2 id="sec-8" style="font-size:20px;font-weight:800;color:#111111;line-height:1.45;margin:8px 0 16px;padding:6px 0 6px 14px;border-left:5px solid #03C75A;background:#f9fdfb;">참고문헌 및 근거 출처 목록</h2>
+<div class="table-wrap" style="width:100%;overflow-x:auto;margin:18px 0;"><table class="sortable-table" style="width:100%;border-collapse:collapse;font-size:14px;line-height:1.6;border:1px solid #d1d5db;background:#ffffff;">
+<thead>
+<tr>
+<th style="text-align:left">출처 ID</th>
+<th style="text-align:left">유형</th>
+<th style="text-align:left">제목</th>
+<th style="text-align:left">URL</th>
+<th style="text-align:left">라이선스</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>SRC-95</code></td>
+<td style="text-align:left">web</td>
+<td style="text-align:left">[2018] Deep learning in agriculture: A survey (Computers and Electronics in Agriculture)</td>
+<td style="text-align:left">https://hdl.handle.net/20.500.12327/314</td>
+<td style="text-align:left">학술 논문 오픈액세스(OpenAlex) - 변환적 분석 및 정식 학술 인용</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>SRC-96</code></td>
+<td style="text-align:left">web</td>
+<td style="text-align:left">[2012] Green Revolution: Impacts, limits, and the path ahead (Proceedings of the National Academy of Sciences)</td>
+<td style="text-align:left">https://doi.org/10.1073/pnas.0912953109</td>
+<td style="text-align:left">학술 논문 오픈액세스(OpenAlex) - 변환적 분석 및 정식 학술 인용</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>SRC-97</code></td>
+<td style="text-align:left">web</td>
+<td style="text-align:left">[2022] A review of the global climate change impacts, adaptation, and sustainable mitigation measures (Environmental Science and Pollution Research)</td>
+<td style="text-align:left">https://doi.org/10.1007/s11356-022-19718-6</td>
+<td style="text-align:left">학술 논문 오픈액세스(OpenAlex) - 변환적 분석 및 정식 학술 인용</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>SRC-98</code></td>
+<td style="text-align:left">web</td>
+<td style="text-align:left">[2019] Fertilizer NPK Recommendations for Kiwi Cultivation Based on Soil Testing in Jeju (Korean Journal of Soil Science and Fertilizer)</td>
+<td style="text-align:left">https://doi.org/10.7745/kjssf.2019.52.1.051</td>
+<td style="text-align:left">학술 서지 메타데이터·초록(Crossref) - 정식 인용 목적(원문 무단 복제 금지)</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>SRC-99</code></td>
+<td style="text-align:left">web</td>
+<td style="text-align:left">[2022] Orchard Vegetative Cultivation in Reducing Soil Erosion Risk (Korean Journal of Soil Science and Fertilizer)</td>
+<td style="text-align:left">https://doi.org/10.7745/kjssf.2022.55.4.548</td>
+<td style="text-align:left">학술 서지 메타데이터·초록(Crossref) - 정식 인용 목적(원문 무단 복제 금지)</td>
+</tr>
+</tbody>
+</table></div>
+
+</div></article>
+    </main>
+    <aside class="cite-drawer">
+      <h3>출처 근거 인스펙터 ([SRC-NN])</h3>
+      <div id="citeCard" class="cite-card">
+        본문의 <span class="cite-btn">[SRC-NN]</span> 배지를 클릭하면 원천 출처 메타데이터와 검증 발췌문이 여기에 표시됩니다. (네이버 블로그 복사 시에는 깔끔한 일반 텍스트 <code>[SRC-NN]</code>으로 자동 변환됩니다.)
+      </div>
+    </aside>
+  </div>
+  <div class="toast" id="toast"></div>
+  <script>
+    const SOURCES = {"SRC-95": {"source_id": "SRC-95", "title": "[2018] Deep learning in agriculture: A survey (Computers and Electronics in Agriculture)", "source_type": "web", "url": "https://hdl.handle.net/20.500.12327/314", "license_note": "학술 논문 오픈액세스(OpenAlex) - 변환적 분석 및 정식 학술 인용", "accessed_at": "2026-11-21", "excerpt": "# Deep learning in agriculture: A survey\n - **저자**: Andreas Kamilaris, Francesc Xavier Prenafeta-Boldú\n- **발행연도**: 2018\n- **학술지 / 학회**: Computers and Electronics in Agriculture\n- **DOI / URL**: https://doi.org/10.1016/j.compag.2018.02.016\n- **피인용수**: 7011회 (OpenAlex)\n- **분류**: international_journal | **오픈액세스**: 예"}};
+    function esc(s) { return String(s||'').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])); }
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.style.display = 'block';
+      setTimeout(() => { t.style.display = 'none'; }, 3200);
+    }
+    function showCite(sid) {
+      const s = SOURCES[sid];
+      const box = document.getElementById('citeCard');
+      if (!s) { box.innerHTML = '출처 정보를 찾을 수 없습니다: ' + esc(sid); return; }
+      box.innerHTML = `
+        <div class="ctitle">[${esc(s.source_id)}] ${esc(s.title)}</div>
+        <div><b>유형:</b> ${esc(s.source_type)} · <b>접근일:</b> ${esc(s.accessed_at)}</div>
+        <div style="margin:4px 0;"><b>출처:</b> <a href="${esc(s.url)}" target="_blank" style="color:#03a84e; word-break:break-all;">${esc(s.url)}</a></div>
+        <div><b>라이선스:</b> ${esc(s.license_note)}</div>
+        <div class="cexcerpt">${esc(s.excerpt || '(근거 패킷 원문 참조)')}</div>
+      `;
+    }
+    const _SUB_UNI = {'0':'₀','1':'₁','2':'₂','3':'₃','4':'₄','5':'₅','6':'₆','7':'₇','8':'₈','9':'₉','+':'₊','-':'₋','−':'₋'};
+    const _SUP_UNI = {'0':'⁰','1':'¹','2':'²','3':'³','4':'⁴','5':'⁵','6':'⁶','7':'⁷','8':'⁸','9':'⁹','+':'⁺','-':'⁻','−':'⁻','=':'⁼','(':'⁽',')':'⁾','n':'ⁿ'};
+    function toNaverSub(txt) {
+      const t = (txt || '').trim();
+      if (!t) return '';
+      if ([...t].every(c => _SUB_UNI[c])) return [...t].map(c => _SUB_UNI[c]).join('');
+      return /[ ,+\-−\/]/.test(t) ? '_(' + t + ')' : '_' + t;
+    }
+    function toNaverSup(txt) {
+      const t = (txt || '').trim();
+      if (!t) return '';
+      if ([...t].every(c => _SUP_UNI[c])) return [...t].map(c => _SUP_UNI[c]).join('');
+      return '^(' + t + ')';
+    }
+    function flattenMathForNaverDom(root) {
+      // 1) 모든 sub/sup 먼저 변환 (분수·화살표 내부 첨자까지 보존)
+      root.querySelectorAll('sub').forEach(el => {
+        el.replaceWith(document.createTextNode(toNaverSub(el.textContent)));
+      });
+      root.querySelectorAll('sup').forEach(el => {
+        el.replaceWith(document.createTextNode(toNaverSup(el.textContent)));
+      });
+      // 2) 세로 분수(.m-frac) → (분자) / (분모) 평탄화
+      root.querySelectorAll('.m-frac').forEach(fr => {
+        const num = (fr.querySelector('.m-num')?.textContent || '').trim();
+        const den = (fr.querySelector('.m-den')?.textContent || '').trim();
+        const nStr = (num.length <= 10 && !/ [+\-−×\/] /.test(num)) ? num : '(' + num + ')';
+        const dStr = (den.length <= 10 && !/ [+\-−×\/] /.test(den)) ? den : '(' + den + ')';
+        fr.replaceWith(document.createTextNode(nStr + ' / ' + dStr));
+      });
+      // 3) 반응 화살표(.m-rxn) → —[조건]→
+      root.querySelectorAll('.m-rxn').forEach(rx => {
+        const lbl = (rx.querySelector('.m-rxn-lbl')?.textContent || '').trim();
+        rx.replaceWith(document.createTextNode('—[' + lbl + ']→'));
+      });
+      // 4) 표 래퍼(.table-wrap) 언랩 → 네이버 스마트에디터가 <table>을 표 객체로 직접 인식
+      root.querySelectorAll('div.table-wrap').forEach(wrap => {
+        const tbl = wrap.querySelector('table');
+        if (tbl) wrap.replaceWith(tbl);
+      });
+    }
+    function buildCleanNaverHtml(el) {
+      const clone = el.cloneNode(true);
+      clone.querySelectorAll('[data-no-copy="1"]').forEach(n => n.remove());
+      clone.querySelectorAll('button.cite-btn').forEach(btn => {
+        const span = document.createElement('span');
+        span.textContent = btn.textContent;
+        span.style.color = '#2563eb';
+        span.style.fontSize = '13px';
+        btn.replaceWith(span);
+      });
+      flattenMathForNaverDom(clone);
+      return { html: clone.innerHTML, text: clone.innerText };
+    }
+    async function writeRichClipboard(htmlStr, textStr, okMsg) {
+      try {
+        if (navigator.clipboard && window.ClipboardItem) {
+          await navigator.clipboard.write([
+            new ClipboardItem({
+              'text/html': new Blob([htmlStr], { type: 'text/html' }),
+              'text/plain': new Blob([textStr], { type: 'text/plain' })
+            })
+          ]);
+          showToast(okMsg);
+          return;
+        }
+      } catch (e) {}
+      const tmp = document.createElement('div');
+      tmp.style.position = 'fixed';
+      tmp.style.left = '-9999px';
+      tmp.style.background = '#ffffff';
+      tmp.innerHTML = htmlStr;
+      document.body.appendChild(tmp);
+      const range = document.createRange();
+      range.selectNodeContents(tmp);
+      const sel = window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(range);
+      document.execCommand('copy');
+      sel.removeAllRanges();
+      tmp.remove();
+      showToast(okMsg);
+    }
+    function copySectionForNaver(id) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const clean = buildCleanNaverHtml(el);
+      writeRichClipboard(clean.html, clean.text, '네이버 블로그 서식·이미지·해시태그 20개가 복사되었습니다! 에디터에 Ctrl+V 하세요.');
+    }
+    function copyHashtagsOnly(id) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const tagEl = el.querySelector('.nb-hashtag-text');
+      if (!tagEl) return;
+      const txt = tagEl.innerText.trim();
+      navigator.clipboard?.writeText(txt).then(() => showToast('관련 해시태그 20개가 복사되었습니다!')).catch(() => {
+        const ta = document.createElement('textarea');
+        ta.value = txt;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        ta.remove();
+        showToast('관련 해시태그 20개가 복사되었습니다!');
+      });
+    }
+    function copyWholeChapterForNaver() {
+      const pre = document.getElementById('nbPreamble');
+      const areas = Array.from(document.querySelectorAll('.nb-copy-area'));
+      let combinedHtml = pre ? buildCleanNaverHtml(pre).html : '';
+      let combinedText = pre ? buildCleanNaverHtml(pre).text + '\n\n' : '';
+      areas.forEach(a => {
+        const c = buildCleanNaverHtml(a);
+        combinedHtml += '<hr style="border:none;border-top:1px solid #e5e7eb;margin:28px 0;"/>' + c.html;
+        combinedText += '\n' + c.text + '\n';
+      });
+      writeRichClipboard(combinedHtml, combinedText, '단원 전체(소단원별 해시태그 20개 포함)가 네이버 블로그 서식으로 복사되었습니다!');
+    }
+    document.querySelectorAll('table.sortable-table').forEach(tbl => {
+      const ths = tbl.querySelectorAll('thead th');
+      ths.forEach((th, idx) => {
+        let asc = true;
+        th.title = '클릭하여 정렬';
+        th.style.cursor = 'pointer';
+        th.addEventListener('click', () => {
+          const tbody = tbl.querySelector('tbody');
+          if (!tbody) return;
+          const rows = Array.from(tbody.querySelectorAll('tr'));
+          rows.sort((a, b) => {
+            const av = (a.children[idx]?.textContent || '').trim();
+            const bv = (b.children[idx]?.textContent || '').trim();
+            return asc ? av.localeCompare(bv, 'ko', {numeric:true}) : bv.localeCompare(av, 'ko', {numeric:true});
+          });
+          asc = !asc;
+          rows.forEach(r => tbody.appendChild(r));
+        });
+      });
+    });
+    function filterSearch(q) {
+      const paras = document.querySelectorAll('#articleBody p, #articleBody li');
+      const kw = q.trim().toLowerCase();
+      paras.forEach(el => {
+        el.style.outline = (kw && el.textContent.toLowerCase().includes(kw)) ? '2px solid #03C75A' : 'none';
+      });
+    }
+  </script>
+</body>
+</html>

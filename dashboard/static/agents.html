@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>서브에이전트 교재 제작 순차 관제 대시보드 (Mission Control)</title>
+  <style>
+    :root {
+      --bg: #070d19;
+      --panel: #0f172a;
+      --panel2: #1e293b;
+      --border: rgba(148, 163, 184, 0.18);
+      --text: #f1f5f9;
+      --muted: #94a3b8;
+      --cyan: #38bdf8;
+      --green: #4ade80;
+      --naver: #03C75A;
+      --amber: #facc15;
+      --purple: #c084fc;
+      --red: #f87171;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif; background: var(--bg); color: var(--text); line-height: 1.55; }
+    header {
+      background: linear-gradient(135deg, #0b132b 0%, #1e1b4b 55%, #064e3b 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 24px;
+      display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;
+    }
+    header h1 { margin: 0; font-size: 19px; color: #f8fafc; }
+    header .sub { font-size: 12px; color: #cbd5e1; margin-top: 2px; }
+    .hdr-links { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+    .hdr-links a {
+      background: rgba(56, 189, 248, 0.14); border: 1px solid rgba(56, 189, 248, 0.35);
+      color: #7dd3fc; padding: 6px 12px; border-radius: 8px; text-decoration: none; font-size: 12.5px; font-weight: 700;
+    }
+    .hdr-links a:hover { background: rgba(56, 189, 248, 0.28); }
+    .layout {
+      display: grid; grid-template-columns: 340px minmax(0, 1fr); gap: 16px;
+      max-width: 1580px; margin: 0 auto; padding: 16px 20px 44px; align-items: start;
+    }
+    @media (max-width: 1080px) { .layout { grid-template-columns: 1fr; } }
+    .card { background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 15px 16px; margin-bottom: 14px; }
+    .card h2 { margin: 0 0 10px; font-size: 15px; color: #e2e8f0; display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+    .field { margin-bottom: 9px; }
+    .field label { display: block; font-size: 11.5px; color: var(--muted); margin-bottom: 3px; font-weight: 600; }
+    input[type=text], input[type=number], textarea, select {
+      width: 100%; background: #090f1d; color: var(--text); border: 1px solid var(--border);
+      border-radius: 8px; padding: 7px 10px; font-size: 13px; font-family: inherit;
+    }
+    input:focus, textarea:focus { outline: none; border-color: var(--cyan); }
+    .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .chk-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin: 8px 0 12px; font-size: 12px; color: #cbd5e1; }
+    .chk-grid label { display: flex; align-items: center; gap: 5px; cursor: pointer; }
+    button {
+      background: #2563eb; color: #fff; border: none; border-radius: 8px; padding: 8px 13px;
+      font-size: 12.5px; font-weight: 700; cursor: pointer;
+    }
+    button:hover { background: #1d4ed8; }
+    button.green { background: #15803d; }
+    button.green:hover { background: #166534; }
+    button.naver { background: var(--naver); color: #052e16; }
+    button.naver:hover { background: #02a84c; color: #fff; }
+    button.red { background: #b91c1c; }
+    button.sec { background: var(--panel2); border: 1px solid var(--border); color: var(--text); }
+    button.sm { padding: 4px 9px; font-size: 11.5px; }
+
+    /* Project List */
+    .proj-item {
+      padding: 10px 11px; border: 1px solid var(--border); border-radius: 9px; margin-bottom: 8px;
+      cursor: pointer; background: #0b1222; transition: border-color 0.15s;
+    }
+    .proj-item:hover { border-color: var(--cyan); }
+    .proj-item.active { border-color: var(--cyan); background: rgba(56, 189, 248, 0.1); }
+    .proj-title { font-weight: 700; font-size: 13px; color: #f8fafc; }
+    .proj-meta { font-size: 11.5px; color: var(--muted); margin-top: 3px; display: flex; justify-content: space-between; }
+
+    /* Status Badges */
+    .badge { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 11px; font-weight: 700; }
+    .st-DONE { background: rgba(74, 222, 128, 0.16); color: #86efac; }
+    .st-RUNNING { background: rgba(56, 189, 248, 0.22); color: #7dd3fc; animation: pulse 1.2s infinite; }
+    .st-PENDING, .st-IDLE { background: rgba(148, 163, 184, 0.16); color: #cbd5e1; }
+    .st-PAUSED, .st-STOPPED { background: rgba(250, 204, 21, 0.18); color: #fde047; }
+    .st-ERROR { background: rgba(248, 113, 113, 0.2); color: #fca5a5; }
+    @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.45; } }
+
+    /* 7-Stage Pipeline Swimlane */
+    .stages-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(265px, 1fr)); gap: 11px; }
+    .stage-card {
+      background: #0b1222; border: 1px solid var(--border); border-radius: 10px; padding: 12px;
+      display: flex; flex-direction: column; justify-content: space-between; gap: 7px;
+    }
+    .stage-card.is-RUNNING { border-color: var(--cyan); box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.4); }
+    .stage-card.is-DONE { border-color: rgba(74, 222, 128, 0.4); }
+    .stage-card.is-ERROR { border-color: rgba(248, 113, 113, 0.6); }
+    .stage-head { display: flex; justify-content: space-between; align-items: center; gap: 6px; }
+    .agent-tag { font-size: 11.5px; font-weight: 800; color: var(--purple); font-family: Consolas, monospace; }
+    .stage-title { font-size: 13.5px; font-weight: 700; color: #f8fafc; }
+    .stage-tier { font-size: 11px; color: var(--muted); }
+    .stage-action { font-size: 12px; color: #cbd5e1; background: #070d19; padding: 6px 8px; border-radius: 6px; min-height: 36px; }
+    .pbar { width: 100%; height: 6px; background: #1e293b; border-radius: 999px; overflow: hidden; }
+    .pbar-fill { height: 100%; background: linear-gradient(90deg, #38bdf8, #4ade80); transition: width 0.35s; }
+    .metrics-row { display: flex; gap: 5px; flex-wrap: wrap; }
+    .m-chip { font-size: 10.5px; background: #1e293b; color: #93c5fd; padding: 2px 6px; border-radius: 5px; max-width: 100%; overflow-wrap: anywhere; word-break: break-word; }
+
+    /* Live Terminal Log */
+    .log-box {
+      background: #050912; border: 1px solid var(--border); border-radius: 10px; padding: 12px;
+      height: 270px; overflow-y: auto; font-family: Consolas, 'D2Coding', monospace; font-size: 12px; line-height: 1.65;
+    }
+    .log-line { margin-bottom: 3px; word-break: break-word; }
+    .log-time { color: #64748b; }
+    .log-agent { color: #c084fc; font-weight: 700; }
+    .log-WARN { color: #facc15; }
+    .log-ERROR { color: #f87171; }
+
+    /* Bottom Inspector Tabs */
+    .tabs { display: flex; gap: 6px; border-bottom: 1px solid var(--border); padding-bottom: 8px; margin-bottom: 10px; flex-wrap: wrap; }
+    .tbtn { background: #0b1222; color: var(--muted); border: 1px solid var(--border); padding: 6px 12px; border-radius: 7px; font-size: 12px; font-weight: 700; cursor: pointer; }
+    .tbtn.active { background: #1d4ed8; color: #fff; border-color: #3b82f6; }
+    .tpanel { display: none; }
+    .tpanel.active { display: block; }
+    table { width: 100%; border-collapse: collapse; font-size: 12px; }
+    th, td { padding: 7px 8px; border-bottom: 1px solid var(--border); text-align: left; }
+    th { color: var(--muted); background: #0b1222; }
+    pre.skill-pre {
+      background: #050912; border: 1px solid var(--border); border-radius: 8px; padding: 12px;
+      max-height: 360px; overflow: auto; font-size: 12px; white-space: pre-wrap; color: #cbd5e1;
+    }
+    .toast {
+      position: fixed; bottom: 20px; right: 20px; background: #0f172a; border: 1px solid var(--cyan);
+      color: #fff; padding: 10px 16px; border-radius: 10px; font-size: 13px; display: none; z-index: 999;
+    }
+    /* AI Engine Control Bar */
+    .engine-bar {
+      display: flex; flex-wrap: wrap; align-items: center; gap: 10px;
+      background: #070d19; border: 1px solid rgba(56, 189, 248, 0.25);
+      border-radius: 9px; padding: 9px 12px; margin-bottom: 12px; font-size: 12px;
+    }
+    .engine-bar select { width: auto; min-width: 195px; padding: 5px 8px; font-size: 12px; }
+    .engine-bar label { display: inline-flex; align-items: center; gap: 5px; cursor: pointer; color: #cbd5e1; }
+    .eng-pill {
+      display: inline-flex; align-items: center; gap: 5px;
+      background: rgba(15, 23, 42, 0.85); border: 1px solid var(--border);
+      padding: 4px 9px; border-radius: 999px; font-size: 11.5px; font-weight: 700;
+    }
+    /* Interactive Deep Research Chat */
+    .chat-channels {
+      display: flex; flex-wrap: wrap; gap: 8px; padding: 9px 11px;
+      background: #070d19; border: 1px solid var(--border); border-radius: 9px; margin-bottom: 9px; font-size: 12px;
+    }
+    .chat-channels label {
+      display: inline-flex; align-items: center; gap: 5px; cursor: pointer;
+      background: #0f172a; border: 1px solid var(--border); padding: 4px 9px; border-radius: 6px; color: #e2e8f0;
+    }
+    .preset-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 9px; }
+    .chip-btn {
+      background: #1e293b; color: #93c5fd; border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: 999px; padding: 4px 10px; font-size: 11.5px; font-weight: 600; cursor: pointer;
+    }
+    .chip-btn:hover { background: #1d4ed8; color: #fff; }
+    .chat-feed {
+      background: #050912; border: 1px solid var(--border); border-radius: 10px;
+      padding: 12px; max-height: 460px; overflow-y: auto; margin-bottom: 10px;
+    }
+    .chat-msg { margin-bottom: 12px; padding: 10px 12px; border-radius: 9px; font-size: 12.5px; }
+    .chat-user { background: rgba(37, 99, 235, 0.16); border: 1px solid rgba(59, 130, 246, 0.35); }
+    .chat-assistant { background: #0b1222; border: 1px solid var(--border); }
+    .chat-system { background: rgba(21, 128, 61, 0.16); border: 1px solid rgba(74, 222, 128, 0.35); color: #bbf7d0; }
+    .cand-list { display: flex; flex-direction: column; gap: 6px; margin-top: 8px; }
+    .cand-item {
+      display: flex; align-items: flex-start; gap: 8px;
+      background: #070d19; border: 1px solid var(--border); border-radius: 7px; padding: 7px 9px;
+    }
+    .cand-item:hover { border-color: var(--cyan); }
+    .cand-meta { font-size: 11px; color: var(--muted); margin-top: 2px; }
+    .chat-input-row { display: flex; gap: 8px; }
+    .chat-input-row input { flex: 1; }
+    details.quick-add {
+      margin-top: 10px; background: #070d19; border: 1px solid var(--border);
+      border-radius: 8px; padding: 8px 12px; font-size: 12px;
+    }
+    details.quick-add summary { cursor: pointer; font-weight: 700; color: var(--cyan); }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <h1>서브에이전트 교재 제작 순차 관제 대시보드 (Mission Control)</h1>
+      <div class="sub">스킬: <code>textbook-publishing-factory</code> · 7단계 서브에이전트 실시간 모니터링 · E:\SMC_Report_Platform_Data &amp; C:\SMC_GRAPHRAG 연동</div>
+    </div>
+    <div class="hdr-links">
+      <span class="eng-pill" id="engOllama">Ollama 확인 중...</span>
+      <span class="eng-pill" id="engClaude">Claude Code 확인 중...</span>
+      <span class="eng-pill" id="engRag">로컬 RAG 확인 중...</span>
+      <span class="badge st-DONE" id="pollBadge">실시간 감시 ON</span>
+      <a href="/explorer" target="_blank" style="background:rgba(3,199,90,0.2); border-color:rgba(74,222,128,0.45); color:#86efac;">🔎 데이터 탐색 · API 허브 ↗</a>
+      <a id="linkMain8500" href="http://127.0.0.1:8500" target="_blank">자료·출판 대시보드 (8500) ↗</a>
+    </div>
+  </header>
+
+  <div class="layout">
+    <!-- LEFT: NEW TOPIC CREATOR + PROJECT LIST -->
+    <aside>
+      <div class="card">
+        <h2>새 교재 주제 설정</h2>
+        <div class="field">
+          <label>작성할 교재 주제 (국문) *</label>
+          <input id="fTopicKo" type="text" placeholder="예: 스마트팜 양액재배학" />
+        </div>
+        <div class="field">
+          <label>영문 주제 / 학술 검색명</label>
+          <input id="fTopicEn" type="text" placeholder="예: Smart Farm Hydroponics and Nutrient Management" />
+        </div>
+        <div class="field">
+          <label>국문 핵심 키워드 (쉼표 구분)</label>
+          <input id="fKwKo" type="text" placeholder="양액재배, EC, pH, 근권환경, 수경재배" />
+        </div>
+        <div class="field">
+          <label>영문 학술 검색 키워드 (쉼표 구분)</label>
+          <input id="fKwEn" type="text" placeholder="hydroponics, nutrient solution, rhizosphere EC pH" />
+        </div>
+        <div class="grid2">
+          <div class="field">
+            <label>목표 페이지</label>
+            <input id="fPages" type="number" value="500" min="50" max="1500" />
+          </div>
+          <div class="field">
+            <label>설계 단원 수</label>
+            <input id="fChapters" type="number" value="12" min="3" max="24" />
+          </div>
+        </div>
+        <div class="field">
+          <label>대상 독자</label>
+          <input id="fAudience" type="text" value="대학 전공 심화, 연구자 및 현장 실무자" />
+        </div>
+        <div class="field">
+          <label>추가 국내 기관 URL (선택, 줄바꿈 구분)</label>
+          <textarea id="fDomUrls" rows="2" placeholder="기본 농진청·식품연·농식품부 등 자동 포함 (추가 URL만 입력)"></textarea>
+        </div>
+        <div class="field">
+          <label>추가 해외 기관 URL (선택, 줄바꿈 구분)</label>
+          <textarea id="fIntlUrls" rows="2" placeholder="기본 FAO·USDA ARS·UF/IFAS·일본 NARO 자동 포함"></textarea>
+        </div>
+        <div class="field">
+          <label>로컬 Gemma 4 집필 엔진</label>
+          <select id="fGemmaModel">
+            <option value="gemma4:latest" selected>gemma4:latest (고속 100% GPU)</option>
+            <option value="gemma4:26b">gemma4:26b (고품질 대용량 26B)</option>
+          </select>
+        </div>
+        <div class="chk-grid">
+          <label><input type="checkbox" id="cNano" checked /> 나노바나나 도해</label>
+          <label><input type="checkbox" id="cNaver" checked /> 네이버 블로그(해시태그20)</label>
+          <label><input type="checkbox" id="cMyth" checked /> 오해와 진실 (≥3선)</label>
+          <label><input type="checkbox" id="cQuiz" checked /> 문제↔풀이 1:1 연결</label>
+          <label><input type="checkbox" id="cExercise" checked /> 연습문제 포함 (끄면 모든 산출물에서 삭제)</label>
+          <label><input type="checkbox" id="cPdf" checked /> OA 논문 PDF 확보</label>
+          <label><input type="checkbox" id="cClaude" /> Claude Code 6단계 정밀검수</label>
+          <label><input type="checkbox" id="cClaudeBp" /> Claude Code 4단계 목차검수</label>
+        </div>
+        <div style="display:flex; gap:8px; flex-direction:column;">
+          <button class="naver" onclick="createTopicProject(true)">주제 생성 &amp; 1~7단계 순차 자동 시작</button>
+          <button class="sec" onclick="createTopicProject(false)">주제만 등록 (단계별 수동 실행)</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2><span>교재 프로젝트 목록 (<span id="projCnt">0</span>)</span></h2>
+        <div id="projectList">로딩 중...</div>
+      </div>
+    </aside>
+
+    <!-- MAIN: PIPELINE SWIMLANE + LIVE LOGS + ARTIFACT INSPECTOR -->
+    <main>
+      <div class="card">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:10px;">
+          <div>
+            <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+              <h2 style="margin:0; font-size:17px;" id="curTitle">프로젝트를 선택하세요</h2>
+              <span class="badge st-IDLE" id="curStatusBadge">IDLE</span>
+            </div>
+            <div style="font-size:12px; color:var(--muted); margin-top:3px;" id="curSub"></div>
+          </div>
+          <div style="display:flex; gap:7px; flex-wrap:wrap;">
+            <button class="sec" onclick="jumpToResearchChat()">💬 심층 자료 조사 창</button>
+            <button class="green" id="btnRunAll" onclick="runSelected('all')">▶ 1~7단계 순차 실행</button>
+            <button id="btnRunNext" onclick="runSelected('next')">⏭ 다음 1단계만 실행</button>
+            <button class="red" id="btnStop" onclick="stopSelected()">⏹ 중단</button>
+          </div>
+        </div>
+        <div class="engine-bar" id="projEngineBar">
+          <b style="color:var(--cyan);">AI 엔진 제어:</b>
+          <label>로컬 Gemma 4:
+            <select id="projGemmaModel">
+              <option value="gemma4:latest">gemma4:latest (고속 GPU)</option>
+              <option value="gemma4:26b">gemma4:26b (고품질 26B)</option>
+            </select>
+          </label>
+          <label><input type="checkbox" id="projClaudeAudit" /> Claude Code 6단계 정밀검수 (citation-auditor)</label>
+          <label><input type="checkbox" id="projClaudeBp" /> Claude Code 4단계 목차검수 (curriculum-architect)</label>
+          <label><input type="checkbox" id="projExercise" checked /> 연습문제 포함 (끄고 적용 후 5·7단계를 다시 실행하면 삭제)</label>
+          <button class="sec sm" id="btnSaveEngines" onclick="saveProjectEngines()">설정 적용</button>
+        </div>
+        <div class="pbar" style="height:9px; margin-bottom:14px;"><div class="pbar-fill" id="overallBar" style="width:0%;"></div></div>
+        <div class="stages-grid" id="stagesGrid"></div>
+      </div>
+
+      <div class="card">
+        <h2>
+          <span>실시간 서브에이전트 활동 로그 (Live Agent Activity Stream)</span>
+          <span style="font-size:11.5px; color:var(--muted);" id="logCount">0건</span>
+        </h2>
+        <div class="log-box" id="logBox">서브에이전트 실행 로그가 여기에 실시간 표시됩니다.</div>
+      </div>
+
+      <div class="card" id="inspectorCard">
+        <div class="tabs">
+          <button class="tbtn active" id="tabBtn-research" onclick="switchInspector('research', this)">💬 심층 자료 조사 대화 창 (RAG·학술·기관·통계 API)</button>
+          <button class="tbtn" id="tabBtn-sources" onclick="switchInspector('sources', this)">수집 자료 분리 폴더 (web-scout)</button>
+          <button class="tbtn" id="tabBtn-blueprint" onclick="switchInspector('blueprint', this)">설계 목차 청사진 (curriculum-architect)</button>
+          <button class="tbtn" id="tabBtn-outputs" onclick="switchInspector('outputs', this)">출판 산출물 (visual-publisher)</button>
+          <button class="tbtn" id="tabBtn-skill" onclick="switchInspector('skill', this)">저장된 스킬 지침 (SKILL.md)</button>
+        </div>
+
+        <div id="ins-research" class="tpanel active">
+          <div style="font-size:12px; color:var(--muted); margin-bottom:8px;">
+            내 PC 로컬 RAG(<code>C:\SMC_GRAPHRAG</code>), 국내외 학술·구글스칼라, 농진청·관계기관, 미국·일본·유럽 농업기관·대학, 공식 통계 API를 <b>몇 번이든 대화형으로 심층 검색</b>하고 원하는 자료를 현재 프로젝트 분리 폴더(<code>collected/01~04</code>)와 지식그래프에 누적 추가합니다.
+          </div>
+          <div class="chat-channels" id="chatChannels">
+            <label><input type="checkbox" value="local_rag" checked /> 내 PC 로컬 RAG</label>
+            <label><input type="checkbox" value="scholar_intl" checked /> 국제 SCI·스칼라(OpenAlex)</label>
+            <label><input type="checkbox" value="scholar_kr" checked /> 국내 학회지·대학</label>
+            <label><input type="checkbox" value="agencies_kr" checked /> 농진청·국내 관계기관</label>
+            <label><input type="checkbox" value="agencies_global" checked /> 미·일·유럽 농업기관·대학</label>
+            <label><input type="checkbox" value="statistics_api" checked /> 공식 통계 API(WB·FAO·KOSIS)</label>
+          </div>
+          <div class="preset-chips">
+            <button type="button" class="chip-btn" onclick="fillAndSendResearch('농촌진흥청과 국내 학회지 기준으로 핵심 관리 기준과 최신 연구를 심층 검색해줘')">+ 국내 농진청·학회지 심층 보강</button>
+            <button type="button" class="chip-btn" onclick="fillAndSendResearch('미국 USDA·대학, 일본 NARO·대학, 유럽 연구기관의 최신 기술과 비교 문헌을 찾아줘')">+ 미·일·유럽 대학·기관 연구</button>
+            <button type="button" class="chip-btn" onclick="fillAndSendResearch('World Bank와 FAO 등 최신 농업·식품·수확 관련 공식 통계자료를 API로 업데이트해줘')">+ 공식 통계 API 업데이트</button>
+            <button type="button" class="chip-btn" onclick="fillAndSendResearch('내 컴퓨터 C:\\SMC_GRAPHRAG 로컬 지식그래프에서 이 주제와 연관된 기존 핵심 개념과 관계를 조회해줘')">+ 내 PC 로컬 RAG 교차 검증</button>
+          </div>
+          <div class="chat-feed" id="researchChatFeed">
+            <div style="color:var(--muted); font-size:12.5px;">아래 입력창에 조사하고 싶은 세부 주제·작물·통계·해외 기관을 입력하고 [심층 검색 실행]을 누르세요. 여러 라운드에 걸쳐 계속 추가 탐색할 수 있습니다.</div>
+          </div>
+          <div class="chat-input-row">
+            <input id="researchInput" type="text" placeholder="예: 사과·딸기 수확 후 1-MCP와 CA 저장 적정 온습도, 농진청·미국·일본 연구 및 FAO 통계 찾아줘" onkeydown="if(event.key==='Enter') sendResearchQuery()" />
+            <button class="naver" id="btnResearchSend" onclick="sendResearchQuery()">🔍 심층 검색 실행</button>
+          </div>
+          <details class="quick-add">
+            <summary>+ 직접 URL 또는 Google Scholar / RISS / KCI BibTeX 붙여넣어 내 자료에 즉시 추가</summary>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:8px;">
+              <div>
+                <label style="font-size:11.5px; color:var(--muted);">직접 수집할 기관·대학·웹사이트 URL (줄바꿈 구분)</label>
+                <textarea id="quickUrls" rows="3" placeholder="https://www.rda.go.kr/...&#10;https://edis.ifas.ufl.edu/..."></textarea>
+              </div>
+              <div>
+                <label style="font-size:11.5px; color:var(--muted);">Google Scholar / KCI / RISS BibTeX 붙여넣기</label>
+                <textarea id="quickBibtex" rows="3" placeholder="@article{kim2024, title={...}, author={...}, journal={...}, year={2024}}"></textarea>
+              </div>
+            </div>
+            <div style="display:flex; gap:8px; margin-top:8px; align-items:center;">
+              <button class="green sm" onclick="commitQuickDirect(false)">분리 폴더에 즉시 추가</button>
+              <button class="sm" onclick="commitQuickDirect(true)">추가 + 지식그래프 즉시 반영</button>
+            </div>
+          </details>
+        </div>
+
+        <div id="ins-sources" class="tpanel"></div>
+        <div id="ins-blueprint" class="tpanel"></div>
+        <div id="ins-outputs" class="tpanel"></div>
+        <div id="ins-skill" class="tpanel"><pre class="skill-pre" id="skillPre">로딩 중...</pre></div>
+      </div>
+    </main>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    let currentProjectId = null;
+    let pollTimer = null;
+
+    function esc(s) {
+      return String(s ?? '').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+    }
+    function showToast(msg) {
+      const el = document.getElementById('toast');
+      el.textContent = msg;
+      el.style.display = 'block';
+      setTimeout(() => { el.style.display = 'none'; }, 3500);
+    }
+    function switchInspector(name, btn) {
+      document.querySelectorAll('.tpanel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.tbtn').forEach(b => b.classList.remove('active'));
+      document.getElementById('ins-' + name).classList.add('active');
+      if (btn) btn.classList.add('active');
+    }
+
+    async function loadSkill() {
+      const r = await fetch('/api/skill');
+      const d = await r.json();
+      document.getElementById('skillPre').textContent = `[경로] ${d.skill_path}\n\n${d.skill_md}\n\n---\n\n${d.reference_md}`;
+    }
+
+    async function loadProjects() {
+      const r = await fetch('/api/projects');
+      const d = await r.json();
+      const list = d.projects || [];
+      document.getElementById('projCnt').textContent = list.length;
+      if (!currentProjectId && list.length) currentProjectId = list[0].project_id;
+      document.getElementById('projectList').innerHTML = list.map(p => `
+        <div class="proj-item ${p.project_id === currentProjectId ? 'active' : ''}" onclick="selectProject('${esc(p.project_id)}')">
+          <div class="proj-title">${p.is_reference_book ? '★ ' : ''}${esc(p.topic_ko)}</div>
+          <div class="proj-meta">
+            <span>${p.target_pages}p · ${p.chapter_count}장 (${p.done_stages}/${p.total_stages})</span>
+            <span class="badge st-${esc(p.overall_status)}">${esc(p.overall_status)}</span>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    async function loadEngineStatus() {
+      try {
+        const r = await fetch('/api/engines/status');
+        if (!r.ok) return;
+        const d = await r.json();
+        const ol = d.ollama || {};
+        const cl = d.claude_code || {};
+        const rg = d.local_rag || {};
+
+        const has26 = (ol.models || []).some(m => m.includes('gemma4:26b'));
+        const hasLt = (ol.models || []).some(m => m.includes('gemma4:latest'));
+        const olEl = document.getElementById('engOllama');
+        olEl.textContent = ol.online
+          ? `Ollama v${ol.version} · Gemma4(${[has26?'26b':'', hasLt?'latest':''].filter(Boolean).join('/')})`
+          : 'Ollama 오프라인';
+        olEl.style.color = ol.online ? '#86efac' : '#fca5a5';
+
+        const clEl = document.getElementById('engClaude');
+        clEl.textContent = cl.installed
+          ? `Claude Code (${(cl.version || 'CLI').split(' ')[0]})`
+          : 'Claude Code 미설치';
+        clEl.style.color = cl.installed ? '#c084fc' : '#facc15';
+
+        const rgEl = document.getElementById('engRag');
+        rgEl.textContent = `로컬 RAG: ${(rg.nodes || 0).toLocaleString()}노드`;
+        rgEl.style.color = rg.nodes > 0 ? '#7dd3fc' : '#94a3b8';
+      } catch (e) {}
+    }
+
+    function jumpToResearchChat() {
+      switchInspector('research', document.getElementById('tabBtn-research'));
+      document.getElementById('inspectorCard').scrollIntoView({ behavior: 'smooth' });
+      document.getElementById('researchInput').focus();
+    }
+
+    async function saveProjectEngines() {
+      if (!currentProjectId) return;
+      const body = {
+        gemma_model: document.getElementById('projGemmaModel').value,
+        use_claude_review: document.getElementById('projClaudeAudit').checked,
+        use_claude_blueprint: document.getElementById('projClaudeBp').checked,
+        enable_exercises: document.getElementById('projExercise').checked,
+      };
+      const r = await fetch(`/api/projects/${encodeURIComponent(currentProjectId)}/options`, {
+        method: 'PATCH', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(body),
+      });
+      if (r.ok) {
+        showToast(`AI 엔진 설정 저장 완료 (${body.gemma_model} / Claude 검수 ${body.use_claude_review ? 'ON' : 'OFF'})`);
+        await refreshCurrentProject();
+      } else {
+        showToast('AI 엔진 설정 저장 실패');
+      }
+    }
+
+    let lastChatProjectId = null;
+    async function loadResearchChat(forceRender = false) {
+      if (!currentProjectId) return;
+      const r = await fetch(`/api/projects/${encodeURIComponent(currentProjectId)}/research-chat`);
+      if (!r.ok) return;
+      const d = await r.json();
+      renderResearchChat(d.messages || []);
+      lastChatProjectId = currentProjectId;
+    }
+
+    function renderResearchChat(messages) {
+      const feed = document.getElementById('researchChatFeed');
+      if (!messages.length) {
+        feed.innerHTML = '<div style="color:var(--muted); font-size:12.5px;">아직 심층 자료 조사 대화가 없습니다. 위 프리셋 버튼을 누르거나 아래 입력창에 검색할 주제를 입력해 첫 번째 라운드 탐색을 시작하세요!</div>';
+        return;
+      }
+      feed.innerHTML = messages.map(m => {
+        if (m.role === 'user') {
+          return `<div class="chat-msg chat-user">
+            <div style="font-size:11px; color:#93c5fd; margin-bottom:3px;"><b>나</b> [${esc(m.local_time || '')}] · 채널: ${(m.channels||[]).map(esc).join(', ')}</div>
+            <div>${esc(m.message)}</div>
+          </div>`;
+        }
+        if (m.role === 'system') {
+          const kgTxt = m.kg_summary ? ` | 지식그래프 증분: +${m.kg_summary.nodes_added}노드 / +${m.kg_summary.edges_added}관계` : '';
+          return `<div class="chat-msg chat-system">
+            <b>[자료 반영 완료 · ${esc(m.local_time || '')}]</b> ${esc(m.message)}${esc(kgTxt)}
+            ${(m.errors && m.errors.length) ? `<div style="color:#fde047; font-size:11px; margin-top:4px;">참고 경고: ${m.errors.map(esc).join(' / ')}</div>` : ''}
+          </div>`;
+        }
+        const cands = m.candidates || [];
+        const tid = esc(m.turn_id || '');
+        const statsChips = Object.entries(m.channel_stats || {}).map(([k,v]) => `<span class="m-chip">${esc(k)}: ${v}건</span>`).join(' ');
+        const candHtml = cands.map(c => `
+          <label class="cand-item">
+            <input type="checkbox" class="cand-chk" data-turn="${tid}" value="${esc(c.cand_id)}" checked style="margin-top:3px;" />
+            <div style="flex:1; min-width:0;">
+              <div>
+                <span class="badge st-DONE" style="font-size:10px;">${esc(c.tier_folder)}</span>
+                <span class="m-chip">${esc(c.channel)}</span>
+                ${c.year ? `<span class="m-chip">${esc(c.year)}</span>` : ''}
+                ${c.cited_by_count ? `<span class="m-chip">피인용 ${c.cited_by_count}</span>` : ''}
+                <a href="${esc(c.url)}" target="_blank" style="color:#f8fafc; font-weight:700; text-decoration:none;">${esc(c.title)}</a>
+              </div>
+              <div class="cand-meta">${esc(c.org_or_journal)} — ${esc(c.summary)}</div>
+            </div>
+          </label>
+        `).join('');
+        return `<div class="chat-msg chat-assistant">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:6px; margin-bottom:6px;">
+            <div><b style="color:var(--purple);">[심층 자료 조사 에이전트 · ${esc(m.local_time || '')}]</b> ${esc(m.focus_summary_ko || '')}</div>
+            <div class="metrics-row">${statsChips}</div>
+          </div>
+          <div style="font-size:11px; color:var(--muted); margin-bottom:6px;">
+            분해 쿼리(KO): ${(m.decomposed_ko_terms||[]).map(esc).join(', ')} | (EN): ${(m.decomposed_en_queries||[]).map(esc).join(' / ')}
+            ${m.kosis_api_configured ? ' | KOSIS API 활성' : ' | World Bank·FAO API 활성 (KOSIS는 환경변수 KOSIS_API_KEY 설정 시 자동 연동)'}
+          </div>
+          ${cands.length ? `
+            <div style="display:flex; gap:6px; align-items:center; flex-wrap:wrap; margin-bottom:6px;">
+              <button type="button" class="sec sm" onclick="toggleTurnCands('${tid}', true)">이 라운드 전체 선택 (${cands.length})</button>
+              <button type="button" class="sec sm" onclick="toggleTurnCands('${tid}', false)">선택 해제</button>
+              <button type="button" class="green sm" onclick="commitTurnCands('${tid}', false)">📥 선택 자료 분리 폴더에 추가</button>
+              <button type="button" class="sm" onclick="commitTurnCands('${tid}', true)">🧠 선택 자료 추가 + 지식그래프 즉시 반영</button>
+            </div>
+            <div class="cand-list">${candHtml}</div>
+          ` : '<div style="color:var(--muted);">검색된 신규 후보가 없습니다. 다른 키워드로 다시 질문해 보세요.</div>'}
+        </div>`;
+      }).join('');
+      feed.scrollTop = feed.scrollHeight;
+    }
+
+    function toggleTurnCands(turnId, checked) {
+      document.querySelectorAll(`.cand-chk[data-turn="${turnId}"]`).forEach(el => { el.checked = checked; });
+    }
+
+    function fillAndSendResearch(text) {
+      document.getElementById('researchInput').value = text;
+      sendResearchQuery();
+    }
+
+    async function sendResearchQuery() {
+      if (!currentProjectId) { showToast('먼저 프로젝트를 선택해 주세요.'); return; }
+      const input = document.getElementById('researchInput');
+      const msg = input.value.trim();
+      if (!msg) { showToast('검색할 질의 내용을 입력해 주세요.'); return; }
+      const channels = Array.from(document.querySelectorAll('#chatChannels input:checked')).map(el => el.value);
+      const btn = document.getElementById('btnResearchSend');
+      btn.disabled = true;
+      btn.textContent = '다중 소스 심층 검색 중...';
+      try {
+        const r = await fetch(`/api/projects/${encodeURIComponent(currentProjectId)}/research-chat/query`, {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({ message: msg, channels, limit_per_channel: 4 }),
+        });
+        const d = await r.json();
+        if (!r.ok) { showToast(d.detail || '심층 검색 실패'); return; }
+        input.value = '';
+        showToast(`심층 검색 완료: 후보 자료 ${d.reply?.total_candidates || 0}건 발견!`);
+        await loadResearchChat(true);
+      } finally {
+        btn.disabled = false;
+        btn.textContent = '🔍 심층 검색 실행';
+      }
+    }
+
+    async function commitTurnCands(turnId, alsoKg) {
+      if (!currentProjectId) return;
+      const ids = Array.from(document.querySelectorAll(`.cand-chk[data-turn="${turnId}"]:checked`)).map(el => el.value);
+      if (!ids.length) { showToast('추가할 자료를 1건 이상 선택해 주세요.'); return; }
+      showToast(alsoKg ? `선택한 ${ids.length}건 저장 및 지식그래프 증분 반영 중...` : `선택한 ${ids.length}건을 분리 폴더에 저장 중...`);
+      const r = await fetch(`/api/projects/${encodeURIComponent(currentProjectId)}/research-chat/commit`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ candidate_ids: ids, also_ingest_kg: alsoKg }),
+      });
+      const d = await r.json();
+      if (!r.ok) { showToast(d.detail || '자료 추가 실패'); return; }
+      showToast(`완료! ${d.added_count}건 추가됨 (프로젝트 누적 ${d.total_project_sources}건)`);
+      await loadResearchChat(true);
+      await refreshCurrentProject();
+      loadEngineStatus();
+    }
+
+    async function commitQuickDirect(alsoKg) {
+      if (!currentProjectId) return;
+      const urls = document.getElementById('quickUrls').value.split('\n').map(x => x.trim()).filter(Boolean);
+      const bib = document.getElementById('quickBibtex').value.trim();
+      if (!urls.length && !bib) { showToast('URL 또는 BibTeX 텍스트를 입력해 주세요.'); return; }
+      showToast('직접 입력 자료를 검증·수집해 분리 폴더에 추가하는 중...');
+      const r = await fetch(`/api/projects/${encodeURIComponent(currentProjectId)}/research-chat/commit`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ custom_urls: urls, bibtex_text: bib, also_ingest_kg: alsoKg }),
+      });
+      const d = await r.json();
+      if (!r.ok) { showToast(d.detail || '직접 추가 실패'); return; }
+      document.getElementById('quickUrls').value = '';
+      document.getElementById('quickBibtex').value = '';
+      showToast(`직접 자료 ${d.added_count}건 추가 완료 (누적 ${d.total_project_sources}건)`);
+      await loadResearchChat(true);
+      await refreshCurrentProject();
+    }
+
+    async function selectProject(pid) {
+      currentProjectId = pid;
+      await loadProjects();
+      await refreshCurrentProject();
+      await loadResearchChat(true);
+    }
+
+    async function refreshCurrentProject() {
+      if (!currentProjectId) return;
+      const r = await fetch('/api/projects/' + encodeURIComponent(currentProjectId));
+      if (!r.ok) return;
+      const d = await r.json();
+      const p = d.project;
+      const events = d.events || [];
+
+      document.getElementById('curTitle').textContent = p.topic_ko;
+      const link8500 = document.getElementById('linkMain8500');
+      if (link8500) link8500.href = 'http://127.0.0.1:8500/?project=' + encodeURIComponent(p.project_id);
+      const stBadge = document.getElementById('curStatusBadge');
+      stBadge.textContent = p.overall_status;
+      stBadge.className = 'badge st-' + p.overall_status;
+      document.getElementById('curSub').textContent =
+        `ID: ${p.project_id} | 목표: ${p.target_pages}p · ${p.chapter_count}장 | 키워드: ${(p.keywords_ko||[]).join(', ')} | 근거패킷: E:\\SMC_Report_Platform_Data\\evidence\\${p.packet_id}.json`;
+
+      const stages = p.stages || [];
+      const done = stages.filter(s => s.status === 'DONE').length;
+      const runningBonus = stages.some(s => s.status === 'RUNNING') ? 0.5 : 0;
+      const pct = Math.min(100, Math.round(((done + runningBonus) / Math.max(1, stages.length)) * 100));
+      document.getElementById('overallBar').style.width = pct + '%';
+
+      const isRef = !!p.is_reference_book;
+      document.getElementById('btnRunAll').disabled = isRef || p.overall_status === 'RUNNING';
+      document.getElementById('btnRunNext').disabled = isRef || p.overall_status === 'RUNNING';
+      const opts = p.options || {};
+      const selG = document.getElementById('projGemmaModel');
+      if (document.activeElement !== selG) selG.value = opts.gemma_model || 'gemma4:latest';
+      document.getElementById('projClaudeAudit').checked = !!opts.use_claude_review;
+      document.getElementById('projClaudeBp').checked = !!opts.use_claude_blueprint;
+      document.getElementById('projExercise').checked = opts.enable_exercises !== false;
+      document.getElementById('btnSaveEngines').disabled = isRef;
+      if (lastChatProjectId !== currentProjectId) {
+        loadResearchChat(true);
+      }
+
+      document.getElementById('stagesGrid').innerHTML = stages.map(s => {
+        const metricsHtml = Object.entries(s.metrics || {}).map(([k, v]) => `<span class="m-chip">${esc(k)}: ${esc(v)}</span>`).join('');
+        return `
+          <div class="stage-card is-${esc(s.status)}">
+            <div>
+              <div class="stage-head">
+                <span class="agent-tag">[${esc(s.order)}] ${esc(s.agent_name)}</span>
+                <span class="badge st-${esc(s.status)}">${esc(s.status)}</span>
+              </div>
+              <div class="stage-title">${esc(s.title)}</div>
+              <div class="stage-tier">${esc(s.tier)}</div>
+            </div>
+            <div class="stage-action">${esc(s.current_action || s.description)}</div>
+            <div class="pbar"><div class="pbar-fill" style="width:${s.progress || 0}%;"></div></div>
+            <div class="metrics-row">${metricsHtml}</div>
+            ${!isRef ? `<div style="text-align:right;"><button class="sec sm" onclick="runSingleStage('${esc(s.stage_id)}')">이 단계 실행</button></div>` : ''}
+          </div>
+        `;
+      }).join('');
+
+      // Live logs
+      document.getElementById('logCount').textContent = `${events.length}건`;
+      const logBox = document.getElementById('logBox');
+      logBox.innerHTML = events.map(e => `
+        <div class="log-line log-${esc(e.level)}">
+          <span class="log-time">[${esc(e.local_time || e.timestamp.slice(11,19))}]</span>
+          <span class="log-agent">[${esc(e.agent)}]</span>
+          <span>${esc(e.message)}</span>
+        </div>
+      `).join('') || '<div style="color:var(--muted);">아직 실행된 로그가 없습니다. 상단의 [▶ 1~7단계 순차 실행]을 눌러 시작하세요.</div>';
+      logBox.scrollTop = logBox.scrollHeight;
+
+      // Inspector 1: Collected Sources (4-tier separated folder breakdown)
+      const srcs = p.collected_sources || [];
+      const bd = p.collection_breakdown || {};
+      const colDir = p.collected_dir || '';
+      if (isRef) {
+        document.getElementById('ins-sources').innerHTML = `<p style="font-size:13px; color:#cbd5e1;">기준 완성 프로젝트 《토양 유기물학》은 총 <b>94종 1차 학술·기관 근거(SRC-01~SRC-94)</b>가 <a href="http://127.0.0.1:8500" target="_blank" style="color:var(--cyan);">자료 수집 대시보드(8500)</a>에 통합 관리되고 있습니다.</p>`;
+      } else if (!srcs.length) {
+        document.getElementById('ins-sources').innerHTML = `<div style="color:var(--muted); font-size:12.5px;">2단계(web-scout)가 실행되면 국내 기관 · 국내 학회지 · 해외 기관 · 국제 SCI 4계층 자료가 전용 분리 폴더(<code>${esc(colDir)}</code>)에 저장되고 목록이 여기에 실시간 표시됩니다.</div>`;
+      } else {
+        const tierCards = `
+          <div style="background:#070d19; border:1px solid var(--border); border-radius:8px; padding:10px 12px; margin-bottom:10px; font-size:12px;">
+            <div style="color:var(--green); font-weight:700; margin-bottom:6px;">분리 저장 폴더 (3단계 지식그래프 이관 전용): <code>${esc(colDir)}</code></div>
+            <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:8px;">
+              <div style="background:#0f172a; padding:7px 10px; border-radius:6px; border:1px solid var(--border);"><div style="color:var(--muted); font-size:11px;">01_domestic_agencies</div><b style="color:var(--cyan); font-size:15px;">${bd.domestic_agencies ?? 0}건</b> <span style="font-size:11px;">국내 기관·웹</span></div>
+              <div style="background:#0f172a; padding:7px 10px; border-radius:6px; border:1px solid var(--border);"><div style="color:var(--muted); font-size:11px;">02_domestic_journals</div><b style="color:var(--green); font-size:15px;">${bd.domestic_journals ?? 0}건</b> <span style="font-size:11px;">국내 학회지</span></div>
+              <div style="background:#0f172a; padding:7px 10px; border-radius:6px; border:1px solid var(--border);"><div style="color:var(--muted); font-size:11px;">03_international_agencies</div><b style="color:var(--amber); font-size:15px;">${bd.international_agencies ?? 0}건</b> <span style="font-size:11px;">해외 기관·국제기구</span></div>
+              <div style="background:#0f172a; padding:7px 10px; border-radius:6px; border:1px solid var(--border);"><div style="color:var(--muted); font-size:11px;">04_international_journals</div><b style="color:var(--purple); font-size:15px;">${bd.international_journals ?? 0}건</b> <span style="font-size:11px;">국제 SCI 저널</span></div>
+            </div>
+          </div>`;
+        document.getElementById('ins-sources').innerHTML = tierCards + `
+          <table>
+            <thead><tr><th>출처 ID</th><th>분리 폴더</th><th>제공처</th><th>연도</th><th>피인용</th><th>제목 / 기관·학술지</th></tr></thead>
+            <tbody>${srcs.map(s => `
+              <tr>
+                <td><b style="color:var(--cyan);">${esc(s.source_id)}</b></td>
+                <td><code style="font-size:11px; color:#86efac;">${esc(s.tier_folder || '-')}</code></td>
+                <td>${esc(s.provider)}</td>
+                <td>${esc(s.year || '-')}</td>
+                <td>${esc(s.cited_by_count || 0)}</td>
+                <td><a href="${esc(s.url)}" target="_blank" style="color:#f8fafc;">${esc(s.title)}</a> <span style="color:var(--muted);">(${esc(s.journal || '')})</span></td>
+              </tr>`).join('')}</tbody>
+          </table>`;
+      }
+
+      // Inspector 2: Blueprint
+      const bp = p.blueprint_preview;
+      if (isRef) {
+        document.getElementById('ins-blueprint').innerHTML = `<p style="font-size:13px; color:#cbd5e1;">5부 16개 단원(540p 설계, 실제 신국판 306p · 529,882자) 완성 목차는 <a href="http://127.0.0.1:8500" target="_blank" style="color:var(--cyan);">자료·출판 대시보드(8500) 탭 3</a>에서 전체 열람할 수 있습니다.</p>`;
+      } else if (!bp || !bp.parts) {
+        document.getElementById('ins-blueprint').innerHTML = '<div style="color:var(--muted); font-size:12.5px;">4단계(curriculum-architect)가 실행되면 설계된 다부·다단원 목차 청사진이 여기에 표시됩니다.</div>';
+      } else {
+        document.getElementById('ins-blueprint').innerHTML = `
+          <div style="margin-bottom:10px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+            <span style="font-size:12px; color:var(--muted);">청사진(부·단원·소단원·쪽수)을 직접 수정하려면 우측 버튼을 누르세요.</span>
+            <a href="http://127.0.0.1:8500/?project=${encodeURIComponent(p.project_id)}&tab=blueprint&edit=1" target="_blank" style="background:#2563eb; color:#fff; padding:6px 12px; border-radius:7px; text-decoration:none; font-size:12px; font-weight:700;">✏️ 마스터 청사진 편집기 열기 (8500) ↗</a>
+          </div>` + bp.parts.map(pt => `
+          <div style="margin-bottom:10px;">
+            <b style="color:var(--cyan);">${esc(pt.title)} (${pt.pages}p)</b>
+            <ul style="margin:4px 0 0 18px; font-size:12.5px; color:#cbd5e1;">
+              ${(pt.chapters || []).map(c => `<li><b>${esc(c.chapter_id)}</b> ${esc(c.title)} (${c.target_pages}p) — ${(c.sections || []).map(esc).join(' / ')}</li>`).join('')}
+            </ul>
+          </div>
+        `).join('');
+      }
+
+      // Inspector 3: Outputs
+      const outs = p.outputs || {};
+      const outKeys = Object.keys(outs);
+      if (!outKeys.length) {
+        document.getElementById('ins-outputs').innerHTML = '<div style="color:var(--muted); font-size:12.5px;">7단계(visual-publisher) 완료 시 생성된 PDF · Word DOCX · 네이버 블로그 HTML 링크가 여기에 표시됩니다.</div>';
+      } else {
+        const baseHost = isRef ? 'http://127.0.0.1:8500' : '';
+        document.getElementById('ins-outputs').innerHTML = `
+          <div style="display:flex; gap:8px; flex-wrap:wrap;">
+            ${outKeys.map(k => {
+              const v = outs[k];
+              if (String(v).startsWith('/')) {
+                return `<a href="${baseHost}${esc(v)}" target="_blank" style="background:#1e293b;border:1px solid var(--border);color:#7dd3fc;padding:8px 12px;border-radius:8px;text-decoration:none;font-size:12.5px;font-weight:700;">${esc(k)} 열기 ↗</a>`;
+              }
+              return `<div style="font-size:12px; color:var(--muted); width:100%;"><code>${esc(k)}</code>: ${esc(v)}</div>`;
+            }).join('')}
+          </div>`;
+      }
+
+      // Adjust polling interval: fast 1.5s while running, calm 5s when idle
+      clearInterval(pollTimer);
+      const isRunning = p.overall_status === 'RUNNING';
+      document.getElementById('pollBadge').textContent = isRunning ? '서브에이전트 실행중 (1.5초 갱신)' : '실시간 감시 ON (5초 갱신)';
+      document.getElementById('pollBadge').className = 'badge ' + (isRunning ? 'st-RUNNING' : 'st-DONE');
+      pollTimer = setInterval(() => { loadProjects(); refreshCurrentProject(); }, isRunning ? 1500 : 5000);
+    }
+
+    async function createTopicProject(autoStart) {
+      const topicKo = document.getElementById('fTopicKo').value.trim();
+      if (!topicKo) { showToast('작성할 교재 주제(국문)를 입력해 주세요.'); return; }
+      const body = {
+        topic_ko: topicKo,
+        topic_en: document.getElementById('fTopicEn').value.trim(),
+        keywords_ko: document.getElementById('fKwKo').value.split(',').map(x => x.trim()).filter(Boolean),
+        keywords_en: document.getElementById('fKwEn').value.split(',').map(x => x.trim()).filter(Boolean),
+        domestic_agency_urls: document.getElementById('fDomUrls').value.split('\n').map(x => x.trim()).filter(Boolean),
+        international_agency_urls: document.getElementById('fIntlUrls').value.split('\n').map(x => x.trim()).filter(Boolean),
+        target_pages: Number(document.getElementById('fPages').value) || 500,
+        chapter_count: Number(document.getElementById('fChapters').value) || 12,
+        target_audience: document.getElementById('fAudience').value.trim(),
+        gemma_model: document.getElementById('fGemmaModel').value || 'gemma4:latest',
+        download_oa_pdf: document.getElementById('cPdf').checked,
+        use_claude_review: document.getElementById('cClaude').checked,
+        use_claude_blueprint: document.getElementById('cClaudeBp').checked,
+        enable_nano_banana: document.getElementById('cNano').checked,
+        enable_naver_blog: document.getElementById('cNaver').checked,
+        enable_myths: document.getElementById('cMyth').checked,
+        enable_linked_quiz: document.getElementById('cQuiz').checked,
+        enable_exercises: document.getElementById('cExercise').checked,
+        auto_start: autoStart,
+      };
+      const r = await fetch('/api/projects', {
+        method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(body),
+      });
+      const d = await r.json();
+      if (!r.ok) { showToast(d.detail || '프로젝트 생성 실패'); return; }
+      currentProjectId = d.project.project_id;
+      showToast(autoStart ? `《${topicKo}》 생성 및 1~7단계 순차 실행을 시작했습니다!` : `《${topicKo}》 프로젝트가 등록되었습니다.`);
+      await loadProjects();
+      await refreshCurrentProject();
+    }
+
+    async function runSelected(mode) {
+      if (!currentProjectId) return;
+      const r = await fetch(`/api/projects/${encodeURIComponent(currentProjectId)}/run`, {
+        method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({ mode }),
+      });
+      const d = await r.json();
+      showToast(`실행 요청: ${d.status}`);
+      await refreshCurrentProject();
+    }
+
+    async function runSingleStage(stageId) {
+      if (!currentProjectId) return;
+      const r = await fetch(`/api/projects/${encodeURIComponent(currentProjectId)}/run`, {
+        method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({ mode: 'single', stage_id: stageId }),
+      });
+      const d = await r.json();
+      showToast(`${stageId} 단독 실행: ${d.status}`);
+      await refreshCurrentProject();
+    }
+
+    async function stopSelected() {
+      if (!currentProjectId) return;
+      await fetch(`/api/projects/${encodeURIComponent(currentProjectId)}/stop`, { method: 'POST' });
+      showToast('현재 단계 완료 후 순차 실행이 중단됩니다.');
+      await refreshCurrentProject();
+    }
+
+    loadSkill();
+    loadEngineStatus();
+    setInterval(loadEngineStatus, 15000);
+    loadProjects().then(refreshCurrentProject);
+  </script>
+</body>
+</html>

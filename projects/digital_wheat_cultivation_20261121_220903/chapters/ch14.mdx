@@ -1,0 +1,162 @@
+---
+chapter_id: "ch14"
+title: "제14장. 디지털 트윈 및 AI 기반 밀 재배 시스템 구축"
+audience: "대학 전공 심화, 연구자 및 선도 농업인"
+evidence_packet: "digital_wheat_cultivation_20261121_220903_evidence.json"
+---
+
+# 제14장. 디지털 트윈 및 AI 기반 밀 재배 시스템 구축
+
+**대상 독자:** 대학 전공 심화, 연구자 및 선도 농업인
+
+---
+
+## 단원 요약
+본 장에서는 미래 농업의 핵심 동력인 디지털 트윈(Digital Twin)과 인공지능(AI) 기술을 활용하여 고도화된 밀 재배 시스템을 구축하는 방법론을 심층적으로 다룬다. 농업 빅데이터(Big Data)의 효과적인 수집 및 파이프라인 설계부터 시작하여, 원격 탐사(Remote Sensing)를 통한 작물 생육의 정밀 모니터링, AI를 이용한 질병 및 수확량 예측 모델의 학습, 최종적으로 디지털 트윈 플랫폼을 활용한 재배 환경 시뮬레이션 및 검증 단계까지 체계적인 과정을 제시한다. 이를 통해 데이터 기반의 최적화된 농업 의사결정 지원 시스템을 이해하고 구축하는 통찰을 제공한다.
+
+---
+
+## 14.1 농업 빅데이터(Big Data) 수집 파이프라인 설계
+
+정밀 농업의 기반은 신뢰성 있고 방대한 데이터의 확보에 있다. 밀 재배 시스템에서 발생하는 빅데이터는 기상 정보, 토양 특성, 작물 생육 상태, 투입 자재 사용 이력 등 다차원적 요소를 포함한다 [SRC-172]. 효과적인 빅데이터 수집 파이프라인은 데이터의 획득, 전처리, 저장, 활용까지의 전 과정을 체계적으로 설계해야 한다.
+
+### 14.1.1 데이터 소스 식별 및 통합
+데이터 소스는 크게 센서 기반 데이터(IoT), 원격 탐사 데이터, 외부 환경 데이터로 분류된다. 토양 센서는 pH, 수분, 양분(N, P, K 등)과 같은 물리화학적 정보를 실시간으로 제공한다. 기상 데이터는 온도, 강수량, 일사량 등 환경 변수를 제공하며, 농업 정책 및 품종 정보는 정부 기관의 데이터베이스를 통해 확보할 수 있다 [SRC-103, SRC-100]. 농촌진흥청과 같은 기관은 농업 관련 다양한 기술 정보 및 작목별 데이터베이스를 제공하고 있다 [SRC-172].
+
+### 14.1.2 데이터 전처리 및 저장 아키텍처
+수집된 원시 데이터(Raw Data)는 필연적으로 노이즈와 결측치를 포함하므로, 전처리 과정이 필수적이다. 시계열 데이터의 정규화(Normalization), 이상치 탐지(Outlier Detection), 결측치 보간(Imputation) 등의 기법이 적용된다. 데이터베이스는 운영 효율성 및 접근 속도에 따라 시계열 데이터베이스(Time-Series DB)와 관계형/NoSQL 데이터베이스를 혼합하여 사용하는 하이브리드 아키텍처가 권장된다.
+
+---
+
+## 14.2 작물 생육 모니터링을 위한 원격 탐사(Remote Sensing) 활용
+
+밀의 생육 상태를 광범위하고 주기적으로 모니터링하는 데 원격 탐사 기술은 핵심적인 역할을 수행한다. 위성 및 드론 기반의 원격 탐사는 작물의 물리적 특성(엽면적 지수, 식생지수 등)을 비접촉 방식으로 측정한다 [SRC-172].
+
+### 14.2.1 주요 지표 및 센서 활용
+NDVI(Normalized Difference Vegetation Index)와 같은 식생지수(Vegetation Index)는 작물의 광합성 활성도와 건강 상태를 나타내는 대표적인 지표이다. 멀티스펙트럴(Multispectral) 및 하이퍼스펙트럴(Hyperspectral) 센서를 활용하여 특정 파장대에서의 반사율을 분석함으로써, 질소 부족, 수분 스트레스, 병해 발생 초기 징후를 조기에 감지할 수 있다. 예를 들어, 특정 파장대에서 나타나는 스펙트럼 시그니처를 분석하여 특정 질병의 발병 여부를 추정할 수 있다.
+
+### 14.2.2 품종 및 재배 조건에 따른 특성 분석
+밀과 같은 작물의 경우, 재배 환경이나 품종 특성에 따라 생육 곡선 및 스트레스 반응이 다르게 나타난다. 예를 들어, 특정 재배 방식이나 환경 조건은 수확량 및 수확량 구성 요소에 큰 영향을 미친다. 연구에 따르면, 이력 관리와 같은 농업 관행이 밀의 수확량 및 그 구성 요소에 영향을 미친다는 것이 확인된 바 있다 [SRC-174]. 또한, 작물 품종의 유전적 특성에 따른 반응 차이 분석은 정확한 모델링을 위해 중요하다 [SRC-179].
+
+---
+
+## 14.3 인공지능(AI)을 이용한 질병/수확량 예측 모델 학습
+
+수집된 빅데이터와 원격 탐사 데이터를 통합하여 AI 모델을 학습시킴으로써 농업적 난제(질병 발생, 수확량 불확실성)에 대한 정량적 예측이 가능해진다.
+
+### 14.3.1 질병 및 스트레스 예측 모델
+질병 예측은 시계열 예측 모델(예: LSTM, GRU)과 지도 학습(Supervised Learning)을 결합하여 진행된다. 입력 변수에는 기상 패턴(온도, 습도), 작물의 생육 단계 정보, 그리고 원격 탐사로 추출된 생육 지수 등이 포함된다. 모델은 과거의 피해 사례(Label)를 바탕으로 현재의 환경 조건에서 특정 질병(예: 녹병, 흰가루병)이 발생할 확률을 예측한다.
+
+### 14.3.2 수확량 및 품질 예측 모델
+수확량 예측 모델은 작물의 생장 단계별(Growth Stage) 최대 잠재력에 도달하는 과정을 모사하는 회귀 모델(Regression Model)을 기반으로 한다. 수확량에 영향을 미치는 주요 요인(종자 특성, 영양 공급, 기후 스트레스)을 파악하고, 이에 대한 각 변수의 기여도를 분석한다. 학술 연구들은 품종의 특성(예: 합성 육종을 통한 잠재력 증가)과 환경 요인이 수확량 잠재력 증대에 미치는 경로 계수(Path-Coefficient) 분석을 통해 그 메커니즘을 정량적으로 규명하고 있다 [SRC-175, SRC-177]. 또한, 특정 환경(예: 아열대 기후)에서 소프트 밀이 하드 밀보다 우수한 성능을 보인다는 연구 결과는 지역별 재배 적합성 판단에 중요한 근거가 된다 [SRC-176].
+
+---
+
+## 14.4 디지털 트윈(Digital Twin)을 활용한 재배 시뮬레이션 및 검증
+
+디지털 트윈은 실제 물리적 농장(Physical Farm)의 상태와 행태를 가상 공간(Virtual Twin)에 실시간으로 복제하고, 이 가상 모델을 이용해 다양한 시나리오를 시뮬레이션하고 최적화하는 시스템이다 [SRC-172].
+
+### 14.4.1 동적 모델링 및 피드백 루프 구축
+밀 재배 디지털 트윈은 단순한 정적 모델이 아니라, 기상 데이터, 작물 생장 모델(Phenological Model), 토양 수분 모델 등이 유기적으로 연결된 동적 시스템이어야 한다. 예를 들어, 특정 시점에 질소 비료를 시비했을 때, 가상 모델 내에서 토양의 양분 흡수율 변화, 식물의 생장 속도 증가, 그리고 최종 수확량에 미치는 영향을 실시간으로 예측할 수 있다.
+
+### 14.4.2 최적화된 의사결정 지원 (Decision Support System, DSS)
+디지털 트윈 시뮬레이션의 궁극적 목표는 최적의 재배 전략 도출이다. AI 모델에서 도출된 예측치를 디지털 트윈에 입력하고, **'만약(What-if)' 시나리오**를 적용하여 위험을 최소화하는 최적의 시비 시기, 관개량, 병해충 방제 시점을 도출한다. 예를 들어, 극한 기후 시나리오가 발생했을 때, 디지털 트윈이 가장 피해가 적은 품종 조합이나 생육 단계 관리 방안을 제안함으로써 농업 생산 안정성을 극대화한다.
+
+---
+
+## ## 핵심 용어집
+
+| 용어 | 정의 | 관련 기술/개념 |
+| :--- | :--- | :--- |
+| **빅데이터 파이프라인** | 농업 환경, 생육, 센서 등에서 발생하는 대규모 데이터를 수집, 전처리하여 분석 가능한 형태로 제공하는 시스템적 흐름 [SRC-172]. | 데이터 수집, ETL (Extract, Transform, Load) |
+| **원격 탐사 (Remote Sensing)** | 센서(위성, 드론)를 이용해 지상에 직접 접촉하지 않고 작물의 물리적 특성을 측정하는 기술. 식생지수(NDVI) 계산에 활용됨 [SRC-172]. | 멀티스펙트럴/하이퍼스펙트럴 이미지 분석 |
+| **디지털 트윈 (Digital Twin)** | 실제 농장 환경을 가상 공간에 실시간으로 복제하고 시뮬레이션할 수 있는 가상 모델 시스템 [SRC-172]. | 동적 모델링, 시뮬레이션, 피드백 루프 |
+| **경로 계수 (Path-Coefficient)** | 특정 독립 변수(예: 재배 방식)가 종속 변수(예: 수확량)에 미치는 인과적 영향의 상대적 크기를 나타내는 통계적 계수 [SRC-174, SRC-175]. | 구조방정식 모델링, 회귀 분석 |
+| **생육 단계 (Growth Stage)** | 작물이 발아부터 수확까지 거치는 특정 생리적 변화 단계. 시뮬레이션 모델의 주요 구분점 [SRC-176]. | 페놀로지(Phenology), 시계열 분석 |
+
+---
+
+## ## 이해도 점검 연습문제 및 해설
+
+**문제 1:** 밀 재배 시스템에서 빅데이터를 성공적으로 활용하기 위한 핵심적인 데이터 전처리 단계에 해당하는 것은 무엇이며, 이 과정에서 가장 중요하게 다루어야 할 데이터 특성은 무엇인가?
+
+**정답 및 상세 풀이 1:** 핵심적인 데이터 전처리 단계는 **노이즈 제거 및 결측치 보간(Imputation)**이다. 이 과정에서 가장 중요하게 다루어야 할 데이터 특성은 **시계열성**이다. 센서 데이터나 원격 탐사 데이터는 시간의 흐름에 따라 기록되므로, 시점 간의 연속성을 유지하고 데이터의 불완전성을 보완하는 것이 중요하기 때문이다 [SRC-172].
+
+**문제 2:** 원격 탐사 기술을 활용하여 밀의 질병 발생을 조기에 감지하고자 할 때, 특정 파장대 분석을 통해 식물의 건강 상태를 파악하는 주요 방법론은 무엇이며, 이로 인해 어떤 이점을 얻을 수 있는가?
+
+**정답 및 상세 풀이 2:** 주요 방법론은 **스펙트럼 시그니처 분석**이다. 멀티스펙트럴 또는 하이퍼스펙트럴 센서를 이용하여 특정 파장대에서의 반사율 패턴을 분석한다. 이를 통해 작물에 스트레스(질병, 영양 부족 등)가 발생했을 때 나타나는 미묘한 스펙트럼 변화를 포착할 수 있으며, 이로 인해 **질병 발생의 초기 징후를 비접촉식으로 조기에 감지**할 수 있다는 이점을 얻는다.
+
+**문제 3:** 디지털 트윈을 이용한 재배 시뮬레이션의 궁극적인 목적은 단순히 현재 상태를 모니터링하는 것을 넘어선다. 이 시스템이 도달해야 할 최종 목표는 무엇이며, 이 과정에 적용되는 AI 모델의 핵심 기능은 무엇인가?
+
+**정답 및 상세 풀이 3:** 최종 목표는 **최적의 재배 전략(Optimal Replanting Strategy)을 도출**하는 것이다. 이 과정에 적용되는 AI 모델의 핵심 기능은 **'만약(What-if) 시나리오 분석'**을 수행하는 것이다. AI는 예측 모델을 통해 다양한 투입 변수(비료량, 관개량, 품종 조합)를 가상 시나리오에 대입하여, 환경 변화(예: 가뭄)에 가장 강하거나 수확량이 최대화되는 최적의 의사결정 포인트를 찾아준다.
+
+---
+
+## ## 오해와 진실: 현장·이론 핵심 오해 교정
+
+**오해 1:** 디지털 트윈은 단순히 실제 농장의 3D 모델을 띄워 놓는 것에 불과하다.
+**진실:** 디지털 트윈은 단순한 시각화 도구가 아니다. **실시간 데이터 피드백 루프를 가진 동적 시뮬레이션 플랫폼**이다. 즉, 물리적 시스템(실제 농장)의 현재 상태(온도, 수분, 생육 단계)를 가상 모델에 반영하고, 이 가상 모델을 통해 미래를 예측하며, 그 예측 결과를 다시 농장 관리에 적용하는 상호작용적 시스템이다 [SRC-172].
+
+**오해 2:** 수확량 예측에 있어 기후 데이터만 정확하면 충분히 높은 예측 정확도를 달성할 수 있다.
+**진실:** 기후 데이터뿐만 아니라, **작물의 유전적 특성(품종 특성)과 재배 관리 이력(농업 관행)** 데이터가 필수적으로 결합되어야 한다. 학술 연구들은 품종의 유전적 잠재력(예: 합성 육종을 통한 특성 향상)이 최종 수확량에 미치는 경로 계수를 정량적으로 분석하고 있기에 [SRC-175, SRC-177], 환경 요인 외의 생물학적 변수 고려가 핵심이다.
+
+**오해 3:** 원격 탐사 데이터는 항상 완벽하게 작물 상태를 나타내므로, 추가적인 현장 검증(Ground Truth)이 불필요하다.
+**진실:** 원격 탐사 데이터는 광범위한 지역의 **'상태 지수'**를 제공하지만, 특정 시점의 병징 심각도나 미세한 영양소 결핍 정도는 현장 검증이 필요하다. AI 모델의 학습 데이터셋을 구성하고 모델의 신뢰도를 검증하기 위해, 센싱 결과와 실제 육안 검사(Ground Truth)를 지속적으로 비교하고 보정하는 과정이 필수적이다.
+
+## 참고문헌 및 근거 출처 목록
+
+| 출처 ID | 유형 | 제목 | URL | 라이선스 |
+| :--- | :--- | :--- | :--- | :--- |
+| `SRC-103` | web | 국립식량과학원 | https://www.nics.go.kr/index.do | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-172` | web | 농사로 : 농촌진흥청 농업기술포털 | https://www.nongsaro.go.kr/portal/portalMain.ps?menuId=PS00001 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-100` | web | 농촌진흥청 | https://www.rda.go.kr/ | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-104` | web | 농림축산식품부 | https://www.mafra.go.kr/home/index.do | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-106` | web | 한국농촌경제연구원 | https://www.krei.re.kr/krei/index.do | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-173` | web | 밀 - 위키백과, 우리 모두의 백과사전 | https://ko.wikipedia.org/wiki/%EB%B0%80 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-174` | web | [2001] Grain Yield and Yield Components of Doublecropped Winter Wheat as Affected by Wheat and Previous Soybean Production Practices (Crop Science) | https://doi.org/10.2135/cropsci2001.413778x | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-175` | web | [2012] Increasing Hard Winter Wheat Yield Potential via Synthetic Wheat: I. Path‐Coefficient Analysis of Yield and Its Components (Crop Science) | https://doi.org/10.2135/cropsci2011.07.0382 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-176` | web | [2020] Soft winter wheat outyields hard winter wheat in a subhumid environment: Weather drivers, yield plasticity, and rates of yield gain (Crop Science) | https://doi.org/10.1002/csc2.20139 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-177` | web | [2013] Increasing Hard Winter Wheat Yield Potential via Synthetic Hexaploid Wheat: II. Heritability and Combining Ability of Yield and its Components (Crop Science) | https://doi.org/10.2135/cropsci2011.07.0383 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-178` | web | [1991] Confirmation of a 4BL/5RL Wheat‐Rye Chromosome Translocation Line in the Wheat Cultivar ‘Viking’ Showing High Copper Efficiency (Plant Breeding) | https://doi.org/10.1111/j.1439-0523.1991.tb01210.x | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-179` | web | [2010] Evaluation of within-cultivar variations in Japanese wheat cultivars using EST-SSR markers (Breeding Research) | https://doi.org/10.1270/jsbbr.12.96 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-180` | web | [2016] Development of A Freezing Resistant and High-yielding Wheat-Rye 1RS Translocation Cultivar &amp;#39;TRANS&amp;#39; (Korean Journal of Breeding Science) | https://doi.org/10.9787/kjbs.2016.48.3.332 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-181` | web | [2014] Responses of wheat growth and yield to climate change in different climate zones of China, 1981–2009 (Agricultural and Forest Meteorology) | https://doi.org/10.1016/j.agrformet.2014.01.013 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-182` | web | [2022] Exploring the uncertainty in projected wheat phenology, growth and yield under climate change in China (Agricultural and Forest Meteorology) | https://doi.org/10.1016/j.agrformet.2022.109187 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-183` | web | [2023] Seasonal climate models for national wheat yield forecasts in Brazil (Agricultural and Forest Meteorology) | https://doi.org/10.1016/j.agrformet.2023.109753 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-184` | web | [2024] Responses of spring wheat yield and growth period to different future climate change models in the yellow river irrigation area based on CMIP6 and WOFOST models (Agricultural and Forest Meteorology) | https://doi.org/10.1016/j.agrformet.2024.110071 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-185` | web | [1985] Nitrogen fertilization of wheat under limited water supplies (Fertilizer Research) | https://doi.org/10.1007/bf01048902 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-186` | web | [1991] Response of wheat to nitrogen fertilization, a data set to validate simulation models for nitrogen dynamics in crop and soil (Fertilizer Research) | https://doi.org/10.1007/bf01051140 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-187` | web | [2013] Substituting whole grain flour for wheat flour: Impact on cake quality and glycemic index (Food Science and Biotechnology) | https://doi.org/10.1007/s10068-013-0216-4 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-188` | web | [2021] Partial Replacement of Durum Wheat Flour with the Blend of Non-traditional Cereals and Legume Flour on Pasta Quality: Review (Food Science and Quality Management) | https://doi.org/10.7176/fsqm/107-04 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-189` | web | [2021] Effects of chitosan oligosaccharide and hyriopsis cumingii polysaccharide on the quality of wheat flour and extruded flour products (Food Science and Biotechnology) | https://doi.org/10.1007/s10068-021-00933-9 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-190` | web | [2020] Quality of Bread Prepared from a Composite Flour of Triticale and Wheat Variety (Food Science &amp; Nutrition Technology) | https://doi.org/10.23880/fsnt-16000241 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-191` | web | CIMMYT | https://www.cimmyt.org/ | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-192` | web | Wheat / Economic Research Service | https://www.ers.usda.gov/topics/crops/wheat | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-193` | web | FAO Cereal Supply and Demand Brief  /  Food and Agriculture Organization of the United Nations | https://www.fao.org/worldfoodsituation/csdb/en/ | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-194` | web | Wheat - Wikipedia | https://en.wikipedia.org/wiki/Wheat | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-195` | web | DSSAT.net - Official Home of the DSSAT Cropping Systems Model | https://dssat.net/ | 국제 공식 작물모형 기관 공개 문서 - 변환적 분석 및 정식 인용 |
+| `SRC-196` | web | APSIM | https://www.apsim.info/ | 국제 공식 작물모형 기관 공개 문서 - 변환적 분석 및 정식 인용 |
+| `SRC-197` | web | Home / AquaCrop / Food and Agriculture Organization of the United Nations | https://www.fao.org/aquacrop/en/ | 국제 공식 작물모형 기관 공개 문서 - 변환적 분석 및 정식 인용 |
+| `SRC-198` | web | WOFOST / WUR | https://www.wur.nl/en/research-results/research-institutes/environmental-research/facilities-tools/software-models-and-databases/wofost.htm | 국제 공식 작물모형 기관 공개 문서 - 변환적 분석 및 정식 인용 |
+| `SRC-199` | web | [2014] Nitrogen partitioning and remobilization in relation to leaf senescence, grain yield and grain nitrogen concentration in wheat cultivars (Field Crops Research) | https://doi.org/10.1016/j.fcr.2013.09.003 | 학술 서지 메타데이터·초록(Crossref (OpenAlex 자동대체)) - 정식 인용 목적(원문 무단 복제 금지) |
+| `SRC-200` | web | [1991] Nitrogen and Dry Matter Accumulation, Remobilization, and Losses for Mediterranean Wheat during Grain Filling (Agronomy Journal) | https://doi.org/10.2134/agronj1991.00021962008300050018x | 학술 논문 오픈액세스(Crossref (OpenAlex 자동대체)) - 변환적 분석 및 정식 학술 인용 |
+| `SRC-201` | web | [2005] Nitrogen Remobilization during Grain Filling in Wheat: Genotypic and Environmental Effects (Crop Science) | https://doi.org/10.2135/cropsci2003.0361 | 학술 논문 오픈액세스(Crossref (OpenAlex 자동대체)) - 변환적 분석 및 정식 학술 인용 |
+| `SRC-202` | web | [1987] Cultivar Differences in Nitrogen Remobilization during Grain Fill in Soft Red Winter Wheat<sup>1</sup> (Crop Science) | https://doi.org/10.2135/cropsci1987.0011183x002700020035x | 학술 논문 오픈액세스(Crossref (OpenAlex 자동대체)) - 변환적 분석 및 정식 학술 인용 |
+| `SRC-203` | web | [2014] Estimating Biomass of Barley Using Crop Surface Models (CSMs) Derived from UAV-Based RGB Imaging (Remote Sensing) | https://doi.org/10.3390/rs61110395 | 학술 논문 오픈액세스(OpenAlex) - 변환적 분석 및 정식 학술 인용 |
+| `SRC-204` | web | [2014] Multimodel ensembles of wheat growth: many models are better than one (Global Change Biology) | https://publications.pik-potsdam.de/pubman/item/item_19844 | 학술 논문 오픈액세스(OpenAlex) - 변환적 분석 및 정식 학술 인용 |
+| `SRC-205` | web | [2020] Crop nitrogen monitoring: Recent progress and principal developments in the context of imaging spectroscopy missions (Remote Sensing of Environment) | https://pmc.ncbi.nlm.nih.gov/articles/PMC7613361/ | 학술 논문 오픈액세스(OpenAlex) - 변환적 분석 및 정식 학술 인용 |
+| `SRC-206` | web | [2015] Multiple pathways regulate shoot branching (Frontiers in Plant Science) | https://doi.org/10.3389/fpls.2014.00741 | 학술 논문 오픈액세스(OpenAlex) - 변환적 분석 및 정식 학술 인용 |
+| `SRC-207` | web | [2016] Brief history of agricultural systems modeling (Agricultural Systems) | https://doi.org/10.1016/j.agsy.2016.05.014 | 학술 논문 오픈액세스(OpenAlex) - 변환적 분석 및 정식 학술 인용 |
+| `SRC-208` | web | [2014] How do various maize crop models vary in their responses to climate change factors? (Global Change Biology) | https://doi.org/10.1111/gcb.12520 | 학술 논문 오픈액세스(OpenAlex) - 변환적 분석 및 정식 학술 인용 |
+| `SRC-209` | web | [2019] Assimilation of remote sensing into crop growth models: Current status and perspectives (Agricultural and Forest Meteorology) | https://doi.org/10.1016/j.agrformet.2019.06.008 | 학술 논문 오픈액세스(OpenAlex) - 변환적 분석 및 정식 학술 인용 |
+| `SRC-210` | web | [2017] Modelling the impacts of pests and diseases on agricultural systems (Agricultural Systems) | https://doi.org/10.1016/j.agsy.2017.01.019 | 학술 논문 오픈액세스(OpenAlex) - 변환적 분석 및 정식 학술 인용 |
+| `SRC-211` | web | [1993] Differences between maize and wheat in growth-related nutrient demand and uptake of potassium and phosphorus at suboptimal root zone temperatures (Plant and Soil) | https://doi.org/10.1007/bf00779183 | 학술 논문 오픈액세스(Crossref (OpenAlex 자동대체)) - 변환적 분석 및 정식 학술 인용 |
+| `SRC-212` | web | [2007] Heterogeneous distribution of phosphorus and potassium in soil influences wheat growth and nutrient uptake (Plant and Soil) | https://doi.org/10.1007/s11104-007-9197-5 | 학술 논문 오픈액세스(Crossref (OpenAlex 자동대체)) - 변환적 분석 및 정식 학술 인용 |
+| `SRC-213` | web | [1990] Effects of varying nitrogen supply at different growth stages on nitrogen uptake and nitrogen partitioning efficiency in two wheat cultivars (Fertilizer Research) | https://doi.org/10.1007/bf01054803 | 학술 논문 오픈액세스(Crossref (OpenAlex 자동대체)) - 변환적 분석 및 정식 학술 인용 |
+| `SRC-214` | web | [2018] Machine Learning in Agriculture: A Review (Sensors) | http://dx.doi.org/10.3390/s18082674 | 학술 논문 오픈액세스(OpenAlex) - 변환적 분석 및 정식 학술 인용 |
+| `SRC-215` | web | [2014] Landsat-8: Science and product vision for terrestrial global change research (Remote Sensing of Environment) | https://doi.org/10.1016/j.rse.2014.02.001 | 학술 논문 오픈액세스(OpenAlex) - 변환적 분석 및 정식 학술 인용 |
+| `SRC-216` | web | [2004] A Continuous Satellite-Derived Measure of Global Terrestrial Primary Production (BioScience) | https://doi.org/10.1641/0006-3568(2004)054[0547:acsmog]2.0.co;2 | 학술 서지 메타데이터·초록(OpenAlex) - 정식 인용 목적(원문 무단 복제 금지) |
+| `SRC-217` | web | [2020] Estimation of Winter Wheat Nitrogen Content, Biomass and Yield using UAV Images in South Korea (Korean Journal of Soil Science and Fertilizer) | https://doi.org/10.7745/kjssf.2020.53.4.589 | 학술 서지 메타데이터·초록(Crossref) - 정식 인용 목적(원문 무단 복제 금지) |
+| `SRC-218` | web | [1995] Measured and simulated nitrogen dynamics in winter wheat and a clay soil subjected to drought stress or daily irrigation and fertilization (Fertilizer Research) | https://doi.org/10.1007/bf00750692 | 학술 서지 메타데이터·초록(Crossref) - 정식 인용 목적(원문 무단 복제 금지) |
+| `SRC-219` | web | [2013] Estimation of Wheat Growth using a Microwave Scatterometer (Korean Journal of Soil Science and Fertilizer) | https://doi.org/10.7745/kjssf.2013.46.1.023 | 학술 서지 메타데이터·초록(Crossref) - 정식 인용 목적(원문 무단 복제 금지) |
+| `SRC-220` | web | [2012] Effect of Growth and Yield of Wheat, Soil Properties on Leguminous Cover Crops-Wheat Mixtures (Korean Journal of Soil Science and Fertilizer) | https://doi.org/10.7745/kjssf.2012.45.2.198 | 학술 서지 메타데이터·초록(Crossref) - 정식 인용 목적(원문 무단 복제 금지) |

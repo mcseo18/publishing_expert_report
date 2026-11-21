@@ -1,0 +1,72 @@
+chapter_id: ch06
+chapter_number: 6
+title: 제6장. 밀의 생육시기별 양분 분배와 디지털 생육모형
+target_pages: 36
+summary_ko: Zadoks·BBCH 생육단계에 따른 밀의 질소(N)·인산(P)·칼륨(K)·황(S) 흡수 및 영양기관→종실 전류 메커니즘, 임계 질소 희석곡선(Nc)과 질소영양지수(NNI), 동화산물 분배 계수, 그리고 DSSAT CERES-Wheat·APSIM-Wheat·WOFOST·AquaCrop
+  등 대표 밀 생육모형의 구조·품종 매개변수 보정과 원격탐사 자료동화(Data Assimilation) 기반 디지털 재배 연동을 정량적으로 다룹니다.
+sections:
+- 6.1 Zadoks·BBCH 생육단계별 양분(N·P·K·S) 흡수 동태와 수량 구성요소 결정
+- 6.2 영양기관 저장 양분의 개화 후 재분배·전류(Remobilization) 및 질소 수확지수(NHI)
+- 6.3 임계 질소 희석곡선(Critical N Dilution Curve)과 질소영양지수(NNI) 기반 정밀 추비 진단
+- 6.4 동화산물 생산·분배 계수(Partitioning Coefficient)와 광이용효율(RUE)·적산온도(GDD) 정식화
+- 6.5 주요 밀 생육모형(CERES-Wheat · APSIM-Wheat · WOFOST · AquaCrop) 구조 비교 및 매개변수 보정
+- 6.6 원격탐사(UAV·위성 LAI/NDVI) 자료동화와 한국형 겨울밀 디지털 생육모형 현장 적용
+keywords_ko:
+- 생육시기별 양분 분배
+- 질소 전류
+- 임계 질소 희석곡선
+- 질소영양지수(NNI)
+- 밀 생육모형
+- CERES-Wheat
+- APSIM-Wheat
+- WOFOST
+- 자료동화
+keywords_en:
+- nutrient partitioning
+- nitrogen remobilization
+- critical nitrogen dilution curve
+- CERES-Wheat
+- APSIM-Wheat
+- WOFOST
+- crop growth model
+- data assimilation
+evidence_packet: digital_wheat_cultivation_20261121_220903_evidence.json
+assigned_sources:
+- SRC-195
+- SRC-196
+- SRC-197
+- SRC-198
+- SRC-199
+- SRC-200
+- SRC-201
+- SRC-202
+- SRC-203
+- SRC-204
+- SRC-205
+- SRC-206
+- SRC-207
+- SRC-208
+- SRC-209
+- SRC-210
+- SRC-211
+- SRC-212
+- SRC-213
+- SRC-214
+- SRC-215
+- SRC-216
+- SRC-217
+- SRC-218
+- SRC-219
+- SRC-220
+- SRC-103
+- SRC-172
+- SRC-100
+- SRC-104
+- SRC-106
+- SRC-173
+- SRC-174
+- SRC-175
+- SRC-176
+- SRC-177
+- SRC-178
+- SRC-179

@@ -1,0 +1,259 @@
+book_metadata:
+  title_ko: 디지털 밀 재배
+  title_en: Digital Wheat Cultivation
+  target_audience: 대학 전공 심화, 연구자 및 선도 농업인
+  target_pages: 500
+  generated_at: '2026-11-21T13:05:58+00:00'
+parts:
+- part_number: 1
+  title: 기초 및 이론
+  pages: 33
+  chapters:
+  - chapter_id: ch01
+    chapter_number: 1
+    title: 제1장. 밀의 생물학적 이해와 농업적 중요성
+    target_pages: 33
+    sections:
+    - 1.1 밀속(Wheat Species)의 분류학적 이해 및 진화
+    - 1.2 밀의 형태학적 특징 및 생식 주기 분석
+    - 1.3 밀의 농업적 중요성 및 글로벌 식량 안보에서의 역할
+    - 1.4 밀 생장 단계(Phenology)의 과학적 정의 및 모니터링
+    evidence_packet: digital_wheat_cultivation_20261121_220240_evidence.json
+    assigned_sources: &id001
+    - SRC-103
+    - SRC-172
+    - SRC-100
+    - SRC-104
+    - SRC-106
+    - SRC-173
+    - SRC-174
+    - SRC-175
+    - SRC-176
+    - SRC-177
+    - SRC-178
+    - SRC-179
+    - SRC-180
+    - SRC-181
+    - SRC-182
+    - SRC-183
+    - SRC-184
+    - SRC-185
+    - SRC-186
+    - SRC-187
+    - SRC-188
+    - SRC-189
+    - SRC-190
+    - SRC-191
+    - SRC-192
+    - SRC-193
+    - SRC-194
+- part_number: 2
+  title: 생리학적 메커니즘
+  pages: 33
+  chapters:
+  - chapter_id: ch02
+    chapter_number: 2
+    title: 제2장. 밀의 생리학적 반응 및 환경 적응 기작
+    target_pages: 33
+    sections:
+    - 2.1 광합성 효율성 및 탄소 동화 메커니즘 심층 분석
+    - 2.2 물 이용 효율성(WUE) 및 가뭄 스트레스 생리 반응
+    - 2.3 질소 및 인산 흡수 메커니즘과 대사 경로
+    - 2.4 온도 변화(저온/고온)에 따른 밀의 생리적 반응 모델링
+    evidence_packet: digital_wheat_cultivation_20261121_220240_evidence.json
+    assigned_sources: *id001
+- part_number: 3
+  title: 재배 설계
+  pages: 33
+  chapters:
+  - chapter_id: ch03
+    chapter_number: 3
+    title: 제3장. 품종 선택, 유전학 및 종자 관리 전략
+    target_pages: 33
+    sections:
+    - 3.1 주요 밀 품종(Hard/Soft Wheat)의 분자 특성 비교 분석
+    - 3.2 육종 목표 설정 및 형질 선발(Trait Selection)의 최신 동향
+    - 3.3 종자 품질 평가(Germination, Purity) 및 보존 기술
+    - 3.4 유전적 다양성(Genetic Diversity) 보존과 품종 개량 프로그램
+    evidence_packet: digital_wheat_cultivation_20261121_220240_evidence.json
+    assigned_sources: *id001
+- part_number: 4
+  title: 토양 환경
+  pages: 33
+  chapters:
+  - chapter_id: ch04
+    chapter_number: 4
+    title: 제4장. 밀 재배에 최적화된 토양 관리 시스템
+    target_pages: 33
+    sections:
+    - 4.1 토양 물리성(Texture, Structure)과 밀 뿌리 발달의 상관관계
+    - 4.2 토양 화학성(pH, EC, 양이온 교환능)의 정밀 분석
+    - 4.3 유기물 함량 증대 및 토양 건강성(Soil Health) 관리 기법
+    - 4.4 토양 미생물 군집(Microbiome)과 밀 생산성 간의 상호작용
+    evidence_packet: digital_wheat_cultivation_20261121_220240_evidence.json
+    assigned_sources: *id001
+- part_number: 5
+  title: 파종 및 초기 생육
+  pages: 33
+  chapters:
+  - chapter_id: ch05
+    chapter_number: 5
+    title: 제5장. 파종 기술, 밀도 조절 및 초기 생육 관리
+    target_pages: 33
+    sections:
+    - 5.1 최적 파종 시기 및 파종 깊이의 결정 요인
+    - 5.2 작물 밀도(Plant Density) 설정에 따른 수확량 예측 모델
+    - 5.3 초기 생장 단계에서의 생육 촉진 및 저해 요인 관리
+    - 5.4 파종기 정밀 농업(Precision Seeding) 기술의 적용 사례
+    evidence_packet: digital_wheat_cultivation_20261121_220240_evidence.json
+    assigned_sources: *id001
+- part_number: 6
+  title: 중기 생육 관리
+  pages: 33
+  chapters:
+  - chapter_id: ch06
+    chapter_number: 6
+    title: 제6장. 월동 후 생육기(Tillering to Heading)의 정밀 관리
+    target_pages: 33
+    sections:
+    - 6.1 분얼(Tillering) 단계에서의 영양분 요구량 및 시기적 최적화
+    - 6.2 생장점(Meristem) 활성화를 위한 환경 제어 기술
+    - 6.3 비료 시비(Fertilization)의 시공(Timing) 및 양(Rate) 최적화 알고리즘
+    - 6.4 생육 주기 모니터링을 위한 원격 탐사(Remote Sensing) 활용
+    evidence_packet: digital_wheat_cultivation_20261121_220240_evidence.json
+    assigned_sources: *id001
+- part_number: 7
+  title: 스트레스 관리
+  pages: 33
+  chapters:
+  - chapter_id: ch07
+    chapter_number: 7
+    title: 제7장. 주요 환경 스트레스 및 기후 변화 대응 전략
+    target_pages: 33
+    sections:
+    - 7.1 가뭄 및 홍수 스트레스 하에서의 생리적 회복 메커니즘
+    - 7.2 고온 스트레스가 곡물 채움(Grain Filling)에 미치는 영향 분석
+    - 7.3 염분 스트레스(Salinity) 관리 및 내성 품종 개발
+    - 7.4 기후 예측 모델과 재배 계획의 통합적 연계 방안
+    evidence_packet: digital_wheat_cultivation_20261121_220240_evidence.json
+    assigned_sources: *id001
+- part_number: 8
+  title: 병해충 관리
+  pages: 33
+  chapters:
+  - chapter_id: ch08
+    chapter_number: 8
+    title: 제8장. 주요 병해충 및 잡초의 통합적 관리(IPM)
+    target_pages: 33
+    sections:
+    - 8.1 주요 곰팡이성 병해(Rusts, Powdery Mildew)의 병원성 메커니즘
+    - 8.2 해충(Aphids, Stem Borers)의 생태 및 피해 평가 모델
+    - 8.3 제초제(Herbicides)의 작용 기작 및 내성 문제 분석
+    - 8.4 통합적 병해충 관리(IPM)를 위한 생물학적 방제(Biocontrol) 전략
+    evidence_packet: digital_wheat_cultivation_20261121_220240_evidence.json
+    assigned_sources: *id001
+- part_number: 9
+  title: 디지털 기술 적용
+  pages: 33
+  chapters:
+  - chapter_id: ch09
+    chapter_number: 9
+    title: 제9장. 디지털 농업(Digital Agriculture) 기반 밀 재배 시스템
+    target_pages: 33
+    sections:
+    - 9.1 IoT 센서 네트워크를 활용한 실시간 환경 데이터 수집
+    - 9.2 빅데이터 분석을 통한 질병 및 영양 결핍 조기 진단
+    - 9.3 자율 주행 농기계 및 정밀 시비(Variable Rate Application) 구현
+    - 9.4 디지털 트윈(Digital Twin)을 이용한 재배 시뮬레이션 및 최적화
+    evidence_packet: digital_wheat_cultivation_20261121_220240_evidence.json
+    assigned_sources: *id001
+- part_number: 10
+  title: 결실 및 수확
+  pages: 33
+  chapters:
+  - chapter_id: ch10
+    chapter_number: 10
+    title: 제10장. 곡물 형성, 성숙 및 효율적 수확 기술
+    target_pages: 33
+    sections:
+    - 10.1 분과(Glume) 및 이삭(Spikelet)의 발달 과정 분석
+    - 10.2 곡물 충진기(Grain Filling Period)의 생리적 역학
+    - 10.3 수확 적기(Harvest Maturity) 판별을 위한 물리적 지표
+    - 10.4 수확기 작물 손실 최소화를 위한 최신 수확 장비 기술
+    evidence_packet: digital_wheat_cultivation_20261121_220240_evidence.json
+    assigned_sources: *id001
+- part_number: 11
+  title: 가공 전 관리
+  pages: 33
+  chapters:
+  - chapter_id: ch11
+    chapter_number: 11
+    title: 제11장. 수확 후 관리(Post-Harvest Management) 및 건조
+    target_pages: 33
+    sections:
+    - 11.1 수확물 저장 중 품질 저하 메커니즘 분석 (곰팡이, 해충)
+    - 11.2 최적 건조 조건(Moisture Content, Temperature) 설정 및 제어
+    - 11.3 저장 시설의 설계 및 습도/온도 모니터링 시스템
+    - 11.4 수확 후 품질 손실(Loss)을 줄이기 위한 전처리 과정
+    evidence_packet: digital_wheat_cultivation_20261121_220240_evidence.json
+    assigned_sources: *id001
+- part_number: 12
+  title: 품질 평가
+  pages: 33
+  chapters:
+  - chapter_id: ch12
+    chapter_number: 12
+    title: 제12장. 밀의 품질 특성 분석 및 표준화
+    target_pages: 33
+    sections:
+    - 12.1 단백질 함량, 글루텐 특성(Strength, Extensibility) 분석
+    - 12.2 비중, 수분 함량, 이물질 함량 등 물리적 품질 검사
+    - 12.3 미생물학적 및 화학적 안전성(Mycotoxin) 검사 표준
+    - 12.4 국제 곡물 품질 인증 시스템 및 규격(Standards) 이해
+    evidence_packet: digital_wheat_cultivation_20261121_220240_evidence.json
+    assigned_sources: *id001
+- part_number: 13
+  title: 글로벌 시장
+  pages: 33
+  chapters:
+  - chapter_id: ch13
+    chapter_number: 13
+    title: 제13장. 세계 밀 생산 시스템, 무역 및 공급망
+    target_pages: 33
+    sections:
+    - 13.1 주요 밀 생산국(Global Wheat Basket)의 생산 동향 및 패턴
+    - 13.2 국제 곡물 시장의 가격 결정 메커니즘 및 변동성 분석
+    - 13.3 국제 무역 규범(WTO, Trade Barriers)과 밀 수출입 정책
+    - 13.4 공급망(Supply Chain)의 취약점 분석 및 리스크 관리 방안
+    evidence_packet: digital_wheat_cultivation_20261121_220240_evidence.json
+    assigned_sources: *id001
+- part_number: 14
+  title: 가공 과학
+  pages: 33
+  chapters:
+  - chapter_id: ch14
+    chapter_number: 14
+    title: 제14장. 밀의 특성에 따른 산업적 가공 및 활용
+    target_pages: 33
+    sections:
+    - 14.1 제분(Milling) 공정의 원리 및 분말(Flour)의 종류별 특성
+    - 14.2 제과/제빵(Bakery) 산업에서의 글루텐 네트워크 제어 기술
+    - 14.3 산업용 바이오매스 및 사료(Feed)로의 밀 부산물 활용
+    - '14.4 특수 목적 밀(예: 기능성 밀)의 유도 및 가공 기술'
+    evidence_packet: digital_wheat_cultivation_20261121_220240_evidence.json
+    assigned_sources: *id001
+- part_number: 15
+  title: 미래 전망
+  pages: 33
+  chapters:
+  - chapter_id: ch15
+    chapter_number: 15
+    title: 제15장. 지속 가능한 밀 재배의 미래와 혁신 방향
+    target_pages: 33
+    sections:
+    - 15.1 재생 농업(Regenerative Agriculture) 관점에서의 밀 재배 최적화
+    - 15.2 스마트팜 기술의 고도화와 AI 기반 의사결정 지원 시스템
+    - 15.3 환경 지속가능성(ESG) 목표 달성을 위한 농업의 역할
+    - 15.4 미래 밀 재배 연구의 주요 도전 과제 및 학문적 전망
+    evidence_packet: digital_wheat_cultivation_20261121_220240_evidence.json
+    assigned_sources: *id001

@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 380" width="760" height="380" style="background:#ffffff;font-family:'Malgun Gothic', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;">
+  <rect x="0" y="0" width="760" height="380" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+  <rect x="0" y="0" width="760" height="52" rx="10" fill="#0f172a"/>
+  <rect x="0" y="38" width="760" height="14" fill="#0f172a"/>
+  <text x="20" y="24" font-size="14" font-weight="700" fill="#f8fafc">Stanford-Smith 1차 질소 무기화 누적 곡선 (N0 및 속도상수 k 비교)</text>
+  <text x="20" y="43" font-size="10.5" fill="#94a3b8">실제 Python 시뮬레이터(scripts/som_cn_simulator.py) 산출 · 온도 상승 시 k 증가 [SRC-59, SRC-60]</text>
+  <rect x="72" y="74" width="620" height="225" fill="#f8fafc" stroke="#cbd5e1"/>
+  <line x1="72" y1="299.0" x2="692" y2="299.0" stroke="#e2e8f0" stroke-dasharray="3,3"/>
+  <text x="64" y="303.0" text-anchor="end" font-size="9.5" fill="#475569">0.0</text>
+  <line x1="72" y1="242.8" x2="692" y2="242.8" stroke="#e2e8f0" stroke-dasharray="3,3"/>
+  <text x="64" y="246.8" text-anchor="end" font-size="9.5" fill="#475569">36.0</text>
+  <line x1="72" y1="186.5" x2="692" y2="186.5" stroke="#e2e8f0" stroke-dasharray="3,3"/>
+  <text x="64" y="190.5" text-anchor="end" font-size="9.5" fill="#475569">72.1</text>
+  <line x1="72" y1="130.2" x2="692" y2="130.2" stroke="#e2e8f0" stroke-dasharray="3,3"/>
+  <text x="64" y="134.2" text-anchor="end" font-size="9.5" fill="#475569">108.1</text>
+  <line x1="72" y1="74.0" x2="692" y2="74.0" stroke="#e2e8f0" stroke-dasharray="3,3"/>
+  <text x="64" y="78.0" text-anchor="end" font-size="9.5" fill="#475569">144.2</text>
+  <text x="72.0" y="315" text-anchor="middle" font-size="9.5" fill="#475569">0</text>
+  <text x="123.7" y="315" text-anchor="middle" font-size="9.5" fill="#475569">2</text>
+  <text x="175.3" y="315" text-anchor="middle" font-size="9.5" fill="#475569">4</text>
+  <text x="278.7" y="315" text-anchor="middle" font-size="9.5" fill="#475569">8</text>
+  <text x="382.0" y="315" text-anchor="middle" font-size="9.5" fill="#475569">12</text>
+  <text x="485.3" y="315" text-anchor="middle" font-size="9.5" fill="#475569">16</text>
+  <text x="588.7" y="315" text-anchor="middle" font-size="9.5" fill="#475569">20</text>
+  <text x="692.0" y="315" text-anchor="middle" font-size="9.5" fill="#475569">24</text>
+  <text x="382.0" y="333" text-anchor="middle" font-size="10.5" font-weight="600" fill="#1e293b">배양·경과 기간 (주, Weeks)</text>
+  <text x="18" y="186.5" text-anchor="middle" font-size="10.5" font-weight="600" fill="#1e293b" transform="rotate(-90 18 186.5)">누적 무기화 질소 (kg N/ha)</text>
+  <polyline fill="none" stroke="#64748b" stroke-width="2.6" points="72.0,299.0 123.7,286.9 175.3,275.9 278.7,256.5 382.0,240.4 485.3,226.9 588.7,215.6 692.0,206.2"/>
+  <circle cx="72.0" cy="299.0" r="3.5" fill="#64748b"/>
+  <circle cx="123.7" cy="286.9" r="3.5" fill="#64748b"/>
+  <circle cx="175.3" cy="275.9" r="3.5" fill="#64748b"/>
+  <circle cx="278.7" cy="256.5" r="3.5" fill="#64748b"/>
+  <circle cx="382.0" cy="240.4" r="3.5" fill="#64748b"/>
+  <circle cx="485.3" cy="226.9" r="3.5" fill="#64748b"/>
+  <circle cx="588.7" cy="215.6" r="3.5" fill="#64748b"/>
+  <circle cx="692.0" cy="206.2" r="3.5" fill="#64748b"/>
+  <rect x="72" y="346" width="14" height="4" fill="#64748b"/>
+  <text x="92" y="351" font-size="10" font-weight="600" fill="#1e293b">저투입 (N0=90, k=0.045)</text>
+  <polyline fill="none" stroke="#2563eb" stroke-width="2.6" points="72.0,299.0 123.7,279.8 175.3,262.6 278.7,233.3 382.0,209.7 485.3,190.6 588.7,175.3 692.0,162.9"/>
+  <circle cx="72.0" cy="299.0" r="3.5" fill="#2563eb"/>
+  <circle cx="123.7" cy="279.8" r="3.5" fill="#2563eb"/>
+  <circle cx="175.3" cy="262.6" r="3.5" fill="#2563eb"/>
+  <circle cx="278.7" cy="233.3" r="3.5" fill="#2563eb"/>
+  <circle cx="382.0" cy="209.7" r="3.5" fill="#2563eb"/>
+  <circle cx="485.3" cy="190.6" r="3.5" fill="#2563eb"/>
+  <circle cx="588.7" cy="175.3" r="3.5" fill="#2563eb"/>
+  <circle cx="692.0" cy="162.9" r="3.5" fill="#2563eb"/>
+  <rect x="277" y="346" width="14" height="4" fill="#2563eb"/>
+  <text x="297" y="351" font-size="10" font-weight="600" fill="#1e293b">표준 (N0=120, k=0.054)</text>
+  <polyline fill="none" stroke="#16a34a" stroke-width="2.6" points="72.0,299.0 123.7,267.2 175.3,239.5 278.7,194.2 382.0,159.7 485.3,133.4 588.7,113.4 692.0,98.1"/>
+  <circle cx="72.0" cy="299.0" r="3.5" fill="#16a34a"/>
+  <circle cx="123.7" cy="267.2" r="3.5" fill="#16a34a"/>
+  <circle cx="175.3" cy="239.5" r="3.5" fill="#16a34a"/>
+  <circle cx="278.7" cy="194.2" r="3.5" fill="#16a34a"/>
+  <circle cx="382.0" cy="159.7" r="3.5" fill="#16a34a"/>
+  <circle cx="485.3" cy="133.4" r="3.5" fill="#16a34a"/>
+  <circle cx="588.7" cy="113.4" r="3.5" fill="#16a34a"/>
+  <circle cx="692.0" cy="98.1" r="3.5" fill="#16a34a"/>
+  <rect x="482" y="346" width="14" height="4" fill="#16a34a"/>
+  <text x="502" y="351" font-size="10" font-weight="600" fill="#1e293b">녹비+퇴비 (N0=160, k=0.068)</text>
+</svg>

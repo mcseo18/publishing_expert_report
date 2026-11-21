@@ -1,0 +1,49 @@
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# Secrets & local env
+.env
+.env.*
+!.env.example
+*local_api_keys*.json
+
+# External junctions & collected data (stored on E:\SMC_Report_Platform_Data & C:\SMC_GRAPHRAG)
+data/raw/
+data/parsed/
+data/evidence/
+data/index/
+data/kg_store/
+
+# Heavy generated binaries, backups & scratch exports
+_backup_20261121_before_claude/
+ch*_textbook.pdf
+*.docx
+!Eco-Browser*.docx
+reports/*.json
+reports/*.html
+content/exports/
+projects/*/collected/
+projects/*/exports/
+!projects/*/exports/front_matter/
+projects/*/exports/front_matter/*
+!projects/*/exports/front_matter/cover_and_toc.md
+!projects/*/exports/front_matter/cover_and_toc.html
+!projects/*/exports/front_matter/cover_art.svg
+projects/*/blueprints/_backups/
+projects/*/reports/*.json
+projects/*/assets/figures/*.png
+
+# Node / Dashboard
+dashboard/node_modules/
+dashboard/.next/
+dashboard/out/
+
+# OS / IDE / Logs
+.DS_Store
+Thumbs.db
+*.log
+~$*

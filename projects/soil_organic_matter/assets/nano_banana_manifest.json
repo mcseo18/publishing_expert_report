@@ -1,0 +1,44 @@
+{
+  "figures": [
+    {
+      "figure_id": "fig_ch01_som_pom_maom",
+      "chapter_id": "ch01",
+      "filename": "fig_ch01_som_pom_maom.png",
+      "caption_ko": "그림 1-1. 입자성 유기물(POM, 좌)과 점토·미사 표면 광물결합 유기물(MAOM, 우)의 미시적 결합 구조 개념도 [SRC-04, SRC-05, SRC-06, SRC-10]",
+      "prompt": "Publication-grade scientific textbook cross-section illustration on a clean white background showing Particulate Organic Matter (POM: amber plant fragments and fungal hyphae in soil pores, left) vs Mineral-Associated Organic Matter (MAOM: molecular organic films tightly bound to blue-grey clay mineral platelets, right). Nature journal scientific style, NO text or letters.",
+      "file_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\soil_organic_matter\\assets\\figures\\fig_ch01_som_pom_maom.png",
+      "exists": true,
+      "size_bytes": 1580742
+    },
+    {
+      "figure_id": "fig_ch04_aggregate_hierarchy",
+      "chapter_id": "ch04",
+      "filename": "fig_ch04_aggregate_hierarchy.png",
+      "caption_ko": "그림 4-1. 토양 대단립(>250 μm) 및 소단립(53~250 μm) 계층 구조 내 균근균 균사·뿌리털·부식질 결합 단면도 [SRC-03, SRC-42, SRC-44]",
+      "prompt": "Detailed scientific cross-section of a healthy soil macroaggregate (>250 um) on white background, showing microaggregates bound by golden-white arbuscular mycorrhizal fungal hyphae, root hairs, and humus bridges with clear water/air pores. Editorial biology illustration style, NO text or labels.",
+      "file_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\soil_organic_matter\\assets\\figures\\fig_ch04_aggregate_hierarchy.png",
+      "exists": true,
+      "size_bytes": 1477627
+    },
+    {
+      "figure_id": "fig_ch14_biochar_rhizosphere",
+      "chapter_id": "ch14",
+      "filename": "fig_ch14_biochar_rhizosphere.png",
+      "caption_ko": "그림 14-1. 다공성 바이오차(Biochar) 미세공극 내 수분·양분 흡착 및 근권 미생물·작물 뿌리 상호작용 단면 도해 [SRC-36, SRC-38, SRC-79]",
+      "prompt": "High-resolution scientific cutaway illustration on white background showing porous honeycomb black biochar particle in dark brown soil, colonized by rhizosphere bacteria and mycorrhizal hyphae with water and mineral ions next to a crop root hair. Modern photorealistic scientific illustration, NO text or labels.",
+      "file_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\soil_organic_matter\\assets\\figures\\fig_ch14_biochar_rhizosphere.png",
+      "exists": true,
+      "size_bytes": 1699992
+    },
+    {
+      "figure_id": "fig_ch15_soil_profiles",
+      "chapter_id": "ch15",
+      "filename": "fig_ch15_soil_profiles.png",
+      "caption_ko": "그림 15-1. 주요 토양 생태계(농경지 광질토·화산회토 Andosol·이탄지 Histosol·산림토양) 1 m 토양 단면 비교 [SRC-06, SRC-51, SRC-80, SRC-81]",
+      "prompt": "Clean scientific textbook vertical 1-meter soil monolith comparison side by side on white background: (1) agricultural mineral loam topsoil/subsoil, (2) deep black volcanic Andosol, (3) wet fibrous peatland Histosol, (4) forest soil with organic O-horizon and deep roots. Museum soil monolith illustration style, NO text.",
+      "file_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\soil_organic_matter\\assets\\figures\\fig_ch15_soil_profiles.png",
+      "exists": true,
+      "size_bytes": 1750339
+    }
+  ]
+}

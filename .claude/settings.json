@@ -1,0 +1,26 @@
+{
+  "permissions": {
+    "deny": [
+      "Read(.env)",
+      "Read(.env.*)",
+      "Read(C:/SMC_GRAPHRAG/.env)",
+      "Bash(rm -rf *)",
+      "Bash(Remove-Item -Recurse -Force *)",
+      "Bash(curl * | sh)",
+      "Bash(iwr * | iex)"
+    ]
+  },
+  "hooks": {
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".venv/Scripts/python.exe scripts/verify_citations.py projects || exit 2"
+          }
+        ]
+      }
+    ]
+  }
+}

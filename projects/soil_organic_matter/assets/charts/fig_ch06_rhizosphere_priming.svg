@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 380" width="760" height="380" style="background:#ffffff;font-family:'Malgun Gothic', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;">
+  <rect x="0" y="0" width="760" height="380" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+  <rect x="0" y="0" width="760" height="52" rx="10" fill="#0f172a"/>
+  <rect x="0" y="38" width="760" height="14" fill="#0f172a"/>
+  <text x="20" y="24" font-size="14" font-weight="700" fill="#f8fafc">근권(Rhizosphere) 미생물 먹이망과 프라이밍 효과(Priming Effect)</text>
+  <text x="20" y="43" font-size="10.5" fill="#94a3b8">출처: 한국토양비료학회지 AMF/PGPR [SRC-16] · EJSS 지렁이 리뷰 [SRC-49] · Frontiers [SRC-53]</text>
+  <defs><marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 1 L 10 5 L 0 9 z" fill="#334155"/></marker></defs>
+  <line x1="165" y1="138" x2="213" y2="112" stroke="#334155" stroke-width="1.8" marker-end="url(#arr)"/>
+  <text x="189" y="120" text-anchor="middle" font-size="9.5" font-weight="600" fill="#1d4ed8">N 제한</text>
+  <line x1="165" y1="162" x2="213" y2="212" stroke="#334155" stroke-width="1.8" marker-end="url(#arr)"/>
+  <text x="189" y="182" text-anchor="middle" font-size="9.5" font-weight="600" fill="#1d4ed8">N 충분</text>
+  <line x1="380" y1="110" x2="433" y2="110" stroke="#334155" stroke-width="1.8" marker-end="url(#arr)"/>
+  <text x="406" y="105" text-anchor="middle" font-size="9.5" font-weight="600" fill="#1d4ed8">상호작용</text>
+  <line x1="380" y1="210" x2="433" y2="210" stroke="#334155" stroke-width="1.8" marker-end="url(#arr)"/>
+  <text x="406" y="205" text-anchor="middle" font-size="9.5" font-weight="600" fill="#1d4ed8">물리 혼합</text>
+  <rect x="25" y="115" width="140" height="70" rx="8" fill="#dcfce7" stroke="#1e293b" stroke-width="1.2"/>
+  <text x="95" y="137" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0f172a">작물 뿌리·근권삼출</text>
+  <text x="95" y="153" text-anchor="middle" font-size="9.5" fill="#334155">당류·유기산 분비</text>
+  <text x="95" y="166" text-anchor="middle" font-size="9.5" fill="#334155">에너지 기질 공급</text>
+  <rect x="215" y="78" width="165" height="65" rx="8" fill="#fee2e2" stroke="#1e293b" stroke-width="1.2"/>
+  <text x="297" y="100" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0f172a">양성 프라이밍 (+)</text>
+  <text x="297" y="116" text-anchor="middle" font-size="9.5" fill="#334155">양분 결핍 시 미생물 활성</text>
+  <text x="297" y="129" text-anchor="middle" font-size="9.5" fill="#334155">기존 SOM 분해 촉진</text>
+  <rect x="215" y="180" width="165" height="65" rx="8" fill="#dbeafe" stroke="#1e293b" stroke-width="1.2"/>
+  <text x="297" y="202" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0f172a">음성 프라이밍 (-)</text>
+  <text x="297" y="218" text-anchor="middle" font-size="9.5" fill="#334155">충분한 가용 양분 조건</text>
+  <text x="297" y="231" text-anchor="middle" font-size="9.5" fill="#334155">기존 SOM 분해 억제·보존</text>
+  <rect x="435" y="78" width="290" height="65" rx="8" fill="#f3e8ff" stroke="#1e293b" stroke-width="1.2"/>
+  <text x="580" y="100" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0f172a">균근균(AMF)·PGPR 공생 네트워크</text>
+  <text x="580" y="116" text-anchor="middle" font-size="9.5" fill="#334155">인산·미량원소 흡수 증진 및 스트레스 완화 [SRC-16]</text>
+  <rect x="435" y="180" width="290" height="65" rx="8" fill="#fef3c7" stroke="#1e293b" stroke-width="1.2"/>
+  <text x="580" y="202" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0f172a">지렁이·토양대형동물 생태계 공학</text>
+  <text x="580" y="218" text-anchor="middle" font-size="9.5" fill="#334155">잔사 혼입·분변토 단립 형성·공극률 개선 [SRC-49]</text>
+</svg>

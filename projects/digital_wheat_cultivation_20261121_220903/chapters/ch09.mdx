@@ -1,0 +1,167 @@
+---
+chapter_id: "ch09"
+title: "제9장. 최적 수확 시기 결정 및 수확 후 품질 보존 기술"
+audience: "대학 전공 심화, 연구자 및 선도 농업인"
+evidence_packet: "digital_wheat_cultivation_20261121_220903_evidence.json"
+---
+
+# 제9장. 최적 수확 시기 결정 및 수확 후 품질 보존 기술
+
+본 장에서는 농산물의 품질을 극대화하고 경제적 손실을 최소화하기 위한 핵심 과정인 최적 수확 시기 결정 방법론과 수확 후 품질을 보존하는 정밀 기술에 대해 심도 있게 다룬다. 특히, 작물의 생리적 성숙도(등숙도)를 과학적으로 판정하는 지표부터 시작하여, 수확량 예측 모델의 적용, 그리고 건조 및 저장 과정에서 발생하는 열역학적 변화 및 생물학적 안정성 유지 전략까지 포괄적으로 논한다. 이 내용은 대학원 수준의 심화 학습자, 연구자, 그리고 첨단 농업 기술을 도입하고자 하는 선도 농업인에게 최적화되어 제공된다.
+
+---
+
+## 9.1 등숙도(Maturity) 판정 지표와 수확 시기 결정 알고리즘
+
+최적의 수확 시기는 단순히 작물의 크기가 일정 수준에 도달하는 시점이 아니라, 작물 내부의 생리화학적 변화가 목표 품질 특성(맛, 식감, 저장성 등)에 가장 이상적으로 발현되는 지점이다. 이러한 생리적 변화의 정도를 측정하는 것이 곧 등숙도(Maturity) 판정이다.
+
+### 9.1.1. 등숙도 판정 지표
+
+등숙도를 판정하는 지표는 작물 종류에 따라 특화되지만, 일반적인 곡물 및 주요 작물에서 활용되는 지표는 다음과 같다.
+
+1. **생리적 성숙도 (Physiological Maturity):** 작물이 광합성을 멈추고 전분 및 기타 탄수화물을 저장하는 단계의 완료 정도를 나타낸다. 이는 주로 곡물의 수분 함량 감소율, 특정 효소 활성도 변화 등으로 정량화된다.
+2. **물리적 성숙도 (Physical Maturity):** 종자의 물리적 특성 변화에 초점을 맞춘다. 예를 들어, 밀(Wheat)의 경우, 곡물의 단백질 함량이나 특정 품질 관련 인자의 농도 변화를 추적할 수 있다.
+3. **화학적 성숙도 (Chemical Maturity):** 당도(Brix), 산도, 비타민 함량, 그리고 항산화 물질의 함량 변화와 같은 화학적 지표를 이용한다.
+
+수확 시기 결정 알고리즘은 이러한 다중 지표를 종합하여, 목표 품질 범위(Q<sub>target</sub>)에 가장 근접하며, 시장 수요에 부합하는 경제적 최적점을 찾는 방식으로 구성된다. 이는 단순한 지표 도달을 넘어, 작물 특이적 유전적 특성(예: 품종의 성숙기 분산)을 고려해야 한다[SRC-103].
+
+## 9.2 수확기 작물 수확량 예측 모델 (Harvest Yield Prediction)
+
+정밀 농업에서 수확량 예측 모델은 생산 계획, 물류 최적화, 그리고 시장 예측에 필수적인 도구이다. 이러한 예측 모델은 작물의 생육 단계별 환경 변수(기온, 강수량), 토양 특성, 그리고 재배 관행(예: 피복 작물, 비료 사용량)을 입력 변수로 사용하여 최종 수확량을 추정한다.
+
+### 9.2.1. 예측 모델링의 접근 방식
+
+수확량 예측 모델은 통계적 회귀 분석(Regression Analysis)에서부터 복잡한 물리 기반 모델(Process-based Models)까지 다양한 형태로 발전해 왔다.
+
+*   **통계 모델:** 과거 기상 데이터와 수확량 간의 상관관계를 분석하여 예측한다. 예를 들어, 특정 작물에서 연간 평균 일사량과 수확량 간의 통계적 관계를 모델링한다.
+*   **작물 생육 모델 (Crop Growth Models):** 작물의 광합성 효율, 생장 속도, 그리고 수확기 곡물의 충실도(Grain Filling) 과정을 물리화학적으로 모사한다. 예를 들어, 밀과 같은 작물의 수확량 및 수확량 구성 요소(Yield Components)는 재배 방식(예: 이중작, Doublecropping)이나 이전 작물과의 관계에 영향을 받는다[SRC-174, SRC-175, SRC-177]. 이 과정에서 품종의 유전적 특성(예: 특정 유전자 변이)이 예측 정확도에 중요한 영향을 미친다[SRC-178, SRC-179].
+
+모델의 정확도를 높이기 위해서는 재배 환경과 작물 자체의 특성(품종 고유의 특성, Heritability 등)에 대한 정밀한 데이터가 요구된다[SRC-177].
+
+## 9.3 건조 과정의 열역학 및 품질 저하 메커니즘
+
+수확된 작물, 특히 곡물은 저장 및 가공을 위해 건조 과정을 거치는데, 이 과정은 열역학적 원리에 기반하며 품질 안정성을 좌우하는 핵심 단계이다.
+
+### 9.3.1. 열역학적 건조 동역학
+
+건조 과정은 수분 이동(Moisture Transfer)이 지배적인 현상이다. 열에너지는 작물 내부의 수분 증발 속도를 높여 건조 속도를 가속화시킨다. 이 과정의 열역학적 거동은 작물의 수분 활성도(a<sub>w</sub>) 감소율과 직접적으로 관련된다.
+
+**품질 저하 메커니즘:**
+1. **영양소 손실 및 변성:** 과도한 온도(특히 고온 건조)는 단백질의 변성이나 지용성 비타민의 산화를 유발하여 영양적 가치를 저하시킨다.
+2. **품질 변화:** 밀과 같은 곡물에서 너무 빠른 건조는 곡물 내부의 전분 구조를 비정상적으로 변화시키거나, 미생물 활성을 촉진하는 환경을 제공할 수 있다.
+
+건조 목표는 작물이 요구하는 최소한의 수분 함량에 도달하는 동시에, 위에서 언급된 열화학적 반응이 임계점을 넘지 않도록 온도와 시간 프로파일을 정밀하게 제어하는 것이다.
+
+## 9.4 저장 시설의 환경 제어(온도, 습도) 및 생물학적 안정성 확보
+
+최종적으로 수확된 농산물의 품질을 장기간 유지하기 위해서는 적절한 저장 환경 제어가 필수적이다.
+
+### 9.4.1. 환경 제어의 원리
+
+저장 시설의 온도(T)와 상대 습도(RH)는 작물 내부의 대사 활동 및 미생물 증식 속도를 결정하는 가장 중요한 환경 변수이다.
+
+*   **저온 저장:** 온도를 낮추는 것은 작물 내부의 효소 활성과 대사 반응 속도를 현저하게 늦추어 품질 저하를 지연시킨다 (Arrhenius 법칙에 따라 속도 상수 지수화).
+*   **습도 제어:** 적절한 습도(주로 낮은 수준)를 유지하는 것은 곰팡이 및 부패성 미생물의 생육을 억제한다. 습도 관리는 작물의 호흡률과 직결되므로, RH와 작물 수분 함량 간의 균형을 맞추는 것이 중요하다.
+
+### 9.4.2. 생물학적 안정성 확보
+
+저장 과정 중 발생하는 생물학적 안정성 문제는 해충 및 부패균의 침입으로부터 작물을 보호하는 것이다. 이는 단순히 물리적 차단(밀봉)뿐만 아니라, 환경 제어(예: 낮은 온도에서의 대사 억제)를 통한 생물학적 억제 메커니즘을 포함한다. 품종 선택 단계부터 특정 해충 저항성을 고려하고, 적절한 저장 환경을 유지하는 것이 통합적 방제 전략의 핵심이다. 농산물의 품질 관리는 재배부터 소비까지 전 과정에 걸친 과학적 데이터 기반 의사결정을 요구한다[SRC-172].
+
+---
+
+## ## 핵심 용어집
+
+| 용어 | 정의 | 관련 개념 |
+| :--- | :--- | :--- |
+| **등숙도 (Maturity)** | 작물의 생리적, 물리적, 화학적 성숙도가 목표 품질 특성에 도달한 시점. | 수확 시기 결정, 생리적 성숙 |
+| **수확량 예측 모델** | 환경 및 재배 변수를 입력하여 작물의 최종 생산량을 통계적/물리적으로 추정하는 모델. | 정밀 농업, 작물 생육 모델 |
+| **열역학적 건조** | 작물의 수분을 증발시키는 과정에서 열에너지 이동 및 수분 활성도 감소를 포함하는 현상. | 에너지 전달, 품질 안정성 |
+| **수분 활성도 (a<sub>w</sub>)** | 작물 내에서 물 분자가 결합하여 생물학적 활동(미생물 성장, 효소 반응)을 일으키는 자유 수분의 비율. | 저장 안정성, 미생물학 |
+| **품질 구성 요소 (Yield Components)** | 전체 수확량을 구성하는 개별 요소(예: 단위 면적당 이삭 수, 개별 이삭의 무게 등). | 수확량 예측, 유전적 특성 |
+
+---
+
+## ## 이해도 점검 연습문제 및 해설
+
+**문제 1:** 작물의 등숙도를 판정할 때, 단순히 크기가 목표치에 도달하는 시점보다 생리적 성숙도를 측정하는 것이 더 중요한 이유는 무엇이며, 이와 관련된 연구의 특징은 무엇인가?
+
+**정답 및 상세 풀이 1:** 생리적 성숙도는 작물 내부의 생화학적 변화(예: 전분 축적 완료, 광합성 중단)를 반영하므로, 작물의 실제 품질(맛, 저장 잠재력 등)을 가장 정확하게 예측할 수 있기 때문이다. 물리적 크기만으로는 품질을 보장할 수 없다. 연구의 특징은 농업 과학자들이 다양한 생리 지표와 화학적 성숙 지표를 통합하여, 품종 특이적이고 정량화된 수확 시기 결정 알고리즘을 개발하는 데 초점을 맞춘다[SRC-103].
+
+**문제 2:** 밀과 같은 곡물의 수확량 예측 모델링 시, '품질 구성 요소(Yield Components)'의 변화를 고려하는 것이 중요한 이유는 무엇이며, 관련 연구에서 활용되는 접근법은 무엇인가?
+
+**정답 및 상세 풀이 2:** 수확량(Y)은 단순히 벼가 커지는 정도가 아니라, 단위 면적당 발생하는 개체 수(N), 개체당 수확물(W)과 같은 여러 구성 요소들의 곱(Y = N × W × dots)으로 결정된다. 따라서 각 구성 요소의 잠재적 증가율과 상호작용을 모델링하는 것이 정확도를 높인다. 관련 연구에서는 경로 계수 분석(Path-Coefficient Analysis)이나 유전적 조합 능력(Combining Ability) 등을 활용하여 이러한 구성 요소 간의 통계적 관계를 규명한다[SRC-175, SRC-177].
+
+**문제 3:** 건조 과정에서 고온이 품질 저하를 일으키는 주요 메커니즘은 무엇이며, 열역학적 관점에서 이 과정이 어떻게 관리되어야 하는가?
+
+**정답 및 상세 풀이 3:** 주요 메커니즘은 과도한 열에너지가 작물 내의 생화학 반응을 가속화시켜 단백질 변성이나 영양소의 산화/손실을 유발하는 것이다. 열역학적 관점에서, 건조 과정은 수분 활성도(a<sub>w</sub>)를 낮추는 공정인데, 온도를 너무 높게 설정하면 증발 속도는 빨라지나, 이로 인해 발생하는 열 부하가 화학적 변성을 촉진시킨다. 따라서 목표 수분 함량에 도달하기까지의 온도 프로파일을 정밀하게 관리하여, 화학적 안정성의 임계점을 넘지 않도록 제어해야 한다[SRC-106].
+
+---
+
+## ## 오해와 진실: 현장·이론 핵심 오해 교정
+
+**오해 1:** 수확 시기는 작물이 가장 커 보이는 시점에 수확하는 것이 가장 경제적이다.
+**진실:** **(X)** 가장 경제적인 시기는 '최적 수확 시기'이다. 작물이 물리적으로 크더라도, 생리적 성숙이 덜 되었다면 저장성이 낮거나 당도가 미달하여 가치가 떨어질 수 있다. 수확 시기는 '가장 큰 것'이 아니라 '가장 가치 있는 것'을 수확하는 시점이다.
+
+**오해 2:** 저장고의 온도를 낮추는 것만으로 모든 품질 저하를 막을 수 있다.
+**진실:** **(X)** 저온 보관은 대사 속도를 늦추어 생물학적 안정성을 높이는 데 매우 효과적이지만, 근본적인 품질 저하(예: 건조 과정에서 발생한 화학적 변성)는 되돌릴 수 없다. 따라서 온도를 제어함과 동시에, 수분 활성도를 낮추기 위한 습도 제어가 병행되어야 미생물 증식을 막을 수 있다[SRC-172].
+
+**오해 3:** 작물 품종의 유전적 특성은 수확량 예측에 영향을 주지 않으므로 환경 데이터에만 의존하여 예측하면 된다.
+**진실:** **(X)** 품종의 유전적 특성은 수확량 구성 요소(Yield Components)의 잠재력과 환경 스트레스에 대한 반응성(Plasticity)을 결정한다. 예를 들어, 특정 품종은 건조 스트레스에 강하거나 특정 환경에서 높은 단위 면적당 개체 수를 보이는 등, 유전적 소인이 예측 모델의 정확도를 결정하는 핵심 변수로 작용한다[SRC-177, SRC-178].
+
+## 참고문헌 및 근거 출처 목록
+
+| 출처 ID | 유형 | 제목 | URL | 라이선스 |
+| :--- | :--- | :--- | :--- | :--- |
+| `SRC-103` | web | 국립식량과학원 | https://www.nics.go.kr/index.do | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-172` | web | 농사로 : 농촌진흥청 농업기술포털 | https://www.nongsaro.go.kr/portal/portalMain.ps?menuId=PS00001 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-100` | web | 농촌진흥청 | https://www.rda.go.kr/ | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-104` | web | 농림축산식품부 | https://www.mafra.go.kr/home/index.do | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-106` | web | 한국농촌경제연구원 | https://www.krei.re.kr/krei/index.do | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-173` | web | 밀 - 위키백과, 우리 모두의 백과사전 | https://ko.wikipedia.org/wiki/%EB%B0%80 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-174` | web | [2001] Grain Yield and Yield Components of Doublecropped Winter Wheat as Affected by Wheat and Previous Soybean Production Practices (Crop Science) | https://doi.org/10.2135/cropsci2001.413778x | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-175` | web | [2012] Increasing Hard Winter Wheat Yield Potential via Synthetic Wheat: I. Path‐Coefficient Analysis of Yield and Its Components (Crop Science) | https://doi.org/10.2135/cropsci2011.07.0382 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-176` | web | [2020] Soft winter wheat outyields hard winter wheat in a subhumid environment: Weather drivers, yield plasticity, and rates of yield gain (Crop Science) | https://doi.org/10.1002/csc2.20139 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-177` | web | [2013] Increasing Hard Winter Wheat Yield Potential via Synthetic Hexaploid Wheat: II. Heritability and Combining Ability of Yield and its Components (Crop Science) | https://doi.org/10.2135/cropsci2011.07.0383 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-178` | web | [1991] Confirmation of a 4BL/5RL Wheat‐Rye Chromosome Translocation Line in the Wheat Cultivar ‘Viking’ Showing High Copper Efficiency (Plant Breeding) | https://doi.org/10.1111/j.1439-0523.1991.tb01210.x | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-179` | web | [2010] Evaluation of within-cultivar variations in Japanese wheat cultivars using EST-SSR markers (Breeding Research) | https://doi.org/10.1270/jsbbr.12.96 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-180` | web | [2016] Development of A Freezing Resistant and High-yielding Wheat-Rye 1RS Translocation Cultivar &amp;#39;TRANS&amp;#39; (Korean Journal of Breeding Science) | https://doi.org/10.9787/kjbs.2016.48.3.332 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-181` | web | [2014] Responses of wheat growth and yield to climate change in different climate zones of China, 1981–2009 (Agricultural and Forest Meteorology) | https://doi.org/10.1016/j.agrformet.2014.01.013 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-182` | web | [2022] Exploring the uncertainty in projected wheat phenology, growth and yield under climate change in China (Agricultural and Forest Meteorology) | https://doi.org/10.1016/j.agrformet.2022.109187 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-183` | web | [2023] Seasonal climate models for national wheat yield forecasts in Brazil (Agricultural and Forest Meteorology) | https://doi.org/10.1016/j.agrformet.2023.109753 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-184` | web | [2024] Responses of spring wheat yield and growth period to different future climate change models in the yellow river irrigation area based on CMIP6 and WOFOST models (Agricultural and Forest Meteorology) | https://doi.org/10.1016/j.agrformet.2024.110071 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-185` | web | [1985] Nitrogen fertilization of wheat under limited water supplies (Fertilizer Research) | https://doi.org/10.1007/bf01048902 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-186` | web | [1991] Response of wheat to nitrogen fertilization, a data set to validate simulation models for nitrogen dynamics in crop and soil (Fertilizer Research) | https://doi.org/10.1007/bf01051140 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-187` | web | [2013] Substituting whole grain flour for wheat flour: Impact on cake quality and glycemic index (Food Science and Biotechnology) | https://doi.org/10.1007/s10068-013-0216-4 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-188` | web | [2021] Partial Replacement of Durum Wheat Flour with the Blend of Non-traditional Cereals and Legume Flour on Pasta Quality: Review (Food Science and Quality Management) | https://doi.org/10.7176/fsqm/107-04 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-189` | web | [2021] Effects of chitosan oligosaccharide and hyriopsis cumingii polysaccharide on the quality of wheat flour and extruded flour products (Food Science and Biotechnology) | https://doi.org/10.1007/s10068-021-00933-9 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-190` | web | [2020] Quality of Bread Prepared from a Composite Flour of Triticale and Wheat Variety (Food Science &amp; Nutrition Technology) | https://doi.org/10.23880/fsnt-16000241 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-191` | web | CIMMYT | https://www.cimmyt.org/ | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-192` | web | Wheat / Economic Research Service | https://www.ers.usda.gov/topics/crops/wheat | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-193` | web | FAO Cereal Supply and Demand Brief  /  Food and Agriculture Organization of the United Nations | https://www.fao.org/worldfoodsituation/csdb/en/ | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-194` | web | Wheat - Wikipedia | https://en.wikipedia.org/wiki/Wheat | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-195` | web | DSSAT.net - Official Home of the DSSAT Cropping Systems Model | https://dssat.net/ | 국제 공식 작물모형 기관 공개 문서 - 변환적 분석 및 정식 인용 |
+| `SRC-196` | web | APSIM | https://www.apsim.info/ | 국제 공식 작물모형 기관 공개 문서 - 변환적 분석 및 정식 인용 |
+| `SRC-197` | web | Home / AquaCrop / Food and Agriculture Organization of the United Nations | https://www.fao.org/aquacrop/en/ | 국제 공식 작물모형 기관 공개 문서 - 변환적 분석 및 정식 인용 |
+| `SRC-198` | web | WOFOST / WUR | https://www.wur.nl/en/research-results/research-institutes/environmental-research/facilities-tools/software-models-and-databases/wofost.htm | 국제 공식 작물모형 기관 공개 문서 - 변환적 분석 및 정식 인용 |
+| `SRC-199` | web | [2014] Nitrogen partitioning and remobilization in relation to leaf senescence, grain yield and grain nitrogen concentration in wheat cultivars (Field Crops Research) | https://doi.org/10.1016/j.fcr.2013.09.003 | 학술 서지 메타데이터·초록(Crossref (OpenAlex 자동대체)) - 정식 인용 목적(원문 무단 복제 금지) |
+| `SRC-200` | web | [1991] Nitrogen and Dry Matter Accumulation, Remobilization, and Losses for Mediterranean Wheat during Grain Filling (Agronomy Journal) | https://doi.org/10.2134/agronj1991.00021962008300050018x | 학술 논문 오픈액세스(Crossref (OpenAlex 자동대체)) - 변환적 분석 및 정식 학술 인용 |
+| `SRC-201` | web | [2005] Nitrogen Remobilization during Grain Filling in Wheat: Genotypic and Environmental Effects (Crop Science) | https://doi.org/10.2135/cropsci2003.0361 | 학술 논문 오픈액세스(Crossref (OpenAlex 자동대체)) - 변환적 분석 및 정식 학술 인용 |
+| `SRC-202` | web | [1987] Cultivar Differences in Nitrogen Remobilization during Grain Fill in Soft Red Winter Wheat<sup>1</sup> (Crop Science) | https://doi.org/10.2135/cropsci1987.0011183x002700020035x | 학술 논문 오픈액세스(Crossref (OpenAlex 자동대체)) - 변환적 분석 및 정식 학술 인용 |
+| `SRC-203` | web | [2014] Estimating Biomass of Barley Using Crop Surface Models (CSMs) Derived from UAV-Based RGB Imaging (Remote Sensing) | https://doi.org/10.3390/rs61110395 | 학술 논문 오픈액세스(OpenAlex) - 변환적 분석 및 정식 학술 인용 |
+| `SRC-204` | web | [2014] Multimodel ensembles of wheat growth: many models are better than one (Global Change Biology) | https://publications.pik-potsdam.de/pubman/item/item_19844 | 학술 논문 오픈액세스(OpenAlex) - 변환적 분석 및 정식 학술 인용 |
+| `SRC-205` | web | [2020] Crop nitrogen monitoring: Recent progress and principal developments in the context of imaging spectroscopy missions (Remote Sensing of Environment) | https://pmc.ncbi.nlm.nih.gov/articles/PMC7613361/ | 학술 논문 오픈액세스(OpenAlex) - 변환적 분석 및 정식 학술 인용 |
+| `SRC-206` | web | [2015] Multiple pathways regulate shoot branching (Frontiers in Plant Science) | https://doi.org/10.3389/fpls.2014.00741 | 학술 논문 오픈액세스(OpenAlex) - 변환적 분석 및 정식 학술 인용 |
+| `SRC-207` | web | [2016] Brief history of agricultural systems modeling (Agricultural Systems) | https://doi.org/10.1016/j.agsy.2016.05.014 | 학술 논문 오픈액세스(OpenAlex) - 변환적 분석 및 정식 학술 인용 |
+| `SRC-208` | web | [2014] How do various maize crop models vary in their responses to climate change factors? (Global Change Biology) | https://doi.org/10.1111/gcb.12520 | 학술 논문 오픈액세스(OpenAlex) - 변환적 분석 및 정식 학술 인용 |
+| `SRC-209` | web | [2019] Assimilation of remote sensing into crop growth models: Current status and perspectives (Agricultural and Forest Meteorology) | https://doi.org/10.1016/j.agrformet.2019.06.008 | 학술 논문 오픈액세스(OpenAlex) - 변환적 분석 및 정식 학술 인용 |
+| `SRC-210` | web | [2017] Modelling the impacts of pests and diseases on agricultural systems (Agricultural Systems) | https://doi.org/10.1016/j.agsy.2017.01.019 | 학술 논문 오픈액세스(OpenAlex) - 변환적 분석 및 정식 학술 인용 |
+| `SRC-211` | web | [1993] Differences between maize and wheat in growth-related nutrient demand and uptake of potassium and phosphorus at suboptimal root zone temperatures (Plant and Soil) | https://doi.org/10.1007/bf00779183 | 학술 논문 오픈액세스(Crossref (OpenAlex 자동대체)) - 변환적 분석 및 정식 학술 인용 |
+| `SRC-212` | web | [2007] Heterogeneous distribution of phosphorus and potassium in soil influences wheat growth and nutrient uptake (Plant and Soil) | https://doi.org/10.1007/s11104-007-9197-5 | 학술 논문 오픈액세스(Crossref (OpenAlex 자동대체)) - 변환적 분석 및 정식 학술 인용 |
+| `SRC-213` | web | [1990] Effects of varying nitrogen supply at different growth stages on nitrogen uptake and nitrogen partitioning efficiency in two wheat cultivars (Fertilizer Research) | https://doi.org/10.1007/bf01054803 | 학술 논문 오픈액세스(Crossref (OpenAlex 자동대체)) - 변환적 분석 및 정식 학술 인용 |
+| `SRC-214` | web | [2018] Machine Learning in Agriculture: A Review (Sensors) | http://dx.doi.org/10.3390/s18082674 | 학술 논문 오픈액세스(OpenAlex) - 변환적 분석 및 정식 학술 인용 |
+| `SRC-215` | web | [2014] Landsat-8: Science and product vision for terrestrial global change research (Remote Sensing of Environment) | https://doi.org/10.1016/j.rse.2014.02.001 | 학술 논문 오픈액세스(OpenAlex) - 변환적 분석 및 정식 학술 인용 |
+| `SRC-216` | web | [2004] A Continuous Satellite-Derived Measure of Global Terrestrial Primary Production (BioScience) | https://doi.org/10.1641/0006-3568(2004)054[0547:acsmog]2.0.co;2 | 학술 서지 메타데이터·초록(OpenAlex) - 정식 인용 목적(원문 무단 복제 금지) |
+| `SRC-217` | web | [2020] Estimation of Winter Wheat Nitrogen Content, Biomass and Yield using UAV Images in South Korea (Korean Journal of Soil Science and Fertilizer) | https://doi.org/10.7745/kjssf.2020.53.4.589 | 학술 서지 메타데이터·초록(Crossref) - 정식 인용 목적(원문 무단 복제 금지) |
+| `SRC-218` | web | [1995] Measured and simulated nitrogen dynamics in winter wheat and a clay soil subjected to drought stress or daily irrigation and fertilization (Fertilizer Research) | https://doi.org/10.1007/bf00750692 | 학술 서지 메타데이터·초록(Crossref) - 정식 인용 목적(원문 무단 복제 금지) |
+| `SRC-219` | web | [2013] Estimation of Wheat Growth using a Microwave Scatterometer (Korean Journal of Soil Science and Fertilizer) | https://doi.org/10.7745/kjssf.2013.46.1.023 | 학술 서지 메타데이터·초록(Crossref) - 정식 인용 목적(원문 무단 복제 금지) |
+| `SRC-220` | web | [2012] Effect of Growth and Yield of Wheat, Soil Properties on Leguminous Cover Crops-Wheat Mixtures (Korean Journal of Soil Science and Fertilizer) | https://doi.org/10.7745/kjssf.2012.45.2.198 | 학술 서지 메타데이터·초록(Crossref) - 정식 인용 목적(원문 무단 복제 금지) |

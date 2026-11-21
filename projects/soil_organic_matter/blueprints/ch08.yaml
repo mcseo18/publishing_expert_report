@@ -1,0 +1,38 @@
+chapter_id: ch08
+chapter_number: 8
+title: 제8장. 토양 유기탄소·유기물 정량 및 분광 정성 분석법
+target_pages: 34
+target_audience: 농학·토양환경학 대학 전공 심화(학부 3~4학년·대학원생), 농업연구사, 토양·비료·탄소중립 모델링 실무 전문가
+evidence_packet: data/evidence/ch08_evidence.json
+learning_objectives:
+- 국립농업과학원 Tyurin법, Walkley-Black 습식산화, 건식연소(Dumas), 강열감량(LOI)의 원리·회수율·오차를 비교할 수 있다.
+- 토색판·SPAD 503 등 현장 간이 추정법과 Vis-NIR/MIR·FTIR·13C-NMR 분광 분석의 적용 범위를 판단할 수 있다.
+- 탄산염 함유 토양의 무기탄소 제거 전처리 및 Van Bemmelen 계수(1.724 vs 2.0) 보정 절차를 적용할 수 있다.
+sections:
+- section_id: '8.1'
+  title: 습식산화법(Tyurin·Walkley-Black), 건식연소법(Dumas) 및 강열감량법(LOI)
+  target_chars: 1800
+  key_points:
+  - 습식산화법(Tyurin·Walkley-Black), 건식연소법(Dumas) 및 강열감량법(LOI)의 핵심 원리와 과학적 메커니즘
+  - '핵심 개념 연계: Tyurin법 / Walkley-Black vs 원소분석기 건식연소, 강열감량(LOI) 및 토색판·SPAD 현장 신속 추정,
+    FTIR·13C-NMR·Vis-NIR/MIR 분광법'
+  - 근거 패킷 내 국내외 실증 사례 및 현장 적용 시 트레이드오프
+  required_table: '표 8-1: 토양 유기탄소·유기물 4대 표준 정량분석법 비교'
+- section_id: '8.2'
+  title: Van Bemmelen 환산계수의 한계와 현장 신속 추정(토색판·SPAD 503)
+  target_chars: 1800
+  key_points:
+  - Van Bemmelen 환산계수의 한계와 현장 신속 추정(토색판·SPAD 503)의 핵심 원리와 과학적 메커니즘
+  - '핵심 개념 연계: Tyurin법 / Walkley-Black vs 원소분석기 건식연소, 강열감량(LOI) 및 토색판·SPAD 현장 신속 추정,
+    FTIR·13C-NMR·Vis-NIR/MIR 분광법'
+  - 근거 패킷 내 국내외 실증 사례 및 현장 적용 시 트레이드오프
+  required_table: '표 8-2: 실험실 정밀 분석 vs 현장 신속 추정 지표의 장단점 비교'
+- section_id: '8.3'
+  title: 분광·핵자기공명 정성 분석(UV-Vis E4/E6 비, FTIR, 13C-NMR, Vis-NIR)
+  target_chars: 1800
+  key_points:
+  - 분광·핵자기공명 정성 분석(UV-Vis E4/E6 비, FTIR, 13C-NMR, Vis-NIR)의 핵심 원리와 과학적 메커니즘
+  - '핵심 개념 연계: Tyurin법 / Walkley-Black vs 원소분석기 건식연소, 강열감량(LOI) 및 토색판·SPAD 현장 신속 추정,
+    FTIR·13C-NMR·Vis-NIR/MIR 분광법'
+  - 근거 패킷 내 국내외 실증 사례 및 현장 적용 시 트레이드오프
+  required_table: '표 8-3: 주요 분광 분석법별 유기물 화학구조 판독 지표 요약'

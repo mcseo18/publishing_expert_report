@@ -1,0 +1,42 @@
+# =============================================================================
+# 제7장 단원 청사진 — 유기물의 질소 동역학, 무기화·부동화 및 질소 순환 모델 [신설]
+# =============================================================================
+chapter_id: "ch07"
+chapter_number: 7
+title: "제7장. 유기물의 질소 동역학, 무기화·부동화 및 질소 순환 모델"
+target_pages: 36
+target_audience: "농학·토양환경학 대학 전공 심화 및 농업·환경 모델링 연구 실무자"
+evidence_packet: "data/evidence/ch07_evidence.json"
+
+learning_objectives:
+  - "유기물 탄질비(C/N)와 미생물 탄소이용효율(CUE) 기반 전 지구 화학양론으로 질소 순무기화·부동화 임계점을 계산할 수 있다."
+  - "해중합(Depolymerization) 율속 패러다임과 Stanford-Smith 1차 질소 무기화 모델을 수식과 실측 데이터로 해석할 수 있다."
+  - "질산화·탈질·N2O 배출 및 질산태 용탈을 모의하는 C-N 연계 모델(DNDC·DayCent)과 국내 퇴비·녹비 질소 공급량 예측을 설계할 수 있다."
+
+sections:
+  - section_id: "7.1"
+    title: "유기물 C/N 화학양론(Stoichiometry)과 무기화·부동화 임계 메커니즘"
+    target_chars: 2000
+    key_points:
+      - "미생물 체내 C/N비와 탄소이용효율(CUE)에 의해 결정되는 순무기화 vs 순부동화 임계 탄질비 공식 (Manzoni et al., 2008)"
+      - "Schimel & Bennett(2004) 패러다임 전환: 세포외 효소에 의한 고분자 유기질소 해중합(Depolymerization)이 토양 질소 공급의 진짜 율속 단계인 이유"
+      - "유기물 종류(가축분퇴비·헤어리베치·볏짚·톱밥)별 초기 질소 기아(부동화) 발생 조건과 현장 회피 전략"
+    required_table: "표 7-1: 유기물 C/N비 및 미생물 CUE 조합별 순질소 무기화·부동화 전환 임계점 비교표"
+
+  - section_id: "7.2"
+    title: "토양 유기질소 무기화 속도론: Stanford-Smith 모델과 온도·수분 보정"
+    target_chars: 2000
+    key_points:
+      - "Stanford & Smith(1972) 1차 지수 무기화 모델 N_t = N_0(1 - exp(-kt))의 물리적 의미(잠재무기화질소 N_0, 속도상수 k)"
+      - "2-풀(이분해성·난분해성) 질소 무기화 모델 및 유효적산온도(Degree-Day)·아레니우스(Arrhenius) 온도·수분 보정"
+      - "국내 논·밭 토양에서 퇴비 및 녹비작물(헤어리베치 등) 시용 후 생육기별 질소 방출 곡선 추정 사례"
+    required_table: "표 7-2: 1-풀(Stanford-Smith) vs 2-풀 질소 무기화 속도식 구조 및 매개변수 추정 절차"
+
+  - section_id: "7.3"
+    title: "탄소-질소(C-N) 연계 생지화학 모델(DNDC·DayCent)과 환경 손실(N2O·NO3-) 예측"
+    target_chars: 2000
+    key_points:
+      - "DNDC(DeNitrification-DeComposition) 모델의 산화환원전위(Eh) 기반 혐기성 풍선(Anaerobic Balloon) 및 질산화·탈질·N2O 모의 구조"
+      - "질소 시비·유기물 환원 시 탄소격리 편익과 N2O 배출·질산태 용탈 증가 사이의 환경 트레이드오프"
+      - "국내 농경지 토양검정 및 저탄소 영농관리와 연계한 질소 감축 시나리오 평가"
+    required_table: "표 7-3: 주요 토양 질소 동역학 모델(Stanford-Smith, DNDC, DayCent, APSIM-SoilN) 비교 매트릭스"

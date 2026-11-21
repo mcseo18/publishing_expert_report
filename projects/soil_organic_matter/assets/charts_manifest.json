@@ -1,0 +1,116 @@
+{
+  "charts": [
+    {
+      "chapter_id": "ch01",
+      "filename": "fig_ch01_pom_maom_turnover.svg",
+      "file_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\soil_organic_matter\\assets\\charts\\fig_ch01_pom_maom_turnover.svg",
+      "caption_ko": "그림 1-2. 입자성 유기물(POM) vs 광물결합 유기물(MAOM) 평균 체류시간 및 전 지구 MAOC 저장 포화도 비교 [SRC-05, SRC-06]",
+      "type": "svg_chart"
+    },
+    {
+      "chapter_id": "ch02",
+      "filename": "fig_ch02_cn_materials.svg",
+      "file_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\soil_organic_matter\\assets\\charts\\fig_ch02_cn_materials.svg",
+      "caption_ko": "그림 2-1. 주요 유기성 자재별 대표 탄질비(C/N비) 범위와 질소 무기화·부동화 경계 개념도 [SRC-01, SRC-02, SRC-19]",
+      "type": "svg_chart"
+    },
+    {
+      "chapter_id": "ch03",
+      "filename": "fig_ch03_humus_vs_mcp.svg",
+      "file_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\soil_organic_matter\\assets\\charts\\fig_ch03_humus_vs_mcp.svg",
+      "caption_ko": "그림 3-1. 전통적 부식화(HA·FA·휴민) 경로와 현대 미생물 탄소 펌프(MCP·Necromass) 안정화 경로 비교 [SRC-01, SRC-09, SRC-54, SRC-58]",
+      "type": "svg_chart"
+    },
+    {
+      "chapter_id": "ch04",
+      "filename": "fig_ch04_aggregate_tiers.svg",
+      "file_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\soil_organic_matter\\assets\\charts\\fig_ch04_aggregate_tiers.svg",
+      "caption_ko": "그림 4-2. 토양 단립 계층 구조(일차입자 → 소단립 → 대단립)와 물리적 유기탄소 보호 메커니즘 [SRC-03, SRC-42, SRC-44]",
+      "type": "svg_chart"
+    },
+    {
+      "chapter_id": "ch05",
+      "filename": "fig_ch05_cec_comparison.svg",
+      "file_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\soil_organic_matter\\assets\\charts\\fig_ch05_cec_comparison.svg",
+      "caption_ko": "그림 5-1. 주요 토양 점토광물 대비 토양 유기물(부식질)의 대표 양이온치환용량(CEC) 범위 비교 [SRC-01, SRC-25, SRC-30]",
+      "type": "svg_chart"
+    },
+    {
+      "chapter_id": "ch06",
+      "filename": "fig_ch06_rhizosphere_priming.svg",
+      "file_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\soil_organic_matter\\assets\\charts\\fig_ch06_rhizosphere_priming.svg",
+      "caption_ko": "그림 6-1. 근권 삼출물·토양 생물군(세균·균근균·지렁이)과 양성/음성 프라이밍 효과 메커니즘 [SRC-16, SRC-49, SRC-53]",
+      "type": "svg_chart"
+    },
+    {
+      "chapter_id": "ch07",
+      "filename": "fig_ch07_stanford_smith_n.svg",
+      "file_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\soil_organic_matter\\assets\\charts\\fig_ch07_stanford_smith_n.svg",
+      "caption_ko": "그림 7-1. Stanford-Smith 1차 질소 무기화 모델(Nt = N0(1 - e^-kt)) 시뮬레이션 곡선 (som_cn_simulator.py 실측 계산) [SRC-59, SRC-60]",
+      "type": "svg_chart"
+    },
+    {
+      "chapter_id": "ch08",
+      "filename": "fig_ch08_soc_analysis_methods.svg",
+      "file_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\soil_organic_matter\\assets\\charts\\fig_ch08_soc_analysis_methods.svg",
+      "caption_ko": "그림 8-1. 토양 유기탄소(SOC) 4대 표준 분석법(건식연소·Tyurin·Walkley-Black·LOI) 및 현장 색도계 비교 [SRC-13, SRC-27]",
+      "type": "svg_chart"
+    },
+    {
+      "chapter_id": "ch09",
+      "filename": "fig_ch09_soil_health_frameworks.svg",
+      "file_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\soil_organic_matter\\assets\\charts\\fig_ch09_soil_health_frameworks.svg",
+      "caption_ko": "그림 9-1. 한국 흙토람 · 미국 Cornell CASH · 유럽 EEA 토양건강 평가 프레임워크 비교 구조 [SRC-01, SRC-40, SRC-41, SRC-46]",
+      "type": "svg_chart"
+    },
+    {
+      "chapter_id": "ch10",
+      "filename": "fig_ch10_rothc_5pool.svg",
+      "file_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\soil_organic_matter\\assets\\charts\\fig_ch10_rothc_5pool.svg",
+      "caption_ko": "그림 10-1. RothC 5-풀(DPM·RPM·BIO·HUM·IOM) 구획 모델 구조 및 분해속도상수(k) 흐름도 [SRC-45, SRC-61, SRC-62, SRC-64]",
+      "type": "svg_chart"
+    },
+    {
+      "chapter_id": "ch11",
+      "filename": "fig_ch11_rothc_30yr_sim.svg",
+      "file_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\soil_organic_matter\\assets\\charts\\fig_ch11_rothc_30yr_sim.svg",
+      "caption_ko": "그림 11-1. 영농 관리 시나리오별 30년 표토(0~30 cm) SOC 변화 시뮬레이션 (초기 45 t C/ha, 점토 22%, som_cn_simulator.py 실측) [SRC-45, SRC-61, SRC-62]",
+      "type": "svg_chart"
+    },
+    {
+      "chapter_id": "ch12",
+      "filename": "fig_ch12_paddy_upland_greenhouse.svg",
+      "file_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\soil_organic_matter\\assets\\charts\\fig_ch12_paddy_upland_greenhouse.svg",
+      "caption_ko": "그림 12-1. 농경지 유형별(담수 논·호기 밭·시설재배지) 토양 유기물 동태 및 한·일 관리 초점 비교 [SRC-01, SRC-18, SRC-33, SRC-62]",
+      "type": "svg_chart"
+    },
+    {
+      "chapter_id": "ch13",
+      "filename": "fig_ch13_conservation_practices.svg",
+      "file_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\soil_organic_matter\\assets\\charts\\fig_ch13_conservation_practices.svg",
+      "caption_ko": "그림 13-1. 퇴비·녹비작물·깊이거름주기·보전경운 통합 유기물 관리 프레임워크 [SRC-17, SRC-19, SRC-23, SRC-26]",
+      "type": "svg_chart"
+    },
+    {
+      "chapter_id": "ch14",
+      "filename": "fig_ch14_biochar_pyrolysis.svg",
+      "file_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\soil_organic_matter\\assets\\charts\\fig_ch14_biochar_pyrolysis.svg",
+      "caption_ko": "그림 14-2. 열분해 온도(350~700°C) 상승에 따른 바이오차 방향족 안정성·비표면적·수율 변화 개념 곡선 [SRC-36, SRC-38, SRC-79]",
+      "type": "svg_chart"
+    },
+    {
+      "chapter_id": "ch15",
+      "filename": "fig_ch15_ecosystem_soc.svg",
+      "file_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\soil_organic_matter\\assets\\charts\\fig_ch15_ecosystem_soc.svg",
+      "caption_ko": "그림 15-2. 특수 토양 생태계(이탄지·화산회토·심토·농경지)별 유기탄소 보호 기작 및 취약성 비교 [SRC-06, SRC-51, SRC-80, SRC-81]",
+      "type": "svg_chart"
+    },
+    {
+      "chapter_id": "ch16",
+      "filename": "fig_ch16_mrv_framework.svg",
+      "file_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\soil_organic_matter\\assets\\charts\\fig_ch16_mrv_framework.svg",
+      "caption_ko": "그림 16-1. 농업 토양탄소 격리(4 per 1000 · J-Credit · EU · 한국 저탄소) 국제 MRV 검증 파이프라인 [SRC-34, SRC-47, SRC-48, SRC-84, SRC-87]",
+      "type": "svg_chart"
+    }
+  ]
+}

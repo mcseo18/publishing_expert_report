@@ -1,0 +1,39 @@
+chapter_id: ch03
+chapter_number: 3
+title: 제3장. 부식화(Humification) 이론과 미생물 탄소 펌프(MCP)
+target_pages: 36
+target_audience: 농학·토양환경학 대학 전공 심화(학부 3~4학년·대학원생), 농업연구사, 토양·비료·탄소중립 모델링 실무 전문가
+evidence_packet: data/evidence/ch03_evidence.json
+learning_objectives:
+- 부식산(HA), 풀빅산(FA), 휴민(Humin)의 화학적·분광학적(HA/FA 비, E4/E6 비, FTIR, 13C-NMR) 특성을 설명할 수
+  있다.
+- 전통적 고분자 중합 가설과 Lehmann & Kleber 토양 연속체 모델·미생물 탄소 펌프(MCP) 이론의 차이를 비교할 수 있다.
+- 미생물 사체(Necromass)와 점토·비정질 산화철/알루미늄 광물 표면 간 결합 메커니즘을 도식화할 수 있다.
+sections:
+- section_id: '3.1'
+  title: '전통적 부식화(Humification) 이론: 부식산(HA)·풀빅산(FA)·휴민의 화학'
+  target_chars: 1800
+  key_points:
+  - '전통적 부식화(Humification) 이론: 부식산(HA)·풀빅산(FA)·휴민의 화학의 핵심 원리와 과학적 메커니즘'
+  - '핵심 개념 연계: 부식산(HA)·풀빅산(FA)·휴민(Humin), 미생물 탄소 펌프(MCP)와 미생물 사체(Necromass), 광물 표면
+    안정화(배위결합·양이온 가교·비정질 광물 보호)'
+  - 근거 패킷 내 국내외 실증 사례 및 현장 적용 시 트레이드오프
+  required_table: '표 3-1: 부식산(HA)·풀빅산(FA)·휴민(Humin)의 용해도·작용기·특성 비교'
+- section_id: '3.2'
+  title: 현대 토양 연속체 모델과 미생물 탄소 펌프(MCP)·미생물 사체(Necromass)
+  target_chars: 1800
+  key_points:
+  - 현대 토양 연속체 모델과 미생물 탄소 펌프(MCP)·미생물 사체(Necromass)의 핵심 원리와 과학적 메커니즘
+  - '핵심 개념 연계: 부식산(HA)·풀빅산(FA)·휴민(Humin), 미생물 탄소 펌프(MCP)와 미생물 사체(Necromass), 광물 표면
+    안정화(배위결합·양이온 가교·비정질 광물 보호)'
+  - 근거 패킷 내 국내외 실증 사례 및 현장 적용 시 트레이드오프
+  required_table: '표 3-2: 전통적 부식 중합 가설 vs 현대 미생물 탄소 펌프(MCP) 이론 비교'
+- section_id: '3.3'
+  title: 광물 표면 안정화 기작(점토·비정질 산화철/알루미늄 복합체)
+  target_chars: 1800
+  key_points:
+  - 광물 표면 안정화 기작(점토·비정질 산화철/알루미늄 복합체)의 핵심 원리와 과학적 메커니즘
+  - '핵심 개념 연계: 부식산(HA)·풀빅산(FA)·휴민(Humin), 미생물 탄소 펌프(MCP)와 미생물 사체(Necromass), 광물 표면
+    안정화(배위결합·양이온 가교·비정질 광물 보호)'
+  - 근거 패킷 내 국내외 실증 사례 및 현장 적용 시 트레이드오프
+  required_table: '표 3-3: 유기-광물 결합 메커니즘별 결합 강도 및 토양 pH 의존성'

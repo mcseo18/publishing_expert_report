@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 380" width="760" height="380" style="background:#ffffff;font-family:'Malgun Gothic', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;">
+  <rect x="0" y="0" width="760" height="380" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+  <rect x="0" y="0" width="760" height="52" rx="10" fill="#0f172a"/>
+  <rect x="0" y="38" width="760" height="14" fill="#0f172a"/>
+  <text x="20" y="24" font-size="14" font-weight="700" fill="#f8fafc">점토광물 vs 토양 유기물(부식질)의 대표 양이온치환용량(CEC, cmolc/kg)</text>
+  <text x="20" y="43" font-size="10.5" fill="#94a3b8">유기물 카르복실·페놀기 해리로 높은 pH 의존 음전하 제공 [SRC-01, SRC-25, SRC-30]</text>
+  <text x="22" y="96" font-size="11.5" font-weight="600" fill="#1e293b">카올리나이트 (1:1 점토)</text>
+  <rect x="215" y="82" width="380" height="22" rx="4" fill="#f1f5f9"/>
+  <rect x="215" y="82" width="12" height="22" rx="4" fill="#94a3b8"/>
+  <text x="234" y="97" font-size="11" font-weight="700" fill="#0f172a">10 cmolc/kg</text>
+  <text x="22" y="111" font-size="9.5" fill="#64748b">낮은 영구전하 · 양분 보유력 취약</text>
+  <text x="22" y="142" font-size="11.5" font-weight="600" fill="#1e293b">일라이트 (2:1 비팽창)</text>
+  <rect x="215" y="128" width="380" height="22" rx="4" fill="#f1f5f9"/>
+  <rect x="215" y="128" width="38" height="22" rx="4" fill="#64748b"/>
+  <text x="260" y="143" font-size="11" font-weight="700" fill="#0f172a">30 cmolc/kg</text>
+  <text x="22" y="157" font-size="9.5" fill="#64748b">중간 수준 CEC</text>
+  <text x="22" y="188" font-size="11.5" font-weight="600" fill="#1e293b">스멕타이트 (2:1 팽창)</text>
+  <rect x="215" y="174" width="380" height="22" rx="4" fill="#f1f5f9"/>
+  <rect x="215" y="174" width="126" height="22" rx="4" fill="#3b82f6"/>
+  <text x="348" y="189" font-size="11" font-weight="700" fill="#0f172a">100 cmolc/kg</text>
+  <text x="22" y="203" font-size="9.5" fill="#64748b">광물 중 높은 CEC 보유</text>
+  <text x="22" y="234" font-size="11.5" font-weight="600" fill="#1e293b">토양 부식질 / 유기물</text>
+  <rect x="215" y="220" width="380" height="22" rx="4" fill="#f1f5f9"/>
+  <rect x="215" y="220" width="316" height="22" rx="4" fill="#15803d"/>
+  <text x="538" y="235" font-size="11" font-weight="700" fill="#0f172a">250 cmolc/kg</text>
+  <text x="22" y="249" font-size="9.5" fill="#64748b">점토 대비 2.5~25배 높은 양분 보유·완충능 [SRC-01, SRC-30]</text>
+</svg>

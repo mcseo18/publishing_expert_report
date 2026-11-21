@@ -1,0 +1,1541 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>전문 교재 제작 · 자료 수집 · 큐레이션 · 지식그래프 대시보드</title>
+  <style>
+    :root {
+      --bg: #0b1120;
+      --panel: #111827;
+      --panel-2: #1e293b;
+      --border: rgba(148, 163, 184, 0.16);
+      --text: #f1f5f9;
+      --muted: #94a3b8;
+      --cyan: #38bdf8;
+      --blue: #60a5fa;
+      --green: #4ade80;
+      --amber: #facc15;
+      --purple: #c084fc;
+      --red: #f87171;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+    header {
+      background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .brand h1 {
+      margin: 0;
+      font-size: 20px;
+      background: linear-gradient(90deg, #38bdf8, #a78bfa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .brand .sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
+    .header-pills { display: flex; gap: 8px; flex-wrap: wrap; }
+    .pill {
+      font-size: 12px; padding: 4px 10px; border-radius: 999px;
+      background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.3); color: #7dd3fc;
+    }
+    .pill.green { background: rgba(74, 222, 128, 0.12); border-color: rgba(74, 222, 128, 0.3); color: #86efac; }
+    .pill.purple { background: rgba(192, 132, 252, 0.12); border-color: rgba(192, 132, 252, 0.3); color: #d8b4fe; }
+    .container { max-width: 1520px; margin: 0 auto; padding: 18px 22px 48px; }
+
+    /* KPI Grid */
+    .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; margin-bottom: 18px; }
+    .kpi {
+      background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px;
+    }
+    .kpi .label { font-size: 12px; color: var(--muted); }
+    .kpi .val { font-size: 24px; font-weight: 700; margin-top: 4px; color: var(--cyan); }
+    .kpi .hint { font-size: 11px; color: var(--muted); margin-top: 3px; }
+
+    /* Tabs */
+    .tabs { display: flex; gap: 8px; margin-bottom: 16px; border-bottom: 1px solid var(--border); padding-bottom: 10px; flex-wrap: wrap; }
+    .tab-btn {
+      background: var(--panel); color: var(--muted); border: 1px solid var(--border);
+      padding: 8px 16px; border-radius: 8px; cursor: pointer; font-size: 13px; font-weight: 600;
+    }
+    .tab-btn.active { background: #1d4ed8; color: #fff; border-color: #3b82f6; }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* Layout & Cards */
+    .split { display: grid; grid-template-columns: 1.55fr 1fr; gap: 16px; align-items: start; }
+    @media (max-width: 1100px) { .split { grid-template-columns: 1fr; } }
+    .card {
+      background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 16px;
+      margin-bottom: 14px;
+    }
+    .card h2, .card h3 { margin: 0 0 12px; font-size: 15px; color: #e2e8f0; }
+
+    /* Controls */
+    .toolbar { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; align-items: center; }
+    input, select, textarea {
+      background: #0f172a; color: var(--text); border: 1px solid var(--border);
+      border-radius: 8px; padding: 7px 10px; font-size: 13px; font-family: inherit;
+    }
+    input:focus, select:focus, textarea:focus { outline: none; border-color: var(--cyan); }
+    button {
+      background: #2563eb; color: #fff; border: none; border-radius: 8px;
+      padding: 7px 13px; font-size: 13px; font-weight: 600; cursor: pointer;
+    }
+    button:hover { background: #1d4ed8; }
+    button.sec { background: var(--panel-2); color: var(--text); border: 1px solid var(--border); }
+    button.sec:hover { background: #334155; }
+    button.green { background: #15803d; }
+    button.green:hover { background: #166534; }
+    button.sm { padding: 4px 9px; font-size: 12px; }
+
+    /* Table */
+    table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+    th, td { padding: 8px 9px; border-bottom: 1px solid var(--border); text-align: left; vertical-align: top; }
+    th { color: var(--muted); font-weight: 600; background: rgba(15,23,42,0.7); position: sticky; top: 0; }
+    tr.clickable { cursor: pointer; }
+    tr.clickable:hover { background: rgba(56, 189, 248, 0.08); }
+    tr.selected { background: rgba(56, 189, 248, 0.16); }
+
+    .badge {
+      display: inline-block; padding: 2px 7px; border-radius: 999px; font-size: 11px; font-weight: 600;
+      white-space: nowrap;
+    }
+    .b-approved { background: rgba(74,222,128,0.15); color: #86efac; }
+    .b-review { background: rgba(250,204,21,0.15); color: #fde047; }
+    .b-hold { background: rgba(148,163,184,0.2); color: #cbd5e1; }
+    .b-rejected { background: rgba(248,113,113,0.15); color: #fca5a5; }
+    .b-cat { background: rgba(56,189,248,0.14); color: #7dd3fc; }
+    .b-kr { background: rgba(192,132,252,0.18); color: #e9d5ff; }
+
+    .field-row { margin-bottom: 10px; }
+    .field-row label { display: block; font-size: 11.5px; color: var(--muted); margin-bottom: 4px; }
+    .field-row input, .field-row select, .field-row textarea { width: 100%; }
+    .preview-box {
+      background: #090d16; border: 1px solid var(--border); border-radius: 8px; padding: 10px;
+      max-height: 260px; overflow-y: auto; font-size: 12px; white-space: pre-wrap; color: #cbd5e1;
+    }
+    .paper-card {
+      background: #0f172a; border: 1px solid var(--border); border-radius: 10px; padding: 12px; margin-bottom: 10px;
+    }
+    .paper-card .ptitle { font-weight: 700; color: #e2e8f0; font-size: 13.5px; }
+    .paper-card .pmeta { font-size: 12px; color: var(--muted); margin: 4px 0; }
+    .paper-card .pabs { font-size: 12px; color: #cbd5e1; margin: 6px 0 8px; }
+    .mdx-view {
+      background: #090d16; border: 1px solid var(--border); border-radius: 10px; padding: 16px;
+      max-height: 620px; overflow-y: auto; font-size: 13px; white-space: pre-wrap; line-height: 1.75;
+    }
+    .mdx-view sub, .mdx-view sup { font-size: 74%; line-height: 0; position: relative; vertical-align: baseline; }
+    .mdx-view sup { top: -0.45em; }
+    .mdx-view sub { bottom: -0.22em; }
+    .mdx-view .math-block { margin: 8px 0; padding: 8px 12px; background: #0f172a; border-left: 3px solid var(--cyan); border-radius: 6px; text-align: center; white-space: normal; }
+    .mdx-view .m-frac { display: inline-flex; flex-direction: column; align-items: center; vertical-align: middle; margin: 0 3px; font-size: 90%; line-height: 1.2; }
+    .mdx-view .m-frac .m-num { border-bottom: 1px solid currentColor; padding: 0 4px 1px; }
+    .mdx-view .m-frac .m-den { padding: 1px 4px 0; }
+    .mdx-view .m-rxn { display: inline-flex; flex-direction: column; align-items: center; vertical-align: middle; margin: 0 3px; line-height: 1.05; }
+    .mdx-view .m-rxn .m-rxn-lbl { font-size: 72%; }
+    .cite-chip {
+      display: inline-block; background: rgba(56,189,248,0.2); color: #7dd3fc;
+      border: 1px solid rgba(56,189,248,0.4); border-radius: 5px; padding: 0 5px;
+      cursor: pointer; font-weight: 700; font-size: 12px;
+    }
+    .cite-chip:hover { background: rgba(56,189,248,0.4); }
+    .toast {
+      position: fixed; bottom: 20px; right: 20px; background: #0f172a; border: 1px solid var(--cyan);
+      color: var(--text); padding: 10px 16px; border-radius: 10px; font-size: 13px; display: none; z-index: 999;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.45);
+    }
+    a { color: var(--cyan); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    @media (max-width: 900px) { .grid-2 { grid-template-columns: 1fr; } }
+    /* Blueprint Editor */
+    .bp-editor-box {
+      background: #070d19; border: 1px solid rgba(56,189,248,0.4); border-radius: 10px;
+      padding: 14px; margin: 12px 0 16px; display: none;
+    }
+    .bp-part-card {
+      background: #0f172a; border: 1px solid var(--border); border-radius: 9px;
+      padding: 11px 12px; margin-bottom: 12px;
+    }
+    .bp-part-head { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 9px; }
+    .bp-ch-row {
+      background: #090f1d; border: 1px solid var(--border); border-radius: 8px;
+      padding: 9px 10px; margin-bottom: 8px;
+    }
+    .bp-ch-grid { display: grid; grid-template-columns: 82px 1fr 82px 170px auto; gap: 7px; align-items: center; }
+    @media (max-width: 1000px) { .bp-ch-grid { grid-template-columns: 1fr 1fr; } }
+    button.red { background: #b91c1c; color: #fff; }
+    button.red:hover { background: #991b1b; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+        <h1 id="mainTitle">전문 교재 제작 · 자료 수집 · 큐레이션 · 지식그래프 대시보드</h1>
+        <select id="projectSwitcher" onchange="switchProject(this.value)" style="background:#0b1222; color:#7dd3fc; border:1px solid rgba(56,189,248,0.45); font-weight:700; font-size:12.5px; padding:5px 10px; border-radius:8px; max-width:320px;">
+          <option value="">프로젝트 로딩 중...</option>
+        </select>
+      </div>
+      <div class="sub" id="mainSub">수집 저장소: E:\SMC_Report_Platform_Data &nbsp;|&nbsp; 지식그래프 통합: C:\SMC_GRAPHRAG (기존 KG + LightRAG)</div>
+    </div>
+    <div class="header-pills" id="headerPills">
+      <span class="pill">로딩 중...</span>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="kpi-grid" id="kpiGrid"></div>
+
+    <div class="tabs">
+      <button class="tab-btn active" onclick="switchTab('library', this)">1. 수집 자료 정리 · 큐레이션</button>
+      <button class="tab-btn" onclick="switchTab('collect', this)">2. 구글 스칼라 · 국내외 학회 논문 · 웹/PDF 수집</button>
+      <button class="tab-btn" id="tabBtnBlueprint" onclick="switchTab('blueprint', this)">3. 마스터 목차 · 단원 인용 비교 리뷰어</button>
+      <button class="tab-btn" onclick="switchTab('kg', this)">4. C:\SMC_GRAPHRAG 지식그래프 · Ollama 상태</button>
+    </div>
+
+    <!-- TAB 1: CURATION LIBRARY -->
+    <section id="tab-library" class="tab-panel active">
+      <div class="split">
+        <div class="card">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:10px;">
+            <h2 style="margin:0;">수집 자료 통합 라이브러리 (<span id="srcCount">0</span>건)</h2>
+            <div style="display:flex; gap:6px;">
+              <button class="sec sm" onclick="exportBib('markdown')">Markdown 표 내보내기</button>
+              <button class="sec sm" onclick="exportBib('apa')">APA 참고문헌</button>
+              <button class="sec sm" onclick="exportBib('bibtex')">BibTeX 내보내기</button>
+            </div>
+          </div>
+
+          <div class="toolbar">
+            <select id="fScope" onchange="loadSources()">
+              <option value="project" selected>범위: 현재 프로젝트 자료</option>
+              <option value="all">범위: 전체 저장소 (모든 프로젝트)</option>
+            </select>
+            <input id="fSearch" type="text" placeholder="제목·저자·저널·태그·메모 검색..." style="min-width:200px; flex:1;" oninput="loadSources()" />
+            <select id="fCategory" onchange="loadSources()">
+              <option value="all">분류: 전체</option>
+              <option value="cn_model">질소 동역학 · 탄소 분해 모델</option>
+              <option value="textbook">표준 교재 · 교과서</option>
+              <option value="rda_nongsaro">한국: 농진청 · 농사로 · 흙토람</option>
+              <option value="korean_society">한국: 국내 학회지 (토양비료학회 등)</option>
+              <option value="japan_source">일본: MAFF · NARO · 일본토양비료학회</option>
+              <option value="usa_source">미국: Cornell · 미국토양학회(SSSAJ)</option>
+              <option value="europe_source">유럽: Rothamsted · EEA · EJP SOIL · EJSS</option>
+              <option value="kg_reuse">기존 C:\SMC_GRAPHRAG</option>
+              <option value="notebooklm_import">Google NotebookLM 수집자료</option>
+              <option value="international_journal">국제 SCI 저널</option>
+              <option value="official_agency">국제기구 (UN FAO)</option>
+              <option value="google_scholar_bibtex">구글 스칼라 (BibTeX)</option>
+              <option value="korean_society_bibtex">국내 학회 (BibTeX)</option>
+              <option value="pdf_document">전문 PDF 문서</option>
+              <option value="web_article">공개 웹 자료</option>
+            </select>
+            <select id="fStatus" onchange="loadSources()">
+              <option value="all">상태: 전체</option>
+              <option value="approved">채택 (approved)</option>
+              <option value="review">검토중 (review)</option>
+              <option value="hold">보류 (hold)</option>
+              <option value="rejected">제외 (rejected)</option>
+            </select>
+            <select id="fChapter" onchange="loadSources()">
+              <option value="all">배정 단원: 전체 (16개 장)</option>
+              <option value="ch01">ch01 (1장 정의·POM/MAOM)</option><option value="ch02">ch02 (2장 기원·분해)</option>
+              <option value="ch03">ch03 (3장 부식화·MCP)</option><option value="ch04">ch04 (4장 물리성·단립)</option>
+              <option value="ch05">ch05 (5장 화학성·CEC)</option><option value="ch06">ch06 (6장 미생물·프라이밍)</option>
+              <option value="ch07">ch07 (7장 질소동역학·모델★)</option><option value="ch08">ch08 (8장 SOC 분석법)</option>
+              <option value="ch09">ch09 (9장 분획·토양건강)</option><option value="ch10">ch10 (10장 탄소모델 이론★)</option>
+              <option value="ch11">ch11 (11장 탄소·질소모델 실전★)</option><option value="ch12">ch12 (12장 논·밭·시설 기준)</option>
+              <option value="ch13">ch13 (13장 퇴비·녹비·보전농업)</option><option value="ch14">ch14 (14장 바이오차·부식산)</option>
+              <option value="ch15">ch15 (15장 심토·이탄·화산회토★)</option><option value="ch16">ch16 (16장 기후·MRV·정책)</option>
+            </select>
+          </div>
+
+          <div style="overflow-x:auto; max-height:640px; overflow-y:auto;">
+            <table>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>구분 / 등급</th>
+                  <th>제목 · 저자 · 학술지</th>
+                  <th>연도/인용</th>
+                  <th>단원</th>
+                  <th>상태</th>
+                </tr>
+              </thead>
+              <tbody id="sourcesTbody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Right Detail & Curation Editor -->
+        <div class="card" id="detailCard">
+          <h2>선택 자료 정리 · 편집</h2>
+          <div id="detailEmpty" style="color:var(--muted); font-size:13px;">좌측 목록에서 자료를 클릭하면 상세 내용 확인, 채택/보류 분류, 단원 배정, 편집 메모 저장 및 지식그래프 적재를 수행할 수 있습니다.</div>
+          <div id="detailBody" style="display:none;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+              <strong id="dId" style="color:var(--cyan); font-size:16px;"></strong>
+              <button class="green sm" onclick="pushSelectedToKG()">C:\SMC_GRAPHRAG(LightRAG) 적재</button>
+            </div>
+            <div class="field-row">
+              <label>자료 제목 (사용자 정리용 수정 가능)</label>
+              <input id="dTitle" type="text" />
+            </div>
+            <div class="grid-2">
+              <div class="field-row">
+                <label>채택 상태</label>
+                <select id="dStatus">
+                  <option value="approved">채택 (approved)</option>
+                  <option value="review">검토중 (review)</option>
+                  <option value="hold">보류 (hold)</option>
+                  <option value="rejected">제외 (rejected)</option>
+                </select>
+              </div>
+              <div class="field-row">
+                <label>신뢰도 등급 / 출처 성격</label>
+                <select id="dTier">
+                  <option value="표준 교재·교과서">표준 교재·교과서</option>
+                  <option value="농진청·농사로">농진청·농사로</option>
+                  <option value="농진청·농사로 교재">농진청·농사로 교재</option>
+                  <option value="일본 공식기관">일본 공식기관</option>
+                  <option value="일본 학회지(SSPN)">일본 학회지(SSPN)</option>
+                  <option value="미국 대학·기관">미국 대학·기관</option>
+                  <option value="미국 학회지(SSSAJ)">미국 학회지(SSSAJ)</option>
+                  <option value="유럽 공식기관">유럽 공식기관</option>
+                  <option value="유럽 학회지(EJSS)">유럽 학회지(EJSS)</option>
+                  <option value="국제 SCI 저널">국제 SCI 저널</option>
+                  <option value="국내 학회지">국내 학회지</option>
+                  <option value="1차 공식기관">1차 공식기관</option>
+                  <option value="기존 C:\SMC_GRAPHRAG">기존 C:\SMC_GRAPHRAG</option>
+                  <option value="구글 스칼라(BibTeX)">구글 스칼라(BibTeX)</option>
+                  <option value="전문 PDF 문서">전문 PDF 문서</option>
+                  <option value="공개 웹 자료">공개 웹 자료</option>
+                </select>
+              </div>
+            </div>
+            <div class="grid-2">
+              <div class="field-row">
+                <label>배정 단원 (쉼표 구분, 예: ch01, ch03)</label>
+                <input id="dChapters" type="text" />
+              </div>
+              <div class="field-row">
+                <label>중요도 평점 (1~5)</label>
+                <select id="dRating">
+                  <option value="5">★★★★★ (5 - 핵심 필독)</option>
+                  <option value="4">★★★★☆ (4 - 주요 근거)</option>
+                  <option value="3">★★★☆☆ (3 - 참고)</option>
+                  <option value="2">★★☆☆☆ (2 - 보조)</option>
+                  <option value="1">★☆☆☆☆ (1 - 낮음)</option>
+                </select>
+              </div>
+            </div>
+            <div class="field-row">
+              <label>태그 (쉼표 구분, 예: POM, MAOM, 한국토양비료학회)</label>
+              <input id="dTags" type="text" />
+            </div>
+            <div class="field-row">
+              <label>편집자 정리 메모 (어느 절에 어떻게 인용할지 기록)</label>
+              <textarea id="dNotes" rows="3"></textarea>
+            </div>
+            <button onclick="saveCuration()" style="width:100%; margin-bottom:12px;">정리 내용 저장 (E:\SMC_Report_Platform_Data)</button>
+
+            <div style="font-size:12px; color:var(--muted); margin-bottom:8px;" id="dMeta"></div>
+            <label style="font-size:12px; color:var(--muted); display:block; margin-bottom:4px;">정제 본문 · 초록 미리보기</label>
+            <div class="preview-box" id="dPreview"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 2: ACADEMIC & WEB COLLECTOR -->
+    <section id="tab-collect" class="tab-panel">
+      <div class="grid-2">
+        <!-- Academic Search (Google Scholar style + Domestic/Intl Societies) -->
+        <div class="card">
+          <h2>국내외 학회지 · 학술 논문 검색 및 원클릭 수집</h2>
+          <p style="font-size:12px; color:var(--muted); margin-top:-6px;">
+            OpenAlex·Crossref 공식 학술 API로 국제 SCI 저널과 <b>한국토양비료학회지·한국환경농학회지</b> 등 국내 학회 논문을 피인용순(Google Scholar 방식)으로 검색·수집합니다.
+          </p>
+          <div class="toolbar">
+            <input id="qScholar" type="text" value="soil organic matter particulate mineral-associated carbon" style="flex:1;" placeholder="검색 키워드 (영문 또는 국문)..." />
+            <select id="qScope">
+              <option value="all">국제 학술 전체 (피인용순)</option>
+              <option value="open_access">국제 오픈액세스(OA PDF 우선)</option>
+              <option value="korean_societies">국내 토양·농학 4대 학회지 (OpenAlex)</option>
+              <option value="crossref_ksssf">한국토양비료학회지 전용 (Crossref)</option>
+              <option value="korea_all">국내 연구기관 논문 전체</option>
+            </select>
+            <select id="qPacket">
+              <option value="ch01_evidence">ch01</option><option value="ch02_evidence">ch02</option>
+              <option value="ch03_evidence">ch03</option><option value="ch04_evidence">ch04</option>
+              <option value="ch05_evidence">ch05</option><option value="ch06_evidence">ch06</option>
+              <option value="ch07_evidence">ch07</option><option value="ch08_evidence">ch08</option>
+              <option value="ch09_evidence">ch09</option><option value="ch10_evidence">ch10</option>
+              <option value="ch11_evidence">ch11</option><option value="ch12_evidence">ch12</option>
+              <option value="ch13_evidence">ch13</option>
+            </select>
+            <button onclick="runScholarSearch()">학술 검색</button>
+          </div>
+          <div style="margin-bottom:8px; font-size:11.5px; color:var(--muted);">
+            추천 빠른 검색:
+            <a href="#" onclick="quickSearch('soil organic matter', 'crossref_ksssf');return false;">한국토양비료학회지(토양유기물)</a> ·
+            <a href="#" onclick="quickSearch('humic acid fulvic acid soil', 'korean_societies');return false;">국내학회(부식산·풀빅산)</a> ·
+            <a href="#" onclick="quickSearch('biochar soil organic carbon sequestration', 'open_access');return false;">바이오차·탄소격리(OA)</a> ·
+            <a href="#" onclick="quickSearch('soil organic carbon priming effect rhizosphere', 'all');return false;">근권·프라이밍 효과</a>
+          </div>
+          <div id="scholarResults" style="max-height:540px; overflow-y:auto;"></div>
+        </div>
+
+        <!-- Right column: Google Scholar BibTeX + Web URL + Local File -->
+        <div>
+          <div class="card">
+            <h2>📓 Google NotebookLM 수집 자료 가져오기</h2>
+            <p style="font-size:12px; color:var(--muted); margin-top:-6px;">
+              내 NotebookLM 노트북에 모아둔 PDF·웹문서 원문을 체크해 현재 프로젝트 분리 폴더(<code>06_notebooklm_sources/</code>) 및 RAG로 바로 가져옵니다.
+            </p>
+            <div class="toolbar">
+              <input id="mNlmQuery" type="text" placeholder="노트북 검색어 (비우면 전체)" style="flex:1;" />
+              <button class="green sm" onclick="loadMainNlmNotebooks()">노트북 목록 불러오기</button>
+            </div>
+            <div class="field-row">
+              <select id="mNlmNbSel" onchange="loadMainNlmSources()">
+                <option value="">-- 먼저 [노트북 목록 불러오기]를 클릭하세요 --</option>
+              </select>
+            </div>
+            <div id="mNlmSrcBox" style="max-height:170px; overflow-y:auto; background:#090d16; border:1px solid var(--border); border-radius:8px; padding:8px; margin-bottom:8px; font-size:12px; color:var(--muted);">
+              노트북을 선택하면 가져올 수 있는 소스 목록이 표시됩니다.
+            </div>
+            <div class="toolbar" style="margin-bottom:0;">
+              <button class="sec sm" onclick="toggleMainNlmAll(true)">전체선택</button>
+              <button class="sec sm" onclick="toggleMainNlmAll(false)">해제</button>
+              <button class="green sm" onclick="importMainNlm(false)">프로젝트로 가져오기</button>
+              <button class="sm" onclick="importMainNlm(true)">가져오기 + RAG 적재</button>
+            </div>
+          </div>
+
+          <div class="card">
+            <h2>Google Scholar · RISS · KCI BibTeX 일괄 가져오기</h2>
+            <p style="font-size:12px; color:var(--muted); margin-top:-6px;">
+              Google Scholar(인용 → BibTeX) 또는 RISS/KCI/DBpia(ego-browser 세션)에서 복사한 BibTeX를 붙여넣으면 자동으로 파싱해 <code>E:\SMC_Report_Platform_Data\evidence\</code>에 등록합니다.
+            </p>
+            <div class="field-row">
+              <textarea id="bibInput" rows="6" placeholder="@article{lehmann2015contentious,&#10;  title={The contentious nature of soil organic matter},&#10;  author={Lehmann, Johannes and Kleber, Markus},&#10;  journal={Nature},&#10;  year={2015}&#10;}"></textarea>
+            </div>
+            <div class="toolbar">
+              <select id="bibPacket">
+                <option value="ch01_evidence">ch01_evidence (1장)</option>
+                <option value="ch02_evidence">ch02_evidence (2장)</option>
+                <option value="ch03_evidence">ch03_evidence (3장)</option>
+                <option value="ch07_evidence">ch07_evidence (7장)</option>
+                <option value="ch10_evidence">ch10_evidence (10장)</option>
+                <option value="ch11_evidence">ch11_evidence (11장)</option>
+                <option value="ch12_evidence">ch12_evidence (12장)</option>
+                <option value="ch13_evidence">ch13_evidence (13장)</option>
+              </select>
+              <button class="green" onclick="importBibtex()">BibTeX 일괄 등록</button>
+            </div>
+          </div>
+
+          <div class="card">
+            <h2>공개 웹 URL 수집 (robots.txt · PII 마스킹 자동)</h2>
+            <div class="field-row">
+              <input id="webUrl" type="text" placeholder="https://www.fao.org/... 또는 공공기관·학회 공개 URL" />
+            </div>
+            <div class="toolbar">
+              <select id="webPacket">
+                <option value="ch01_evidence">ch01_evidence</option>
+                <option value="ch02_evidence">ch02_evidence</option>
+                <option value="ch03_evidence">ch03_evidence</option>
+                <option value="ch10_evidence">ch10_evidence</option>
+              </select>
+              <button onclick="collectUrl()">URL 수집 · 정제</button>
+            </div>
+          </div>
+
+          <div class="card">
+            <h2>로컬 PDF · DOCX · HWP · HWPX 문서 파싱 (E:\ 보관)</h2>
+            <div class="field-row">
+              <input id="localFile" type="text" placeholder="예: C:\Users\...\논문.pdf 또는 보고서.hwp" />
+            </div>
+            <div class="toolbar">
+              <select id="filePacket">
+                <option value="ch01_evidence">ch01_evidence</option>
+                <option value="ch02_evidence">ch02_evidence</option>
+                <option value="ch03_evidence">ch03_evidence</option>
+              </select>
+              <button onclick="collectFile()">문서 파싱 · 등록</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: 500P MASTER BLUEPRINT & PROVENANCE REVIEWER -->
+    <section id="tab-blueprint" class="tab-panel">
+      <div class="card">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:10px;">
+          <h2 id="blueprintTitle" style="margin:0;">마스터 청사진 (단원 진행 · 합본 출판)</h2>
+          <div style="display:flex; gap:7px; flex-wrap:wrap; align-items:center;">
+            <button class="green sm" id="btnToggleBpEdit" onclick="toggleBlueprintEditor('visual')">✏️ 마스터 청사진 편집</button>
+            <button class="sec sm" id="btnToggleBpYaml" onclick="toggleBlueprintEditor('yaml')">📝 YAML 원문 편집</button>
+            <div id="masterBookLinks" style="display:flex; gap:8px; flex-wrap:wrap;"></div>
+          </div>
+        </div>
+
+        <!-- INTERACTIVE BLUEPRINT EDITOR (VISUAL + YAML) -->
+        <div id="bpEditorBox" class="bp-editor-box">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:10px;">
+            <div>
+              <b style="color:var(--cyan); font-size:14px;">마스터 청사진 편집기</b>
+              <span id="bpEditSummary" style="font-size:12px; color:#86efac; margin-left:8px;"></span>
+            </div>
+            <div style="display:flex; gap:6px; flex-wrap:wrap;">
+              <button class="sec sm" onclick="switchBpEditMode('visual')">표 기반 시각 편집</button>
+              <button class="sec sm" onclick="switchBpEditMode('yaml')">YAML 원문 편집</button>
+              <button class="sec sm" onclick="groupBlueprintInto5Parts()">📦 5부 체제로 묶기</button>
+              <button class="sec sm" onclick="renumberBlueprintChapters()">🔢 ch01~NN 자동 재번호</button>
+              <button class="green sm" onclick="saveBlueprintEditor()">💾 청사진 저장 (YAML+단원파일 동기화)</button>
+              <button class="red sm" onclick="closeBlueprintEditor()">닫기</button>
+            </div>
+          </div>
+
+          <div id="bpVisualEditor">
+            <div style="display:grid; grid-template-columns:1.2fr 1.2fr 1.4fr; gap:8px; margin-bottom:12px;">
+              <div><label style="font-size:11px; color:var(--muted);">교재 제목 (국문)</label><input id="bpMetaTitleKo" type="text" style="width:100%;" /></div>
+              <div><label style="font-size:11px; color:var(--muted);">영문 제목</label><input id="bpMetaTitleEn" type="text" style="width:100%;" /></div>
+              <div><label style="font-size:11px; color:var(--muted);">대상 독자</label><input id="bpMetaAudience" type="text" style="width:100%;" /></div>
+            </div>
+            <div id="bpPartsEditorList"></div>
+            <div style="display:flex; gap:8px; margin-top:10px; flex-wrap:wrap;">
+              <button class="sec" onclick="addBpPart()">+ 새 부(Part) 추가</button>
+              <button class="green" onclick="saveBlueprintEditor()">💾 변경 사항 모두 저장 (master_outline.yaml + chNN.yaml)</button>
+            </div>
+          </div>
+
+          <div id="bpYamlEditor" style="display:none;">
+            <div style="font-size:11.5px; color:var(--muted); margin-bottom:6px;">
+              <code>master_outline.yaml</code> 원문을 직접 수정할 수 있습니다. 저장 전 자동 백업(<code>blueprints/_backups/</code>)이 생성됩니다.
+            </div>
+            <textarea id="bpYamlText" rows="22" style="width:100%; font-family:Consolas,'D2Coding',monospace; font-size:12px;"></textarea>
+            <div style="display:flex; gap:8px; margin-top:8px;">
+              <button class="green" onclick="saveBlueprintYaml()">💾 YAML 저장 및 단원 파일 동기화</button>
+              <button class="sec" onclick="closeBlueprintEditor()">취소</button>
+            </div>
+          </div>
+        </div>
+
+        <div id="blueprintContainer"></div>
+      </div>
+
+      <div class="card">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:10px;">
+          <h2 style="margin:0;">교재 시각화 도해 · 정량 차트 갤러리 (나노바나나 AI 과학 도해 4종 + Vector SVG 16종)</h2>
+          <span id="visualCountBadge" class="badge b-approved">로딩 중</span>
+        </div>
+        <div id="visualGallery" style="display:grid; grid-template-columns:repeat(auto-fill, minmax(260px, 1fr)); gap:12px;"></div>
+      </div>
+
+      <div class="card">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:10px;">
+          <div style="display:flex; align-items:center; gap:10px;">
+            <h2 style="margin:0;">좌우 인용 비교 리뷰어 (Provenance Side-by-Side)</h2>
+            <select id="reviewChapterSel" onchange="loadChapter(this.value)">
+              <option value="ch01">ch01 (1장 정의·POM/MAOM)</option>
+              <option value="ch02">ch02 (2장 기원·분해)</option>
+              <option value="ch03">ch03 (3장 부식화·MCP)</option>
+              <option value="ch04">ch04 (4장 물리성·단립)</option>
+              <option value="ch05">ch05 (5장 화학성·CEC)</option>
+              <option value="ch06">ch06 (6장 미생물·프라이밍)</option>
+              <option value="ch07">ch07 (7장 질소 동역학·모델)</option>
+              <option value="ch08">ch08 (8장 SOC 분석법)</option>
+              <option value="ch09">ch09 (9장 분획·토양건강)</option>
+              <option value="ch10">ch10 (10장 탄소 분해 모델 이론)</option>
+              <option value="ch11">ch11 (11장 탄소·질소 모델링 실전)</option>
+              <option value="ch12">ch12 (12장 논·밭·시설 기준)</option>
+              <option value="ch13">ch13 (13장 퇴비·녹비·보전농업)</option>
+              <option value="ch14">ch14 (14장 바이오차·부식산)</option>
+              <option value="ch15">ch15 (15장 심토·이탄·화산회토)</option>
+              <option value="ch16">ch16 (16장 기후·MRV·정책)</option>
+            </select>
+          </div>
+          <span id="chAuditBadge" class="badge b-review">로딩 중</span>
+        </div>
+        <div class="split">
+          <div>
+            <div style="font-size:12px; color:var(--muted); margin-bottom:6px;">본문의 <span class="cite-chip">[SRC-NN]</span> 인용키를 클릭하면 우측에 원본 근거가 즉시 표시됩니다.</div>
+            <div class="mdx-view" id="chapterMdx"></div>
+          </div>
+          <div>
+            <div style="font-size:12px; color:var(--muted); margin-bottom:6px;">선택 인용 출처 원문 · 사실 근거</div>
+            <div class="mdx-view" id="provenancePanel">좌측 원고에서 [SRC-NN] 인용키를 클릭하세요.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 4: KG & OLLAMA TELEMETRY -->
+    <section id="tab-kg" class="tab-panel">
+      <div class="grid-2">
+        <div class="card">
+          <h2>C:\SMC_GRAPHRAG 통합 지식그래프 및 LightRAG 현황</h2>
+          <div id="kgDetail"></div>
+        </div>
+        <div class="card">
+          <h2>로컬 Ollama (Gemma 4 26B / BGE-M3) 텔레메트리</h2>
+          <div id="ollamaDetail"></div>
+        </div>
+      </div>
+      <div class="card">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:10px;">
+          <h2 style="margin:0;">신규 구축 플랫폼 지식그래프 탐색기 (<code>C:\SMC_GRAPHRAG\output\graph_platform_incremental.json</code>)</h2>
+          <div style="display:flex; gap:8px;">
+            <span id="pgStatsBadge" class="badge b-approved">로딩 중</span>
+            <button class="green sm" onclick="triggerIncrementalKG()">미적재 신규 자료 KG 증분 구축</button>
+          </div>
+        </div>
+        <div class="grid-2">
+          <div>
+            <h3>핵심 추출 엔티티 (언급 빈도 상위)</h3>
+            <div style="max-height:360px; overflow-y:auto;">
+              <table>
+                <thead><tr><th>엔티티</th><th>유형</th><th>언급</th><th>출처 ID</th></tr></thead>
+                <tbody id="pgNodesTbody"></tbody>
+              </table>
+            </div>
+          </div>
+          <div>
+            <h3>추출된 지식 관계 (Triples: 주체 —[관계]→ 대상)</h3>
+            <div style="max-height:360px; overflow-y:auto;">
+              <table>
+                <thead><tr><th>주체 (Source)</th><th>관계</th><th>대상 (Target)</th><th>출처</th></tr></thead>
+                <tbody id="pgEdgesTbody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    let allSources = [];
+    let selectedSourceId = null;
+    let currentChapterSources = {};
+    let activeProjectId = new URLSearchParams(window.location.search).get('project') || '';
+    let activeProjectMeta = null;
+    let currentBlueprintData = null;
+    let bpEditState = null; // {book_metadata, parts}
+    let bpEditMode = 'visual';
+
+    function projParam() {
+      return activeProjectId ? `project=${encodeURIComponent(activeProjectId)}` : '';
+    }
+
+    async function switchProject(pid) {
+      if (!pid) return;
+      activeProjectId = pid;
+      selectedSourceId = null;
+      document.getElementById('detailEmpty').style.display = 'block';
+      document.getElementById('detailBody').style.display = 'none';
+      const url = new URL(window.location.href);
+      url.searchParams.set('project', pid);
+      window.history.replaceState({}, '', url.toString());
+      await fetch('/api/active-project', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ project_id: pid }),
+      });
+      await loadOverview();
+      await loadSources();
+      if (document.getElementById('tab-blueprint').classList.contains('active')) {
+        await loadBlueprint();
+        await loadChapter('ch01');
+      }
+      showToast(`프로젝트 전환: 《${activeProjectMeta?.topic_ko || pid}》`);
+    }
+
+    function showToast(msg) {
+      const el = document.getElementById('toast');
+      el.textContent = msg;
+      el.style.display = 'block';
+      setTimeout(() => { el.style.display = 'none'; }, 3500);
+    }
+
+    function switchTab(id, btn) {
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById('tab-' + id).classList.add('active');
+      if (btn) btn.classList.add('active');
+      if (id === 'blueprint') { loadBlueprint(); loadChapter('ch01'); }
+      if (id === 'kg') { loadOverview(); loadPlatformGraph(); }
+    }
+
+    async function loadPlatformGraph() {
+      const res = await fetch('/api/kg/platform-graph?limit_nodes=120');
+      const d = await res.json();
+      const badge = document.getElementById('pgStatsBadge');
+      if (!d.exists) {
+        badge.textContent = '아직 구축되지 않음';
+        return;
+      }
+      badge.textContent = `총 ${d.total_nodes.toLocaleString()} 노드 · ${d.total_edges.toLocaleString()} 관계`;
+      document.getElementById('pgNodesTbody').innerHTML = (d.nodes || []).map(n => `
+        <tr>
+          <td><b>${escapeHtml(n.id)}</b></td>
+          <td><span class="badge b-cat">${escapeHtml(n.type || 'CONCEPT')}</span></td>
+          <td>${n.mentions || 1}</td>
+          <td style="font-size:11px; color:var(--muted);">${escapeHtml(n.source_ids || '')}</td>
+        </tr>
+      `).join('');
+      document.getElementById('pgEdgesTbody').innerHTML = (d.edges || []).map(e => `
+        <tr>
+          <td><b>${escapeHtml(e.source)}</b></td>
+          <td style="color:var(--cyan);">${escapeHtml(e.relation)}</td>
+          <td><b>${escapeHtml(e.target)}</b></td>
+          <td style="font-size:11px; color:var(--muted);">${escapeHtml(e.source_id || '')}</td>
+        </tr>
+      `).join('');
+    }
+
+    async function triggerIncrementalKG() {
+      showToast('로컬 Ollama로 미적재 자료 엔티티·관계 추출 중...');
+      const res = await fetch('/api/kg/build-incremental', { method: 'POST' });
+      const d = await res.json();
+      showToast(`지식그래프 증분 완료: ${d.nodes_after} 노드 / ${d.edges_after} 관계`);
+      loadPlatformGraph();
+      loadOverview();
+    }
+
+    function escapeHtml(s) {
+      return String(s || '').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+    }
+
+    async function loadOverview() {
+      const qStr = projParam() ? `?${projParam()}` : '';
+      const res = await fetch('/api/overview' + qStr);
+      const d = await res.json();
+
+      // 프로젝트 제목·페이지·헤더·드롭다운 동적 반영
+      const ap = d.active_project || {};
+      activeProjectMeta = ap;
+      if (ap.project_id) activeProjectId = ap.project_id;
+      const topicKo = ap.topic_ko || '전문 교재 제작';
+      const tPages = ap.target_pages || 500;
+      const headerTitle = `《${topicKo}》 (${tPages}p) 자료 수집 · 큐레이션 · 지식그래프 대시보드`;
+      document.title = headerTitle;
+      const h1 = document.getElementById('mainTitle');
+      if (h1) h1.textContent = headerTitle;
+      const subEl = document.getElementById('mainSub');
+      if (subEl) {
+        subEl.textContent = `프로젝트: ${ap.project_id || '-'} | 분리 수집 폴더: ${ap.collected_dir || d.storage_root} | 지식그래프: C:\\SMC_GRAPHRAG`;
+      }
+      const bpTabBtn = document.getElementById('tabBtnBlueprint');
+      if (bpTabBtn) bpTabBtn.textContent = `3. ${tPages}p 목차 · 단원 인용 비교 리뷰어`;
+      const bpTitle = document.getElementById('blueprintTitle');
+      if (bpTitle) bpTitle.textContent = `《${topicKo}》 ${tPages}p 마스터 청사진 (${ap.chapter_count || 12}개 단원 진행 · 합본 출판)`;
+
+      // 프로젝트 전환 드롭다운 동기화
+      const sw = document.getElementById('projectSwitcher');
+      if (sw && Array.isArray(d.projects)) {
+        sw.innerHTML = d.projects.map(p =>
+          `<option value="${escapeHtml(p.project_id)}" ${p.project_id === activeProjectId ? 'selected' : ''}>${p.is_reference_book ? '★ ' : ''}${escapeHtml(p.topic_ko)} (${p.target_pages}p)</option>`
+        ).join('');
+      }
+
+      // 탭 2 기본 검색어 및 패킷 ID 현재 프로젝트에 자동 동기화
+      if (ap.keywords_en && ap.keywords_en.length) {
+        const qSch = document.getElementById('qScholar');
+        if (qSch && qSch.dataset.lastProj !== activeProjectId) {
+          qSch.value = ap.keywords_en.slice(0, 3).join(' ');
+          qSch.dataset.lastProj = activeProjectId;
+        }
+      }
+      if (ap.packet_id) {
+        for (const selId of ['qPacket', 'bibPacket', 'webPacket', 'filePacket']) {
+          const el = document.getElementById(selId);
+          if (el && ![...el.options].some(o => o.value === ap.packet_id)) {
+            const opt = document.createElement('option');
+            opt.value = ap.packet_id;
+            opt.textContent = `${ap.packet_id} (현재 프로젝트)`;
+            el.insertBefore(opt, el.firstChild);
+          }
+          if (el && !ap.is_reference_book) el.value = ap.packet_id;
+        }
+      }
+
+      const lrOnline = d.kg_status?.lightrag_server?.online;
+      const ollamaOnline = d.ollama?.online;
+      document.getElementById('headerPills').innerHTML = `
+        <a href="http://127.0.0.1:8501" target="_blank" class="pill" style="background:rgba(3,199,90,0.22);border-color:#03C75A;color:#86efac;font-weight:700;text-decoration:none;">서브에이전트 관제 (8501) ↗</a>
+        <a href="http://127.0.0.1:8501/explorer" target="_blank" class="pill" style="background:rgba(56,189,248,0.2);border-color:#38bdf8;color:#7dd3fc;font-weight:700;text-decoration:none;">🔎 데이터 탐색 · API 허브 ↗</a>
+        <span class="pill green">프로젝트 자료 ${d.total_sources}건 (전체 ${d.global_total_sources ?? d.total_sources}건)</span>
+        <span class="pill purple">기존 KG ${(d.catalog_summary?.total_nodes || 0).toLocaleString()} 노드</span>
+        <span class="pill ${lrOnline ? 'green' : ''}">LightRAG: ${lrOnline ? 'ONLINE' : 'OFFLINE'}</span>
+        <span class="pill ${ollamaOnline ? 'green' : ''}">Ollama: ${ollamaOnline ? d.ollama.version : 'OFFLINE'}</span>
+      `;
+
+      const krCount = (d.by_category?.korean_society || 0) + (d.by_category?.korean_society_bibtex || 0);
+      const intlCount = (d.by_category?.international_journal || 0) + (d.by_category?.google_scholar_bibtex || 0);
+      const tbCount = (d.by_category?.textbook || 0) + (d.by_category?.rda_nongsaro || 0);
+      document.getElementById('kpiGrid').innerHTML = `
+        <div class="kpi"><div class="label">《${escapeHtml(topicKo)}》 수집 자료</div><div class="val">${d.total_sources}건</div><div class="hint">전체 저장소 ${d.global_total_sources ?? d.total_sources}건 · 채택 ${d.by_status?.approved || 0}</div></div>
+        <div class="kpi"><div class="label">교재 · 공식기관 · 기상/통계</div><div class="val" style="color:var(--amber);">${tbCount + (d.by_category?.official_agency || 0) + (d.by_category?.web_article || 0)}종</div><div class="hint">표준교재 ${d.by_category?.textbook || 0} · 기관/웹 ${(d.by_category?.rda_nongsaro || 0) + (d.by_category?.official_agency || 0) + (d.by_category?.web_article || 0)}</div></div>
+        <div class="kpi"><div class="label">국내외 학술 논문</div><div class="val" style="color:var(--purple);">${intlCount + krCount}편</div><div class="hint">국제 SCI ${intlCount}편 · 국내 학회지 ${krCount}편</div></div>
+        <div class="kpi"><div class="label">기존 C:\\SMC_GRAPHRAG 재활용률</div><div class="val" style="color:var(--green);">${d.kg_gap_reuse_percent ?? '-'}%</div><div class="hint">누적 ${(d.catalog_summary?.total_nodes || 0).toLocaleString()} 노드 / ${(d.catalog_summary?.total_edges || 0).toLocaleString()} 엣지</div></div>
+        <div class="kpi"><div class="label">인용 감사 상태</div><div class="val" style="color:${d.audit_ch01_status === 'PASS' ? 'var(--green)' : 'var(--amber)'};">${d.audit_ch01_status}</div><div class="hint">목표 ${tPages}p · ${ap.chapter_count || 12}장 (${ap.overall_status || 'IDLE'})</div></div>
+      `;
+
+      // KG detail tab
+      const gFiles = (d.kg_status?.existing_graph_files || []).map(f => `<li><code>${escapeHtml(f.name)}</code> (${f.size_mb} MB)</li>`).join('');
+      const gaps = (d.kg_gaps || []).map(g => `<li><b>${escapeHtml(g.term)}</b>: ${escapeHtml(g.reason)}</li>`).join('');
+      document.getElementById('kgDetail').innerHTML = `
+        <p style="font-size:13px;">
+          <b>통합 경로:</b> <code>${escapeHtml(d.kg_root)}</code><br/>
+          <b>LightRAG 저장소:</b> <code>${escapeHtml(d.kg_status?.lightrag_working_dir)}</code><br/>
+          <b>LightRAG WebUI:</b> <a href="${escapeHtml(d.lightrag_webui)}" target="_blank">${escapeHtml(d.lightrag_webui)}</a> (${lrOnline ? '<span style="color:var(--green)">실행중</span>' : '<span style="color:var(--amber)">미실행 — scripts/start_lightrag.ps1 실행</span>'})<br/>
+          <b>Neo4j 상태:</b> ${d.kg_status?.neo4j?.online ? 'ONLINE' : 'OFFLINE (Docker 미기동)'}
+        </p>
+        <h3>Graph-First 결손 항목 (자동 표적 수집 대상)</h3>
+        <ul style="font-size:12.5px; color:#cbd5e1;">${gaps || '<li>결손 없음</li>'}</ul>
+        <h3>기존 C:\\SMC_GRAPHRAG 색인 그래프 파일 (${d.kg_status?.existing_graph_files?.length || 0}종)</h3>
+        <ul style="font-size:12px; color:#cbd5e1;">${gFiles}</ul>
+      `;
+
+      // Ollama tab
+      const models = (d.ollama?.installed_models || []).map(m => `<li><b>${escapeHtml(m.name)}</b> — ${m.size_gb} GB (digest: <code>${escapeHtml(m.digest)}</code>)</li>`).join('');
+      const running = (d.ollama?.running_models || []).map(m => `<li><b>${escapeHtml(m.name)}</b> — GPU ${m.gpu_percent}% (${m.vram_gb}/${m.size_gb} GB, ctx=${m.context_length})</li>`).join('');
+      document.getElementById('ollamaDetail').innerHTML = `
+        <p style="font-size:13px;">
+          <b>호스트:</b> <code>${escapeHtml(d.ollama?.ollama_host || 'http://127.0.0.1:11434')}</code><br/>
+          <b>버전:</b> ${escapeHtml(d.ollama?.version || 'N/A')} (GGUF format 호환: ${d.ollama?.version_ok_for_gemma4_format ? 'OK' : '확인 필요'})<br/>
+          <b>기본 LLM / 임베딩:</b> <code>${escapeHtml(d.ollama?.configured_llm_model)}</code> / <code>${escapeHtml(d.ollama?.configured_embed_model)}</code>
+        </p>
+        <h3>설치된 로컬 모델</h3>
+        <ul style="font-size:12.5px; color:#cbd5e1;">${models || '<li>없음</li>'}</ul>
+        <h3>현재 GPU 메모리 상주 모델 (/api/ps)</h3>
+        <ul style="font-size:12.5px; color:#86efac;">${running || '<li style="color:var(--muted)">현재 유휴 상태 (요청 시 자동 로드)</li>'}</ul>
+      `;
+    }
+
+    async function loadSources() {
+      const q = encodeURIComponent(document.getElementById('fSearch').value);
+      const cat = encodeURIComponent(document.getElementById('fCategory').value);
+      const st = encodeURIComponent(document.getElementById('fStatus').value);
+      const ch = encodeURIComponent(document.getElementById('fChapter').value);
+      const sc = encodeURIComponent(document.getElementById('fScope')?.value || 'project');
+      const res = await fetch(`/api/sources?q=${q}&category=${cat}&status=${st}&chapter=${ch}&scope=${sc}&${projParam()}`);
+      const d = await res.json();
+      allSources = d.sources || [];
+      document.getElementById('srcCount').textContent = allSources.length;
+
+      const tbody = document.getElementById('sourcesTbody');
+      tbody.innerHTML = allSources.map(s => {
+        const stLabel = {approved:'채택', review:'검토중', hold:'보류', rejected:'제외'}[s.status] || s.status;
+        const catClass = (s.category === 'korean_society' || s.category === 'korean_society_bibtex') ? 'b-kr' : 'b-cat';
+        const isSel = s.source_id === selectedSourceId ? 'selected' : '';
+        return `
+          <tr class="clickable ${isSel}" onclick="selectSource('${escapeHtml(s.source_id)}')">
+            <td><b style="color:var(--cyan);">${escapeHtml(s.source_id)}</b></td>
+            <td><span class="badge ${catClass}">${escapeHtml(s.tier)}</span></td>
+            <td>
+              <div style="font-weight:600; color:#f8fafc;">${escapeHtml(s.title)}</div>
+              <div style="font-size:11.5px; color:var(--muted);">
+                ${s.authors ? escapeHtml(s.authors) + ' · ' : ''}${escapeHtml(s.journal || s.provider)}
+                ${s.notes ? ' · <span style="color:#fde047;">메모: ' + escapeHtml(s.notes.slice(0,40)) + '</span>' : ''}
+              </div>
+            </td>
+            <td style="white-space:nowrap;">${s.year || '-'}<br/><span style="color:var(--muted); font-size:11px;">인용 ${s.cited_by_count || 0}</span></td>
+            <td>${escapeHtml((s.chapters || []).join(', '))}</td>
+            <td><span class="badge b-${escapeHtml(s.status)}">${stLabel}</span></td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    async function selectSource(sid) {
+      selectedSourceId = sid;
+      loadSources();
+      const res = await fetch('/api/sources/' + encodeURIComponent(sid));
+      const s = await res.json();
+      document.getElementById('detailEmpty').style.display = 'none';
+      document.getElementById('detailBody').style.display = 'block';
+      document.getElementById('dId').textContent = `${s.source_id} (${s.source_type})`;
+      document.getElementById('dTitle').value = s.title || '';
+      document.getElementById('dStatus').value = s.status || 'approved';
+      document.getElementById('dTier').value = s.tier || '공개 웹 자료';
+      document.getElementById('dChapters').value = (s.chapters || []).join(', ');
+      document.getElementById('dRating').value = String(s.rating || 4);
+      document.getElementById('dTags').value = (s.tags || []).join(', ');
+      document.getElementById('dNotes').value = s.notes || '';
+      document.getElementById('dMeta').innerHTML = `
+        <b>URL/DOI:</b> <a href="${escapeHtml(s.url)}" target="_blank">${escapeHtml(s.url)}</a><br/>
+        <b>저장 경로:</b> <code>${escapeHtml(s.parsed_path || s.raw_path)}</code><br/>
+        <b>robots/라이선스:</b> ${escapeHtml(s.robots_status)} · ${escapeHtml(s.license_note)}<br/>
+        <b>청크/표/사실:</b> 청크 ${s.chunk_count}개 · 표 ${s.table_count}개 · 추출 사실 ${s.fact_count}개 · PII 마스킹 ${s.pii_redaction_count}건
+      `;
+      document.getElementById('dPreview').textContent = s.parsed_preview || '(미리보기 없음)';
+    }
+
+    async function saveCuration() {
+      if (!selectedSourceId) return;
+      const body = {
+        custom_title: document.getElementById('dTitle').value.trim(),
+        status: document.getElementById('dStatus').value,
+        tier: document.getElementById('dTier').value,
+        chapters: document.getElementById('dChapters').value.split(',').map(x => x.trim()).filter(Boolean),
+        rating: Number(document.getElementById('dRating').value),
+        tags: document.getElementById('dTags').value.split(',').map(x => x.trim()).filter(Boolean),
+        notes: document.getElementById('dNotes').value.trim(),
+      };
+      const res = await fetch('/api/sources/' + encodeURIComponent(selectedSourceId), {
+        method: 'PATCH',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(body),
+      });
+      if (res.ok) {
+        showToast(`${selectedSourceId} 정리 내용이 E:\\SMC_Report_Platform_Data 에 저장되었습니다.`);
+        loadSources();
+        loadOverview();
+      }
+    }
+
+    async function pushSelectedToKG() {
+      if (!selectedSourceId) return;
+      showToast(`${selectedSourceId} → C:\\SMC_GRAPHRAG (LightRAG) 적재 요청 중...`);
+      const res = await fetch('/api/kg/ingest/' + encodeURIComponent(selectedSourceId), { method: 'POST' });
+      const d = await res.json();
+      if (d.lightrag_ingest?.mode === 'server_api') {
+        showToast(`${selectedSourceId} LightRAG 증분 적재 완료!`);
+      } else {
+        showToast(d.lightrag_ingest?.note || 'LightRAG 서버를 먼저 실행해 주세요.');
+      }
+    }
+
+    function exportBib(fmt) {
+      const ch = document.getElementById('fChapter').value;
+      const st = document.getElementById('fStatus').value;
+      window.open(`/api/export/bibliography?fmt=${fmt}&chapter=${encodeURIComponent(ch)}&status=${encodeURIComponent(st)}`, '_blank');
+    }
+
+    function quickSearch(q, scope) {
+      document.getElementById('qScholar').value = q;
+      document.getElementById('qScope').value = scope;
+      runScholarSearch();
+    }
+
+    let lastSearchPapers = [];
+    async function runScholarSearch() {
+      const q = document.getElementById('qScholar').value.trim();
+      const scope = document.getElementById('qScope').value;
+      if (!q) return;
+      const box = document.getElementById('scholarResults');
+      box.innerHTML = '<div style="color:var(--muted); padding:10px;">국내외 학술 DB 검색 중...</div>';
+      const res = await fetch('/api/collect/scholar/search', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ query: q, scope: scope, limit: 8 }),
+      });
+      const d = await res.json();
+      if (!res.ok) { box.innerHTML = `<div style="color:var(--red);">${escapeHtml(d.detail)}</div>`; return; }
+      lastSearchPapers = d.papers || [];
+      if (!lastSearchPapers.length) {
+        box.innerHTML = '<div style="color:var(--muted); padding:10px;">검색 결과가 없습니다. 영문 키워드나 다른 범위로 시도해 보세요.</div>';
+        return;
+      }
+      box.innerHTML = lastSearchPapers.map((p, i) => `
+        <div class="paper-card">
+          <div class="ptitle">${escapeHtml(p.title)}</div>
+          <div class="pmeta">
+            <b>${escapeHtml(p.journal)}</b> (${p.year || '-'}) · 저자: ${escapeHtml((p.authors || []).join(', '))}<br/>
+            피인용: <b>${p.cited_by_count || 0}회</b> · 출처: ${escapeHtml(p.provider)} · ${p.is_oa ? '<span style="color:var(--green);">오픈액세스(OA)</span>' : '메타데이터/초록'}
+            ${p.pdf_url ? ' · <span style="color:var(--cyan);">PDF 직접 다운로드 가능</span>' : ''}
+          </div>
+          <div class="pabs">${escapeHtml((p.abstract || '(초록 미제공)').slice(0, 260))}${p.abstract && p.abstract.length > 260 ? '...' : ''}</div>
+          <div style="display:flex; gap:8px; flex-wrap:wrap;">
+            <button class="sm green" onclick="ingestPaper(${i}, false)">수집 & 근거 패킷 추가</button>
+            ${p.pdf_url ? `<button class="sm" onclick="ingestPaper(${i}, true)">OA PDF 포함 수집</button>` : ''}
+            ${p.url ? `<a href="${escapeHtml(p.url)}" target="_blank" style="font-size:12px; align-self:center;">원문 링크 열기 ↗</a>` : ''}
+          </div>
+        </div>
+      `).join('');
+    }
+
+    async function ingestPaper(idx, dlPdf) {
+      const p = lastSearchPapers[idx];
+      const pkt = document.getElementById('qPacket').value;
+      const ch = pkt.replace('_evidence', '');
+      showToast('논문 수집 및 근거 패킷 저장 중...');
+      const res = await fetch('/api/collect/scholar/ingest', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ paper: p, packet_id: pkt, topic: ch, download_oa_pdf: dlPdf, chapters: [ch] }),
+      });
+      const d = await res.json();
+      if (d.status === 'OK') {
+        showToast(`${d.source_id} 수집 완료! (${pkt})`);
+        loadSources(); loadOverview();
+      } else {
+        showToast(`상태: ${d.status || d.detail}`);
+      }
+    }
+
+    async function importBibtex() {
+      const text = document.getElementById('bibInput').value.trim();
+      const pkt = document.getElementById('bibPacket').value;
+      if (!text) return;
+      const res = await fetch('/api/collect/bibtex', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ bibtex_text: text, packet_id: pkt, topic: pkt, chapters: [pkt.replace('_evidence', '')] }),
+      });
+      const d = await res.json();
+      if (res.ok) {
+        showToast(`BibTeX ${d.parsed}건 처리 완료!`);
+        document.getElementById('bibInput').value = '';
+        loadSources(); loadOverview();
+      } else {
+        showToast(d.detail || 'BibTeX 파싱 실패');
+      }
+    }
+
+    async function collectUrl() {
+      const url = document.getElementById('webUrl').value.trim();
+      const pkt = document.getElementById('webPacket').value;
+      if (!url) return;
+      showToast('URL robots.txt 점검 및 정제 수집 중...');
+      const res = await fetch('/api/collect/url', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ url: url, packet_id: pkt, topic: pkt }),
+      });
+      const d = await res.json();
+      showToast(`URL 수집 결과: ${d.status} ${d.source_id || d.robots_status || ''}`);
+      loadSources(); loadOverview();
+    }
+
+    async function collectFile() {
+      const fp = document.getElementById('localFile').value.trim();
+      const pkt = document.getElementById('filePacket').value;
+      if (!fp) return;
+      showToast('로컬 문서 파싱 및 E:\\ 보관 중...');
+      const res = await fetch('/api/collect/file', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ file_path: fp, packet_id: pkt, topic: pkt }),
+      });
+      const d = await res.json();
+      showToast(`문서 파싱 결과: ${d.status} ${d.source_id || ''}`);
+      loadSources(); loadOverview();
+    }
+
+    // ---------- 8500 탭 2: Google NotebookLM 가져오기 ----------
+    let mainNlmNbs = [];
+    async function loadMainNlmNotebooks() {
+      const q = document.getElementById('mNlmQuery').value.trim();
+      showToast('NotebookLM 노트북 목록 조회 중...');
+      const r = await fetch('/api/notebooklm/notebooks?q=' + encodeURIComponent(q));
+      const d = await r.json();
+      if (!r.ok) { showToast(d.detail || 'NotebookLM 조회 실패'); return; }
+      mainNlmNbs = d.notebooks || [];
+      const sel = document.getElementById('mNlmNbSel');
+      sel.innerHTML = '<option value="">-- 노트북 선택 (' + mainNlmNbs.length + '개) --</option>' +
+        mainNlmNbs.map(n => `<option value="${escapeHtml(n.id)}">${escapeHtml(n.title)} (${n.source_count}건)</option>`).join('');
+      showToast(`NotebookLM 노트북 ${mainNlmNbs.length}개를 불러왔습니다.`);
+    }
+
+    async function loadMainNlmSources() {
+      const nbId = document.getElementById('mNlmNbSel').value;
+      const box = document.getElementById('mNlmSrcBox');
+      if (!nbId) { box.innerHTML = '노트북을 선택하세요.'; return; }
+      box.innerHTML = '소스 목록 불러오는 중...';
+      const r = await fetch('/api/notebooklm/notebooks/' + encodeURIComponent(nbId) + '/sources');
+      const d = await r.json();
+      if (!r.ok) { box.innerHTML = escapeHtml(d.detail || '조회 실패'); return; }
+      const srcs = d.sources || [];
+      box.innerHTML = srcs.map(s => `
+        <label style="display:flex; gap:6px; align-items:flex-start; padding:4px 0; border-bottom:1px solid var(--border); cursor:pointer;">
+          <input type="checkbox" class="m-nlm-chk" value="${escapeHtml(s.id)}" style="margin-top:2px;" />
+          <span><span class="badge b-cat">${escapeHtml(s.type)}</span> ${escapeHtml(s.title)}</span>
+        </label>
+      `).join('') || '소스가 없습니다.';
+    }
+
+    function toggleMainNlmAll(val) {
+      document.querySelectorAll('.m-nlm-chk').forEach(el => { el.checked = val; });
+    }
+
+    async function importMainNlm(alsoRag) {
+      const nbId = document.getElementById('mNlmNbSel').value;
+      const nbObj = mainNlmNbs.find(x => x.id === nbId);
+      const ids = Array.from(document.querySelectorAll('.m-nlm-chk:checked')).map(el => el.value);
+      if (!nbId || !ids.length) { showToast('노트북과 가져올 소스를 1건 이상 선택해 주세요.'); return; }
+      showToast(alsoRag ? `NotebookLM ${ids.length}건 가져오기 및 RAG 적재 중...` : `NotebookLM ${ids.length}건 가져오는 중...`);
+      const r = await fetch('/api/notebooklm/import', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+          project_id: activeProjectId,
+          notebook_id: nbId,
+          notebook_title: nbObj?.title || nbId,
+          source_ids: ids,
+          also_ingest_rag: alsoRag,
+        }),
+      });
+      const d = await r.json();
+      if (!r.ok) { showToast(d.detail || '가져오기 실패'); return; }
+      showToast(`NotebookLM ${d.imported_count}건 가져오기 완료! (${(d.imported_source_ids||[]).join(', ')})`);
+      loadSources(); loadOverview();
+    }
+
+    async function loadBlueprint() {
+      const qStr = projParam() ? `?${projParam()}` : '';
+      const res = await fetch('/api/blueprint' + qStr);
+      const d = await res.json();
+      currentBlueprintData = d;
+      const mbEl = document.getElementById('masterBookLinks');
+      const visBadge = document.getElementById('visualCountBadge');
+      const visGal = document.getElementById('visualGallery');
+      if (!d.exists || !d.parts) {
+        if (mbEl) mbEl.innerHTML = '';
+        if (visBadge) visBadge.textContent = '0종';
+        if (visGal) visGal.innerHTML = '<div style="color:var(--muted); font-size:12.5px;">시각화 도해는 7단계(visual-publisher) 실행 후 표시됩니다.</div>';
+        document.getElementById('blueprintContainer').innerHTML = `
+          <div style="padding:14px; background:#0b1222; border:1px solid var(--border); border-radius:9px; font-size:13px; color:#cbd5e1;">
+            <b>《${escapeHtml(d.topic_ko || activeProjectMeta?.topic_ko || '')}》</b> 프로젝트의 마스터 청사진(<code>master_outline.yaml</code>)이 아직 생성되지 않았습니다.<br/><br/>
+            <button class="green sm" onclick="initStarterBlueprint()">📋 15개 단원 기본 청사진 즉시 생성하고 편집하기</button>
+            <a href="http://127.0.0.1:8501" target="_blank" style="color:#4ade80; font-weight:700; margin-left:10px;">서브에이전트 관제 대시보드(8501) ↗</a>
+          </div>`;
+        return;
+      }
+      const totalChCount = d.parts.reduce((acc, pt) => acc + (pt.chapters || []).length, 0);
+      const totalPgCount = d.parts.reduce((acc, pt) => acc + (pt.chapters || []).reduce((a2, c) => a2 + Number(c.target_pages || 0), 0), 0);
+      const bpTitle = document.getElementById('blueprintTitle');
+      if (bpTitle) {
+        bpTitle.textContent = `《${d.book_metadata?.title_ko || d.topic_ko || activeProjectMeta?.topic_ko || ''}》 ${totalPgCount}p 마스터 청사진 (${d.parts.length}부 ${totalChCount}개 단원 진행 · 합본 출판)`;
+      }
+      // 단원 선택 드롭다운 동적 갱신
+      const revSel = document.getElementById('reviewChapterSel');
+      if (revSel) {
+        const allChs = d.parts.flatMap(pt => pt.chapters || []);
+        revSel.innerHTML = allChs.map(c => `<option value="${escapeHtml(c.chapter_id)}">${escapeHtml(c.chapter_id)} — ${escapeHtml(c.title)}</option>`).join('');
+      }
+      const mb = d.master_book || {};
+      if (mbEl) {
+        const eds = mb.report?.editions || {};
+        const skP = eds.shinkuk?.pdf_pages ? ` (${eds.shinkuk.pdf_pages}p)` : '';
+        const b5P = eds.b5?.pdf_pages ? ` (${eds.b5.pdf_pages}p)` : '';
+        const a4P = (eds.a4?.pdf_pages || mb.report?.pdf_pages) ? ` (${eds.a4?.pdf_pages || mb.report?.pdf_pages}p)` : '';
+        mbEl.innerHTML = [
+          mb.shinkuk_exists ? `<a href="/exports/master_book/Soil_Organic_Matter_Master_Book_Shinkuk.pdf${qStr}" target="_blank" style="background:#7c3aed;color:#fff;padding:6px 12px;border-radius:8px;font-size:12.5px;font-weight:700;">신국판 단행본 PDF${skP}</a>` : '',
+          mb.b5_exists ? `<a href="/exports/master_book/Soil_Organic_Matter_Master_Book_B5.pdf${qStr}" target="_blank" style="background:#0284c7;color:#fff;padding:6px 12px;border-radius:8px;font-size:12.5px;font-weight:700;">B5 대학교재 PDF${b5P}</a>` : '',
+          mb.pdf_exists ? `<a href="/exports/master_book/Soil_Organic_Matter_Master_Book.pdf${qStr}" target="_blank" style="background:#1d4ed8;color:#fff;padding:6px 12px;border-radius:8px;font-size:12.5px;font-weight:700;">A4 마스터 PDF${a4P}</a>` : '',
+          mb.docx_exists ? `<a href="/exports/master_book/Soil_Organic_Matter_Master_Book.docx${qStr}" target="_blank" style="background:#15803d;color:#fff;padding:6px 12px;border-radius:8px;font-size:12.5px;font-weight:700;">Word(.docx) 합본 (20종 도해)</a>` : '',
+        ].filter(Boolean).join('');
+      }
+      const visList = d.visuals || [];
+      if (visBadge && visGal) {
+        const nbCnt = visList.filter(v => v.kind === 'nano_banana').length;
+        const svgCnt = visList.filter(v => v.kind === 'svg_chart').length;
+        visBadge.textContent = `총 ${visList.length}종 (Nano Banana ${nbCnt} + SVG ${svgCnt})`;
+        visGal.innerHTML = visList.map(v => `
+          <div style="background:#0f172a; border:1px solid var(--border); border-radius:10px; padding:10px; display:flex; flex-direction:column; gap:6px;">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <b style="color:var(--cyan); font-size:12px;">${escapeHtml(v.chapter_id.toUpperCase())}</b>
+              <span class="badge ${v.kind === 'nano_banana' ? 'b-kr' : 'b-cat'}">${v.kind === 'nano_banana' ? 'Nano Banana AI' : 'Vector SVG'}</span>
+            </div>
+            <a href="${escapeHtml(v.url)}" target="_blank" style="display:block; background:#fff; border-radius:6px; overflow:hidden; padding:4px;">
+              <img src="${escapeHtml(v.url)}" alt="${escapeHtml(v.caption_ko)}" style="width:100%; height:140px; object-fit:contain; display:block;" loading="lazy" />
+            </a>
+            <div style="font-size:11.5px; color:#cbd5e1; line-height:1.45;">${escapeHtml(v.caption_ko)}</div>
+          </div>
+        `).join('');
+      }
+      document.getElementById('blueprintContainer').innerHTML = d.parts.map(part => `
+        <h3 style="margin-top:14px; color:var(--cyan);">${escapeHtml(part.title)} (${part.pages}p)</h3>
+        <table>
+          <thead><tr><th>단원</th><th>제목 · 세부 절(Sections)</th><th>목표 쪽수</th><th>배정 자료</th><th>초안 분량</th><th>인용 감사</th><th>4종 출판물</th></tr></thead>
+          <tbody>
+            ${part.chapters.map(c => {
+              const ex = c.exports || {};
+              const cid = escapeHtml(c.chapter_id);
+              const secsPreview = (c.sections || []).length
+                ? `<div style="font-size:11px; color:var(--muted); margin-top:3px;">${(c.sections || []).map(escapeHtml).join(' · ')}</div>`
+                : '';
+              const links = [
+                ex.interactive_html ? `<a href="/chapters/${cid}${qStr}" target="_blank" onclick="event.stopPropagation()" style="color:#4ade80;font-weight:700;">네이버블로그웹</a>` : '',
+                ex.naver_blog_html ? `<a href="/blog/${cid}${qStr}" target="_blank" onclick="event.stopPropagation()">순수블로그HTML</a>` : '',
+                ex.textbook_pdf ? `<a href="/exports/${cid}/${cid}_textbook.pdf${qStr}" target="_blank" onclick="event.stopPropagation()">교재PDF</a>` : '',
+                ex.curriculum_pdf ? `<a href="/exports/${cid}/${cid}_curriculum.pdf${qStr}" target="_blank" onclick="event.stopPropagation()">교과서PDF</a>` : '',
+                ex.report_docx ? `<a href="/exports/${cid}/${cid}_report.docx${qStr}" target="_blank" onclick="event.stopPropagation()">보고서DOCX</a>` : '',
+                ex.report_pdf ? `<a href="/exports/${cid}/${cid}_report.pdf${qStr}" target="_blank" onclick="event.stopPropagation()">보고서PDF</a>` : '',
+              ].filter(Boolean).join(' · ') || '<span style="color:var(--muted)">대기</span>';
+              return `
+              <tr class="clickable" onclick="selectReviewChapter('${cid}')">
+                <td><b>${cid}</b></td>
+                <td><b>${escapeHtml(c.title)}</b>${secsPreview}</td>
+                <td>${c.target_pages}p</td>
+                <td><b>${c.source_count}건</b></td>
+                <td>${c.draft_exists ? c.draft_chars.toLocaleString() + '자' : '<span style="color:var(--muted)">미작성</span>'}</td>
+                <td><span class="badge ${c.audit_status === 'PASS' ? 'b-approved' : 'b-hold'}">${escapeHtml(c.audit_status)}</span></td>
+                <td style="font-size:11.5px; white-space:nowrap;">${links}</td>
+              </tr>`;
+            }).join('')}
+          </tbody>
+        </table>
+      `).join('');
+    }
+
+    // ---------- 마스터 청사진 인터랙티브 편집기 (Visual + YAML) ----------
+    async function initStarterBlueprint() {
+      const chs = activeProjectMeta?.chapter_count || 15;
+      const q = projParam() ? `?${projParam()}&chapters=${chs}` : `?chapters=${chs}`;
+      const r = await fetch('/api/blueprint/init' + q, { method: 'POST' });
+      if (!r.ok) { showToast('기본 청사진 생성 실패'); return; }
+      showToast(`${chs}개 단원 기본 청사진이 생성되었습니다.`);
+      await loadOverview();
+      await loadBlueprint();
+      toggleBlueprintEditor('visual');
+    }
+
+    async function toggleBlueprintEditor(mode) {
+      const box = document.getElementById('bpEditorBox');
+      if (box.style.display === 'block' && bpEditMode === mode) {
+        box.style.display = 'none';
+        return;
+      }
+      if (!currentBlueprintData || !currentBlueprintData.parts) {
+        await loadBlueprint();
+      }
+      if (!currentBlueprintData || !currentBlueprintData.parts) {
+        showToast('먼저 기본 청사진을 생성해 주세요.');
+        return;
+      }
+      bpEditState = JSON.parse(JSON.stringify({
+        book_metadata: currentBlueprintData.book_metadata || {
+          title_ko: activeProjectMeta?.topic_ko || '',
+          title_en: activeProjectMeta?.topic_en || '',
+          target_audience: activeProjectMeta?.target_audience || '',
+          target_pages: activeProjectMeta?.target_pages || 500,
+        },
+        parts: (currentBlueprintData.parts || []).map(pt => ({
+          part_number: pt.part_number,
+          title: pt.title,
+          chapters: (pt.chapters || []).map(c => ({
+            chapter_id: c.chapter_id,
+            title: c.title,
+            target_pages: Number(c.target_pages || 33),
+            sections: Array.isArray(c.sections) ? [...c.sections] : [],
+            evidence_packet: c.evidence_packet || '',
+            assigned_sources: Array.isArray(c.assigned_sources) ? [...c.assigned_sources] : [],
+          })),
+        })),
+      }));
+      box.style.display = 'block';
+      await switchBpEditMode(mode);
+    }
+
+    function closeBlueprintEditor() {
+      document.getElementById('bpEditorBox').style.display = 'none';
+    }
+
+    async function switchBpEditMode(mode) {
+      bpEditMode = mode;
+      document.getElementById('bpVisualEditor').style.display = mode === 'visual' ? 'block' : 'none';
+      document.getElementById('bpYamlEditor').style.display = mode === 'yaml' ? 'block' : 'none';
+      if (mode === 'visual') {
+        renderBpVisualEditor();
+      } else {
+        const qStr = projParam() ? `?${projParam()}` : '';
+        const r = await fetch('/api/blueprint/yaml' + qStr);
+        const d = await r.json();
+        document.getElementById('bpYamlText').value = d.yaml_text || '';
+      }
+    }
+
+    function syncBpInputsToState() {
+      if (!bpEditState) return;
+      bpEditState.book_metadata.title_ko = document.getElementById('bpMetaTitleKo').value.trim();
+      bpEditState.book_metadata.title_en = document.getElementById('bpMetaTitleEn').value.trim();
+      bpEditState.book_metadata.target_audience = document.getElementById('bpMetaAudience').value.trim();
+    }
+
+    function renderBpVisualEditor() {
+      if (!bpEditState) return;
+      document.getElementById('bpMetaTitleKo').value = bpEditState.book_metadata.title_ko || '';
+      document.getElementById('bpMetaTitleEn').value = bpEditState.book_metadata.title_en || '';
+      document.getElementById('bpMetaAudience').value = bpEditState.book_metadata.target_audience || '';
+
+      const totalCh = bpEditState.parts.reduce((a, p) => a + p.chapters.length, 0);
+      const totalPg = bpEditState.parts.reduce((a, p) => a + p.chapters.reduce((a2, c) => a2 + Number(c.target_pages || 0), 0), 0);
+      document.getElementById('bpEditSummary').textContent = `현재 ${bpEditState.parts.length}부 · ${totalCh}개 단원 · 총 ${totalPg}p`;
+
+      const partOpts = (curPi) => bpEditState.parts.map((p, idx) =>
+        `<option value="${idx}" ${idx === curPi ? 'selected' : ''}>${idx + 1}부: ${escapeHtml(p.title.slice(0, 18))}</option>`
+      ).join('');
+
+      document.getElementById('bpPartsEditorList').innerHTML = bpEditState.parts.map((pt, pi) => {
+        const pPages = pt.chapters.reduce((a, c) => a + Number(c.target_pages || 0), 0);
+        return `
+          <div class="bp-part-card">
+            <div class="bp-part-head">
+              <span class="badge b-cat">제${pi + 1}부 (${pt.chapters.length}장 · ${pPages}p)</span>
+              <input type="text" value="${escapeHtml(pt.title)}" oninput="bpEditState.parts[${pi}].title = this.value" style="flex:1; min-width:220px; font-weight:700;" />
+              <button type="button" class="sec sm" onclick="addBpChapter(${pi})">+ 단원 추가</button>
+              <button type="button" class="sec sm" onclick="moveBpPart(${pi}, -1)" ${pi === 0 ? 'disabled' : ''}>↑</button>
+              <button type="button" class="sec sm" onclick="moveBpPart(${pi}, 1)" ${pi === bpEditState.parts.length - 1 ? 'disabled' : ''}>↓</button>
+              <button type="button" class="red sm" onclick="deleteBpPart(${pi})">부 삭제</button>
+            </div>
+            ${pt.chapters.map((c, ci) => `
+              <div class="bp-ch-row">
+                <div class="bp-ch-grid">
+                  <input type="text" value="${escapeHtml(c.chapter_id)}" oninput="bpEditState.parts[${pi}].chapters[${ci}].chapter_id = this.value.trim()" title="단원 ID" />
+                  <input type="text" value="${escapeHtml(c.title)}" oninput="bpEditState.parts[${pi}].chapters[${ci}].title = this.value" placeholder="단원 제목" />
+                  <input type="number" min="5" max="200" value="${Number(c.target_pages || 33)}" oninput="bpEditState.parts[${pi}].chapters[${ci}].target_pages = Number(this.value || 0); updateBpSummaryOnly();" title="목표 쪽수" />
+                  <select onchange="moveBpChapterToPart(${pi}, ${ci}, Number(this.value))" title="다른 부로 이동">${partOpts(pi)}</select>
+                  <div style="display:flex; gap:4px;">
+                    <button type="button" class="sec sm" onclick="moveBpChapter(${pi}, ${ci}, -1)" ${ci === 0 ? 'disabled' : ''}>↑</button>
+                    <button type="button" class="sec sm" onclick="moveBpChapter(${pi}, ${ci}, 1)" ${ci === pt.chapters.length - 1 ? 'disabled' : ''}>↓</button>
+                    <button type="button" class="red sm" onclick="deleteBpChapter(${pi}, ${ci})">×</button>
+                  </div>
+                </div>
+                <div style="margin-top:6px;">
+                  <textarea rows="2" style="width:100%; font-size:11.5px; color:#cbd5e1;" placeholder="세부 소단원 (줄바꿈으로 구분, 예: 1.1 개요)" oninput="bpEditState.parts[${pi}].chapters[${ci}].sections = this.value.split('\\n').map(x=>x.trim()).filter(Boolean)">${escapeHtml((c.sections || []).join('\n'))}</textarea>
+                </div>
+              </div>
+            `).join('')}
+          </div>`;
+      }).join('');
+    }
+
+    function updateBpSummaryOnly() {
+      if (!bpEditState) return;
+      const totalCh = bpEditState.parts.reduce((a, p) => a + p.chapters.length, 0);
+      const totalPg = bpEditState.parts.reduce((a, p) => a + p.chapters.reduce((a2, c) => a2 + Number(c.target_pages || 0), 0), 0);
+      document.getElementById('bpEditSummary').textContent = `현재 ${bpEditState.parts.length}부 · ${totalCh}개 단원 · 총 ${totalPg}p`;
+    }
+
+    function addBpPart() {
+      syncBpInputsToState();
+      const nextNum = bpEditState.parts.length + 1;
+      const nextCh = bpEditState.parts.reduce((a, p) => a + p.chapters.length, 0) + 1;
+      const cid = 'ch' + String(nextCh).padStart(2, '0');
+      bpEditState.parts.push({
+        part_number: nextNum,
+        title: `제${nextNum}부. 새 영역`,
+        chapters: [{ chapter_id: cid, title: `제${nextCh}장. 새 단원`, target_pages: 33, sections: [`${nextCh}.1 개요`, `${nextCh}.2 핵심 원리`, `${nextCh}.3 현장 적용`] }],
+      });
+      renderBpVisualEditor();
+    }
+
+    function deleteBpPart(pi) {
+      if (bpEditState.parts.length <= 1) { showToast('최소 1개 이상의 부(Part)가 필요합니다.'); return; }
+      syncBpInputsToState();
+      bpEditState.parts.splice(pi, 1);
+      renderBpVisualEditor();
+    }
+
+    function moveBpPart(pi, dir) {
+      const ni = pi + dir;
+      if (ni < 0 || ni >= bpEditState.parts.length) return;
+      syncBpInputsToState();
+      const tmp = bpEditState.parts[pi];
+      bpEditState.parts[pi] = bpEditState.parts[ni];
+      bpEditState.parts[ni] = tmp;
+      renderBpVisualEditor();
+    }
+
+    function addBpChapter(pi) {
+      syncBpInputsToState();
+      const nextCh = bpEditState.parts.reduce((a, p) => a + p.chapters.length, 0) + 1;
+      const cid = 'ch' + String(nextCh).padStart(2, '0');
+      bpEditState.parts[pi].chapters.push({
+        chapter_id: cid,
+        title: `제${nextCh}장. 새 단원`,
+        target_pages: 33,
+        sections: [`${nextCh}.1 개요`, `${nextCh}.2 핵심 원리`, `${nextCh}.3 현장 적용`],
+      });
+      renderBpVisualEditor();
+    }
+
+    function deleteBpChapter(pi, ci) {
+      syncBpInputsToState();
+      bpEditState.parts[pi].chapters.splice(ci, 1);
+      if (bpEditState.parts[pi].chapters.length === 0 && bpEditState.parts.length > 1) {
+        bpEditState.parts.splice(pi, 1);
+      }
+      renderBpVisualEditor();
+    }
+
+    function moveBpChapter(pi, ci, dir) {
+      const chs = bpEditState.parts[pi].chapters;
+      const ni = ci + dir;
+      if (ni < 0 || ni >= chs.length) return;
+      syncBpInputsToState();
+      const tmp = chs[ci]; chs[ci] = chs[ni]; chs[ni] = tmp;
+      renderBpVisualEditor();
+    }
+
+    function moveBpChapterToPart(fromPi, ci, toPi) {
+      if (fromPi === toPi) return;
+      syncBpInputsToState();
+      const [item] = bpEditState.parts[fromPi].chapters.splice(ci, 1);
+      bpEditState.parts[toPi].chapters.push(item);
+      if (bpEditState.parts[fromPi].chapters.length === 0 && bpEditState.parts.length > 1) {
+        bpEditState.parts.splice(fromPi, 1);
+      }
+      renderBpVisualEditor();
+    }
+
+    function renumberBlueprintChapters() {
+      if (!bpEditState) return;
+      syncBpInputsToState();
+      let seq = 0;
+      for (const pt of bpEditState.parts) {
+        for (const c of pt.chapters) {
+          seq++;
+          c.chapter_id = 'ch' + String(seq).padStart(2, '0');
+        }
+      }
+      renderBpVisualEditor();
+      showToast(`단원 ID를 ch01 ~ ch${String(seq).padStart(2, '0')}로 재정렬했습니다.`);
+    }
+
+    function groupBlueprintInto5Parts() {
+      if (!bpEditState) return;
+      syncBpInputsToState();
+      const flat = bpEditState.parts.flatMap(p => p.chapters);
+      if (flat.length < 5) { showToast('5부로 나누려면 최소 5개 이상의 단원이 필요합니다.'); return; }
+      const defaultPartNames = [
+        '제1부. 기초 생리 · 품종 · 토양 파종',
+        '제2부. 생육 관리 · 병해충 · 환경 스트레스',
+        '제3부. 수확 · 수확 후 관리 · 품질 평가',
+        '제4부. 세계 유통 · 제분 · 용도별 가공',
+        '제5부. 디지털 트윈 · 저탄소 · 미래 융합',
+      ];
+      const perPart = Math.ceil(flat.length / 5);
+      const newParts = [];
+      for (let i = 0; i < 5; i++) {
+        const slice = flat.slice(i * perPart, (i + 1) * perPart);
+        if (slice.length) {
+          newParts.push({ part_number: newParts.length + 1, title: defaultPartNames[i], chapters: slice });
+        }
+      }
+      bpEditState.parts = newParts;
+      renderBpVisualEditor();
+      showToast(`${flat.length}개 단원을 5부 체제로 묶었습니다. [청사진 저장]을 눌러 확정하세요.`);
+    }
+
+    async function saveBlueprintEditor() {
+      if (bpEditMode === 'yaml') {
+        return saveBlueprintYaml();
+      }
+      syncBpInputsToState();
+      const qStr = projParam() ? `?${projParam()}` : '';
+      const r = await fetch('/api/blueprint' + qStr, {
+        method: 'PUT',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(bpEditState),
+      });
+      const d = await r.json();
+      if (!r.ok) { showToast(d.detail || '청사진 저장 실패'); return; }
+      showToast(`저장 완료! (${d.parts_count}부 ${d.chapter_count}장 · 총 ${d.total_pages}p)`);
+      closeBlueprintEditor();
+      await loadOverview();
+      await loadBlueprint();
+    }
+
+    async function saveBlueprintYaml() {
+      const txt = document.getElementById('bpYamlText').value;
+      const qStr = projParam() ? `?${projParam()}` : '';
+      const r = await fetch('/api/blueprint/yaml' + qStr, {
+        method: 'PUT',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ yaml_text: txt }),
+      });
+      const d = await r.json();
+      if (!r.ok) { showToast(d.detail || 'YAML 저장 실패'); return; }
+      showToast(`YAML 저장 완료! (${d.parts_count}부 ${d.chapter_count}장 · 총 ${d.total_pages}p)`);
+      closeBlueprintEditor();
+      await loadOverview();
+      await loadBlueprint();
+    }
+
+    function selectReviewChapter(cid) {
+      const sel = document.getElementById('reviewChapterSel');
+      if (sel && [...sel.options].some(o => o.value === cid)) {
+        sel.value = cid;
+      }
+      loadChapter(cid);
+    }
+
+    async function loadChapter(cid) {
+      const qStr = projParam() ? `?${projParam()}` : '';
+      const res = await fetch('/api/chapter/' + encodeURIComponent(cid) + qStr);
+      const d = await res.json();
+      currentChapterSources = d.sources_index || {};
+      const badge = document.getElementById('chAuditBadge');
+      const st = d.audit?.status || '미실행';
+      badge.textContent = `감사 판정: ${st} (치명오류 ${d.audit?.critical_errors?.length ?? 0}건 / 경고 ${d.audit?.warnings?.length ?? 0}건)`;
+      badge.className = 'badge ' + (st === 'PASS' ? 'b-approved' : 'b-review');
+
+      if (!d.exists) {
+        document.getElementById('chapterMdx').textContent = '아직 작성된 초안이 없습니다.';
+        return;
+      }
+      const safeMathHtml = escapeHtml(d.content)
+        .replace(/&lt;(\/?(?:sub|sup|b|i))&gt;/g, '<$1>')
+        .replace(/&lt;div class=&quot;math-block&quot;&gt;/g, '<div class="math-block">')
+        .replace(/&lt;\/div&gt;/g, '</div>')
+        .replace(/&lt;span class=&quot;(math-eq|math-cite|m-frac|m-num|m-den|m-rxn|m-rxn-lbl|m-rxn-arr)&quot;&gt;/g, '<span class="$1">')
+        .replace(/&lt;\/span&gt;/g, '</span>')
+        .replace(/\[(SRC-\d{2,4}(?:,\s*[^\]]+)?)\]/g, (m, inner) => {
+          const sid = inner.split(',')[0].trim();
+          return `<span class="cite-chip" onclick="showProvenance('${sid}')">[${inner}]</span>`;
+        });
+      document.getElementById('chapterMdx').innerHTML = safeMathHtml;
+    }
+
+    async function showProvenance(sid) {
+      const panel = document.getElementById('provenancePanel');
+      panel.textContent = `[${sid}] 근거 원문 불러오는 중...`;
+      const res = await fetch('/api/sources/' + encodeURIComponent(sid));
+      if (!res.ok) { panel.textContent = `${sid} 를 찾을 수 없습니다.`; return; }
+      const s = await res.json();
+      panel.innerHTML = `
+        <b style="color:var(--cyan); font-size:14px;">[${escapeHtml(s.source_id)}] ${escapeHtml(s.title)}</b>\n
+        등급: ${escapeHtml(s.tier)} | 저널/기관: ${escapeHtml(s.journal || s.provider)} | 연도: ${s.year || '-'}\n
+        URL: <a href="${escapeHtml(s.url)}" target="_blank">${escapeHtml(s.url)}</a>\n
+        라이선스: ${escapeHtml(s.license_note)}\n
+        --------------------------------------------------\n
+        ${escapeHtml((s.parsed_preview || '').slice(0, 3500))}
+      `;
+    }
+
+    loadOverview().then(async () => {
+      await loadSources();
+      const qs = new URLSearchParams(window.location.search);
+      if (qs.get('tab') === 'blueprint') {
+        switchTab('blueprint', document.getElementById('tabBtnBlueprint'));
+        if (qs.get('edit') === '1') {
+          await loadBlueprint();
+          toggleBlueprintEditor('visual');
+        }
+      }
+    });
+  </script>
+</body>
+</html>

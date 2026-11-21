@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 380" width="760" height="380" style="background:#ffffff;font-family:'Malgun Gothic', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;">
+  <rect x="0" y="0" width="760" height="380" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+  <rect x="0" y="0" width="760" height="52" rx="10" fill="#0f172a"/>
+  <rect x="0" y="38" width="760" height="14" fill="#0f172a"/>
+  <text x="20" y="24" font-size="14" font-weight="700" fill="#f8fafc">국내외 토양건강 종합평가 체계(흙토람 · Cornell CASH · EU EEA)</text>
+  <text x="20" y="43" font-size="10.5" fill="#94a3b8">물리·화학·생물 통합 지표와 유기물 분획(POM·MAOM·POXC) 연계</text>
+  <defs><marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 1 L 10 5 L 0 9 z" fill="#334155"/></marker></defs>
+  <rect x="24" y="85" width="218" height="175" rx="8" fill="#dbeafe" stroke="#1e293b" stroke-width="1.2"/>
+  <text x="133" y="107" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0f172a">한국 흙토람 (농촌진흥청)</text>
+  <text x="133" y="123" text-anchor="middle" font-size="9.5" fill="#334155">필지별 토양검정·비료처방</text>
+  <text x="133" y="136" text-anchor="middle" font-size="9.5" fill="#334155">· pH, EC, OM(Tyurin)</text>
+  <text x="133" y="149" text-anchor="middle" font-size="9.5" fill="#334155">· 유효인산·치환성양이온</text>
+  <text x="133" y="162" text-anchor="middle" font-size="9.5" fill="#334155">· 논/밭/과수/시설 적정기준</text>
+  <text x="133" y="175" text-anchor="middle" font-size="9.5" fill="#334155">[SRC-01, SRC-27]</text>
+  <rect x="270" y="85" width="220" height="175" rx="8" fill="#dcfce7" stroke="#1e293b" stroke-width="1.2"/>
+  <text x="380" y="107" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0f172a">미국 Cornell CASH</text>
+  <text x="380" y="123" text-anchor="middle" font-size="9.5" fill="#334155">물리·생물·화학 균형 채점</text>
+  <text x="380" y="136" text-anchor="middle" font-size="9.5" fill="#334155">· 총유기물(SOM) + 활성탄소(POXC)</text>
+  <text x="380" y="149" text-anchor="middle" font-size="9.5" fill="#334155">· 습식 단립안정성·유효수분</text>
+  <text x="380" y="162" text-anchor="middle" font-size="9.5" fill="#334155">· 토양호흡·ACE 단백질</text>
+  <text x="380" y="175" text-anchor="middle" font-size="9.5" fill="#334155">[SRC-40, SRC-41]</text>
+  <rect x="518" y="85" width="218" height="175" rx="8" fill="#f3e8ff" stroke="#1e293b" stroke-width="1.2"/>
+  <text x="627" y="107" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0f172a">유럽 EU EEA · EJP SOIL</text>
+  <text x="627" y="123" text-anchor="middle" font-size="9.5" fill="#334155">광역 LUCAS 모니터링·정책</text>
+  <text x="627" y="136" text-anchor="middle" font-size="9.5" fill="#334155">· 표토 SOC 농도·추세 감시</text>
+  <text x="627" y="149" text-anchor="middle" font-size="9.5" fill="#334155">· SOC/점토 비율 건강지표</text>
+  <text x="627" y="162" text-anchor="middle" font-size="9.5" fill="#334155">· EU Soil Strategy 2030</text>
+  <text x="627" y="175" text-anchor="middle" font-size="9.5" fill="#334155">[SRC-46, SRC-48]</text>
+</svg>

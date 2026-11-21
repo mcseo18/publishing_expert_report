@@ -1,0 +1,42 @@
+# =============================================================================
+# 제11장 단원 청사진 — 토양 탄소·질소 모델링 실전 (RothC·DNDC·Python/SoilR) [신설]
+# =============================================================================
+chapter_id: "ch11"
+chapter_number: 11
+title: "제11장. 토양 탄소·질소 모델링 실전 — RothC·DNDC·Python/SoilR 시뮬레이션 및 국내 논·밭 보정"
+target_pages: 36
+target_audience: "농학·토양환경학 전공자, 농업연구사, 탄소중립·MRV 시뮬레이션 실무자"
+evidence_packet: "data/evidence/ch11_evidence.json"
+
+learning_objectives:
+  - "기상·토성·유기물 투입량 입력 데이터를 구축하고 Falloon 식 기반 IOM 산정 및 초기 평형(Spin-up)을 수행할 수 있다."
+  - "Python과 R(SoilR)을 이용해 RothC 5-풀 탄소 모의 및 Stanford-Smith 질소 무기화 시뮬레이터를 구현·실행할 수 있다."
+  - "RMSE·NSE·R2 검증 지표로 국내 논·밭 장기연용시험 포장의 영농관리별 탄소축적·질소공급 시나리오를 보정·평가할 수 있다."
+
+sections:
+  - section_id: "11.1"
+    title: "모델링 실전 데이터 파이프라인: 입력자료 구축, IOM 산정 및 Spin-up"
+    target_chars: 1800
+    key_points:
+      - "월별 기상자료(기상청 평균기온·강수량·증발산량), 토성(흙토람 점토 함량·용적밀도), 작물잔사·퇴비·녹비 탄소유입량(t C/ha) 환산"
+      - "Falloon 경험식(IOM = 0.049 * SOC^1.139)과 평형 실행(Spin-up)을 통한 초기 풀 비율 설정"
+      - "국내 담수 논토양 적용 시 혐기 분해 지연 계수(Paddy RothC 보정) 필요성"
+    required_table: "표 11-1: RothC·DNDC 실전 구동 필수 입력 변수, 단위 및 국내 공신력 데이터 출처"
+
+  - section_id: "11.2"
+    title: "Python & R(SoilR) 기반 탄소·질소 분해 시뮬레이터 구현 실습"
+    target_chars: 2200
+    key_points:
+      - "SoilR 패키지(Sierra et al., 2012)의 RothCModel() 및 구획 행렬 구현 워크플로"
+      - "Python NumPy 기반 5-풀 월별 RothC 스텝 루프 및 Stanford-Smith 질소 무기화 곡선 계산 예제"
+      - "시나리오 비교 실습: 무처리(화학비료 단독) vs 완숙퇴비 연용 vs 헤어리베치 녹비 환원 30년 모의"
+    required_table: "표 11-2: 30년 영농 시나리오별 표토(0-30 cm) SOC 변화 및 연간 탄소격리율(t C/ha/yr) 비교 예시"
+
+  - section_id: "11.3"
+    title: "매개변수 보정, 민감도 분석 및 국내 논·밭 장기포장 검증 사례"
+    target_chars: 1800
+    key_points:
+      - "모델 성능 정량 검증 지표: RMSE, NRMSE, Nash-Sutcliffe Efficiency(NSE), 결정계수(R2), 평균편향(Bias)"
+      - "국내 한국토양비료학회지 및 국립농업과학원 논·밭 탄소축적 모형 검증 사례와 불확실성 요인"
+      - "모델 출력의 IPCC Tier 3 국가 인벤토리 및 저탄소 농산물 MRV 연계 실무 주의사항"
+    required_table: "표 11-3: 토양탄소·질소 모델 검증 핵심 통계지표 판정 기준표"

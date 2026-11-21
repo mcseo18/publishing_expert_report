@@ -1,0 +1,54 @@
+# =============================================================================
+# 파일럿 단원 청사진 (Chapter 1 Blueprint)
+# =============================================================================
+chapter_id: "ch01"
+chapter_number: 1
+title: "제1장. 토양 유기물(SOM)의 정의, 조성과 토양 생태계 기능"
+target_pages: 38
+target_audience: "농학·토양환경학 대학 전공 심화(학부 3~4학년·대학원생) 및 농업·탄소중립 연구 실무자"
+evidence_packet: "data/evidence/ch01_evidence.json"
+
+learning_objectives:
+  - "토양 유기물(SOM)과 토양 유기탄소(SOC)의 개념·환산 관계 및 전 지구 탄소 저장고에서의 역할을 정량적으로 설명할 수 있다."
+  - "전통적 부식질(부식산·풀빅산·활성/완효/수동 풀) 개념과 현대 물리 분획 패러다임(입자성 유기물 POM vs 광물결합 유기물 MAOM)의 구조·안정화·포화 한계 차이를 비교할 수 있다."
+  - "토양 유기물이 토양 물리성(단립·보수성), 화학성(양이온치환용량 CEC·양분 공급), 생물성(토양 먹이망)에 미치는 핵심 메커니즘과 영농 관리 시사점을 설명할 수 있다."
+
+sections:
+  - section_id: "1.1"
+    title: "토양 유기물(SOM)과 토양 유기탄소(SOC)의 정의 및 전 지구적 의의"
+    target_chars: 1800
+    source_ids: ["SRC-01", "SRC-02", "SRC-03", "SRC-06", "SRC-08", "SRC-09"]
+    key_points:
+      - "토양 유기물(SOM)의 정의: 살아있는 생물체, 신선 식물·동물 잔사, 분해 중인 유기물, 안정화된 부식·광물결합 유기물의 연속체"
+      - "토양 유기탄소(SOC)와 SOM의 관계(SOC로부터 SOM 산출 원리 및 기존 C:\\SMC_GRAPHRAG 내 반 베멜렌 계수·토양검정 맥락)"
+      - "화학비료만으로는 SOM을 증진할 수 없으며 완숙 퇴비·유기성 자원 환원이 필요한 이유"
+      - "전 지구 토양 탄소 저장고의 규모와 기후변화 완화·농업 생산성 방어(수확량 붕괴 억제) 의의"
+    required_table: "표 1-1: SOM과 SOC의 개념적 차이 및 전통적 3-풀(활성·완효·수동) 분류 요약"
+
+  - section_id: "1.2"
+    title: "전통적 부식질 분획과 현대 POM·MAOM 패러다임 전환"
+    target_chars: 2200
+    source_ids: ["SRC-01", "SRC-04", "SRC-05", "SRC-06", "SRC-09", "SRC-10"]
+    key_points:
+      - "전통적 부식물질(Humic Substances) 분류: 부식산(HA), 풀빅산(FA), 휴민과 분광학적 특성 지표(HA/FA 비, E4/E6 비, FTIR, 13C-NMR)"
+      - "Lehmann & Kleber(2015) 토양 연속체 모델과 Lavallee et al.(2019/2020) 입자성 유기물(POM)·광물결합 유기물(MAOM) 프레임워크"
+      - "광물 표면 포화 한계(Mineral-associated carbon capacity / saturation deficit) 개념과 점토·미사 함량·광물 활성도에 따른 저장 잠재력 차이"
+      - "단기 양분 순환·토양 구조 개선(POM)과 장기 탄소 격리(MAOM) 사이의 실무 관리 트레이드오프"
+    required_table: "표 1-2: 입자성 유기물(POM) vs 광물결합 유기물(MAOM)의 기원·체류시간·포화한계·관리 민감도 비교"
+
+  - section_id: "1.3"
+    title: "토양 유기물의 물리·화학·생물학적 다기능 메커니즘과 국내 농경지 시사점"
+    target_chars: 2000
+    source_ids: ["SRC-01", "SRC-02", "SRC-03", "SRC-04", "SRC-11", "SRC-12", "SRC-13"]
+    key_points:
+      - "물리적 기능: 단립 형성·안정화, 공극률 및 침투율 향상, 유효수분보유능(가뭄 저항성) 증진, 토양 침식 저감"
+      - "화학적 기능: 양이온치환용량(CEC) 상승, 질소·인·황 등 필수 양분의 저장 및 서방형 무기화, 토양 완충능 강화"
+      - "생물학적 기능: 세균·진균·토양동물 먹이망 에너지원 공급, 근권 생물다양성 유지, 풀빅산의 옥신 유사 생리활성"
+      - "국내 학회 연구(한국토양비료학회지) 및 흙토람 토양검정 사례: 논·밭 유기탄소 분획 변동, 유기물 자재별 상추 수량·탄소 분획, 토색판·SPAD 활용 추정"
+    required_table: "표 1-3: 토양 유기물의 물리·화학·생물학적 기능과 주요 진단 지표 매트릭스"
+
+audit_requirements:
+  require_inline_citations: true
+  max_verbatim_overlap_words: 15
+  forbidden_unverified_claims: true
+  output_audit_report: "reports/audit_ch01.json"

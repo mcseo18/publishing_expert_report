@@ -1,0 +1,2082 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>전문 교재 제작 통합 플랫폼 · 6단계 단일 대시보드</title>
+<style>
+:root {
+  --bg: #0b1120;
+  --surface: #111827;
+  --card: #161f33;
+  --card2: #1c2740;
+  --border: #26334d;
+  --text: #f1f5f9;
+  --muted: #94a3b8;
+  --accent: #38bdf8;
+  --primary: #2563eb;
+  --primary-h: #1d4ed8;
+  --green: #22c55e;
+  --amber: #f59e0b;
+  --red: #ef4444;
+  --purple: #a855f7;
+  --radius: 12px;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: 'Pretendard', 'Malgun Gothic', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.55;
+  font-size: 14px;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+button {
+  cursor: pointer;
+  font-family: inherit;
+  border: 1px solid var(--border);
+  background: var(--card2);
+  color: var(--text);
+  border-radius: 8px;
+  padding: 7px 13px;
+  font-size: 13px;
+  font-weight: 600;
+  transition: all .15s;
+}
+button:hover { border-color: var(--accent); background: #233152; }
+button:disabled { opacity: .5; cursor: not-allowed; }
+.btn-primary { background: var(--primary); border-color: var(--primary); color: #fff; }
+.btn-primary:hover { background: var(--primary-h); border-color: var(--primary-h); }
+.btn-green { background: #15803d; border-color: #16a34a; color: #fff; }
+.btn-green:hover { background: #166534; }
+.btn-amber { background: #b45309; border-color: #d97706; color: #fff; }
+.btn-amber:hover { background: #92400e; }
+.btn-red { background: #991b1b; border-color: #dc2626; color: #fff; }
+.btn-red:hover { background: #7f1d1d; }
+.btn-sm { padding: 4px 10px; font-size: 12px; }
+
+input, select, textarea {
+  background: #0d1526;
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 11px;
+  font-family: inherit;
+  font-size: 13px;
+  width: 100%;
+}
+input:focus, select:focus, textarea:focus { outline: none; border-color: var(--accent); }
+input[type="checkbox"] { width: auto; accent-color: var(--accent); transform: scale(1.15); cursor: pointer; }
+
+/* ====== 상단 고정 헤더 + 진도 바 ====== */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(11, 17, 32, 0.96);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+  padding: 12px 22px 10px;
+}
+.topbar-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.brand-logo {
+  width: 34px; height: 34px;
+  border-radius: 9px;
+  background: linear-gradient(135deg, #2563eb, #38bdf8);
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: 16px; color: #fff;
+}
+.brand-title { font-size: 16px; font-weight: 800; letter-spacing: -.3px; }
+.brand-sub { font-size: 11px; color: var(--muted); }
+.proj-controls {
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+}
+.proj-select { width: auto; min-width: 240px; font-weight: 700; background: var(--card); }
+
+/* 전체 진도 바 */
+.progress-shell {
+  margin-top: 10px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 14px;
+}
+.progress-head {
+  display: flex; align-items: center; justify-content: space-between;
+  font-size: 12px; margin-bottom: 6px; gap: 10px; flex-wrap: wrap;
+}
+.progress-track {
+  height: 8px;
+  background: #1e293b;
+  border-radius: 999px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #2563eb, #38bdf8, #22c55e);
+  border-radius: 999px;
+  transition: width .35s ease;
+}
+.stepper {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 8px;
+}
+@media (max-width: 980px) { .stepper { grid-template-columns: repeat(3, 1fr); } }
+.step-pill {
+  border: 1px solid var(--border);
+  background: var(--card);
+  border-radius: 9px;
+  padding: 7px 9px;
+  cursor: pointer;
+  transition: all .15s;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.step-pill:hover { border-color: var(--accent); transform: translateY(-1px); }
+.step-pill.active { border-color: var(--accent); box-shadow: 0 0 0 2px rgba(56,189,248,.22); background: #172542; }
+.step-pill.done { border-color: rgba(34,197,94,.55); }
+.step-pill.running { border-color: var(--accent); animation: pulseBorder 1.8s infinite; }
+.step-pill.review { border-color: var(--amber); background: rgba(245,158,11,.1); }
+.step-pill.interrupted { border-color: var(--purple); background: rgba(168,85,247,.1); }
+.step-pill.error { border-color: var(--red); }
+@keyframes pulseBorder {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(56,189,248,.4); }
+  50% { box-shadow: 0 0 0 4px rgba(56,189,248,.12); }
+}
+.step-top { display: flex; align-items: center; justify-content: space-between; font-size: 11px; font-weight: 700; }
+.step-name { font-size: 12px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* 메인 네비게이션 탭 (URL 이동 없음) */
+.nav-tabs {
+  display: flex; gap: 6px; padding: 10px 22px 0;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+  overflow-x: auto;
+}
+.nav-tab {
+  padding: 9px 16px;
+  border: none;
+  border-bottom: 2px solid transparent;
+  background: transparent;
+  color: var(--muted);
+  font-weight: 700;
+  border-radius: 8px 8px 0 0;
+  white-space: nowrap;
+}
+.nav-tab:hover { color: var(--text); background: rgba(255,255,255,.03); }
+.nav-tab.active { color: var(--accent); border-bottom-color: var(--accent); background: rgba(56,189,248,.07); }
+
+/* 메인 컨테이너 */
+.container { max-width: 1420px; margin: 0 auto; padding: 18px 22px 60px; }
+.tab-view { display: none; }
+.tab-view.active { display: block; }
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px;
+  margin-bottom: 16px;
+}
+.card-head {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 12px; margin-bottom: 12px; flex-wrap: wrap;
+}
+.card-title { font-size: 16px; font-weight: 800; margin: 0; }
+.muted { color: var(--muted); font-size: 12px; }
+.badge {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 2px 8px; border-radius: 999px; font-size: 11px; font-weight: 700;
+  border: 1px solid var(--border); background: var(--card2);
+}
+.b-done { background: rgba(34,197,94,.16); color: #86efac; border-color: rgba(34,197,94,.4); }
+.b-run { background: rgba(56,189,248,.16); color: #7dd3fc; border-color: rgba(56,189,248,.4); }
+.b-rev { background: rgba(245,158,11,.18); color: #fcd34d; border-color: rgba(245,158,11,.45); }
+.b-int { background: rgba(168,85,247,.18); color: #d8b4fe; border-color: rgba(168,85,247,.45); }
+.b-err { background: rgba(239,68,68,.18); color: #fca5a5; border-color: rgba(239,68,68,.45); }
+.b-wait { background: rgba(148,163,184,.12); color: #cbd5e1; }
+
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+@media (max-width: 960px) { .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; } }
+
+.kpi {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 14px;
+}
+.kpi-val { font-size: 22px; font-weight: 800; color: var(--accent); }
+.kpi-lbl { font-size: 12px; color: var(--muted); }
+
+.chip {
+  display: inline-block;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: rgba(56,189,248,.12);
+  border: 1px solid rgba(56,189,248,.3);
+  color: #bae6fd;
+  font-size: 12px;
+  margin: 2px 4px 2px 0;
+}
+
+.md-box {
+  background: #0d1526;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+  max-height: 520px;
+  overflow: auto;
+  font-size: 13px;
+  line-height: 1.65;
+}
+.md-box h1, .md-box h2, .md-box h3 { color: #e0f2fe; margin-top: 14px; }
+.md-box table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 12px; }
+.md-box th, .md-box td { border: 1px solid var(--border); padding: 6px 8px; text-align: left; }
+.md-box th { background: #16223a; }
+.md-box pre { background: #090f1d; padding: 10px; border-radius: 6px; overflow: auto; }
+
+table.tbl { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+table.tbl th, table.tbl td { border-bottom: 1px solid var(--border); padding: 8px 9px; text-align: left; vertical-align: top; }
+table.tbl th { color: var(--muted); font-weight: 700; background: #0f172a; position: sticky; top: 0; }
+table.tbl tr:hover td { background: rgba(56,189,248,.05); }
+
+.part-box {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  border-radius: 10px;
+  padding: 12px;
+  margin-bottom: 12px;
+}
+.ch-row {
+  border: 1px solid #22304b;
+  background: #0d1526;
+  border-radius: 8px;
+  padding: 10px;
+  margin-top: 8px;
+}
+
+.vis-card {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  border-radius: 10px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.vis-card img {
+  width: 100%;
+  height: 210px;
+  object-fit: contain;
+  background: #fff;
+  border-radius: 8px;
+  padding: 4px;
+}
+.vis-desc {
+  font-size: 12.5px;
+  color: #cbd5e1;
+  background: #0d1526;
+  border-left: 3px solid var(--accent);
+  padding: 8px 10px;
+  border-radius: 0 6px 6px 0;
+}
+
+.log-box {
+  background: #070d1a;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 12px;
+  max-height: 210px;
+  overflow: auto;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 12px;
+}
+.log-line { padding: 2px 0; border-bottom: 1px solid rgba(255,255,255,.04); }
+.subtabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
+.subtab.active { background: var(--primary); border-color: var(--primary); color: #fff; }
+.subpanel { display: none; }
+.subpanel.active { display: block; }
+
+/* 모달 */
+.modal-bg {
+  display: none;
+  position: fixed; inset: 0; z-index: 100;
+  background: rgba(0,0,0,.72);
+  align-items: center; justify-content: center;
+  padding: 18px;
+}
+.modal-bg.open { display: flex; }
+.modal {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  max-width: 680px; width: 100%;
+  max-height: 90vh; overflow: auto;
+  padding: 22px;
+}
+.toast {
+  position: fixed; bottom: 20px; right: 20px; z-index: 200;
+  background: #1e293b; border: 1px solid var(--accent);
+  color: #fff; padding: 11px 16px; border-radius: 10px;
+  font-size: 13px; font-weight: 600; display: none;
+  box-shadow: 0 10px 30px rgba(0,0,0,.45);
+}
+.toast.show { display: block; }
+.flex { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.mt8 { margin-top: 8px; }
+.mt12 { margin-top: 12px; }
+.mb8 { margin-bottom: 8px; }
+.label { display: block; font-size: 12px; color: var(--muted); margin-bottom: 4px; font-weight: 600; }
+</style>
+</head>
+<body>
+
+<!-- ==================== 상단 고정 바 + 6단계 진도 바 ==================== -->
+<header class="topbar">
+  <div class="topbar-row">
+    <div class="brand">
+      <div class="brand-logo">교</div>
+      <div>
+        <div class="brand-title">전문 교재 제작 통합 플랫폼 <span class="badge b-run">단일 HTML · 6단계</span></div>
+        <div class="brand-sub" id="activeProjMeta">프로젝트 불러오는 중...</div>
+      </div>
+    </div>
+    <div class="proj-controls">
+      <select id="projectSelect" class="proj-select" onchange="selectProject(this.value)"></select>
+      <button class="btn-primary" onclick="openNewModal()">+ 새 교재 만들기</button>
+      <button class="btn-green" id="btnRunAll" onclick="runPipeline('all')">▶ 이어하기 / 진행</button>
+      <button class="btn-amber" id="btnStop" onclick="stopCurrentPipeline()">⏹ 중단(저장)</button>
+    </div>
+  </div>
+
+  <!-- 상단 진행상황 진도 바 -->
+  <div class="progress-shell">
+    <div class="progress-head">
+      <div class="flex">
+        <strong id="progressSummaryText">전체 진행률 0%</strong>
+        <span id="overallBadge" class="badge b-wait">대기</span>
+        <span class="muted" id="checkpointHint"></span>
+      </div>
+      <div class="muted" id="currentActionBanner">단계를 클릭하면 상세 화면과 보고서를 확인할 수 있습니다.</div>
+    </div>
+    <div class="progress-track">
+      <div class="progress-fill" id="overallProgressFill" style="width: 0%"></div>
+    </div>
+    <div class="stepper" id="topStepper"></div>
+  </div>
+</header>
+
+<!-- ==================== 5개 통합 탭 (URL 변경 없음) ==================== -->
+<nav class="nav-tabs">
+  <button class="nav-tab active" data-tab="workflow" onclick="switchMainTab('workflow')">📋 6단계 교재 제작 워크플로</button>
+  <button class="nav-tab" data-tab="covertoc" onclick="switchMainTab('covertoc')">🎨 표지 · 목차 페이지 제작</button>
+  <button class="nav-tab" data-tab="library" onclick="switchMainTab('library')">📚 자료실 · 학술/웹 수집</button>
+  <button class="nav-tab" data-tab="explorer" onclick="switchMainTab('explorer')">🔎 데이터 탐색 · API · NotebookLM</button>
+  <button class="nav-tab" data-tab="settings" onclick="switchMainTab('settings')">⚙️ AI 엔진 · API 키 · 프로젝트 관리</button>
+</nav>
+
+<main class="container">
+
+  <!-- ======================================================== -->
+  <!-- TAB 1: 6단계 교재 제작 워크플로                              -->
+  <!-- ======================================================== -->
+  <section id="tab-workflow" class="tab-view active">
+    <div id="stageDetailHost"></div>
+
+    <!-- 하단 접이식 실시간 작업 로그 -->
+    <div class="card">
+      <div class="card-head">
+        <div class="flex">
+          <h3 class="card-title">📡 실시간 에이전트 실행 로그</h3>
+          <span class="muted" id="logCountMeta">0건</span>
+        </div>
+        <button class="btn-sm" onclick="toggleLogs()">접기 / 펼치기</button>
+      </div>
+      <div id="liveLogWrap" class="log-box">로그를 불러오는 중...</div>
+    </div>
+  </section>
+
+  <!-- ======================================================== -->
+  <!-- TAB 2: 자료실 · 학술/웹/BibTeX 수집                         -->
+  <!-- ======================================================== -->
+  <section id="tab-library" class="tab-view">
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-head">
+          <h3 class="card-title">🎓 국내외 학술 논문 즉시 검색 (OpenAlex · Europe PMC · Crossref 자동 폴백)</h3>
+        </div>
+        <div class="flex">
+          <input id="scholarQuery" placeholder="예: precision wheat nitrogen UAV NDVI 또는 밀 재배 스마트팜" style="flex:1" />
+          <select id="scholarScope" style="width:140px">
+            <option value="all">국내+해외 전체</option>
+            <option value="international">국제 SCI/OA</option>
+            <option value="korean">국내 학회지</option>
+          </select>
+          <button class="btn-primary" onclick="searchScholar()">검색</button>
+        </div>
+        <div id="scholarResults" class="mt12" style="max-height:360px;overflow:auto;"></div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <h3 class="card-title">🌐 URL / BibTeX 직접 수집 → 현재 프로젝트 적재</h3>
+        </div>
+        <label class="label">웹페이지 / 공식기관 URL</label>
+        <div class="flex">
+          <input id="directUrl" placeholder="https://..." style="flex:1" />
+          <button class="btn-primary" onclick="collectDirectUrl()">URL 수집</button>
+        </div>
+        <label class="label mt12">구글 스칼라 · KCI BibTeX 붙여넣기</label>
+        <textarea id="directBibtex" rows="4" placeholder="@article{...}"></textarea>
+        <div class="mt8">
+          <button class="btn-green" onclick="collectDirectBibtex()">BibTeX 일괄 적재</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <h3 class="card-title">📂 현재 프로젝트 수집 자료 목록 (<span id="libTotalCount">0</span>건)</h3>
+        <span class="muted" id="libFolderPath"></span>
+      </div>
+      <div style="max-height:460px;overflow:auto;">
+        <table class="tbl">
+          <thead><tr><th>출처 ID</th><th>분류 폴더</th><th>기관/제공처</th><th>연도</th><th>제목 및 URL</th></tr></thead>
+          <tbody id="libTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================== -->
+  <!-- TAB 3: 데이터 탐색 · 기상DB · API · NotebookLM · 심층대화    -->
+  <!-- ======================================================== -->
+  <section id="tab-explorer" class="tab-view">
+    <div class="subtabs">
+      <button class="subtab active" data-sub="exp-weather" onclick="switchSubTab('exp-weather')">🌦️ 로컬 기상 DB (690만건) · 기상청 API</button>
+      <button class="subtab" data-sub="exp-owm" onclick="switchSubTab('exp-owm')">☁️ OpenWeatherMap</button>
+      <button class="subtab" data-sub="exp-portal" onclick="switchSubTab('exp-portal')">🏛️ 공공데이터포털 · 통계청 KOSIS</button>
+      <button class="subtab" data-sub="exp-nlm" onclick="switchSubTab('exp-nlm')">📓 Google NotebookLM 가져오기</button>
+      <button class="subtab" data-sub="exp-chat" onclick="switchSubTab('exp-chat')">💬 심층 자료 조사 대화 · 추가 프롬프트</button>
+    </div>
+
+    <!-- 3-1: 로컬 기상 DB + KMA ASOS -->
+    <div id="sub-exp-weather" class="subpanel active">
+      <div class="card">
+        <div class="card-head">
+          <h3 class="card-title">🌦️ D:\0002_XLS_backup 종관 기상 데이터 DB 탐색</h3>
+          <span class="badge b-done" id="weatherDbSummary">로딩 중...</span>
+        </div>
+        <div class="grid-4">
+          <div><label class="label">관측망</label><select id="wNetwork"><option value="ASOS">ASOS (종관기상)</option><option value="AWS">AWS (방재기상)</option><option value="AGRI_RDA">AGRI_RDA (농진청)</option><option value="AGRI_JEJU">AGRI_JEJU (제주농업)</option></select></div>
+          <div><label class="label">지점명/코드</label><input id="wStation" value="수원" placeholder="예: 수원, 익산, 119" /></div>
+          <div><label class="label">시작일</label><input id="wStart" value="2024-01-01" /></div>
+          <div><label class="label">종료일</label><input id="wEnd" value="2026-10-31" /></div>
+        </div>
+        <div class="flex mt12">
+          <select id="wAgg" style="width:160px"><option value="monthly">월별 집계</option><option value="daily">일별 원시</option></select>
+          <button class="btn-primary" onclick="queryLocalWeather()">기상 DB 조회</button>
+          <button class="btn-green" onclick="saveLastExplorerDataset('weather_local')">선택 프로젝트 자료+RAG 저장</button>
+        </div>
+        <div class="mt12" style="border-top:1px solid var(--border);padding-top:12px;">
+          <div class="flex">
+            <strong style="font-size:13px">기상청 API 허브 ASOS 실시간 호출:</strong>
+            <input id="kmaStn" value="119" style="width:85px" placeholder="지점번호" />
+            <input id="kmaStart" value="20261001" style="width:110px" />
+            <input id="kmaEnd" value="20261015" style="width:110px" />
+            <button onclick="fetchKmaAsos()">기상청 ASOS 호출</button>
+          </div>
+        </div>
+        <div id="weatherResultBox" class="mt12" style="max-height:320px;overflow:auto;"></div>
+      </div>
+    </div>
+
+    <!-- 3-2: OpenWeatherMap -->
+    <div id="sub-exp-owm" class="subpanel">
+      <div class="card">
+        <div class="card-head"><h3 class="card-title">☁️ OpenWeatherMap 기상·예보·대기질 수집</h3></div>
+        <div class="flex">
+          <input id="owmCity" value="Suwon,KR" style="max-width:260px" placeholder="예: Suwon,KR / Iksan,KR" />
+          <button class="btn-primary" onclick="fetchOwm()">현재+예보+대기질 조회</button>
+          <button class="btn-green" onclick="saveLastExplorerDataset('owm')">프로젝트 자료+RAG 저장</button>
+        </div>
+        <div id="owmResultBox" class="mt12 md-box">조회 결과가 여기에 표시됩니다. (⚙️ 설정 탭에 OPENWEATHER_API_KEY 등록 필요)</div>
+      </div>
+    </div>
+
+    <!-- 3-3: 공공포털 + KOSIS -->
+    <div id="sub-exp-portal" class="subpanel">
+      <div class="grid-2">
+        <div class="card">
+          <h3 class="card-title mb8">🏛️ 공공데이터포털 OpenAPI 호출</h3>
+          <label class="label">엔드포인트 URL</label>
+          <input id="portalEndpoint" placeholder="https://apis.data.go.kr/..." />
+          <label class="label mt8">요청 파라미터 (JSON)</label>
+          <input id="portalParams" value='{"pageNo":1,"numOfRows":20,"type":"json"}' />
+          <div class="flex mt8">
+            <button class="btn-primary" onclick="fetchPublicPortal()">공공포털 호출</button>
+            <button class="btn-green" onclick="saveLastExplorerDataset('portal')">자료+RAG 저장</button>
+          </div>
+          <div id="portalResultBox" class="mt12 md-box" style="max-height:280px">호출 결과가 표시됩니다.</div>
+        </div>
+
+        <div class="card">
+          <h3 class="card-title mb8">📊 통계청 KOSIS OpenAPI 검색·다운로드</h3>
+          <div class="flex">
+            <input id="kosisKeyword" value="맥류 생산량" style="flex:1" />
+            <button class="btn-primary" onclick="searchKosis()">통계표 검색</button>
+          </div>
+          <div id="kosisListBox" class="mt8" style="max-height:220px;overflow:auto;"></div>
+          <div class="flex mt8">
+            <input id="kosisUrl" placeholder="또는 KOSIS OpenAPI 전체 URL 직접 붙여넣기" style="flex:1" />
+            <button onclick="downloadKosisByUrl()">URL 다운로드</button>
+            <button class="btn-green" onclick="saveLastExplorerDataset('kosis')">RAG 저장</button>
+          </div>
+          <div id="kosisDataBox" class="mt8 md-box" style="max-height:200px">통계 다운로드 결과가 표시됩니다.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3-4: NotebookLM -->
+    <div id="sub-exp-nlm" class="subpanel">
+      <div class="card">
+        <div class="card-head">
+          <h3 class="card-title">📓 Google NotebookLM 노트북·소스 직접 가져오기</h3>
+          <div class="flex">
+            <input id="nlmSearch" placeholder="노트북 제목 검색 (예: 밀, 토양)" style="width:220px" />
+            <button class="btn-primary" onclick="loadNlmNotebooks()">노트북 목록 조회</button>
+          </div>
+        </div>
+        <div class="grid-2">
+          <div>
+            <div class="muted mb8">내 NotebookLM 노트북 (<span id="nlmNbCount">0</span>개)</div>
+            <div id="nlmNbList" style="max-height:360px;overflow:auto;border:1px solid var(--border);border-radius:8px;padding:6px;"></div>
+          </div>
+          <div>
+            <div class="flex mb8" style="justify-content:space-between">
+              <span class="muted" id="nlmSelectedTitle">노트북을 선택하면 소스 목록이 표시됩니다.</span>
+              <button class="btn-green btn-sm" onclick="importNlmSelected()">선택 소스 프로젝트+RAG 가져오기</button>
+            </div>
+            <div id="nlmSourceList" style="max-height:260px;overflow:auto;border:1px solid var(--border);border-radius:8px;padding:8px;"></div>
+            <div class="flex mt8">
+              <input id="nlmQuestion" placeholder="선택한 NotebookLM에 직접 질문하기..." style="flex:1" />
+              <button onclick="askNlmNotebook()">질문</button>
+            </div>
+            <div id="nlmAnswerBox" class="mt8 muted"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3-5: 심층 자료 조사 대화 + 추가 프롬프트 -->
+    <div id="sub-exp-chat" class="subpanel">
+      <div class="grid-2">
+        <div class="card">
+          <h3 class="card-title mb8">💬 다채널 심층 자료 조사 대화 (RAG · 학술 · 농진청 · 미국/유럽/일본 기관)</h3>
+          <div id="chatHistoryBox" class="md-box" style="max-height:340px;margin-bottom:10px;">대화 이력을 불러오는 중...</div>
+          <div class="flex">
+            <input id="chatQueryInput" placeholder="예: 한국 겨울밀 개화기 저온 피해 및 스마트 관개 기준 조사해줘" style="flex:1" />
+            <button class="btn-primary" onclick="sendResearchChat()">심층 조사 실행</button>
+          </div>
+          <div id="chatCandidatesBox" class="mt12"></div>
+        </div>
+        <div class="card">
+          <h3 class="card-title mb8">🧠 수집 데이터 기반 추가 프롬프트 분석 (Gemma 4 / Claude Code)</h3>
+          <textarea id="synthPrompt" rows="5" placeholder="예: 방금 조회한 기상 데이터와 수집 문헌을 종합해 3장 생육모형 단원에 들어갈 핵심 요약과 정량 기준을 작성해줘"></textarea>
+          <div class="flex mt8">
+            <label class="flex"><input type="checkbox" id="synthUseClaude" /> Claude Code 정밀 분석</label>
+            <button class="btn-primary" onclick="runPromptSynth()">프롬프트 실행</button>
+          </div>
+          <div id="synthOutput" class="mt12 md-box" style="max-height:300px">분석 결과가 여기에 표시됩니다.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================== -->
+  <!-- TAB 4: AI 엔진 · API 키(7종) · 프로젝트 관리                -->
+  <!-- ======================================================== -->
+  <section id="tab-settings" class="tab-view">
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-head">
+          <h3 class="card-title">🔑 통합 API 키 금고 (로컬 암호 보관 · Git 제외)</h3>
+          <span class="muted">E:\SMC_Report_Platform_Data\index\local_api_keys.json</span>
+        </div>
+        <div id="apiKeyRows"></div>
+        <div class="mt12">
+          <button class="btn-primary" onclick="saveAllApiKeys()">💾 API 키 저장 (입력한 항목만 갱신)</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <h3 class="card-title">🤖 AI 엔진 및 현재 프로젝트 옵션 설정</h3>
+          <button class="btn-sm" onclick="refreshEngineStatus()">상태 새로고침</button>
+        </div>
+        <div id="engineStatusBox" class="mb8"></div>
+
+        <div style="border-top:1px solid var(--border);padding-top:12px;margin-top:12px;">
+          <div class="grid-2">
+            <div>
+              <label class="label">1단계 목차 설계 모델 (OpenAI)</label>
+              <select id="optOpenaiModel">
+                <option value="gpt-4o-mini">gpt-4o-mini (빠름·권장)</option>
+                <option value="gpt-4o">gpt-4o (고정밀)</option>
+                <option value="gpt-4.1-mini">gpt-4.1-mini</option>
+              </select>
+            </div>
+            <div>
+              <label class="label">로컬 집필 모델 (Ollama Gemma 4)</label>
+              <select id="optGemmaModel">
+                <option value="gemma4:latest">gemma4:latest (고속)</option>
+                <option value="gemma4:26b">gemma4:26b (고정밀 26B)</option>
+              </select>
+            </div>
+            <div>
+              <label class="label">5단계 fal.ai 시각화 모델</label>
+              <select id="optFalModel">
+                <option value="fal-ai/nano-banana">fal-ai/nano-banana (나노바나나 실사/인포그래픽)</option>
+                <option value="fal-ai/flux/schnell">fal-ai/flux/schnell (초고속 실사)</option>
+                <option value="fal-ai/flux-pro/v1.1">fal-ai/flux-pro/v1.1 (출판용 고해상도)</option>
+              </select>
+            </div>
+            <div>
+              <label class="label">단원당 시각화 목표 수 (최소 10개)</label>
+              <input type="number" id="optVisPerCh" min="10" max="25" value="10" />
+            </div>
+          </div>
+          <div class="flex mt12">
+            <label class="flex"><input type="checkbox" id="optUseOpenai" /> 1단계 OpenAI API 사용</label>
+            <label class="flex"><input type="checkbox" id="optUseFal" /> 5단계 fal.ai API 사용</label>
+            <label class="flex"><input type="checkbox" id="optUseNanoBanana" /> 5단계 나노바나나(Gemini) 폴백</label>
+            <label class="flex"><input type="checkbox" id="optUseClaude" /> 4단계 Claude Code 정밀 감사</label>
+          </div>
+          <div class="mt12">
+            <button class="btn-green" onclick="saveCurrentProjectOptions()">⚙️ 현재 프로젝트 옵션 저장</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 프로젝트 관리 (삭제 / 초기화) -->
+    <div class="card">
+      <div class="card-head">
+        <div>
+          <h3 class="card-title">🗂️ 프로젝트 관리 (활성 교재 목록)</h3>
+          <div class="muted">삭제 시 원본 파일은 안전을 위해 E:\SMC_Report_Platform_Data\_archived_projects 로 아카이브 이동됩니다.</div>
+        </div>
+        <button class="btn-red btn-sm" onclick="resetExceptCurrent()">현재 선택 프로젝트 외 모두 초기화</button>
+      </div>
+      <table class="tbl">
+        <thead><tr><th>프로젝트 ID</th><th>교재 제목</th><th>분량/단원</th><th>진행 상태</th><th>작업</th></tr></thead>
+        <tbody id="projManageBody"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ======================================================== -->
+  <!-- TAB 5: 표지 · 머리말 · 전체 목차 페이지 제작 스튜디오          -->
+  <!-- ======================================================== -->
+  <section id="tab-covertoc" class="tab-view">
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <h3 class="card-title">🎨 교재 표지 · 머리말 · 전체 목차 페이지 설정</h3>
+            <div class="muted" id="ctOutlineStats">청사진 불러오는 중...</div>
+          </div>
+          <button class="btn-primary" onclick="generateCoverToc()">✨ 표지 · 목차 생성 (HTML·PDF·DOCX)</button>
+        </div>
+
+        <div class="grid-2">
+          <div><label class="label">교재 제목 (국문)</label><input id="ctTitleKo" /></div>
+          <div><label class="label">교재 제목 (영문)</label><input id="ctTitleEn" /></div>
+        </div>
+        <label class="label mt8">부제 (Subtitle)</label>
+        <input id="ctSubtitleKo" />
+
+        <div class="grid-2 mt8">
+          <div><label class="label">저자 / 집필위원회</label><input id="ctAuthor" /></div>
+          <div><label class="label">출판 / 발행처</label><input id="ctPublisher" /></div>
+          <div><label class="label">판차 / 발행월</label><input id="ctEdition" /></div>
+          <div><label class="label">대상 독자</label><input id="ctAudience" /></div>
+        </div>
+
+        <div class="grid-2 mt8">
+          <div>
+            <label class="label">표지 컬러 테마</label>
+            <select id="ctTheme">
+              <option value="golden_wheat">황금 밀밭 · 디지털 골드 (추천)</option>
+              <option value="academic_navy">학술 단행본 · 딥 네이비</option>
+              <option value="emerald_agri">스마트팜 · 에메랄드 그린</option>
+              <option value="slate_minimal">모던 연구보고서 · 슬레이트 미니멀</option>
+            </select>
+          </div>
+          <div>
+            <label class="label">인쇄 판형 규격</label>
+            <select id="ctTrim">
+              <option value="shinkuk">신국판 단행본 (152 × 225 mm)</option>
+              <option value="b5" selected>B5 대학교재 (182 × 257 mm)</option>
+              <option value="a4">A4 마스터판 (210 × 297 mm)</option>
+            </select>
+          </div>
+        </div>
+
+        <label class="label mt8">머리말 (Preface)</label>
+        <textarea id="ctPreface" rows="4"></textarea>
+
+        <div class="flex mt12">
+          <label class="flex"><input type="checkbox" id="ctUseAiCover" /> AI 표지 실사 일러스트 생성 (체크 해제 시 출판급 벡터 SVG)</label>
+          <label class="flex"><input type="checkbox" id="ctUseFal" /> fal.ai API 우선 사용</label>
+        </div>
+
+        <div class="mt12" style="border-top:1px solid var(--border);padding-top:12px;">
+          <div class="label">생성된 표지 · 목차 파일 다운로드</div>
+          <div id="ctDownloadLinks" class="flex">
+            <span class="muted">아직 생성되지 않았습니다. 위 [✨ 표지 · 목차 생성] 버튼을 눌러주세요.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <h3 class="card-title">📖 표지 · 머리말 · 전체 목차 실시간 미리보기</h3>
+          <a id="ctOpenNewTab" class="badge b-run" href="#" target="_blank" style="display:none">↗ 새 창으로 크게 보기</a>
+        </div>
+        <iframe id="ctPreviewFrame" style="width:100%;height:700px;border:1px solid var(--border);border-radius:10px;background:#fff;" src="about:blank"></iframe>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ==================== 새 교재 프로젝트 모달 ==================== -->
+<div class="modal-bg" id="newProjModal">
+  <div class="modal">
+    <div class="card-head">
+      <h3 class="card-title">📘 새 전문 교재 프로젝트 생성 (1단계 OpenAI 목차 제안 자동 시작)</h3>
+      <button class="btn-sm" onclick="closeNewModal()">닫기</button>
+    </div>
+    <div class="grid-2">
+      <div><label class="label">교재 주제 (국문) *</label><input id="npTopicKo" placeholder="예: 디지털 밀 재배" /></div>
+      <div><label class="label">교재 주제 (영문)</label><input id="npTopicEn" placeholder="예: Digital Wheat Cultivation" /></div>
+      <div><label class="label">목표 분량 (페이지)</label><input id="npPages" type="number" value="500" /></div>
+      <div><label class="label">단원 수</label><input id="npChapters" type="number" value="15" min="3" max="24" /></div>
+    </div>
+    <label class="label mt8">핵심 키워드 (국문, 쉼표 구분)</label>
+    <input id="npKwKo" placeholder="예: 겨울밀, 정밀농업, 드론 원격탐사, 시비처방, 품질평가" />
+    <label class="label mt8">핵심 키워드 (영문, 쉼표 구분)</label>
+    <input id="npKwEn" placeholder="예: winter wheat, precision agriculture, UAV NDVI, nitrogen management" />
+    <div class="flex mt12">
+      <label class="flex"><input type="checkbox" id="npUseOpenai" checked /> 1단계 OpenAI API 목차·요약·키워드 설계</label>
+      <label class="flex"><input type="checkbox" id="npUseFal" /> 5단계 fal.ai API 시각화 사용</label>
+      <label class="flex"><input type="checkbox" id="npAutoStart" checked /> 생성 즉시 1단계 초안 작성</label>
+    </div>
+    <div class="flex mt12" style="justify-content:flex-end">
+      <button onclick="closeNewModal()">취소</button>
+      <button class="btn-primary" onclick="submitNewProject()">생성 및 1단계 시작</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toastBox"></div>
+
+<script>
+// ============================================================
+// 전역 상태
+// ============================================================
+let PROJECTS = [];
+let CURRENT_PID = "";
+let CURRENT_STATE = null;
+let CURRENT_EVENTS = [];
+let SELECTED_STAGE = "stage1_topic_outline";
+let STAGE_REPORTS = {};
+let VISUALS_CACHE = null;
+let CHAPTERS_CACHE = null;
+let KG_PREVIEW_CACHE = null;
+let LAST_EXPLORER_DATA = {};
+let NLM_SELECTED_NB = null;
+let LOGS_OPEN = true;
+let POLL_TIMER = null;
+
+const STATUS_META = {
+  DONE: { label: "완료", cls: "b-done", pill: "done", icon: "✅" },
+  RUNNING: { label: "진행중", cls: "b-run", pill: "running", icon: "⚙️" },
+  WAITING_REVIEW: { label: "검토대기", cls: "b-rev", pill: "review", icon: "📝" },
+  INTERRUPTED: { label: "중단됨(저장)", cls: "b-int", pill: "interrupted", icon: "⏸️" },
+  PAUSED: { label: "대기(이어하기)", cls: "b-wait", pill: "", icon: "⏯️" },
+  ERROR: { label: "오류", cls: "b-err", pill: "error", icon: "⚠️" },
+  PENDING: { label: "대기", cls: "b-wait", pill: "", icon: "⏳" },
+  IDLE: { label: "준비", cls: "b-wait", pill: "", icon: "⏳" },
+};
+
+const API_KEY_LABELS = [
+  { key: "OPENAI_API_KEY", title: "OpenAI API 키 (1단계 목차·요약·키워드 설계)", ph: "sk-..." },
+  { key: "FAL_KEY", title: "fal.ai API 키 (5단계 실사·인포그래픽 시각화)", ph: "fal key..." },
+  { key: "GEMINI_API_KEY", title: "Google Gemini API 키 (5단계 나노바나나 이미지)", ph: "AIza..." },
+  { key: "KMA_HUB_KEY", title: "기상청 API 허브 키 (ASOS 종관기상)", ph: "authKey..." },
+  { key: "OPENWEATHER_API_KEY", title: "OpenWeatherMap API 키 (실시간 기상·예보)", ph: "appid..." },
+  { key: "DATA_GO_KR_API_KEY", title: "공공데이터포털 서비스키 (data.go.kr)", ph: "Decoding 키 권장" },
+  { key: "KOSIS_API_KEY", title: "통계청 KOSIS OpenAPI 키", ph: "KOSIS apiKey..." },
+];
+
+function toast(msg, ms = 3200) {
+  const el = document.getElementById("toastBox");
+  el.textContent = msg;
+  el.classList.add("show");
+  clearTimeout(window._tTimer);
+  window._tTimer = setTimeout(() => el.classList.remove("show"), ms);
+}
+
+function esc(s) {
+  return String(s ?? "").replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;" }[c]));
+}
+
+async function api(url, opts = {}) {
+  const res = await fetch(url, {
+    headers: { "Content-Type": "application/json", ...(opts.headers || {}) },
+    ...opts,
+  });
+  const text = await res.text();
+  let data = {};
+  try { data = text ? JSON.parse(text) : {}; } catch { data = { raw: text }; }
+  if (!res.ok) throw new Error(data.detail || `HTTP ${res.status}`);
+  return data;
+}
+
+// 간단한 마크다운 렌더러 (보고서/원고 가독성 향상)
+function renderMd(md) {
+  if (!md) return '<span class="muted">아직 생성된 보고서가 없습니다.</span>';
+  const lines = md.replace(/\r/g, "").split("\n");
+  let html = "", inTbl = false, tblHead = false;
+  const flushTbl = () => { if (inTbl) { html += "</tbody></table>"; inTbl = false; tblHead = false; } };
+  for (let ln of lines) {
+    if (ln.trim().startsWith("|") && ln.trim().endsWith("|")) {
+      const cells = ln.trim().slice(1, -1).split("|").map(c => c.trim());
+      if (cells.every(c => /^[:\- ]+$/.test(c))) continue;
+      if (!inTbl) {
+        html += "<table><thead><tr>" + cells.map(c => `<th>${esc(c)}</th>`).join("") + "</tr></thead><tbody>";
+        inTbl = true; tblHead = true;
+      } else {
+        html += "<tr>" + cells.map(c => `<td>${esc(c)}</td>`).join("") + "</tr>";
+      }
+      continue;
+    }
+    flushTbl();
+    let e = esc(ln)
+      .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
+      .replace(/`([^`]+)`/g, "<code>$1</code>");
+    if (ln.startsWith("### ")) html += `<h3>${e.slice(4)}</h3>`;
+    else if (ln.startsWith("## ")) html += `<h2>${e.slice(3)}</h2>`;
+    else if (ln.startsWith("# ")) html += `<h1>${e.slice(2)}</h1>`;
+    else if (ln.startsWith("- ") || ln.startsWith("  - ")) html += `<div style="padding-left:${ln.startsWith("  -")?22:10}px">• ${e.replace(/^\s*-\s*/, "")}</div>`;
+    else if (!ln.trim()) html += "<div style='height:6px'></div>";
+    else html += `<p style="margin:4px 0">${e}</p>`;
+  }
+  flushTbl();
+  return html;
+}
+
+// ============================================================
+// 메인 탭 / 서브 탭 전환
+// ============================================================
+function switchMainTab(tabId) {
+  document.querySelectorAll(".nav-tab").forEach(b => b.classList.toggle("active", b.dataset.tab === tabId));
+  document.querySelectorAll(".tab-view").forEach(v => v.classList.toggle("active", v.id === "tab-" + tabId));
+  if (tabId === "covertoc") loadCoverTocTab();
+  if (tabId === "explorer") loadExplorerMeta();
+  if (tabId === "settings") loadSettingsTab();
+  if (tabId === "library") renderLibraryTab();
+}
+
+function switchSubTab(subId) {
+  document.querySelectorAll(".subtab").forEach(b => b.classList.toggle("active", b.dataset.sub === subId));
+  document.querySelectorAll(".subpanel").forEach(p => p.classList.toggle("active", p.id === "sub-" + subId));
+  if (subId === "exp-chat") loadResearchChat();
+}
+
+// ============================================================
+// 초기화 & 프로젝트 로드
+// ============================================================
+async function init() {
+  await loadProjectsList();
+  if (location.hash === "#explorer") switchMainTab("explorer");
+  startPolling();
+}
+
+async function loadProjectsList(preferPid = "") {
+  const data = await api("/api/projects");
+  PROJECTS = data.projects || [];
+  const sel = document.getElementById("projectSelect");
+  if (!PROJECTS.length) {
+    sel.innerHTML = '<option value="">(프로젝트 없음 — 새 교재를 생성하세요)</option>';
+    CURRENT_PID = "";
+    CURRENT_STATE = null;
+    renderTopProgress();
+    renderStageDetail();
+    return;
+  }
+  sel.innerHTML = PROJECTS.map(p =>
+    `<option value="${esc(p.project_id)}">《${esc(p.topic_ko)}》 (${p.done_stages}/${p.total_stages}단계 · ${p.target_pages}p)</option>`
+  ).join("");
+  const nextPid = preferPid && PROJECTS.some(p => p.project_id === preferPid)
+    ? preferPid
+    : (CURRENT_PID && PROJECTS.some(p => p.project_id === CURRENT_PID) ? CURRENT_PID : PROJECTS[0].project_id);
+  sel.value = nextPid;
+  await selectProject(nextPid, true);
+}
+
+async function selectProject(pid, autoFocusStage = false) {
+  if (!pid) return;
+  CURRENT_PID = pid;
+  STAGE_REPORTS = {};
+  VISUALS_CACHE = null;
+  CHAPTERS_CACHE = null;
+  KG_PREVIEW_CACHE = null;
+  await refreshCurrentProject(autoFocusStage);
+}
+
+async function refreshCurrentProject(autoFocusStage = false) {
+  if (!CURRENT_PID) return;
+  try {
+    const res = await api(`/api/projects/${encodeURIComponent(CURRENT_PID)}?limit_events=100`);
+    CURRENT_STATE = res.project;
+    CURRENT_EVENTS = res.events || [];
+    if (autoFocusStage && CURRENT_STATE?.stages) {
+      const active = CURRENT_STATE.stages.find(s => ["RUNNING", "WAITING_REVIEW", "INTERRUPTED"].includes(s.status))
+        || CURRENT_STATE.stages.find(s => s.status !== "DONE")
+        || CURRENT_STATE.stages[CURRENT_STATE.stages.length - 1];
+      if (active) SELECTED_STAGE = active.stage_id;
+    }
+    renderTopProgress();
+    renderLiveLogs();
+    await loadStageSideData(SELECTED_STAGE);
+    renderStageDetail();
+    renderLibraryTab();
+    renderProjManageTable();
+  } catch (e) {
+    console.error(e);
+  }
+}
+
+function startPolling() {
+  clearInterval(POLL_TIMER);
+  POLL_TIMER = setInterval(async () => {
+    if (!CURRENT_PID || !CURRENT_STATE) return;
+    if (CURRENT_STATE.overall_status === "RUNNING") {
+      await refreshCurrentProject(false);
+    }
+  }, 2600);
+}
+
+// ============================================================
+// 상단 진도 바 & 6단계 스테퍼 렌더링
+// ============================================================
+function calcOverallPct(st) {
+  if (!st || !st.stages || !st.stages.length) return 0;
+  const sum = st.stages.reduce((acc, s) => acc + (s.status === "DONE" ? 100 : (Number(s.progress) || 0)), 0);
+  return Math.round(sum / st.stages.length);
+}
+
+function renderTopProgress() {
+  const st = CURRENT_STATE;
+  const metaEl = document.getElementById("activeProjMeta");
+  const sumEl = document.getElementById("progressSummaryText");
+  const badgeEl = document.getElementById("overallBadge");
+  const fillEl = document.getElementById("overallProgressFill");
+  const bannerEl = document.getElementById("currentActionBanner");
+  const ckEl = document.getElementById("checkpointHint");
+  const stepper = document.getElementById("topStepper");
+
+  if (!st) {
+    metaEl.textContent = "활성 프로젝트가 없습니다. [+ 새 교재 만들기]로 시작하세요.";
+    sumEl.textContent = "전체 진행률 0%";
+    fillEl.style.width = "0%";
+    stepper.innerHTML = "";
+    return;
+  }
+  const pct = calcOverallPct(st);
+  const doneCnt = (st.stages || []).filter(s => s.status === "DONE").length;
+  const sm = STATUS_META[st.overall_status] || STATUS_META.IDLE;
+  metaEl.textContent = `《${st.topic_ko}》 · 목표 ${st.target_pages}p (${st.chapter_count}장) · 프로젝트 ID: ${st.project_id}`;
+  sumEl.textContent = `전체 진행률 ${pct}% (${doneCnt}/${st.stages.length}단계 완료)`;
+  badgeEl.className = "badge " + sm.cls;
+  badgeEl.textContent = `${sm.icon} ${sm.label}`;
+  fillEl.style.width = pct + "%";
+
+  const ck = st.checkpoint || {};
+  const ckParts = [];
+  if ((ck.completed_chapters || []).length) ckParts.push(`집필 체크포인트 ${(ck.completed_chapters||[]).length}장`);
+  if ((ck.completed_visuals || []).length) ckParts.push(`시각화 체크포인트 ${(ck.completed_visuals||[]).length}종`);
+  ckEl.textContent = ckParts.length ? `💾 자동저장: ${ckParts.join(" · ")}` : "";
+
+  const activeSt = (st.stages || []).find(s => s.stage_id === (st.active_stage_id || SELECTED_STAGE));
+  bannerEl.textContent = activeSt ? `[${activeSt.order}단계] ${activeSt.current_action || activeSt.title}` : "";
+
+  const btnRun = document.getElementById("btnRunAll");
+  btnRun.disabled = st.overall_status === "RUNNING";
+  btnRun.textContent = st.overall_status === "INTERRUPTED" ? "▶ 중단 지점 이어하기" :
+    (st.overall_status === "WAITING_REVIEW" ? "📝 1단계 검토 대기중" : "▶ 이어하기 / 진행");
+
+  stepper.innerHTML = (st.stages || []).map(s => {
+    const m = STATUS_META[s.status] || STATUS_META.PENDING;
+    const isSel = s.stage_id === SELECTED_STAGE;
+    return `
+      <div class="step-pill ${m.pill} ${isSel ? "active" : ""}" onclick="selectStage('${s.stage_id}')">
+        <div class="step-top">
+          <span>${s.order}단계</span>
+          <span class="badge ${m.cls}" style="padding:1px 6px;font-size:10px">${m.icon} ${m.label}</span>
+        </div>
+        <div class="step-name">${esc(s.short_title || s.title)}</div>
+        <div style="height:4px;background:#1e293b;border-radius:99px;overflow:hidden;margin-top:2px;">
+          <div style="height:100%;width:${s.status==='DONE'?100:(s.progress||0)}%;background:${s.status==='DONE'?'#22c55e':'#38bdf8'}"></div>
+        </div>
+      </div>`;
+  }).join("");
+}
+
+async function selectStage(stageId) {
+  SELECTED_STAGE = stageId;
+  renderTopProgress();
+  await loadStageSideData(stageId);
+  renderStageDetail();
+}
+
+async function loadStageSideData(stageId) {
+  if (!CURRENT_PID) return;
+  try {
+    if (stageId === "stage2_source_collect") {
+      STAGE_REPORTS.stage2 = await api(`/api/projects/${CURRENT_PID}/reports/stage2_collection`);
+    } else if (stageId === "stage3_kg_build") {
+      const [rep, kg] = await Promise.all([
+        api(`/api/projects/${CURRENT_PID}/reports/stage3_kg`),
+        api(`/api/projects/${CURRENT_PID}/kg-preview`),
+      ]);
+      STAGE_REPORTS.stage3 = rep;
+      KG_PREVIEW_CACHE = kg;
+    } else if (stageId === "stage4_manuscript_draft") {
+      CHAPTERS_CACHE = await api(`/api/projects/${CURRENT_PID}/chapters`);
+    } else if (stageId === "stage5_visuals_generate") {
+      VISUALS_CACHE = await api(`/api/projects/${CURRENT_PID}/visuals`);
+    } else if (stageId === "stage6_publish_report") {
+      STAGE_REPORTS.stage6 = await api(`/api/projects/${CURRENT_PID}/reports/stage6_final`);
+    }
+  } catch (e) { console.warn(e); }
+}
+
+// ============================================================
+// 단계별 상세 뷰 (1~6단계)
+// ============================================================
+function renderStageDetail() {
+  const host = document.getElementById("stageDetailHost");
+  if (!CURRENT_STATE) {
+    host.innerHTML = `<div class="card"><h3>프로젝트를 선택하거나 [+ 새 교재 만들기]를 눌러 시작하세요.</h3></div>`;
+    return;
+  }
+  const st = CURRENT_STATE;
+  const s = (st.stages || []).find(x => x.stage_id === SELECTED_STAGE) || st.stages[0];
+  const m = STATUS_META[s.status] || STATUS_META.PENDING;
+
+  let bodyHtml = "";
+  if (s.stage_id === "stage1_topic_outline") bodyHtml = renderStage1Body(st, s);
+  else if (s.stage_id === "stage2_source_collect") bodyHtml = renderStage2Body(st, s);
+  else if (s.stage_id === "stage3_kg_build") bodyHtml = renderStage3Body(st, s);
+  else if (s.stage_id === "stage4_manuscript_draft") bodyHtml = renderStage4Body(st, s);
+  else if (s.stage_id === "stage5_visuals_generate") bodyHtml = renderStage5Body(st, s);
+  else if (s.stage_id === "stage6_publish_report") bodyHtml = renderStage6Body(st, s);
+
+  host.innerHTML = `
+    <div class="card">
+      <div class="card-head">
+        <div>
+          <div class="flex">
+            <span class="badge ${m.cls}">${m.icon} ${s.order}단계 · ${m.label} (${s.status==='DONE'?100:(s.progress||0)}%)</span>
+            <span class="muted">${esc(s.tier)}</span>
+          </div>
+          <h2 class="card-title mt8" style="font-size:19px">${esc(s.order)}. ${esc(s.title)}</h2>
+          <div class="muted">${esc(s.current_action || s.description)}</div>
+        </div>
+        <div class="flex">
+          <button class="btn-primary" onclick="runSingleStage('${s.stage_id}')">▶ 이 단계 실행 / 재실행</button>
+        </div>
+      </div>
+      ${s.error ? `<div class="card" style="border-color:var(--red);background:rgba(239,68,68,.08);margin-bottom:12px;"><strong>오류:</strong> ${esc(s.error)}</div>` : ""}
+      ${bodyHtml}
+    </div>`;
+}
+
+// --- 1단계: OpenAI 목차/요약/영역별 키워드 제안 · 재요청 · 직접 편집 · 확정 ---
+function renderStage1Body(st) {
+  const bp = st.blueprint_preview;
+  const opts = st.options || {};
+  const meta = (bp && bp.book_metadata) || {};
+  const domKws = (bp && bp.domain_keywords) || st.domain_keywords || [];
+  const parts = (bp && bp.parts) || [];
+
+  const kwChipsHtml = domKws.length
+    ? domKws.map(d => `
+      <div style="margin-bottom:6px">
+        <strong style="font-size:12.5px;color:#e2e8f0">${esc(d.domain)}:</strong>
+        ${(d.keywords_ko||[]).map(k=>`<span class="chip">${esc(k)}</span>`).join("")}
+        ${(d.keywords_en||[]).map(k=>`<span class="chip" style="background:rgba(168,85,247,.12);border-color:rgba(168,85,247,.3);color:#e9d5ff">${esc(k)}</span>`).join("")}
+      </div>`).join("")
+    : `<div class="muted">아직 영역별 키워드가 생성되지 않았습니다. [▶ 이 단계 실행]을 눌러 OpenAI API로 목차·요약·키워드를 제안받으세요.</div>`;
+
+  const editorHtml = parts.length ? parts.map((pt, pi) => `
+    <div class="part-box" data-part-idx="${pi}">
+      <div class="flex" style="justify-content:space-between">
+        <input class="ed-part-title" value="${esc(pt.title)}" style="font-weight:700;flex:1" />
+        <button class="btn-sm" onclick="addChapterToPart(${pi})">+ 단원 추가</button>
+      </div>
+      ${(pt.chapters || []).map((ch, ci) => `
+        <div class="ch-row" data-ch-idx="${ci}">
+          <div class="flex">
+            <span class="badge b-run">${esc(ch.chapter_id || ("ch"+(ci+1)))}</span>
+            <input class="ed-ch-title" value="${esc(ch.title)}" style="flex:1;font-weight:700" placeholder="단원 제목" />
+            <input class="ed-ch-pages" type="number" value="${ch.target_pages || 30}" style="width:76px" title="목표 쪽수" />
+            <button class="btn-sm btn-red" onclick="removeChapterFromPart(${pi}, ${ci})">삭제</button>
+          </div>
+          <div class="mt8">
+            <input class="ed-ch-summary" value="${esc(ch.summary_ko || "")}" placeholder="단원 핵심 요약 (1~2문장)" />
+          </div>
+          <div class="mt8">
+            <input class="ed-ch-sections" value="${esc((ch.sections || []).join(" | "))}" placeholder="절 구성 ( | 로 구분)" />
+          </div>
+        </div>
+      `).join("")}
+    </div>
+  `).join("") : `<div class="muted">목차 초안이 아직 없습니다. 상단 [▶ 이 단계 실행] 버튼을 누르면 초기 검색 + OpenAI API로 목차·요약·키워드를 제시합니다.</div>`;
+
+  return `
+    <div class="card" style="background:var(--surface)">
+      <div class="card-head">
+        <div>
+          <h3 class="card-title">🧠 교재 개요 및 핵심 영역별 키워드</h3>
+          <div class="muted">${esc(meta.book_summary_ko || `《${st.topic_ko}》의 목차·요약·핵심 키워드를 검토하고 확정하면 2단계 자료 수집이 진행됩니다.`)}</div>
+        </div>
+        <span class="badge ${st.outline_approved ? 'b-done' : 'b-rev'}">
+          ${st.outline_approved ? '✅ 목차 확정됨 (언제든 수정 가능)' : '📝 검토 · 수정 대기중'}
+        </span>
+      </div>
+      ${kwChipsHtml}
+    </div>
+
+    <!-- 사용자 검토 및 OpenAI 재요청 바 -->
+    <div class="card" style="background:#131f38;border-color:rgba(56,189,248,.4)">
+      <h3 class="card-title mb8">✏️ 목차·요약·키워드 검토 및 AI 재요청</h3>
+      <div class="flex">
+        <input id="stage1Feedback" placeholder="예: 3부에 드론 영상 기반 질소 시비 처방 단원을 추가하고, 수확 후 품질 평가 단원을 2개 장으로 세분화해줘" style="flex:1" />
+        <label class="flex"><input type="checkbox" id="stage1UseOpenai" ${opts.use_openai_outline!==false ? "checked" : ""} /> OpenAI API</label>
+        <button class="btn-amber" onclick="reviseStage1()">🔄 AI 재요청 반영</button>
+      </div>
+      <div class="flex mt12" style="justify-content:space-between">
+        <div class="flex">
+          <button onclick="saveStage1EditsOnly()">💾 직접 수정 내용 저장</button>
+          <button onclick="addNewPart()">+ 새 부(Part) 추가</button>
+        </div>
+        <button class="btn-green" onclick="approveStage1AndContinue()">✅ 목차·키워드 최종 확정 → 2단계 자료 수집 시작</button>
+      </div>
+    </div>
+
+    <div id="stage1OutlineEditor">${editorHtml}</div>
+  `;
+}
+
+// --- 2단계: 자료 수집 폴더 현황 + 02_collection_report.md ---
+function renderStage2Body(st) {
+  const bd = st.collection_breakdown || {};
+  const rep = STAGE_REPORTS.stage2;
+  return `
+    <div class="grid-4 mb8">
+      <div class="kpi"><div class="kpi-val">${bd.domestic_agencies || 0}</div><div class="kpi-lbl">01_국내 공식기관·웹</div></div>
+      <div class="kpi"><div class="kpi-val">${bd.domestic_journals || 0}</div><div class="kpi-lbl">02_국내 학회지·연구소</div></div>
+      <div class="kpi"><div class="kpi-val">${bd.international_agencies || 0}</div><div class="kpi-lbl">03_해외 기관·대학</div></div>
+      <div class="kpi"><div class="kpi-val">${bd.international_journals || 0}</div><div class="kpi-lbl">04_국제 SCI·OA 저널</div></div>
+    </div>
+    <div class="muted mb8">저장 폴더: <code>${esc(st.collected_dir || "")}</code></div>
+    <div class="card" style="background:var(--surface)">
+      <div class="card-head">
+        <h3 class="card-title">📄 2단계 자료 수집 현황 보고서 (02_collection_report.md)</h3>
+        <button class="btn-sm" onclick="switchMainTab('library')">📚 자료실에서 추가 수집</button>
+      </div>
+      <div class="md-box">${rep && rep.exists ? renderMd(rep.content) : '<span class="muted">2단계 실행 완료 시 자료 수집 현황 보고서가 자동 생성됩니다.</span>'}</div>
+    </div>
+  `;
+}
+
+// --- 3단계: 지식그래프 구축 현황 + 03_kg_report.md ---
+function renderStage3Body(st) {
+  const rep = STAGE_REPORTS.stage3;
+  const kg = KG_PREVIEW_CACHE || {};
+  const nodes = (kg.top_nodes || []).slice(0, 15);
+  return `
+    <div class="grid-3 mb8">
+      <div class="kpi"><div class="kpi-val">${kg.total_nodes || 0}</div><div class="kpi-lbl">누적 지식 노드 (증분 그래프)</div></div>
+      <div class="kpi"><div class="kpi-val">${kg.total_edges || 0}</div><div class="kpi-lbl">누적 지식 관계 (Triples)</div></div>
+      <div class="kpi"><div class="kpi-val">${kg.project_source_count || 0}</div><div class="kpi-lbl">프로젝트 반영 근거 자료</div></div>
+    </div>
+    <div class="muted mb8">통합 저장소: <code>${esc(kg.graph_path || "C:\\SMC_GRAPHRAG\\output\\graph_platform_incremental.json")}</code> (기존 graph.json 무훼손)</div>
+    <div class="mb8">${nodes.map(n => `<span class="chip">${esc(n.id)} <small style="opacity:.7">(${esc(n.type||"CONCEPT")})</small></span>`).join("")}</div>
+    <div class="card" style="background:var(--surface)">
+      <h3 class="card-title mb8">📄 3단계 지식그래프 구축 보고서 (03_kg_report.md)</h3>
+      <div class="md-box">${rep && rep.exists ? renderMd(rep.content) : '<span class="muted">3단계 실행 완료 시 지식그래프 구축 보고서가 자동 생성됩니다.</span>'}</div>
+    </div>
+  `;
+}
+
+// --- 4단계: 교재 집필 체크포인트 + 원고 열람 ---
+function renderStage4Body(st) {
+  const data = CHAPTERS_CACHE || { chapters: [], audit: null };
+  const chs = data.chapters || [];
+  const audit = data.audit;
+  const doneCnt = chs.filter(c => c.exists).length;
+  return `
+    <div class="grid-3 mb8">
+      <div class="kpi"><div class="kpi-val">${doneCnt} / ${chs.length || st.chapter_count}</div><div class="kpi-lbl">단원별 체크포인트 집필 현황</div></div>
+      <div class="kpi"><div class="kpi-val">${audit ? audit.status : "대기"}</div><div class="kpi-lbl">인용·원문복사율 감사 결과</div></div>
+      <div class="kpi"><div class="kpi-val">${audit ? (audit.critical_errors || []).length : 0}건</div><div class="kpi-lbl">치명 오류 (0건 기준)</div></div>
+    </div>
+    <div class="grid-2">
+      <div class="card" style="background:var(--surface);margin-bottom:0">
+        <h3 class="card-title mb8">📑 단원 목록 (중단 시 완료 단원 다음부터 자동 이어하기)</h3>
+        <div style="max-height:420px;overflow:auto;">
+          <table class="tbl">
+            <thead><tr><th>단원</th><th>제목</th><th>분량</th><th>상태</th></tr></thead>
+            <tbody>
+              ${chs.map(c => `
+                <tr style="cursor:pointer" onclick="openChapterPreview('${esc(c.chapter_id)}')">
+                  <td><strong>${esc(c.chapter_id)}</strong></td>
+                  <td>${esc(c.title)}</td>
+                  <td>${c.char_count ? c.char_count.toLocaleString()+"자" : "-"}</td>
+                  <td><span class="badge ${c.exists?'b-done':'b-wait'}">${c.exists?'✅ 완료':'⏳ 대기'}</span></td>
+                </tr>
+              `).join("")}
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card" style="background:var(--surface);margin-bottom:0">
+        <h3 class="card-title mb8" id="chViewerTitle">📖 단원 원고 미리보기 (왼쪽 단원을 클릭하세요)</h3>
+        <div id="chViewerBody" class="md-box" style="max-height:420px;">왼쪽 목록에서 집필 완료된 단원을 클릭하면 [SRC-NN] 인용 원고 전문을 확인할 수 있습니다.</div>
+      </div>
+    </div>
+  `;
+}
+
+// --- 5단계: 시각화 (단원당 10개+, fal.ai API 체크박스, 줄글 해설) ---
+function renderStage5Body(st) {
+  const opts = st.options || {};
+  const vis = VISUALS_CACHE || { plan: { visuals: [] }, text_guide: "" };
+  const items = (vis.plan && (vis.plan.visuals || vis.plan.items)) || [];
+  return `
+    <div class="card" style="background:#131f38;border-color:rgba(168,85,247,.4)">
+      <div class="card-head" style="margin-bottom:8px">
+        <h3 class="card-title">🎨 시각화 생성 엔진 설정 (단원당 10개 이상 · 실사/인포그래픽 + 정량 SVG)</h3>
+        <button class="btn-green btn-sm" onclick="saveStage5VisualOptions()">설정 저장 후 5단계 실행</button>
+      </div>
+      <div class="grid-4">
+        <label class="flex" style="background:var(--surface);padding:9px 12px;border-radius:8px;border:1px solid var(--border)">
+          <input type="checkbox" id="s5UseFal" ${opts.use_fal_ai ? "checked" : ""} />
+          <span><strong>fal.ai API 사용</strong><br><small class="muted">실사진·인포그래픽 생성</small></span>
+        </label>
+        <div>
+          <label class="label">fal.ai 모델 선택</label>
+          <select id="s5FalModel">
+            <option value="fal-ai/nano-banana" ${opts.fal_model==="fal-ai/nano-banana"?"selected":""}>fal-ai/nano-banana (나노바나나)</option>
+            <option value="fal-ai/flux/schnell" ${opts.fal_model==="fal-ai/flux/schnell"?"selected":""}>fal-ai/flux/schnell</option>
+            <option value="fal-ai/flux-pro/v1.1" ${opts.fal_model==="fal-ai/flux-pro/v1.1"?"selected":""}>fal-ai/flux-pro/v1.1</option>
+          </select>
+        </div>
+        <label class="flex" style="background:var(--surface);padding:9px 12px;border-radius:8px;border:1px solid var(--border)">
+          <input type="checkbox" id="s5UseNb" ${opts.use_nano_banana!==false ? "checked" : ""} />
+          <span><strong>나노바나나(Gemini)</strong><br><small class="muted">실사·인포그래픽 생성</small></span>
+        </label>
+        <div>
+          <label class="label">단원당 시각화 개수 (≥10)</label>
+          <input type="number" id="s5PerCh" min="10" max="25" value="${Math.max(10, opts.visuals_per_chapter || 10)}" />
+        </div>
+      </div>
+      <div class="muted mt8">※ 표 형식 대신 각 그림 직하단에 학술 줄글 해설(visuals_text_guide.md)이 자동 생성되며, 이미지 1건마다 체크포인트가 저장됩니다.</div>
+    </div>
+
+    <div class="grid-3 mb8">
+      <div class="kpi"><div class="kpi-val">${items.length}종</div><div class="kpi-lbl">총 생성 완료 시각화</div></div>
+      <div class="kpi"><div class="kpi-val">${(vis.plan && vis.plan.ai_images_count) || 0}종</div><div class="kpi-lbl">실사 · 인포그래픽 (fal.ai/나노바나나)</div></div>
+      <div class="kpi"><div class="kpi-val">${(vis.plan && vis.plan.svg_charts_count) || 0}종</div><div class="kpi-lbl">정량 도해 · 다이어그램 (SVG)</div></div>
+    </div>
+
+    ${items.length ? `
+      <div class="grid-2">
+        ${items.slice(0, 30).map(it => `
+          <div class="vis-card">
+            <div class="flex" style="justify-content:space-between">
+              <strong style="font-size:13px">${esc(it.title_ko)}</strong>
+              <span class="badge b-run">${esc(it.engine)}</span>
+            </div>
+            <img src="${esc(it.rel_url || it.web_url)}" alt="${esc(it.title_ko)}" loading="lazy" />
+            <div class="vis-desc">${esc(it.narrative_ko)}</div>
+          </div>
+        `).join("")}
+      </div>
+    ` : `<div class="muted">아직 생성된 시각화가 없습니다. 위 설정을 확인하고 [설정 저장 후 5단계 실행]을 눌러 단원당 10종 이상의 시각화를 제작하세요.</div>`}
+  `;
+}
+
+// --- 6단계: 최종 출판 다운로드 + 표지/목차 바로가기 + 06_final_book_report.md ---
+function renderStage6Body(st) {
+  const outputs = st.outputs || {};
+  const outKeys = Object.keys(outputs);
+  const rep = STAGE_REPORTS.stage6;
+  return `
+    <div class="card" style="background:var(--surface)">
+      <div class="card-head" style="margin-bottom:8px">
+        <h3 class="card-title">📦 출판 산출물 다운로드 (표지·목차 · PDF · Word DOCX · 네이버 블로그 HTML)</h3>
+        <button class="btn-primary btn-sm" onclick="switchMainTab('covertoc')">🎨 표지 · 목차 디자인/미리보기</button>
+      </div>
+      ${outKeys.length ? `
+        <div class="flex">
+          ${outKeys.map(k => `<a class="badge b-done" style="padding:7px 12px;font-size:12.5px" href="${esc(outputs[k])}" target="_blank">⬇ ${esc(k)}</a>`).join("")}
+        </div>
+      ` : `<div class="muted">6단계 출판을 실행하면 표지·목차·교재 PDF·보고서 DOCX·네이버 블로그 HTML 파일이 생성됩니다.</div>`}
+    </div>
+    <div class="card" style="background:var(--surface)">
+      <h3 class="card-title mb8">📄 6단계 교재 생성 완료 종합 보고서 (06_final_book_report.md)</h3>
+      <div class="md-box">${rep && rep.exists ? renderMd(rep.content) : '<span class="muted">6단계 완료 시 교재 생성 완료 종합 보고서가 자동 생성됩니다.</span>'}</div>
+    </div>
+  `;
+}
+
+// ============================================================
+// 표지 · 목차 페이지 제작 스튜디오 함수
+// ============================================================
+async function loadCoverTocTab() {
+  if (!CURRENT_PID) return;
+  try {
+    const data = await api(`/api/projects/${encodeURIComponent(CURRENT_PID)}/cover-toc`);
+    const s = data.settings || {};
+    document.getElementById("ctOutlineStats").textContent =
+      `현재 목차 기준: ${data.parts_count}부 ${data.chapter_count}장 · 목표 ${data.target_pages}쪽`;
+    document.getElementById("ctTitleKo").value = s.title_ko || "";
+    document.getElementById("ctTitleEn").value = s.title_en || "";
+    document.getElementById("ctSubtitleKo").value = s.subtitle_ko || "";
+    document.getElementById("ctAuthor").value = s.author || "";
+    document.getElementById("ctPublisher").value = s.publisher || "";
+    document.getElementById("ctEdition").value = s.edition || "";
+    document.getElementById("ctAudience").value = s.target_audience || "";
+    document.getElementById("ctTheme").value = s.theme || "golden_wheat";
+    document.getElementById("ctTrim").value = s.trim_format || "b5";
+    document.getElementById("ctPreface").value = s.preface_ko || "";
+    document.getElementById("ctUseAiCover").checked = !!s.use_ai_cover;
+    document.getElementById("ctUseFal").checked = !!s.use_fal_ai;
+    renderCoverTocFiles(data.files || {});
+  } catch (e) { toast("❌ 표지·목차 설정 조회 오류: " + e.message); }
+}
+
+function renderCoverTocFiles(files) {
+  const box = document.getElementById("ctDownloadLinks");
+  const frame = document.getElementById("ctPreviewFrame");
+  const openBtn = document.getElementById("ctOpenNewTab");
+  const keys = Object.keys(files || {});
+  if (!keys.length) {
+    box.innerHTML = '<span class="muted">아직 생성되지 않았습니다. 위 [✨ 표지 · 목차 생성] 버튼을 눌러주세요.</span>';
+    frame.src = "about:blank";
+    openBtn.style.display = "none";
+    return;
+  }
+  const labelMap = { pdf: "📕 표지·목차 PDF", docx: "📘 Word DOCX", html: "🌐 HTML 미리보기", md: "📝 Markdown 목차" };
+  const ts = Date.now();
+  box.innerHTML = keys.map(k =>
+    `<a class="badge b-done" style="padding:7px 12px;font-size:12.5px" href="${esc(files[k])}?t=${ts}" target="_blank">${labelMap[k] || k}</a>`
+  ).join("");
+  if (files.html) {
+    frame.src = `${files.html}?t=${ts}`;
+    openBtn.href = `${files.html}?t=${ts}`;
+    openBtn.style.display = "inline-flex";
+  }
+}
+
+async function generateCoverToc() {
+  if (!CURRENT_PID) return toast("프로젝트를 먼저 선택하세요.");
+  toast("🎨 표지 · 머리말 · 전체 목차 페이지(HTML · PDF · DOCX · MD)를 생성 중입니다...");
+  try {
+    const res = await api(`/api/projects/${encodeURIComponent(CURRENT_PID)}/cover-toc/generate`, {
+      method: "POST",
+      body: JSON.stringify({
+        title_ko: document.getElementById("ctTitleKo").value.trim(),
+        title_en: document.getElementById("ctTitleEn").value.trim(),
+        subtitle_ko: document.getElementById("ctSubtitleKo").value.trim(),
+        author: document.getElementById("ctAuthor").value.trim(),
+        publisher: document.getElementById("ctPublisher").value.trim(),
+        edition: document.getElementById("ctEdition").value.trim(),
+        target_audience: document.getElementById("ctAudience").value.trim(),
+        theme: document.getElementById("ctTheme").value,
+        trim_format: document.getElementById("ctTrim").value,
+        preface_ko: document.getElementById("ctPreface").value.trim(),
+        use_ai_cover: document.getElementById("ctUseAiCover").checked,
+        use_fal_ai: document.getElementById("ctUseFal").checked,
+      }),
+    });
+    renderCoverTocFiles(res.files || {});
+    toast(`✅ 표지·목차 생성 완료! (${res.parts_count}부 ${res.chapter_count}장 · PDF ${res.pdf_ok ? "성공" : "대기"})`);
+    await refreshCurrentProject(false);
+  } catch (e) { toast("❌ " + e.message); }
+}
+
+// ============================================================
+// 1단계 목차 편집 / AI 재요청 / 확정 액션
+// ============================================================
+function collectOutlineFromEditor() {
+  const bp = JSON.parse(JSON.stringify(CURRENT_STATE.blueprint_preview || { book_metadata: {}, domain_keywords: [], parts: [] }));
+  const partEls = document.querySelectorAll("#stage1OutlineEditor .part-box");
+  const parts = [];
+  let chSeq = 1;
+  partEls.forEach((pEl, pi) => {
+    const pTitle = pEl.querySelector(".ed-part-title").value.trim() || `제${pi+1}부`;
+    const chs = [];
+    pEl.querySelectorAll(".ch-row").forEach(cEl => {
+      const cid = `ch${String(chSeq).padStart(2, "0")}`;
+      const title = cEl.querySelector(".ed-ch-title").value.trim() || `제${chSeq}장`;
+      const pages = Math.max(10, parseInt(cEl.querySelector(".ed-ch-pages").value, 10) || 30);
+      const summary = cEl.querySelector(".ed-ch-summary").value.trim();
+      const sections = cEl.querySelector(".ed-ch-sections").value.split("|").map(x => x.trim()).filter(Boolean);
+      chs.push({ chapter_id: cid, chapter_number: chSeq, title, target_pages: pages, summary_ko: summary, sections });
+      chSeq++;
+    });
+    parts.push({ part_number: pi + 1, title: pTitle, pages: chs.reduce((a, b) => a + b.target_pages, 0), chapters: chs });
+  });
+  bp.parts = parts;
+  bp.book_metadata = bp.book_metadata || {};
+  bp.book_metadata.target_pages = parts.reduce((a, b) => a + b.pages, 0);
+  bp.book_metadata.target_total_pages = bp.book_metadata.target_pages;
+  bp.book_metadata.chapter_count = chSeq - 1;
+  return bp;
+}
+
+function addNewPart() {
+  const bp = collectOutlineFromEditor();
+  const n = bp.parts.length + 1;
+  bp.parts.push({ part_number: n, title: `제${n}부. 신규 영역`, pages: 30, chapters: [{ chapter_id: `ch${String((bp.book_metadata.chapter_count||0)+1).padStart(2,"0")}`, title: "신규 단원", target_pages: 30, summary_ko: "", sections: ["개요", "원리", "적용"] }] });
+  CURRENT_STATE.blueprint_preview = bp;
+  renderStageDetail();
+}
+
+function addChapterToPart(pi) {
+  const bp = collectOutlineFromEditor();
+  bp.parts[pi].chapters.push({ chapter_id: "ch_new", title: "신규 단원 제목", target_pages: 30, summary_ko: "", sections: ["개요", "핵심 원리", "현장 적용"] });
+  CURRENT_STATE.blueprint_preview = bp;
+  renderStageDetail();
+}
+
+function removeChapterFromPart(pi, ci) {
+  const bp = collectOutlineFromEditor();
+  bp.parts[pi].chapters.splice(ci, 1);
+  CURRENT_STATE.blueprint_preview = bp;
+  renderStageDetail();
+}
+
+async function saveStage1EditsOnly() {
+  try {
+    const outline = collectOutlineFromEditor();
+    const res = await api(`/api/projects/${CURRENT_PID}/blueprint`, { method: "PUT", body: JSON.stringify({ outline }) });
+    CURRENT_STATE = res.project;
+    renderTopProgress();
+    renderStageDetail();
+    toast("✅ 수정된 목차·요약을 저장했습니다.");
+  } catch (e) { toast("❌ " + e.message); }
+}
+
+async function reviseStage1() {
+  const fb = document.getElementById("stage1Feedback").value.trim();
+  if (!fb) return toast("수정·재요청 내용을 입력해 주세요.");
+  const useOpenai = document.getElementById("stage1UseOpenai").checked;
+  toast("🔄 AI가 수정 요청을 반영해 목차·요약·키워드를 재구성 중입니다...");
+  try {
+    const res = await api(`/api/projects/${CURRENT_PID}/stage1/revise`, {
+      method: "POST",
+      body: JSON.stringify({ feedback_prompt: fb, use_openai: useOpenai }),
+    });
+    CURRENT_STATE = res.project;
+    renderTopProgress();
+    renderStageDetail();
+    toast(`✅ 재요청 반영 완료 (${res.engine_used})`);
+  } catch (e) { toast("❌ " + e.message); }
+}
+
+async function approveStage1AndContinue() {
+  try {
+    const outline = collectOutlineFromEditor();
+    const res = await api(`/api/projects/${CURRENT_PID}/stage1/approve`, {
+      method: "POST",
+      body: JSON.stringify({ edited_outline: outline, auto_continue: true }),
+    });
+    CURRENT_STATE = res.project;
+    SELECTED_STAGE = "stage2_source_collect";
+    renderTopProgress();
+    renderStageDetail();
+    toast("✅ 1단계 목차 확정 완료! 2단계 자료 수집이 시작됩니다.");
+  } catch (e) { toast("❌ " + e.message); }
+}
+
+// ============================================================
+// 파이프라인 실행 / 중단 / 단원 원고 / 5단계 옵션
+// ============================================================
+async function runPipeline(mode = "all") {
+  if (!CURRENT_PID) return;
+  try {
+    const res = await api(`/api/projects/${CURRENT_PID}/run`, { method: "POST", body: JSON.stringify({ mode }) });
+    toast(`▶ 파이프라인 시작 (${res.status})`);
+    await refreshCurrentProject(false);
+  } catch (e) { toast("❌ " + e.message); }
+}
+
+async function runSingleStage(stageId) {
+  if (!CURRENT_PID) return;
+  try {
+    const res = await api(`/api/projects/${CURRENT_PID}/run`, { method: "POST", body: JSON.stringify({ mode: "single", stage_id: stageId }) });
+    toast(`▶ ${stageId} 실행 시작 (${res.status})`);
+    await refreshCurrentProject(false);
+  } catch (e) { toast("❌ " + e.message); }
+}
+
+async function stopCurrentPipeline() {
+  if (!CURRENT_PID) return;
+  try {
+    await api(`/api/projects/${CURRENT_PID}/stop`, { method: "POST" });
+    toast("⏹ 중단 요청 완료 — 현재 작업 체크포인트를 저장한 뒤 안전하게 멈춥니다.");
+  } catch (e) { toast("❌ " + e.message); }
+}
+
+async function openChapterPreview(cid) {
+  try {
+    const res = await api(`/api/projects/${CURRENT_PID}/chapters/${encodeURIComponent(cid)}`);
+    document.getElementById("chViewerTitle").textContent = `📖 ${cid} 원고 미리보기`;
+    document.getElementById("chViewerBody").innerHTML = renderMd(res.content);
+  } catch (e) {
+    document.getElementById("chViewerTitle").textContent = `📖 ${cid}`;
+    document.getElementById("chViewerBody").innerHTML = `<span class="muted">${esc(e.message)}</span>`;
+  }
+}
+
+async function saveStage5VisualOptions() {
+  const payload = {
+    use_fal_ai: document.getElementById("s5UseFal").checked,
+    fal_model: document.getElementById("s5FalModel").value,
+    use_nano_banana: document.getElementById("s5UseNb").checked,
+    visuals_per_chapter: Math.max(10, parseInt(document.getElementById("s5PerCh").value, 10) || 10),
+  };
+  try {
+    await api(`/api/projects/${CURRENT_PID}/options`, { method: "PATCH", body: JSON.stringify(payload) });
+    toast("✅ 시각화 옵션 저장 완료 — 5단계 시각화를 시작합니다.");
+    await runSingleStage("stage5_visuals_generate");
+  } catch (e) { toast("❌ " + e.message); }
+}
+
+function renderLiveLogs() {
+  const box = document.getElementById("liveLogWrap");
+  document.getElementById("logCountMeta").textContent = `${CURRENT_EVENTS.length}건`;
+  if (!CURRENT_EVENTS.length) { box.innerHTML = '<span class="muted">실행 로그가 없습니다.</span>'; return; }
+  box.innerHTML = CURRENT_EVENTS.slice(-50).reverse().map(ev => {
+    const col = ev.level === "ERROR" ? "#fca5a5" : (ev.level === "WARN" ? "#fcd34d" : "#93c5fd");
+    return `<div class="log-line"><span style="color:#64748b">[${esc(ev.local_time)}]</span> <span style="color:${col};font-weight:700">${esc(ev.agent)}</span> ${esc(ev.message)}</div>`;
+  }).join("");
+}
+function toggleLogs() {
+  LOGS_OPEN = !LOGS_OPEN;
+  document.getElementById("liveLogWrap").style.display = LOGS_OPEN ? "block" : "none";
+}
+
+// ============================================================
+// TAB 2: 자료실 · 학술 검색 · URL · BibTeX
+// ============================================================
+function renderLibraryTab() {
+  const srcs = (CURRENT_STATE && CURRENT_STATE.collected_sources) || [];
+  document.getElementById("libTotalCount").textContent = srcs.length;
+  document.getElementById("libFolderPath").textContent = CURRENT_STATE ? (CURRENT_STATE.collected_dir || "") : "";
+  const tb = document.getElementById("libTableBody");
+  if (!srcs.length) {
+    tb.innerHTML = `<tr><td colspan="5" class="muted">아직 수집된 자료가 없습니다. 2단계 자료 수집을 실행하거나 위에서 직접 검색·수집하세요.</td></tr>`;
+    return;
+  }
+  tb.innerHTML = srcs.map(s => `
+    <tr>
+      <td><code>${esc(s.source_id || "")}</code></td>
+      <td><span class="badge b-wait">${esc(s.tier_folder || "-")}</span></td>
+      <td>${esc(s.provider || "-")}</td>
+      <td>${esc(s.year || "-")}</td>
+      <td><strong>${esc(s.title || "")}</strong><br><a href="${esc(s.url || "#")}" target="_blank" style="font-size:11.5px">${esc(s.url || "")}</a></td>
+    </tr>
+  `).join("");
+}
+
+let SCHOLAR_RESULTS = [];
+async function searchScholar() {
+  const q = document.getElementById("scholarQuery").value.trim();
+  const scope = document.getElementById("scholarScope").value;
+  if (!q) return toast("검색어를 입력하세요.");
+  const box = document.getElementById("scholarResults");
+  box.innerHTML = '<span class="muted">검색 중 (OpenAlex · Europe PMC · Crossref 자동 폴백)...</span>';
+  try {
+    const res = await api("/api/collect/scholar/search", { method: "POST", body: JSON.stringify({ query: q, scope, limit: 8 }) });
+    SCHOLAR_RESULTS = res.papers || [];
+    if (!SCHOLAR_RESULTS.length) { box.innerHTML = '<span class="muted">검색 결과가 없습니다.</span>'; return; }
+    box.innerHTML = SCHOLAR_RESULTS.map((p, i) => `
+      <div class="ch-row">
+        <div class="flex" style="justify-content:space-between">
+          <strong>${esc(p.title)}</strong>
+          <button class="btn-sm btn-green" onclick="ingestScholarPaper(${i})">+ 프로젝트에 추가</button>
+        </div>
+        <div class="muted">${esc(p.journal || "")} · ${esc(p.year || "-")} · ${esc(p.provider || "")} · 인용 ${p.cited_by_count || 0}</div>
+      </div>
+    `).join("");
+  } catch (e) { box.innerHTML = `<span style="color:#fca5a5">${esc(e.message)}</span>`; }
+}
+
+async function ingestScholarPaper(idx) {
+  if (!CURRENT_PID) return toast("프로젝트를 먼저 선택하세요.");
+  try {
+    await api("/api/collect/scholar/ingest", { method: "POST", body: JSON.stringify({ project_id: CURRENT_PID, paper: SCHOLAR_RESULTS[idx], download_pdf: false }) });
+    toast("✅ 논문을 현재 프로젝트 근거 패킷에 추가했습니다.");
+    await refreshCurrentProject(false);
+  } catch (e) { toast("❌ " + e.message); }
+}
+
+async function collectDirectUrl() {
+  const url = document.getElementById("directUrl").value.trim();
+  if (!url || !CURRENT_PID) return toast("URL과 프로젝트를 확인하세요.");
+  try {
+    await api("/api/collect/url", { method: "POST", body: JSON.stringify({ project_id: CURRENT_PID, url }) });
+    document.getElementById("directUrl").value = "";
+    toast("✅ URL 자료 수집 및 정제 완료!");
+    await refreshCurrentProject(false);
+  } catch (e) { toast("❌ " + e.message); }
+}
+
+async function collectDirectBibtex() {
+  const bib = document.getElementById("directBibtex").value.trim();
+  if (!bib || !CURRENT_PID) return toast("BibTeX 내용을 입력하세요.");
+  try {
+    const res = await api("/api/collect/bibtex", { method: "POST", body: JSON.stringify({ project_id: CURRENT_PID, bibtex_text: bib }) });
+    toast(`✅ BibTeX ${res.ingested_count}건 적재 완료!`);
+    await refreshCurrentProject(false);
+  } catch (e) { toast("❌ " + e.message); }
+}
+
+// ============================================================
+// TAB 3: 데이터 탐색 · 기상DB · API · NotebookLM · 심층대화
+// ============================================================
+async function loadExplorerMeta() {
+  try {
+    const meta = await api("/api/explorer/meta");
+    const db = meta.weather_db || {};
+    const stnTotal = (db.networks || []).reduce((a, n) => a + (n.station_count || 0), 0);
+    document.getElementById("weatherDbSummary").textContent = (db.available || db.exists)
+      ? `연결됨 · ${(db.total_records || db.total_rows || 0).toLocaleString()}행 · ${stnTotal || db.station_count || 0}개 관측소`
+      : "로컬 DB 미연결";
+  } catch (e) {}
+}
+
+function renderDataTable(columns, rows) {
+  if (!rows || !rows.length) return '<span class="muted">조회된 행이 없습니다.</span>';
+  return `<table class="tbl"><thead><tr>${columns.map(c=>`<th>${esc(c)}</th>`).join("")}</tr></thead><tbody>` +
+    rows.slice(0, 60).map(r => `<tr>${columns.map(c=>`<td>${esc(r[c])}</td>`).join("")}</tr>`).join("") +
+    `</tbody></table>`;
+}
+
+async function queryLocalWeather() {
+  const box = document.getElementById("weatherResultBox");
+  box.innerHTML = '<span class="muted">기상 DB 조회 중...</span>';
+  try {
+    const res = await api("/api/explorer/weather-local", {
+      method: "POST",
+      body: JSON.stringify({
+        network: document.getElementById("wNetwork").value,
+        station_query: document.getElementById("wStation").value.trim(),
+        start_date: document.getElementById("wStart").value.trim(),
+        end_date: document.getElementById("wEnd").value.trim(),
+        agg_mode: document.getElementById("wAgg").value,
+        limit: 120,
+      }),
+    });
+    LAST_EXPLORER_DATA.weather_local = {
+      title: `로컬 기상 DB (${document.getElementById("wNetwork").value} ${document.getElementById("wStation").value})`,
+      source_kind: "weather_local_db",
+      columns: res.columns || [],
+      rows: res.rows || [],
+      markdown: res.summary_md || "",
+    };
+    box.innerHTML = renderDataTable(res.columns || [], res.rows || []);
+    toast(`✅ ${(res.rows||[]).length}행 조회 완료`);
+  } catch (e) { box.innerHTML = `<span style="color:#fca5a5">${esc(e.message)}</span>`; }
+}
+
+async function fetchKmaAsos() {
+  const box = document.getElementById("weatherResultBox");
+  box.innerHTML = '<span class="muted">기상청 API 허브 호출 중...</span>';
+  try {
+    const res = await api("/api/explorer/kma-asos", {
+      method: "POST",
+      body: JSON.stringify({
+        stn: document.getElementById("kmaStn").value.trim(),
+        start_date: document.getElementById("kmaStart").value.trim(),
+        end_date: document.getElementById("kmaEnd").value.trim(),
+      }),
+    });
+    LAST_EXPLORER_DATA.weather_local = { title: `기상청 ASOS 지점 ${document.getElementById("kmaStn").value}`, source_kind: "kma_asos_api", columns: res.columns || [], rows: res.rows || [] };
+    box.innerHTML = renderDataTable(res.columns || [], res.rows || []);
+  } catch (e) { box.innerHTML = `<span style="color:#fca5a5">${esc(e.message)}</span>`; }
+}
+
+async function fetchOwm() {
+  const box = document.getElementById("owmResultBox");
+  box.innerHTML = "조회 중...";
+  try {
+    const res = await api("/api/explorer/openweathermap", { method: "POST", body: JSON.stringify({ city: document.getElementById("owmCity").value.trim() }) });
+    LAST_EXPLORER_DATA.owm = { title: `OpenWeatherMap (${document.getElementById("owmCity").value})`, source_kind: "openweathermap", columns: res.columns || [], rows: res.rows || [], markdown: res.markdown || "" };
+    box.innerHTML = renderMd(res.markdown || JSON.stringify(res, null, 2));
+  } catch (e) { box.innerHTML = `<span style="color:#fca5a5">${esc(e.message)}</span>`; }
+}
+
+async function fetchPublicPortal() {
+  const box = document.getElementById("portalResultBox");
+  box.innerHTML = "호출 중...";
+  try {
+    const params = JSON.parse(document.getElementById("portalParams").value || "{}");
+    const res = await api("/api/explorer/public-portal", { method: "POST", body: JSON.stringify({ endpoint: document.getElementById("portalEndpoint").value.trim(), params }) });
+    LAST_EXPLORER_DATA.portal = { title: "공공데이터포털 API", source_kind: "public_portal", columns: res.columns || [], rows: res.rows || [], markdown: res.markdown || "" };
+    box.innerHTML = renderDataTable(res.columns || [], res.rows || []);
+  } catch (e) { box.innerHTML = `<span style="color:#fca5a5">${esc(e.message)}</span>`; }
+}
+
+async function searchKosis() {
+  const box = document.getElementById("kosisListBox");
+  box.innerHTML = '<span class="muted">검색 중...</span>';
+  try {
+    const res = await api("/api/explorer/kosis/search", { method: "POST", body: JSON.stringify({ keyword: document.getElementById("kosisKeyword").value.trim(), count: 12 }) });
+    const rows = res.tables || res.rows || [];
+    box.innerHTML = rows.map(t => `<div class="ch-row"><strong>${esc(t.TBL_NM || t.title)}</strong> <span class="muted">(${esc(t.ORG_ID)} / ${esc(t.TBL_ID)})</span></div>`).join("") || '<span class="muted">결과 없음</span>';
+  } catch (e) { box.innerHTML = `<span style="color:#fca5a5">${esc(e.message)}</span>`; }
+}
+
+async function downloadKosisByUrl() {
+  const box = document.getElementById("kosisDataBox");
+  box.innerHTML = "다운로드 중...";
+  try {
+    const res = await api("/api/explorer/kosis/download", { method: "POST", body: JSON.stringify({ full_openapi_url: document.getElementById("kosisUrl").value.trim() }) });
+    LAST_EXPLORER_DATA.kosis = { title: "통계청 KOSIS 통계", source_kind: "kosis_api", columns: res.columns || [], rows: res.rows || [] };
+    box.innerHTML = renderDataTable(res.columns || [], res.rows || []);
+  } catch (e) { box.innerHTML = `<span style="color:#fca5a5">${esc(e.message)}</span>`; }
+}
+
+async function saveLastExplorerDataset(key) {
+  const ds = LAST_EXPLORER_DATA[key];
+  if (!ds || !CURRENT_PID) return toast("먼저 데이터를 조회해 주세요.");
+  try {
+    await api("/api/explorer/save", { method: "POST", body: JSON.stringify({ project_id: CURRENT_PID, datasets: [ds], also_ingest_rag: true }) });
+    toast("✅ 프로젝트 자료 및 로컬 RAG(C:\\SMC_GRAPHRAG)에 저장했습니다!");
+  } catch (e) { toast("❌ " + e.message); }
+}
+
+// --- NotebookLM ---
+async function loadNlmNotebooks() {
+  const q = document.getElementById("nlmSearch").value.trim();
+  const list = document.getElementById("nlmNbList");
+  list.innerHTML = '<span class="muted">NotebookLM 조회 중...</span>';
+  try {
+    const res = await api(`/api/explorer/notebooklm/notebooks?q=${encodeURIComponent(q)}`);
+    document.getElementById("nlmNbCount").textContent = res.count || 0;
+    list.innerHTML = (res.notebooks || []).map(n => `
+      <div class="ch-row" style="cursor:pointer" onclick="selectNlmNotebook('${esc(n.id)}', '${esc(n.title).replace(/'/g,"")}')">
+        <strong>${esc(n.title)}</strong>
+        <div class="muted">소스 ${n.source_count || 0}건</div>
+      </div>
+    `).join("") || '<span class="muted">노트북이 없습니다.</span>';
+  } catch (e) { list.innerHTML = `<span style="color:#fca5a5">${esc(e.message)}</span>`; }
+}
+
+async function selectNlmNotebook(id, title) {
+  NLM_SELECTED_NB = { id, title };
+  document.getElementById("nlmSelectedTitle").textContent = `📓 ${title}`;
+  const sbox = document.getElementById("nlmSourceList");
+  sbox.innerHTML = '<span class="muted">소스 불러오는 중...</span>';
+  try {
+    const res = await api(`/api/explorer/notebooklm/notebooks/${encodeURIComponent(id)}/sources`);
+    const srcs = res.sources || [];
+    sbox.innerHTML = srcs.map(s => `
+      <label class="flex" style="padding:5px 0;border-bottom:1px solid rgba(255,255,255,.06)">
+        <input type="checkbox" class="nlm-src-cb" value="${esc(s.id)}" checked />
+        <span><strong>${esc(s.title)}</strong> <small class="muted">(${esc(s.type || "")})</small></span>
+      </label>
+    `).join("") || '<span class="muted">소스가 없습니다.</span>';
+  } catch (e) { sbox.innerHTML = `<span style="color:#fca5a5">${esc(e.message)}</span>`; }
+}
+
+async function importNlmSelected() {
+  if (!NLM_SELECTED_NB || !CURRENT_PID) return toast("노트북과 소스를 선택하세요.");
+  const ids = [...document.querySelectorAll(".nlm-src-cb:checked")].map(x => x.value);
+  if (!ids.length) return toast("가져올 소스를 체크하세요.");
+  toast(`📓 NotebookLM 소스 ${ids.length}건 가져오는 중...`);
+  try {
+    const res = await api("/api/explorer/notebooklm/import", {
+      method: "POST",
+      body: JSON.stringify({ project_id: CURRENT_PID, notebook_id: NLM_SELECTED_NB.id, notebook_title: NLM_SELECTED_NB.title, source_ids: ids, also_ingest_rag: true }),
+    });
+    toast(`✅ NotebookLM ${res.imported_count || ids.length}건 가져오기 + RAG 적재 완료!`);
+    await refreshCurrentProject(false);
+  } catch (e) { toast("❌ " + e.message); }
+}
+
+async function askNlmNotebook() {
+  if (!NLM_SELECTED_NB) return toast("노트북을 먼저 선택하세요.");
+  const q = document.getElementById("nlmQuestion").value.trim();
+  if (!q) return;
+  const out = document.getElementById("nlmAnswerBox");
+  out.textContent = "NotebookLM 응답 대기 중...";
+  try {
+    const res = await api("/api/explorer/notebooklm/query", { method: "POST", body: JSON.stringify({ notebook_id: NLM_SELECTED_NB.id, question: q }) });
+    out.innerHTML = renderMd(res.answer || JSON.stringify(res));
+  } catch (e) { out.textContent = "오류: " + e.message; }
+}
+
+// --- 심층 조사 대화 & 프롬프트 ---
+let CHAT_CANDIDATES = [];
+async function loadResearchChat() {
+  if (!CURRENT_PID) return;
+  try {
+    const res = await api(`/api/projects/${CURRENT_PID}/research-chat`);
+    const msgs = res.messages || [];
+    document.getElementById("chatHistoryBox").innerHTML = msgs.length
+      ? msgs.map(m => `<div style="margin-bottom:10px"><strong>[${esc(m.timestamp?.slice(0,19)||"")}] 질의:</strong> ${esc(m.query || m.message || "")}<br><span class="muted">${esc(m.summary || "")}</span></div>`).join("")
+      : '<span class="muted">아직 심층 조사 대화 기록이 없습니다.</span>';
+  } catch (e) {}
+}
+
+async function sendResearchChat() {
+  const msg = document.getElementById("chatQueryInput").value.trim();
+  if (!msg || !CURRENT_PID) return;
+  toast("🔎 다채널 심층 자료 조사 실행 중...");
+  try {
+    const res = await api(`/api/projects/${CURRENT_PID}/research-chat/query`, { method: "POST", body: JSON.stringify({ message: msg }) });
+    const rep = res.reply || {};
+    CHAT_CANDIDATES = rep.candidates || [];
+    document.getElementById("chatCandidatesBox").innerHTML = CHAT_CANDIDATES.length ? `
+      <div class="flex mb8" style="justify-content:space-between">
+        <strong>검색된 후보 자료 (${CHAT_CANDIDATES.length}건)</strong>
+        <button class="btn-green btn-sm" onclick="commitChatCandidates()">체크 항목 프로젝트+KG 적재</button>
+      </div>
+      ${CHAT_CANDIDATES.slice(0, 12).map(c => `
+        <label class="flex" style="padding:4px 0;border-bottom:1px solid rgba(255,255,255,.05)">
+          <input type="checkbox" class="chat-cand-cb" value="${esc(c.id)}" checked />
+          <span>[${esc(c.channel)}] ${esc(c.title)}</span>
+        </label>
+      `).join("")}
+    ` : "";
+    await loadResearchChat();
+    toast("✅ 심층 조사 완료!");
+  } catch (e) { toast("❌ " + e.message); }
+}
+
+async function commitChatCandidates() {
+  const ids = [...document.querySelectorAll(".chat-cand-cb:checked")].map(x => x.value);
+  if (!ids.length) return;
+  try {
+    await api(`/api/projects/${CURRENT_PID}/research-chat/commit`, { method: "POST", body: JSON.stringify({ candidate_ids: ids, also_ingest_kg: true }) });
+    toast(`✅ ${ids.length}건을 프로젝트 자료와 KG에 추가했습니다!`);
+    await refreshCurrentProject(false);
+  } catch (e) { toast("❌ " + e.message); }
+}
+
+async function runPromptSynth() {
+  const pt = document.getElementById("synthPrompt").value.trim();
+  if (!pt || !CURRENT_PID) return;
+  const out = document.getElementById("synthOutput");
+  out.innerHTML = "AI 분석 실행 중...";
+  try {
+    const res = await api("/api/explorer/prompt-synthesize", {
+      method: "POST",
+      body: JSON.stringify({
+        project_id: CURRENT_PID,
+        prompt_text: pt,
+        attached_datasets: Object.values(LAST_EXPLORER_DATA),
+        use_claude: document.getElementById("synthUseClaude").checked,
+      }),
+    });
+    out.innerHTML = renderMd(res.answer || res.response || JSON.stringify(res));
+  } catch (e) { out.innerHTML = `<span style="color:#fca5a5">${esc(e.message)}</span>`; }
+}
+
+// ============================================================
+// TAB 4: API 키 · AI 엔진 · 프로젝트 관리
+// ============================================================
+async function loadSettingsTab() {
+  await Promise.all([loadApiKeysPanel(), refreshEngineStatus()]);
+  if (CURRENT_STATE) {
+    const o = CURRENT_STATE.options || {};
+    document.getElementById("optOpenaiModel").value = o.openai_model || "gpt-4o-mini";
+    document.getElementById("optGemmaModel").value = o.gemma_model || "gemma4:latest";
+    document.getElementById("optFalModel").value = o.fal_model || "fal-ai/nano-banana";
+    document.getElementById("optVisPerCh").value = Math.max(10, o.visuals_per_chapter || 10);
+    document.getElementById("optUseOpenai").checked = o.use_openai_outline !== false;
+    document.getElementById("optUseFal").checked = !!o.use_fal_ai;
+    document.getElementById("optUseNanoBanana").checked = o.use_nano_banana !== false;
+    document.getElementById("optUseClaude").checked = !!o.use_claude_review;
+  }
+  renderProjManageTable();
+}
+
+async function loadApiKeysPanel() {
+  const meta = await api("/api/explorer/meta");
+  const ks = (meta.api_keys && meta.api_keys.keys) || meta.api_keys || {};
+  document.getElementById("apiKeyRows").innerHTML = API_KEY_LABELS.map(item => {
+    const st = ks[item.key] || {};
+    return `
+      <div style="margin-bottom:10px">
+        <div class="flex" style="justify-content:space-between;margin-bottom:3px">
+          <span class="label" style="margin:0">${esc(item.title)}</span>
+          <span class="badge ${st.configured ? 'b-done' : 'b-wait'}">${st.configured ? `등록됨 (${esc(st.masked)})` : "미등록"}</span>
+        </div>
+        <input type="password" id="key_${item.key}" placeholder="${esc(item.ph)} (변경할 때만 입력)" autocomplete="off" />
+      </div>
+    `;
+  }).join("");
+}
+
+async function saveAllApiKeys() {
+  const payload = {};
+  API_KEY_LABELS.forEach(it => {
+    const v = (document.getElementById("key_" + it.key)?.value || "").trim();
+    if (v) payload[it.key] = v;
+  });
+  try {
+    await api("/api/explorer/keys", { method: "POST", body: JSON.stringify(payload) });
+    toast("✅ API 키가 안전하게 로컬 금고에 저장되었습니다.");
+    await loadSettingsTab();
+  } catch (e) { toast("❌ " + e.message); }
+}
+
+async function refreshEngineStatus() {
+  try {
+    const st = await api("/api/engines/status");
+    const ol = st.ollama || {};
+    const cl = st.claude_code || {};
+    const rag = st.local_rag || {};
+    document.getElementById("engineStatusBox").innerHTML = `
+      <div class="flex">
+        <span class="badge ${st.openai_configured?'b-done':'b-wait'}">OpenAI API: ${st.openai_configured?'연결 가능':'키 미등록(Gemma폴백)'}</span>
+        <span class="badge ${st.fal_configured?'b-done':'b-wait'}">fal.ai API: ${st.fal_configured?'연결 가능':'키 미등록'}</span>
+        <span class="badge ${st.gemini_configured?'b-done':'b-wait'}">나노바나나: ${st.gemini_configured?'연결 가능':'키 미등록'}</span>
+        <span class="badge ${ol.online?'b-done':'b-err'}">Ollama: ${ol.online?'ONLINE ('+(ol.models||[]).length+'모델)':'OFFLINE'}</span>
+        <span class="badge ${cl.installed?'b-done':'b-wait'}">Claude Code: ${cl.installed?esc(cl.version||'설치됨'):'미설치'}</span>
+        <span class="badge b-run">로컬 RAG: ${(rag.nodes||0).toLocaleString()}노드</span>
+      </div>`;
+  } catch (e) {}
+}
+
+async function saveCurrentProjectOptions() {
+  if (!CURRENT_PID) return;
+  try {
+    const res = await api(`/api/projects/${CURRENT_PID}/options`, {
+      method: "PATCH",
+      body: JSON.stringify({
+        openai_model: document.getElementById("optOpenaiModel").value,
+        gemma_model: document.getElementById("optGemmaModel").value,
+        fal_model: document.getElementById("optFalModel").value,
+        visuals_per_chapter: Math.max(10, parseInt(document.getElementById("optVisPerCh").value, 10) || 10),
+        use_openai_outline: document.getElementById("optUseOpenai").checked,
+        use_fal_ai: document.getElementById("optUseFal").checked,
+        use_nano_banana: document.getElementById("optUseNanoBanana").checked,
+        use_claude_review: document.getElementById("optUseClaude").checked,
+      }),
+    });
+    CURRENT_STATE = res.project;
+    toast("✅ 프로젝트 AI 엔진·시각화 옵션을 저장했습니다.");
+  } catch (e) { toast("❌ " + e.message); }
+}
+
+function renderProjManageTable() {
+  const tb = document.getElementById("projManageBody");
+  if (!tb) return;
+  tb.innerHTML = PROJECTS.map(p => `
+    <tr>
+      <td><code>${esc(p.project_id)}</code></td>
+      <td><strong>《${esc(p.topic_ko)}》</strong></td>
+      <td>${p.target_pages}p / ${p.chapter_count}장</td>
+      <td><span class="badge ${(STATUS_META[p.overall_status]||STATUS_META.IDLE).cls}">${p.done_stages}/${p.total_stages}단계 · ${esc(p.overall_status)}</span></td>
+      <td>
+        <button class="btn-sm" onclick="selectProject('${esc(p.project_id)}', true);switchMainTab('workflow')">열기</button>
+        <button class="btn-sm btn-red" onclick="deleteProj('${esc(p.project_id)}')">삭제</button>
+      </td>
+    </tr>
+  `).join("") || `<tr><td colspan="5" class="muted">활성 프로젝트가 없습니다.</td></tr>`;
+}
+
+async function deleteProj(pid) {
+  if (!confirm(`프로젝트 [${pid}]를 관리 목록에서 삭제(아카이브)할까요?`)) return;
+  try {
+    await api(`/api/projects/${encodeURIComponent(pid)}`, { method: "DELETE" });
+    toast(`✅ ${pid} 삭제 완료`);
+    await loadProjectsList();
+  } catch (e) { toast("❌ " + e.message); }
+}
+
+async function resetExceptCurrent() {
+  if (!CURRENT_PID) return;
+  if (!confirm(`현재 선택된 [${CURRENT_PID}] 프로젝트만 남기고 나머지를 모두 초기화(아카이브)할까요?`)) return;
+  try {
+    const res = await api("/api/projects/reset", { method: "POST", body: JSON.stringify({ keep_ids: [CURRENT_PID] }) });
+    toast(`✅ 초기화 완료 (${(res.removed||[]).length}개 아카이브됨)`);
+    await loadProjectsList(CURRENT_PID);
+  } catch (e) { toast("❌ " + e.message); }
+}
+
+// ============================================================
+// 새 프로젝트 모달
+// ============================================================
+function openNewModal() { document.getElementById("newProjModal").classList.add("open"); }
+function closeNewModal() { document.getElementById("newProjModal").classList.remove("open"); }
+async function submitNewProject() {
+  const topic_ko = document.getElementById("npTopicKo").value.trim();
+  if (!topic_ko) return toast("교재 주제(국문)를 입력하세요.");
+  try {
+    const res = await api("/api/projects", {
+      method: "POST",
+      body: JSON.stringify({
+        topic_ko,
+        topic_en: document.getElementById("npTopicEn").value.trim(),
+        target_pages: parseInt(document.getElementById("npPages").value, 10) || 500,
+        chapter_count: parseInt(document.getElementById("npChapters").value, 10) || 15,
+        keywords_ko: document.getElementById("npKwKo").value.split(",").map(x=>x.trim()).filter(Boolean),
+        keywords_en: document.getElementById("npKwEn").value.split(",").map(x=>x.trim()).filter(Boolean),
+        use_openai_outline: document.getElementById("npUseOpenai").checked,
+        use_fal_ai: document.getElementById("npUseFal").checked,
+        auto_start: document.getElementById("npAutoStart").checked,
+      }),
+    });
+    closeNewModal();
+    toast(`✅ 《${topic_ko}》 생성 완료! 1단계 목차·키워드 제안이 시작됩니다.`);
+    await loadProjectsList(res.project.project_id);
+    switchMainTab("workflow");
+  } catch (e) { toast("❌ " + e.message); }
+}
+
+init();
+</script>
+</body>
+</html>

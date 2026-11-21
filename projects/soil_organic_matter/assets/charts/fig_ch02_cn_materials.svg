@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 380" width="760" height="380" style="background:#ffffff;font-family:'Malgun Gothic', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;">
+  <rect x="0" y="0" width="760" height="380" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+  <rect x="0" y="0" width="760" height="52" rx="10" fill="#0f172a"/>
+  <rect x="0" y="38" width="760" height="14" fill="#0f172a"/>
+  <text x="20" y="24" font-size="14" font-weight="700" fill="#f8fafc">유기성 자재 유형별 대표 탄질비(C/N) 비교와 부동화 경계(~25~30)</text>
+  <text x="20" y="43" font-size="10.5" fill="#94a3b8">낮은 C/N비(&lt;20): 신속한 질소 무기화 | 높은 C/N비(&gt;30): 초기 질소 부동화 주의 [SRC-01, SRC-19]</text>
+  <text x="22" y="96" font-size="11.5" font-weight="600" fill="#1e293b">헤어리베치(두과 녹비)</text>
+  <rect x="215" y="82" width="380" height="22" rx="4" fill="#f1f5f9"/>
+  <rect x="215" y="82" width="32" height="22" rx="4" fill="#16a34a"/>
+  <text x="254" y="97" font-size="11" font-weight="700" fill="#0f172a">12 :1</text>
+  <text x="22" y="111" font-size="9.5" fill="#64748b">질소 함량 높음 · 신속 분해 및 질소 공급</text>
+  <text x="22" y="142" font-size="11.5" font-weight="600" fill="#1e293b">완숙 가축분퇴비</text>
+  <rect x="215" y="128" width="380" height="22" rx="4" fill="#f1f5f9"/>
+  <rect x="215" y="128" width="48" height="22" rx="4" fill="#2563eb"/>
+  <text x="270" y="143" font-size="11" font-weight="700" fill="#0f172a">18 :1</text>
+  <text x="22" y="157" font-size="9.5" fill="#64748b">부숙 완료 · 안정적 유기물 및 양분 공급</text>
+  <text x="22" y="188" font-size="11.5" font-weight="600" fill="#1e293b">적정 퇴비화 목표 C/N</text>
+  <rect x="215" y="174" width="380" height="22" rx="4" fill="#f1f5f9"/>
+  <rect x="215" y="174" width="76" height="22" rx="4" fill="#0ea5e9"/>
+  <text x="298" y="189" font-size="11" font-weight="700" fill="#0f172a">28 :1</text>
+  <text x="22" y="203" font-size="9.5" fill="#64748b">미생물 활성·암모니아 부동화 균형 구간 [SRC-01]</text>
+  <text x="22" y="234" font-size="11.5" font-weight="600" fill="#1e293b">볏짚·맥짚(화본과 잔사)</text>
+  <rect x="215" y="220" width="380" height="22" rx="4" fill="#f1f5f9"/>
+  <rect x="215" y="220" width="176" height="22" rx="4" fill="#f59e0b"/>
+  <text x="398" y="235" font-size="11" font-weight="700" fill="#0f172a">65 :1</text>
+  <text x="22" y="249" font-size="9.5" fill="#64748b">셀룰로오스·리그닌 높음 · 초기 질소 보정 필요</text>
+  <text x="22" y="280" font-size="11.5" font-weight="600" fill="#1e293b">톱밥·목질 수분조절재</text>
+  <rect x="215" y="266" width="380" height="22" rx="4" fill="#f1f5f9"/>
+  <rect x="215" y="266" width="325" height="22" rx="4" fill="#dc2626"/>
+  <text x="547" y="281" font-size="11" font-weight="700" fill="#0f172a">120 :1</text>
+  <text x="22" y="295" font-size="9.5" fill="#64748b">고리그닌 난분해성 · 단독 생시용 시 질소 기아 유발</text>
+</svg>

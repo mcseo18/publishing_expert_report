@@ -1,0 +1,38 @@
+chapter_id: ch04
+chapter_number: 4
+title: 제4장. 토양 유기물과 토양 물리성·단립 구조
+target_pages: 34
+target_audience: 농학·토양환경학 대학 전공 심화(학부 3~4학년·대학원생), 농업연구사, 토양·비료·탄소중립 모델링 실무 전문가
+evidence_packet: data/evidence/ch04_evidence.json
+learning_objectives:
+- 대단립(>250 μm)과 소단립(53~250 μm) 계층 구조에서 POM·균사·다당류의 역할을 설명할 수 있다.
+- 토양 유기물 증가에 따른 유효수분보유능(AWC), 침투율, 용적밀도 개선 효과를 정량 평가할 수 있다.
+- 경운 교란에 의한 단립 파괴와 물리적 보호 탄소(Aggregate-associated C) 손실 경로를 분석할 수 있다.
+sections:
+- section_id: '4.1'
+  title: 단립 계층 모델(Aggregate Hierarchy)과 POM·균사·다당류의 결합 역할
+  target_chars: 1800
+  key_points:
+  - 단립 계층 모델(Aggregate Hierarchy)과 POM·균사·다당류의 결합 역할의 핵심 원리와 과학적 메커니즘
+  - '핵심 개념 연계: 단립 계층 모델(Aggregate Hierarchy), 유효수분보유능(AWC) 및 가뭄 저항성, 물리적 보호(Physical
+    Occlusion)'
+  - 근거 패킷 내 국내외 실증 사례 및 현장 적용 시 트레이드오프
+  required_table: '표 4-1: 대단립(>250 μm)과 소단립(53~250 μm)의 형성 인자 및 탄소 보호 기간'
+- section_id: '4.2'
+  title: 토양 유기물과 유효수분보유능(AWC), 침투율 및 가뭄 저항성
+  target_chars: 1800
+  key_points:
+  - 토양 유기물과 유효수분보유능(AWC), 침투율 및 가뭄 저항성의 핵심 원리와 과학적 메커니즘
+  - '핵심 개념 연계: 단립 계층 모델(Aggregate Hierarchy), 유효수분보유능(AWC) 및 가뭄 저항성, 물리적 보호(Physical
+    Occlusion)'
+  - 근거 패킷 내 국내외 실증 사례 및 현장 적용 시 트레이드오프
+  required_table: '표 4-2: 유기물 증진에 따른 토양 물리성(보수성·침투율·용적밀도) 개선 효과'
+- section_id: '4.3'
+  title: 경운 교란에 의한 단립 파괴와 물리적 보호 탄소(Aggregate-C) 손실 관리
+  target_chars: 1800
+  key_points:
+  - 경운 교란에 의한 단립 파괴와 물리적 보호 탄소(Aggregate-C) 손실 관리의 핵심 원리와 과학적 메커니즘
+  - '핵심 개념 연계: 단립 계층 모델(Aggregate Hierarchy), 유효수분보유능(AWC) 및 가뭄 저항성, 물리적 보호(Physical
+    Occlusion)'
+  - 근거 패킷 내 국내외 실증 사례 및 현장 적용 시 트레이드오프
+  required_table: '표 4-3: 관행 경운 vs 무경운·최소경운의 단립 안정성 및 탄소 분포 비교'

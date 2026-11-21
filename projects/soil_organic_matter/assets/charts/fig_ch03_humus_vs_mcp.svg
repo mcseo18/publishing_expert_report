@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 380" width="760" height="380" style="background:#ffffff;font-family:'Malgun Gothic', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;">
+  <rect x="0" y="0" width="760" height="380" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+  <rect x="0" y="0" width="760" height="52" rx="10" fill="#0f172a"/>
+  <rect x="0" y="38" width="760" height="14" fill="#0f172a"/>
+  <text x="20" y="24" font-size="14" font-weight="700" fill="#f8fafc">식물 잔사 → 미생물 탄소 펌프(MCP) 및 광물 결합 안정화 경로</text>
+  <text x="20" y="43" font-size="10.5" fill="#94a3b8">MEMS 프레임워크 [SRC-54] · 미생물 사체(Necromass) 기여 [SRC-58] · 광물 보호 [SRC-50]</text>
+  <defs><marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 1 L 10 5 L 0 9 z" fill="#334155"/></marker></defs>
+  <line x1="154" y1="118" x2="203" y2="112" stroke="#334155" stroke-width="1.8" marker-end="url(#arr)"/>
+  <text x="178" y="110" text-anchor="middle" font-size="9.5" font-weight="600" fill="#1d4ed8">흡수·동화</text>
+  <line x1="154" y1="142" x2="203" y2="218" stroke="#334155" stroke-width="1.8" marker-end="url(#arr)"/>
+  <text x="178" y="175" text-anchor="middle" font-size="9.5" font-weight="600" fill="#1d4ed8">물리 파쇄</text>
+  <line x1="355" y1="112" x2="413" y2="112" stroke="#334155" stroke-width="1.8" marker-end="url(#arr)"/>
+  <text x="384" y="107" text-anchor="middle" font-size="9.5" font-weight="600" fill="#1d4ed8">사멸·전환</text>
+  <line x1="560" y1="112" x2="598" y2="112" stroke="#334155" stroke-width="1.8" marker-end="url(#arr)"/>
+  <text x="579" y="107" text-anchor="middle" font-size="9.5" font-weight="600" fill="#1d4ed8">광물 흡착</text>
+  <rect x="24" y="95" width="130" height="62" rx="8" fill="#fef3c7" stroke="#1e293b" stroke-width="1.2"/>
+  <text x="89" y="117" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0f172a">식물 잔사·근권삼출</text>
+  <text x="89" y="133" text-anchor="middle" font-size="9.5" fill="#334155">이분해성·난분해성</text>
+  <text x="89" y="146" text-anchor="middle" font-size="9.5" fill="#334155">유기 기질 유입</text>
+  <rect x="205" y="80" width="150" height="65" rx="8" fill="#dbeafe" stroke="#1e293b" stroke-width="1.2"/>
+  <text x="280" y="102" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0f172a">미생물 동화 (CUE)</text>
+  <text x="280" y="118" text-anchor="middle" font-size="9.5" fill="#334155">세균·진균 효소 해중합</text>
+  <text x="280" y="131" text-anchor="middle" font-size="9.5" fill="#334155">세포 생체량 합성</text>
+  <rect x="205" y="195" width="150" height="62" rx="8" fill="#fde68a" stroke="#1e293b" stroke-width="1.2"/>
+  <text x="280" y="217" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0f172a">입자성 유기물(POM)</text>
+  <text x="280" y="233" text-anchor="middle" font-size="9.5" fill="#334155">물리적 파쇄·단립 포획</text>
+  <text x="280" y="246" text-anchor="middle" font-size="9.5" fill="#334155">(체류시간 ~23년)</text>
+  <rect x="415" y="80" width="145" height="65" rx="8" fill="#e9d5ff" stroke="#1e293b" stroke-width="1.2"/>
+  <text x="487" y="102" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0f172a">미생물 사체(Necromass)</text>
+  <text x="487" y="118" text-anchor="middle" font-size="9.5" fill="#334155">세포벽 잔재·대사산물</text>
+  <text x="487" y="131" text-anchor="middle" font-size="9.5" fill="#334155">장기 탄소 전구체</text>
+  <rect x="600" y="80" width="138" height="65" rx="8" fill="#bbf7d0" stroke="#1e293b" stroke-width="1.2"/>
+  <text x="669" y="102" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0f172a">광물결합(MAOM)</text>
+  <text x="669" y="118" text-anchor="middle" font-size="9.5" fill="#334155">점토·Fe/Al 산화물 결합</text>
+  <text x="669" y="131" text-anchor="middle" font-size="9.5" fill="#334155">(체류시간 ~129년)</text>
+  <rect x="415" y="195" width="323" height="62" rx="8" fill="#f1f5f9" stroke="#1e293b" stroke-width="1.2"/>
+  <text x="576" y="217" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0f172a">전통 화학분획(참고): 부식산(HA)·풀빅산(FA)·휴민</text>
+  <text x="576" y="233" text-anchor="middle" font-size="9.5" fill="#334155">알칼리 추출 기반 지표 (HA/FA, E4/E6, FTIR, 13C-NMR) [SRC-01]</text>
+</svg>

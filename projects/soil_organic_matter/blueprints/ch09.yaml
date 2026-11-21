@@ -1,0 +1,38 @@
+chapter_id: ch09
+chapter_number: 9
+title: 제9장. 물리·화학적 분획법과 토양건강 종합 평가(흙토람·Cornell CASH)
+target_pages: 32
+target_audience: 농학·토양환경학 대학 전공 심화(학부 3~4학년·대학원생), 농업연구사, 토양·비료·탄소중립 모델링 실무 전문가
+evidence_packet: data/evidence/ch09_evidence.json
+learning_objectives:
+- 53 μm 입자크기 및 밀도 분획을 통한 POM·MAOM 분리 표준 프로토콜을 설계할 수 있다.
+- 활성탄소(POXC), 열수추출유기탄소(WEOC), 용존유기물(DOM) 지표의 단기 관리 민감도를 해석할 수 있다.
+- 국내 흙토람 토양검정, 미국 Cornell CASH, 유럽 토양건강 지표를 비교·적용할 수 있다.
+sections:
+- section_id: '9.1'
+  title: '물리적 분획 표준 프로토콜: 입자크기(53 μm) 및 밀도 분획(POM·MAOM)'
+  target_chars: 1800
+  key_points:
+  - '물리적 분획 표준 프로토콜: 입자크기(53 μm) 및 밀도 분획(POM·MAOM)의 핵심 원리와 과학적 메커니즘'
+  - '핵심 개념 연계: 입자크기(53 μm)·밀도 물리 분획(POM/MAOM), 활성탄소(POXC)와 용존유기물(DOM), 흙토람 vs Cornell
+    CASH 종합 토양건강 평가'
+  - 근거 패킷 내 국내외 실증 사례 및 현장 적용 시 트레이드오프
+  required_table: '표 9-1: POM과 MAOM 물리 분획의 실험 절차 및 해석 기준'
+- section_id: '9.2'
+  title: '민감 토양유기물 지표: 활성탄소(POXC), 용존유기물(DOM) 및 생물 지표'
+  target_chars: 1800
+  key_points:
+  - '민감 토양유기물 지표: 활성탄소(POXC), 용존유기물(DOM) 및 생물 지표의 핵심 원리와 과학적 메커니즘'
+  - '핵심 개념 연계: 입자크기(53 μm)·밀도 물리 분획(POM/MAOM), 활성탄소(POXC)와 용존유기물(DOM), 흙토람 vs Cornell
+    CASH 종합 토양건강 평가'
+  - 근거 패킷 내 국내외 실증 사례 및 현장 적용 시 트레이드오프
+  required_table: '표 9-2: 단기 관리 민감 지표(POXC·POM) vs 장기 저장 지표(MAOM·SOC)'
+- section_id: '9.3'
+  title: '국내외 토양건강 종합평가 체계 비교: 한국 흙토람 vs 미국 Cornell CASH vs EU'
+  target_chars: 1800
+  key_points:
+  - '국내외 토양건강 종합평가 체계 비교: 한국 흙토람 vs 미국 Cornell CASH vs EU의 핵심 원리와 과학적 메커니즘'
+  - '핵심 개념 연계: 입자크기(53 μm)·밀도 물리 분획(POM/MAOM), 활성탄소(POXC)와 용존유기물(DOM), 흙토람 vs Cornell
+    CASH 종합 토양건강 평가'
+  - 근거 패킷 내 국내외 실증 사례 및 현장 적용 시 트레이드오프
+  required_table: '표 9-3: 한국 흙토람·미국 Cornell CASH·유럽 토양건강 평가 지표 비교'

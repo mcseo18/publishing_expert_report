@@ -1,0 +1,17 @@
+lightrag-hku[api]
+crawl4ai
+docling
+neo4j
+jsonschema
+pydantic
+python-dotenv
+requests
+beautifulsoup4
+lxml
+pypdf
+python-docx
+olefile
+openpyxl
+networkx>=3.4
+kss
+pytest

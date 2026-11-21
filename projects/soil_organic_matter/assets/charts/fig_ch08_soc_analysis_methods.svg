@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 380" width="760" height="380" style="background:#ffffff;font-family:'Malgun Gothic', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;">
+  <rect x="0" y="0" width="760" height="380" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+  <rect x="0" y="0" width="760" height="52" rx="10" fill="#0f172a"/>
+  <rect x="0" y="38" width="760" height="14" fill="#0f172a"/>
+  <text x="20" y="24" font-size="14" font-weight="700" fill="#f8fafc">토양 유기탄소(SOC) 주요 분석법의 상대 정밀도·회수율 지표 (개념 비교)</text>
+  <text x="20" y="43" font-size="10.5" fill="#94a3b8">국립농업과학원 토양분석법(Tyurin) [SRC-27] · SPAD 503 현장추정 [SRC-13]</text>
+  <text x="22" y="96" font-size="11.5" font-weight="600" fill="#1e293b">원소분석기 건식연소(Dumas)</text>
+  <rect x="215" y="82" width="380" height="22" rx="4" fill="#f1f5f9"/>
+  <rect x="215" y="82" width="327" height="22" rx="4" fill="#1d4ed8"/>
+  <text x="549" y="97" font-size="11" font-weight="700" fill="#0f172a">99%</text>
+  <text x="22" y="111" font-size="9.5" fill="#64748b">국제 기준법 · 무기탄소(탄산염) 전처리 필요</text>
+  <text x="22" y="142" font-size="11.5" font-weight="600" fill="#1e293b">Tyurin 습식산화법(국내 표준)</text>
+  <rect x="215" y="128" width="380" height="22" rx="4" fill="#f1f5f9"/>
+  <rect x="215" y="128" width="304" height="22" rx="4" fill="#0284c7"/>
+  <text x="526" y="143" font-size="11" font-weight="700" fill="#0f172a">92%</text>
+  <text x="22" y="157" font-size="9.5" fill="#64748b">국내 토양검정실 표준 [SRC-27] · 크롬 폐액 관리</text>
+  <text x="22" y="188" font-size="11.5" font-weight="600" fill="#1e293b">Walkley-Black 습식산화법</text>
+  <rect x="215" y="174" width="380" height="22" rx="4" fill="#f1f5f9"/>
+  <rect x="215" y="174" width="254" height="22" rx="4" fill="#f59e0b"/>
+  <text x="476" y="189" font-size="11" font-weight="700" fill="#0f172a">77%</text>
+  <text x="22" y="203" font-size="9.5" fill="#64748b">미가열 시 평균 회수율 ~77% · 보정계수 필수</text>
+  <text x="22" y="234" font-size="11.5" font-weight="600" fill="#1e293b">강열감량법 (LOI, 360~550°C)</text>
+  <rect x="215" y="220" width="380" height="22" rx="4" fill="#f1f5f9"/>
+  <rect x="215" y="220" width="277" height="22" rx="4" fill="#10b981"/>
+  <text x="499" y="235" font-size="11" font-weight="700" fill="#0f172a">84%</text>
+  <text x="22" y="249" font-size="9.5" fill="#64748b">무시약 간편 · 고점토 토양 구조수 손실 오차 주의</text>
+  <text x="22" y="280" font-size="11.5" font-weight="600" fill="#1e293b">토색판·SPAD 503 현장 추정</text>
+  <rect x="215" y="266" width="380" height="22" rx="4" fill="#f1f5f9"/>
+  <rect x="215" y="266" width="237" height="22" rx="4" fill="#8b5cf6"/>
+  <text x="459" y="281" font-size="11" font-weight="700" fill="#0f172a">72%</text>
+  <text x="22" y="295" font-size="9.5" fill="#64748b">신속 현장 스크리닝 [SRC-13] · 지역별 검량식 필요</text>
+</svg>

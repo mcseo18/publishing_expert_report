@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 380" width="760" height="380" style="background:#ffffff;font-family:'Malgun Gothic', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;">
+  <rect x="0" y="0" width="760" height="380" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+  <rect x="0" y="0" width="760" height="52" rx="10" fill="#0f172a"/>
+  <rect x="0" y="38" width="760" height="14" fill="#0f172a"/>
+  <text x="20" y="24" font-size="14" font-weight="700" fill="#f8fafc">농업 토양유기탄소 격리 및 탄소크레딧 MRV (측정·보고·검증) 파이프라인</text>
+  <text x="20" y="43" font-size="10.5" fill="#94a3b8">출처: Geoderma 4 per mille [SRC-84] · 4p1000 [SRC-47] · EJP SOIL [SRC-48] · MAFF J-Credit [SRC-34]</text>
+  <defs><marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 1 L 10 5 L 0 9 z" fill="#334155"/></marker></defs>
+  <line x1="174" y1="138" x2="204" y2="138" stroke="#334155" stroke-width="1.8" marker-end="url(#arr)"/>
+  <line x1="361" y1="138" x2="391" y2="138" stroke="#334155" stroke-width="1.8" marker-end="url(#arr)"/>
+  <line x1="548" y1="138" x2="578" y2="138" stroke="#334155" stroke-width="1.8" marker-end="url(#arr)"/>
+  <rect x="24" y="102" width="150" height="72" rx="8" fill="#fef3c7" stroke="#1e293b" stroke-width="1.2"/>
+  <text x="99" y="124" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0f172a">1. 영농실천(Baseline)</text>
+  <text x="99" y="140" text-anchor="middle" font-size="9.5" fill="#334155">퇴비·녹비·바이오차·무경운</text>
+  <text x="99" y="153" text-anchor="middle" font-size="9.5" fill="#334155">추가성(Additionality) 입증</text>
+  <rect x="206" y="102" width="155" height="72" rx="8" fill="#dbeafe" stroke="#1e293b" stroke-width="1.2"/>
+  <text x="283" y="124" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0f172a">2. 측정 (Measure)</text>
+  <text x="283" y="140" text-anchor="middle" font-size="9.5" fill="#334155">표토/심토 실측(ESM 보정)</text>
+  <text x="283" y="153" text-anchor="middle" font-size="9.5" fill="#334155">+ Vis-NIR·원격탐사 결합</text>
+  <rect x="393" y="102" width="155" height="72" rx="8" fill="#dcfce7" stroke="#1e293b" stroke-width="1.2"/>
+  <text x="470" y="124" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0f172a">3. 모델링·보고(Report)</text>
+  <text x="470" y="140" text-anchor="middle" font-size="9.5" fill="#334155">RothC·DNDC IPCC Tier 3</text>
+  <text x="470" y="153" text-anchor="middle" font-size="9.5" fill="#334155">불확실성·누출 정량 보고</text>
+  <rect x="580" y="102" width="156" height="72" rx="8" fill="#f3e8ff" stroke="#1e293b" stroke-width="1.2"/>
+  <text x="658" y="124" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0f172a">4. 제3자 검증(Verify)</text>
+  <text x="658" y="140" text-anchor="middle" font-size="9.5" fill="#334155">영속성(Permanence) 감사</text>
+  <text x="658" y="153" text-anchor="middle" font-size="9.5" fill="#334155">크레딧·저탄소 인증 발행</text>
+  <rect x="110" y="224" width="540" height="56" rx="8" fill="#f1f5f9" stroke="#1e293b" stroke-width="1.2"/>
+  <text x="380" y="246" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0f172a">글로벌 정책 연계: UN FAO GSOCseq · 프랑스 4 per 1000 · EU CRCF · 일본 J-Credit · 한국 저탄소 농산물</text>
+</svg>

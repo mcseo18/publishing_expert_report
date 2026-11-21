@@ -1,0 +1,17 @@
+{
+  "mcpServers": {
+    "ecobrowser": {
+      "command": "npx",
+      "args": ["-y", "ecobrowser-mcp"],
+      "timeoutSeconds": 300
+    },
+    "lightrag": {
+      "command": "npx",
+      "args": ["-y", "@g99/lightrag-mcp-server"],
+      "env": {
+        "LIGHTRAG_API_URL": "http://127.0.0.1:9621"
+      },
+      "timeoutSeconds": 300
+    }
+  }
+}
