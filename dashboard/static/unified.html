@@ -594,6 +594,7 @@ tr.row-bad td { background: rgba(239,68,68,.06); }
 <!-- ==================== 11개 통합 탭 (URL 변경 없음) ==================== -->
 <nav class="nav-tabs">
   <button class="nav-tab active" data-tab="workflow" onclick="switchMainTab('workflow')" title="1~6단계 교재 제작 진행 상황">📋 제작 진행</button>
+  <button class="nav-tab" data-tab="chapterboard" onclick="switchMainTab('chapterboard')" title="각 단원별 독립 심층 검색 → KG·RAG → 절별 집필 → 감사 실시간 현황판">📊 단원별 현황판</button>
   <button class="nav-tab" data-tab="deepresearch" onclick="switchMainTab('deepresearch')" title="4-Wave 8채널 대규모 심층 리서치 · 인용 눈덩이 추적 · 자동 PDF/캡쳐 · C:\SMC_GRAPHRAG 통합">🔬 딥 리서치 센터</button>
   <button class="nav-tab" data-tab="imgstudio" onclick="switchMainTab('imgstudio')" title="비용·배치별 분할 이미지 생성 · 시각화 개수 설정 · 직접 업로드 · 원고 결합">🖼️ 이미지 스튜디오</button>
   <button class="nav-tab" data-tab="workbench" onclick="switchMainTab('workbench')" title="4분할 엔터프라이즈 집필·듀얼프리뷰·시각화·인용QA 워크벤치">🖥️ 스튜디오 워크벤치</button>
@@ -754,6 +755,15 @@ tr.row-bad td { background: rgba(239,68,68,.06); }
   <!-- TAB 1: 6단계 교재 제작 워크플로                              -->
   <!-- ======================================================== -->
   <section id="tab-workflow" class="tab-view active">
+    <div class="card mb8" style="padding:11px 16px;background:linear-gradient(135deg,#07281e,#0f291e);border-color:rgba(234,179,8,.45);display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+      <div>
+        <strong style="color:#fef08a;font-size:13.5px">📊 단원별 순차 심층 검색 · 절별 집필 워크플로 (품질 극대화 모드)</strong>
+        <div class="muted" style="font-size:12px">계획서(1단계) 확정 후 한 번에 몰아서 검색·집필하지 않고, 각 단원마다 독립 심층 검색 → KG·RAG 적재 → 절별 심층 집필 → 인용 감사를 순차 실행하며 실시간 현황판에서 추적합니다.</div>
+      </div>
+      <div class="flex">
+        <button class="btn-gold btn-sm" onclick="switchMainTab('chapterboard')">📊 단원별 실시간 현황판 열기</button>
+      </div>
+    </div>
     <div id="stageDetailHost"></div>
 
     <!-- 하단 접이식 실시간 작업 로그 -->
@@ -766,6 +776,85 @@ tr.row-bad td { background: rgba(239,68,68,.06); }
         <button class="btn-sm" onclick="toggleLogs()">접기 / 펼치기</button>
       </div>
       <div id="liveLogWrap" class="log-box">로그를 불러오는 중...</div>
+    </div>
+  </section>
+
+  <!-- ======================================================== -->
+  <!-- TAB CHAPTERBOARD: 단원별 심층 검색·KG·절별 집필 실시간 현황판  -->
+  <!-- ======================================================== -->
+  <section id="tab-chapterboard" class="tab-view">
+    <div class="card" style="border-color:rgba(234,179,8,.5);background:linear-gradient(135deg,#07281e,#0f291e)">
+      <div class="card-head" style="margin-bottom:10px">
+        <div>
+          <h3 class="card-title" style="color:#fef08a">📊 단원별 심층 검색 · KG · 절별 집필 실시간 현황판</h3>
+          <div class="muted">각 단원(ch01~chNN)마다 <strong>① 단원 맞춤 멀티채널 심층 검색(PDF/웹캡쳐·RAG) → ② KG 증분 → ③ 페르소나 기반 절별 심층 집필 → ④ 인용 감사</strong>를 차근차근 수행합니다.</div>
+        </div>
+        <div class="flex">
+          <select id="cpDepthSelect" style="width:235px">
+            <option value="standard">표준 단원 검색 (단원당 8건 · 빠름)</option>
+            <option value="deep" selected>심층 단원 검색 (단원당 15건 · 권장)</option>
+            <option value="exhaustive">초심층 단원 검색 (단원당 25건 · 학위급)</option>
+          </select>
+          <label class="flex" style="font-size:12.5px"><input type="checkbox" id="cpAuto56" /> 완료 후 5~6단계 자동 실행</label>
+          <button class="btn-gold" id="cpBtnStart" onclick="startChapterPipeline()">🚀 단원별 순차 검색·집필 시작</button>
+          <button class="btn-amber btn-sm" id="cpBtnStop" onclick="stopChapterPipelineRun()" disabled>⏹ 일시중지</button>
+          <button class="btn-sm" onclick="loadChapterPipelineBoard()">🔄 새로고침</button>
+        </div>
+      </div>
+
+      <!-- 실시간 진행 배너 -->
+      <div id="cpLiveBanner" style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px 15px;margin-bottom:12px">
+        <div class="flex" style="justify-content:space-between;margin-bottom:6px">
+          <div id="cpLiveTitle" style="font-weight:800;font-size:13.5px;color:#e2e8f0">대기 중 — 프로젝트를 선택하고 [🚀 단원별 순차 검색·집필 시작]을 눌러주세요.</div>
+          <span class="badge b-wait" id="cpLivePctBadge">0%</span>
+        </div>
+        <div class="progress-track"><div class="progress-fill" id="cpLiveProgressFill" style="width:0%"></div></div>
+        <div class="muted mt4" id="cpExecOrderHint" style="font-size:12px"></div>
+      </div>
+
+      <!-- 5대 KPI 요약 카드 -->
+      <div class="grid-5" style="display:grid;grid-template-columns:repeat(5,1fr);gap:10px" id="cpKpiGrid">
+        <div class="kpi"><div class="kpi-val" id="cpKpiDone">0 / 0</div><div class="kpi-lbl">완료 단원</div></div>
+        <div class="kpi"><div class="kpi-val" id="cpKpiSources">0건</div><div class="kpi-lbl">단원별 확보 문헌 (PDF)</div></div>
+        <div class="kpi"><div class="kpi-val" id="cpKpiChars">0자</div><div class="kpi-lbl">누적 집필 분량 (예상 쪽수)</div></div>
+        <div class="kpi"><div class="kpi-val" id="cpKpiCites">0건</div><div class="kpi-lbl">누적 [SRC-NN] 인용</div></div>
+        <div class="kpi"><div class="kpi-val" id="cpKpiPct">0%</div><div class="kpi-lbl">전체 단원 진행률</div></div>
+      </div>
+    </div>
+
+    <!-- 단원별 4단계 실시간 상태 매트릭스 -->
+    <div class="card">
+      <div class="card-head" style="margin-bottom:8px">
+        <h3 class="card-title">🧩 단원별 4단계 실행 현황 매트릭스</h3>
+        <span class="muted" style="font-size:12px">개별 단원 우측의 <strong>[▶ 실행/재실행]</strong> 버튼으로 특정 단원만 다시 심층 검색·집필할 수 있습니다.</span>
+      </div>
+      <div style="overflow:auto">
+        <table class="tbl">
+          <thead>
+            <tr>
+              <th>단원</th>
+              <th>제목 · 세부 절</th>
+              <th>① 단원 심층 검색</th>
+              <th>② KG·RAG</th>
+              <th>③ 절별 심층 집필</th>
+              <th>④ 인용·품질 감사</th>
+              <th>진행률 / 제어</th>
+            </tr>
+          </thead>
+          <tbody id="cpMatrixBody">
+            <tr><td colspan="7" class="muted" style="text-align:center;padding:24px">프로젝트를 선택하면 단원별 현황판이 표시됩니다.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 단원별 실시간 활동 타임라인 -->
+    <div class="card">
+      <div class="card-head" style="margin-bottom:6px">
+        <h3 class="card-title">🕒 단원별 실시간 작업 타임라인</h3>
+        <span class="muted" id="cpEventCount">0건</span>
+      </div>
+      <div id="cpTimelineBox" class="log-box" style="max-height:220px">최근 작업 내역이 여기에 표시됩니다.</div>
     </div>
   </section>
 
@@ -1967,6 +2056,7 @@ function switchMainTab(tabId, skipRecord = false) {
   CURRENT_TAB = tabId;
   document.querySelectorAll(".nav-tab").forEach(b => b.classList.toggle("active", b.dataset.tab === tabId));
   document.querySelectorAll(".tab-view").forEach(v => v.classList.toggle("active", v.id === "tab-" + tabId));
+  if (tabId === "chapterboard") loadChapterPipelineBoard();
   if (tabId === "deepresearch") loadDeepResearchTab();
   if (tabId === "imgstudio") loadImageStudioTab();
   if (tabId === "workbench") loadWorkbenchTab();
@@ -2382,8 +2472,11 @@ function startPolling() {
       } catch (e) { setServerDown(true); }
     }
     if (SERVER_DOWN || !CURRENT_PID || !CURRENT_STATE) return;
-    if (CURRENT_STATE.overall_status === "RUNNING") {
+    if (CURRENT_STATE.overall_status === "RUNNING" || (CHAPTER_BOARD_CACHE && CHAPTER_BOARD_CACHE.running)) {
       await refreshCurrentProject(false, true);
+      if (CURRENT_TAB === "chapterboard" || (CHAPTER_BOARD_CACHE && CHAPTER_BOARD_CACHE.running)) {
+        await loadChapterPipelineBoard(true);
+      }
     }
   }, 2600);
 }
@@ -2901,7 +2994,79 @@ function renderStage4Body(st) {
   const tgtPages = sm.target_pages_total || st.target_pages || 0;
   const pagePct = tgtPages ? Math.min(100, Math.round(estPages / tgtPages * 100)) : 0;
   const auditLabel = audit ? (audit.status === "PASS" ? "✅ 통과" : (audit.status === "FAIL" ? "⛔ 불합격" : esc(audit.status))) : "대기";
+  const curPersona = st.persona || {};
+  const personaName = curPersona.name_ko || "기본 전문가 페르소나 (클릭해 시나리오·심층 프롬프트 설정)";
+  const deepOn = (curPersona.section_depth_mode || "deep_per_section") === "deep_per_section";
+  const minCh = curPersona.min_chars_per_subsection || 1500;
   return `
+    <details class="card mb8" style="background:linear-gradient(135deg,#07281e,#0f291e);border-color:rgba(52,211,153,.48)" ontoggle="if(this.open) loadStage4PersonaEditor()">
+      <summary style="cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:10px;list-style:none">
+        <div>
+          <strong style="color:#6ee7b7;font-size:14px">🎭 저자 페르소나 · 심층 집필 시나리오 프롬프트</strong>
+          <span class="badge b-done" style="margin-left:8px">${esc(personaName)}</span>
+          <span class="badge b-run" style="margin-left:4px">${deepOn ? "🔥 절별 분할 심층 집필 ON" : "일괄 집필"} · 절당 ${minCh}자+</span>
+        </div>
+        <span class="muted" style="font-size:12px">▼ 펼쳐서 페르소나·프롬프트 수정 및 심층 재집필</span>
+      </summary>
+      <div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--border)">
+        <div class="grid-3 mb8">
+          <div>
+            <label class="label">전문가 페르소나 프리셋 선택</label>
+            <select id="s4PersonaSelect" onchange="onStage4PersonaSelectChange(this.value)"></select>
+          </div>
+          <div>
+            <label class="label">절당 최소 목표 글자 수 (내용 빈약 방지)</label>
+            <input id="s4MinChars" type="number" min="400" max="5000" step="100" value="${esc(minCh)}" />
+          </div>
+          <div>
+            <label class="label">심층 집필 엔진 모드</label>
+            <select id="s4DepthMode">
+              <option value="deep_per_section" ${deepOn ? "selected" : ""}>🔥 절별 분할 심층 집필 + 자동 2차 보강</option>
+              <option value="single_pass" ${!deepOn ? "selected" : ""}>⚡ 단원 일괄 집필</option>
+            </select>
+          </div>
+        </div>
+        <div class="grid-2 mb8">
+          <div>
+            <label class="label">저자 정체성 · 전문 경력</label>
+            <textarea id="s4Identity" rows="2">${esc(curPersona.identity_and_credentials || "")}</textarea>
+          </div>
+          <div>
+            <label class="label">집필 시나리오 (독자·목표·심사 기준)</label>
+            <textarea id="s4Scenario" rows="2">${esc(curPersona.writing_scenario || "")}</textarea>
+          </div>
+        </div>
+        <div class="grid-2 mb8">
+          <div>
+            <label class="label">단계별 사고·논증 프로토콜</label>
+            <textarea id="s4Reasoning" rows="3">${esc(curPersona.reasoning_protocol || "")}</textarea>
+          </div>
+          <div>
+            <label class="label">심층화·근거 활용 규칙 &amp; 사용자 추가 지시</label>
+            <textarea id="s4DepthRules" rows="3">${esc(curPersona.depth_and_evidence_rules || "")}</textarea>
+          </div>
+        </div>
+        <div class="grid-2 mb8">
+          <div>
+            <label class="label">금지 클리셰 (쉼표 구분)</label>
+            <input id="s4Banned" value="${esc(Array.isArray(curPersona.banned_cliches) ? curPersona.banned_cliches.join(', ') : (curPersona.banned_cliches || ''))}" />
+          </div>
+          <div>
+            <label class="label">사용자 맞춤 추가 집필 프롬프트</label>
+            <input id="s4CustomInst" value="${esc(curPersona.custom_instructions || '')}" placeholder="예: 국내 농진청 자료와 해외 최신 논문을 표로 비교하고 구체적 수치를 빠짐없이 제시하라" />
+          </div>
+        </div>
+        <div class="flex" style="justify-content:space-between">
+          <button class="btn-sm" onclick="previewStage4PersonaPrompt()">👁️ 컴파일된 마스터 프롬프트 미리보기</button>
+          <div class="flex">
+            <button class="btn-primary btn-sm" onclick="saveStage4Persona(false)">💾 페르소나만 저장</button>
+            <button class="btn-gold btn-sm" onclick="saveStage4Persona(true)">🚀 이 페르소나로 4단계 전체 심층 재집필</button>
+          </div>
+        </div>
+        <pre id="s4PromptPreview" style="display:none;margin-top:10px;background:#04110c;border:1px solid var(--accent);padding:10px;border-radius:8px;white-space:pre-wrap;font-size:11.5px;max-height:260px;overflow:auto;color:#cbd5e1"></pre>
+      </div>
+    </details>
+
     <div class="grid-4 mb8">
       <div class="kpi"><div class="kpi-val">${doneCnt} / ${chs.length || st.chapter_count}</div><div class="kpi-lbl">집필된 단원</div></div>
       <div class="kpi" title="출판된 교재 PDF가 있으면 실제 쪽수, 없으면 본문 1쪽 ≈ ${(sm.chars_per_page || 1100).toLocaleString()}자로 추정">
@@ -3234,6 +3399,266 @@ async function runConvertOutput(targetFormat) {
     await loadCurrentProject();
   } catch (e) {
     toast("❌ 포맷 변환 오류: " + e.message, 5000);
+  }
+}
+
+let STAGE4_PERSONAS_CACHE = [];
+async function loadStage4PersonaEditor() {
+  const st = CURRENT_STATE;
+  if (!st) return;
+  const otype = st.primary_output_type || (st.output_profile && st.output_profile.primary_output_type) || "textbook";
+  try {
+    const res = await api(`/api/personas?output_type=${encodeURIComponent(otype)}`);
+    STAGE4_PERSONAS_CACHE = res.personas || [];
+    const sel = document.getElementById("s4PersonaSelect");
+    if (!sel) return;
+    const curId = (st.persona && st.persona.persona_id) || (res.defaults_by_type && res.defaults_by_type[otype]) || "";
+    sel.innerHTML = STAGE4_PERSONAS_CACHE.map(p => `<option value="${esc(p.persona_id)}" ${p.persona_id === curId ? "selected" : ""}>🎭 ${esc(p.name_ko)} (${esc(p.badge || "")})</option>`).join("");
+    if (!st.persona && STAGE4_PERSONAS_CACHE.length) {
+      onStage4PersonaSelectChange(STAGE4_PERSONAS_CACHE[0].persona_id);
+    }
+  } catch (e) {
+    toast("❌ 페르소나 목록 로드 오류: " + e.message);
+  }
+}
+
+function onStage4PersonaSelectChange(pid) {
+  const p = STAGE4_PERSONAS_CACHE.find(x => x.persona_id === pid);
+  if (!p) return;
+  document.getElementById("s4Identity").value = p.identity_and_credentials || "";
+  document.getElementById("s4Scenario").value = p.writing_scenario || "";
+  document.getElementById("s4Reasoning").value = p.reasoning_protocol || "";
+  document.getElementById("s4DepthRules").value = p.depth_and_evidence_rules || "";
+  document.getElementById("s4Banned").value = Array.isArray(p.banned_cliches) ? p.banned_cliches.join(", ") : (p.banned_cliches || "");
+  document.getElementById("s4MinChars").value = p.min_chars_per_subsection || 1500;
+  document.getElementById("s4DepthMode").value = p.section_depth_mode || "deep_per_section";
+  document.getElementById("s4CustomInst").value = p.custom_instructions || "";
+}
+
+function collectStage4PersonaPayload() {
+  const st = CURRENT_STATE;
+  const selEl = document.getElementById("s4PersonaSelect");
+  const pid = selEl ? selEl.value : ((st && st.persona && st.persona.persona_id) || "");
+  const ref = STAGE4_PERSONAS_CACHE.find(x => x.persona_id === pid) || (st && st.persona) || {};
+  return {
+    persona_id: pid,
+    name_ko: ref.name_ko || "맞춤 전문가 페르소나",
+    role_title: ref.role_title || "",
+    identity_and_credentials: document.getElementById("s4Identity").value.trim(),
+    writing_scenario: document.getElementById("s4Scenario").value.trim(),
+    reasoning_protocol: document.getElementById("s4Reasoning").value.trim(),
+    depth_and_evidence_rules: document.getElementById("s4DepthRules").value.trim(),
+    banned_cliches: document.getElementById("s4Banned").value.split(",").map(x => x.trim()).filter(Boolean),
+    min_chars_per_subsection: parseInt(document.getElementById("s4MinChars").value, 10) || 1500,
+    section_depth_mode: document.getElementById("s4DepthMode").value || "deep_per_section",
+    auto_deepen_short_sections: true,
+    custom_instructions: document.getElementById("s4CustomInst").value.trim(),
+  };
+}
+
+async function previewStage4PersonaPrompt() {
+  const st = CURRENT_STATE;
+  if (!st) return;
+  const otype = st.primary_output_type || "textbook";
+  try {
+    const res = await api("/api/personas/preview-prompt", {
+      method: "POST",
+      body: JSON.stringify({
+        output_type: otype,
+        output_profile: st.output_profile || {},
+        persona: collectStage4PersonaPayload(),
+        topic_ko: st.topic_ko || "",
+      }),
+    });
+    const box = document.getElementById("s4PromptPreview");
+    if (box) {
+      box.textContent = res.prompt || "";
+      box.style.display = "block";
+    }
+  } catch (e) {
+    toast("❌ 프롬프트 미리보기 오류: " + e.message);
+  }
+}
+
+async function saveStage4Persona(andRedraft) {
+  if (!CURRENT_PID) return;
+  if (andRedraft && !confirm("새 저자 페르소나와 절별 심층 집필 모드로 4단계 원고를 처음부터 다시 심층 집필할까요?")) return;
+  try {
+    await api(`/api/projects/${encodeURIComponent(CURRENT_PID)}/persona`, {
+      method: "PATCH",
+      body: JSON.stringify({
+        persona: collectStage4PersonaPayload(),
+        reset_stage4_checkpoint: !!andRedraft,
+        auto_restart_stage4: !!andRedraft,
+      }),
+    });
+    toast(andRedraft ? "🚀 새 페르소나를 적용해 4단계 절별 심층 재집필을 시작했습니다!" : "✅ 저자 페르소나와 프롬프트를 저장했습니다!", 5000);
+    await refreshCurrentProject(false);
+  } catch (e) {
+    toast("❌ 페르소나 저장 오류: " + e.message, 5000);
+  }
+}
+
+// ============================================================
+// 단원별 순차 심층 검색·KG·절별 집필 실시간 현황판 JS
+// ============================================================
+let CHAPTER_BOARD_CACHE = null;
+
+function _cpStepBadge(stepObj, extraText = "") {
+  const st = (stepObj && stepObj.status) || "PENDING";
+  const cls = st === "DONE" ? "b-done" : (st === "RUNNING" ? "b-run" : (st === "ERROR" ? "b-err" : "b-wait"));
+  const icon = st === "DONE" ? "✅" : (st === "RUNNING" ? "⏳" : (st === "ERROR" ? "⛔" : "○"));
+  const msg = (stepObj && stepObj.message) || "대기 중";
+  return `<div><span class="badge ${cls}">${icon} ${esc(st)}</span></div><div class="muted" style="font-size:11.5px;margin-top:3px;line-height:1.35">${esc(extraText || msg)}</div>`;
+}
+
+async function loadChapterPipelineBoard(silent = false) {
+  if (!CURRENT_PID) return;
+  try {
+    const data = await api(`/api/projects/${encodeURIComponent(CURRENT_PID)}/chapter-pipeline`);
+    CHAPTER_BOARD_CACHE = data;
+    renderChapterPipelineBoard(data);
+  } catch (e) {
+    if (!silent) toast("❌ 단원별 현황판 로드 오류: " + e.message, 4000);
+  }
+}
+
+function renderChapterPipelineBoard(board) {
+  if (!board) return;
+  const sm = board.summary || {};
+  const running = !!board.running;
+
+  const btnStart = document.getElementById("cpBtnStart");
+  const btnStop = document.getElementById("cpBtnStop");
+  if (btnStart) btnStart.disabled = running;
+  if (btnStop) btnStop.disabled = !running;
+
+  const titleEl = document.getElementById("cpLiveTitle");
+  const pctBadge = document.getElementById("cpLivePctBadge");
+  const pctFill = document.getElementById("cpLiveProgressFill");
+  const orderHint = document.getElementById("cpExecOrderHint");
+  if (titleEl) {
+    const stepPrefix = running ? `🔥 실행 중 [${board.active_chapter_id || ""} · ${board.active_step || ""}] — ` : "";
+    titleEl.textContent = stepPrefix + (board.current_message || "대기 중");
+  }
+  if (pctBadge) {
+    pctBadge.className = "badge " + (running ? "b-run" : (sm.overall_progress_pct >= 100 ? "b-done" : "b-wait"));
+    pctBadge.textContent = `${sm.overall_progress_pct || 0}%`;
+  }
+  if (pctFill) pctFill.style.width = `${sm.overall_progress_pct || 0}%`;
+  if (orderHint) {
+    const ord = (board.execution_order || []).join(" → ");
+    orderHint.textContent = ord ? `실행 순서 (${board.primary_output_type === "paper" ? "논문·리뷰 지능형 순서: 본문 선집필 후 초록·요약·참고문헌 통합" : "순차 실행"}): ${ord}` : "";
+  }
+
+  const setT = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v; };
+  setT("cpKpiDone", `${sm.done_chapters || 0} / ${sm.total_chapters || 0}`);
+  setT("cpKpiSources", `${sm.total_sources_ingested || 0}건 (PDF ${sm.total_pdfs_downloaded || 0})`);
+  setT("cpKpiChars", `${(sm.total_chars || 0).toLocaleString()}자 (~${sm.total_est_pages || 0}쪽)`);
+  setT("cpKpiCites", `${sm.total_citations || 0}건`);
+  setT("cpKpiPct", `${sm.overall_progress_pct || 0}%`);
+
+  const tbody = document.getElementById("cpMatrixBody");
+  const chs = board.chapters || [];
+  if (tbody) {
+    if (!chs.length) {
+      tbody.innerHTML = `<tr><td colspan="7" class="muted" style="text-align:center;padding:24px">1단계 목차·계획서가 생성되면 단원별 현황판이 자동으로 구성됩니다.</td></tr>`;
+    } else {
+      tbody.innerHTML = chs.map(c => {
+        const st = c.steps || {};
+        const r = st.research || {};
+        const k = st.kg_build || {};
+        const d = st.draft || {};
+        const a = st.audit || {};
+        const isCur = board.active_chapter_id === c.chapter_id && running;
+        const secsPreview = (c.sections || []).slice(0, 3).join(" · ") + ((c.sections || []).length > 3 ? ` 외 ${(c.sections || []).length - 3}절` : "");
+        const draftExtra = d.status === "RUNNING"
+          ? `(${d.subsections_done || 0}/${d.subsections_total || 1}절) ${d.current_subsection || d.message || ""}`
+          : (d.chars ? `${Number(d.chars).toLocaleString()}자 (~${d.est_pages || 0}쪽)${d.deepened_count ? ` · 심화+${d.deepened_count}` : ""}` : (d.message || "대기"));
+        const resExtra = r.ingested ? `적재 ${r.ingested}건 (PDF ${r.pdfs || 0} / RAG ${r.local_rag_hits || 0})` : (r.message || "대기");
+        const audExtra = a.audit_status ? `${a.audit_status} · 인용 ${a.citation_count || 0}건 · ${a.quality_grade || ""}` : (a.message || "대기");
+        return `
+          <tr style="${isCur ? "background:rgba(52,211,153,.11);outline:1px solid #34d399" : ""}">
+            <td><strong>${esc(c.chapter_id)}</strong>${c.chapter_role ? `<div class="muted" style="font-size:11px">${esc(c.chapter_role)}</div>` : ""}</td>
+            <td style="max-width:240px"><div style="font-weight:700">${esc(c.title)}</div><div class="muted" style="font-size:11px">${esc(secsPreview)}</div></td>
+            <td>${_cpStepBadge(r, resExtra)}</td>
+            <td>${_cpStepBadge(k)}</td>
+            <td>${_cpStepBadge(d, draftExtra)}</td>
+            <td>${_cpStepBadge(a, audExtra)}</td>
+            <td>
+              <div style="font-weight:800;font-size:12px;margin-bottom:4px">${c.progress || 0}% ${c.elapsed_sec ? `<span class="muted">(${c.elapsed_sec}초)</span>` : ""}</div>
+              <div class="flex" style="gap:5px">
+                <button class="btn-sm" ${running ? "disabled" : ""} onclick="startSingleChapterPipeline('${esc(c.chapter_id)}')" title="이 단원만 심층 검색·KG·집필·감사 실행">▶ ${c.status === "DONE" ? "재실행" : "실행"}</button>
+                ${c.mdx_path ? `<button class="btn-sm" onclick="switchMainTab('workflow');selectStage('stage4_manuscript_draft');setTimeout(()=>openChapterPreview('${esc(c.chapter_id)}'),300)">📖 보기</button>` : ""}
+              </div>
+              ${c.error ? `<div style="color:#fca5a5;font-size:11px;margin-top:3px">⚠ ${esc(c.error.slice(0, 80))}</div>` : ""}
+            </td>
+          </tr>`;
+      }).join("");
+    }
+  }
+
+  const evs = board.recent_events || [];
+  setT("cpEventCount", `${evs.length}건`);
+  const tl = document.getElementById("cpTimelineBox");
+  if (tl) {
+    tl.innerHTML = evs.length
+      ? evs.slice().reverse().map(e => `<div class="log-line"><span class="muted">${esc((e.timestamp || "").slice(11, 19))}</span> <strong>[${esc(e.agent || "")}]</strong> ${esc(e.message || "")}</div>`).join("")
+      : "최근 단원별 실행 이벤트가 아직 없습니다.";
+  }
+}
+
+async function startChapterPipeline() {
+  if (!CURRENT_PID) return toast("먼저 프로젝트를 선택해 주세요.");
+  const depth = document.getElementById("cpDepthSelect")?.value || "deep";
+  const auto56 = !!document.getElementById("cpAuto56")?.checked;
+  try {
+    const res = await api(`/api/projects/${encodeURIComponent(CURRENT_PID)}/chapter-pipeline/start`, {
+      method: "POST",
+      body: JSON.stringify({ research_depth: depth, force_rerun: false, auto_continue_stages56: auto56 }),
+    });
+    if (res.status === "ALL_DONE") {
+      toast("✅ 이미 모든 단원이 완료되었습니다! 특정 단원을 다시 돌리려면 표 우측의 [▶ 재실행]을 누르세요.", 5000);
+    } else {
+      toast(`🚀 단원별 순차 심층 검색·집필을 시작했습니다! (${(res.target_chapters || []).length}개 단원)`, 5000);
+    }
+    if (res.board) {
+      CHAPTER_BOARD_CACHE = res.board;
+      renderChapterPipelineBoard(res.board);
+    }
+    await refreshCurrentProject(false);
+  } catch (e) {
+    toast("❌ 단원별 파이프라인 시작 오류: " + e.message, 5000);
+  }
+}
+
+async function startSingleChapterPipeline(cid) {
+  if (!CURRENT_PID) return;
+  const depth = document.getElementById("cpDepthSelect")?.value || "deep";
+  if (!confirm(`[${cid}] 단원에 대해 단원 전용 심층 검색 → KG → 절별 심층 집필 → 인용 감사를 지금 실행할까요?`)) return;
+  try {
+    const res = await api(`/api/projects/${encodeURIComponent(CURRENT_PID)}/chapter-pipeline/start`, {
+      method: "POST",
+      body: JSON.stringify({ chapter_ids: [cid], research_depth: depth, force_rerun: true, auto_continue_stages56: false }),
+    });
+    toast(`🚀 [${cid}] 단원 심층 검색·집필을 시작했습니다!`, 4500);
+    if (res.board) {
+      CHAPTER_BOARD_CACHE = res.board;
+      renderChapterPipelineBoard(res.board);
+    }
+    await refreshCurrentProject(false);
+  } catch (e) {
+    toast("❌ 단원 실행 오류: " + e.message, 5000);
+  }
+}
+
+async function stopChapterPipelineRun() {
+  if (!CURRENT_PID) return;
+  try {
+    await api(`/api/projects/${encodeURIComponent(CURRENT_PID)}/chapter-pipeline/stop`, { method: "POST" });
+    toast("⏹ 일시중지 요청을 보냈습니다. 현재 진행 중인 세부 단계가 끝나면 안전하게 멈춥니다.", 5000);
+  } catch (e) {
+    toast("❌ 중단 요청 오류: " + e.message);
   }
 }
 

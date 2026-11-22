@@ -68,6 +68,21 @@ from output_converter import (  # noqa: E402
     list_project_outputs_summary,
     publish_default_outputs,
 )
+from persona_studio import (  # noqa: E402
+    BUILTIN_PERSONAS,
+    DEFAULT_PERSONA_BY_TYPE,
+    compile_persona_system_prompt,
+    delete_custom_persona,
+    list_personas,
+    resolve_project_persona,
+    save_custom_persona,
+)
+from chapter_pipeline import (  # noqa: E402
+    CHAPTER_RESEARCH_DEPTHS,
+    get_chapter_pipeline_board,
+    start_chapter_pipeline_async,
+    stop_chapter_pipeline,
+)
 from rag_capture_unifier import (  # noqa: E402
     get_unified_rag_status,
     search_unified_smc_rag,
@@ -175,6 +190,7 @@ class CreateProjectRequest(BaseModel):
     topic_en: str = ""
     primary_output_type: str = "textbook"  # textbook | web_publish | lecture | report | paper | storybook
     output_profile: dict[str, Any] | None = None
+    persona: dict[str, Any] | None = None
     keywords_ko: list[str] = Field(default_factory=list)
     keywords_en: list[str] = Field(default_factory=list)
     domestic_agency_urls: list[str] = Field(default_factory=list)
@@ -597,6 +613,7 @@ def api_create_project(req: CreateProjectRequest) -> dict[str, Any]:
         chapter_count=req.chapter_count,
         primary_output_type=req.primary_output_type,
         output_profile=resolved_prof,
+        persona=req.persona,
         options={
             "papers_per_query": req.papers_per_query,
             "domestic_agency_urls": req.domestic_agency_urls,
@@ -628,6 +645,7 @@ def api_create_project(req: CreateProjectRequest) -> dict[str, Any]:
 class UpdateOutputProfileRequest(BaseModel):
     primary_output_type: str = "textbook"
     output_profile: dict[str, Any] = Field(default_factory=dict)
+    persona: dict[str, Any] | None = None
     target_pages: int | None = None
     chapter_count: int | None = None
     target_audience: str | None = None
@@ -644,6 +662,8 @@ def api_update_output_profile(project_id: str, req: UpdateOutputProfileRequest) 
     spec = get_output_type_spec(req.primary_output_type)
     st["primary_output_type"] = prof["primary_output_type"]
     st["output_profile"] = prof
+    if req.persona is not None:
+        st["persona"] = resolve_project_persona(prof["primary_output_type"], req.persona, cfg=cfg)
     if req.target_pages is not None:
         st["target_pages"] = max(10, int(req.target_pages))
     if req.chapter_count is not None:
@@ -2245,3 +2265,148 @@ def api_convert_project_output(project_id: str, req: ConvertOutputRequest) -> di
         raise HTTPException(status_code=400, detail=str(exc))
     except Exception as exc:
         raise HTTPException(status_code=400, detail=f"포맷 변환 오류: {exc}")
+
+
+# ============================================================
+# 출판물별 저자 페르소나 · 심층 집필 시나리오 프롬프트 스튜디오 API
+# ============================================================
+@app.get("/api/personas")
+def api_list_personas(output_type: str | None = None) -> dict[str, Any]:
+    return {
+        "personas": list_personas(output_type=output_type),
+        "defaults_by_type": DEFAULT_PERSONA_BY_TYPE,
+    }
+
+
+class CustomPersonaRequest(BaseModel):
+    persona_id: str = ""
+    output_type: str = "textbook"
+    name_ko: str
+    badge: str = "사용자 커스텀"
+    role_title: str = ""
+    identity_and_credentials: str = ""
+    writing_scenario: str = ""
+    reasoning_protocol: str = ""
+    depth_and_evidence_rules: str = ""
+    banned_cliches: list[str] | str = Field(default_factory=list)
+    voice_and_style: str = ""
+    section_depth_mode: str = "deep_per_section"
+    min_chars_per_subsection: int = 1500
+    auto_deepen_short_sections: bool = True
+    custom_instructions: str = ""
+
+
+@app.post("/api/personas/custom")
+def api_save_custom_persona(req: CustomPersonaRequest) -> dict[str, Any]:
+    try:
+        saved = save_custom_persona(req.model_dump())
+        return {"status": "SAVED", "persona": saved}
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc))
+
+
+@app.delete("/api/personas/custom/{persona_id}")
+def api_delete_custom_persona(persona_id: str) -> dict[str, Any]:
+    try:
+        return delete_custom_persona(persona_id)
+    except FileNotFoundError as exc:
+        raise HTTPException(status_code=404, detail=str(exc))
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc))
+
+
+class PreviewPersonaPromptRequest(BaseModel):
+    output_type: str = "paper"
+    persona: dict[str, Any] = Field(default_factory=dict)
+    output_profile: dict[str, Any] = Field(default_factory=dict)
+    topic_ko: str = "스마트 농업 정밀 연구"
+    chapter_role: str | None = None
+    subsection_title: str | None = "3.1 핵심 정량 결과 및 기작 분석"
+
+
+@app.post("/api/personas/preview-prompt")
+def api_preview_persona_prompt(req: PreviewPersonaPromptRequest) -> dict[str, Any]:
+    state_mock = {
+        "topic_ko": req.topic_ko,
+        "primary_output_type": req.output_type,
+        "output_profile": resolve_output_profile(req.output_type, req.output_profile),
+        "persona": req.persona,
+    }
+    role_eff = req.chapter_role or ("results_discussion" if req.output_type == "paper" else None)
+    compiled = compile_persona_system_prompt(
+        state_mock,
+        ["SRC-01", "SRC-02", "SRC-03"],
+        chapter_role=role_eff,
+        subsection_title=req.subsection_title,
+    )
+    return {
+        "prompt": compiled,
+        "length": len(compiled),
+        "persona": resolve_project_persona(req.output_type, req.persona),
+    }
+
+
+class UpdateProjectPersonaRequest(BaseModel):
+    persona: dict[str, Any] = Field(default_factory=dict)
+    reset_stage4_checkpoint: bool = False
+    auto_restart_stage4: bool = False
+
+
+@app.patch("/api/projects/{project_id}/persona")
+def api_update_project_persona(project_id: str, req: UpdateProjectPersonaRequest) -> dict[str, Any]:
+    cfg = get_config()
+    st = load_project_state(project_id, cfg)
+    if not st:
+        raise HTTPException(status_code=404, detail="Project not found")
+    otype = st.get("primary_output_type") or (st.get("output_profile") or {}).get("primary_output_type") or "textbook"
+    resolved = resolve_project_persona(otype, req.persona, cfg=cfg)
+    st["persona"] = resolved
+    if req.reset_stage4_checkpoint:
+        st.setdefault("checkpoint", {})["completed_chapters"] = []
+        st["checkpoint"]["fallback_chapters"] = []
+    save_project_state(st, cfg)
+    run_info = None
+    if req.auto_restart_stage4:
+        run_info = start_pipeline_async(project_id, mode="single", target_stage="stage4_manuscript_draft")
+    return {"status": "UPDATED", "persona": resolved, "project": st, "run": run_info}
+
+
+# ============================================================
+# 단원별 순차 심층 검색 · KG · 절별 집필 · 실시간 현황판 API
+# ============================================================
+@app.get("/api/projects/{project_id}/chapter-pipeline")
+def api_get_chapter_pipeline_board(project_id: str) -> dict[str, Any]:
+    try:
+        return get_chapter_pipeline_board(project_id)
+    except FileNotFoundError:
+        raise HTTPException(status_code=404, detail="Project not found")
+
+
+class ChapterPipelineStartRequest(BaseModel):
+    chapter_ids: list[str] | None = None
+    research_depth: str = "deep"  # standard | deep | exhaustive
+    force_rerun: bool = False
+    auto_continue_stages56: bool = False
+
+
+@app.post("/api/projects/{project_id}/chapter-pipeline/start")
+def api_start_chapter_pipeline(project_id: str, req: ChapterPipelineStartRequest) -> dict[str, Any]:
+    try:
+        return start_chapter_pipeline_async(
+            project_id,
+            chapter_ids=req.chapter_ids,
+            research_depth=req.research_depth,
+            force_rerun=req.force_rerun,
+            auto_continue_stages56=req.auto_continue_stages56,
+        )
+    except FileNotFoundError:
+        raise HTTPException(status_code=404, detail="Project not found")
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc))
+    except Exception as exc:
+        raise HTTPException(status_code=400, detail=f"단원별 파이프라인 실행 오류: {exc}")
+
+
+@app.post("/api/projects/{project_id}/chapter-pipeline/stop")
+def api_stop_chapter_pipeline(project_id: str) -> dict[str, Any]:
+    return stop_chapter_pipeline(project_id)

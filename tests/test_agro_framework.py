@@ -463,6 +463,129 @@ def test_default_two_outputs_korean_journal_pdf_and_converter():
     assert "runConvertOutput" in r_ui.text
 
 
+def test_persona_studio_presets_deep_prompts_and_api():
+    """출판물 6대 유형별 저자 페르소나 12종, 절별 심층 프롬프트 컴파일, 커스텀 저장 및 REST API 검증."""
+    from persona_studio import (
+        BUILTIN_PERSONAS,
+        DEFAULT_PERSONA_BY_TYPE,
+        build_deepening_prompt,
+        compile_persona_system_prompt,
+        delete_custom_persona,
+        list_personas,
+        resolve_project_persona,
+        save_custom_persona,
+    )
+
+    expected_types = {"textbook", "web_publish", "lecture", "report", "paper", "storybook"}
+    assert set(DEFAULT_PERSONA_BY_TYPE.keys()) == expected_types
+    assert len(BUILTIN_PERSONAS) >= 12
+    for tid in expected_types:
+        by_t = [p for p in BUILTIN_PERSONAS.values() if p["output_type"] == tid]
+        assert len(by_t) >= 2
+
+    # 논문 페르소나 + 절별 심층 프롬프트 컴파일 검증
+    st_paper = {
+        "topic_ko": "작물 3D 이미지 모델 개발 리뷰",
+        "primary_output_type": "paper",
+        "persona": resolve_project_persona("paper", {"custom_instructions": "한국 노지 작물 가려짐 한계를 반드시 수치로 논의하라"}),
+    }
+    compiled = compile_persona_system_prompt(
+        st_paper,
+        ["SRC-01", "SRC-02"],
+        chapter_role="results_discussion",
+        subsection_title="3.1 다중 시점 3D 복원 성능 비교",
+    )
+    assert "SCI(E)" in compiled
+    assert "금지 상투구" in compiled
+    assert "3.1 다중 시점 3D 복원 성능 비교" in compiled
+    assert "한국 노지 작물 가려짐 한계를 반드시 수치로 논의하라" in compiled
+    assert "6단계" in compiled
+
+    deep_p = build_deepening_prompt(
+        "3.1 다중 시점 3D 복원 성능 비교",
+        "짧은 초안",
+        "[SRC-01] Multi-view stereo achieves 2.1 mm RMSE.",
+        st_paper["persona"],
+        ["SRC-01"],
+    )
+    assert "2배 가까이 심층 확장" in deep_p and "SRC-01" in deep_p
+
+    # 커스텀 페르소나 저장 및 삭제 라운드트립
+    saved = save_custom_persona(
+        {
+            "output_type": "paper",
+            "name_ko": "테스트 식물표현체학 전문가",
+            "writing_scenario": "3D 표현체학 리뷰 투고 시나리오",
+            "min_chars_per_subsection": 2200,
+        }
+    )
+    assert saved["persona_id"].startswith("custom_paper_")
+    assert any(x["persona_id"] == saved["persona_id"] for x in list_personas("paper"))
+    del_res = delete_custom_persona(saved["persona_id"])
+    assert del_res["status"] == "DELETED"
+
+    # API & UI 검증
+    client = TestClient(agents_app)
+    r_p = client.get("/api/personas?output_type=paper")
+    assert r_p.status_code == 200
+    assert len(r_p.json()["personas"]) >= 2
+
+    r_prev = client.post(
+        "/api/personas/preview-prompt",
+        json={"output_type": "paper", "topic_ko": "3D 작물 모델", "persona": {"persona_id": "paper_scie_reviewer"}},
+    )
+    assert r_prev.status_code == 200
+    assert "SCI(E)" in r_prev.json()["prompt"]
+
+    r_setup = client.get("/setup")
+    assert r_setup.status_code == 200
+    assert "personaPresetCards" in r_setup.text
+    assert "previewCompiledPersonaPrompt" in r_setup.text
+
+    r_main = client.get("/")
+    assert r_main.status_code == 200
+    assert "saveStage4Persona" in r_main.text
+
+
+def test_chapter_by_chapter_pipeline_and_progress_board():
+    """단원별 순차 심층 검색·KG·절별 집필 파이프라인 순서, 현황판 데이터 및 대시보드 UI 검증."""
+    from chapter_pipeline import CHAPTER_RESEARCH_DEPTHS, build_chapter_execution_order, get_chapter_pipeline_board
+    from subagent_orchestrator import list_projects
+
+    assert set(CHAPTER_RESEARCH_DEPTHS.keys()) == {"standard", "deep", "exhaustive"}
+
+    paper_chs = [
+        {"chapter_id": "ch01", "chapter_role": "abstract", "title": "1. 초록"},
+        {"chapter_id": "ch02", "chapter_role": "methods", "title": "2. 재료 및 방법"},
+        {"chapter_id": "ch03", "chapter_role": "results_discussion", "title": "3. 결과 및 고찰"},
+        {"chapter_id": "ch04", "chapter_role": "core_summary", "title": "4. 핵심 내용 요약"},
+        {"chapter_id": "ch05", "chapter_role": "references", "title": "5. 참고문헌"},
+    ]
+    # 논문·리뷰는 재료및방법 → 결과및고찰 → 초록 → 핵심요약 → 참고문헌 지능형 순서
+    assert build_chapter_execution_order(paper_chs, "paper") == ["ch02", "ch03", "ch01", "ch04", "ch05"]
+    # 교과서는 순차 실행
+    assert build_chapter_execution_order(paper_chs[:3], "textbook") == ["ch01", "ch02", "ch03"]
+
+    client = TestClient(agents_app)
+    r_ui = client.get("/")
+    assert r_ui.status_code == 200
+    assert "tab-chapterboard" in r_ui.text
+    assert "renderChapterPipelineBoard" in r_ui.text
+    assert "startChapterPipeline" in r_ui.text
+
+    projs = list_projects()
+    if projs:
+        pid = projs[0]["project_id"]
+        board = get_chapter_pipeline_board(pid)
+        assert board["project_id"] == pid
+        assert "summary" in board and "chapters" in board
+        r_api = client.get(f"/api/projects/{pid}/chapter-pipeline")
+        assert r_api.status_code == 200
+        assert r_api.json()["project_id"] == pid
+
+
+
+
 
 
 

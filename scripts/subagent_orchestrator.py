@@ -778,11 +778,13 @@ def create_project(
     chapter_count: int = 15,
     primary_output_type: str = "textbook",
     output_profile: dict[str, Any] | None = None,
+    persona: dict[str, Any] | None = None,
     options: dict[str, Any] | None = None,
     project_id_override: str | None = None,
     cfg: PlatformConfig | None = None,
 ) -> dict[str, Any]:
     from output_type_profiles import get_output_type_spec, resolve_output_profile
+    from persona_studio import resolve_project_persona
 
     cfg = cfg or get_config()
     if project_id_override:
@@ -804,6 +806,7 @@ def create_project(
     kw_en = [k.strip() for k in (keywords_en or []) if k.strip()] or ([topic_en.strip()] if topic_en.strip() else [topic_ko.strip()])
 
     resolved_profile = resolve_output_profile(primary_output_type, output_profile)
+    resolved_persona = resolve_project_persona(resolved_profile["primary_output_type"], persona, cfg=cfg)
     type_spec = get_output_type_spec(primary_output_type)
 
     opts = {
@@ -835,6 +838,7 @@ def create_project(
         "is_reference_book": False,
         "primary_output_type": resolved_profile["primary_output_type"],
         "output_profile": resolved_profile,
+        "persona": resolved_persona,
         "topic_ko": topic_ko.strip(),
         "topic_en": topic_en.strip() or topic_ko.strip(),
         "keywords_ko": kw_ko,
@@ -1101,12 +1105,15 @@ def _generate_outline_proposal(
         prev_summary_txt = "\n[기존 목차 초안]\n" + "\n".join(prev_lines)
 
     from output_type_profiles import build_outline_instruction_for_type
+    from persona_studio import build_outline_persona_context
 
     role_inst, type_guide = build_outline_instruction_for_type(state)
+    persona_ctx = build_outline_persona_context(state, cfg=cfg)
     sys_prompt = (
         f"{role_inst} "
         "반드시 순수 JSON 객체만 출력하며, 선택한 1차 산출물 유형의 구조에 맞게 부(Part)/단원(Chapter)을 체계적으로 설계하고 "
         "각 단원의 상세 요약(summary_ko)과 핵심 영역별 한국어/영문 검색 키워드(domain_keywords)를 빠짐없이 제시하십시오."
+        f"{persona_ctx}"
     )
     user_prompt = (
         f"{type_guide}\n\n"
@@ -1552,8 +1559,17 @@ def approve_stage1_outline(
         metrics={"parts": len(parts), "chapters": st["chapter_count"], "approved": True},
         artifacts=[str(bp_path)] if bp_path.is_file() else [],
     )
-    append_event(project_id, "outline-architect", "stage1_topic_outline", f"사용자 최종 승인 완료: {len(parts)}부 {st['chapter_count']}장 → 2단계 자료 수집 준비 완료", cfg=cfg)
-    run_info = start_pipeline_async(project_id, mode="all", cfg=cfg) if auto_continue else None
+    append_event(project_id, "outline-architect", "stage1_topic_outline", f"사용자 최종 승인 완료: {len(parts)}부 {st['chapter_count']}장 → 단원별 심층 검색·집필 준비 완료", cfg=cfg)
+    run_info = None
+    if auto_continue:
+        from chapter_pipeline import start_chapter_pipeline_async
+
+        run_info = start_chapter_pipeline_async(
+            project_id,
+            research_depth="deep",
+            auto_continue_stages56=True,
+            cfg=cfg,
+        )
     return {"status": "APPROVED", "project": st, "run": run_info}
 
 
@@ -1714,6 +1730,95 @@ def _run_stage3_kg_build(state: dict[str, Any], cfg: PlatformConfig) -> None:
     )
 
 
+def _build_subsection_evidence_context(
+    sources: list[dict[str, Any]],
+    query_text: str,
+    cfg: PlatformConfig,
+    *,
+    max_chunks: int = 12,
+    max_chars_per_chunk: int = 880,
+) -> tuple[str, list[str]]:
+    """세부 절 제목·키워드에 맞춰 근거 패킷 전체 + C:\\SMC_GRAPHRAG 통합 RAG에서 고밀도 관련 발췌를 조합한다."""
+    tokens = [t.lower() for t in re.findall(r"[0-9A-Za-z가-힣]{2,}", query_text or "")]
+    tok_set = set(tokens)
+
+    scored_chunks: list[tuple[int, str, str, str]] = []
+    for idx_s, s in enumerate(sources):
+        sid = str(s.get("source_id") or "").strip()
+        if not sid:
+            continue
+        title = str(s.get("title") or "").strip()
+        chunks = s.get("chunks") or []
+        if not chunks:
+            summary_txt = str(s.get("abstract") or s.get("summary") or title).strip()
+            if summary_txt:
+                chunks = [{"text": summary_txt}]
+        for c in chunks[:5]:
+            txt = str(c.get("text") or "").strip()
+            if not txt:
+                continue
+            hay = (title + " " + txt).lower()
+            hit_score = sum(2 if t in title.lower() else 1 for t in tok_set if t in hay)
+            # 근거 다양성을 위해 기본 점수 부여
+            scored_chunks.append((hit_score * 10 - idx_s, sid, title, txt[:max_chars_per_chunk]))
+
+    scored_chunks.sort(key=lambda x: x[0], reverse=True)
+    picked_lines: list[str] = []
+    used_ids: list[str] = []
+    per_source_cap: dict[str, int] = {}
+    for _, sid, title, snippet in scored_chunks:
+        if len(picked_lines) >= max_chunks:
+            break
+        if per_source_cap.get(sid, 0) >= 2:
+            continue
+        per_source_cap[sid] = per_source_cap.get(sid, 0) + 1
+        picked_lines.append(f"[{sid}] {title}\n{snippet}")
+        if sid not in used_ids:
+            used_ids.append(sid)
+
+    # C:\SMC_GRAPHRAG 통합 RAG 보강 검색 (동일 주제 관련 심층 문헌 발췌 추가)
+    try:
+        from rag_capture_unifier import search_unified_rag
+
+        rag_hits = search_unified_rag(query_text[:120], limit=4, cfg=cfg)
+        existing_sids = {str(s.get("source_id")) for s in sources if s.get("source_id")}
+        for hit in rag_hits:
+            h_sid = str(hit.get("source_id") or "").strip()
+            h_snip = str(hit.get("snippet") or hit.get("content") or "").strip()[:500]
+            h_title = str(hit.get("title") or "").strip()
+            if h_snip and h_sid in existing_sids and per_source_cap.get(h_sid, 0) < 2:
+                per_source_cap[h_sid] = per_source_cap.get(h_sid, 0) + 1
+                picked_lines.append(f"[{h_sid}] (통합RAG) {h_title}\n{h_snip}")
+                if h_sid not in used_ids:
+                    used_ids.append(h_sid)
+    except Exception:
+        pass
+
+    return "\n\n".join(picked_lines), used_ids
+
+
+def _dedup_leading_chapter_heading(draft_body: str, ch_title: str) -> str:
+    """# 제목 직후 동일한 ## 제목이 중복 출력되는 패턴을 깔끔히 제거한다."""
+    lines = draft_body.strip().splitlines()
+    if len(lines) >= 2:
+        norm_t = re.sub(r"\s+", "", ch_title)
+        out: list[str] = []
+        seen_h1 = False
+        for ln in lines:
+            stripped = ln.strip()
+            if stripped.startswith("# ") and not seen_h1:
+                seen_h1 = True
+                out.append(ln)
+                continue
+            if seen_h1 and stripped.startswith("## "):
+                h2_norm = re.sub(r"\s+", "", stripped[3:])
+                if h2_norm == norm_t or norm_t in h2_norm:
+                    continue
+            out.append(ln)
+        return "\n".join(out)
+    return draft_body
+
+
 def _run_stage4_manuscript_draft(state: dict[str, Any], cfg: PlatformConfig) -> None:
     from clean_manuscripts import _clean_single_chapter
     from local_gemma import LocalGemmaClient
@@ -1781,15 +1886,20 @@ def _run_stage4_manuscript_draft(state: dict[str, Any], cfg: PlatformConfig) -> 
             query_kg_triples_for_chapter,
         )
         from output_type_profiles import (
-            build_draft_instruction_for_type,
             format_paper_consolidated_references,
             infer_paper_section_role,
             resolve_output_profile,
+        )
+        from persona_studio import (
+            build_deepening_prompt,
+            compile_persona_system_prompt,
+            resolve_project_persona,
         )
 
         otype = state.get("primary_output_type") or (state.get("output_profile") or {}).get("primary_output_type") or "textbook"
         is_paper = (otype == "paper")
         chapter_role = infer_paper_section_role(ch, idx, total_n) if is_paper else None
+        persona = resolve_project_persona(otype, state.get("persona"), cfg=cfg)
         secs = (
             build_context_aware_sections(idx, ch["title"], ch.get("sections"))
             if otype == "textbook"
@@ -1827,72 +1937,193 @@ def _run_stage4_manuscript_draft(state: dict[str, Any], cfg: PlatformConfig) -> 
                 cfg=cfg,
             )
         else:
-            kg_triples = query_kg_triples_for_chapter(
-                chapter_title=ch["title"],
-                chapter_text=ch.get("summary_ko", "") + " " + " ".join(secs),
-                project_source_ids=set(valid_ids),
-                limit=16 if (is_paper and chapter_role == "results_discussion") else 12,
-                cfg=cfg,
+            deep_per_sec = (
+                str(persona.get("section_depth_mode") or "deep_per_section") == "deep_per_section"
+                and len(secs) >= 2
+                and (not is_paper or chapter_role in {"methods", "results_discussion"})
             )
-            kg_block = format_triples_for_prompt(kg_triples)
-            sys_prompt = build_draft_instruction_for_type(state, valid_ids, chapter_role=chapter_role)
-            extra_paper_directive = ""
-            if is_paper and chapter_role == "results_discussion":
-                extra_paper_directive = (
-                    "\n[학회 투고급 결과 및 고찰 필수 지시] "
-                    "모든 세부 절(3.1 ~ 3.K)마다 ① 정량 실증 수치·비교표, ② 생리·분자·물리화학적 기작 해석, "
-                    "③ 국내외 선행연구 비교 및 불일치 원인 규명, ④ 경계조건·민감도·트레이드오프·교란변수 분석, "
-                    "⑤ 학술적 기여 및 현장·정책 함의를 깊이 있게 서술하고, 마지막 절에서 ⑥ 방법론적 한계와 향후 연구 과제를 완결하십시오. "
-                    "초록·핵심 내용 요약·참고문헌 목록은 절대 중복 작성하지 마십시오."
+            min_sub_chars = int(persona.get("min_chars_per_subsection") or (1800 if (is_paper and chapter_role == "results_discussion") else 1400))
+            auto_deepen = bool(persona.get("auto_deepen_short_sections", True))
+
+            if deep_per_sec:
+                # 절별 분할 심층 집필 + 세부 절 맞춤 RAG 검색 + 기준 미달 절 자동 2차 심층 보강
+                assembled_parts: list[str] = [f"# {ch['title']}"]
+                prior_outline_notes: list[str] = []
+                sec_failures = 0
+                for s_i, sec_title in enumerate(secs, 1):
+                    if _should_stop(pid):
+                        _update_stage(
+                            state,
+                            sid,
+                            cfg,
+                            status="INTERRUPTED",
+                            current_action=f"사용자 중단 — [{cid}] {sec_title} 집필 전 체크포인트 보존",
+                        )
+                        return
+                    _update_stage(
+                        state,
+                        sid,
+                        cfg,
+                        progress=min(89, pct + int((s_i / max(1, len(secs))) * (78 / total_n))),
+                        current_action=f"[{idx}/{total_n}] {cid} · 세부 절 ({s_i}/{len(secs)}) '{sec_title[:28]}' 심층 집필 중 ({persona['name_ko']})...",
+                    )
+                    sec_query = f"{state['topic_ko']} {ch['title']} {sec_title} {' '.join(ch.get('keywords_ko') or [])}"
+                    sec_evidence, _ = _build_subsection_evidence_context(sources, sec_query, cfg, max_chunks=12, max_chars_per_chunk=900)
+                    sec_evidence = sec_evidence or digest
+                    kg_triples = query_kg_triples_for_chapter(
+                        chapter_title=f"{ch['title']} {sec_title}",
+                        chapter_text=ch.get("summary_ko", "") + " " + sec_title,
+                        project_source_ids=set(valid_ids),
+                        limit=12,
+                        cfg=cfg,
+                    )
+                    kg_block = format_triples_for_prompt(kg_triples)
+                    sys_prompt = compile_persona_system_prompt(
+                        state,
+                        valid_ids,
+                        chapter_role=chapter_role,
+                        subsection_title=sec_title,
+                        cfg=cfg,
+                    )
+                    continuity_note = (
+                        "\n[이미 작성된 앞 절 요약 — 아래 내용과 중복 서술 금지]\n" + "\n".join(prior_outline_notes[-3:])
+                        if prior_outline_notes
+                        else ""
+                    )
+                    extra_sec_directive = ""
+                    if is_paper and chapter_role == "results_discussion":
+                        is_last_res = (s_i == len(secs))
+                        extra_sec_directive = (
+                            "\n[학회 투고급 결과 및 고찰 세부 절 필수 논리] "
+                            "① 정량 실증 발견 및 구조화 비교표(Table), ② 생리·분자·물리화학·알고리즘 인과 기작 해석(Why/How), "
+                            "③ 국내외 선행연구 비교 및 불일치 원인 규명, ④ 경계조건·민감도·트레이드오프·교란변수 분석, "
+                            "⑤ 학술적 기여 및 한국 농업 현장·정책 함의를 빠짐없이 깊이 있게 논증하십시오."
+                            + (" 또한 최종 세부 절이므로 ⑥ 방법론적 한계(Limitations)와 구체적 후속 연구 설계를 완결하십시오." if is_last_res else "")
+                        )
+                    user_prompt = (
+                        f"전체 프로젝트 주제: {state['topic_ko']} ({state.get('topic_en', '')})\n"
+                        f"소속 단원: {ch['title']}\n"
+                        f"현재 단독 심층 집필 대상 세부 절 ({s_i}/{len(secs)}): {sec_title}\n"
+                        f"단원 요약: {ch.get('summary_ko', '')}\n"
+                        f"대상 독자: {state['target_audience']}\n"
+                        f"{continuity_note}\n\n"
+                        + (f"{kg_block}\n\n" if kg_block else "")
+                        + f"[세부 절 맞춤 검증 근거 자료]\n{sec_evidence}\n\n"
+                        f"오직 '## {sec_title}' 절 하나에만 온전히 집중하여, 최소 {min_sub_chars:,}자 이상의 "
+                        f"고밀도·심층 전문 원고를 작성하십시오 (장 제목 '# ...'이나 다른 절, 참고문헌 표는 쓰지 마십시오)."
+                        + extra_sec_directive
+                    )
+                    try:
+                        sec_text = client.draft_text(
+                            system_prompt=sys_prompt,
+                            user_prompt=user_prompt,
+                            model=gemma_model,
+                            think=False,
+                            num_predict=4096,
+                            timeout=260,
+                        )
+                        # 분량·밀도 기준 미달 시 자동 2차 심층 보강 패스
+                        if auto_deepen and len(sec_text.strip()) < int(min_sub_chars * 0.68):
+                            append_event(
+                                pid,
+                                "domain-drafter",
+                                sid,
+                                f"[{cid}] '{sec_title[:26]}' 1차 초안({len(sec_text):,}자) 분량 보강 → 2차 심층 확장 실행",
+                                cfg=cfg,
+                            )
+                            deep_prompt = build_deepening_prompt(sec_title, sec_text, sec_evidence, persona, valid_ids)
+                            try:
+                                expanded = client.draft_text(
+                                    system_prompt=sys_prompt,
+                                    user_prompt=deep_prompt,
+                                    model=gemma_model,
+                                    think=False,
+                                    num_predict=4096,
+                                    timeout=260,
+                                )
+                                if len(expanded.strip()) > len(sec_text.strip()) * 1.15:
+                                    sec_text = expanded
+                            except Exception:
+                                pass
+                        sec_clean = re.sub(r"^\s*#\s+[^\n]+\n*", "", sec_text.strip())
+                        if not sec_clean.lstrip().startswith("## "):
+                            sec_clean = f"## {sec_title}\n\n" + sec_clean
+                        assembled_parts.append(sec_clean)
+                        prior_outline_notes.append(f"- {sec_title}: {re.sub(r'\\s+', ' ', sec_clean)[:200]}")
+                    except Exception as sec_exc:
+                        sec_failures += 1
+                        append_event(pid, "domain-drafter", sid, f"[{cid}] 세부 절 '{sec_title}' 집필 오류 폴백: {sec_exc}", level="WARN", cfg=cfg)
+                        c_tag = f"[{valid_ids[0]}]" if valid_ids else ""
+                        assembled_parts.append(f"## {sec_title}\n\n본 절에서는 {state['topic_ko']}의 {sec_title}에 관한 정량 근거와 기작 분석을 정리한다 {c_tag}.")
+
+                if sec_failures >= len(secs):
+                    is_fallback = True
+                draft_body = "\n\n".join(assembled_parts)
+            else:
+                ch_evidence, _ = _build_subsection_evidence_context(
+                    sources,
+                    f"{state['topic_ko']} {ch['title']} {' '.join(secs)}",
+                    cfg,
+                    max_chunks=12,
+                    max_chars_per_chunk=850,
                 )
-            elif is_paper:
+                ch_evidence = ch_evidence or digest
+                kg_triples = query_kg_triples_for_chapter(
+                    chapter_title=ch["title"],
+                    chapter_text=ch.get("summary_ko", "") + " " + " ".join(secs),
+                    project_source_ids=set(valid_ids),
+                    limit=14,
+                    cfg=cfg,
+                )
+                kg_block = format_triples_for_prompt(kg_triples)
+                sys_prompt = compile_persona_system_prompt(state, valid_ids, chapter_role=chapter_role, cfg=cfg)
                 extra_paper_directive = (
                     "\n[논문·리뷰 단일성 지시] 이 섹션의 지정 역할에만 엄격히 집중하고, "
                     "다른 섹션의 내용(초록·핵심 요약·참고문헌 목록)을 절대 중복 생성하지 마십시오."
+                    if is_paper
+                    else ""
                 )
-            user_prompt = (
-                f"단원 제목: {ch['title']}\n단원 요약: {ch.get('summary_ko', '')}\n필수 절: {', '.join(secs)}\n"
-                f"대상 독자: {state['target_audience']}\n\n"
-                + (f"{kg_block}\n\n" if kg_block else "")
-                + f"[검증 근거 패킷]\n{digest}\n\n"
-                "위 근거와 지식그래프 트리플을 바탕으로 풍부하고 학술적인 한국어 원고를 작성하세요."
-                + extra_paper_directive
-            )
-            pred_tokens = 8192 if (is_paper and chapter_role == "results_discussion") else 4096
-            req_timeout = 360 if (is_paper and chapter_role == "results_discussion") else 240
-            try:
-                draft_body = client.draft_text(
-                    system_prompt=sys_prompt,
-                    user_prompt=user_prompt,
-                    model=gemma_model,
-                    think=False,
-                    num_predict=pred_tokens,
-                    timeout=req_timeout,
+                user_prompt = (
+                    f"단원 제목: {ch['title']}\n단원 요약: {ch.get('summary_ko', '')}\n필수 절: {', '.join(secs)}\n"
+                    f"대상 독자: {state['target_audience']}\n\n"
+                    + (f"{kg_block}\n\n" if kg_block else "")
+                    + f"[검증 근거 패킷]\n{ch_evidence}\n\n"
+                    "위 근거와 지식그래프 트리플을 바탕으로 설정된 전문가 페르소나와 시나리오에 걸맞은 풍부하고 깊이 있는 한국어 원고를 작성하세요."
+                    + extra_paper_directive
                 )
-            except Exception as exc:
-                append_event(pid, "domain-drafter", sid, f"[{cid}] Ollama 폴백 템플릿 적용(⚠ 품질 확인 필요 — 이 단원은 다시 집필해야 합니다): {exc}", level="WARN", cfg=cfg)
-                is_fallback = True
-                c_tag = f"[{valid_ids[0]}]" if valid_ids else ""
-                if is_paper:
-                    draft_body = (
-                        f"# {ch['title']}\n\n"
-                        + "\n\n".join(
-                            f"## {sec}\n\n본 절에서는 {state['topic_ko']}에 관한 정량 근거와 기작 분석을 정리한다 {c_tag}."
-                            for sec in secs
+                try:
+                    draft_body = client.draft_text(
+                        system_prompt=sys_prompt,
+                        user_prompt=user_prompt,
+                        model=gemma_model,
+                        think=False,
+                        num_predict=6144 if (is_paper and chapter_role == "results_discussion") else 4096,
+                        timeout=320 if (is_paper and chapter_role == "results_discussion") else 240,
+                    )
+                except Exception as exc:
+                    append_event(pid, "domain-drafter", sid, f"[{cid}] Ollama 폴백 템플릿 적용(⚠ 품질 확인 필요 — 이 단원은 다시 집필해야 합니다): {exc}", level="WARN", cfg=cfg)
+                    is_fallback = True
+                    c_tag = f"[{valid_ids[0]}]" if valid_ids else ""
+                    if is_paper:
+                        draft_body = (
+                            f"# {ch['title']}\n\n"
+                            + "\n\n".join(
+                                f"## {sec}\n\n본 절에서는 {state['topic_ko']}에 관한 정량 근거와 기작 분석을 정리한다 {c_tag}."
+                                for sec in secs
+                            )
+                            + "\n"
                         )
-                        + "\n"
-                    )
-                else:
-                    draft_body = (
-                        f"# {ch['title']}\n\n> **단원 요약:** {ch.get('summary_ko') or state['topic_ko']}\n\n"
-                        + "\n\n".join(f"## {sec}\n\n본 절에서는 {ch['title']}의 핵심 원리와 정량 기준을 다룬다 {c_tag}." for sec in secs)
-                        + f"\n\n## 이해도 점검 연습문제 및 해설\n\n### 문제 1\n\n{ch['title']}의 핵심 관리 원칙으로 옳은 것은?\n① 1차 근거 기반 정량 관리 {c_tag}\n② 임의 추정\n\n"
-                        f"#### ▶ 문제 1 정답 및 상세 풀이\n\n**정답: ①** — 실측 데이터와 근거 패킷에 기반한 정량 관리가 필수적이다 {c_tag}.\n\n"
-                        f"## 오해와 진실: 현장·이론 핵심 오해 교정\n\n### 오해 {idx}-1. 단일 지표만으로 충분하다\n"
-                        f"- **오해 (Myth):** 단일 지표만 보면 전체 생육을 판단할 수 있다.\n"
-                        f"- **진실 (Fact):** 기상·토양·작물 생리 지표를 통합 해석해야 한다 {c_tag}.\n"
-                        f"- **현장 교정 포인트:** 다중 센서 및 정량 기준표를 병행 적용한다 {c_tag}.\n"
-                    )
+                    else:
+                        draft_body = (
+                            f"# {ch['title']}\n\n> **단원 요약:** {ch.get('summary_ko') or state['topic_ko']}\n\n"
+                            + "\n\n".join(f"## {sec}\n\n본 절에서는 {ch['title']}의 핵심 원리와 정량 기준을 다룬다 {c_tag}." for sec in secs)
+                            + f"\n\n## 이해도 점검 연습문제 및 해설\n\n### 문제 1\n\n{ch['title']}의 핵심 관리 원칙으로 옳은 것은?\n① 1차 근거 기반 정량 관리 {c_tag}\n② 임의 추정\n\n"
+                            f"#### ▶ 문제 1 정답 및 상세 풀이\n\n**정답: ①** — 실측 데이터와 근거 패킷에 기반한 정량 관리가 필수적이다 {c_tag}.\n\n"
+                            f"## 오해와 진실: 현장·이론 핵심 오해 교정\n\n### 오해 {idx}-1. 단일 지표만으로 충분하다\n"
+                            f"- **오해 (Myth):** 단일 지표만 보면 전체 생육을 판단할 수 있다.\n"
+                            f"- **진실 (Fact):** 기상·토양·작물 생리 지표를 통합 해석해야 한다 {c_tag}.\n"
+                            f"- **현장 교정 포인트:** 다중 센서 및 정량 기준표를 병행 적용한다 {c_tag}.\n"
+                        )
 
         # 논문·리뷰 모드는 ch05에서만 참고문헌을 단 1회 통합 수록하므로 ch01~ch04에 단원별 참고문헌 표를 부착하지 않는다.
         ref_block = ""
@@ -1903,9 +2134,10 @@ def _run_stage4_manuscript_draft(state: dict[str, Any], cfg: PlatformConfig) -> 
             ref_block = "\n" + "\n".join(ref_lines)
 
         fm_role = f'chapter_role: "{chapter_role}"\n' if chapter_role else ""
-        fm = f'---\nchapter_id: "{cid}"\n{fm_role}title: "{ch["title"]}"\naudience: "{state["target_audience"]}"\nevidence_packet: "{state["packet_id"]}.json"\n---\n\n'
+        fm = f'---\nchapter_id: "{cid}"\n{fm_role}title: "{ch["title"]}"\naudience: "{state["target_audience"]}"\nevidence_packet: "{state["packet_id"]}.json"\npersona: "{persona.get("persona_id", "")}"\n---\n\n'
         if not draft_body.lstrip().startswith("# "):
             draft_body = f"# {ch['title']}\n\n" + draft_body
+        draft_body = _dedup_leading_chapter_heading(draft_body, ch["title"])
         full_mdx, _ = _clean_single_chapter(fm + draft_body.strip() + ref_block + "\n")
         out_mdx.write_text(full_mdx, encoding="utf-8")
 

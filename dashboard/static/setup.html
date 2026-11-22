@@ -243,6 +243,96 @@ input[type="checkbox"] { width: auto; accent-color: var(--accent); transform: sc
       <div class="label" style="color:var(--gold-soft);margin-bottom:10px" id="customFieldsHeader">✨ 이 1차 산출물 전용 세부 특성</div>
       <div id="customFieldsHost" class="grid-2"></div>
     </div>
+
+    <!-- 저자 페르소나 · 심층 집필 시나리오 프롬프트 스튜디오 -->
+    <div style="margin-top:20px;padding-top:18px;border-top:1.5px solid var(--border)">
+      <div class="flex" style="justify-content:space-between;margin-bottom:10px">
+        <div>
+          <div class="label" style="color:#6ee7b7;font-size:15px;margin-bottom:2px">🎭 저자 페르소나 · 심층 집필 시나리오 프롬프트 설정 (내용 깊이 극대화)</div>
+          <div class="muted">추상적이고 빈약한 일반론을 막기 위해 출판물 유형에 맞는 전문가 페르소나를 선택하거나 시나리오·사고 절차·절당 최소 분량을 직접 설계하세요.</div>
+        </div>
+        <div class="flex">
+          <button type="button" onclick="previewCompiledPersonaPrompt()">👁️ 최종 AI 프롬프트 미리보기</button>
+          <button type="button" class="btn-primary" onclick="saveCurrentAsCustomPersona()">💾 커스텀 페르소나로 저장</button>
+        </div>
+      </div>
+
+      <div id="personaPresetCards" class="grid-2" style="margin-bottom:14px"></div>
+
+      <div class="grid-2" style="margin-bottom:10px">
+        <div>
+          <label class="label">페르소나 이름 / 직함</label>
+          <input id="pRoleTitle" placeholder="예: SCI(E) 농학 학술지 20년 경력 편집위원 겸 교신저자" />
+        </div>
+        <div class="grid-2" style="gap:10px">
+          <div>
+            <label class="label">절당 최소 목표 분량 (자)</label>
+            <input id="pMinChars" type="number" min="400" max="5000" step="100" value="1600" />
+          </div>
+          <div>
+            <label class="label">집필 방식 (깊이 제어)</label>
+            <select id="pDepthMode">
+              <option value="deep_per_section">🔥 절별 분할 심층 집필 (권장 · 고밀도)</option>
+              <option value="single_pass">⚡ 단원 일괄 집필 (빠름)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-2" style="margin-bottom:10px">
+        <div>
+          <label class="label">① 저자 정체성 및 전문 경력 (Identity &amp; Credentials)</label>
+          <textarea id="pIdentity" rows="3" placeholder="저자의 학술/현장 경력, 판단 기준, 전문 권위"></textarea>
+        </div>
+        <div>
+          <label class="label">② 집필 시나리오 (Writing Scenario — 독자·상황·목표)</label>
+          <textarea id="pScenario" rows="3" placeholder="누가 어떤 상황에서 읽고 어떤 수준을 기대하는지 구체적 시나리오"></textarea>
+        </div>
+      </div>
+
+      <div class="grid-2" style="margin-bottom:10px">
+        <div>
+          <label class="label">③ 단계별 사고·논증 전개 프로토콜 (Reasoning Protocol)</label>
+          <textarea id="pReasoning" rows="4" placeholder="각 절에서 반드시 밟아야 할 분석 순서"></textarea>
+        </div>
+        <div>
+          <label class="label">④ 심층화 · 근거 활용 규칙 (Depth &amp; Evidence Rules)</label>
+          <textarea id="pDepthRules" rows="4" placeholder="표·수치·기작·사례·비교 분석 강제 규칙"></textarea>
+        </div>
+      </div>
+
+      <div class="grid-2" style="margin-bottom:10px">
+        <div>
+          <label class="label">⑤ 문체 · 어조 규격</label>
+          <input id="pVoiceStyle" placeholder="예: 간결하고 정밀한 KCI/SCI 학술 논증체" />
+        </div>
+        <div>
+          <label class="label">⑥ 금지할 빈약한 상투구/클리셰 (쉼표 구분)</label>
+          <input id="pBannedCliches" placeholder="예: 매우 중요하다, 지속적인 연구가 필요하다, 다양한 분야에 활용된다" />
+        </div>
+      </div>
+
+      <div class="grid-2" style="align-items:start">
+        <div>
+          <label class="label">⑦ 사용자 추가 자유 지시 프롬프트 (선택)</label>
+          <textarea id="pCustomInst" rows="2" placeholder="예: 한국 농촌진흥청 시험 결과와 미국·네덜란드 사례를 반드시 표로 비교하고, 경제성(원/10a) 관점을 포함해줘."></textarea>
+        </div>
+        <div style="padding-top:22px">
+          <label class="check-box-card">
+            <input type="checkbox" id="pAutoDeepen" checked />
+            <span><strong>🔥 분량·밀도 미달 절 자동 2차 심층 보강 실행</strong> <span class="muted">(1차 초안이 빈약하면 근거 패킷으로 자동 2배 심화)</span></span>
+          </label>
+        </div>
+      </div>
+
+      <div id="personaPromptPreviewBox" style="display:none;margin-top:12px;background:#04110c;border:1px solid var(--accent);border-radius:10px;padding:12px">
+        <div class="flex" style="justify-content:space-between;margin-bottom:6px">
+          <strong style="color:var(--accent);font-size:12.5px">👁️ 4단계 AI 집필에 실제 주입되는 최종 마스터 시스템 프롬프트 미리보기</strong>
+          <button type="button" style="padding:3px 10px;font-size:12px" onclick="document.getElementById('personaPromptPreviewBox').style.display='none'">닫기</button>
+        </div>
+        <pre id="personaPromptPreviewText" style="white-space:pre-wrap;font-size:12px;line-height:1.55;color:#cbd5e1;max-height:300px;overflow:auto;margin:0"></pre>
+      </div>
+    </div>
   </section>
 
   <!-- STEP 3: 주제 · 스페셜티 · 키워드 · AI 엔진 -->
@@ -303,7 +393,10 @@ input[type="checkbox"] { width: auto; accent-color: var(--accent); transform: sc
 <script>
 let OUTPUT_TYPES = {};
 let SPECIALTIES = [];
+let ALL_PERSONAS = [];
+let PERSONA_DEFAULTS = {};
 let SELECTED_TYPE = "textbook";
+let SELECTED_PERSONA_ID = "";
 let EDIT_PID = "";
 
 function toast(msg, ms = 3600) {
@@ -332,12 +425,15 @@ async function initSetupPage() {
   EDIT_PID = params.get("edit") || "";
 
   try {
-    const [typesRes, catRes] = await Promise.all([
+    const [typesRes, catRes, personaRes] = await Promise.all([
       api("/api/output-types"),
       api("/api/framework/catalog"),
+      api("/api/personas"),
     ]);
     OUTPUT_TYPES = typesRes.output_types || {};
     SPECIALTIES = catRes.specialty_curricula || [];
+    ALL_PERSONAS = personaRes.personas || [];
+    PERSONA_DEFAULTS = personaRes.defaults_by_type || {};
 
     const spSel = document.getElementById("fSpecialty");
     spSel.innerHTML = `<option value="">-- 직접 입력하거나 아래 ${SPECIALTIES.length}개 전문 분야 중 선택 --</option>` +
@@ -367,7 +463,7 @@ async function loadExistingProjectForEdit(pid) {
     document.getElementById("step3Card").style.display = "none";
 
     const otype = proj.primary_output_type || (proj.output_profile && proj.output_profile.primary_output_type) || "textbook";
-    selectOutputType(otype, proj.output_profile || {});
+    selectOutputType(otype, proj.output_profile || {}, proj.persona || null);
     document.getElementById("fChapters").value = proj.chapter_count || 12;
     document.getElementById("fPages").value = proj.target_pages || 300;
     const vis = (proj.options || {}).visuals_per_chapter;
@@ -408,7 +504,7 @@ function renderTypeCards() {
   }).join("");
 }
 
-function selectOutputType(typeId, existingProfile = null) {
+function selectOutputType(typeId, existingProfile = null, existingPersona = null) {
   if (!OUTPUT_TYPES[typeId]) return;
   SELECTED_TYPE = typeId;
   document.querySelectorAll(".type-card").forEach(el => el.classList.toggle("selected", el.dataset.otype === typeId));
@@ -436,7 +532,116 @@ function selectOutputType(typeId, existingProfile = null) {
   document.getElementById("fAudience").value = prof.target_audience ?? d.target_audience ?? "";
 
   renderCustomFields(spec, prof);
+  renderPersonaPresetsForType(typeId, existingPersona);
   updateSummaryBanner();
+}
+
+function renderPersonaPresetsForType(typeId, existingPersona = null) {
+  const host = document.getElementById("personaPresetCards");
+  if (!host) return;
+  const list = ALL_PERSONAS.filter(p => p.output_type === typeId);
+  const defId = (existingPersona && existingPersona.persona_id) || PERSONA_DEFAULTS[typeId] || (list[0] && list[0].persona_id) || "";
+  SELECTED_PERSONA_ID = defId;
+
+  host.innerHTML = list.map(p => {
+    const isSel = p.persona_id === SELECTED_PERSONA_ID;
+    return `
+      <div class="type-card ${isSel ? "selected" : ""}" style="padding:12px 14px" data-pid="${esc(p.persona_id)}" onclick="applyPersonaPreset('${esc(p.persona_id)}')">
+        <span class="check-pill">✓ 적용됨</span>
+        <div style="font-weight:800;font-size:14px;color:#fff">🎭 ${esc(p.name_ko)}</div>
+        <div style="font-size:11.5px;color:var(--accent);font-weight:700">${esc(p.badge || "")} ${p.is_builtin === false ? "· ★ 커스텀" : ""}</div>
+        <div style="font-size:12px;color:#cbd5e1;line-height:1.45">${esc((p.writing_scenario || "").slice(0, 120))}...</div>
+      </div>`;
+  }).join("");
+
+  if (existingPersona) {
+    fillPersonaForm(existingPersona);
+  } else {
+    const found = list.find(x => x.persona_id === SELECTED_PERSONA_ID) || list[0];
+    if (found) fillPersonaForm(found);
+  }
+}
+
+function applyPersonaPreset(personaId) {
+  const p = ALL_PERSONAS.find(x => x.persona_id === personaId);
+  if (!p) return;
+  SELECTED_PERSONA_ID = p.persona_id;
+  document.querySelectorAll("#personaPresetCards .type-card").forEach(el => {
+    el.classList.toggle("selected", el.dataset.pid === personaId);
+  });
+  fillPersonaForm(p);
+  updateSummaryBanner();
+  toast(`🎭 '${p.name_ko}' 페르소나 시나리오를 적용했습니다.`);
+}
+
+function fillPersonaForm(p) {
+  document.getElementById("pRoleTitle").value = p.role_title || "";
+  document.getElementById("pIdentity").value = p.identity_and_credentials || "";
+  document.getElementById("pScenario").value = p.writing_scenario || "";
+  document.getElementById("pReasoning").value = p.reasoning_protocol || "";
+  document.getElementById("pDepthRules").value = p.depth_and_evidence_rules || "";
+  document.getElementById("pVoiceStyle").value = p.voice_and_style || "";
+  document.getElementById("pBannedCliches").value = Array.isArray(p.banned_cliches) ? p.banned_cliches.join(", ") : (p.banned_cliches || "");
+  document.getElementById("pMinChars").value = p.min_chars_per_subsection || 1500;
+  document.getElementById("pDepthMode").value = p.section_depth_mode || "deep_per_section";
+  document.getElementById("pAutoDeepen").checked = p.auto_deepen_short_sections !== false;
+  document.getElementById("pCustomInst").value = p.custom_instructions || "";
+}
+
+function collectPersonaConfig() {
+  const cur = ALL_PERSONAS.find(x => x.persona_id === SELECTED_PERSONA_ID) || {};
+  return {
+    persona_id: SELECTED_PERSONA_ID || (PERSONA_DEFAULTS[SELECTED_TYPE] || ""),
+    output_type: SELECTED_TYPE,
+    name_ko: cur.name_ko || document.getElementById("pRoleTitle").value.trim() || "맞춤 전문가 페르소나",
+    role_title: document.getElementById("pRoleTitle").value.trim(),
+    identity_and_credentials: document.getElementById("pIdentity").value.trim(),
+    writing_scenario: document.getElementById("pScenario").value.trim(),
+    reasoning_protocol: document.getElementById("pReasoning").value.trim(),
+    depth_and_evidence_rules: document.getElementById("pDepthRules").value.trim(),
+    voice_and_style: document.getElementById("pVoiceStyle").value.trim(),
+    banned_cliches: document.getElementById("pBannedCliches").value.split(",").map(x => x.trim()).filter(Boolean),
+    min_chars_per_subsection: parseInt(document.getElementById("pMinChars").value, 10) || 1500,
+    section_depth_mode: document.getElementById("pDepthMode").value || "deep_per_section",
+    auto_deepen_short_sections: !!document.getElementById("pAutoDeepen").checked,
+    custom_instructions: document.getElementById("pCustomInst").value.trim(),
+  };
+}
+
+async function previewCompiledPersonaPrompt() {
+  try {
+    const res = await api("/api/personas/preview-prompt", {
+      method: "POST",
+      body: JSON.stringify({
+        output_type: SELECTED_TYPE,
+        output_profile: collectOutputProfile(),
+        persona: collectPersonaConfig(),
+        topic_ko: document.getElementById("fTopicKo").value.trim() || "전문 농업 연구 주제",
+      }),
+    });
+    document.getElementById("personaPromptPreviewText").textContent = res.prompt || "";
+    document.getElementById("personaPromptPreviewBox").style.display = "block";
+  } catch (e) {
+    toast("❌ 프롬프트 미리보기 오류: " + e.message, 4000);
+  }
+}
+
+async function saveCurrentAsCustomPersona() {
+  const name = prompt("저장할 커스텀 페르소나 프리셋 이름을 입력하세요 (예: SCI 식물표현체 3D 비전 전문가):");
+  if (!name || !name.trim()) return;
+  try {
+    const cfg = collectPersonaConfig();
+    cfg.persona_id = "";
+    cfg.name_ko = name.trim();
+    const res = await api("/api/personas/custom", { method: "POST", body: JSON.stringify(cfg) });
+    const saved = res.persona;
+    ALL_PERSONAS.push(saved);
+    SELECTED_PERSONA_ID = saved.persona_id;
+    renderPersonaPresetsForType(SELECTED_TYPE, saved);
+    toast(`✅ 커스텀 페르소나 '${saved.name_ko}'를 저장했습니다!`);
+  } catch (e) {
+    toast("❌ 페르소나 저장 실패: " + e.message, 4000);
+  }
 }
 
 function resetCurrentTypeDefaults() {
@@ -530,6 +735,7 @@ function updateSummaryBanner() {
 async function submitSetupProject() {
   const btn = document.getElementById("btnSubmitSetup");
   const profile = collectOutputProfile();
+  const persona = collectPersonaConfig();
 
   if (EDIT_PID) {
     btn.disabled = true;
@@ -539,13 +745,14 @@ async function submitSetupProject() {
         body: JSON.stringify({
           primary_output_type: SELECTED_TYPE,
           output_profile: profile,
+          persona,
           target_pages: profile.target_pages,
           chapter_count: profile.chapter_count,
           target_audience: profile.target_audience,
           visuals_per_chapter: profile.visuals_per_chapter,
         }),
       });
-      toast("✅ 1차 산출물 특성을 저장했습니다! 대시보드로 이동합니다...");
+      toast("✅ 1차 산출물 특성 및 페르소나를 저장했습니다! 대시보드로 이동합니다...");
       setTimeout(() => { location.href = `/?project=${encodeURIComponent(EDIT_PID)}`; }, 600);
     } catch (e) {
       toast("❌ " + e.message, 5000);
@@ -570,6 +777,7 @@ async function submitSetupProject() {
         topic_en: document.getElementById("fTopicEn").value.trim(),
         primary_output_type: SELECTED_TYPE,
         output_profile: profile,
+        persona,
         target_audience: profile.target_audience,
         target_pages: profile.target_pages,
         chapter_count: profile.chapter_count,
