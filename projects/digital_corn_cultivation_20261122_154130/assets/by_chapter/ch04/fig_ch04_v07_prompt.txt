@@ -1,0 +1,12 @@
+이미지 번호: 그림 4-7
+이미지 파일명: fig_ch04_v07.png
+단원: 제4장. 옥수수 생육 단계별 발달 생리 및 수관 아키텍처 (ch04)
+결합 절: 4.3 농가 관행 오해 교정: 초기 과도한 엽면적 확보(웃자람)와 유효 수량 저하 포장 진단
+시각화 유형: photorealistic_field
+제목: [그림 4-7] 질소 과용으로 인한 초기 과번무(웃자람) 구와 표준 균형 생육 구의 포장 비교
+
+[문맥 기반 이미지 설명]
+[그림 4-7] 연구 농장의 분할 구에서 질소 과시비로 인해 초기 엽면적이 과도하게 팽창한 웃자람 군락과 적정 관리된 표준 군락을 대비한 고해상도 현장 사진입니다. 좌측의 웃자란 군락은 줄기가 가늘고 잎이 조밀하여 내부 통풍과 하위엽 수광 상태가 불량한 반면, 우측의 균형 구는 단단한 줄기와 튼실한 착수 상태를 나타냅니다. 영양생장 과다로 인한 수관 내부 미기상 악화와 도복 취약성을 명확히 비교할 수 있습니다 [SRC-103, SRC-104].
+
+[나노바나나 생성 프롬프트]
+Photorealistic agronomic research station field photograph showing side-by-side comparative maize plots. On the left, an over-fertilized plot displays spindly, elongated maize stalks with excessively dense, tangled foliage and pale yellowing senescent lower leaves due to self-shading. On the right, a balanced agronomic plot shows sturdy, thick stalks with upright leaf angles, open airy canopies letting sunlight penetrate to the ground, and robustly developing ear shoots under crisp daylight. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

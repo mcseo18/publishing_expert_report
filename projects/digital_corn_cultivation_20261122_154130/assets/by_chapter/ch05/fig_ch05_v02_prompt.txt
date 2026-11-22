@@ -1,0 +1,12 @@
+이미지 번호: 그림 5-2
+이미지 파일명: fig_ch05_v02.png
+단원: 제5장. 옥수수 생리장애 진단 및 비생물적 스트레스 반응 (ch05)
+결합 절: 5.1 고온·한발에 의한 개화수염신장간격(ASI) 연장 및 침수 에틸렌 축적 메커니즘
+시각화 유형: photorealistic_macro
+제목: [그림 5-2] 침수 토양 무산소증과 에틸렌 축적에 의한 옥수수 통기조직(Aerenchyma) 형성
+
+[문맥 기반 이미지 설명]
+[그림 5-2] 집중호우나 배수 불량으로 인한 토양 침수 시 옥수수 뿌리가 겪는 급격한 산소 고갈과 에틸렌 호르몬 축적에 따른 세포 변화를 보여주는 초근접 현미경 단면이다. 무산소 호흡 조건에서 생합성된 고농도 에틸렌은 뿌리 피층 세포의 프로그램된 세포 사멸(PCD)을 유도하여 거대한 공극인 통기조직을 형성한다. 이 구조는 지상부로부터 산소를 공급받아 뿌리 질식을 방어하기 위한 극한 생리적 적응 반응이다 [SRC-108, SRC-109].
+
+[나노바나나 생성 프롬프트]
+Ultra-sharp laboratory macro cross-section photograph of an adventitious nodal root of Zea mays grown under waterlogged, anoxic soil conditions. Transverse cellular view displaying the circular cortex layer filled with distinct radially arranged empty cavities of aerenchyma, formed by ethylene-induced programmed cell death. Central vascular stele intact with xylem vessels visible, surrounded by delicate translucent cell walls and natural biological cellular contrast under laboratory illumination. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

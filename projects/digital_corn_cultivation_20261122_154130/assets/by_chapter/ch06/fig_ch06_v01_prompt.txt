@@ -1,0 +1,12 @@
+이미지 번호: 그림 6-1
+이미지 파일명: fig_ch06_v01.png
+단원: 제6장. 디지털 토양 물리·화학성 평가 및 경반층 관리 (ch06)
+결합 절: 6.1 대형 농기계 주행에 따른 토양 3상 구조 붕괴 및 경반층 형성 역학
+시각화 유형: photorealistic_field
+제목: [그림 6-1] 대형 트랙터 주행 차륜 접지압에 의한 토양 단면 변형
+
+[문맥 기반 이미지 설명]
+[그림 6-1] 대형 트랙터의 고중량 축하중과 광폭 타이어가 지표면에 가하는 접지압력으로 인해 발생하는 토양 물리성 악화 양상을 실물 단면으로 보여줍니다. 타이어 직하부의 토양 공극이 짓눌리면서 지표 20-30cm 깊이에 불투수성 다짐층이 선명하게 형성됩니다. 이는 농기계의 반복적 주행이 토양 3상 구조 붕괴와 경반층 형성의 직접적인 물리적 원인임을 입증합니다 [SRC-104].
+
+[나노바나나 생성 프롬프트]
+Field documentary photograph of a massive agricultural tractor wheel pressing into a freshly dug soil cross-section pit in a cornfield. The heavy lugged rubber tire rests on the tilled topsoil, showing intense mechanical pressure. The open vertical soil profile beneath the tire shows distinct layering, with loose dark brown topsoil abruptly compressing into a dense, tightly packed, pale brown compacted hardpan layer at a depth of 25 centimeters. Deep tire tread impressions visible on the soil surface under bright afternoon sunlight. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

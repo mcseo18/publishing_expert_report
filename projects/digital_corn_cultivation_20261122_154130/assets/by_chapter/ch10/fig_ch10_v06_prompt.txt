@@ -1,0 +1,12 @@
+이미지 번호: 그림 10-6
+이미지 파일명: fig_ch10_v06.png
+단원: 제10장. 데이터 기반 옥수수 병해충 예찰 및 정밀 방제 공학 (ch10)
+결합 절: 10.2 유효적산온도 기반 부화 예측 및 경제적 피해 허용 수준(ET, EIL) 정량 기준
+시각화 유형: photorealistic_macro
+제목: [그림 10-6] 분광 반사 센서를 활용한 옥수수 엽면 초기 잠복 병징 비파괴 진단
+
+[문맥 기반 이미지 설명]
+[그림 10-6] 스마트 정밀농업 연구실에서 연구용 다분광 카메라 센서 렌즈가 육안으로 식별하기 이전의 미세한 옥수수 잎 스트레스 반응을 촬영하는 매크로 사진이다. 엽록소 형광 및 근적외선 파장 대역의 반사율 변화를 측정하여 병원균 포자 침입 초기의 광합성 저하 구역을 즉시 검출한다. 비접촉식 광학 모니터링을 통해 포장 내 병해충 발생 지도를 사전에 구축하는 정밀 계측 기술을 상징한다 [SRC-107].
+
+[나노바나나 생성 프롬프트]
+Close-up laboratory macro shot of a scientific multispectral imaging camera optical aperture positioned precisely above a vibrant young maize leaf blade in a controlled phytotron chamber. A narrow grid of soft structured optical light illuminates the leaf tissue, revealing fine vein structures and cellular transpiration micro-zones. High-precision optical lens reflection, laboratory brushed aluminum fixtures, and blurred foliage in the background with scientific depth of field. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

@@ -1,16 +1,69 @@
 chapter_id: ch10
 chapter_number: 10
-title: 제10장. 병해충 및 잡초 발생 및 방제의 원리와 디지털 현장 관리
-target_pages: 40
-summary_ko: 디지털 옥수수 재배에서 병해충 및 잡초 발생 및 방제의 과학적 메커니즘, 정량 측정 지표 및 디지털 정밀 관리 전략을 다룹니다.
+title: 제10장. 데이터 기반 옥수수 병해충 예찰 및 정밀 방제 공학
+target_pages: 46
+summary_ko: 조명나방, 열대거세미나방, 깨씨무늬병, 그을음무늬병의 발생 생태와 온도 반응 역학을 규명한다. 스마트 페로몬 트랩 및 분광 영상 기반 경제적 피해 한계 수준(EIL) 기준을 확립한다. 농가에서 관행적으로 행하는 발생 후 무차별 살충제
+  살포 관행을 교정하고 드론 가변 국소 살포(VRA) 방제를 실증한다.
 sections:
-- 10.1 기초 원리 및 개념
-- 10.2 정량 측정·모델링
-- 10.3 국내외 기준 비교
-- 10.4 디지털 현장 적용
+- 10.1 주요 병해충(조명나방, 열대거세미나방, 깨씨무늬병)의 생활환 및 기상 의존 감염 생리
+- 10.2 유효적산온도 기반 부화 예측 및 경제적 피해 허용 수준(ET, EIL) 정량 기준
+- '10.3 농가 관행 오해 교정: 조명나방 줄기 침입 후 살포하는 무효 방제와 천적 파괴 관행 진단'
+- '10.4 현장 실증: 스마트 트랩 IoT 데이터 연동 농업용 드론 야간 정밀 국소 방제'
+tables:
+- table_id: 표 10-1
+  title: 옥수수 핵심 병해충별 최적 발병 환경, 요방제 수준(ET) 및 주요 진단 특성
+  columns:
+  - 병해충명
+  - 호발 기상 조건
+  - 가해 부위 및 형태적 특징
+  - 경제적 요방제 수준(ET)
+  - 추천 방제 적기
+  purpose: 피해를 최소화하면서 농약 투입량을 절감하기 위한 방제 결정 가이드
+- table_id: 표 10-2
+  title: 드론 분광 영상 기반 깨씨무늬병 감염도(Severity Index)와 방제 처방 기준표
+  columns:
+  - 병해 감염 등급
+  - 수관 분광 반사율 편차
+  - 예상 엽면적 손실률(%)
+  - 드론 방제 처방
+  - 방제 회피 시 손실률
+  purpose: 원격 분광 센싱을 활용한 살균제 가변 살포 맵 제작 기준
+visuals:
+- fig_id: 그림 10-01
+  type: A
+  aspect_ratio: '4:3'
+  method: nano_banana_pro
+  title: 농업용 대형 드론이 야간에 조명나방 다발 지역을 정밀 하향 분무 방제하는 포장 현장
+  description: RTK 경로를 따라 옥수수 수관 상부 2m 고도에서 정밀 유적을 분사하는 자율비행 드론 실사
+- fig_id: 그림 10-02
+  type: B
+  aspect_ratio: '4:3'
+  method: nano_banana_pro
+  title: 조명나방 유충이 옥수수 줄기를 뚫고 들어가 배설물을 배출한 줄기 종단면 표본
+  description: 줄기 내부 유관속이 갉아먹혀 도복 위험성이 극도로 높아진 내부 가해 상태 고배율 접사
+- fig_id: 그림 10-03
+  type: C
+  aspect_ratio: '16:9'
+  method: nano_banana_pro
+  title: 조명나방 성충 우화, 산란, 난괴 부화의 적산온도 모델 및 방제 적기 타임라인
+  description: 난괴 부화 후 1~2령 유충이 줄기로 파고들기 전 엽초에 머무는 3~5일간의 골든타임 도해
+- fig_id: 그림 10-04
+  type: D
+  aspect_ratio: '16:9'
+  method: python
+  title: 온도에 따른 조명나방 난 발육 속도 곡선 및 누적 산란율 시뮬레이션 곡선
+  description: 비선형 발육 모델(Briére)을 적용한 온도별 발육 속도 및 포장 산란 피크 추정 그래프
 keywords_ko:
-- 병해충 및 잡초 발생 및 방제
+- 조명나방
+- 열대거세미나방
+- 깨씨무늬병
+- 경제적 요방제 수준
+- 드론 가변방제
 keywords_en:
-- Pests and Weeds (Occurrence and Control)
+- Asian corn borer
+- fall armyworm
+- bipolaris leaf blight
+- economic injury level
+- drone VRA spray
 evidence_packet: digital_corn_cultivation_20261122_154130_evidence.json
 assigned_sources: []

@@ -1,0 +1,12 @@
+이미지 번호: 그림 10-7
+이미지 파일명: fig_ch10_v07.png
+단원: 제10장. 데이터 기반 옥수수 병해충 예찰 및 정밀 방제 공학 (ch10)
+결합 절: 10.3 농가 관행 오해 교정: 조명나방 줄기 침입 후 살포하는 무효 방제와 천적 파괴 관행 진단
+시각화 유형: scientific_anatomy
+제목: [그림 10-7] 옥수수 줄기 종단면 내부 조명나방 유충 식해 갱도와 외부 살충제 차단 기전
+
+[문맥 기반 이미지 설명]
+[그림 10-7] 옥수수 대의 두꺼운 외피와 내부 수(pith) 조직을 수직으로 절단하여, 줄기 내부로 파고든 조명나방 유충이 갈색 배설물(frass)과 함께 형성한 갱도 구조를 묘사한 학술 단면도이다. 줄기 표면에 살포된 접촉성 살충제 입자가 단단한 리그닌 외피에 가로막혀 내부 유충에 도달하지 못하는 무효 방제의 원인을 명확히 증명한다. 해충이 줄기에 침입하기 전인 알과 부화 초기 단계에서 방제가 이루어져야 하는 생리학적 당위성을 설명한다 [SRC-101].
+
+[나노바나나 생성 프롬프트]
+Detailed scientific botanical cross-section illustration on a stark white background of a mature Zea mays stalk split vertically down the center. Inside the white spongy vascular pith, an Asian corn borer caterpillar is shown actively burrowing an extensive vertical tunnel lined with brown granular frass. On the glossy outer green rind of the stalk, tiny blue-tinted aerosol pesticide droplets remain trapped on the waxy cuticle surface, entirely unable to penetrate the thick vascular bundle wall to reach the sheltered pest inside. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

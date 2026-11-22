@@ -1,0 +1,12 @@
+이미지 번호: 그림 13-10
+이미지 파일명: fig_ch13_v10.png
+단원: 제13장. 전 세계 옥수수 생산·유통 공급망 및 산업적 다각화 활용 (ch13)
+결합 절: 13.4 현장 실증: 전분당·사료·바이오에탄올·PLA 바이오 플라스틱 산업 밸류체인 및 부산물 자원화
+시각화 유형: photorealistic_field
+제목: [그림 13-10] 옥수수 바이오에탄올 정제 플랜트 증류탑 및 주정박(DDGS) 자원화 공정
+
+[문맥 기반 이미지 설명]
+[그림 13-10] 옥수수 전분 발효를 통해 바이오에탄올을 대량 생산하는 현대식 바이오 리파이너리 플랜트의 전경이다 [SRC-120]. 거대한 스테인리스 증류탑과 발효 탱크 옆으로 가공 후 배출된 고단백 부산물인 주정박(DDGS)이 건조되어 대형 저장 사일로와 벌크 트럭으로 이송되는 자원 순환 공정이 펼쳐진다. 원물 옥수수 반입부터 청정 바이오 연료 및 고품질 가축 사료로의 전주기 자원화 현장을 사실적으로 기록한다 [SRC-102].
+
+[나노바나나 생성 프롬프트]
+Wide documentary photograph of a modern industrial corn bio-refinery and ethanol distillation plant during golden hour. Soaring stainless steel fractional distillation columns and massive cylindrical fermentation vats rise against the sky, connected by insulated overhead pipe racks. In the foreground, an automated covered conveyor discharges warm, golden-brown dried distillers grains with solubles (DDGS) into an open loading bay where a heavy trailer awaits. Yellow shelled corn storage bins stand in the background, showcasing the comprehensive transformation of maize biomass into renewable fuel and feed. Clear natural lighting, authentic industrial metal textures, and crisp atmospheric perspective. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

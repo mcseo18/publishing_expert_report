@@ -1,0 +1,12 @@
+이미지 번호: 그림 1-2
+이미지 파일명: fig_ch01_v02.png
+단원: 제1장. 옥수수의 기원, 분류 체계 및 식물학적 형태생리 (ch01)
+결합 절: 1.1 테오신테 진화 유전학 및 C4 크란츠 해부생리 원리
+시각화 유형: photorealistic_macro
+제목: [그림 1-2] 테오신테 자실 이삭과 현대 개량 옥수수 이삭의 외형 및 구조 비교
+
+[문맥 기반 이미지 설명]
+[그림 1-2] 단단한 각질 껍질에 싸인 테오신테의 소형 종자 이삭과 다열의 풍부한 종실을 보유한 현대 옥수수 이삭을 동일 평면에서 비교한 매크로 사진이다. 유전자 돌연변이 및 인위 선택을 통해 단단한 외피(glume)가 부드러운 속대로 전환되고 자실이 비대해진 형태학적 도약을 실증한다 [SRC-103]. 종실 배열의 단열 구조에서 다열 방사형(multi-ranked) 구조로의 비약적인 진화적 변화를 극명하게 포착한다.
+
+[나노바나나 생성 프롬프트]
+Ultra-sharp macro photograph of a fragile wild teosinte ear lying adjacent to a large modern yellow corn cob ear on a dark slate laboratory bench. The teosinte ear is slender and segmented, containing five to ten triangular, hard stony fruitcases enclosing tiny grains. Beside it, the mature modern corn ear is thick, long, and dense, packed with sixteen symmetrical rows of plump, golden-yellow kernels seated on a central cob core with dried husks peeled back. Harsh lateral studio lighting emphasizing the textural contrast between the stony silica-rich wild shell and the soft, fleshy modern kernel tissue. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

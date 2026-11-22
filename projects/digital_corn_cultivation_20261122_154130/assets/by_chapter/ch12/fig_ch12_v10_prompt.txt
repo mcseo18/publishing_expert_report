@@ -1,0 +1,12 @@
+이미지 번호: 그림 12-10
+이미지 파일명: fig_ch12_v10.png
+단원: 제12장. 정밀 수확·가공 후 수확 관리 및 스마트 농기계 작업 체계 (ch12)
+결합 절: 오해와 진실: 현장·이론 핵심 오해 교정
+시각화 유형: scientific_anatomy
+제목: [그림 12-10] 수확 후 대형 곡물 빈(Bin) 내부 옥수수 곡물 더미의 온습도 경도 및 강제 통풍 대류
+
+[문맥 기반 이미지 설명]
+[그림 12-10] 건조 완료 후 저장 빈(Grain Bin)에 적재된 대량의 옥수수 종실 내부에서 발생하는 열 대류 및 수분 이동(Moisture Migration) 현상을 분석한 과학 단면도이다. 외기 냉각 시 빈 벽면과 중심부의 온도 차이로 인해 발생하는 자연 대류 순환류와 하부 송풍팬을 통한 강제 통풍(Aeration) 제어 메커니즘을 상세히 도해한다. 건조 후에도 지속되는 종실 호흡과 응축수 형성을 방지하기 위한 정밀 환경 관리의 당위성을 입증한다 [SRC-107].
+
+[나노바나나 생성 프롬프트]
+Scientific 3D architectural cross-section cutaway illustration of a galvanized corrugated steel grain bin filled with bulk shelled yellow corn on a clean white background. Airflow dynamics are illustrated with blue cooling air vectors entering through a perforated drying floor from an external aeration fan, rising evenly through the grain bulk. Distinct thermal stratification is depicted showing cold exterior steel boundary layers, moisture condensation zones near the peaked grain top, and central core temperature gradients. Crisp textbook technical diagram aesthetics, high-detail mechanical cutaway. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

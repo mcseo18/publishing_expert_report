@@ -1,0 +1,12 @@
+이미지 번호: 그림 9-7
+이미지 파일명: fig_ch09_v07.png
+단원: 제9장. 작물 생육·양분 모델링 및 디지털 트윈 시뮬레이션 (ch09)
+결합 절: 9.3 농가 관행 오해 교정: 단순 과거 평균 기후 기반의 파종일 고정 관행과 위험도 진단
+시각화 유형: scientific_anatomy
+제목: [그림 9-7] 파종 시나리오별 수분 스트레스 및 수량 불확실성 시뮬레이션 메커니즘
+
+[문맥 기반 이미지 설명]
+[그림 9-7] 동일 품종을 서로 다른 파종일(조기, 적기, 만파)에 식재했을 때 발달 단계별 기상 변동성과 맞닥뜨리는 위험도 경로를 3개 식물 개체 단면으로 대조합니다. 정상 강우 시나리오에서 튼실하게 낟알이 찬 이삭과, 출사기 가뭄 시나리오에서 선단 불임(tip abort)이 발생한 불완전한 이삭의 해부학적 차이를 시각화합니다. 최적 파종일 역산 알고리즘의 생리학적 당위성을 증명하는 도해입니다 [SRC-112, SRC-120].
+
+[나노바나나 생성 프롬프트]
+Scientific anatomical textbook illustration on a pure white background comparing three maize plants subjected to different planting dates and weather scenarios. The center plant displays a robust root system and fully pollinated ear with packed golden kernels. The right plant displays an early-drought condition with stunted stalk height, aborted kernel tips on a small ear, and shriveled lower leaves. Rendered in clean botanical cross-sections with refined scientific lighting. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

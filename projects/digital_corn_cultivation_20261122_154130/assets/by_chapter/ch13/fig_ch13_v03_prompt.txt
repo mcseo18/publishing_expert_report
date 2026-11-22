@@ -1,0 +1,12 @@
+이미지 번호: 그림 13-3
+이미지 파일명: fig_ch13_v03.png
+단원: 제13장. 전 세계 옥수수 생산·유통 공급망 및 산업적 다각화 활용 (ch13)
+결합 절: 13.1 글로벌 주요 옥수수 벨트(미국, 브라질, 중국, 우크라이나)의 생산 체계 및 물류망 구조
+시각화 유형: photorealistic_macro
+제목: [그림 13-3] 한랭 기후 옥수수 벨트(흑토 지대)의 완숙 이삭 및 알곡 형태학
+
+[문맥 기반 이미지 설명]
+[그림 13-3] 중국 동북 3성과 우크라이나의 비옥한 체르노젬(흑토) 지대에서 수확된 고품질 옥수수 이삭의 초접사 구조를 보여준다 [SRC-101, SRC-104]. 껍질(포엽)이 부분적으로 벗겨진 황금빛 옥수수 이삭에 규칙적으로 밀착 배열된 알곡들의 투명한 전분질 배유와 두터운 흑토 입자가 배경에 선명하게 드러난다. 저온 건조 기후 환경에서 등숙된 알곡의 단단한 유리질 각질층과 배유 충진도를 학술적으로 관찰할 수 있다.
+
+[나노바나나 생성 프롬프트]
+Ultra-sharp macro photograph of a fully mature Zea mays corn ear partially husked, resting on rich, crumbly black chernozem soil. The ear displays perfectly aligned, plump, deep-yellow dent corn kernels with smooth vitreous crowns and tight packing along the central cob. Thin, papery, dry fibrous husks curl around the base of the ear alongside wisps of reddish-brown dry corn silk. Dramatic laboratory macro lighting accentuates the glossy sheen and translucent starch texture of individual kernel surfaces, with micro-details of rich dark organic soil crumbs clinging softly to the outer husk. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

@@ -1,16 +1,69 @@
 chapter_id: ch11
 chapter_number: 11
-title: 제11장. 수확의 원리와 디지털 현장 관리
-target_pages: 40
-summary_ko: 디지털 옥수수 재배에서 수확의 과학적 메커니즘, 정량 측정 지표 및 디지털 정밀 관리 전략을 다룹니다.
+title: 제11장. 지능형 잡초 인식 및 자율선택제초 시스템
+target_pages: 46
+summary_ko: 바랭이, 명아주, 개비름 등 주요 잡초와의 광·수분·양분 경합 생리와 임계 제초 기간(CPWC)을 규명한다. 엣지 AI 딥러닝 객체 검출(YOLOv8 등) 기반 광엽/화본과 잡초 분별 알고리즘을 구축한다. 농가의 관행적 포장 전면 토양처리제
+  남용과 저항성 잡초 유발을 교정하고 노즐별 스팟 살포 및 자율 중경 제초를 실증한다.
 sections:
-- 11.1 기초 원리 및 개념
-- 11.2 정량 측정·모델링
-- 11.3 국내외 기준 비교
-- 11.4 디지털 현장 적용
+- 11.1 옥수수 군락 내 난방제 잡초의 생육 속도 및 잡초 경합 임계 기간(CPWC) 생리
+- 11.2 실시간 비전 딥러닝 기반 잡초 검출 정확도(mAP 0.92 이상) 및 스팟 분무 기준
+- '11.3 농가 관행 오해 교정: 동일 계통 제초제 연용에 따른 저항성 잡초 확산 및 약해 포장 진단'
+- '11.4 현장 실증: 카메라 연동 스마트 붐스프레이어 국소 살포 및 자율주행 기계적 중경 제초'
+tables:
+- table_id: 표 11-1
+  title: 옥수수 포장 주요 우점 잡초의 발생 생태, 경합 위해도 및 임계 제초 기간(CPWC)
+  columns:
+  - 잡초 분류군
+  - 우점 잡초종
+  - 발생 성기
+  - 10a당 감수율(%)
+  - 임계 제초 생육기(CPWC)
+  purpose: 제초제 투입 시기 최적화 및 잡초 경합에 의한 수량 감소 방지 기준
+- table_id: 표 11-2
+  title: 딥러닝 비전 노즐 살포 시스템과 관행 전면 살포 방식의 방제 효율 및 경제성 비교
+  columns:
+  - 구분 항목
+  - 관행 전면 살포
+  - 스마트 딥러닝 스팟 살포
+  - 개선율(%)
+  - 현장 실증 평가
+  purpose: 정밀 제초 시스템 도입에 따른 제초제 절감량 및 토양 환경 보전 효과 입증
+visuals:
+- fig_id: 그림 11-01
+  type: A
+  aspect_ratio: '4:3'
+  method: nano_banana_pro
+  title: 이랑 사이를 자율주행하며 잡초만을 감지해 타깃 살포하는 지능형 붐스프레이어 실사
+  description: 붐대에 다점 카메라가 장착된 트랙터가 잡초 위치에만 솔레노이드 밸브를 순간 개방 분무하는 현장
+- fig_id: 그림 11-02
+  type: B
+  aspect_ratio: '4:3'
+  method: nano_banana_pro
+  title: 옥수수 유묘와 초기 바랭이(화본과 잡초)의 형태적 특징 비교 클로즈업 표본
+  description: 초기 엽설(Ligule) 유무와 엽초 털의 미세 구조를 통해 비전 AI가 식별하는 특징점 접사
+- fig_id: 그림 11-03
+  type: C
+  aspect_ratio: '16:9'
+  method: nano_banana_pro
+  title: 엣지 컴퓨팅 기반 실시간 잡초 바운딩 박스 검출 및 초고속 밸브 트리거 시스템 아키텍처
+  description: RGB 카메라 프레임 입력, 텐서RT 추론, 마이크로초 단위 노즐 액추에이터 구동 순서도
+- fig_id: 그림 11-04
+  type: D
+  aspect_ratio: '16:9'
+  method: python
+  title: 옥수수 파종 후 잡초 방제 시기별 최종 곡실 수량 변화 및 CPWC 구간 모델 곡선
+  description: 초기 무제초 허용 한계와 후기 제초 불필요 구간을 정의하는 이중 로지스틱 임계 기간 그래프
 keywords_ko:
-- 수확
+- 지능형 잡초 인식
+- 임계 제초 기간(CPWC)
+- 스팟 살포
+- 자율 중경 제초
+- 저항성 잡초
 keywords_en:
-- Harvesting
+- smart weed detection
+- critical period of weed control
+- spot spraying
+- autonomous cultivation
+- herbicide resistance
 evidence_packet: digital_corn_cultivation_20261122_154130_evidence.json
 assigned_sources: []

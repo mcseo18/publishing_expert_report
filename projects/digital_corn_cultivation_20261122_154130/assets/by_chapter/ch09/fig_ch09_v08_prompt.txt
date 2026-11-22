@@ -1,0 +1,12 @@
+이미지 번호: 그림 9-8
+이미지 파일명: fig_ch09_v08.png
+단원: 제9장. 작물 생육·양분 모델링 및 디지털 트윈 시뮬레이션 (ch09)
+결합 절: 9.4 현장 실증: 기상 빅데이터 연동 포장 단위 디지털 트윈 수량 예측 및 최적 의사결정
+시각화 유형: photorealistic_field
+제목: [그림 9-8] 포장 단위 IoT 센서 네트워크 및 기상 빅데이터 수집 인프라
+
+[문맥 기반 이미지 설명]
+[그림 9-8] 대규모 상업용 옥수수 포장에 구축된 포장 단위 디지털 트윈의 실시간 데이터 수집 현장입니다. 규칙적인 이랑 사이로 토양 매트릭 수두 및 전기전도도(EC) 센서 프로브가 깊이별로 매설되어 있고, 캐노피 상단에는 무선 텔레메트리 기지국이 설치되어 있습니다. 실시간 미기상과 수분 스트레스 데이터가 시뮬레이션 모델 엔진으로 전송되는 스마트 정밀농업의 인프라를 사실적으로 보여줍니다 [SRC-121].
+
+[나노바나나 생성 프롬프트]
+Documentary agricultural field photograph of high-tech telemetry sensing equipment installed in an expansive commercial maize (Zea mays) field. A vertical solar-powered field station probe is positioned between uniform green corn rows, with subterranean sensor cables extending into the damp tilled soil. Crisp golden-hour sunlight illuminates lush corn foliage and modern agronomic monitoring hardware. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

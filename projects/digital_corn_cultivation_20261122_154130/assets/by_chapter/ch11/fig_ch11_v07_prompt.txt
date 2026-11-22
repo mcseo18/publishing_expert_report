@@ -1,0 +1,12 @@
+이미지 번호: 그림 11-7
+이미지 파일명: fig_ch11_v07.png
+단원: 제11장. 지능형 잡초 인식 및 자율선택제초 시스템 (ch11)
+결합 절: 11.3 농가 관행 오해 교정: 동일 계통 제초제 연용에 따른 저항성 잡초 확산 및 약해 포장 진단
+시각화 유형: photorealistic_macro
+제목: [그림 11-7] 제초제 과다 살포 및 잔류 흡수로 인한 옥수수 잎의 백화 및 위축 약해(Phytotoxicity) 증상
+
+[문맥 기반 이미지 설명]
+[그림 11-7] 토양 잔류성 제초제의 과잉 투입 또는 불균일 살포로 인해 발생한 옥수수 엽신의 엽맥간 백화(Chlorosis) 및 잎말림 약해 피해를 진단한 매크로 사진이다. 엽록소 파괴로 인해 잎 가장자리가 괴사하며 옥수수 유묘의 정상적인 신장이 심각하게 위축된 상태를 확인할 수 있다. 단순한 양분 결핍 증상과 구별되는 제초제 약해 특유의 백색 띠 및 잎맥 탈색 양상을 정밀하게 관찰할 수 있다 [SRC-103].
+
+[나노바나나 생성 프롬프트]
+Detailed macro photograph showing chemical phytotoxicity symptoms on a young Zea mays corn leaf blade. The leaf exhibits distinct interveinal chlorosis, bleached white striations running parallel to the central midrib, and stunted necrotic curling at the leaf tip, contrasted against healthy deep green basal leaf tissue. High-resolution texture of the corn leaf cuticle, stomata patterns, and faint tissue crinkling under neutral diffuse laboratory lighting, showing diagnostic herbicide burn. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

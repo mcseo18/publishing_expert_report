@@ -79,6 +79,7 @@ from subagent_orchestrator import (  # noqa: E402
     STAGE_DEFINITIONS,
     _save_outline_files,
     approve_stage1_outline,
+    build_last_work_summary,
     create_project,
     create_stage_snapshot,
     list_stage_snapshots,
@@ -87,15 +88,18 @@ from subagent_orchestrator import (  # noqa: E402
     get_ai_engines_status,
     list_projects,
     load_events,
+    load_project_from_folder,
     load_project_state,
     load_stage_report,
     reset_projects_keep_only,
     revise_stage1_outline,
     save_project_state,
+    scan_project_folders,
     set_project_hidden,
     start_pipeline_async,
     stop_pipeline,
     update_project_options,
+    write_last_work_session,
 )
 
 app = FastAPI(title="전문 교재 제작 통합 플랫폼 (단일 HTML 6단계 관제)", version="2.0.0")
@@ -119,8 +123,6 @@ class CreateProjectRequest(BaseModel):
     chapter_count: int = Field(default=15, ge=3, le=24)
     papers_per_query: int = Field(default=5, ge=2, le=15)
     use_gemini_outline: bool = True
-    use_openai_outline: bool = True
-    openai_model: str = "gpt-4o-mini"
     use_fal_ai: bool = False
     fal_model: str = "fal-ai/nano-banana"
     use_nano_banana: bool = True
@@ -138,8 +140,6 @@ class CreateProjectRequest(BaseModel):
 
 class UpdateOptionsRequest(BaseModel):
     use_gemini_outline: bool | None = None
-    use_openai_outline: bool | None = None
-    openai_model: str | None = None
     use_fal_ai: bool | None = None
     fal_model: str | None = None
     use_nano_banana: bool | None = None
@@ -161,7 +161,7 @@ class RunProjectRequest(BaseModel):
 
 class Stage1ReviseRequest(BaseModel):
     feedback_prompt: str
-    use_openai: bool | None = None
+    use_gemini: bool | None = None
 
 
 class Stage1ApproveRequest(BaseModel):
@@ -240,9 +240,8 @@ class BibtexCollectRequest(BaseModel):
 
 
 class SaveApiKeysRequest(BaseModel):
-    OPENAI_API_KEY: str = ""
-    FAL_KEY: str = ""
     GEMINI_API_KEY: str = ""
+    FAL_KEY: str = ""
     KMA_HUB_KEY: str = ""
     OPENWEATHER_API_KEY: str = ""
     DATA_GO_KR_API_KEY: str = ""
@@ -356,7 +355,7 @@ class PlanChatSendRequest(BaseModel):
     keywords_en: list[str] = Field(default_factory=list)
     chapter_count: int = Field(default=12, ge=3, le=24)
     target_pages: int = Field(default=400, ge=60, le=1500)
-    engine: str = "antigravity_gemini"  # antigravity_gemini | gemini_pro | openai | ollama_gemma
+    engine: str = "antigravity_gemini"  # antigravity_gemini | gemini_pro | ollama_gemma
     include_tables: bool = True
     include_visuals: bool = True
 
@@ -411,6 +410,78 @@ def api_list_projects(include_hidden: bool = False) -> dict[str, Any]:
     return {"projects": list_projects(include_hidden=include_hidden)}
 
 
+@app.get("/api/projects/folders")
+def api_scan_project_folders(include_archived: bool = False) -> dict[str, Any]:
+    """projects/ 폴더(및 선택 시 아카이브 폴더)를 스캔해 각 프로젝트의 마지막 작업 기록과 함께 반환한다."""
+    cfg = get_config()
+    return {
+        "projects_root": str((cfg.workspace_root / "projects").resolve()),
+        "folders": scan_project_folders(include_archived=include_archived, cfg=cfg),
+    }
+
+
+class LoadFolderRequest(BaseModel):
+    folder_path: str
+
+
+@app.post("/api/projects/load-folder")
+def api_load_project_folder(req: LoadFolderRequest) -> dict[str, Any]:
+    if not req.folder_path.strip():
+        raise HTTPException(status_code=400, detail="불러올 프로젝트 폴더 경로를 입력하거나 선택해 주세요.")
+    try:
+        return load_project_from_folder(req.folder_path.strip())
+    except FileNotFoundError as exc:
+        raise HTTPException(status_code=404, detail=str(exc))
+    except Exception as exc:
+        raise HTTPException(status_code=400, detail=f"폴더 불러오기 오류: {exc}")
+
+
+@app.post("/api/projects/browse-folder-dialog")
+def api_browse_folder_dialog() -> dict[str, Any]:
+    """Windows 기본 폴더 선택 창을 열어 사용자가 직접 프로젝트 폴더를 고를 수 있게 한다."""
+    cfg = get_config()
+    initial_dir = str((cfg.workspace_root / "projects").resolve())
+    try:
+        import subprocess
+
+        ps_cmd = (
+            "Add-Type -AssemblyName System.Windows.Forms; "
+            "$dlg = New-Object System.Windows.Forms.FolderBrowserDialog; "
+            "$dlg.Description = '불러올 이전 교재 프로젝트 폴더를 선택하세요'; "
+            f"$dlg.SelectedPath = '{initial_dir.replace(chr(39), chr(39)*2)}'; "
+            "$top = New-Object System.Windows.Forms.Form; $top.TopMost = $true; "
+            "if ($dlg.ShowDialog($top) -eq 'OK') { Write-Output $dlg.SelectedPath }"
+        )
+        proc = subprocess.run(
+            ["powershell", "-NoProfile", "-STA", "-Command", ps_cmd],
+            capture_output=True,
+            text=True,
+            timeout=120,
+        )
+        chosen = (proc.stdout or "").strip()
+        return {"status": "OK" if chosen else "CANCELLED", "folder_path": chosen}
+    except Exception as exc:
+        return {"status": "UNAVAILABLE", "folder_path": "", "detail": str(exc)[:140]}
+
+
+class LastWorkRecordRequest(BaseModel):
+    last_tab: str | None = None
+    last_subtab: str | None = None
+    last_stage_id: str | None = None
+    last_open_chapter: str | None = None
+    last_visual_filter: str | None = None
+    last_action_summary: str | None = None
+
+
+@app.post("/api/projects/{project_id}/last-work")
+def api_save_last_work(project_id: str, req: LastWorkRecordRequest) -> dict[str, Any]:
+    try:
+        sess = write_last_work_session(project_id, overrides=req.model_dump(exclude_none=True))
+        return {"status": "SAVED", "last_work_session": sess}
+    except FileNotFoundError:
+        raise HTTPException(status_code=404, detail="Project not found")
+
+
 class ProjectVisibilityRequest(BaseModel):
     hidden: bool
 
@@ -440,8 +511,6 @@ def api_create_project(req: CreateProjectRequest) -> dict[str, Any]:
             "domestic_agency_urls": req.domestic_agency_urls,
             "international_agency_urls": req.international_agency_urls,
             "use_gemini_outline": req.use_gemini_outline,
-            "use_openai_outline": req.use_openai_outline,
-            "openai_model": req.openai_model,
             "use_fal_ai": req.use_fal_ai,
             "fal_model": req.fal_model,
             "use_nano_banana": req.use_nano_banana,
@@ -460,18 +529,33 @@ def api_create_project(req: CreateProjectRequest) -> dict[str, Any]:
     )
     run_info = None
     if req.auto_start:
-        # 1단계(주제 탐색 + OpenAI 목차·요약·키워드 제시)를 즉시 시작하고 검토 게이트에서 자동 대기
+        # 1단계(주제 탐색 + Google Gemini 목차·요약·키워드 제시)를 즉시 시작하고 검토 게이트에서 자동 대기
         run_info = start_pipeline_async(st["project_id"], mode="single", target_stage="stage1_topic_outline")
     return {"status": "OK", "project": st, "run": run_info}
 
 
 @app.get("/api/projects/{project_id}")
 def api_get_project(project_id: str, limit_events: int = 120) -> dict[str, Any]:
-    st = load_project_state(project_id)
+    cfg = get_config()
+    st = load_project_state(project_id, cfg)
     if not st:
         raise HTTPException(status_code=404, detail=f"Project {project_id} not found")
+    # 폴더 내 last_work_session.json 우선 병합
+    lw = st.get("last_work_session") or {}
     try:
-        cfg = get_config()
+        ws = Path(st.get("workspace_dir") or cfg.project_dir(project_id))
+        lw_p = ws / "last_work_session.json"
+        if lw_p.is_file():
+            lw_disk = json.loads(lw_p.read_text(encoding="utf-8"))
+            if isinstance(lw_disk, dict) and lw_disk.get("saved_at", "") >= str(lw.get("saved_at", "")):
+                lw = lw_disk
+        if not lw:
+            lw = build_last_work_summary(st, cfg=cfg)
+    except Exception:
+        if not lw:
+            lw = build_last_work_summary(st, cfg=cfg)
+    st["last_work_session"] = lw
+    try:
         ap = cfg.index_dir / "active_project.json"
         ap.write_text(
             json.dumps({"project_id": project_id, "topic_ko": st.get("topic_ko", "")}, ensure_ascii=False, indent=2),
@@ -479,7 +563,7 @@ def api_get_project(project_id: str, limit_events: int = 120) -> dict[str, Any]:
         )
     except Exception:
         pass
-    return {"project": st, "events": load_events(project_id, limit=limit_events)}
+    return {"project": st, "events": load_events(project_id, limit=limit_events), "last_work_session": lw}
 
 
 @app.delete("/api/projects/{project_id}")
@@ -525,7 +609,7 @@ def api_stage1_revise(project_id: str, req: Stage1ReviseRequest) -> dict[str, An
     if not req.feedback_prompt.strip():
         raise HTTPException(status_code=400, detail="수정·재요청 내용을 입력해 주세요.")
     try:
-        return revise_stage1_outline(project_id, req.feedback_prompt.strip(), use_openai=req.use_openai)
+        return revise_stage1_outline(project_id, req.feedback_prompt.strip(), use_gemini=req.use_gemini)
     except FileNotFoundError:
         raise HTTPException(status_code=404, detail="Project not found")
     except Exception as exc:
@@ -1004,7 +1088,7 @@ def api_regenerate_visual(project_id: str, req: RegenerateVisualRequest) -> dict
             errors.append(f"fal.ai: {str(exc)[:120]}")
     if not ok and gem_key:
         m = re.search(r"Nano Banana \(([^)]+)\)", engine_txt)
-        model = m.group(1) if m else "gemini-2.5-flash-image"
+        model = m.group(1) if m else "nano-banana-pro-preview"
         try:
             ok, msg = _generate_with_nano_banana(prompt=prompt, out_path=tmp_png, model=model, api_key=gem_key)
         except Exception as exc:

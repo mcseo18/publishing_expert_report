@@ -1,0 +1,12 @@
+이미지 번호: 그림 7-6
+이미지 파일명: fig_ch07_v06.png
+단원: 제7장. 옥수수 수분 생리 및 스마트 정밀 관개 공학 (ch07)
+결합 절: 7.3 농가 관행 오해 교정: 한낮 시들음 발생 후 관수하는 지연 관개 피해 진단
+시각화 유형: photorealistic_field
+제목: [그림 7-6] 한낮 시들음 발생 옥수수 군락과 지연 관개 피해 엽신 상태
+
+[문맥 기반 이미지 설명]
+[그림 7-6] 한낮의 고온과 건조로 인해 잎이 안쪽으로 말리는 엽권(Leaf rolling) 현상이 나타난 옥수수 군락의 전경입니다. 농가에서 육안으로 시들음이 확인된 후 관수하는 관행은 이미 토양수분장력이 -50kPa 이하로 떨어진 후 실행되는 지연 관개(Delayed Irrigation)의 전형적인 오류입니다 [SRC-103]. 옥수수는 이 시점에 이미 기공을 닫고 탄소 동화 작용을 멈추어 비가역적인 수량 손실이 발생합니다.
+
+[나노바나나 생성 프롬프트]
+High-impact documentary photograph of a commercial Zea mays corn field under harsh midday summer sunlight and extreme drought stress. The broad corn leaves show severe longitudinal rolling, tightly curling inward into pencil-like cylinders to reduce sun exposure, with dull grayish-green foliage and desiccated lower leaves. The arid soil surface between crop rows is deeply cracked and dusty. Natural harsh midday sun casting sharp shadows, wide-angle field view capturing widespread stress symptoms. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

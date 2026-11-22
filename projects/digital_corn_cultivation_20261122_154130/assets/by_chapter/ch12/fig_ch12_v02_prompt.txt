@@ -1,0 +1,12 @@
+이미지 번호: 그림 12-2
+이미지 파일명: fig_ch12_v02.png
+단원: 제12장. 정밀 수확·가공 후 수확 관리 및 스마트 농기계 작업 체계 (ch12)
+결합 절: 12.1 종실 흑층(Black Layer) 형성 생리, 등숙 완료 판정 및 탈립 손실 역학
+시각화 유형: photorealistic_macro
+제목: [그림 12-2] 옥수수 종실 기부 흑층(Black Layer) 발현 단면 매크로
+
+[문맥 기반 이미지 설명]
+[그림 12-2] 생리적 성숙기(R6)에 도달한 옥수수 낱알의 기부(pedicel) 부위를 종단면으로 절단하여 관찰한 초고해상도 매크로 사진이다. 배유와 배축 하단 통조직이 압착 및 갈변되어 뚜렷한 흑색 층(Black Layer)이 형성된 모습을 선명하게 보여준다. 이는 모체로부터 동화산물 전류가 완전히 차단되어 최대 건물 축적이 완료되었음을 지시하는 핵심 생리 지표이다 [SRC-109].
+
+[나노바나나 생성 프롬프트]
+Macro studio laboratory photograph of several split yellow dent corn kernels sliced longitudinally. Extreme close-up on the basal tip cap and pedicel region showing the distinct dark brown to black layer formed at the base where the kernel attaches to the cob. Crisp detail of glassy translucent endosperm, creamy white embryo, and the distinct thin necrotic black layer tissue sealing off nutrient transport. Pure crisp white background, diffused high-CRI laboratory lighting showing glassy cellular textures. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

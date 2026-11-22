@@ -1,0 +1,12 @@
+이미지 번호: 그림 5-8
+이미지 파일명: fig_ch05_v08.png
+단원: 제5장. 옥수수 생리장애 진단 및 비생물적 스트레스 반응 (ch05)
+결합 절: 5.4 현장 실증: 열화상 드론 연동 조기 한발 예찰 및 수분 스트레스 완화제 살포
+시각화 유형: photorealistic_field
+제목: [그림 5-8] 열화상 센서 탑재 정밀 드론을 활용한 옥수수 포장 캐노피 온도 매핑
+
+[문맥 기반 이미지 설명]
+[그림 5-8] 개화·출수기 대면적 옥수수 재배 포장 상공에서 듀얼 열화상·RGB 센서를 탑재한 드론이 비행하며 엽면 온도를 실시간 스캔하는 장면이다. 정상적인 증산 작용을 수행하는 시원한 캐노피 구역과, 수분 부족으로 기공이 닫혀 비정상적으로 온도가 치솟은 스트레스 구역을 상공에서 원격 탐색한다. 이는 CWSI 임계치 도달 이전에 정밀 관수 또는 완화제 처방을 가능케 하는 디지털 예찰 체계이다 [SRC-103, SRC-104].
+
+[나노바나나 생성 프롬프트]
+Photorealistic agricultural technology documentary photograph of a modern multi-rotor drone flying over an expansive green Zea mays field. The industrial drone is equipped with an integrated gimbal holding a dual thermal infrared camera and high-resolution RGB sensor pointed straight down at the dense corn canopy. Endless rows of healthy corn stalks stretching across rolling farmland under bright daylight, showing gentle prop-wash air currents rippling the upper leaves. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

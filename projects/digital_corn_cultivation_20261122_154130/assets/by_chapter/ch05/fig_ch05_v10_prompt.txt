@@ -1,0 +1,12 @@
+이미지 번호: 그림 5-10
+이미지 파일명: fig_ch05_v10.png
+단원: 제5장. 옥수수 생리장애 진단 및 비생물적 스트레스 반응 (ch05)
+결합 절: 오해와 진실: 현장·이론 핵심 오해 교정
+시각화 유형: photorealistic_macro
+제목: [그림 5-10] ASI 연장 및 수분 불일치로 인해 발생한 옥수수 이삭의 착립 불량(Nubbin) 결손 단면
+
+[문맥 기반 이미지 설명]
+[그림 5-10] 개화수염신장간격(ASI) 연장으로 인해 수분 동기화에 실패하여 낱알이 불규칙하게 형성된 옥수수 이삭(Nubbin ear)의 실물 접사 사진이다. 이삭의 기부 쪽에만 소수의 낱알이 드문드문 결실되었고, 중앙부와 선단부는 비단수염이 말라붙은 채 비어 있는 미수정 상태를 적나라하게 보여준다. 고온·한발 스트레스가 단순한 영양 결핍이 아닌 수분 타이밍 불일치를 통해 수량을 파괴함을 증명한다 [SRC-103, SRC-106].
+
+[나노바나나 생성 프롬프트]
+Macro studio documentary photograph of an unhusked Zea mays corn ear with outer husks peeled back, showing severe drought-induced pollination failure known as a nubbin ear. The white central cob shows only a few scattered, plump yellow kernels at the lower base, while the entire midsection and slender tapering tip remain completely barren, covered in desiccated brown silk fibers and tiny shriveled unfertilized ovules. High-definition focus capturing natural cob pits and kernel textures against a clean laboratory workbench background. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

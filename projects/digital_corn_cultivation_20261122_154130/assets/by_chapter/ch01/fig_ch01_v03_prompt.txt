@@ -1,0 +1,12 @@
+이미지 번호: 그림 1-3
+이미지 파일명: fig_ch01_v03.png
+단원: 제1장. 옥수수의 기원, 분류 체계 및 식물학적 형태생리 (ch01)
+결합 절: 1.1 테오신테 진화 유전학 및 C4 크란츠 해부생리 원리
+시각화 유형: scientific_anatomy
+제목: [그림 1-3] 옥수수 잎의 C4 크란츠(Kranz) 유관속초 세포 및 엽육 세포 해부 구조도
+
+[문맥 기반 이미지 설명]
+[그림 1-3] 옥수수 잎 횡단면에서 나타나는 C4 크란츠 해부 구조의 세포학적 배열과 탄소 고정 공간 분리 기작을 도해한 정밀 해부도이다. 유관속을 동심원상으로 둘러싼 거대 유관속초 세포(Bundle Sheath Cell)에는 전분 합성 엽록체가 조밀하게 배열되어 있으며, 외곽의 엽육 세포(Mesophyll Cell)는 초기 CO2를 C4 유기산으로 포집한다 [SRC-103]. 고온 및 강광 조건에서 광호흡을 억제하고 탄소 고정 효율을 극대화하는 옥수수 고유의 생리적 분업 체계를 묘사한다.
+
+[나노바나나 생성 프롬프트]
+Scientific cross-section illustration of a maize (Zea mays) leaf blade demonstrating Kranz anatomy on a clean white background. A central vascular bundle containing xylem vessels and phloem sieve elements is encircled by a tight concentric wreath of large bundle sheath cells packed with dark green chloroplasts and starch grains. Surrounding the wreath are radiating, loosely arranged mesophyll cells filled with smaller chloroplasts. Clear upper and lower epidermal layers with cuticles and stomatal pores are shown in a richly shaded, three-dimensional cellular rendering style with crisp anatomical accuracy. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

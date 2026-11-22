@@ -1,0 +1,12 @@
+이미지 번호: 그림 4-2
+이미지 파일명: fig_ch04_v02.png
+단원: 제4장. 옥수수 생육 단계별 발달 생리 및 수관 아키텍처 (ch04)
+결합 절: 4.1 옥수수 엽칼라(Leaf Collar) 기준 생육단계(VE~VT, R1~R6)의 발달 생리
+시각화 유형: scientific_anatomy
+제목: [그림 4-2] 옥수수 생육 전주기 단계별 형태 발달 및 생식 기관 분화 모식도
+
+[문맥 기반 이미지 설명]
+[그림 4-2] 옥수수의 출현기(VE)부터 영양생장 정점인 출웅기(VT), 수염 출현기(R1), 포말기(R2)를 거쳐 생리적 성숙기(R6)에 이르는 전 생육 단계를 정밀하게 표현한 학술 해부도입니다. 각 단계별 줄기 절간 신장, 엽칼라 누적 전개, 수꽃(이삭)과 암술(비단 수염)의 발달 상태가 사실적인 수채화풍의 단면과 함께 묘사되어 있습니다. 작물의 탄소 동화 및 생체량 축적과 연동된 기관별 분화 생리를 체계적으로 설명합니다 [SRC-103].
+
+[나노바나나 생성 프롬프트]
+Scientific anatomical botanical illustration of a single maize plant progressing through developmental stages on a pure white background. Depicting early seedling emergence, vegetative V-stages with distinct leaf collars, the emergence of the apical tassel at VT, the ear shoot with fresh silky stigmas at R1, and fully matured ears with dried husks at R6. Finely detailed botanical cross-sections show internal stem node expansion and kernel development with rich natural shading and precise morphological accuracy. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

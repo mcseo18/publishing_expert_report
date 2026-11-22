@@ -1,0 +1,12 @@
+이미지 번호: 그림 11-8
+이미지 파일명: fig_ch11_v08.png
+단원: 제11장. 지능형 잡초 인식 및 자율선택제초 시스템 (ch11)
+결합 절: 11.4 현장 실증: 카메라 연동 스마트 붐스프레이어 국소 살포 및 자율주행 기계적 중경 제초
+시각화 유형: photorealistic_field
+제목: [그림 11-8] 카메라 모듈 및 RTK-GPS 연동 스마트 붐스프레이어의 옥수수 포장 주행 국소 살포 실증
+
+[문맥 기반 이미지 설명]
+[그림 11-8] 다채널 엣지 비전 카메라와 초정밀 RTK-GPS 시스템을 탑재한 스마트 붐스프레이어가 옥수수 이랑 사이를 주행하며 실시간 선택적 제초를 수행하는 포장 실증 전경이다. 붐대에 일정 간격으로 장착된 카메라 모듈이 잡초의 출현을 즉각 감지하고, 해당 위치의 개별 노즐만을 하향 점적 분무한다. 광범위한 균일 살포 대비 환경 부하를 획기적으로 낮추며 옥수수 군락 내부의 잡초만 표적 타격하는 정밀성을 보여준다 [SRC-104].
+
+[나노바나나 생성 프롬프트]
+Wide-angle documentary field photograph of a modern tractor with an automated smart boom sprayer traversing a vast Zea mays field during golden hour. The long horizontal spray boom extending across multiple corn rows is equipped with downward-facing camera housings and individual electronically actuated spray nozzles. Pinpoint bursts of fine liquid mist shoot down exclusively onto intermittent weed patches between the rows, while leaving wide dry gaps over bare soil and corn plants. Realistic atmospheric dust, deep green corn canopy, and rich cultivated soil furrows under warm sunlight. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

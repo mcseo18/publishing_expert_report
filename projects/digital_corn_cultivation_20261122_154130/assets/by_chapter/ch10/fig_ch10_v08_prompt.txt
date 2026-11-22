@@ -1,0 +1,12 @@
+이미지 번호: 그림 10-8
+이미지 파일명: fig_ch10_v08.png
+단원: 제10장. 데이터 기반 옥수수 병해충 예찰 및 정밀 방제 공학 (ch10)
+결합 절: 10.3 농가 관행 오해 교정: 조명나방 줄기 침입 후 살포하는 무효 방제와 천적 파괴 관행 진단
+시각화 유형: photorealistic_macro
+제목: [그림 10-8] 옥수수 수염 부위의 광범위 살충제 잔류로 인한 천적 포식곤충 피해 현장
+
+[문맥 기반 이미지 설명]
+[그림 10-8] 옥수수 이삭의 수염 부위에서 조명나방 알과 미세 유충을 자연 포식하던 애꽃노린재 및 무당벌레 유충이 무차별 살충제 살포 후 폐사한 상태를 포착한 고해상도 매크로 사진이다. 생물학적 방제 인자인 유용 천적 곤충이 화학 약제에 의해 절멸됨으로써 발생하는 해충 밀도의 2차 대발생(Pest resurgence) 위험을 현장감 있게 보여준다. 무분별한 화학적 살포 관행을 지양하고 천적을 보전하는 통합적 해충 관리(IPM)의 당위성을 부각한다 [SRC-101].
+
+[나노바나나 생성 프롬프트]
+Ultra-sharp macro documentary photograph of fresh golden-brown corn silk emerging from a young developing ear of corn. Beside tiny parasitoid wasp remains, an adult predatory minute pirate bug (Orius) lies motionless among dried, crystalline chemical spray residues on the silk strands. Extreme natural micro-texture of the moist corn silk fibers, exhibiting the stark consequence of broad-spectrum chemical runoff on beneficial natural predators, illuminated by harsh natural sunlight. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

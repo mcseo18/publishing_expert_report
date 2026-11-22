@@ -1,16 +1,70 @@
 chapter_id: ch08
 chapter_number: 8
-title: 제8장. 양분관리의 원리와 디지털 현장 관리
-target_pages: 40
-summary_ko: 디지털 옥수수 재배에서 양분관리의 과학적 메커니즘, 정량 측정 지표 및 디지털 정밀 관리 전략을 다룹니다.
+title: 제8장. 옥수수 양분 흡수 동태 및 실시간 데이터 기반 양분 관리
+target_pages: 46
+summary_ko: 질소(N), 인산(P), 칼륨(K)의 단계별 흡수 곡선과 전이(Translocation) 메커니즘을 밝힌다. 엽록소계(SPAD) 및 능동형 광학 캐노피 센서(NDVI, NDRE) 기반 질소 충족 지수(NSI) 기준을 확립한다. 농가에서
+  흔히 저지르는 전량 기비 위주 시비와 늦은 추비로 인한 도복 및 환경오염을 교정하고 가변 추비기 실증을 수행한다.
 sections:
-- 8.1 기초 원리 및 개념
-- 8.2 정량 측정·모델링
-- 8.3 국내외 기준 비교
-- 8.4 디지털 현장 적용
+- 8.1 옥수수 N-P-K 체내 전류 생리 및 단계별 양분 흡수 속도 역학
+- 8.2 질소충족지수(NSI 0.90 임계치) 및 다분광 식생지수 정량 기준
+- '8.3 농가 관행 오해 교정: 전량 기비 위주 질소 과다 투입과 V8기 이후 지연 추비 피해 진단'
+- '8.4 현장 실증: 온고잉(On-the-go) 캐노피 센서 연동 트랙터 가변 사이드드레싱(추비)'
+tables:
+- table_id: 표 8-1
+  title: 옥수수 생육단계별 N-P-K 누적 흡수 비율 및 결핍·과잉 시 생리적 진단 증상
+  columns:
+  - 양분 원소
+  - V6기 흡수율(%)
+  - R1기 흡수율(%)
+  - R6기 최종 축적량(kg/10a)
+  - 결핍 시 가시 증상
+  - 과잉 시 부작용
+  purpose: 생육 단계별 양분 요구량 예측 및 비료 분시 비율 결정을 위한 정량 기준
+- table_id: 표 8-2
+  title: 옥수수 V6~V10기 엽록소 SPAD 측정치 및 NSI(질소충족지수)별 추비 처방 기준
+  columns:
+  - SPAD 실측치
+  - 충족구 대비 비(NSI)
+  - 질소 영양 상태
+  - 추천 질소 추비량(kg/10a)
+  - 살포 방법
+  purpose: 실시간 비파괴 센싱을 통한 가변 질소 추비 처방 공식 제공
+visuals:
+- fig_id: 그림 8-01
+  type: A
+  aspect_ratio: '4:3'
+  method: nano_banana_pro
+  title: 고간극(High-clearance) 트랙터가 V8기 옥수수 군락 사이로 질소를 액비로 가변 주입하는 실사
+  description: 옥수수 수관을 손상시키지 않고 이랑 사이 근권 부근에 정밀하게 사이드드레싱 주입 장치가 작동하는 현장
+- fig_id: 그림 8-02
+  type: B
+  aspect_ratio: '4:3'
+  method: nano_banana_pro
+  title: 하위엽 엽맥을 따라 V자형으로 황화되는 전형적 질소 결핍 잎 표본 접사
+  description: 체내 이동성이 큰 질소가 상위엽으로 이동하면서 하위엽 끝부터 주맥을 따라 누렇게 괴사한 잎 클로즈업
+- fig_id: 그림 8-03
+  type: C
+  aspect_ratio: '16:9'
+  method: nano_banana_pro
+  title: 옥수수 전 생육주기 N, P2O5, K2O 흡수 곡선 및 전이 경로 인포그래픽
+  description: 파종 후 출사기까지 급격한 칼륨·질소 흡수와 출사 후 종실로의 인산 재이동 경로를 나타낸 기작도
+- fig_id: 그림 8-04
+  type: D
+  aspect_ratio: '16:9'
+  method: python
+  title: 능동형 반사계 NDRE 지수와 옥수수 엽면 질소 함량(g/m²) 간의 보정 검량선
+  description: 식생지수와 실제 파괴 분석 질소 농도 간의 R²=0.88에 달하는 강력한 멱함수 상관 회귀선
 keywords_ko:
-- 양분관리
+- 양분 흡수 동태
+- 질소 추비
+- SPAD
+- 질소충족지수(NSI)
+- 가변 사이드드레싱
 keywords_en:
-- Nutrient Management
+- nutrient dynamics
+- nitrogen topdressing
+- SPAD meter
+- nitrogen sufficiency index
+- variable side-dressing
 evidence_packet: digital_corn_cultivation_20261122_154130_evidence.json
 assigned_sources: []

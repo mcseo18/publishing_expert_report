@@ -1,0 +1,12 @@
+이미지 번호: 그림 1-4
+이미지 파일명: fig_ch01_v04.png
+단원: 제1장. 옥수수의 기원, 분류 체계 및 식물학적 형태생리 (ch01)
+결합 절: 1.2 배유 조성별 분류군(마치종·단옥수수·찰옥수수)의 이화학적 정량 기준
+시각화 유형: photorealistic_macro
+제목: [그림 1-4] 옥수수 4대 품종군(마치종·경립종·단옥수수·찰옥수수) 종실 종단면 비교
+
+[문맥 기반 이미지 설명]
+[그림 1-4] 배유 내 전분 매트릭스와 당분 축적 양상이 다른 4개 핵심 품종군의 종실 단면 매크로 사진이다. 마치종(dent)의 상단 함몰부와 분질 배유, 경립종(flint)의 두꺼운 각질 배유, 단옥수수(sweet)의 쭈글쭈글하고 반투명한 배유, 찰옥수수(waxy)의 불투명하고 치밀한 무광 백색 배유 구조를 관찰할 수 있다 [SRC-104]. 전분 과립의 채움 밀도와 아밀로스/아밀로펙틴 구성 차이가 종실의 형태적, 물리적 특성을 어떻게 결정하는지 명확히 나타낸다.
+
+[나노바나나 생성 프롬프트]
+Macro photograph showing bisected cross-sections of four distinct maize kernels neatly arranged in a row against a neutral-gray laboratory tray. From left to right: a dent corn kernel with a distinct concave top indentation and soft chalky white floury center surrounded by hard vitreous sides; a round flint corn kernel with a thick glassy translucent vitreous shell enclosing a tiny floury core; a wrinkled semi-translucent golden sweet corn kernel with shriveled endosperm; and an opaque, dense pearly-white waxy corn kernel with uniform matte wax-like interior. Crisp focal plane, highlighting internal grain endosperm textures and microscopic cell walls. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

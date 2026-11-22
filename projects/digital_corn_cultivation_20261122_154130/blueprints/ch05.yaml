@@ -1,16 +1,69 @@
 chapter_id: ch05
 chapter_number: 5
-title: 제5장. 생리 및 생리장애의 원리와 디지털 현장 관리
-target_pages: 40
-summary_ko: 디지털 옥수수 재배에서 생리 및 생리장애의 과학적 메커니즘, 정량 측정 지표 및 디지털 정밀 관리 전략을 다룹니다.
+title: 제5장. 옥수수 생리장애 진단 및 비생물적 스트레스 반응
+target_pages: 46
+summary_ko: 개화수염신장간격(ASI) 증대에 따른 수정 장애, 고온 불임, 침수 무산소 호흡, 저온 안토시아닌 발현의 분자생리학적 기작을 밝힌다. 엽온 기반 작물수분스트레스지수(CWSI)와 분광 지표를 통한 비생물적 스트레스 정량 판정 기준을 정립한다.
+  농가에서 흔히 병해충으로 오진하는 생리장애를 정확히 감별하고 항스트레스 생리활성제 처방을 실증한다.
 sections:
-- 5.1 기초 원리 및 개념
-- 5.2 정량 측정·모델링
-- 5.3 국내외 기준 비교
-- 5.4 디지털 현장 적용
+- 5.1 고온·한발에 의한 개화수염신장간격(ASI) 연장 및 침수 에틸렌 축적 메커니즘
+- 5.2 작물수분스트레스지수(CWSI) 및 엽록소 형광(Fv/Fm) 정량 판정 기준치
+- '5.3 농가 관행 오해 교정: 저온 인산 결핍 자색화 현상과 바이러스병 오진 감별 진단'
+- '5.4 현장 실증: 열화상 드론 연동 조기 한발 예찰 및 수분 스트레스 완화제 살포'
+tables:
+- table_id: 표 5-1
+  title: 옥수수 주요 비생물적 스트레스의 가시 증상, 취약 생육기 및 병해충 유사 증상 감별표
+  columns:
+  - 생리장애 요인
+  - 발생 생육기
+  - 대표적 잎·줄기·이삭 증상
+  - 오진하기 쉬운 병해충
+  - 과학적 현장 감별법
+  purpose: 불필요한 농약 살포를 방지하고 환경 스트레스에 즉각 대처하기 위한 감별 기준
+- table_id: 표 5-2
+  title: 엽온 기반 CWSI 지수 범위에 따른 옥수수 기공 전도도 저하율 및 관수 트리거 기준
+  columns:
+  - CWSI 지수
+  - 수관-대기 온도차(Tc-Ta, °C)
+  - 기공전도도 감수율(%)
+  - 생리적 위험도
+  - 처방 대책
+  purpose: 열화상 센서를 활용한 정밀 관수 자동 제어 트리거 설정
+visuals:
+- fig_id: 그림 5-01
+  type: A
+  aspect_ratio: '4:3'
+  method: nano_banana_pro
+  title: 한낮 고온 건조 스트레스로 인해 잎이 튜브 형태로 완전히 말린 옥수수 포장 실사
+  description: 토양 균열이 발생한 포장에서 수분 보존을 위해 엽신을 단단히 말아올린 심각한 가뭄 현장 실사
+- fig_id: 그림 5-02
+  type: B
+  aspect_ratio: '4:3'
+  method: nano_banana_pro
+  title: 수정 불량으로 인한 옥수수 이삭 끝달림 불량(Tip Blanking) 및 왜소 종실 표본
+  description: 출사기 수분 부족으로 끝부분 수염의 수정이 실패하여 알이 차지 않고 비어있는 이삭 종단면 접사
+- fig_id: 그림 5-03
+  type: C
+  aspect_ratio: '16:9'
+  method: nano_banana_pro
+  title: 개화수염신장간격(ASI) 증대에 따른 수분-수정 실패 메커니즘 인포그래픽
+  description: 화분 비산 피크 시기와 수염 추출 시기가 4일 이상 지연될 때 종실 결실률이 급감하는 기작 다이어그램
+- fig_id: 그림 5-04
+  type: D
+  aspect_ratio: '16:9'
+  method: python
+  title: 개화기 수분 결핍 지속 일수 및 ASI 일수에 따른 옥수수 최종 감수율 곡선
+  description: ASI 증가(0일~8일)에 따른 이삭당 립수 및 종실 수량의 가파른 감소 지수 곡선
 keywords_ko:
-- 생리 및 생리장애
+- 생리장애
+- ASI 간격
+- 수분 스트레스
+- CWSI
+- 끝달림 불량
 keywords_en:
-- Physiology and Physiological Disorders
+- physiological disorders
+- anthesis-silking interval
+- water stress
+- CWSI
+- tip blanking
 evidence_packet: digital_corn_cultivation_20261122_154130_evidence.json
 assigned_sources: []

@@ -1,0 +1,12 @@
+이미지 번호: 그림 3-3
+이미지 파일명: fig_ch03_v03.png
+단원: 제3장. 디지털 정밀 파종 공학 및 균일 입모 관리 (ch03)
+결합 절: 3.2 진공 공압식 가변 배종(VRS) 메커니즘 및 파종 심도·진압 압력 정량 기준
+시각화 유형: scientific_anatomy
+제목: [그림 3-3] 진공 공압식 배종 디스크의 흡착 및 낙하 유체역학 구조도
+
+[문맥 기반 이미지 설명]
+[그림 3-3] 진공 공압식 배종기 내부의 회전식 배종 디스크(singulation disk)와 진공 챔버의 유체역학적 원리를 나타낸 과학 단면도입니다. 공압 차압에 의해 단일 옥수수 종자가 원주형 홀에 정확히 흡착되어 회전한 후, 진공 차단 지점에서 토양 개구부(furrow)로 정밀하게 방출되는 물리적 과정을 묘사합니다 [SRC-106]. 3.2.1절의 진공 공압식 VRS 파종기 유체역학 원리를 완벽히 설명합니다.
+
+[나노바나나 생성 프롬프트]
+Scientific mechanical cutaway illustration of a vacuum pneumatic corn planter metering chamber on an isolated pure white background. A precision metallic circular disk with laser-drilled vacuum orifices holds single bright golden corn seeds along its perimeter. Cutaway shows the negative air pressure differential sealing the seed, leading to the atmospheric cut-off point where the single seed releases smoothly into the seed tube. Rich metallic textures, polished brass and matte grey alloy components, painterly vector shading. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

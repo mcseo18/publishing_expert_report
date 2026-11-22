@@ -1,0 +1,12 @@
+이미지 번호: 그림 6-4
+이미지 파일명: fig_ch06_v04.png
+단원: 제6장. 디지털 토양 물리·화학성 평가 및 경반층 관리 (ch06)
+결합 절: 6.2 관입저항(Cone Index) 및 전자기유도(EM38) 정량 기준
+시각화 유형: photorealistic_field
+제목: [그림 6-4] 옥수수 포장 내 디지털 콘 관입계를 이용한 관입저항치(Cone Index) 측정
+
+[문맥 기반 이미지 설명]
+[그림 6-4] 옥수수 재배 포장에서 연구원이 스테인리스 스틸 디지털 콘 관입계(Cone Penetrometer)를 지중으로 수직 압입하여 관입저항치를 측정하는 현장 실증 장면입니다. 디지털 디스플레이 화면에는 작물 근계 신장의 한계 임계치인 2.0 MPa를 초과하는 저항 수치가 선명하게 기록됩니다. 이 정량적 측정은 육안으로 보이지 않는 지하 경반층의 심도와 공간적 분포 강도를 파악하는 필수 진단 기법입니다 [SRC-102].
+
+[나노바나나 생성 프롬프트]
+Documentary agricultural field photograph of an agronomist using a professional digital soil cone penetrometer between young green maize plant rows. The polished stainless steel shaft and conical tip penetrate vertically into the soil. The illuminated digital meter on the handle shows an exact numerical reading of 2.45 MPa. Natural morning field light, blurred corn stalks with vibrant green leaves in the background, sharp focus on the measuring instrument and the soil surface interface. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

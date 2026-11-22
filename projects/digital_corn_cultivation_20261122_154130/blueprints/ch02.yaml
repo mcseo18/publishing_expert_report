@@ -1,16 +1,70 @@
 chapter_id: ch02
 chapter_number: 2
-title: 제2장. 품종의 원리와 디지털 현장 관리
-target_pages: 40
-summary_ko: 디지털 옥수수 재배에서 품종의 과학적 메커니즘, 정량 측정 지표 및 디지털 정밀 관리 전략을 다룹니다.
+title: 제2장. 옥수수 생태형 분류 및 디지털 초고속 표현형 기반 품종 선발
+target_pages: 46
+summary_ko: 숙기군별 유효적산온도(GDD) 요구도와 일장 반응 생리를 해석하고 지역별 기후 자원에 최적화된 생태형 분류법을 정립한다. 드론 다분광·LiDAR 센싱 기반 수관 체적, 간장, 식생지수 추출을 통해 내도복성 및 바이오매스를 정량 스크리닝한다.
+  농가의 단순 다수성 선호에 따른 등숙 불량 관행을 교정하고 데이터 기반 품종 추천 알고리즘을 실증한다.
 sections:
-- 2.1 기초 원리 및 개념
-- 2.2 정량 측정·모델링
-- 2.3 국내외 기준 비교
-- 2.4 디지털 현장 적용
+- 2.1 숙기군(조·중·만생종)의 GDD(유효적산온도) 요구도 및 환경 적응 생리
+- 2.2 초고속 디지털 표현형(High-Throughput Phenotyping)의 분광·구조 지표 기준
+- '2.3 농가 관행 오해 교정: 무상기간 무시한 만생종 무리한 도입과 미숙 이삭 피해 진단'
+- '2.4 현장 실증: UAV 다분광 정사영상 기반 우수 품종 선발 및 지역 맞춤형 배치'
+tables:
+- table_id: 표 2-1
+  title: 국내 주요 장려 품종(사료용·식용)의 생육 일수, 요구 GDD 및 내도복 취약 지수
+  columns:
+  - 품종명
+  - 용도
+  - 출사 소요일(일)
+  - 성숙 요구 GDD(°C·d)
+  - 간장 및 착수고율(%)
+  - 내도복성 등급
+  purpose: 지역별 무상일수 및 기상 데이터에 따른 과학적 품종 선택 가이드라인 제시
+- table_id: 표 2-2
+  title: 드론 다분광 센서 기반 디지털 표현형 지표와 포장 생체량 간 상관성 기준
+  columns:
+  - 식생·구조 지표
+  - 센서 파장 대역(nm)
+  - 추정 대상 형질
+  - 상관계수(R²)
+  - 육종 및 선발 임계치
+  purpose: 비파괴 원격 센싱을 통한 대규모 포장의 생육 활력 및 수량 잠재력 조기 선별
+visuals:
+- fig_id: 그림 2-01
+  type: A
+  aspect_ratio: '4:3'
+  method: nano_banana_pro
+  title: 드론 센서 탑재 UAV가 대규모 옥수수 육종 시험포를 자율 비행하며 촬영하는 현장
+  description: 격자형으로 구획된 수백 개 옥수수 품종 시험구 상공을 정밀 저고도 비행하는 다분광 드론 실사
+- fig_id: 그림 2-02
+  type: B
+  aspect_ratio: '4:3'
+  method: nano_banana_pro
+  title: 내도복성 우수 품종과 도복 취약 품종의 뿌리 발달 및 하부 절간 굵기 비교 표본
+  description: 강풍 통과 후 뿌리 지지 각도와 제3~4절간의 목질화 두께 차이를 마이크로 스케일러로 비교한 접사
+- fig_id: 그림 2-03
+  type: C
+  aspect_ratio: '16:9'
+  method: nano_banana_pro
+  title: 디지털 초고속 표현형 분석 파이프라인 및 AI 기반 품종 추천 아키텍처
+  description: RGB/다분광 원시영상 수집, CSM 작물 수고 모델링, 엽면적 추출, 기후 데이터 연동 매칭 알고리즘 도해
+- fig_id: 그림 2-04
+  type: D
+  aspect_ratio: '16:9'
+  method: python
+  title: 적산온도(GDD) 누적에 따른 숙기군별(조·중·만생) 지상부 건물중 축적 시뮬레이션 곡선
+  description: GDD 0~1800°C·d 경과에 따른 품종군별 S자형 로지스틱 생육 모델 비교 그래프
 keywords_ko:
-- 품종
+- 옥수수 생태형
+- 유효적산온도
+- 초고속 표현형
+- 도복 저항성
+- 품종 배치
 keywords_en:
-- Varieties
+- maize ecotypes
+- growing degree days
+- high-throughput phenotyping
+- lodging resistance
+- variety placement
 evidence_packet: digital_corn_cultivation_20261122_154130_evidence.json
 assigned_sources: []

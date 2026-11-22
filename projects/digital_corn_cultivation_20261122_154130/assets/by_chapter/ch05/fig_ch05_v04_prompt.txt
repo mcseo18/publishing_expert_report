@@ -1,0 +1,12 @@
+이미지 번호: 그림 5-4
+이미지 파일명: fig_ch05_v04.png
+단원: 제5장. 옥수수 생리장애 진단 및 비생물적 스트레스 반응 (ch05)
+결합 절: 5.2 작물수분스트레스지수(CWSI) 및 엽록소 형광(Fv/Fm) 정량 판정 기준치
+시각화 유형: scientific_anatomy
+제목: [그림 5-4] 수분 결핍 스트레스에 의한 옥수수 엽록체 틸라코이드 막 및 광계 II 손상 기작
+
+[문맥 기반 이미지 설명]
+[그림 5-4] 작물수분스트레스지수(CWSI) 상승 시 옥수수 엽육세포 내 엽록체 틸라코이드 막에서 발생하는 광화학 복합체의 분자 구조적 손상을 설명하는 해부도이다. 수분 결핍으로 기공이 닫히고 광 에너지가 과축적되면 활성산소종(ROS)이 급증하여 광계 II의 핵심인 D1 단백질을 파괴한다. 이러한 광저해 현상은 광합성 효율 저하와 엽록소 형광 Fv/Fm 수치 급감의 직접적 분자 메커니즘을 형성한다 [SRC-103, SRC-104].
+
+[나노바나나 생성 프롬프트]
+Scientific anatomical cross-section on a pure white background showing the molecular structure of a Zea mays chloroplast thylakoid membrane under drought stress. The lipid bilayer membrane contains protein complexes of Photosystem II, with a visible degradation zone where energetic reactive oxygen molecules disrupt the central reaction center core. Surrounding stromal space shows subtle molecular gradients and ion fluxes, illustrated with clean academic biological textbook shading and vibrant botanical colors. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

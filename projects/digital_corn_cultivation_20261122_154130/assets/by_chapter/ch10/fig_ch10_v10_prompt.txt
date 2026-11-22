@@ -1,0 +1,12 @@
+이미지 번호: 그림 10-10
+이미지 파일명: fig_ch10_v10.png
+단원: 제10장. 데이터 기반 옥수수 병해충 예찰 및 정밀 방제 공학 (ch10)
+결합 절: 10.4 현장 실증: 스마트 트랩 IoT 데이터 연동 농업용 드론 야간 정밀 국소 방제
+시각화 유형: photorealistic_field
+제목: [그림 10-10] IoT 예찰 데이터 연동 농업용 드론의 야간 정밀 가변 국소 살포(VRA)
+
+[문맥 기반 이미지 설명]
+[그림 10-10] 스마트 트랩의 피해 밀도 지도와 연동된 다중 로터 농업용 드론이 야간에 옥수수 군락 상공에서 집중 피해 구역을 대상으로 국소 가변 살포(VRA)를 수행하는 현장 실증 사진이다. 드론 하부의 정밀 노즐에서 분사되는 미세 분무액이 하향 풍압(downwash)을 타고 옥수수 엽관층 내부로 균일하게 침투하는 궤적을 고감도 셔터로 포착했다. 야간 무풍 시간대를 활용하여 비산을 방지하고 표적 해충만을 정밀 타격하는 첨단 방제 공학을 실증한다.
+
+[나노바나나 생성 프롬프트]
+A night-time action photograph of a heavy-payload agricultural hexacopter drone hovering precisely over a dense canopy of tall corn stalks. High-intensity LED work lights mounted beneath the drone illuminate downward conical mist cones spraying from precision electrostatic nozzles. The strong rotor downwash visibly swirls the fine droplets into the upper whorls and leaf axils of the corn plants against the dark night sky, with subtle illuminated telemetry status lights glowing on the carbon-fiber airframe. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

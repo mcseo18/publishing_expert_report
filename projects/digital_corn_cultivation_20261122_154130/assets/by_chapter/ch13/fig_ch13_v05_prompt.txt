@@ -1,0 +1,12 @@
+이미지 번호: 그림 13-5
+이미지 파일명: fig_ch13_v05.png
+단원: 제13장. 전 세계 옥수수 생산·유통 공급망 및 산업적 다각화 활용 (ch13)
+결합 절: 13.2 글로벌 곡물 유통 메이저(ABCD) 물류 인프라, 해상 운임(BDI) 및 수급 예측 정량 기준
+시각화 유형: scientific_anatomy
+제목: [그림 13-5] 대규모 곡물 저장 사일로 내부 온도·습도 계측 그리드 및 송풍 순환 해부도
+
+[문맥 기반 이미지 설명]
+[그림 13-5] 수만 톤급 금속 곡물 사일로의 단면을 순수 흰색 배경 위에 정밀하게 표현한 학술 일러스트레이션이다. 저장된 방대한 양의 옥수수 알곡 내부로 수직 배치된 다채널 디지털 온도 센서 케이블과 기저부 통풍 바닥을 통한 냉각 공기 순환 흐름이 입체적으로 묘사된다 [SRC-107, SRC-120]. 장기 저장 중 결로 및 핫스팟 발생을 방지하는 스마트 모니터링 시스템의 물리적 메커니즘을 명확히 전달한다 [SRC-110].
+
+[나노바나나 생성 프롬프트]
+Highly detailed scientific cutaway illustration of a giant industrial corrugated steel grain silo filled with yellow corn kernels, set against a pure white background. The front half of the silo wall is sliced open to reveal the packed mass of grain inside. Suspended from the silo ceiling are multiple vertical multi-sensor thermocouple cables extending down through the corn core, glowing with subtle color-coded thermal indicators. At the concrete base, perforated aeration floor panels and centrifugal blower fans inject cool blue airflow arrows circulating up through the golden grain pile, preventing internal hotspots and moisture condensation. Clean editorial rendering with realistic metallic textures and volumetric cutaway shading. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

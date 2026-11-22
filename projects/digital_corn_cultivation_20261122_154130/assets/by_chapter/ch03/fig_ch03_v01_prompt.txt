@@ -1,0 +1,12 @@
+이미지 번호: 그림 3-1
+이미지 파일명: fig_ch03_v01.png
+단원: 제3장. 디지털 정밀 파종 공학 및 균일 입모 관리 (ch03)
+결합 절: 3.1 옥수수 종자 수분 흡수, 배유 효소 활성화 및 지온별 출아 생리 메커니즘
+시각화 유형: scientific_anatomy
+제목: [그림 3-1] 옥수수 종자 수분 흡수 및 배유 효소 대사 개시 단면 해부도
+
+[문맥 기반 이미지 설명]
+[그림 3-1] 수분을 흡수한 옥수수(Zea mays) 종자의 종단면에서 배축, 유아, 유근, 배반(scutellum) 및 전분질 배유 구조를 보여주는 과학적 해부도입니다. 배반에서 분비된 지베렐린과 알파-아밀라아제 효소가 전분립을 가용성 당으로 가수분해하여 유근으로 공급하는 생리적 수송 경로를 명확히 묘사합니다. 이는 본문 3.1.1절 및 3.1.2절의 수분 흡수와 효소 활성화 메커니즘을 시각적으로 뒷받침합니다.
+
+[나노바나나 생성 프롬프트]
+Scientific anatomical cross-section illustration of a germinating Zea mays corn seed on a pure white background. The interior reveals the distinct anatomical structures: large endosperm packed with translucent starch granules, scutellum, coleoptile, plumule, and emerging radicle. Shaded arrows illustrate the enzymatic pathway where alpha-amylase breaks down starch reserves into soluble sugars moving toward the growing embryonic axis. Highly detailed editorial biological artwork with soft realistic lighting and clean margins. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

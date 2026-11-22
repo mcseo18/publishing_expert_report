@@ -1,0 +1,12 @@
+이미지 번호: 그림 11-1
+이미지 파일명: fig_ch11_v01.png
+단원: 제11장. 지능형 잡초 인식 및 자율선택제초 시스템 (ch11)
+결합 절: 11.1 옥수수 군락 내 난방제 잡초의 생육 속도 및 잡초 경합 임계 기간(CPWC) 생리
+시각화 유형: photorealistic_field
+제목: [그림 11-1] 옥수수 V3–V4 생육 단계 포장 내 난방제 잡초(바랭이·개비름)와의 광합성 및 양분 경합 현장
+
+[문맥 기반 이미지 설명]
+[그림 11-1] 옥수수 초기 생육 단계인 V3에서 V4 시기에 이랑 사이에 바랭이(Digitaria sanguinalis)와 개비름(Amaranthus retroflexus)이 급속도로 번식하여 군락을 형성한 현장 전경이다. 이 시기는 잡초 경합 임계 기간(CPWC)의 개시 시점으로, 잡초의 생장률이 옥수수의 생장률을 추월하기 시작하면 광합성 유효 방사(PAR) 차단과 토양 수분 손실이 가속화된다. 제때 방제가 이루어지지 않을 경우 유묘기 옥수수의 질소 및 인산 흡수가 심각하게 억제되어 누적 수량 감소로 이어진다 [SRC-103].
+
+[나노바나나 생성 프롬프트]
+Documentary agricultural field photograph of a young maize (Zea mays) field at the V3 to V4 vegetative stage. Healthy green corn seedlings with prominent arching parallel-veined leaves grow in straight rows. The dark brown loam soil between rows is densely colonized by invasive weed seedlings including broadleaf redroot pigweed and creeping large crabgrass. Natural bright morning sunlight casts soft shadows across the soil furrows, highlighting the competitive growth and canopy overlap between the young corn plants and aggressive weeds. Realistic shallow depth of field with sharp focus on foreground corn stalks. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

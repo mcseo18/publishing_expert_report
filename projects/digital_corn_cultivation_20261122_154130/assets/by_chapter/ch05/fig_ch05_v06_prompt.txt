@@ -1,0 +1,12 @@
+이미지 번호: 그림 5-6
+이미지 파일명: fig_ch05_v06.png
+단원: 제5장. 옥수수 생리장애 진단 및 비생물적 스트레스 반응 (ch05)
+결합 절: 5.3 농가 관행 오해 교정: 저온 인산 결핍 자색화 현상과 바이러스병 오진 감별 진단
+시각화 유형: photorealistic_field
+제목: [그림 5-6] 이른 봄 저온기 인산 이동 저하로 인한 옥수수 유묘 하위엽의 균일한 자색화
+
+[문맥 기반 이미지 설명]
+[그림 5-6] 저온 환경에서 토양 내 유효 인산의 뿌리 흡수 및 체내 이동성이 제한되면서 옥수수 유묘의 하위엽에 안토시아닌이 축적된 모습이다. 바이러스성 질환의 모자이크 반점이나 위축 병징과 달리, 잎맥을 따라 전체적으로 매끄럽고 균일한 적자색 발현을 나타낸다. 지온이 상승하고 뿌리 활력이 회복되면 정상 녹색으로 환원되는 일시적 생리장애이다 [SRC-102, SRC-104].
+
+[나노바나나 생성 프롬프트]
+Photorealistic agricultural documentary field shot of young Zea mays seedlings at the V3 growth stage in early spring cold soil. The lower, older leaf blades exhibit a distinct, smooth, deep purple and reddish anthocyanin discoloration spreading uniformly along the margins and midrib, while the newly unfurling central whorl leaf remains pale green. Dark, cold agricultural soil surrounding the base of the stalks under crisp early morning sunlight, with natural depth of field. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

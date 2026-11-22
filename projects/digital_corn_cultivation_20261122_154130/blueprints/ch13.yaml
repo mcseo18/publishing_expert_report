@@ -1,16 +1,69 @@
 chapter_id: ch13
 chapter_number: 13
-title: 제13장. 옥수수 일반/역사/용도의 원리와 디지털 현장 관리
-target_pages: 40
-summary_ko: 디지털 옥수수 재배에서 옥수수 일반/역사/용도의 과학적 메커니즘, 정량 측정 지표 및 디지털 정밀 관리 전략을 다룹니다.
+title: 제13장. 전 세계 옥수수 생산·유통 공급망 및 산업적 다각화 활용
+target_pages: 48
+summary_ko: 글로벌 옥수수 3대 벨트(미국 콘벨트, 브라질 세하두, 중국 동북 3성)의 기후·물류 경쟁력과 곡물 메이저의 유통 네트워크를 정량 분석한다. 배유 전분 기반 바이오에탄올 공정 및 PLA 생분해성 바이오 플라스틱 등 신소재 가치사슬을
+  규명한다. 농가와 가공 기업의 가격 변동 리스크 관행을 교정하고 글로벌 디지털 곡물 트레이딩 실증을 제시한다.
 sections:
-- 13.1 기초 원리 및 개념
-- 13.2 정량 측정·모델링
-- 13.3 국내외 기준 비교
-- 13.4 디지털 현장 적용
+- 13.1 글로벌 주요 옥수수 벨트(미국, 브라질, 중국, 우크라이나)의 생산 체계 및 물류망 구조
+- 13.2 글로벌 곡물 유통 메이저(ABCD) 물류 인프라, 해상 운임(BDI) 및 수급 예측 정량 기준
+- '13.3 농가·가공기업 오해 교정: 단순 현물 가격 의존 관행과 선물(CBOT) 헤지 부재 리스크 진단'
+- '13.4 현장 실증: 전분당·사료·바이오에탄올·PLA 바이오 플라스틱 산업 밸류체인 및 부산물 자원화'
+tables:
+- table_id: 표 13-1
+  title: 전 세계 주요 옥수수 수출국(미국, 브라질, 아르헨티나, 우크라이나)의 생산 단가 및 물류 경쟁력
+  columns:
+  - 국가/지역
+  - ha당 평균 수량(톤)
+  - 부셸당 생산 원가($)
+  - 내륙/항만 물류비 비중(%)
+  - 주요 수출 시장
+  purpose: 글로벌 곡물 시장에서의 국가별 원가 구조 및 공급망 취약점 분석
+- table_id: 표 13-2
+  title: 옥수수 산업적 다운스트림(식품·사료·바이오화학) 가공 용도별 요구 품위 규격 및 부가가치
+  columns:
+  - 가공 용도
+  - 요구 품위 기준(수분, 용적중, 파립률)
+  - 주요 변환 공정
+  - 톤당 부가가치 창출액
+  - 주요 부산물 및 용도
+  purpose: 곡실 옥수수의 단순 사료용 소비를 넘어선 고부가가치 바이오 신소재 가치사슬 제시
+visuals:
+- fig_id: 그림 13-01
+  type: A
+  aspect_ratio: '4:3'
+  method: nano_banana_pro
+  title: 미국 미시시피강 연안 대형 곡물 엘리베이터에서 파나막스급 벌크선으로 옥수수를 선적하는 실사
+  description: 수만 톤의 황금빛 옥수수가 컨베이어를 통해 화물선 홀드 안으로 쏟아져 들어가는 국제 곡물 터미널 현장
+- fig_id: 그림 13-02
+  type: B
+  aspect_ratio: '4:3'
+  method: nano_banana_pro
+  title: 옥수수 전분으로 압출 성형된 생분해성 PLA 펠릿 및 의료·포장용 시제품 표본
+  description: 천연 옥수수 알갱이와 이를 화학적으로 전환해 합성한 투명 PLA 펠릿 및 친환경 컵 접사 비교
+- fig_id: 그림 13-03
+  type: C
+  aspect_ratio: '16:9'
+  method: nano_banana_pro
+  title: 옥수수 습식 분쇄(Wet Milling) 및 바이오에탄올 발효·PLA 합성 전 과정 공정 계통도
+  description: 침지, 마쇄, 전분 분리 후 포도당 당화, 젖산 발효, 락타이드 중합을 거치는 화학 공학 흐름도
+- fig_id: 그림 13-04
+  type: D
+  aspect_ratio: '16:9'
+  method: python
+  title: 최근 20년간 글로벌 옥수수 생산량 추이 및 용도별(사료, 에탄올, 식용, 산업용) 소비 비중 변화 곡선
+  description: 글로벌 생산량의 지속적 증가와 바이오에탄올 의무 혼합에 따른 산업용 수요 비중 급증 적층 그래프
 keywords_ko:
-- 옥수수 일반/역사/용도
+- 글로벌 옥수수 벨트
+- 곡물 공급망
+- 바이오에탄올
+- PLA 생분해 플라스틱
+- 곡물 선물 헤지
 keywords_en:
-- 'Corn: General Information/History/Uses'
+- global corn belt
+- grain supply chain
+- bioethanol
+- PLA bioplastic
+- CBOT hedging
 evidence_packet: digital_corn_cultivation_20261122_154130_evidence.json
 assigned_sources: []

@@ -1,0 +1,12 @@
+이미지 번호: 그림 6-6
+이미지 파일명: fig_ch06_v06.png
+단원: 제6장. 디지털 토양 물리·화학성 평가 및 경반층 관리 (ch06)
+결합 절: 6.2 관입저항(Cone Index) 및 전자기유도(EM38) 정량 기준
+시각화 유형: photorealistic_field
+제목: [그림 6-6] 전자기유도(EM38) 비접촉 센서를 활용한 토양 전기전도도(ECa) 포장 스캐닝
+
+[문맥 기반 이미지 설명]
+[그림 6-6] 비접촉식 전자기유도 센서인 EM38 장비를 소형 차량 후방에 장착하여 옥수수 수확 후 포장의 겉보기 토양 전기전도도(ECa)를 정밀 스캐닝하는 모습입니다. 센서는 토양을 교란하지 않고 심토의 수분 분포, 이온 농도, 물리적 치밀도 변화를 연속적인 지리 데이터로 취득합니다. 이를 통해 포장 전체의 수리적 특성과 경반층 유발 불투수 구역을 광역 공간 데이터로 시각화할 수 있습니다 [SRC-102].
+
+[나노바나나 생성 프롬프트]
+Photorealistic field photograph of an all-terrain vehicle towing an EM38 electromagnetic induction ground conductivity sensor sled across an expansive corn stubble field. The long white sensor housing glides smoothly inches above the soil surface without disturbing it. High-precision GNSS antenna mounted on top of the rig. Wide landscape view under a soft overcast sky, capturing precision agricultural surveying in action. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

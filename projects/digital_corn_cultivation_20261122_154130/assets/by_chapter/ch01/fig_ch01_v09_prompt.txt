@@ -1,0 +1,12 @@
+이미지 번호: 그림 1-9
+이미지 파일명: fig_ch01_v09.png
+단원: 제1장. 옥수수의 기원, 분류 체계 및 식물학적 형태생리 (ch01)
+결합 절: 1.4 현장 실증: 용도별 최적 군락 수광 아키텍처 구축 및 생체 데이터 획득
+시각화 유형: photorealistic_field
+제목: [그림 1-9] 옥수수 군락 내 광양자 센서 및 마이크로 센서 기반 생체 데이터 실시간 획득
+
+[문맥 기반 이미지 설명]
+[그림 1-9] 옥수수 개체군 내부의 수광 효율과 미기후를 정량화하기 위해 상·중·하층별로 설치된 광합성유효복사(PAR) 광양자 센서 및 온습도 센서 측정 현장이다. 식물체 캐노피 사이사이에 고정된 알루미늄 타워와 센서 노드가 군락 내 광 투과율(Light Penetration)과 엽온 데이터를 디지털 로거로 실시간 전송한다 [SRC-103]. 수집된 다채널 환경-생체 데이터는 수광 아키텍처 최적화와 바이오매스 생산성 예측 모델 구축에 활용된다.
+
+[나노바나나 생성 프롬프트]
+Field documentary photograph of precision digital agronomy sensors deployed in a dense maize canopy. A slender anodized aluminum vertical mast stands between two corn rows, supporting miniature downward- and upward-facing PAR quantum light sensors positioned at three vertical heights: above the tassel, near the developing corn ear, and near the basal stem. Thin weather-resistant data cables lead to a weatherproof solar-powered datalogger box attached to the mast. Morning sunlight glints off sensor diffusers amid lush green corn foliage and developing silk tassels. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

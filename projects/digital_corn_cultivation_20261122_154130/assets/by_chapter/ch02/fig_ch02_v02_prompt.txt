@@ -1,0 +1,12 @@
+이미지 번호: 그림 2-2
+이미지 파일명: fig_ch02_v02.png
+단원: 제2장. 옥수수 생태형 분류 및 디지털 초고속 표현형 기반 품종 선발 (ch02)
+결합 절: 2.1 숙기군(조·중·만생종)의 GDD 요구도 및 환경 적응 생리
+시각화 유형: scientific_anatomy
+제목: [그림 2-2] GDD 임계점 도달에 따른 옥수수 생장점의 생식생장 전환 및 웅수 원기 분화
+
+[문맥 기반 이미지 설명]
+[그림 2-2] 작물이 요구하는 기준 유효적산온도(GDD)에 도달했을 때 옥수수 줄기 기부 생장점에서 발생하는 화아 분화 과정을 정밀 해부학적으로 묘사한 일러스트이다. 엽원기를 연속적으로 형성하던 영양생장기 원추 생장점이 적산온도 임계치에 도달함에 따라 웅수(수꽃차례) 원기로 급격한 형태적 전환을 이룬다. 이는 숙기군별 적산온도 요구도와 환경 온도 반응이 옥수수의 생식생장 스위치를 정밀하게 제어함을 생리학적으로 입증한다 [SRC-100].
+
+[나노바나나 생성 프롬프트]
+Scientific cross-section illustration on a pure clean white background showing the anatomical longitudinal split of a developing Zea mays corn stalk stem base. The delicate apical meristem transition is revealed, evolving from a vegetative dome into a microscopic branch tassel primordium with nascent spikelet nodes. Rich botanical rendering with cellular parenchyma layers, vascular bundles in translucent olive-green and gold tones, and crisp detailed cutaway views. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

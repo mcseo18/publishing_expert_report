@@ -1,0 +1,12 @@
+이미지 번호: 그림 10-5
+이미지 파일명: fig_ch10_v05.png
+단원: 제10장. 데이터 기반 옥수수 병해충 예찰 및 정밀 방제 공학 (ch10)
+결합 절: 10.2 유효적산온도 기반 부화 예측 및 경제적 피해 허용 수준(ET, EIL) 정량 기준
+시각화 유형: scientific_anatomy
+제목: [그림 10-5] 해충 밀도에 따른 수량 손실 곡선과 경제적 피해 한계 수준(EIL) 경계
+
+[문맥 기반 이미지 설명]
+[그림 10-5] 옥수수 포장 내 조명나방 및 열대거세미나방 밀도 증가에 따른 수량 감수액과 단위 면적당 방제 비용이 교차하는 경제적 피해 한계 수준(EIL) 및 사전 방제 임계치(ET)를 나타낸 학술 도해이다. 관행적인 무조건적 방제와 달리, 방제에 투입되는 비용과 피해로 인한 기대 손실이 균형을 이루는 과학적 방제 결정점을 보여준다. 정밀 예찰 데이터에 기초하여 농약 오남용을 억제하고 경제적 타당성을 확보하는 IPM 정량화 프레임워크를 제공한다 [SRC-103].
+
+[나노바나나 생성 프롬프트]
+Scientific biological illustration on a pure white background illustrating the agronomic pest population dynamics in a corn crop. Depicting a corn plant yielding smaller and damaged cobs as pest density scales up. Visual threshold markers delineate the Economic Threshold (ET) and Economic Injury Level (EIL), separating sub-economic infestation from critical yield loss zones. Clean architectural cross-sections of corn stalks with progressive borer damage align beneath the population progression. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

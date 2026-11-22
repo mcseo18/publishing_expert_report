@@ -1,16 +1,69 @@
 chapter_id: ch07
 chapter_number: 7
-title: 제7장. 물관리의 원리와 디지털 현장 관리
-target_pages: 40
-summary_ko: 디지털 옥수수 재배에서 물관리의 과학적 메커니즘, 정량 측정 지표 및 디지털 정밀 관리 전략을 다룹니다.
+title: 제7장. 옥수수 수분 생리 및 스마트 정밀 관개 공학
+target_pages: 46
+summary_ko: 증산과 기공 제어의 증발산(ETc) 메커니즘을 밝히고 토양수분장력(pF)과 FDR 체적수분 센싱 체계를 정립한다. 피벗 및 점적 관개 시스템의 가변관개(VRI) 구역 제어 기준을 설정한다. 농가에서 흔히 행하는 육안 건조 시 관수하는
+  지연 관개 관행을 교정하고 기상-토양 연동 자동 관개 알고리즘을 실증한다.
 sections:
-- 7.1 기초 원리 및 개념
-- 7.2 정량 측정·모델링
-- 7.3 국내외 기준 비교
-- 7.4 디지털 현장 적용
+- 7.1 옥수수 증발산(ETc) 모델(FAO-56 듀얼 챔버 계수) 및 수분 흡수 생리
+- 7.2 FDR 체적수분센서 및 토양수분장력(-30~-50kPa 임계치) 정량 기준
+- '7.3 농가 관행 오해 교정: 한낮 시들음 발생 후 관수하는 지연 관개 피해 진단'
+- '7.4 현장 실증: 센터피벗 가변관개(VRI) 및 지중점적(SDI) 자동 관수 시스템 운용'
+tables:
+- table_id: 표 7-1
+  title: 옥수수 생육단계별 작물계수(Kc), 일일 수분 소모량 및 수분 민감도 지수(Ky)
+  columns:
+  - 생육 단계
+  - 표준 작물계수(Kc)
+  - 일평균 물 소모량(mm/일)
+  - 수분 스트레스 민감도(Ky)
+  - 관수 최우선 순위
+  purpose: 한정된 수자원 조건에서 수량 손실을 최소화하는 단계별 정밀 관수 계획 수립
+- table_id: 표 7-2
+  title: 토성별 옥수수 최적 유효수분 고갈율(MAD) 및 관개 개시 장력 임계치
+  columns:
+  - 토성 구분
+  - 포장용수량(%)
+  - 위조점(%)
+  - 허용 고갈율(MAD, %)
+  - 관개 시작 토양장력(kPa)
+  purpose: 토양 센서 기반 자동 관수 밸브 개폐 트리거 설정을 위한 물리적 지표
+visuals:
+- fig_id: 그림 7-01
+  type: A
+  aspect_ratio: '4:3'
+  method: nano_banana_pro
+  title: 초대형 센터피벗 관개기가 가변 노즐로 옥수수 원형 포장에 정밀 살수하는 현장
+  description: 광활한 옥수수 밭 상공에서 회전하며 구역별 처방전에 따라 수량을 조절 살포하는 피벗 시스템 실사
+- fig_id: 그림 7-02
+  type: B
+  aspect_ratio: '4:3'
+  method: nano_banana_pro
+  title: 지중 30cm에 매설된 점적 튜브 주변의 수분 확산 습윤 패턴 단면 표본
+  description: 지중점적 라인에서 방출된 수분이 중력과 모세관 현상으로 구형 습윤 구역을 형성한 토양 프로파일 접사
+- fig_id: 그림 7-03
+  type: C
+  aspect_ratio: '16:9'
+  method: nano_banana_pro
+  title: FAO-56 펜만-몬테이스(Penman-Monteith) 증발산 계산 및 가변관수(VRI) 폐루프 제어 블록도
+  description: 일사량, 풍속, 온습도 기상대 데이터와 토양 FDR 센서가 결합된 지능형 펌프 제어 흐름도
+- fig_id: 그림 7-04
+  type: D
+  aspect_ratio: '16:9'
+  method: python
+  title: 옥수수 출사기 전후 토양수분장력 저하에 따른 일일 증산 속도 및 기공전도도 반응 곡선
+  description: 토양수분장력이 -50kPa 이하로 떨어질 때 기공이 급격히 닫히는 비선형 감쇠 특성 그래프
 keywords_ko:
-- 물관리
+- 가변관개(VRI)
+- 증발산량
+- 작물계수
+- 토양수분장력
+- 지중점적
 keywords_en:
-- Water Management
+- variable rate irrigation
+- evapotranspiration
+- crop coefficient
+- soil matric potential
+- subsurface drip irrigation
 evidence_packet: digital_corn_cultivation_20261122_154130_evidence.json
 assigned_sources: []

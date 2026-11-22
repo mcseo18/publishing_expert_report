@@ -1,0 +1,12 @@
+이미지 번호: 그림 13-7
+이미지 파일명: fig_ch13_v07.png
+단원: 제13장. 전 세계 옥수수 생산·유통 공급망 및 산업적 다각화 활용 (ch13)
+결합 절: 13.3 농가·가공기업 오해 교정: 단순 현물 가격 의존 관행과 선물(CBOT) 헤지 부재 리스크 진단
+시각화 유형: scientific_anatomy
+제목: [그림 13-7] 저장 옥수수 알곡의 수분 활성도와 배유·배아 호흡 대사 생화학 기전
+
+[문맥 기반 이미지 설명]
+[그림 13-7] 단일 옥수수 알곡의 종단면을 흰색 배경에 극도로 정밀하게 묘사한 생물학적 메커니즘 해부도이다. 과피, 호분층, 각질 배유, 분질 배유, 그리고 배아 조직이 섬세하게 층별로 채색되어 있다. 수분 활성도 및 온도 상승에 따라 배아 세포 내에서 발생하는 미토콘드리아 호흡, 자유 지방산 축적, 전분 분해 효소의 활성화 경로를 시각화하여 저장 곡물의 품질 유지 메커니즘을 규명한다 [SRC-107, SRC-111].
+
+[나노바나나 생성 프롬프트]
+Detailed scientific anatomical cross-section of a single Zea mays corn kernel on an isolated clean white background. Hand-painted editorial scientific realism illustrating the internal histology: tough outer pericarp, cellular aleurone boundary, hard glassy vitreous endosperm packed with starch granules, softer floury endosperm core, and the living germ embryo showing the scutellum, coleoptile, and radicle. Microscopic inset bubbles highlight biochemical respiration inside embryo cells, oxygen uptake, and hydrolytic enzyme release converting starch into soluble sugars under high humidity. Elegant natural colors, refined textures, and precise anatomical cross-section rendering. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

@@ -1,0 +1,12 @@
+이미지 번호: 그림 7-5
+이미지 파일명: fig_ch07_v05.png
+단원: 제7장. 옥수수 수분 생리 및 스마트 정밀 관개 공학 (ch07)
+결합 절: 7.2 FDR 체적수분센서 및 토양수분장력(-30~-50kPa 임계치) 정량 기준
+시각화 유형: photorealistic_macro
+제목: [그림 7-5] 디지털 텐시오미터 압력 게이지와 -30~-50kPa 관개 임계 영역
+
+[문맥 기반 이미지 설명]
+[그림 7-5] 토양 내 다공성 세라믹 컵과 결합된 정밀 디지털 텐시오미터 압력 변환 장치가 -35kPa를 계측하고 있는 접사 사진입니다. 옥수수 재배 시 건조 스트레스와 광합성 저하가 유발되는 임계 토양수분장력(ψcrit)은 -30kPa에서 -50kPa 범위로 규정됩니다 [SRC-103]. 이 측정치는 관개 밸브를 자동으로 구동시키기 위한 물리적 관개 개시 트리거 신호로 활용됩니다.
+
+[나노바나나 생성 프롬프트]
+Ultra-sharp macro photograph of a laboratory-grade digital soil tensiometer installed in silty loam soil adjacent to the base of a Zea mays corn stalk. The circular backlit electronic pressure transducer gauge crisply displays the measurement value of negative thirty-five kilopascals with indicator LEDs. Soil moist crumbly aggregate texture around the sealed ceramic insertion tube, realistic laboratory lighting, vivid clarity, macro lens perspective with dramatic focus. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

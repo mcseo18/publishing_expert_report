@@ -1,0 +1,12 @@
+이미지 번호: 그림 8-2
+이미지 파일명: fig_ch08_v02.png
+단원: 제8장. 옥수수 양분 흡수 동태 및 실시간 데이터 기반 양분 관리 (ch08)
+결합 절: 8.1 옥수수 N-P-K 체내 전류 생리 및 단계별 양분 흡수 속도 역학
+시각화 유형: photorealistic_macro
+제목: [그림 8-2] 옥수수 근계 표면의 근모 발달과 국소 인산·질소 흡수 미세 환경
+
+[문맥 기반 이미지 설명]
+[그림 8-2] 생육 초기 옥수수 측근 표면에서 밀생하는 미세 근모 구조와 주변 토양 공극 사이의 접촉 계면을 초근접 촬영한 현미경 사진입니다. 인산염의 제한된 이동성을 극복하기 위해 표층 근모가 토양 입자 사이로 뻗어 나가 미세 접촉대를 형성하는 구조를 실물로 보여줍니다. 초기 뿌리 발달기 인산 흡수율 저하가 전체 생육 정체로 이어지는 생리적 근거를 명확히 제시합니다 [SRC-106].
+
+[나노바나나 생성 프롬프트]
+Ultra-sharp macro photograph of live Zea mays lateral root surface growing through dark crumbly organic loam soil. Densely packed microscopic white root hairs extending into soil micro-pores, enveloping granular fertilizer mineral particles and glistening soil moisture films. Intense natural scientific macro lens lighting with shallow depth of field, revealing cellular textures of root epidermal cells, cellular elongation zone, and moisture droplets adhering to delicate root hair fibers. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

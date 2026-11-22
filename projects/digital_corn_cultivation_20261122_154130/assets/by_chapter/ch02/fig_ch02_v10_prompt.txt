@@ -1,0 +1,12 @@
+이미지 번호: 그림 2-10
+이미지 파일명: fig_ch02_v10.png
+단원: 제2장. 옥수수 생태형 분류 및 디지털 초고속 표현형 기반 품종 선발 (ch02)
+결합 절: 2.4 현장 실증: UAV 다분광 정사영상 기반 우수 품종 선발 및 지역 맞춤형 배치
+시각화 유형: scientific_anatomy
+제목: [그림 2-10] UAV 다분광 정사영상 기반 옥수수 품종별 식생지수(NDVI) 및 캐노피 밀도 공간 분석 모델
+
+[문맥 기반 이미지 설명]
+[그림 2-10] 무인기 다분광 정사영상을 가공하여 옥수수 품종 시험구별 식생지수(NDVI)와 수관 활력도를 정밀 시각화한 학술 렌더링이다. 각 시험구 구획별로 엽록소 활력도와 수관 부피의 차이가 에메랄드 그린과 따뜻한 금색의 스펙트럼 히트맵 그라데이션으로 명확히 구분된다. 연구자는 이 정량적 지표를 지역 기상 데이터와 결합하여 최적의 온도 이용 효율을 나타내는 품종을 과학적으로 선발할 수 있다 [SRC-100, SRC-101].
+
+[나노바나나 생성 프롬프트]
+High-precision scientific aerial visualization on a clean white background depicting a multi-plot maize breeding trial orthomosaic. Rectangular research plots of Zea mays crops show color-graded spectral vitality layers, shifting from vibrant emerald green to warm gold and cyan reflecting canopy vegetation index gradients. Crisp boundary divisions between individual corn plot blocks, rendered with realistic crop foliage textures and high-altitude photographic clarity. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

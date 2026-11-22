@@ -1,0 +1,12 @@
+이미지 번호: 그림 10-9
+이미지 파일명: fig_ch10_v09.png
+단원: 제10장. 데이터 기반 옥수수 병해충 예찰 및 정밀 방제 공학 (ch10)
+결합 절: 10.4 현장 실증: 스마트 트랩 IoT 데이터 연동 농업용 드론 야간 정밀 국소 방제
+시각화 유형: photorealistic_field
+제목: [그림 10-9] 옥수수 포장 내 설치된 태양광 IoT 스마트 페로몬 트랩 스테이션
+
+[문맥 기반 이미지 설명]
+[그림 10-9] 울창한 옥수수 생육 군락 사이의 이랑에 견고하게 설치된 IoT 스마트 페로몬 트랩 장비를 촬영한 농업 연구 포장 사진이다. 상단에 부착된 소형 태양광 패널과 환경 온·습도 센서, 성페로몬 유인 깔때기 내부의 광학 계수 카메라 렌즈가 선명하게 드러나 있다. 포획된 성충 데이터를 실시간 무선 통신으로 전송하여 적산온도 모델과 결합된 방제 경보를 생성하는 데이터 수집의 최전선을 보여준다 [SRC-100].
+
+[나노바나나 생성 프롬프트]
+Field documentary photograph taken at late afternoon golden hour in an expansive cornfield. A specialized digital IoT pheromone trap is mounted on a slender stainless-steel pole between tall, lush green corn rows. The trap features a compact solar panel on top, environmental temperature-humidity sensor probes, a translucent pheromone lure chamber, and a weatherproof micro-optical sensor housing. Long shadows stretch across the fertile loamy soil, with the vigorous canopy of Zea mays framing the intelligent monitoring unit. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

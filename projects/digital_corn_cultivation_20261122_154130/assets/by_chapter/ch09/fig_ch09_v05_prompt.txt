@@ -1,0 +1,12 @@
+이미지 번호: 그림 9-5
+이미지 파일명: fig_ch09_v05.png
+단원: 제9장. 작물 생육·양분 모델링 및 디지털 트윈 시뮬레이션 (ch09)
+결합 절: 9.2 유전모수(Genetic Coefficients: P1, P2, P5, G2, G3) 캘리브레이션 정량 기준
+시각화 유형: photorealistic_field
+제목: [그림 9-5] 생육 단계별 유효적산온도(GDD) 추적을 위한 농업기상 시험포장 표현형 측정
+
+[문맥 기반 이미지 설명]
+[그림 9-5] 농업연구소 시험 포장에서 연구자가 옥수수의 엽령(V-stage) 전개와 출사기(R1) 도달 시점을 계측하는 현장 장면입니다. 품종별 P1(개화 소요 유효적산온도) 계수를 보정하기 위해 캐노피 상단에 설치된 소형 자동 일사·온습도 센서 타워가 배경에 배치되어 있습니다. 다변량 최적화 알고리즘에 투입할 현장 생육 지표 관측 과정을 생생한 다큐멘터리 사진으로 기록합니다 [SRC-105, SRC-110].
+
+[나노바나나 생성 프롬프트]
+Photorealistic documentary agricultural research station photograph of an agronomist in field boots inspecting a row of tall green maize plants (Zea mays) in early tassel stage. The agronomist holds a digital measuring clip clipboard. In the background between planting rows, a compact micrometeorological tripod station with solar radiation sensor and ambient temp probe stands under bright, natural summer morning sunlight. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

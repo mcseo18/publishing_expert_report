@@ -1,0 +1,12 @@
+이미지 번호: 그림 3-8
+이미지 파일명: fig_ch03_v08.png
+단원: 제3장. 디지털 정밀 파종 공학 및 균일 입모 관리 (ch03)
+결합 절: 3.4 현장 실증: RTK-GPS 연동 고속 가변 파종 및 UAV 유묘 카운팅 보파 처방
+시각화 유형: photorealistic_field
+제목: [그림 3-8] RTK-GPS 안테나 탑재 고속 가변 파종 트랙터의 포장 주행
+
+[문맥 기반 이미지 설명]
+[그림 3-8] 센티미터급 정밀도를 제공하는 RTK-GPS 수신 안테나와 가변 파종(VRS) 제어기를 장착한 대형 스마트 트랙터가 광활한 포장에서 옥수수를 고속 파종하는 전경입니다. 캐빈 내부 모니터에는 전자 토양 전도도 맵과 실시간 파종 밀도 처방이 동기화되며, 이랑을 따라 균일한 간격으로 고속 배종 작업이 진행됩니다 [SRC-120]. 3.4.1절의 RTK 폐쇄 루프 가변 파종 시스템을 현장감 있게 조명합니다.
+
+[나노바나나 생성 프롬프트]
+Wide-angle photorealistic agricultural documentary photograph of a modern 250-horsepower tractor equipped with dual rooftop RTK-GPS receiver domes pulling an advanced 16-row high-speed vacuum planter through an expansive undulating corn field during morning light. Fine dust rises gently from the closing wheels behind the planter, leaving parallel straight drill lines across dark cultivated soil under a crisp blue sky. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

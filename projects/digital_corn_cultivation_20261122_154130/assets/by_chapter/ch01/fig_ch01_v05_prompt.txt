@@ -1,0 +1,12 @@
+이미지 번호: 그림 1-5
+이미지 파일명: fig_ch01_v05.png
+단원: 제1장. 옥수수의 기원, 분류 체계 및 식물학적 형태생리 (ch01)
+결합 절: 1.2 배유 조성별 분류군(마치종·단옥수수·찰옥수수)의 이화학적 정량 기준
+시각화 유형: photorealistic_macro
+제목: [그림 1-5] 요오드 정색 반응을 통한 마치종과 찰옥수수 배유 아밀로스 정량 판별
+
+[문맥 기반 이미지 설명]
+[그림 1-5] 옥수수 종실을 절단한 후 요오드 용액을 처리하여 아밀로스 함량 차이를 정색 반응으로 판별하는 이화학 분석 장면이다. 아밀로스 함량이 높은 일반 마치종 배유는 짙은 청남색(blue-black)으로 강하게 염색되는 반면, 아밀로펙틴이 거의 전부인 찰옥수수 배유는 적갈색 내지 적자색(reddish-purple)으로 발색된다 [SRC-104]. 이와 같은 화학적 염색법과 기기 분석은 품종 순도 검정 및 가공 적성 평가의 핵심 기준선으로 활용된다.
+
+[나노바나나 생성 프롬프트]
+Macro scientific photograph of halved maize kernels placed in a laboratory petri dish undergoing an iodine staining test for starch amylose quantification. One half kernel from dent corn shows an intense dark indigo blue-black stained endosperm surface from amylose-iodine complexing. The adjacent halved kernel from waxy corn shows a distinct reddish-brown to purple staining due to pure branched amylopectin content. A precision glass dropper dispensing an amber-tinted iodine solution droplet is visible above the seeds, with laboratory pipettes and micro-centrifuge tubes blurred in the background. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

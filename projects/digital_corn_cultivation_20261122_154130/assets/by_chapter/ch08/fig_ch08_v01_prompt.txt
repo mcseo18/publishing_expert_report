@@ -1,0 +1,12 @@
+이미지 번호: 그림 8-1
+이미지 파일명: fig_ch08_v01.png
+단원: 제8장. 옥수수 양분 흡수 동태 및 실시간 데이터 기반 양분 관리 (ch08)
+결합 절: 단원 개요
+시각화 유형: scientific_anatomy
+제목: [그림 8-1] 옥수수 체내 3대 다량원소(N-P-K) 흡수 경로 및 통도조직 수송 메커니즘
+
+[문맥 기반 이미지 설명]
+[그림 8-1] 토양 근계에서 흡수된 질산태 질소, 인산 이온, 칼륨 이온이 옥수수 줄기의 목부와 사부 도관을 따라 체내 상부로 전류되는 생리적 경로를 도해합니다. 초기 영양생장기 동안 뿌리에서 흡수된 무기 양분이 증산류를 타고 신초 엽신과 마디 조직으로 분배되는 수송 체계를 시각화합니다. 본 도해는 전량 기비 위주의 시비 한계를 극복하고 시기별 요구량에 맞춘 정밀 양분 관리의 기초 생리를 설명합니다 [SRC-106].
+
+[나노바나나 생성 프롬프트]
+Scientific botanical cross-section illustration of a healthy Zea mays maize plant on a clean white background. Cutaway anatomical view revealing the internal vascular cylinder of the stalk, showing microvascular bundles with xylem vessels carrying upward flowing aqueous mineral ions and phloem sieve tubes distributing synthesized organic assimilates. Color-coded flowing particles depict nitrogen compounds, phosphate molecules, and potassium ions ascending from spreading fibrous root hairs through stalk internodes toward vibrant green arching maize leaves and nascent ear shoot, depicted in fine editorial botanical textbook style. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

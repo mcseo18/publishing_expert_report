@@ -1,0 +1,12 @@
+이미지 번호: 그림 4-10
+이미지 파일명: fig_ch04_v10.png
+단원: 제4장. 옥수수 생육 단계별 발달 생리 및 수관 아키텍처 (ch04)
+결합 절: 4.4 현장 실증: 지상 라이다(LiDAR) 및 다분광 드론을 활용한 3D 수관 아키텍처 복원
+시각화 유형: photorealistic_field
+제목: [그림 4-10] 다분광 드론과 지상 라이다를 이용한 정밀 옥수수 포장 수관 데이터 수집
+
+[문맥 기반 이미지 설명]
+[그림 4-10] 옥수수 포장 상공에서 자율 비행하며 다분광 센서로 작물 수관을 관측하는 드론과 지표에서 정밀 스캐닝을 수행하는 지상 라이다 삼각대를 담은 첨단 스마트 농업 현장 사진입니다. 정렬된 옥수수 이랑 사이로 레이저 스캐너가 수직 줄기 구조와 지주근 발달 상태를 기록하고, 상공의 드론이 전 포장의 분광 지수를 수집하는 이중 센서 통합 모니터링 체계를 보여줍니다. 디지털 농업에서 3D 작물 아키텍처 복원이 구현되는 실증적 연구 환경을 제공합니다 [SRC-102, SRC-121].
+
+[나노바나나 생성 프롬프트]
+Photorealistic documentary field photograph of an agricultural research maize field at sunset. A modern quadcopter drone carrying a multispectral payload hovers steadily over tall, uniform green corn rows. In the foreground along the tractor row, a carbon-fiber tripod holds a high-precision terrestrial LiDAR 3D laser scanner actively pulsing invisible beams toward the dense stalks and exposed brace roots under warm golden hour lighting. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

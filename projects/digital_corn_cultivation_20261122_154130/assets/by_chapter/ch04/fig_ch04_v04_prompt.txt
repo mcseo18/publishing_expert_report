@@ -1,0 +1,12 @@
+이미지 번호: 그림 4-4
+이미지 파일명: fig_ch04_v04.png
+단원: 제4장. 옥수수 생육 단계별 발달 생리 및 수관 아키텍처 (ch04)
+결합 절: 4.2 군락 소광계수(k), 엽면적 지수(LAI) 및 지주근(Brace root) 역학 기준
+시각화 유형: scientific_anatomy
+제목: [그림 4-4] 군락 수관 층위별 광 감쇄 프로파일과 소광계수(k) 투광률 모델
+
+[문맥 기반 이미지 설명]
+[그림 4-4] 옥수수 군락 내부로 침투하는 태양 복사에너지의 수직 감쇄 양상을 비어-람베르트(Beer-Lambert) 법칙에 근거하여 시각화한 과학 해부도입니다. 직립형 상위엽을 통과하며 산란된 빛이 중위엽 및 하위엽 그늘 층으로 도달하는 광선 다발의 감쇠 패턴과 엽면적 지수(LAI) 증가에 따른 소광계수(k)의 물리적 작용을 정밀한 단면으로 나타냅니다. 균형 잡힌 수관 아키텍처가 하위엽 광합성 활성도 유지에 미치는 영향을 학술적으로 설명합니다 [SRC-104].
+
+[나노바나나 생성 프롬프트]
+Scientific cross-section illustration of a dense maize crop canopy on a pure white background, demonstrating vertical solar radiation penetration. Golden parallel sunbeams enter vertically from the top, filtering through erect upper leaves, scattering partially at the middle canopy layer, and showing attenuated faint light rays reaching the lower horizontal shaded leaves near the soil line. Richly shaded botanical foliage with clear visual gradient representing light attenuation and leaf area distribution. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

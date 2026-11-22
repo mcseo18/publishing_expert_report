@@ -1,0 +1,12 @@
+이미지 번호: 그림 4-8
+이미지 파일명: fig_ch04_v08.png
+단원: 제4장. 옥수수 생육 단계별 발달 생리 및 수관 아키텍처 (ch04)
+결합 절: 4.3 농가 관행 오해 교정: 초기 과도한 엽면적 확보(웃자람)와 유효 수량 저하 포장 진단
+시각화 유형: photorealistic_macro
+제목: [그림 4-8] 탄소동화산물 분배 불균형에 따른 옥수수 이삭 선단 불임(Tip abortion) 단면
+
+[문맥 기반 이미지 설명]
+[그림 4-8] 과도한 영양생장 바이오매스 집중으로 인해 생식 싱크(Sink)로의 광합성 산물 이동이 저해되어 발생한 이삭 끝마름(Tip abortion)과 정상 이삭의 종단면 매크로 비교 사진입니다. 정상 이삭은 황금빛 자실이 선단까지 균일하게 발달한 반면, 수량 포장(Yield drag)이 발생한 이삭은 선단부 배주가 위축되고 퇴화하여 갈변된 양상을 보입니다. 초기 LAI 과다 확보가 종실 충실도에 미치는 생리적 장해를 실증합니다 [SRC-104].
+
+[나노바나나 생성 프롬프트]
+High-detail macro photography of two halved maize ears cut longitudinally side-by-side on a dark slate laboratory surface. The top healthy ear features uniformly plump, golden-yellow kernels packed tightly to the very apex of the white cob core. The bottom ear shows clear tip abortion, where the apical third displays shriveled, underdeveloped, pale-whitish aborted ovules caused by assimilate starvation during early grain filling, highlighted under studio lighting. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

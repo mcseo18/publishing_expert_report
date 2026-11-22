@@ -1,0 +1,12 @@
+이미지 번호: 그림 11-5
+이미지 파일명: fig_ch11_v05.png
+단원: 제11장. 지능형 잡초 인식 및 자율선택제초 시스템 (ch11)
+결합 절: 11.2 실시간 비전 딥러닝 기반 잡초 검출 정확도(mAP 0.92 이상) 및 스팟 분무 기준
+시각화 유형: photorealistic_macro
+제목: [그림 11-5] 초고속 솔레노이드 PWM 스팟 노즐의 타깃 잡초 국소 미세 액적 분사 메커니즘
+
+[문맥 기반 이미지 설명]
+[그림 11-5] 밀리초 단위로 응답하는 고속 전자 밸브형 펄스폭 변조(PWM) 노즐이 잡초 중심부를 향해 원추형 미세 제초제 액적을 직사하는 순간을 포착한 초고속 매크로 사진이다. 바로 인접한 옥수수 잎 표면에는 비산 액적이 전혀 닿지 않도록 정밀 제어된 분무 패턴을 보여준다. 이러한 초정밀 국소 살포 기법은 관행 전면 살포 대비 유효 활성 성분의 투입량을 70% 이상 절감하면서 약해 발생을 방지한다 [SRC-104].
+
+[나노바나나 생성 프롬프트]
+High-speed macro freeze-frame photograph of a precision brass agricultural PWM solenoid nozzle spraying a concentrated, fine cone of aerosolized herbicide droplets directly onto a broadleaf weed rosette on dark soil. Just two inches away, the vibrant green lower leaf of a Zea mays plant remains completely dry and pristine, avoiding overspray. Ultra-crisp droplet suspension suspended in mid-air illuminated by sharp directional studio side lighting, capturing micro-droplet mist and damp soil impact craters with scientific clarity. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

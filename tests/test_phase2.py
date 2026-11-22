@@ -75,3 +75,23 @@ def test_dashboard_api_endpoints():
     r_bib = client.get("/api/export/bibliography?fmt=bibtex&status=all")
     assert r_bib.status_code == 200
     assert "@article{SRC_01" in r_bib.text
+
+
+def test_crop_visual_matcher_no_wheat_hijack():
+    """'정밀재배'·'밀도' 등의 '밀' 부분 문자열이 옥수수·딸기 등 타 작물을 밀(wheat)로 오매칭하지 않는지 검증."""
+    from visual_studio import _resolve_english_visual_scenes
+
+    ch = {"title": "제1장. 기원과 형태생리", "summary_ko": "C4 광합성과 이삭 발달", "sections": ["1.1 기초"]}
+    corn_field, corn_diag, _ = _resolve_english_visual_scenes(
+        "디지털 옥수수 재배학: 데이터 기반 작물생리·정밀재배 및 스마트 농기계 공학",
+        "Digital Corn Cultivation",
+        ch,
+    )
+    assert "Zea mays" in corn_field and "wheat" not in corn_field.lower()
+    assert "Zea mays" in corn_diag and "wheat" not in corn_diag.lower()
+
+    berry_field, _, _ = _resolve_english_visual_scenes("스마트팜 딸기 정밀재배", "Smart Farm Strawberry", ch)
+    assert "strawberry" in berry_field.lower() and "wheat" not in berry_field.lower()
+
+    wheat_field, _, _ = _resolve_english_visual_scenes("디지털 밀 재배", "Digital Wheat Cultivation", ch)
+    assert "wheat" in wheat_field.lower()

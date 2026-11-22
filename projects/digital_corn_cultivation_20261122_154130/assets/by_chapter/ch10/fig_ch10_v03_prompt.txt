@@ -1,0 +1,12 @@
+이미지 번호: 그림 10-3
+이미지 파일명: fig_ch10_v03.png
+단원: 제10장. 데이터 기반 옥수수 병해충 예찰 및 정밀 방제 공학 (ch10)
+결합 절: 10.1 주요 병해충의 생활환 및 기상 의존 감염 생리
+시각화 유형: photorealistic_field
+제목: [그림 10-3] 그을음무늬병 감염으로 인한 옥수수 하위엽의 장방형 병반 확산 양상
+
+[문맥 기반 이미지 설명]
+[그림 10-3] 다습한 여름철 포장에서 옥수수 군락의 하위엽을 중심으로 평행 엽맥을 따라 직사각형 형태로 괴사한 그을음무늬병(Gray Leaf Spot) 병반을 기록한 현장 생태 사진이다. 균사가 엽맥에 가로막혀 좁고 긴 회갈색 띠 형태를 이루며 광합성 면적을 급격히 잠식해 나가는 전형적인 발병 징후를 보여준다. 기상 데이터와 연동된 병원균 활성도 분석이 병해 조기 진단에 왜 필수적인지를 엽면 병징 수준에서 입증한다.
+
+[나노바나나 생성 프롬프트]
+A close-up field photograph taken in an agricultural research cornfield during high summer humidity, capturing mature Zea mays leaves showing distinct gray leaf spot lesions. The lesions are sharply rectangular and elongated, bounded strictly by the parallel leaf veins, exhibiting pale tan to grayish necrotic centers with chlorotic yellow halos. Soft natural daylight illuminates the waxy green corn foliage, with the deep green canopy softly blurred in the background. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

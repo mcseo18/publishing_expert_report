@@ -1,0 +1,12 @@
+이미지 번호: 그림 13-8
+이미지 파일명: fig_ch13_v08.png
+단원: 제13장. 전 세계 옥수수 생산·유통 공급망 및 산업적 다각화 활용 (ch13)
+결합 절: 13.4 현장 실증: 전분당·사료·바이오에탄올·PLA 바이오 플라스틱 산업 밸류체인 및 부산물 자원화
+시각화 유형: scientific_anatomy
+제목: [그림 13-8] 옥수수 습식 분쇄(Wet Milling) 공정의 알곡 분획 구조 및 물질 수지 해부도
+
+[문맥 기반 이미지 설명]
+[그림 13-8] 옥수수 알곡이 습식 분쇄 공정을 통해 전분, 글루텐, 배아유, 섬유질 피복으로 물리화학적으로 분리되는 과정을 보여주는 과학적 구조 해부도이다 [SRC-102, SRC-103]. 침지에 의해 연화된 알곡의 세포벽 붕괴, 배아 추출, 미세 분쇄를 거쳐 순수 전분 분말과 단백질 피드가 분리되는 각 해부학적 층위의 물질 분별 과정을 순수 흰색 배경 위에 유기적으로 구성하였다.
+
+[나노바나나 생성 프롬프트]
+Scientific textbook anatomy illustration depicting the industrial wet-milling fractionation of a Zea mays grain on a pure white background. A centrally rendered corn kernel is split open, with precise, shaded cutaway layers revealing the pericarp fiber layer peeling away to one side, the yellow lipid-rich germ embryo being isolated to the bottom, the dense gluten protein matrix, and pure white starch granules flowing out from the fractured endosperm. Stylized micro-droplets of steeping water and sulfur dioxide molecules interact with the cellular protein matrix, dissolving gluten bonds. Professional medical and biochemical textbook illustration style, rich painterly shading, crisp isolated silhouettes. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

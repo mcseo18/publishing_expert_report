@@ -1,0 +1,12 @@
+이미지 번호: 그림 8-10
+이미지 파일명: fig_ch08_v10.png
+단원: 제8장. 옥수수 양분 흡수 동태 및 실시간 데이터 기반 양분 관리 (ch08)
+결합 절: 오해와 진실: 현장·이론 핵심 오해 교정
+시각화 유형: scientific_anatomy
+제목: [그림 8-10] 토양 내 질산염 잔존 풀(Pool)과 작물 체내 질소 충족도(NSI) 간의 동역학적 괴리
+
+[문맥 기반 이미지 설명]
+[그림 8-10] 토양 검정상 존재하는 질산염 무기태 풀(Pool)과 옥수수 작물체 내부의 실제 흡수·대사 풀 사이의 괴리를 다이어그램으로 나타냅니다. 토양 내에 비료 성분이 존재하더라도 초기 근계 발달 부진이나 수분 조건에 따라 작물 흡수가 차단되는 양상과, 반대로 급격한 영양생장기 동안 체내 질소 농도가 급격히 희석되는 과정을 시각화합니다. 토양 잔존량에만 의존하던 관행 시비의 오류를 바로잡고 NSI 기반 체내 진단의 절대적 필요성을 입증합니다 [SRC-106].
+
+[나노바나나 생성 프롬프트]
+Scientific comparative anatomical artwork on a white background contrasting soil nutrient availability with plant physiological status. On one side, a cross-section of deep soil layers shows blue-colored nitrate ion molecules leaching downward past shallow corn seedling roots into groundwater. On the opposite side, a mature V8 Zea mays stalk shows rapid internal leaf nitrogen dilution during peak vegetative expansion, rendered with transparent cell cutaways and metabolic biochemical pathways in crisp scientific illustration style. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

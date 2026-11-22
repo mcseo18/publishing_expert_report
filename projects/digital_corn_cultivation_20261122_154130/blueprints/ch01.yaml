@@ -1,16 +1,69 @@
 chapter_id: ch01
 chapter_number: 1
-title: 제1장. 옥수수 일반/역사/용도의 원리와 디지털 현장 관리
-target_pages: 40
-summary_ko: 디지털 옥수수 재배에서 옥수수 일반/역사/용도의 과학적 메커니즘, 정량 측정 지표 및 디지털 정밀 관리 전략을 다룹니다.
+title: 제1장. 옥수수의 기원, 분류 체계 및 식물학적 형태생리
+target_pages: 46
+summary_ko: 테오신테(Teosinte)의 분얼 억제 및 이삭 대형화 유전 기작과 C4 크란츠(Kranz) 해부 구조의 광합성 효율을 규명한다. 배유의 아밀로스/아밀로펙틴 비율에 따른 마치종, 경립종, 단옥수수, 찰옥수수의 화학적 품질 기준을 확립한다.
+  농가의 품종 오해로 인한 교잡 수분 불량 및 당도 저하 문제를 교정하고 현장 포장 진단 기준을 제시한다.
 sections:
-- 1.1 기초 원리 및 개념
-- 1.2 정량 측정·모델링
-- 1.3 국내외 기준 비교
-- 1.4 디지털 현장 적용
+- 1.1 테오신테 진화 유전학 및 C4 크란츠(Kranz) 해부생리 원리
+- 1.2 배유 조성별 분류군(마치종·단옥수수·찰옥수수)의 이화학적 정량 기준
+- '1.3 농가 관행 오해 교정: 단옥수수·찰옥수수 혼작 수분(Xenia) 피해 진단'
+- '1.4 현장 실증: 용도별 최적 군락 수광 아키텍처 구축 및 생체 데이터 획득'
+tables:
+- table_id: 표 1-1
+  title: 옥수수 분류군별 배유 전분 특성, 당 함량 및 용도별 수확기 이화학 기준
+  columns:
+  - 분류군
+  - 주요 전분 조성(아밀로펙틴/아밀로스)
+  - 가용성 당 함량(%)
+  - 적정 수확 수분율(%)
+  - 주요 가공 적성 및 용도
+  purpose: 재배 목적별 생화학적 수확 적기 판별 및 가공 적성 평가 기준 제공
+- table_id: 표 1-2
+  title: C4 옥수수와 C3 작물의 광합성·수분이용효율 정량 비교 및 환경 한계치
+  columns:
+  - 생리적 지표
+  - 옥수수(C4 작물)
+  - 벼/밀(C3 작물)
+  - 생리학적 임계치
+  - 포장 정밀 관리 착안점
+  purpose: C4 고유의 높은 광포화점과 수분이용효율을 센서 기반 환경제어에 연계하는 이론적 근거 제시
+visuals:
+- fig_id: 그림 1-01
+  type: A
+  aspect_ratio: '4:3'
+  method: nano_banana_pro
+  title: 출웅기 직립초형 고밀식 옥수수 군락의 포장 수광 상태 실사
+  description: 상위엽이 직립하여 하부 엽까지 균일하게 직사광이 투과되는 대단위 포장의 건강한 C4 군락 실사
+- fig_id: 그림 1-02
+  type: B
+  aspect_ratio: '4:3'
+  method: nano_banana_pro
+  title: 찰옥수수와 초당옥수수의 종실 횡단면 배유 구조 및 수분 후 키세니아(Xenia) 발현 표본
+  description: 불완전 타가수분으로 인해 단옥수수 이삭 내에 딱딱한 전분질 종실이 혼입된 키세니아 피해 종실 접사
+- fig_id: 그림 1-03
+  type: C
+  aspect_ratio: '16:9'
+  method: nano_banana_pro
+  title: 옥수수 C4 엽육세포 및 유관속초세포 간 말산 순환과 이산화탄소 농축 메커니즘 도해
+  description: PEP 카복실레이스와 루비스코의 공간적 격리를 통한 광호흡 억제 및 고효율 탄소 고정 회로도
+- fig_id: 그림 1-04
+  type: D
+  aspect_ratio: '16:9'
+  method: python
+  title: 광합성유효방사(PAR) 및 온도 변화에 따른 C4 옥수수와 C3 작물의 순광합성 속도 비교 곡선
+  description: 광도 0~2000 μmol/m²s 및 온도 15~42°C 범위에서의 동화 속도 변화 수리 반응 곡선
 keywords_ko:
-- 옥수수 일반/역사/용도
+- 테오신테
+- 배유 구조
+- 크란츠 해부
+- 키세니아 현상
+- C4 광합성
 keywords_en:
-- 'Corn: General Information/History/Uses'
+- teosinte evolution
+- endosperm composition
+- Kranz anatomy
+- xenia effect
+- C4 photosynthesis
 evidence_packet: digital_corn_cultivation_20261122_154130_evidence.json
 assigned_sources: []

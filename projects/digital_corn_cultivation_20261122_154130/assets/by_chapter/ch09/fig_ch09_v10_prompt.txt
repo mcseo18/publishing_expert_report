@@ -1,0 +1,12 @@
+이미지 번호: 그림 9-10
+이미지 파일명: fig_ch09_v10.png
+단원: 제9장. 작물 생육·양분 모델링 및 디지털 트윈 시뮬레이션 (ch09)
+결합 절: 오해와 진실: 현장·이론 핵심 오해 교정
+시각화 유형: photorealistic_macro
+제목: [그림 9-10] 수확 후 옥수수 낟알의 호흡률 및 에틸렌 방출 제어 저온 저장 미세 조직
+
+[문맥 기반 이미지 설명]
+[그림 9-10] 수확 후 저장 온도 및 가스 농도 제어가 종실의 신선도와 세포 호흡에 미치는 영향을 규명하기 위한 실험실 해부 사진입니다. 저온 제어 분위기(CA)에서 보관된 단옥수수의 낟알 세포벽과 과피(pericarp) 조직을 극저온 주사형 단면 기법 수준으로 선명하게 포착했습니다. 품질 저하가 단순 온도 하강이 아닌 에틸렌 생성 및 호흡 대사의 생화학적 반응 속도에 좌우됨을 실증합니다 [SRC-109, SRC-110].
+
+[나노바나나 생성 프롬프트]
+Ultra-sharp macro scientific laboratory photograph of fresh sweet corn kernels excised from the cob under controlled-atmosphere low temperature storage. Microscopic cross-section visible across the translucent kernel pericarp and starchy cellular layers, displaying moisture preservation without cell wall collapse. Glistening cellular textures illuminated by clean scientific lab lighting. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

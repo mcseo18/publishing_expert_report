@@ -1,0 +1,12 @@
+이미지 번호: 그림 11-3
+이미지 파일명: fig_ch11_v03.png
+단원: 제11장. 지능형 잡초 인식 및 자율선택제초 시스템 (ch11)
+결합 절: 11.1 옥수수 군락 내 난방제 잡초의 생육 속도 및 잡초 경합 임계 기간(CPWC) 생리
+시각화 유형: photorealistic_macro
+제목: [그림 11-3] 옥수수 기부 지제부와 토양 표면 발아 화본과 잡초 유묘의 차광 경합 초근접 촬영
+
+[문맥 기반 이미지 설명]
+[그림 11-3] 옥수수 줄기 지제부와 맞닿은 토양 표층에서 갓 발아한 화본과 잡초 유묘들이 옥수수 잎의 그늘 아래서 생존 경쟁을 벌이는 미세 환경을 초근접 촬영한 사진이다. 지표면에 도달하는 적색광/원적색광(R/FR) 비율의 변화를 감지하여 잡초가 급격한 신장 생장을 유도하는 생리적 상태를 포착하였다. 이러한 극초기 차광 스트레스는 옥수수의 엽면적 지수와 분얼 억제에 직접적인 영향을 미쳐 조기 방제의 당위성을 입증한다 [SRC-103].
+
+[나노바나나 생성 프롬프트]
+Ultra-sharp macro photograph focusing on the base of a young Zea mays stem where it emerges from damp, crumbly brown soil. Clustered tightly around the corn stalk are newly emerged wild grass weed cotyledons and miniature shoots pushing through aggregate soil crumbs. Dappled natural sunlight filters through the arching broad leaves of the corn stalk, casting soft green-tinged shadows. Water droplets glisten on the lower sheath of the corn plant and weed leaves, revealing minute cellular leaf veins and fine plant epidermal hairs. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

@@ -45,20 +45,15 @@ LOCAL_WEATHER_DB_PATH = Path(r"D:\0002_XLS_backup\weather_daily_kr.db")
 LOCAL_WEATHER_STATIONS_CSV = Path(r"D:\0002_XLS_backup\weather_stations_summary.csv")
 
 API_KEY_FIELDS: dict[str, dict[str, str]] = {
-    "OPENAI_API_KEY": {
-        "label": "OpenAI API 키 (1단계 목차·요약·키워드 설계 및 수정)",
-        "env": "OPENAI_API_KEY",
-        "portal": "https://platform.openai.com/api-keys",
+    "GEMINI_API_KEY": {
+        "label": "Google Gemini API 키 (1단계 목차·계획서 챗봇 · 5단계 나노바나나 이미지)",
+        "env": "GEMINI_API_KEY",
+        "portal": "https://aistudio.google.com/apikey",
     },
     "FAL_KEY": {
         "label": "fal.ai API 키 (5단계 실사진·인포그래픽 시각화 생성)",
         "env": "FAL_KEY",
         "portal": "https://fal.ai/dashboard/keys",
-    },
-    "GEMINI_API_KEY": {
-        "label": "Google Gemini API 키 (나노바나나 이미지 생성)",
-        "env": "GEMINI_API_KEY",
-        "portal": "https://aistudio.google.com/apikey",
     },
     "KMA_HUB_KEY": {
         "label": "기상청 API허브 인증키 (ASOS/AWS 종관기상)",

@@ -1,0 +1,12 @@
+이미지 번호: 그림 12-4
+이미지 파일명: fig_ch12_v04.png
+단원: 제12장. 정밀 수확·가공 후 수확 관리 및 스마트 농기계 작업 체계 (ch12)
+결합 절: 12.1 종실 흑층(Black Layer) 형성 생리, 등숙 완료 판정 및 탈립 손실 역학
+시각화 유형: photorealistic_field
+제목: [그림 12-4] 과숙 옥수수 포장의 이삭 처짐 및 기계 수확 탈립 손실 양상
+
+[문맥 기반 이미지 설명]
+[그림 12-4] 최적 수확기를 지나 과숙(over-mature) 상태로 방치된 옥수수 포장에서 이삭자루(ear shank)가 부러지며 바닥으로 탈락된 이삭과 탈립된 낱알들의 현장 모습이다. 콤바인 스내핑 롤러의 기계적 충격과 줄기 진동에 의해 취약해진 이삭 조직이 파손되는 역학적 현상을 보여준다. 이는 조기 수확의 미등숙 문제와 대비되는 과숙 지연 수확에 따른 포장 유실율 증가를 실증한다.
+
+[나노바나나 생성 프롬프트]
+Photorealistic field photograph of an over-mature corn crop showing mechanical ear drop and shattering loss. Close-up on brittle, weathered brown corn stalks with drooping, inverted corn ears. Several dry corn cobs have broken from their fragile dry shanks and lie on the soil surface among dropped loose yellow corn grains and brittle dry husks. Bright overcast natural lighting, sharp field depth-of-field capturing the cracked dry ear attachments and shattered kernels on the soil. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

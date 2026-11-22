@@ -1,0 +1,12 @@
+이미지 번호: 그림 8-5
+이미지 파일명: fig_ch08_v05.png
+단원: 제8장. 옥수수 양분 흡수 동태 및 실시간 데이터 기반 양분 관리 (ch08)
+결합 절: 8.2 질소충족지수(NSI 0.90 임계치) 및 다분광 식생지수 정량 기준
+시각화 유형: scientific_anatomy
+제목: [그림 8-5] 옥수수 캐노피 엽육세포 광학 반사 특성과 NDVI 대 NDRE 분광 민감도 차이
+
+[문맥 기반 이미지 설명]
+[그림 8-5] 옥수수 잎의 다층 엽육세포 단면에서 가시광 적색 파장과 적색 경계(Red Edge), 근적외선(NIR) 파장이 산란 및 반사되는 광학적 기작을 설명합니다. 높은 엽면적 상태에서 NDVI 파장 영역이 포화되는 현상과 달리, NDRE의 적색 경계 파장이 엽록소 밀집 엽육층 깊숙이 침투하여 질소 결핍을 민감하게 포착하는 과정을 대조합니다. 이 도해는 NSI 정량화를 위한 핵심 지표로 NDRE가 채택되는 분광 물리학적 근거를 규명합니다 [SRC-106].
+
+[나노바나나 생성 프롬프트]
+Scientific anatomical cross-section of a Zea mays leaf mesophyll structure on a pure white background. Photons of light entering the leaf surface are depicted as three distinct optical spectral rays: red light strongly absorbed by upper chloroplasts, near-infrared light widely scattered by spongy mesophyll air cavities, and red-edge light deeply penetrating cellular layers without early saturation. The visual details individual chloroplast organelles, palisade cells, and intercellular spaces in refined botanical physics textbook rendering style. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

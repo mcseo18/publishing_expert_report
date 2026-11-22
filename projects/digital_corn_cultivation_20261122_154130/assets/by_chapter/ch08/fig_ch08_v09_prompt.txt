@@ -1,0 +1,12 @@
+이미지 번호: 그림 8-9
+이미지 파일명: fig_ch08_v09.png
+단원: 제8장. 옥수수 양분 흡수 동태 및 실시간 데이터 기반 양분 관리 (ch08)
+결합 절: 8.4 현장 실증: 온고잉(On-the-go) 캐노피 센서 연동 트랙터 가변 사이드드레싱(추비)
+시각화 유형: scientific_anatomy
+제목: [그림 8-9] 온고잉 센싱-실시간 처방 연산-가변 밸브 유량 제어의 데이터 피드백 루프 구조
+
+[문맥 기반 이미지 설명]
+[그림 8-9] 캐노피 반사 스펙트럼 수집부터 단말기(ECU) 처방 알고리즘 연산, 유압 가변 밸브의 실시간 비료 유량 조절까지의 전자 제어 피드백 루프를 입체적으로 설명합니다. 트랙터 전방의 센서 데이터가 NSI 알고리즘을 거쳐 즉각적인 주입량(kg N/ha)으로 변환되고 노즐 분사압을 제어하는 일련의 작동 메커니즘을 상세히 분석합니다. 이는 데이터 수집과 농기계 제어가 결합된 현대적 정밀 양분 관리 시스템의 기술적 골격을 규명합니다 [SRC-106].
+
+[나노바나나 생성 프롬프트]
+Scientific system engineering diagram rendered in clean 3D isometric cutaway style on a white background, without text or typography. A stylized high-clearance agricultural machine chassis shows sensor communication pathways: optical light sensors scanning maize canopy leaves, wiring conduits conveying data signals into a central processing microprocessor unit, and electrical actuator pulses directing hydraulic rate valves on sub-surface fertilizer injector knives slicing into soil layers. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

@@ -1,0 +1,12 @@
+이미지 번호: 그림 1-10
+이미지 파일명: fig_ch01_v10.png
+단원: 제1장. 옥수수의 기원, 분류 체계 및 식물학적 형태생리 (ch01)
+결합 절: 1.4 현장 실증: 용도별 최적 군락 수광 아키텍처 구축 및 생체 데이터 획득
+시각화 유형: photorealistic_field
+제목: [그림 1-10] 수확 후 단옥수수 저온 유통(Cold Chain) 및 에틸렌 관리 저장 환경
+
+[문맥 기반 이미지 설명]
+[그림 1-10] 수확 직후 급격한 호흡과 당분 소모를 억제하기 위해 예냉 처리 및 저온 유통(Cold Chain) 시설에 입고된 단옥수수 이삭의 저장 환경이다. 옥수수 이삭의 당도가 전분으로 전환되는 대사 지연과 노화 촉진 호르몬인 에틸렌 작용 억제를 위해 최적의 온습도 제어 시스템과 통기성 플라스틱 크레이트가 적용되어 있다 [SRC-107, SRC-108, SRC-109]. 수확 후 손실을 방지하고 신선도와 고유의 풍미를 시장까지 유지하기 위한 후처리 공정을 보여준다.
+
+[나노바나나 생성 프롬프트]
+Industrial documentary photograph inside a commercial post-harvest cold storage facility for sweet corn. Stacked ventilated green plastic crates are filled with freshly harvested sweet corn ears with emerald-green husks and moist golden-brown silks intact. Overhead stainless steel cooling fans and misting nozzles create a crisp, chilled atmosphere with subtle ambient condensation. Digital climate monitors and ethylene absorption filtration ducts are visible along the insulated white walls, illuminated by clean, cool-spectrum LED warehouse lighting. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

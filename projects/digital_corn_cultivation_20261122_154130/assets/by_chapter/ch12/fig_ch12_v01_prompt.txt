@@ -1,0 +1,12 @@
+이미지 번호: 그림 12-1
+이미지 파일명: fig_ch12_v01.png
+단원: 제12장. 정밀 수확·가공 후 수확 관리 및 스마트 농기계 작업 체계 (ch12)
+결합 절: 단원 개요
+시각화 유형: photorealistic_field
+제목: [그림 12-1] 황숙기 포장 내 정밀 수확 콤바인의 옥수수 이삭 수확 전경
+
+[문맥 기반 이미지 설명]
+[그림 12-1] 옥수수 생리적 성숙기(R6)에 도달한 대규모 옥수수 포장에서 정밀 수확용 대형 콤바인이 옥수수 이삭을 수확하는 현장 전경이다. 기포 상단부의 RTK-GNSS 안테나와 수확 헤더가 건조된 옥수수 줄기와 이삭을 연속적으로 절단 및 유입하는 작업 궤적을 보여준다. 본 장에서 다루는 등숙 판정, 센서 기반 실시간 수량 계측 및 수확 후 관리 체계의 포괄적 적용 현장을 나타낸다.
+
+[나노바나나 생성 프롬프트]
+Ultra-realistic agricultural documentary photography of a modern high-capacity combine harvester operating in a vast golden-brown cornfield at late autumn sunset. The combine is equipped with an 8-row corn header snapping mature dry maize stalks and ears. A high-precision RTK-GNSS dome receiver is mounted atop the combine cab. Crisp focus on textured golden corn ears, dry husks, brittle maize leaves, and the dust particles floating in the warm low-angle sunlight. Expansive field horizon with neatly cut maize stubbles left behind the harvester. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

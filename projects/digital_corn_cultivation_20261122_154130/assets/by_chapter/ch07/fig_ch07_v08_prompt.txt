@@ -1,0 +1,12 @@
+이미지 번호: 그림 7-8
+이미지 파일명: fig_ch07_v08.png
+단원: 제7장. 옥수수 수분 생리 및 스마트 정밀 관개 공학 (ch07)
+결합 절: 7.4 현장 실증: 센터피벗 가변관개(VRI) 및 지중점적(SDI) 자동 관수 시스템 운용
+시각화 유형: photorealistic_field
+제목: [그림 7-8] 광역 옥수수 포장 센터피벗 가변관개(VRI) 노즐 제어 살수 현장
+
+[문맥 기반 이미지 설명]
+[그림 7-8] 대규모 원형 옥수수 재배 단지 상공에서 관측한 센터피벗 가변관개(VRI) 기계 장치의 정밀 살수 운용 현장입니다. VRI 시스템은 토양 센서 데이터와 연동되어 지형 및 토성 변이에 따라 각 스팬별 노즐의 펄스 폭을 개별 제어함으로써 구역 맞춤형 관개량을 공급합니다 [SRC-104]. 필드 내 토양 수분 이질성에 대응하여 물 이용 효율을 극대화하는 첨단 스마트 농기계 공학 기술입니다.
+
+[나노바나나 생성 프롬프트]
+High-angle aerial agricultural photograph of an expansive circular Zea mays corn field operating a massive multi-span center-pivot irrigation system equipped with Variable Rate Irrigation nozzles. Fine mists of water droplets spray distinctly at varied pulsing intensities across different management zones over the lush green canopy. The vast curved metal truss spans move on heavy rubberized wheels, with golden late afternoon sunlight backlighting the sparkling irrigation water spray. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

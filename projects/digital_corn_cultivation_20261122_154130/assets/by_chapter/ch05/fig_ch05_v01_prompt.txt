@@ -1,0 +1,12 @@
+이미지 번호: 그림 5-1
+이미지 파일명: fig_ch05_v01.png
+단원: 제5장. 옥수수 생리장애 진단 및 비생물적 스트레스 반응 (ch05)
+결합 절: 5.1 고온·한발에 의한 개화수염신장간격(ASI) 연장 및 침수 에틸렌 축적 메커니즘
+시각화 유형: scientific_anatomy
+제목: [그림 5-1] 고온·한발 스트레스에 따른 개화수염신장간격(ASI) 비동기화 메커니즘
+
+[문맥 기반 이미지 설명]
+[그림 5-1] 고온 및 가뭄 스트레스 환경에서 옥수수의 웅수(tassel)에서 꽃가루가 먼저 비산되고 암이삭의 비단수염(silk) 신장이 심각하게 지연되는 생식생리적 탈동기화 과정을 묘사한다. 꽃가루 비산 완료 시점과 수염 개방 시점 사이의 시간 간격이 벌어지면서 수정 기회가 영구히 상실되는 메커니즘을 상세히 보여준다. 이는 개화수염신장간격(ASI)의 연장이 최종 종자 결실률을 급격히 떨어뜨리는 직접적 원인임을 시각화한다 [SRC-103, SRC-106].
+
+[나노바나나 생성 프롬프트]
+Scientific anatomical cross-section on a pure white background illustrating reproductive desynchronization in Zea mays under severe heat and drought stress. At the upper apex of the green corn stalk, a mature golden tassel sheds yellow pollen grains into the air. Further down the stalk, an immature developing ear surrounded by green leafy husks shows stunted, desiccated, pale silk strands emerging too late after pollen dispersal has ceased. Detailed botanical cutaway view revealing unfertilized ovules along the bare cob axis, rendered in realistic scientific botanical art with volumetric shading. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

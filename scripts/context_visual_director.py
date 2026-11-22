@@ -161,6 +161,8 @@ def plan_chapter_visuals_from_manuscript(
         "CRITICAL RULES:\n"
         "1. Distribute the 10 visuals evenly across ALL body sections (## headings) of the chapter, covering concrete concepts "
         "(e.g., specific cultivars, soil profiles, planting geometry, root physiology, hormones/enzymes, field diagnostics, curing/storage, quality traits).\n"
+        "   STRICT BOTANICAL SUBJECT RULE: Every single image prompt MUST depict ONLY the exact target crop/subject of the book title and chapter manuscript "
+        "(e.g., for corn/maize books depict ONLY Zea mays tall stalks, broad arching leaves, tassels, ears/cobs, kernels — NEVER wheat spikes, rice, or unrelated crops!).\n"
         "2. Alternate thoughtfully between:\n"
         "   - 'photorealistic_field': National Geographic / agricultural research station documentary photograph (natural daylight, realistic camera depth-of-field, crisp botanical texture).\n"
         "   - 'photorealistic_macro': Ultra-sharp macro / laboratory / microscopy photography (real root tissue, cross-sections, starch granules, soil crumbs, instruments).\n"

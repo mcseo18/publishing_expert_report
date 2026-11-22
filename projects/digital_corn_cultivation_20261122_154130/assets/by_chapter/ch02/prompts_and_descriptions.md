@@ -1,0 +1,167 @@
+# 제2장. 옥수수 생태형 분류 및 디지털 초고속 표현형 기반 품종 선발 — 문맥 기반 시각화 기획서 (이미지 번호 · 설명 · 프롬프트)
+
+- **단원 ID**: `ch02`
+- **총 시각화 수**: **10종** (Google Gemini Nano Banana 전량 제작)
+- **생성 시각**: `2026-11-22T08:06:36+00:00`
+
+---
+
+## [그림 2-1] 생태형 숙기군별(조·만생) 옥수수 생육 발달 및 출사기 표현형 비교
+
+- **이미지 번호 / 파일명**: `그림 2-1` / `fig_ch02_v01.png`
+- **문서 결합 절(Section)**: 2.1 숙기군(조·중·만생종)의 GDD 요구도 및 환경 적응 생리
+- **시각화 유형**: `photorealistic_field`
+
+### 문맥 기반 상세 설명 (줄글)
+[그림 2-1] 유효적산온도(GDD) 누적 속도에 따른 옥수수 조생종과 만생종의 생육 차이를 연구 시험포장에서 실시간 비교 관찰한 포장 전경이다. 조생종 품종은 비교적 낮은 GDD 누적 조건에서 조기에 웅수 분화와 암이삭 출사(silking)를 완료하여 알곡 비대를 신속히 개시한다. 반면 긴 GDD 누적을 요구하는 만생종은 엽면적과 영양체 생체량을 풍부하게 확보하며 영양생장기를 안정적으로 지속하는 독특한 발달 생리를 보여준다 [SRC-100, SRC-103].
+
+### 나노바나나 생성 프롬프트 (Pure English · Zero-Text)
+```text
+Documentary agricultural field photograph showing adjacent breeding trial plots of Zea mays corn at midday. On the left plot, early-maturing corn plants with golden tassels shed pollen and green silks emerging from young ears on medium-height stalks. On the right plot, late-maturing corn plants are visibly taller with broad deep-green arching leaves and still enclosed whorls without emerged tassels. Rich brown agricultural soil between neat planting rows under clear sunny daylight. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.
+```
+
+---
+
+## [그림 2-2] GDD 임계점 도달에 따른 옥수수 생장점의 생식생장 전환 및 웅수 원기 분화
+
+- **이미지 번호 / 파일명**: `그림 2-2` / `fig_ch02_v02.png`
+- **문서 결합 절(Section)**: 2.1 숙기군(조·중·만생종)의 GDD 요구도 및 환경 적응 생리
+- **시각화 유형**: `scientific_anatomy`
+
+### 문맥 기반 상세 설명 (줄글)
+[그림 2-2] 작물이 요구하는 기준 유효적산온도(GDD)에 도달했을 때 옥수수 줄기 기부 생장점에서 발생하는 화아 분화 과정을 정밀 해부학적으로 묘사한 일러스트이다. 엽원기를 연속적으로 형성하던 영양생장기 원추 생장점이 적산온도 임계치에 도달함에 따라 웅수(수꽃차례) 원기로 급격한 형태적 전환을 이룬다. 이는 숙기군별 적산온도 요구도와 환경 온도 반응이 옥수수의 생식생장 스위치를 정밀하게 제어함을 생리학적으로 입증한다 [SRC-100].
+
+### 나노바나나 생성 프롬프트 (Pure English · Zero-Text)
+```text
+Scientific cross-section illustration on a pure clean white background showing the anatomical longitudinal split of a developing Zea mays corn stalk stem base. The delicate apical meristem transition is revealed, evolving from a vegetative dome into a microscopic branch tassel primordium with nascent spikelet nodes. Rich botanical rendering with cellular parenchyma layers, vascular bundles in translucent olive-green and gold tones, and crisp detailed cutaway views. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.
+```
+
+---
+
+## [그림 2-3] 옥수수 엽신 횡단면의 엽록체 밀도 및 분광 반사율 측정 미세구조
+
+- **이미지 번호 / 파일명**: `그림 2-3` / `fig_ch02_v03.png`
+- **문서 결합 절(Section)**: 2.2 초고속 디지털 표현형(High-Throughput Phenotyping)의 분광·구조 지표 기준
+- **시각화 유형**: `photorealistic_macro`
+
+### 문맥 기반 상세 설명 (줄글)
+[그림 2-3] 다분광 식생지수 산정의 기본 생화학적 토대가 되는 옥수수 잎의 횡단면을 고배율 광학 현미경으로 촬영한 마이크로 사진이다. C4 작물 고유의 크란츠(Kranz) 구조를 형성하는 유관속초 세포와 엽육 세포 내부의 고밀도 엽록체가 선명하게 드러난다. 이러한 세포 수준의 엽록소 집적도는 근적외선 및 적색광 파장대의 흡수·반사율을 결정하여 정밀 HTP 식생지수 추출의 물리적 근거를 제공한다 [SRC-101].
+
+### 나노바나나 생성 프롬프트 (Pure English · Zero-Text)
+```text
+Ultra-sharp laboratory microphotograph of a fresh Zea mays leaf cross-section. Visible Kranz anatomy showing circular bundle sheath cells packed with dark green chloroplasts surrounding translucent vascular bundles, flanked by spongy and palisade mesophyll cells. Clear cellular cell walls, epidermal cuticle layer with microscopic stomatal apertures, captured under high-resolution laboratory optical microscopy with bright backlighting. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.
+```
+
+---
+
+## [그림 2-4] LiDAR 3D 스캐닝 기반 옥수수 수관 체적 및 엽면적지수(LAI) 공간 구조 모델
+
+- **이미지 번호 / 파일명**: `그림 2-4` / `fig_ch02_v04.png`
+- **문서 결합 절(Section)**: 2.2 초고속 디지털 표현형(High-Throughput Phenotyping)의 분광·구조 지표 기준
+- **시각화 유형**: `scientific_anatomy`
+
+### 문맥 기반 상세 설명 (줄글)
+[그림 2-4] 초고속 표현형(HTP) 분석 기술을 통해 옥수수 군락의 수관 체적과 엽면적지수(LAI)를 3차원으로 측정한 구조적 모식도이다. 지표면으로부터 줄기 상단까지 옥수수 잎의 착생 각도, 엽폭, 그리고 빛이 투과하는 공간적 층위가 정밀한 점군 밀도 그래디언트로 시각화되어 있다. 이 3차원 군락 구조는 군락 내 광투과율과 광합성 수광 효율성을 정량적으로 산정하는 핵심 기초 데이터로 활용된다 [SRC-101].
+
+### 나노바나나 생성 프롬프트 (Pure English · Zero-Text)
+```text
+Scientific editorial visual on a pure white background rendering a realistic three-dimensional architectural model of a mature Zea mays maize stalk. Thousands of fine structural depth points highlight the leaf inclination angles, ear node height, broad leaf curvature, and canopy volume. Shaded in realistic botanical greens transitioning into translucent depth planes that represent spatial light interception and leaf area density. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.
+```
+
+---
+
+## [그림 2-5] 포장형 초고속 표현형 지상 로버의 옥수수 생육 군락 다분광 및 구조 스캐닝
+
+- **이미지 번호 / 파일명**: `그림 2-5` / `fig_ch02_v05.png`
+- **문서 결합 절(Section)**: 2.2 초고속 디지털 표현형(High-Throughput Phenotyping)의 분광·구조 지표 기준
+- **시각화 유형**: `photorealistic_field`
+
+### 문맥 기반 상세 설명 (줄글)
+[그림 2-5] 시험 재배지 이랑 사이를 주행하며 옥수수 개체군의 분광 지표와 수관 높이를 비파괴적으로 수집하는 지상형 디지털 표현형 측정 로봇의 현장 작동 사진이다. 로버에 탑재된 정밀 LiDAR 센서와 다분광 카메라 모듈이 옥수수 엽관을 다각도에서 동시 측정하고 있다. 현장에서 실시간 수집되는 대규모 시계열 데이터는 품종별 건물중 생산 잠재력과 바이오매스 축적 속도를 정밀하게 구명한다 [SRC-101].
+
+### 나노바나나 생성 프롬프트 (Pure English · Zero-Text)
+```text
+Agricultural documentary field photograph of an autonomous field phenotyping robotic rover operating between neatly spaced rows of lush green Zea mays maize crops in an experimental research station. The rover features metallic sensor arms mounted with downward-angled multispectral lens housings and optical LiDAR sensors scanning the corn canopy. Golden morning sunlight, dust motes in the air, crisp soil furrow texture. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.
+```
+
+---
+
+## [그림 2-6] 무상기간 및 GDD 부족으로 인한 만생종 옥수수의 미숙 이삭 피해 및 알곡 발달 장해
+
+- **이미지 번호 / 파일명**: `그림 2-6` / `fig_ch02_v06.png`
+- **문서 결합 절(Section)**: 2.3 농가 관행 오해 교정: 무상기간 무시한 만생종 무리한 도입과 미숙 이삭 피해 진단
+- **시각화 유형**: `photorealistic_macro`
+
+### 문맥 기반 상세 설명 (줄글)
+[그림 2-6] 해당 지역의 기후적 무상기간을 고려하지 않고 만생종을 무리하게 파종하여 서리 및 저온 스트레스를 입은 미숙 옥수수 이삭의 실물 해부 사진이다. 정상적인 등숙 완료(Black layer 형성)에 도달하지 못해 수침상으로 연약화된 알곡과 수분 함량이 높은 미발달 이삭 선단부가 관찰된다. 이는 적정 GDD 누적에 실패할 경우 알곡 비대가 수유기(milk stage)에서 영구 중단되어 막대한 경제적 손실을 초래함을 보여준다 [SRC-100, SRC-103].
+
+### 나노바나나 생성 프롬프트 (Pure English · Zero-Text)
+```text
+Ultra-detailed macro photograph of a dissected immature ear of corn from an autumn harvest. The husk is peeled back to reveal stunted, watery kernels that failed to mature, displaying a translucent pale yellow color with shriveled kernel tips near the cob apex and wet cob tissues. Studio macro focus highlighting cellular water droplets, wrinkled pericarp textures, and soft underdeveloped embryo structures. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.
+```
+
+---
+
+## [그림 2-7] 정상 등숙 이삭과 저온·GDD 결핍 미숙 이삭의 종단면 생리 비교 해부도
+
+- **이미지 번호 / 파일명**: `그림 2-7` / `fig_ch02_v07.png`
+- **문서 결합 절(Section)**: 2.3 농가 관행 오해 교정: 무상기간 무시한 만생종 무리한 도입과 미숙 이삭 피해 진단
+- **시각화 유형**: `scientific_anatomy`
+
+### 문맥 기반 상세 설명 (줄글)
+[그림 2-7] 유효적산온도가 충족되어 생리적 성숙기에 도달한 정상 이삭과 GDD 결핍으로 발달이 정지된 미숙 이삭의 종단면을 비교한 과학적 해부도이다. 정상 이삭은 알곡 기부에 뚜렷한 블랙레이어(black layer)가 형성되어 전분이 치밀하게 축적된 반면, 미숙 이삭은 수분 함량이 과다하고 알곡 선단부에 미충진 공실이 발생한다. 이러한 해부학적 진단은 농가의 단순 다수성 선호 관행이 초래하는 생리적 취약성을 객관적으로 증명한다 [SRC-100, SRC-103].
+
+### 나노바나나 생성 프롬프트 (Pure English · Zero-Text)
+```text
+Scientific cross-section illustration on a pure clean white background showing a direct side-by-side comparative longitudinal dissection of two Zea mays corn cobs. Left side shows a fully mature, dense yellow dent ear with dark brown physiological black layers at the kernel bases and tightly packed starchy endosperm. Right side shows a cold-damaged immature ear with shrunken translucent milk-stage kernels, empty apical rachis, and water-soaked porous pith tissue. Masterful scientific botanical illustration. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.
+```
+
+---
+
+## [그림 2-8] 조기 첫서리로 인한 만생종 옥수수 군락의 엽신 갈변 및 성숙 중단 포장 전경
+
+- **이미지 번호 / 파일명**: `그림 2-8` / `fig_ch02_v08.png`
+- **문서 결합 절(Section)**: 2.3 농가 관행 오해 교정: 무상기간 무시한 만생종 무리한 도입과 미숙 이삭 피해 진단
+- **시각화 유형**: `photorealistic_field`
+
+### 문맥 기반 상세 설명 (줄글)
+[그림 2-8] 만생종 옥수수가 완전 성숙에 이르기 전 가을철 조기 첫서리에 노출되어 동해를 입은 실제 농가 포장의 전경이다. 정상적으로 녹색을 유지하며 광합성 동화산물을 이삭으로 전류시켜야 할 상부 엽신들이 급격한 저온으로 동결·괴사되어 회갈색으로 말라죽어 있다. 무상기간을 도외시한 무리한 만생종 재배가 작물 전체의 동화 작용을 조기에 차단하여 미숙 이삭 피해를 대량 유발하는 현장 기작을 드러낸다 [SRC-103].
+
+### 나노바나나 생성 프롬프트 (Pure English · Zero-Text)
+```text
+Documentary field photograph of an agricultural cornfield severely damaged by an early autumn frost. The upper canopy leaves of tall late-maturing corn plants are bleached, papery, and wilted brown, while immature green husked corn ears hang limp on the stalks under a pale chilly autumn sky. Frost crystals melting on withered leaf edges, crisp deep field perspective showing uniform crop desiccation. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.
+```
+
+---
+
+## [그림 2-9] 다분광 정사영상 촬영을 위해 옥수수 품종 비교 시험포 상공을 비행하는 정밀 농업 UAV
+
+- **이미지 번호 / 파일명**: `그림 2-9` / `fig_ch02_v09.png`
+- **문서 결합 절(Section)**: 2.4 현장 실증: UAV 다분광 정사영상 기반 우수 품종 선발 및 지역 맞춤형 배치
+- **시각화 유형**: `photorealistic_field`
+
+### 문맥 기반 상세 설명 (줄글)
+[그림 2-9] 지역 적응성 우수 품종을 정밀 선발하기 위해 옥수수 육종 시험포 상공에서 정사영상을 취득 중인 산업용 멀티콥터 드론의 비행 장면이다. 드론 기체 하부에 장착된 다분광 센서가 격자형으로 정렬된 품종별 마이크로플롯(microplots)을 정밀한 고도에서 스캐닝하고 있다. 이 과정을 통해 획득된 고해상도 분광 데이터는 품종별 식생 활력도와 군락 발달 추이를 시계열적으로 추적하는 핵심 기반이 된다 [SRC-101].
+
+### 나노바나나 생성 프롬프트 (Pure English · Zero-Text)
+```text
+Photorealistic outdoor action photograph of an agricultural multi-rotor mapping drone hovering precisely over an experimental corn breeding field. Below, grid-patterned microplots of various Zea mays corn cultivars show contrasting shades of green and canopy densities. The drone carries a downward-facing multi-lens camera pod capturing data under clear bright afternoon sunlight, with wide agricultural horizon in the background. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.
+```
+
+---
+
+## [그림 2-10] UAV 다분광 정사영상 기반 옥수수 품종별 식생지수(NDVI) 및 캐노피 밀도 공간 분석 모델
+
+- **이미지 번호 / 파일명**: `그림 2-10` / `fig_ch02_v10.png`
+- **문서 결합 절(Section)**: 2.4 현장 실증: UAV 다분광 정사영상 기반 우수 품종 선발 및 지역 맞춤형 배치
+- **시각화 유형**: `scientific_anatomy`
+
+### 문맥 기반 상세 설명 (줄글)
+[그림 2-10] 무인기 다분광 정사영상을 가공하여 옥수수 품종 시험구별 식생지수(NDVI)와 수관 활력도를 정밀 시각화한 학술 렌더링이다. 각 시험구 구획별로 엽록소 활력도와 수관 부피의 차이가 에메랄드 그린과 따뜻한 금색의 스펙트럼 히트맵 그라데이션으로 명확히 구분된다. 연구자는 이 정량적 지표를 지역 기상 데이터와 결합하여 최적의 온도 이용 효율을 나타내는 품종을 과학적으로 선발할 수 있다 [SRC-100, SRC-101].
+
+### 나노바나나 생성 프롬프트 (Pure English · Zero-Text)
+```text
+High-precision scientific aerial visualization on a clean white background depicting a multi-plot maize breeding trial orthomosaic. Rectangular research plots of Zea mays crops show color-graded spectral vitality layers, shifting from vibrant emerald green to warm gold and cyan reflecting canopy vegetation index gradients. Crisp boundary divisions between individual corn plot blocks, rendered with realistic crop foliage textures and high-altitude photographic clarity. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.
+```
+
+---

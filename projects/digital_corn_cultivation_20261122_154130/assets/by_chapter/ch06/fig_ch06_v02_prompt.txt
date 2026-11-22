@@ -1,0 +1,12 @@
+이미지 번호: 그림 6-2
+이미지 파일명: fig_ch06_v02.png
+단원: 제6장. 디지털 토양 물리·화학성 평가 및 경반층 관리 (ch06)
+결합 절: 6.1 대형 농기계 주행에 따른 토양 3상 구조 붕괴 및 경반층 형성 역학
+시각화 유형: scientific_anatomy
+제목: [그림 6-2] 토양 3상 구조 붕괴 및 용적밀도 증가의 생체역학 메커니즘
+
+[문맥 기반 이미지 설명]
+[그림 6-2] 농기계 하중에 의해 정상적인 토양 입자 간 공극이 붕괴되어 고체, 액체, 기체의 3상 균형이 파괴되는 과정을 정밀 해부학적 단면으로 묘사합니다. 좌측의 건전한 토양은 거대공극과 미세공극이 균형을 이루어 옥수수 뿌리가 자유롭게 분지하지만, 우측의 압밀 토양은 공극률이 급감하고 용적밀도가 치솟아 입자가 조밀하게 재배열됩니다. 이로 인해 심토층에 단단한 물리적 장벽인 경반층이 고착화되는 역학적 기전을 명확히 나타냅니다 [SRC-102].
+
+[나노바나나 생성 프롬프트]
+Scientific cross-section illustration on a pure white background comparing healthy structured soil and compacted soil. On the left side, healthy porous soil displays balanced aggregates, open macro-pores, circulating air pockets, and freely extending young corn roots with root hairs. On the right side, compacted soil displays squashed aggregates with minimal pore volume, high bulk density, flattened micro-pores, and stunted corn roots physically halted by an impenetrable dense hardpan stratum. Detailed scientific watercolor and ink style with rich earth tones and botanical precision. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

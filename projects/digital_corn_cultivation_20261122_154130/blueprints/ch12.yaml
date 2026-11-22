@@ -1,16 +1,69 @@
 chapter_id: ch12
 chapter_number: 12
-title: 제12장. 농기계 활용의 원리와 디지털 현장 관리
-target_pages: 40
-summary_ko: 디지털 옥수수 재배에서 농기계 활용의 과학적 메커니즘, 정량 측정 지표 및 디지털 정밀 관리 전략을 다룹니다.
+title: 제12장. 정밀 수확·가공 후 수확 관리 및 스마트 농기계 작업 체계
+target_pages: 46
+summary_ko: 블랙레이어(흑층) 출현 생리와 곡실 수분 탈수 역학, 사일리지 발효 품질 화학을 규명한다. 콤바인 질량유량 수량센서 교정 및 RTK-GNSS 연동 자율주행 궤적 제어 기준을 정립한다. 농가에서 흔히 겪는 수확 수분율 오판에 따른 종실
+  균열, 건조비용 폭탄 및 사일리지 낙산 부패를 교정하고 무인 수확 편대 작업을 실증한다.
 sections:
-- 12.1 기초 원리 및 개념
-- 12.2 정량 측정·모델링
-- 12.3 국내외 기준 비교
-- 12.4 디지털 현장 적용
+- 12.1 종실 흑층(Black Layer) 형성 생리, 등숙 완료 판정 및 탈립 손실 역학
+- 12.2 콤바인 수량모니터(충격판 질량유량 센서) 캘리브레이션 및 수분 보정 기준
+- '12.3 농가 관행 오해 교정: 수확 적기 오판에 따른 건조 에너지 낭비 및 사일리지 낙산 부패 진단'
+- '12.4 현장 실증: ISOBUS Class 3 연동 자율주행 콤바인-덤프트레일러 무인 협동 수확 작업'
+tables:
+- table_id: 표 12-1
+  title: 곡실용 및 사료용 옥수수의 최적 수확 시기별 수분율, 물리적 손실률 및 건조 비용 기준
+  columns:
+  - 수확 용도
+  - 적정 수확 수분율(%)
+  - 탈립 및 깨짐 손실률(%)
+  - 수확 후 건조 소요 열량
+  - 사일리지 유기산 품질 등급
+  purpose: 수확 작업의 경제성과 가공·저장 품질을 극대화하기 위한 수분율 기준
+- table_id: 표 12-2
+  title: 스마트 수확 콤바인의 센서 종류별 측정 오차 한계, 보정 주기 및 데이터 표준
+  columns:
+  - 센서 명칭
+  - 측정 원리
+  - 허용 오차(%)
+  - 필수 보정 주기
+  - ISOBUS 파라미터 규격
+  purpose: 포장 내 정밀 수량 지도(Yield Map) 작성을 위한 수량 모니터 센서 캘리브레이션 가이드
+visuals:
+- fig_id: 그림 12-01
+  type: A
+  aspect_ratio: '4:3'
+  method: nano_banana_pro
+  title: 자율주행 옥수수 콤바인이 옥수수를 수확하며 나란히 달리는 트랙터 트레일러로 종실을 배출하는 실사
+  description: 광활한 포장에서 RTK 자율주행으로 언로딩 스파우트와 곡물 트레일러가 완벽히 동기화 주행하는 현장
+- fig_id: 그림 12-02
+  type: B
+  aspect_ratio: '4:3'
+  method: nano_banana_pro
+  title: 생리적 성숙기(R6)에 도달한 옥수수 종실 기부의 선명한 흑층(Black Layer) 형성 접사
+  description: 배유 영양분 이동이 종료되어 종실 밑바닥 태좌 조직이 검게 변한 성숙 완료 표본 사진
+- fig_id: 그림 12-03
+  type: C
+  aspect_ratio: '16:9'
+  method: nano_banana_pro
+  title: 콤바인 충격판(Impact Plate) 유량 센서 원리 및 공간 수량 매핑 데이터 처리 파이프라인
+  description: 곡물 충격력 측정, 실시간 수분 보정, GNSS 위치 결합, 지오스탯 공간 보간 맵 생성 흐름도
+- fig_id: 그림 12-04
+  type: D
+  aspect_ratio: '16:9'
+  method: python
+  title: 수확 시 종실 수분 함량(%)에 따른 수확 작업 탈립 손실률 및 기계적 파립률 곡선
+  description: 수분 30% 이상에서의 분쇄 손실과 15% 이하에서의 과도한 자연 탈립을 나타내는 U자형 손실 곡선
 keywords_ko:
-- 농기계 활용
+- 수확 콤바인
+- 블랙레이어
+- 수량 모니터
+- 자율주행 수확
+- 사일리지 품질
 keywords_en:
-- and Use of Agricultural Machinery
+- combine harvester
+- black layer maturity
+- yield monitor
+- autonomous harvesting
+- silage quality
 evidence_packet: digital_corn_cultivation_20261122_154130_evidence.json
 assigned_sources: []

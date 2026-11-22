@@ -1,0 +1,23 @@
+{
+  "project_id": "digital_corn_cultivation_20261122_154130",
+  "topic_ko": "디지털 옥수수 재배학: 데이터 기반 작물생리·정밀재배 및 스마트 농기계 공학",
+  "workspace_dir": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\digital_corn_cultivation_20261122_154130",
+  "last_tab": "workflow",
+  "last_subtab": "",
+  "last_stage_id": "stage5_visuals_generate",
+  "last_stage_order": "5",
+  "last_stage_title": "시각화(장당 10+)",
+  "last_stage_status": "DONE",
+  "last_stage_progress": 100,
+  "last_open_chapter": "",
+  "last_visual_filter": "ch01",
+  "last_action_summary": "5단계 옥수수 130종 시각화 완료 및 ch01 검수",
+  "last_event_message": "6단계 교재 생성 완료 종합 보고서 작성 완료: 06_final_book_report.md",
+  "done_stages": 6,
+  "total_stages": 6,
+  "overall_status": "PAUSED",
+  "completed_chapters_count": 13,
+  "completed_visuals_count": 130,
+  "saved_at": "2026-11-22T08:31:49+00:00",
+  "saved_at_local": "2026-11-22 17:31:49"
+}

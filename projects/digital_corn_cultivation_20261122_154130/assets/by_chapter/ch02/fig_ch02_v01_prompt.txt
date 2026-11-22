@@ -1,0 +1,12 @@
+이미지 번호: 그림 2-1
+이미지 파일명: fig_ch02_v01.png
+단원: 제2장. 옥수수 생태형 분류 및 디지털 초고속 표현형 기반 품종 선발 (ch02)
+결합 절: 2.1 숙기군(조·중·만생종)의 GDD 요구도 및 환경 적응 생리
+시각화 유형: photorealistic_field
+제목: [그림 2-1] 생태형 숙기군별(조·만생) 옥수수 생육 발달 및 출사기 표현형 비교
+
+[문맥 기반 이미지 설명]
+[그림 2-1] 유효적산온도(GDD) 누적 속도에 따른 옥수수 조생종과 만생종의 생육 차이를 연구 시험포장에서 실시간 비교 관찰한 포장 전경이다. 조생종 품종은 비교적 낮은 GDD 누적 조건에서 조기에 웅수 분화와 암이삭 출사(silking)를 완료하여 알곡 비대를 신속히 개시한다. 반면 긴 GDD 누적을 요구하는 만생종은 엽면적과 영양체 생체량을 풍부하게 확보하며 영양생장기를 안정적으로 지속하는 독특한 발달 생리를 보여준다 [SRC-100, SRC-103].
+
+[나노바나나 생성 프롬프트]
+Documentary agricultural field photograph showing adjacent breeding trial plots of Zea mays corn at midday. On the left plot, early-maturing corn plants with golden tassels shed pollen and green silks emerging from young ears on medium-height stalks. On the right plot, late-maturing corn plants are visibly taller with broad deep-green arching leaves and still enclosed whorls without emerged tassels. Rich brown agricultural soil between neat planting rows under clear sunny daylight. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

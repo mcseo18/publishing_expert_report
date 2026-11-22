@@ -1,0 +1,12 @@
+이미지 번호: 그림 7-7
+이미지 파일명: fig_ch07_v07.png
+단원: 제7장. 옥수수 수분 생리 및 스마트 정밀 관개 공학 (ch07)
+결합 절: 7.3 농가 관행 오해 교정: 한낮 시들음 발생 후 관수하는 지연 관개 피해 진단
+시각화 유형: scientific_anatomy
+제목: [그림 7-7] 예방적 관개 대 지연 관개 시 토양수분장력 및 기공 전도도 동태 비교
+
+[문맥 기반 이미지 설명]
+[그림 7-7] 예방적 관개(Preventive Irrigation)와 지연 관개(Delayed Irrigation) 적용 시 옥수수 군락의 생리 반응 차이를 대비한 학술 비교 일러스트레이션입니다. 예방적 관개 구역에서는 토양수분장력이 -30kPa에 도달하기 전 선제적 물 공급이 이루어져 잎이 팽팽하고 기공 전도도가 높게 유지되는 반면, 지연 관개 구역은 심각한 수분 결핍으로 잎이 위조되고 통도 조직에 기포가 형성되는 공동현상이 나타납니다 [SRC-103].
+
+[나노바나나 생성 프롬프트]
+Scientific split-panel comparative illustration on a clean pure white background. The left half shows a healthy Zea mays corn plant maintained under preventive precision irrigation, displaying turgid upright vibrant green leaves, open stomatal chambers, and optimal root hydration within dark moist soil. The right half depicts a severely water-stressed corn plant under delayed irrigation with rolled desiccated leaves, collapsed stomatal cavities, micro-embolisms forming in xylem vessels, and cracked dry soil. High-end botanical textbook rendering style with subtle color coding. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

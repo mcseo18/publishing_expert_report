@@ -1,0 +1,12 @@
+이미지 번호: 그림 3-6
+이미지 파일명: fig_ch03_v06.png
+단원: 제3장. 디지털 정밀 파종 공학 및 균일 입모 관리 (ch03)
+결합 절: 3.3 농가 관행 오해 교정: 조기 저온 파종에 따른 종자 부패 및 심파 피해 포장 진단
+시각화 유형: photorealistic_macro
+제목: [그림 3-6] 조기 저온 파종에 의한 종자 부패(Seed Rot) 및 미생물 침해 미세 접사
+
+[문맥 기반 이미지 설명]
+[그림 3-6] 5°C 이하 저온 과습 포장에서 파종 후 14일간 출아하지 못하고 괴사한 옥수수 종자의 실체 현미경 접사 사진입니다. 세포막 지질의 저온 상전이로 누출된 세포질액 주변에 토양 병원균 균사가 침입하여 배유가 갈색으로 연화 부패한 병리학적 징후를 명확하게 포착하였습니다 [SRC-110]. 3.3.1절의 조기 파종 피해 기전과 토양 병리학적 진단을 실물로 입증합니다.
+
+[나노바나나 생성 프롬프트]
+High-magnification photorealistic laboratory macro photograph of a decayed Zea mays corn kernel retrieved from cold damp soil. The kernel embryo is discolored dark brown and water-soaked, with visible delicate white saprophytic fungal hyphae enveloping the split seed coat and necrotic coleoptile tip. Set against a sterile dark slate background under soft clinical laboratory lighting with sharp focus on fungal strands and degrading pericarp. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

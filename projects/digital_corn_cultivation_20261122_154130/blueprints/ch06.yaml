@@ -1,16 +1,69 @@
 chapter_id: ch06
 chapter_number: 6
-title: 제6장. 토양관리의 원리와 디지털 현장 관리
-target_pages: 40
-summary_ko: 디지털 옥수수 재배에서 토양관리의 과학적 메커니즘, 정량 측정 지표 및 디지털 정밀 관리 전략을 다룹니다.
+title: 제6장. 디지털 토양 물리·화학성 평가 및 경반층 관리
+target_pages: 46
+summary_ko: 대형 농기계 반복 주행에 따른 토양 압밀과 경반층 형성 메커니즘을 규명하고 겉보기 토양 전기전도도(ECa) 매핑 기법을 정립한다. 콘 관입 저항치(Cone Index) 및 용적밀도 정량 기준을 설정한다. 농가에서 배수 불량과 근계 발달
+  부진을 단순 강우 탓으로 돌리는 관행을 교정하고 RTK 자율주행 심토파쇄 처방을 실증한다.
 sections:
-- 6.1 기초 원리 및 개념
-- 6.2 정량 측정·모델링
-- 6.3 국내외 기준 비교
-- 6.4 디지털 현장 적용
+- 6.1 대형 농기계 주행에 따른 토양 3상 구조 붕괴 및 경반층 형성 역학
+- 6.2 관입저항(Cone Index 2.0MPa 임계치) 및 전자기유도(EM38) 정량 기준
+- '6.3 농가 관행 오해 교정: 표토 배수 불량 및 습해를 단순 기상 탓으로 오인하는 관행 진단'
+- '6.4 현장 실증: 3D 토양 다짐 맵 기반 RTK 가변 심토파쇄(Subsoiling) 및 근계 회복'
+tables:
+- table_id: 표 6-1
+  title: 토양 다짐 정도(콘 관입저항치)에 따른 옥수수 근계 신장 저해율 및 용적밀도 기준표
+  columns:
+  - 토양 깊이(cm)
+  - 관입저항(MPa)
+  - 토양 용적밀도(g/cm³)
+  - 근계 하향 신장 저해율(%)
+  - 심토파쇄 필요 여부
+  purpose: 토양 압밀에 의한 물리적 장해 수준 판정 및 파쇄 작업 여부 결정
+- table_id: 표 6-2
+  title: 토양 ECa(겉보기 전기전도도) 구역별 점토 함량, 유효수분 보유력 및 처방 기준
+  columns:
+  - ECa 관리 구역
+  - ECa 범위(mS/m)
+  - 추정 토성
+  - 유효 수분 보유량(mm/m)
+  - 토양 개량 처방
+  purpose: 토양 공간 변이에 기초한 정밀 토양 개량 및 양수분 존 구획
+visuals:
+- fig_id: 그림 6-01
+  type: A
+  aspect_ratio: '4:3'
+  method: nano_banana_pro
+  title: 토양 저항 센서 및 견인식 EM 센서를 장착한 트랙터의 포장 토양 물리성 전수 조사 현장
+  description: 수확 후 나지 상태의 포장을 정밀 주행하며 토양 다짐과 수분 센싱 데이터를 실시간 수집하는 실사
+- fig_id: 그림 6-02
+  type: B
+  aspect_ratio: '4:3'
+  method: nano_banana_pro
+  title: 경반층에 가로막혀 수평으로 굴곡 성장한 옥수수 주근(Tap root) 및 지하부 표본
+  description: 토심 25cm 지점의 단단한 다짐층을 뚫지 못하고 L자형으로 휘어진 불량 근계 토양 단면 접사
+- fig_id: 그림 6-03
+  type: C
+  aspect_ratio: '16:9'
+  method: nano_banana_pro
+  title: 진동식 심토파쇄기(Subsoiler)의 파쇄선 전파 원리 및 토양 공극률 복원 메커니즘
+  description: 파쇄 생크(Shank)가 견인되며 V자형 파쇄 균열을 형성하여 배수성과 통기성을 회복시키는 도해
+- fig_id: 그림 6-04
+  type: D
+  aspect_ratio: '16:9'
+  method: python
+  title: 토심(0~60cm)별 관입저항치(Cone Index) 분포 곡선 및 심토파쇄 전후 비교
+  description: 심토파쇄 전 25~35cm 구간에서 2.5MPa를 초과하던 저항이 시공 후 1.0MPa 이하로 감소한 프로파일 그래프
 keywords_ko:
-- 토양관리
+- 토양 다짐
+- 경반층
+- 콘 관입저항
+- 심토파쇄
+- 토양 ECa
 keywords_en:
-- Soil Management
+- soil compaction
+- hardpan layer
+- cone penetration resistance
+- subsoiling
+- apparent soil EC
 evidence_packet: digital_corn_cultivation_20261122_154130_evidence.json
 assigned_sources: []

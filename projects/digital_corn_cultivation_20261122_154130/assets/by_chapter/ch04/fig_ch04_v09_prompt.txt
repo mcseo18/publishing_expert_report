@@ -1,0 +1,12 @@
+이미지 번호: 그림 4-9
+이미지 파일명: fig_ch04_v09.png
+단원: 제4장. 옥수수 생육 단계별 발달 생리 및 수관 아키텍처 (ch04)
+결합 절: 4.4 현장 실증: 지상 라이다(LiDAR) 및 다분광 드론을 활용한 3D 수관 아키텍처 복원
+시각화 유형: scientific_anatomy
+제목: [그림 4-9] 지상 라이다 3차원 포인트 클라우드와 다분광 엽록소 식생지수 융합 모델
+
+[문맥 기반 이미지 설명]
+[그림 4-9] 지상 라이다(Terrestrial LiDAR)로 스캔한 옥수수 개별 식물체의 3D 점군(Point Cloud) 구조에 다분광 반사율 데이터를 맵핑한 정밀 디지털 아키텍처 모델입니다. 잎의 공간적 경각과 곡률, 엽고 분포가 3차원 기하학적 메쉬로 재구성되어 있으며, 표면 색상은 NDVI 엽록소 활성도 구배에 따라 정밀하게 착색되어 있습니다. 물리적 수관 형상과 생리적 대사 활성도를 단일 플랫폼에서 통합 진단하는 원격탐사 원리를 시각화합니다 [SRC-102].
+
+[나노바나나 생성 프롬프트]
+Scientific 3D computer model illustration of a single maize plant reconstructed on a pure white background. The spatial architectural geometry is rendered as an ultra-dense point cloud and polygonal wireframe mesh capturing individual leaf angles, stalk curvature, and tassel structure. The surface is mapped with a smooth false-color multispectral gradient representing canopy vigor, transitioning from deep photosynthetic green on upper sunlit leaves to cyan and amber in lower shaded zones. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

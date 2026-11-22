@@ -1,0 +1,167 @@
+# 제4장. 옥수수 생육 단계별 발달 생리 및 수관 아키텍처 — 문맥 기반 시각화 기획서 (이미지 번호 · 설명 · 프롬프트)
+
+- **단원 ID**: `ch04`
+- **총 시각화 수**: **10종** (Google Gemini Nano Banana 전량 제작)
+- **생성 시각**: `2026-11-22T08:08:00+00:00`
+
+---
+
+## [그림 4-1] 옥수수 엽칼라(Leaf Collar) 및 엽초·엽신 접합부의 미세 해부학적 구조
+
+- **이미지 번호 / 파일명**: `그림 4-1` / `fig_ch04_v01.png`
+- **문서 결합 절(Section)**: 4.1 옥수수 엽칼라(Leaf Collar) 기준 생육단계(VE~VT, R1~R6)의 발달 생리
+- **시각화 유형**: `photorealistic_macro`
+
+### 문맥 기반 상세 설명 (줄글)
+[그림 4-1] 옥수수 줄기와 잎이 만나는 경계 부위인 엽칼라(Leaf collar)의 형태학적 특성을 초근접 촬영한 고해상도 매크로 사진입니다. 잎몸(blade)과 엽초(sheath) 경계에 연녹색의 선명한 칼라 밴드와 잎혀(ligule), 잎귀(auricle) 조직이 줄기를 견고하게 감싸고 있는 모습을 보여줍니다. 이는 단순 엽령 산출을 넘어 정확한 영양생장 단계 판정의 생리적 기준점이 되는 엽칼라 형성 과정을 시각적으로 입증합니다 [SRC-103].
+
+### 나노바나나 생성 프롬프트 (Pure English · Zero-Text)
+```text
+Extreme macro photography of a healthy green maize (Zea mays) stalk junction focusing on a distinct leaf collar. The pale yellowish-green collar band is clearly visible separating the arching leaf blade from the tightly wrapped leaf sheath. Delicate translucent ligule tissue and tiny auricle margins clasp the sturdy fibrous stem. Crystal-clear cellular surface texture with microscopic dew droplets resting on parallel leaf veins, sharp depth of field under clean diffused daylight. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.
+```
+
+---
+
+## [그림 4-2] 옥수수 생육 전주기 단계별 형태 발달 및 생식 기관 분화 모식도
+
+- **이미지 번호 / 파일명**: `그림 4-2` / `fig_ch04_v02.png`
+- **문서 결합 절(Section)**: 4.1 옥수수 엽칼라(Leaf Collar) 기준 생육단계(VE~VT, R1~R6)의 발달 생리
+- **시각화 유형**: `scientific_anatomy`
+
+### 문맥 기반 상세 설명 (줄글)
+[그림 4-2] 옥수수의 출현기(VE)부터 영양생장 정점인 출웅기(VT), 수염 출현기(R1), 포말기(R2)를 거쳐 생리적 성숙기(R6)에 이르는 전 생육 단계를 정밀하게 표현한 학술 해부도입니다. 각 단계별 줄기 절간 신장, 엽칼라 누적 전개, 수꽃(이삭)과 암술(비단 수염)의 발달 상태가 사실적인 수채화풍의 단면과 함께 묘사되어 있습니다. 작물의 탄소 동화 및 생체량 축적과 연동된 기관별 분화 생리를 체계적으로 설명합니다 [SRC-103].
+
+### 나노바나나 생성 프롬프트 (Pure English · Zero-Text)
+```text
+Scientific anatomical botanical illustration of a single maize plant progressing through developmental stages on a pure white background. Depicting early seedling emergence, vegetative V-stages with distinct leaf collars, the emergence of the apical tassel at VT, the ear shoot with fresh silky stigmas at R1, and fully matured ears with dried husks at R6. Finely detailed botanical cross-sections show internal stem node expansion and kernel development with rich natural shading and precise morphological accuracy. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.
+```
+
+---
+
+## [그림 4-3] 개화·수분기(R1 단계) 옥수수 수꽃 화분 비산과 암술 수염의 포장 전경
+
+- **이미지 번호 / 파일명**: `그림 4-3` / `fig_ch04_v03.png`
+- **문서 결합 절(Section)**: 4.1 옥수수 엽칼라(Leaf Collar) 기준 생육단계(VE~VT, R1~R6)의 발달 생리
+- **시각화 유형**: `photorealistic_field`
+
+### 문맥 기반 상세 설명 (줄글)
+[그림 4-3] 수분 및 수정이 활발히 일어나는 R1기 옥수수 시험 포장의 생생한 현장 다큐멘터리 사진입니다. 최상부 수꽃(tassel)에서 노란 꽃가루 입자가 부드럽게 비산하며, 아래쪽 엽액에서 자라난 암이삭 끝의 촉촉하고 붉은빛이 감도는 비단 수염(silks)으로 낙하하는 역동적인 순간을 포착했습니다. 이는 수정 성공률과 착립수를 결정짓는 핵심 생식 생장 단계의 미기상학적 현장 조건을 보여줍니다 [SRC-103].
+
+### 나노바나나 생성 프롬프트 (Pure English · Zero-Text)
+```text
+Photorealistic documentary field photograph of a vigorous maize canopy at the R1 silking stage during early morning. Warm directional sunlight catches golden pollen dust shedding from the spreading branches of the top tassel, floating gently toward fresh pinkish-cream silks emerging abundantly from the husk tips below. Robust, broad emerald-green leaves with parallel venation frame the scene with shallow cinematic depth of field. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.
+```
+
+---
+
+## [그림 4-4] 군락 수관 층위별 광 감쇄 프로파일과 소광계수(k) 투광률 모델
+
+- **이미지 번호 / 파일명**: `그림 4-4` / `fig_ch04_v04.png`
+- **문서 결합 절(Section)**: 4.2 군락 소광계수(k), 엽면적 지수(LAI) 및 지주근(Brace root) 역학 기준
+- **시각화 유형**: `scientific_anatomy`
+
+### 문맥 기반 상세 설명 (줄글)
+[그림 4-4] 옥수수 군락 내부로 침투하는 태양 복사에너지의 수직 감쇄 양상을 비어-람베르트(Beer-Lambert) 법칙에 근거하여 시각화한 과학 해부도입니다. 직립형 상위엽을 통과하며 산란된 빛이 중위엽 및 하위엽 그늘 층으로 도달하는 광선 다발의 감쇠 패턴과 엽면적 지수(LAI) 증가에 따른 소광계수(k)의 물리적 작용을 정밀한 단면으로 나타냅니다. 균형 잡힌 수관 아키텍처가 하위엽 광합성 활성도 유지에 미치는 영향을 학술적으로 설명합니다 [SRC-104].
+
+### 나노바나나 생성 프롬프트 (Pure English · Zero-Text)
+```text
+Scientific cross-section illustration of a dense maize crop canopy on a pure white background, demonstrating vertical solar radiation penetration. Golden parallel sunbeams enter vertically from the top, filtering through erect upper leaves, scattering partially at the middle canopy layer, and showing attenuated faint light rays reaching the lower horizontal shaded leaves near the soil line. Richly shaded botanical foliage with clear visual gradient representing light attenuation and leaf area distribution. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.
+```
+
+---
+
+## [그림 4-5] 옥수수 기부 절간에서 지표로 분화·착생하는 다단 지주근(Brace Root)
+
+- **이미지 번호 / 파일명**: `그림 4-5` / `fig_ch04_v05.png`
+- **문서 결합 절(Section)**: 4.2 군락 소광계수(k), 엽면적 지수(LAI) 및 지주근(Brace root) 역학 기준
+- **시각화 유형**: `photorealistic_macro`
+
+### 문맥 기반 상세 설명 (줄글)
+[그림 4-5] 옥수수 줄기 하단 1~3마디에서 방사형으로 발생하여 토양으로 침투하는 지주근(Brace root)을 초근접 포착한 매크로 사진입니다. 두껍고 단단한 보랏빛 림을 띤 기근(aerial roots)이 단립 구조가 잘 발달된 흑갈색 양토 속으로 강하게 관입하며 뿌리털을 형성하는 디테일을 관찰할 수 있습니다. 지주근의 견고한 생리적 발달이 작물체의 물리적 지지력을 완성하는 핵심 요소임을 보여줍니다 [SRC-121].
+
+### 나노바나나 생성 프롬프트 (Pure English · Zero-Text)
+```text
+Ultra-sharp macro photograph of the base of a mature maize stalk focusing on thick adventitious brace roots emerging in concentric whorls from the lowest nodes. The rigid aerial prop roots display purplish-green epidermal tones and textured root caps anchoring firmly into rich, moist, crumbly dark loam soil. Natural low-angle lighting highlights the tensile structural mechanics and fine root hairs gripping soil particles. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.
+```
+
+---
+
+## [그림 4-6] 강풍 하중 시 옥수수 줄기-지주근-토양 복합체의 전도 모멘트 저항 역학
+
+- **이미지 번호 / 파일명**: `그림 4-6` / `fig_ch04_v06.png`
+- **문서 결합 절(Section)**: 4.2 군락 소광계수(k), 엽면적 지수(LAI) 및 지주근(Brace root) 역학 기준
+- **시각화 유형**: `scientific_anatomy`
+
+### 문맥 기반 상세 설명 (줄글)
+[그림 4-6] 강풍 및 폭우 조건에서 옥수수 줄기에 가해지는 횡하중과 이를 지탱하는 지주근 역학을 도해한 공학적 생물 해부도입니다. 풍하중(Wind drag force)에 의해 발생하는 전도 모멘트(Overturning moment)에 맞서 바람맞이 쪽 지주근이 인장력(Tension)을, 바람받이 쪽 지주근 및 줄기 기부가 압축력(Compression)을 지지하는 물리적 응력 벡터를 시각화했습니다. 도복 저항성을 결정하는 뿌리-줄기-토양 복합체의 기계적 결합 메커니즘을 상세히 입증합니다 [SRC-121].
+
+### 나노바나나 생성 프롬프트 (Pure English · Zero-Text)
+```text
+Scientific anatomical cutaway illustration on a pure white background showing the biomechanical lodging resistance of a single maize plant. The plant stalk is subjected to lateral wind bending, while the flared multi-tiered brace root system acts as a suspension truss. Cross-sectional soil wedge shows compressive anchoring on the leeward root cluster and tensile resistance on the windward roots, with elegant anatomical shading and structural force dynamics. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.
+```
+
+---
+
+## [그림 4-7] 질소 과용으로 인한 초기 과번무(웃자람) 구와 표준 균형 생육 구의 포장 비교
+
+- **이미지 번호 / 파일명**: `그림 4-7` / `fig_ch04_v07.png`
+- **문서 결합 절(Section)**: 4.3 농가 관행 오해 교정: 초기 과도한 엽면적 확보(웃자람)와 유효 수량 저하 포장 진단
+- **시각화 유형**: `photorealistic_field`
+
+### 문맥 기반 상세 설명 (줄글)
+[그림 4-7] 연구 농장의 분할 구에서 질소 과시비로 인해 초기 엽면적이 과도하게 팽창한 웃자람 군락과 적정 관리된 표준 군락을 대비한 고해상도 현장 사진입니다. 좌측의 웃자란 군락은 줄기가 가늘고 잎이 조밀하여 내부 통풍과 하위엽 수광 상태가 불량한 반면, 우측의 균형 구는 단단한 줄기와 튼실한 착수 상태를 나타냅니다. 영양생장 과다로 인한 수관 내부 미기상 악화와 도복 취약성을 명확히 비교할 수 있습니다 [SRC-103, SRC-104].
+
+### 나노바나나 생성 프롬프트 (Pure English · Zero-Text)
+```text
+Photorealistic agronomic research station field photograph showing side-by-side comparative maize plots. On the left, an over-fertilized plot displays spindly, elongated maize stalks with excessively dense, tangled foliage and pale yellowing senescent lower leaves due to self-shading. On the right, a balanced agronomic plot shows sturdy, thick stalks with upright leaf angles, open airy canopies letting sunlight penetrate to the ground, and robustly developing ear shoots under crisp daylight. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.
+```
+
+---
+
+## [그림 4-8] 탄소동화산물 분배 불균형에 따른 옥수수 이삭 선단 불임(Tip abortion) 단면
+
+- **이미지 번호 / 파일명**: `그림 4-8` / `fig_ch04_v08.png`
+- **문서 결합 절(Section)**: 4.3 농가 관행 오해 교정: 초기 과도한 엽면적 확보(웃자람)와 유효 수량 저하 포장 진단
+- **시각화 유형**: `photorealistic_macro`
+
+### 문맥 기반 상세 설명 (줄글)
+[그림 4-8] 과도한 영양생장 바이오매스 집중으로 인해 생식 싱크(Sink)로의 광합성 산물 이동이 저해되어 발생한 이삭 끝마름(Tip abortion)과 정상 이삭의 종단면 매크로 비교 사진입니다. 정상 이삭은 황금빛 자실이 선단까지 균일하게 발달한 반면, 수량 포장(Yield drag)이 발생한 이삭은 선단부 배주가 위축되고 퇴화하여 갈변된 양상을 보입니다. 초기 LAI 과다 확보가 종실 충실도에 미치는 생리적 장해를 실증합니다 [SRC-104].
+
+### 나노바나나 생성 프롬프트 (Pure English · Zero-Text)
+```text
+High-detail macro photography of two halved maize ears cut longitudinally side-by-side on a dark slate laboratory surface. The top healthy ear features uniformly plump, golden-yellow kernels packed tightly to the very apex of the white cob core. The bottom ear shows clear tip abortion, where the apical third displays shriveled, underdeveloped, pale-whitish aborted ovules caused by assimilate starvation during early grain filling, highlighted under studio lighting. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.
+```
+
+---
+
+## [그림 4-9] 지상 라이다 3차원 포인트 클라우드와 다분광 엽록소 식생지수 융합 모델
+
+- **이미지 번호 / 파일명**: `그림 4-9` / `fig_ch04_v09.png`
+- **문서 결합 절(Section)**: 4.4 현장 실증: 지상 라이다(LiDAR) 및 다분광 드론을 활용한 3D 수관 아키텍처 복원
+- **시각화 유형**: `scientific_anatomy`
+
+### 문맥 기반 상세 설명 (줄글)
+[그림 4-9] 지상 라이다(Terrestrial LiDAR)로 스캔한 옥수수 개별 식물체의 3D 점군(Point Cloud) 구조에 다분광 반사율 데이터를 맵핑한 정밀 디지털 아키텍처 모델입니다. 잎의 공간적 경각과 곡률, 엽고 분포가 3차원 기하학적 메쉬로 재구성되어 있으며, 표면 색상은 NDVI 엽록소 활성도 구배에 따라 정밀하게 착색되어 있습니다. 물리적 수관 형상과 생리적 대사 활성도를 단일 플랫폼에서 통합 진단하는 원격탐사 원리를 시각화합니다 [SRC-102].
+
+### 나노바나나 생성 프롬프트 (Pure English · Zero-Text)
+```text
+Scientific 3D computer model illustration of a single maize plant reconstructed on a pure white background. The spatial architectural geometry is rendered as an ultra-dense point cloud and polygonal wireframe mesh capturing individual leaf angles, stalk curvature, and tassel structure. The surface is mapped with a smooth false-color multispectral gradient representing canopy vigor, transitioning from deep photosynthetic green on upper sunlit leaves to cyan and amber in lower shaded zones. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.
+```
+
+---
+
+## [그림 4-10] 다분광 드론과 지상 라이다를 이용한 정밀 옥수수 포장 수관 데이터 수집
+
+- **이미지 번호 / 파일명**: `그림 4-10` / `fig_ch04_v10.png`
+- **문서 결합 절(Section)**: 4.4 현장 실증: 지상 라이다(LiDAR) 및 다분광 드론을 활용한 3D 수관 아키텍처 복원
+- **시각화 유형**: `photorealistic_field`
+
+### 문맥 기반 상세 설명 (줄글)
+[그림 4-10] 옥수수 포장 상공에서 자율 비행하며 다분광 센서로 작물 수관을 관측하는 드론과 지표에서 정밀 스캐닝을 수행하는 지상 라이다 삼각대를 담은 첨단 스마트 농업 현장 사진입니다. 정렬된 옥수수 이랑 사이로 레이저 스캐너가 수직 줄기 구조와 지주근 발달 상태를 기록하고, 상공의 드론이 전 포장의 분광 지수를 수집하는 이중 센서 통합 모니터링 체계를 보여줍니다. 디지털 농업에서 3D 작물 아키텍처 복원이 구현되는 실증적 연구 환경을 제공합니다 [SRC-102, SRC-121].
+
+### 나노바나나 생성 프롬프트 (Pure English · Zero-Text)
+```text
+Photorealistic documentary field photograph of an agricultural research maize field at sunset. A modern quadcopter drone carrying a multispectral payload hovers steadily over tall, uniform green corn rows. In the foreground along the tractor row, a carbon-fiber tripod holds a high-precision terrestrial LiDAR 3D laser scanner actively pulsing invisible beams toward the dense stalks and exposed brace roots under warm golden hour lighting. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.
+```
+
+---

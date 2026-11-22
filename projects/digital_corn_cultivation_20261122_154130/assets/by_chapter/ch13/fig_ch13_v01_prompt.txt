@@ -1,0 +1,12 @@
+이미지 번호: 그림 13-1
+이미지 파일명: fig_ch13_v01.png
+단원: 제13장. 전 세계 옥수수 생산·유통 공급망 및 산업적 다각화 활용 (ch13)
+결합 절: 13.1 글로벌 주요 옥수수 벨트(미국, 브라질, 중국, 우크라이나)의 생산 체계 및 물류망 구조
+시각화 유형: photorealistic_field
+제목: [그림 13-1] 미국 콘벨트 대규모 수확 및 철도 직결 곡물 상차 시스템
+
+[문맥 기반 이미지 설명]
+[그림 13-1] 미국 일리노이주 콘벨트의 광활한 평원에서 대형 콤바인 3대가 완숙된 옥수수 포장을 수확하며 곡물 카트로 알곡을 쏟아내는 장면을 보여준다. 필드 가장자리에는 전용 인출선 철도망과 직결된 대형 집하 설비가 배치되어 수확 즉시 멕시코만 항만으로 연계되는 효율적인 내륙 물류망을 나타낸다 [SRC-121]. 건조된 옥수수 줄기와 황금빛 옥수수 알곡의 압도적인 생산 규모를 현장감 있게 담아냈다.
+
+[나노바나나 생성 프롬프트]
+Aerial wide-angle documentary photograph of the United States Corn Belt in Illinois during autumn harvest. Three modern green combine harvesters with multi-row corn headers simultaneously harvesting a vast, flat field of golden mature Zea mays cornstalks. A grain cart tractor unloads bright yellow shelled corn kernels into a waiting semi-truck on a gravel field road. In the midground background, an industrial rail spur line with silver hopper railcars connects directly to a towering concrete country elevator under a clear blue Midwestern sky. Crisp depth of field, warm afternoon sunlight, detailed crop dust, and fine textures of dry corn leaves. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

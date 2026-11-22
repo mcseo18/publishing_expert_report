@@ -1,0 +1,12 @@
+이미지 번호: 그림 4-1
+이미지 파일명: fig_ch04_v01.png
+단원: 제4장. 옥수수 생육 단계별 발달 생리 및 수관 아키텍처 (ch04)
+결합 절: 4.1 옥수수 엽칼라(Leaf Collar) 기준 생육단계(VE~VT, R1~R6)의 발달 생리
+시각화 유형: photorealistic_macro
+제목: [그림 4-1] 옥수수 엽칼라(Leaf Collar) 및 엽초·엽신 접합부의 미세 해부학적 구조
+
+[문맥 기반 이미지 설명]
+[그림 4-1] 옥수수 줄기와 잎이 만나는 경계 부위인 엽칼라(Leaf collar)의 형태학적 특성을 초근접 촬영한 고해상도 매크로 사진입니다. 잎몸(blade)과 엽초(sheath) 경계에 연녹색의 선명한 칼라 밴드와 잎혀(ligule), 잎귀(auricle) 조직이 줄기를 견고하게 감싸고 있는 모습을 보여줍니다. 이는 단순 엽령 산출을 넘어 정확한 영양생장 단계 판정의 생리적 기준점이 되는 엽칼라 형성 과정을 시각적으로 입증합니다 [SRC-103].
+
+[나노바나나 생성 프롬프트]
+Extreme macro photography of a healthy green maize (Zea mays) stalk junction focusing on a distinct leaf collar. The pale yellowish-green collar band is clearly visible separating the arching leaf blade from the tightly wrapped leaf sheath. Delicate translucent ligule tissue and tiny auricle margins clasp the sturdy fibrous stem. Crystal-clear cellular surface texture with microscopic dew droplets resting on parallel leaf veins, sharp depth of field under clean diffused daylight. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

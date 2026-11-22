@@ -1,0 +1,12 @@
+이미지 번호: 그림 9-3
+이미지 파일명: fig_ch09_v03.png
+단원: 제9장. 작물 생육·양분 모델링 및 디지털 트윈 시뮬레이션 (ch09)
+결합 절: 9.1 작물 생리 메커니즘 모델(APSIM-Maize, CERES-Maize)의 탄소 분배 및 생육 수리엔진
+시각화 유형: photorealistic_macro
+제목: [그림 9-3] 근권 토양-뿌리 계면에서의 질소 무기화 및 질산염 흡수 미세 환경
+
+[문맥 기반 이미지 설명]
+[그림 9-3] 옥수수 지지근 및 측근 주변의 근권 토양 계면을 초근접 매크로 촬영으로 포착한 장면입니다. 토양 공극 사이의 수분 피막과 유기질 부식질 입자, 그리고 토양 미생물 군집의 상호작용을 통해 질산화가 활발히 진행되는 미세 생태계를 사실적으로 보여줍니다. 기온과 수분에 따른 질소 무기화 반응이 뿌리털을 통해 흡수되는 현장 생리 과정을 실물 수준으로 전달합니다 [SRC-106, SRC-107].
+
+[나노바나나 생성 프롬프트]
+Ultra-sharp macro laboratory photograph of real Zea mays brace roots and lateral root hairs penetrating crumbly dark agricultural rhizosphere soil. Fine crystalline moisture droplets adhere to soil aggregates, with tiny soil pore spaces visible around microscopic root hairs. Natural studio fiber-optic macro lighting capturing rich earthy textures, humus granules, and translucent root epidermal cells in extreme detail. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

@@ -1,0 +1,167 @@
+---
+chapter_id: "ch07"
+title: "제7장. 옥수수 수분 생리 및 스마트 정밀 관개 공학"
+audience: "대학 전공 심화, 대학원생, 연구자 및 선도 현장 실무자"
+evidence_packet: "digital_corn_cultivation_20261122_154130_evidence.json"
+---
+
+# 제7장. 옥수수 수분 생리 및 스마트 정밀 관개 공학
+
+## 7.1 옥수수 증발산(ETc) 모델(FAO-56 듀얼 챔버 계수) 및 수분 흡수 생리
+
+옥수수와 같은 작물의 물 사용 효율성을 최적화하기 위해서는 작물의 증산 작용과 토양으로부터의 물 흡수 과정을 정량적으로 이해하는 것이 필수적이다 [SRC-103]. 작물의 물 이용량은 크게 증발산(E<sub>T</sub>)과 작물 자체의 생리적 증산(E<sub>c</sub>)으로 구성되며, 이 둘의 관계를 나타내는 증발산량(ET<sub>c</sub>)은 작물의 생장 단계와 환경 조건에 따라 달라진다 [SRC-103].
+
+옥수수와 같은 주요 작물에 대한 증발산(ET<sub>c</sub>) 계산에는 FAO-56 방법론(Reference Evapotranspiration, ET<sub>o</sub>)을 기반으로 하는 듀얼 챔버(Dual Chamber) 계수법이 널리 적용된다 [SRC-103]. 이 방법은 대기 상태의 증발산량(ET<sub>o</sub>)을 특정 작물(ET<sub>c</sub>)의 증발산량으로 변환하는 계수(K<sub>c</sub>)를 활용한다.
+
+<div class="math-block"><span class="math-eq">ET<sub>c</sub> = K<sub>c</sub> · ET<sub>o</sub></span></div>
+
+여기서 K<sub>c</sub>는 작물 계수(Crop Coefficient)로, 옥수수의 생육 단계(분얼기, 생장기, 성숙기 등)에 따라 달라지며, 작물의 수분 흡수 생리학적 특성과 기공 전도도(Stomatal Conductance)를 반영한다 [SRC-103]. 옥수수는 일반적으로 광합성 활성이 높을 때 기공을 개방하여 증산 작용을 활발히 하지만, 가뭄 스트레스를 받으면 기공을 부분적으로 폐쇄하여 수분 손실을 최소화하는 **기공 제어 메커니즘**을 작동시킨다 [SRC-103]. 이러한 기공 제어는 작물이 생리적 안정성을 유지하며 스트레스에 저항하는 핵심적인 생리 반응이다 [SRC-103].
+
+또한, 토양수분장에서의 작물 수분 흡수는 토양 수분 장력(ψ<sub>s</sub>)과 옥수수 뿌리 세포의 삼투압 조건에 의해 결정된다 [SRC-103]. 뿌리는 토양 수분이 특정 장력 범위(ψ<sub>s</sub>) 내에 있을 때 능동적 또는 수동적으로 물을 흡수한다.
+
+## 7.2 FDR 체적수분센서 및 토양수분장력(-30~-50kPa 임계치) 정량 기준
+
+현대 정밀 관개 시스템의 핵심은 토양의 실제 수분 상태를 실시간으로 파악하는 것이다. 이를 위해 **토양수분함량(Volumetric Water Content, θ) 센서**가 사용되며, 그중 **용량형 토양수분 센서(FDR, Frequency Domain Reflectometry)**가 널리 활용된다 [SRC-103]. FDR 센서는 토양의 유전율 변화를 측정하여 체적 수분 함량을 θ 값으로 정량화한다.
+
+토양 수분 관개 결정의 기준은 단순한 θ 값뿐만 아니라 **토양수분장력(pF)**에 의해 더욱 정밀하게 정의된다 [SRC-103]. 토양수분장력은 물이 토양 입자에 얼마나 강하게 흡착되어 있는지를 나타내는 압력 단위(kPa)로 표현된다.
+
+옥수수와 같은 주작물에 대한 관개 시점을 결정하는 **임계 토양수분장력(ψ<sub>crit</sub>)**은 관개 효율과 작물 생육 안정성에 결정적인 영향을 미친다 [SRC-103]. 일반적으로 옥수수 생육 단계에 따라 다르지만, 건조 스트레스가 가시화되기 시작하는 지점은 **-30kPa에서 -50kPa 범위**로 설정하는 것이 일반적인 정량 기준이 된다 [SRC-103]. 이 임계치를 벗어나 토양 수분 장력이 지나치게 낮아지면, 식물은 수분 흡수 동력을 상실하고 생리적 스트레스(시들음)를 경험하게 된다 [SRC-103].
+
+**정량적 관개 기준 요약:**
+1. **센싱 대상:** 체적수분함량 (θ) 및 토양수분장력 (ψ<sub>s</sub>) [SRC-103].
+2. **관개 개시 임계치:** 토양수분장력이 ψ<sub>crit</sub> = -30kPa ~ -50kPa 이하로 떨어졌을 때 [SRC-103].
+3. **시스템 연동:** FDR 센싱 데이터를 기반으로, 가변관개(VRI) 시스템을 통해 구역별 필요 관개량을 동적으로 제어한다 [SRC-104].
+
+## 7.3 농가 관행 오해 교정: 한낮 시들음 발생 후 관수하는 지연 관개 피해 진단
+
+농가 현장에서는 종종 작물이 육안으로 시드는 **시들음(Wilting)** 현상이 관찰될 때, 즉각적으로 관수를 시행하는 관행이 지배적이다 [SRC-103]. 그러나 이는 **지연 관개(Delayed Irrigation)**에 의한 피해를 심화시키는 전형적인 오류이다 [SRC-103].
+
+**현장 오해 진단:** 작물이 한낮에 시들기 시작할 때 관수하는 행위는, 이미 작물이 생리학적 스트레스(수분 결핍 스트레스)를 받고 있음을 의미한다 [SRC-103]. 식물은 증산 작용을 통해 물을 필요로 하지만, 스트레스 상태에서는 기공을 닫아 증산량을 급격히 줄이며 생존을 모색한다. 이 시점은 이미 토양수분장력이 위험 수준(예: -50kPa 이상)까지 하강했음을 시사한다 [SRC-103].
+
+**교정된 관행:** 최적의 관개는 **잠재적 스트레스 발생 전**, 즉 토양수분장력이 ψ<sub>crit</sub>에 도달하기 *전에* 계획적으로 이루어져야 한다 [SRC-103]. 이는 작물이 증산량을 최적으로 유지하면서 생리적 활성도를 유지할 수 있도록 공급되는 **예방적 관개(Preventive Irrigation)**의 원칙에 기반한다 [SRC-103]. 증발산(ET<sub>c</sub>) 예측 모델(FAO-56)과 FDR 센서 데이터 분석을 통해 미래의 수분 부족 시점을 예측하고 선제적으로 관개하는 것이 정밀 농업의 핵심이다 [SRC-103].
+
+## 7.4 현장 실증: 센터피벗 가변관개(VRI) 및 지중점적(SDI) 자동 관수 시스템 운용
+
+현대 농업에서는 균일한 환경 조건이 불가능하므로, **가변관개(Variable Rate Irrigation, VRI)** 기술이 필수적이다 [SRC-104]. VRI는 필드 내에서도 토양 수분 조건, 작물 생육 밀도, 미세 지형 특성 등에 따라 관개량을 다르게 공급하는 기술이다 [SRC-104].
+
+**센터피벗 시스템과 VRI:** 센터피벗 시스템은 필드 전체에 균일한 관수를 제공하는 전통적 방식이지만, VRI를 통합함으로써 구역별 관개 요구도(Zone-specific Water Requirement)를 충족시킨다 [SRC-104]. 토양 센싱 데이터와 연동하여, 수분 결핍이 심각한 구역에는 높은 관개량을, 비교적 습한 구역에는 최소한의 보충 관개량을 공급한다.
+
+**지중점적(SDI) 시스템:** SDI(Subsurface Drip Irrigation)는 작물 뿌리대 바로 아래에 점적 호스를 매설하는 방식으로, 증발 손실을 최소화하고 수분이 뿌리 근권에 집중적으로 공급되도록 하여 물 이용 효율을 극대화한다 [SRC-104]. SDI는 특히 옥수수와 같이 뿌리 분포가 명확한 작물에서 높은 관개 효율을 달성할 수 있다 [SRC-104].
+
+**자동 관수 알고리즘 실증:** 최종 단계는 **기상-토양 연동 자동 관개 알고리즘**의 실증이다 [SRC-103]. 이 알고리즘은 다음과 같이 작동한다:
+1. **예측 단계:** 기상 정보(강수량, 온도, 풍속 등)를 이용해 ET<sub>o</sub>를 계산하고, ET<sub>c</sub>를 예측한다.
+2. **모니터링 단계:** 토양 센서(FDR)를 통해 현재의 토양 수분 장력(ψ<sub>s</sub>)을 측정한다.
+3. **결정 단계:** 예측된 ET<sub>c</sub>와 현재의 ψ<sub>s</sub>를 비교하여, ψ<sub>s</sub>가 ψ<sub>crit</sub>에 근접하거나 도달하기 *전에* 필요한 관개량(L)을 계산한다.
+4. **제어 단계:** VRI 또는 SDI 시스템에 필요한 관개량(L)을 명령하여 관수를 수행한다 [SRC-104].
+
+---
+
+## ## 핵심 용어집 (표)
+
+| 용어 | 정의 | 관련 지표/값 | 관련 기술/원리 |
+| :--- | :--- | :--- | :--- |
+| **증발산 (ET<sub>c</sub>)** | 작물 및 토양 표면에서 일어나는 물의 증발과 증산의 총량 | ET<sub>c</sub> = K<sub>c</sub> · ET<sub>o</sub> | FAO-56 듀얼 챔버 계수 |
+| **토양수분장력 (ψ<sub>s</sub>)** | 토양이 물을 붙잡고 있는 압력의 음의 값 (단위: kPa) | ψ<sub>crit</sub> = -30 kPa ~ -50 kPa | FDR 센싱, 관개 결정 기준 |
+| **FDR 센서** | 주파수 영역 반사 측정 원리를 이용하여 토양의 체적 수분 함량(θ)을 측정하는 장비 | 체적 수분 함량 (θ) | 정밀 관개 모니터링 |
+| **가변관개 (VRI)** | 필드 내 구역별 토양 및 생육 상태에 따라 관개량과 시기를 다르게 제어하는 기술 | 구역별 관개 요구도 | 센터피벗, SDI 연동 |
+| **기공 제어** | 식물이 수분 스트레스에 대응하여 증산량을 조절하기 위해 기공을 부분적으로 닫는 생리 현상 | 기공 전도도 | 수분 흡수 생리 |
+
+## ## 이해도 점검 연습문제 및 해설
+
+**문제 1.** 옥수수의 물 이용 효율성을 극대화하기 위해 현장에서 흔히 범하는 '시들음 발생 후 관수' 관행이 왜 생리학적/공학적 관점에서 비효율적인지에 대한 핵심적인 이유를 **토양수분장력(ψ<sub>s</sub>)의 변화**를 중심으로 설명하시오.
+
+**정답 및 상세 풀이 1:** 핵심적인 이유는 관수가 **예방적이지 않고 사후적**이기 때문이다. 작물이 육안으로 시드는 시점은 이미 작물이 수분 결핍 스트레스에 노출되어, 토양수분장력(ψ<sub>s</sub>)이 작물이 정상적으로 물을 흡수할 수 있는 임계치(예: -50kPa 이하)에 도달했음을 의미한다 [SRC-103]. 이 시점에서는 식물 스스로 기공을 닫아 증산량을 줄이며 생존 모드로 전환하지만, 이미 수분 부족 스트레스가 발생한 상태이므로, 이 시점에 물을 공급하더라도 작물은 이미 생리적 손상을 입은 상태이므로 피해를 최소화할 수 없다 [SRC-103]. 따라서 관개는 ψ<sub>s</sub>가 ψ<sub>crit</sub>에 도달하기 *전*에 선제적으로 이루어져야 한다 [SRC-103].
+
+**문제 2.** 정밀 관개 시스템에서 FDR 체적수분 센서가 제공하는 데이터와 FAO-56 모델에서 계산된 ET<sub>c</sub>가 **기상-토양 연동 자동 관개 알고리즘** 내에서 각각 어떤 역할을 수행하는지 비교하여 설명하시오.
+
+**정답 및 상세 풀이 2:** ET<sub>c</sub>는 **'얼마나 많은 물이 필요할 것인가' (요구량 예측)**를 담당한다 [SRC-103]. FAO-56 모델을 통해 미래의 증발산량을 예측하여 작물의 수분 손실 속도를 사전에 파악한다. 반면, FDR 센서는 **'현재 토양에 물이 얼마나 남아있는가' (실측 상태 감시)**를 담당한다 [SRC-103]. 이 두 데이터는 알고리즘에서 결합되어, 예측된 필요량과 현재 잔존량을 비교하여, 부족분(필요량 - 잔존량)을 보충해야 할지 여부를 최종적으로 결정하는 **관개 결정 지표**를 생성한다 [SRC-104].
+
+**문제 3.** 센터피벗 시스템에 VRI 기술이 통합될 때, 토양의 이질성(Heterogeneity)에 대응하는 메커니즘을 구체적인 관개 공급 방식의 차이를 중심으로 설명하시오.
+
+**정답 및 상세 풀이 3:** 전통적인 센터피벗은 필드 전체에 동일한 물을 뿌려 균일한 토양 상태를 가정하지만, VRI는 필드 내의 **지구물리학적 또는 생육학적 이질성**을 인식한다 [SRC-104]. 예를 들어, 필드의 특정 구역이 토양 유기물 함량이 낮거나 배수가 불량하여 수분 보유력이 낮다면, VRI는 해당 구역에 더 많은 물(높은 관개량)을, 반대로 배수가 양호하여 수분 보유력이 높은 구역에는 최소한의 물을 공급하게 된다 [SRC-104]. 이는 관개 시스템을 '단일화된 공급'에서 '다중화된 맞춤 공급'으로 전환시키는 핵심 원리이다.
+
+## ## 오해와 진실: 현장·이론 핵심 오해 교정
+
+**오해 1: "작물이 시들면(Wilting) 물을 충분히 공급해주면 된다."**
+**진실:** 이는 지연 관개 피해를 유발한다 [SRC-103]. 작물이 시드는 것은 이미 생리적 스트레스가 발생했다는 명백한 신호이며, 이때의 관수는 스트레스 회복이 아닌 '증상 치료'에 가깝다. 정밀 관개는 스트레스 발생 *전에*, 토양수분장력이 설정된 임계치(예: -30kPa)에 도달하기 전에 선제적으로 이루어져야 한다 [SRC-103].
+
+**오해 2: "FDR 센서는 토양의 수분 함량을 직접적으로 보여주기 때문에 별도의 보정이 필요 없다."**
+**진실:** FDR 센서는 체적 수분 함량(θ)이라는 물리적 값을 측정하지만, 이 θ를 실제 '관개 시점'과 연결하기 위해서는 **토양 유형별 특성**을 반영하는 모델 보정(Calibration) 과정이 필수적이다 [SRC-103]. 특히, 센싱 장비의 노화나 토양 입자 구조의 변화에 따라 장력(ψ<sub>s</sub>)과의 상관관계가 변동하므로, 단순히 θ 값에만 의존해서는 안 된다.
+
+**오해 3: "증발산량(ET<sub>c</sub>)은 기상 조건만으로 완벽하게 예측할 수 있다."**
+**진실:** ET<sub>c</sub>는 기상 조건(ET<sub>o</sub>)과 작물의 생리적 상태(K<sub>c</sub>)의 곱이다 [SRC-103]. K<sub>c</sub>는 작물의 생장 단계뿐만 아니라, 현재의 **토양 수분 스트레스 수준**에 의해 동적으로 변한다. 즉, 토양 센싱 데이터는 K<sub>c</sub>를 현실적으로 보정하는 데 필수적인 피드백 정보를 제공하며, 기상 데이터만으로는 최적의 관개 시점을 잡기 어렵다 [SRC-103].
+
+## 참고문헌 및 근거 출처 목록
+
+| 출처 ID | 유형 | 제목 | URL | 라이선스 |
+| :--- | :--- | :--- | :--- | :--- |
+| `SRC-100` | web | 농촌진흥청 | https://www.rda.go.kr/ | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-101` | web | 보도자료 < 새소식 < 정책홍보 < 농촌진흥청 | https://www.rda.go.kr/board/board.do?boardId=farmprmninfo&prgId=day_farmprmninfoEntry | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-102` | web | 한국식품연구원 | https://www.kfri.re.kr/ | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-103` | web | 국립식량과학원 | https://www.nics.go.kr/index.do | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-104` | web | 농림축산식품부 | https://www.mafra.go.kr/home/index.do | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-105` | web | 국민 안심이 기준입니다, 식품의약품안전처 | https://www.mfds.go.kr/index.do | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-106` | web | 한국농촌경제연구원 | https://www.krei.re.kr/krei/index.do | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-107` | web | 저온 유통 - 위키백과, 우리 모두의 백과사전 | https://ko.wikipedia.org/wiki/%EC%BD%9C%EB%93%9C_%EC%B2%B4%EC%9D%B8 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-108` | web | 에틸렌 - 위키백과, 우리 모두의 백과사전 | https://ko.wikipedia.org/wiki/%EC%97%90%ED%8B%B8%EB%A0%8C | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-109` | web | [2021] Inhibition of Ethylene Binding and Biosynthesis Maintains Fruit Quality of ‘Formosa’ Plums during Postharvest Storage (Horticultural Science and Technology) | https://doi.org/10.7235/hort.20210033 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-111` | web | [2010] Cold storage and fruit quality (Postharvest Biology and Technology for Preserving Fruit Quality) | https://doi.org/10.1201/9781439802670-c4 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-110` | web | [1998] Effects of storage temperature and atmosphere on saskatoon (Amelanchier alnifolia Nutt.) fruit quality, respiration and ethylene production (Postharvest Biology and Technology) | https://doi.org/10.1016/s0925-5214(98)00012-x | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-112` | web | [2013] Postharvest treatments for preserving quality of ‘Kinnow’ fruit under different storage conditions (Advances in Horticultural Science) | https://doi.org/10.36253/ahsc-18414 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-120` | web | [2021] Effects of postharvest ultraviolet-C treatment on shelf-life and quality of bitter gourd fruit during storage (Food Packaging and Shelf Life) | https://doi.org/10.1016/j.fpsl.2021.100665 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-121` | web | [2020] Evaluation of Postharvest Shelf Life and Quality of Lemon Treated with  Different Coatings during Storage (Food Science and Engineering) | https://doi.org/10.37256/fse.122020463 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-122` | web | [2026] Aloe Vera-Honey Composite Edible Coatings Extend Postharvest Shelf Life and Preserve Quality of Roma Tomatoes Under Tropical Ambient Storage in Rwanda (Journal of Food Science and Horticulture) | https://doi.org/10.69739/jfsh.v1i1.1696 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-123` | web | [2024] Different Postharvest Treatments and Storage Conditions for Shelf-life Enhancement and Quality Retention of Litchi (Journal of Food Chemistry &amp; Nanotechnology) | https://doi.org/10.17756/jfcn.2024-s1-015 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-124` | web | [2019] Understanding Food Loss and Waste—Why Are We Losing and Wasting Food? (Foods) | http://dx.doi.org/10.3390/foods8080297 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-125` | pdf | [2020] Nanotechnologies in Food Science: Applications, Recent Trends, and Future Perspectives (Nano-Micro Letters) | https://doi.org/10.1007/s40820-020-0383-9 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-126` | web | [2020] ZnO Nanostructures in Active Antibacterial Food Packaging: Preparation Methods, Antimicrobial Mechanisms, Safety Issues, Future Prospects, and Challenges (Food Reviews International) | https://doi.org/10.1080/87559129.2020.1737709 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-127` | web | [2019] Value-added chemicals from food supply chain wastes: State-of-the-art review and future prospects (Chemical Engineering Journal) | https://doi.org/10.1016/j.cej.2019.121983 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-263` | web | [2020] Citrus Essential Oils (CEOs) and Their Applications in Food: An Overview (Plants) | http://dx.doi.org/10.3390/plants9030357 | 학술 논문 오픈액세스(OpenAlex) - 변환적 분석 및 정식 학술 인용 |
+| `SRC-128` | web | [2024] Advances in strawberry postharvest preservation and packaging: A comprehensive review (Comprehensive Reviews in Food Science and Food Safety) | https://doi.org/10.1111/1541-4337.13417 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-129` | pdf | [2019] Characterization of Fruit Quality Attributes and Cell Wall Metabolism in 1-Methylcyclopropene (1-MCP)-Treated ‘Summer King’ and ‘Green Ball’ Apples During Cold Storage (Frontiers in Plant Science) | https://doi.org/10.3389/fpls.2019.01513 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-130` | web | [2014] Shelf life extension and antioxidant activity of ‘Hayward’ kiwi fruit as a result of prestorage conditioning and 1-methylcyclopropene treatment (Journal of Food Science and Technology) | https://doi.org/10.1007/s13197-014-1300-3 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-131` | web | [2012] Effects of Vibration Stress on the Quality of Packaged Apples during Simulated Transport (Journal of Biosystems Engineering) | https://doi.org/10.5307/jbe.2012.37.1.044 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-264` | web | [2025] Plant–Microbe Interactions for Improving Postharvest Shelf Life and Quality of Fresh Produce Through Protective Mechanisms (Horticulturae) | https://doi.org/10.3390/horticulturae11070732 | 학술 논문 오픈액세스(OpenAlex) - 변환적 분석 및 정식 학술 인용 |
+| `SRC-132` | web | [2022] Prediction of Total Soluble Solids and pH of Strawberry Fruits Using RGB, HSV and HSL Colour Spaces and Machine Learning Models (Foods) | https://doi.org/10.3390/foods11142086 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-133` | web | [2017] Nondestructive Estimation of Moisture Content, pH and Soluble Solid Contents in Intact Tomatoes Using Hyperspectral Imaging (Applied Sciences) | https://doi.org/10.3390/app7010109 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-134` | web | [2024] Prediction of Soluble-Solid Content in Citrus Fruit Using Visible–Near-Infrared Hyperspectral Imaging Based on Effective-Wavelength Selection Algorithm (Sensors) | https://doi.org/10.3390/s24051512 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-135` | pdf | [2018] Hyperspectral imaging technique to evaluate the firmness and the sweetness index of tomatoes (Korean Journal of Agricultural Science) | https://doi.org/10.7744/kjoas.20180075 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-265` | web | [2022] Field Application of a Vis/NIR Hyperspectral Imaging System for Nondestructive Evaluation of Physicochemical Properties in ‘Madoka’ Peaches (Plants) | https://doi.org/10.3390/plants11172327 | 학술 논문 오픈액세스(OpenAlex) - 변환적 분석 및 정식 학술 인용 |
+| `SRC-136` | web | Technical Platform on the Measurement and Reduction of Food Loss and Waste / Food and Agriculture Organization of the United Nations | https://www.fao.org/platform-food-loss-waste/en/ | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-137` | web | FLW Database / Technical Platform on the Measurement and Reduction of Food Loss and Waste / Food and Agriculture Organization of the United Nations | https://www.fao.org/food-loss-and-food-waste/flw-data/en/ | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-138` | web | Codex / Home | https://www.fao.org/fao-who-codexalimentarius/en/ | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-139` | web | Ask IFAS: Topic - Postharvest and Handling | https://edis.ifas.ufl.edu/topics/postharvest | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-140` | web | ARS Home : USDA ARS | https://www.ars.usda.gov/ | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-141` | web | National Programs : USDA ARS | https://www.ars.usda.gov/research/programs/ | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-142` | web | NFRI / National Agriculture and Food Research Organization | https://www.naro.go.jp/english/laboratory/nfri/index.html | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-143` | web | Ministry of Agriculture, Forestry and Fisheries | https://www.maff.go.jp/e/index.html | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-144` | web | Postharvest - Wikipedia | https://en.wikipedia.org/wiki/Postharvest | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-145` | web | Controlled atmosphere - Wikipedia | https://en.wikipedia.org/wiki/Controlled_atmosphere | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-146` | web | Modified atmosphere - Wikipedia | https://en.wikipedia.org/wiki/Modified_atmosphere | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-147` | web | 1-Methylcyclopropene - Wikipedia | https://en.wikipedia.org/wiki/1-Methylcyclopropene | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-148` | web | Cold chain - Wikipedia | https://en.wikipedia.org/wiki/Cold_chain | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-149` | pdf | [2014] Agricultural uses of plant biostimulants (Plant and Soil) | https://doi.org/10.1007/s11104-014-2131-8 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-150` | web | [2017] Biostimulants in Plant Science: A Global Perspective (Frontiers in Plant Science) | https://doi.org/10.3389/fpls.2016.02049 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-151` | web | [1986] The commercial storage of fruits, vegetables, and florist and nursery stocks (Biodiversity Heritage Library (Smithsonian Institution)) | https://www.biodiversitylibrary.org/item/295012 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-152` | web | [2017] Reducing Postharvest Losses during Storage of Grain Crops to Strengthen Food Security in Developing Countries (Foods) | https://doi.org/10.3390/foods6010008 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-266` | web | [2015] Bioactive Compounds and Antioxidant Activity in Different Types of Berries (International Journal of Molecular Sciences) | http://dx.doi.org/10.3390/ijms161024673 | 학술 논문 오픈액세스(OpenAlex) - 변환적 분석 및 정식 학술 인용 |
+| `SRC-153` | web | [2019] The role of hydrogen and fuel cells in the global energy system (Energy & Environmental Science) | https://doi.org/10.1039/c8ee01157e | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-154` | web | [2018] Methanol as a fuel for internal combustion engines (Progress in Energy and Combustion Science) | https://doi.org/10.1016/j.pecs.2018.10.001 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-155` | web | [2017] Overview of Ice Nucleating Particles (Meteorological Monographs) | https://doi.org/10.1175/amsmonographs-d-16-0006.1 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-156` | web | [2021] Liquid Hydrogen: A Review on Liquefaction, Storage, Transportation, and Safety (Energies) | https://doi.org/10.3390/en14185917 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-267` | web | [2022] Hydrogen liquefaction: a review of the fundamental physics, engineering practice and future opportunities (Energy & Environmental Science) | https://doi.org/10.1039/d2ee00099g | 학술 논문 오픈액세스(OpenAlex) - 변환적 분석 및 정식 학술 인용 |
+| `SRC-157` | web | [2013] Advances in Fruit Aroma Volatile Research (Molecules) | https://doi.org/10.3390/molecules18078200 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-158` | web | [2019] Tomato Fruit Development and Metabolism (Frontiers in Plant Science) | https://doi.org/10.3389/fpls.2019.01554 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-159` | web | [2019] Chemical Composition of Mango (Mangifera indica L.) Fruit: Nutritional and Phytochemical Compounds (Frontiers in Plant Science) | https://doi.org/10.3389/fpls.2019.01073 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-160` | web | [2016] Induced resistance to control postharvest decay of fruit and vegetables (Postharvest Biology and Technology) | https://www.sciencedirect.com/science/article/pii/S0925521416301946/pdf | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-268` | pdf | [2020] Primary Metabolism in Fresh Fruits During Storage (Frontiers in Plant Science) | https://doi.org/10.3389/fpls.2020.00080 | 학술 논문 오픈액세스(OpenAlex) - 변환적 분석 및 정식 학술 인용 |
+| `SRC-161` | web | [2014] Near-infrared spectroscopy and hyperspectral imaging: non-destructive analysis of biological materials (Chemical Society Reviews) | https://doi.org/10.1039/c4cs00062e | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-162` | web | [2020] Visible-NIR ‘point’ spectroscopy in postharvest fruit and vegetable assessment: The science behind three decades of commercial use (Postharvest Biology and Technology) | https://doi.org/10.1016/j.postharvbio.2020.111246 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-163` | web | [2015] Fruit Quality Evaluation Using Spectroscopy Technology: A Review (Sensors) | http://dx.doi.org/10.3390/s150511889 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-164` | web | [2019] Monitoring strategies for quality control of agricultural products using visible and near-infrared spectroscopy: A review (Trends in Food Science & Technology) | https://www.sciencedirect.com/science/article/abs/pii/S0924224418304825 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-269` | web | [2011] Machine vision system: a tool for quality inspection of food and agricultural products (Journal of Food Science and Technology) | https://doi.org/10.1007/s13197-011-0321-4 | 학술 논문 오픈액세스(OpenAlex) - 변환적 분석 및 정식 학술 인용 |
+| `SRC-165` | web | [1995] Biosolids–Yard Trimming Composts Increases Bell Pepper (Capsicum annuum L.) and Cucumber (Cucumis sativus L.) Yields (HortScience) | https://doi.org/10.21273/hortsci.30.4.892 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-166` | web | [1995] Physiology of Lightly Processed Fruits and Vegetables (HortScience) | https://doi.org/10.21273/hortsci.30.1.18 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-167` | web | [2006] Nutritional and medicinal use of Cactus pear (Opuntia spp.) cladodes and fruits (Frontiers in bioscience) | https://doi.org/10.2741/1992 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-168` | web | [2017] Antifungal Microbial Agents for Food Biopreservation—A Review (Microorganisms) | https://doi.org/10.3390/microorganisms5030037 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-270` | web | [2010] Effect of hydroxypropylmethylcellulose and chitosan coatings with and without bergamot essential oil on quality and safety of cold-stored grapes (Postharvest Biology and Technology) | https://doi.org/10.1016/j.postharvbio.2010.11.004 | 학술 논문 오픈액세스(OpenAlex) - 변환적 분석 및 정식 학술 인용 |

@@ -1,0 +1,12 @@
+이미지 번호: 그림 12-9
+이미지 파일명: fig_ch12_v09.png
+단원: 제12장. 정밀 수확·가공 후 수확 관리 및 스마트 농기계 작업 체계 (ch12)
+결합 절: 12.4 현장 실증: ISOBUS Class 3 연동 자율주행 콤바인-덤프트레일러 무인 협동 수확 작업
+시각화 유형: photorealistic_field
+제목: [그림 12-9] ISOBUS Class 3 기반 콤바인과 곡물 운반 트랙터-트레일러의 무인 동기화 주행
+
+[문맥 기반 이미지 설명]
+[그림 12-9] 대규모 옥수수 수확 현장에서 ISOBUS Class 3 프로토콜과 RTK-GNSS로 제어되는 자율주행 콤바인이 주행 중 하역 오거(Unloading Auger)를 통해 병렬 주행하는 무인 트랙터 덤프트레일러로 수확된 옥수수 낱알을 실시간 이적하는 장면이다. 기계 간 통신(M2M)을 통해 차량 간격과 작업 속도가 밀리미터 단위로 동기화되어 곡물 유실을 방지하고 작업 효율을 극대화한다 [SRC-120].
+
+[나노바나나 생성 프롬프트]
+Dynamic field action photograph of an autonomous combine harvester and an autonomous heavy tractor pulling a high-capacity grain dump trailer operating in parallel synchronization in a massive cornfield. The combine's long extended unloading auger discharges a thick, continuous golden stream of shelled corn into the moving trailer hopper on the fly. Both machine cabs are unmanned, equipped with rooftop RTK-GNSS receivers and wireless telemetry antennas. Late afternoon golden hour light, kicking up slight dust plumes behind massive agricultural tires. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

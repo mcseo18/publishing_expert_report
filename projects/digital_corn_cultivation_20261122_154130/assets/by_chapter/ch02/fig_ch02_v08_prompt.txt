@@ -1,0 +1,12 @@
+이미지 번호: 그림 2-8
+이미지 파일명: fig_ch02_v08.png
+단원: 제2장. 옥수수 생태형 분류 및 디지털 초고속 표현형 기반 품종 선발 (ch02)
+결합 절: 2.3 농가 관행 오해 교정: 무상기간 무시한 만생종 무리한 도입과 미숙 이삭 피해 진단
+시각화 유형: photorealistic_field
+제목: [그림 2-8] 조기 첫서리로 인한 만생종 옥수수 군락의 엽신 갈변 및 성숙 중단 포장 전경
+
+[문맥 기반 이미지 설명]
+[그림 2-8] 만생종 옥수수가 완전 성숙에 이르기 전 가을철 조기 첫서리에 노출되어 동해를 입은 실제 농가 포장의 전경이다. 정상적으로 녹색을 유지하며 광합성 동화산물을 이삭으로 전류시켜야 할 상부 엽신들이 급격한 저온으로 동결·괴사되어 회갈색으로 말라죽어 있다. 무상기간을 도외시한 무리한 만생종 재배가 작물 전체의 동화 작용을 조기에 차단하여 미숙 이삭 피해를 대량 유발하는 현장 기작을 드러낸다 [SRC-103].
+
+[나노바나나 생성 프롬프트]
+Documentary field photograph of an agricultural cornfield severely damaged by an early autumn frost. The upper canopy leaves of tall late-maturing corn plants are bleached, papery, and wilted brown, while immature green husked corn ears hang limp on the stalks under a pale chilly autumn sky. Frost crystals melting on withered leaf edges, crisp deep field perspective showing uniform crop desiccation. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

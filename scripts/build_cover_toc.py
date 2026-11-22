@@ -76,8 +76,57 @@ TRIM_SPECS: dict[str, dict[str, str]] = {
 
 
 def _default_cover_artwork_svg(theme_cfg: dict[str, str], title_ko: str) -> str:
+    from visual_studio import _match_crop_key
+
     acc = theme_cfg["accent"]
     soft = theme_cfg["accent_soft"]
+    tl = (title_ko or "").lower()
+    if any(_match_crop_key(k, tl) for k in ("옥수수", "corn", "maize")):
+        # 옥수수 이삭(Corn Cob) + 껍질잎 모티프
+        motif_svg = f"""  <!-- 스타일라이즈드 옥수수 이삭(Corn Cob) 모티프 -->
+  <g transform="translate(625, 165)" stroke="{acc}" fill="{acc}" fill-opacity="0.82">
+    <path d="M -26 95 C -46 35, -38 -20, -18 -55 C -26 10, -24 55, -14 95 Z" fill="{soft}" fill-opacity="0.45" stroke="{soft}" stroke-width="1.6"/>
+    <path d="M 26 95 C 46 35, 38 -20, 18 -55 C 26 10, 24 55, 14 95 Z" fill="{soft}" fill-opacity="0.45" stroke="{soft}" stroke-width="1.6"/>
+    <rect x="-20" y="-75" width="40" height="150" rx="20" fill="{acc}" fill-opacity="0.85" stroke="{soft}" stroke-width="2"/>
+    <g fill="{soft}" fill-opacity="0.55" stroke="none">
+      <circle cx="-9" cy="-52" r="4"/><circle cx="0" cy="-52" r="4"/><circle cx="9" cy="-52" r="4"/>
+      <circle cx="-9" cy="-36" r="4"/><circle cx="0" cy="-36" r="4"/><circle cx="9" cy="-36" r="4"/>
+      <circle cx="-9" cy="-20" r="4"/><circle cx="0" cy="-20" r="4"/><circle cx="9" cy="-20" r="4"/>
+      <circle cx="-9" cy="-4" r="4"/><circle cx="0" cy="-4" r="4"/><circle cx="9" cy="-4" r="4"/>
+      <circle cx="-9" cy="12" r="4"/><circle cx="0" cy="12" r="4"/><circle cx="9" cy="12" r="4"/>
+      <circle cx="-9" cy="28" r="4"/><circle cx="0" cy="28" r="4"/><circle cx="9" cy="28" r="4"/>
+      <circle cx="-9" cy="44" r="4"/><circle cx="0" cy="44" r="4"/><circle cx="9" cy="44" r="4"/>
+    </g>
+    <path d="M -4 -75 C -12 -96, -20 -104, -26 -108 M 0 -75 C 0 -98, 2 -106, 4 -112 M 4 -75 C 12 -96, 20 -104, 26 -106" fill="none" stroke="{soft}" stroke-width="1.5" opacity="0.85"/>
+  </g>"""
+    elif any(_match_crop_key(k, tl) for k in ("밀", "겨울밀", "우리밀", "wheat", "보리", "barley")):
+        motif_svg = f"""  <!-- 스타일라이즈드 밀 이삭(Wheat Spike) 모티프 -->
+  <g transform="translate(625, 165)" stroke="{acc}" fill="{acc}" fill-opacity="0.82">
+    <line x1="0" y1="115" x2="0" y2="-95" stroke="{soft}" stroke-width="2.5"/>
+    <ellipse cx="-14" cy="-65" rx="7" ry="15" transform="rotate(-28 -14 -65)"/>
+    <ellipse cx="14" cy="-58" rx="7" ry="15" transform="rotate(28 14 -58)"/>
+    <ellipse cx="-16" cy="-35" rx="7.5" ry="16" transform="rotate(-30 -16 -35)"/>
+    <ellipse cx="16" cy="-28" rx="7.5" ry="16" transform="rotate(30 16 -28)"/>
+    <ellipse cx="-17" cy="-4" rx="8" ry="17" transform="rotate(-30 -17 -4)"/>
+    <ellipse cx="17" cy="4" rx="8" ry="17" transform="rotate(30 17 4)"/>
+    <ellipse cx="-15" cy="28" rx="7.5" ry="16" transform="rotate(-28 -15 28)"/>
+    <ellipse cx="15" cy="36" rx="7.5" ry="16" transform="rotate(28 15 36)"/>
+    <ellipse cx="0" cy="-92" rx="6" ry="15"/>
+  </g>"""
+    elif any(_match_crop_key(k, tl) for k in ("고구마", "감자", "potato", "sweet potato")):
+        motif_svg = f"""  <!-- 스타일라이즈드 덩이줄기·괴근(Tuber/Root) 모티프 -->
+  <g transform="translate(625, 165)" stroke="{soft}" fill="{acc}" fill-opacity="0.82">
+    <path d="M 0 -55 C -38 -42, -46 38, 0 88 C 46 38, 38 -42, 0 -55 Z" stroke-width="2"/>
+    <path d="M 0 -55 C -18 -82, -42 -84, -52 -66 C -34 -56, -14 -58, 0 -55 Z" fill="{soft}" fill-opacity="0.6"/>
+    <path d="M 0 -55 C 18 -82, 42 -84, 52 -66 C 34 -56, 14 -58, 0 -55 Z" fill="{soft}" fill-opacity="0.6"/>
+  </g>"""
+    else:
+        motif_svg = f"""  <!-- 스타일라이즈드 정밀농업 작물 잎·노드 모티프 -->
+  <g transform="translate(625, 165)" stroke="{soft}" fill="{acc}" fill-opacity="0.78">
+    <line x1="0" y1="95" x2="0" y2="-75" stroke-width="2.5"/>
+    <path d="M 0 18 C -48 2, -52 -46, 0 -64 C 52 -46, 48 2, 0 18 Z" stroke-width="1.8"/>
+    <circle cx="0" cy="-24" r="8" fill="{soft}"/>
+  </g>"""
     return f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 320" width="800" height="320">
   <defs>
     <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -96,19 +145,7 @@ def _default_cover_artwork_svg(theme_cfg: dict[str, str], title_ko: str) -> str:
   <!-- 생육모형 시그모이드 성장곡선 & 등고선 -->
   <path d="M 40 270 C 180 265, 250 110, 410 95 C 550 82, 630 140, 760 60" fill="none" stroke="{acc}" stroke-width="3.5" stroke-linecap="round"/>
   <path d="M 40 288 C 200 280, 290 175, 450 160 C 590 148, 660 190, 760 130" fill="none" stroke="{soft}" stroke-width="2" stroke-dasharray="6 5" opacity="0.8"/>
-  <!-- 스타일라이즈드 밀 이삭(Wheat Spike) 모티프 -->
-  <g transform="translate(625, 165)" stroke="{acc}" fill="{acc}" fill-opacity="0.82">
-    <line x1="0" y1="115" x2="0" y2="-95" stroke="{soft}" stroke-width="2.5"/>
-    <ellipse cx="-14" cy="-65" rx="7" ry="15" transform="rotate(-28 -14 -65)"/>
-    <ellipse cx="14" cy="-58" rx="7" ry="15" transform="rotate(28 14 -58)"/>
-    <ellipse cx="-16" cy="-35" rx="7.5" ry="16" transform="rotate(-30 -16 -35)"/>
-    <ellipse cx="16" cy="-28" rx="7.5" ry="16" transform="rotate(30 16 -28)"/>
-    <ellipse cx="-17" cy="-4" rx="8" ry="17" transform="rotate(-30 -17 -4)"/>
-    <ellipse cx="17" cy="4" rx="8" ry="17" transform="rotate(30 17 4)"/>
-    <ellipse cx="-15" cy="28" rx="7.5" ry="16" transform="rotate(-28 -15 28)"/>
-    <ellipse cx="15" cy="36" rx="7.5" ry="16" transform="rotate(28 15 36)"/>
-    <ellipse cx="0" cy="-92" rx="6" ry="15"/>
-  </g>
+{motif_svg}
   <!-- 센서 노드 포인트 -->
   <g fill="{soft}">
     <circle cx="160" cy="242" r="5"/><circle cx="320" cy="130" r="6"/><circle cx="480" cy="100" r="6"/>

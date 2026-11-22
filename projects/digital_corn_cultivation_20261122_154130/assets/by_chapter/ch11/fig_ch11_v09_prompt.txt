@@ -1,0 +1,12 @@
+이미지 번호: 그림 11-9
+이미지 파일명: fig_ch11_v09.png
+단원: 제11장. 지능형 잡초 인식 및 자율선택제초 시스템 (ch11)
+결합 절: 11.4 현장 실증: 카메라 연동 스마트 붐스프레이어 국소 살포 및 자율주행 기계적 중경 제초
+시각화 유형: scientific_anatomy
+제목: [그림 11-9] 자율주행 기계식 중경 제초 장비의 핑거 위더 및 토션 틴 토양 교란 역학 구조도
+
+[문맥 기반 이미지 설명]
+[그림 11-9] 옥수수 지제부와 근계를 보존하면서 이랑 사이 잡초의 뿌리를 물리적으로 절단·인발하는 기계식 제초 메커니즘의 공학적 구조도이다. 유연한 폴리우레탄 핑거 위더(Finger Weeder)가 옥수수 줄기를 부드럽게 우회 회전하고, 강철 토션 틴(Torsion Tine)이 표토 3~5 cm 깊이를 파쇄하여 잡초를 건조 고사시키는 궤적을 묘사한다. 화학 제초제 저항성 잡초를 완전히 배제하는 비화학적 물리 방제의 핵심 작동 원리를 명시한다 [SRC-103, SRC-104].
+
+[나노바나나 생성 프롬프트]
+Clean engineering and anatomical mechanical illustration on a solid white background showing the working components of an intra-row mechanical cultivator. A central young Zea mays corn stalk with established anchor roots sits untouched as revolving star-shaped polyurethane finger weeders and spring steel torsion tines scrape and agitate the surrounding topsoil. Cutaway cross-section of the soil bed reveals the tines uprooting shallow taproots and fibrous roots of weed seedlings without harming the deeper structural corn root system. Shaded in realistic industrial metal tones and vibrant crop greens. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

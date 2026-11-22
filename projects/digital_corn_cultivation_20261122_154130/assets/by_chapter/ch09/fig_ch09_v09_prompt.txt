@@ -1,0 +1,12 @@
+이미지 번호: 그림 9-9
+이미지 파일명: fig_ch09_v09.png
+단원: 제9장. 작물 생육·양분 모델링 및 디지털 트윈 시뮬레이션 (ch09)
+결합 절: 9.4 현장 실증: 기상 빅데이터 연동 포장 단위 디지털 트윈 수량 예측 및 최적 의사결정
+시각화 유형: scientific_anatomy
+제목: [그림 9-9] 물·질소 관리 다목적 최적화를 위한 디지털 트윈 가상 시뮬레이션 프레임워크
+
+[문맥 기반 이미지 설명]
+[그림 9-9] 실제 포장 옥수수 군락과 이에 대응하는 가상 디지털 트윈 복제체를 나란히 비교하는 고급 과학 일러스트레이션입니다. 지하 점적관수 튜브에서 용출되는 질소 비료 용액과 수분이 토양 다공질을 통해 뿌리로 이동하는 실제 현상과, 이를 수치화하여 모니터링하는 컴퓨터 모델 그리드 체계를 중첩하여 표현합니다. 환경 부하 감소와 수량 극대화를 동시에 달성하는 다목적 최적화의 원리를 설명합니다 [SRC-120].
+
+[나노바나나 생성 프롬프트]
+Scientific dual-panel conceptual rendering on a pure white background. On one side, an anatomically detailed cutaway of Zea mays in healthy soil with subterranean drip irrigation emitting blue water and green nutrient droplets into the root network. On the adjoining side, a matching virtual mesh wireframe twin of the exact same corn stalk and root layers, glowing with volumetric finite-element calculation grids. Elegant academic technical art. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

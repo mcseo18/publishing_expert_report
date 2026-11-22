@@ -1,0 +1,12 @@
+이미지 번호: 그림 12-5
+이미지 파일명: fig_ch12_v05.png
+단원: 제12장. 정밀 수확·가공 후 수확 관리 및 스마트 농기계 작업 체계 (ch12)
+결합 절: 12.2 콤바인 수량모니터(충격판 질량유량 센서) 캘리브레이션 및 수분 보정 기준
+시각화 유형: scientific_anatomy
+제목: [그림 12-5] 콤바인 청결곡식 엘리베이터 상단 충격판(Impact Plate) 질량유량 센서 역학
+
+[문맥 기반 이미지 설명]
+[그림 12-5] 콤바인 내부 청결곡식 엘리베이터(clean grain elevator) 상단부에 장착된 충격판(Impact Plate) 질량유량 센서의 3차원 작동 구조도이다. 패들에서 고속으로 방출된 옥수수 낱알들이 로드셀에 연결된 충격판에 부딪힐 때 발생하는 충격력의 전기적 신호 변환 과정을 도해한다 [SRC-101]. 수분 센서에 의한 비중 보정 및 센서 선형화 캘리브레이션 원리를 정밀하게 묘사한다 [SRC-100].
+
+[나노바나나 생성 프롬프트]
+Technical scientific 3D cutaway illustration on a pure white background showing the upper discharge section of a combine harvester clean grain elevator. Curved metal chute housing contains an angled stainless steel impact plate connected to a high-precision strain gauge load cell. Yellow corn kernels are depicted hurtling off continuous elevator rubber paddles in a concentrated stream, striking the impact plate at an exact trajectory angle before falling into the grain tank loading auger. Clean technical cutaway illustration, realistic metallic finishes, force vector arrows indicating kinetic energy transfer. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

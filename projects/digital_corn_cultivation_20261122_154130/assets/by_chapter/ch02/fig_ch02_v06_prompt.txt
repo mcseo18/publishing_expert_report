@@ -1,0 +1,12 @@
+이미지 번호: 그림 2-6
+이미지 파일명: fig_ch02_v06.png
+단원: 제2장. 옥수수 생태형 분류 및 디지털 초고속 표현형 기반 품종 선발 (ch02)
+결합 절: 2.3 농가 관행 오해 교정: 무상기간 무시한 만생종 무리한 도입과 미숙 이삭 피해 진단
+시각화 유형: photorealistic_macro
+제목: [그림 2-6] 무상기간 및 GDD 부족으로 인한 만생종 옥수수의 미숙 이삭 피해 및 알곡 발달 장해
+
+[문맥 기반 이미지 설명]
+[그림 2-6] 해당 지역의 기후적 무상기간을 고려하지 않고 만생종을 무리하게 파종하여 서리 및 저온 스트레스를 입은 미숙 옥수수 이삭의 실물 해부 사진이다. 정상적인 등숙 완료(Black layer 형성)에 도달하지 못해 수침상으로 연약화된 알곡과 수분 함량이 높은 미발달 이삭 선단부가 관찰된다. 이는 적정 GDD 누적에 실패할 경우 알곡 비대가 수유기(milk stage)에서 영구 중단되어 막대한 경제적 손실을 초래함을 보여준다 [SRC-100, SRC-103].
+
+[나노바나나 생성 프롬프트]
+Ultra-detailed macro photograph of a dissected immature ear of corn from an autumn harvest. The husk is peeled back to reveal stunted, watery kernels that failed to mature, displaying a translucent pale yellow color with shriveled kernel tips near the cob apex and wet cob tissues. Studio macro focus highlighting cellular water droplets, wrinkled pericarp textures, and soft underdeveloped embryo structures. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

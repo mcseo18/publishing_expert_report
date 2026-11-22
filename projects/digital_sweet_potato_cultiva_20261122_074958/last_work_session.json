@@ -1,0 +1,23 @@
+{
+  "project_id": "digital_sweet_potato_cultiva_20261122_074958",
+  "topic_ko": "디지털 고구마 재배",
+  "workspace_dir": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\digital_sweet_potato_cultiva_20261122_074958",
+  "last_tab": "workflow",
+  "last_subtab": "",
+  "last_stage_id": "stage1_topic_outline",
+  "last_stage_order": "1",
+  "last_stage_title": "목차·키워드 확정",
+  "last_stage_status": "WAITING_REVIEW",
+  "last_stage_progress": 90,
+  "last_open_chapter": "",
+  "last_visual_filter": "ALL",
+  "last_action_summary": "초안 완성 (Ollama (gemma4:latest), 12부 17장) — 검토·재요청 후 [✅ 목차 확정]을 눌러주세요",
+  "last_event_message": "목차·요약·영역별 키워드 초안 제시 완료(Ollama (gemma4:latest)) — 사용자 검토 및 확정 대기 중",
+  "done_stages": 0,
+  "total_stages": 6,
+  "overall_status": "WAITING_REVIEW",
+  "completed_chapters_count": 0,
+  "completed_visuals_count": 0,
+  "saved_at": "2026-11-22T08:31:49+00:00",
+  "saved_at_local": "2026-11-22 17:31:49"
+}

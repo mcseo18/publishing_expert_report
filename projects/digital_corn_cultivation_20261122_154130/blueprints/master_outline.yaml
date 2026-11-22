@@ -1,317 +1,1044 @@
 book_metadata:
-  title_ko: 디지털 옥수수 재배
-  title_en: Digital Corn Cultivation
-  target_audience: 대학 전공 심화, 대학원생, 연구자 및 선도 현장 실무자
-  book_summary_ko: 《디지털 옥수수 재배》 600p 전문 대학교재 및 현장 실무 지침서
+  title_ko: '디지털 옥수수 재배학: 데이터 기반 작물생리·정밀재배 및 스마트 농기계 공학'
+  title_en: 'Digital Corn Cultivation: Data-Driven Crop Physiology, Precision Agronomy, and Smart Machinery Systems'
+  target_audience: 농학·스마트농업 전공 학부 및 대학원생, 농촌진흥기관 농업연구·지도관, 대형 영농법인 및 정밀농업 현장 엔지니어
+  book_summary_ko: 본 교재는 옥수수의 작물생리학적 본질과 데이터 기반 정밀재배 기술, 지능형 스마트 농기계 공학을 융합한 최고위 전문 지침서이다. 영농 현장에서 빈번히 발생하는 생리장애 오진과 관행적 재배 오해를 과학적 데이터와 정량 지표로
+    교정하고, 포장 단위 실증 사례를 중심에 배치하였다. 총 5부 13개 장으로 구성되어 종자 및 근권 관리부터 생육 모델링, 지능형 수확, 글로벌 곡물 밸류체인까지의 전 과정을 총 600쪽 분량으로 완벽히 다룬다.
   target_pages: 600
   target_total_pages: 600
-  chapter_count: 15
-  engine_used: fallback
-  generated_at: '2026-11-22T06:42:36+00:00'
+  chapter_count: 13
+  engine_used: Antigravity · Gemini (gemini-3.8-flash)
+  generated_at: '2026-11-22T07:35:23+00:00'
 domain_keywords:
-- domain: 제1부. 디지털 옥수수 재배 핵심 영역 1
+- domain: 제1부. 옥수수 기원·생물학적 기초 및 품종 디지털 육종
   keywords_ko:
-  - 옥수수 일반/역사/용도
-  - 품종
-  - 파종
+  - 테오신테
+  - 배유 구조
+  - 단옥수수
+  - 찰옥수수
+  - C4 크란츠 구조
+  - 디지털 표현형
+  - GDD 적산온도
   keywords_en:
-  - 'Corn: General Information/History/Uses'
-  - Varieties
-  - Sowing
-- domain: 제2부. 디지털 옥수수 재배 핵심 영역 2
+  - Teosinte
+  - Endosperm Structure
+  - Sweet Corn
+  - Waxy Corn
+  - C4 Kranz Anatomy
+  - Digital Phenotyping
+  - Growing Degree Days
+- domain: 제2부. 파종 및 생육·생리 동태의 정밀 제어
   keywords_ko:
-  - 생육관리
-  - 생리 및 생리장애
-  - 토양관리
+  - 공압식 정밀파종기
+  - 발아지온
+  - 가변파종(VRS)
+  - V기/R기 판정
+  - ASI 개화수염간격
+  - 작물수분스트레스(CWSI)
   keywords_en:
-  - Growth Management
-  - Physiology and Physiological Disorders
-  - Soil Management
-- domain: 제3부. 디지털 옥수수 재배 핵심 영역 3
+  - Pneumatic Planter
+  - Germination Temperature
+  - Variable Rate Seeding
+  - V/R Growth Stages
+  - Anthesis-Silking Interval
+  - Crop Water Stress Index
+- domain: 제3부. 근권 환경 센싱 및 수분·양분 자율 공급
   keywords_ko:
-  - 물관리
-  - 양분관리
-  - 양분 및 생육모델
+  - 토양 전기전도도(ECa)
+  - 경반층 파쇄
+  - 토양수분장력
+  - 가변관개(VRI)
+  - 질소 분시 모델
+  - 엽록소 SPAD 임계치
   keywords_en:
-  - Water Management
-  - Nutrient Management
-  - Nutrient and Growth Modeling
-- domain: 제4부. 디지털 옥수수 재배 핵심 영역 4
+  - Apparent Soil EC
+  - Hardpan Shattering
+  - Soil Matric Potential
+  - Variable Rate Irrigation
+  - Nitrogen Split Model
+  - SPAD Chlorophyll Threshold
+- domain: 제4부. 작물 생육 모델링 및 지능형 병해충·잡초 방제
   keywords_ko:
-  - 병해충 및 잡초 발생 및 방제
-  - 수확
-  - 농기계 활용
+  - APSIM-Maize
+  - DSSAT 옥수수
+  - 디지털 트윈
+  - 조명나방 방제
+  - 깨씨무늬병
+  - AI 잡초 분별
+  - 가변 살포(VRA)
   keywords_en:
-  - Pests and Weeds (Occurrence and Control)
-  - Harvesting
-  - and Use of Agricultural Machinery
-- domain: 제5부. 디지털 옥수수 재배 핵심 영역 5
+  - APSIM-Maize
+  - DSSAT Corn
+  - Digital Twin
+  - Asian Corn Borer
+  - Bipolaris maydis
+  - AI Weed Discrimination
+  - Variable Rate Application
+- domain: 제5부. 수확 가공, 스마트 농기계 및 글로벌 산업 생태계
   keywords_ko:
-  - 옥수수 일반/역사/용도
-  - 품종
-  - 파종
+  - 콤바인 수량모니터
+  - 블랙레이어
+  - 사일리지 젖산발효
+  - 자율주행 트랙터
+  - ISOBUS
+  - 글로벌 옥수수 공급망
+  - 바이오에탄올 PLA
   keywords_en:
-  - 'Corn: General Information/History/Uses'
-  - Varieties
-  - Sowing
+  - Combine Yield Monitor
+  - Black Layer Maturity
+  - Silage Fermentation
+  - Autonomous Tractor
+  - ISOBUS Standard
+  - Global Maize Supply Chain
+  - Bioethanol PLA
+search_queries_ko:
+- 디지털 옥수수 정밀 파종 심도 및 지온별 입모율 실증
+- 옥수수 개화수염신장간격 ASI 고온 스트레스 극복 기준
+- 트랙터 다짐 옥수수 토양 경반층 심토파쇄 효과 검증
+- 옥수수 엽록소 SPAD 및 NDVI 기반 가변 질소 추비 모델
+- 조명나방 및 열대거세미나방 포장 디지털 예찰 방제 임계치
+- 옥수수 콤바인 질량유량 수량센서 교정 및 맵핑 오차 보정
+- APSIM DSSAT 옥수수 생육 모델 포장 검증 매개변수
+- 자율주행 트랙터 RTK 기반 옥수수 중경배토 및 제초 작업
+- 글로벌 옥수수 메이저 생산 유통 물류망 및 바이오 신소재 가치사슬
+search_queries_en:
+- precision maize planter depth soil temperature emergence field validation
+- corn anthesis silking interval drought heat stress mitigation thresholds
+- subsoiling hardpan alleviation maize root architecture yield response
+- sensor based variable rate nitrogen corn active optical canopy sensor
+- Ostrinia furnacalis digital scout economic injury level maize
+- corn combine mass flow yield monitor spatial calibration protocol
+- APSIM DSSAT maize digital twin field calibration parameters
+- RTK autonomous tractor inter-row cultivation corn weeding
+- global corn supply chain logistics trade flow bioethanol PLA bioplastic
 parts:
 - part_number: 1
-  title: 제1부. 디지털 옥수수 재배 핵심 영역 1
-  pages: 120
+  title: 제1부. 옥수수 기원·생물학적 기초 및 품종 디지털 육종
+  summary_ko: 야생종 테오신테로부터 현대 다수성 옥수수로의 진화 기작과 C4 식물 해부생리학을 규명한다. 식용·사료용·가공용 품종의 이화학적 특성과 유효적산온도 기반 생태형 구분을 정량화하며, 무인기 분광 센싱 기반 초고속 표현형체학을 적용한
+    스마트 품종 선발 및 농가 오인 품종 배제 프로토콜을 정립한다.
+  pages: 92
   chapters:
   - chapter_id: ch01
     chapter_number: 1
-    title: 제1장. 옥수수 일반/역사/용도의 원리와 디지털 현장 관리
-    target_pages: 40
-    summary_ko: 디지털 옥수수 재배에서 옥수수 일반/역사/용도의 과학적 메커니즘, 정량 측정 지표 및 디지털 정밀 관리 전략을 다룹니다.
+    title: 제1장. 옥수수의 기원, 분류 체계 및 식물학적 형태생리
+    target_pages: 46
+    summary_ko: 테오신테(Teosinte)의 분얼 억제 및 이삭 대형화 유전 기작과 C4 크란츠(Kranz) 해부 구조의 광합성 효율을 규명한다. 배유의 아밀로스/아밀로펙틴 비율에 따른 마치종, 경립종, 단옥수수, 찰옥수수의 화학적 품질 기준을
+      확립한다. 농가의 품종 오해로 인한 교잡 수분 불량 및 당도 저하 문제를 교정하고 현장 포장 진단 기준을 제시한다.
     sections:
-    - 1.1 기초 원리 및 개념
-    - 1.2 정량 측정·모델링
-    - 1.3 국내외 기준 비교
-    - 1.4 디지털 현장 적용
+    - 1.1 테오신테 진화 유전학 및 C4 크란츠(Kranz) 해부생리 원리
+    - 1.2 배유 조성별 분류군(마치종·단옥수수·찰옥수수)의 이화학적 정량 기준
+    - '1.3 농가 관행 오해 교정: 단옥수수·찰옥수수 혼작 수분(Xenia) 피해 진단'
+    - '1.4 현장 실증: 용도별 최적 군락 수광 아키텍처 구축 및 생체 데이터 획득'
+    tables:
+    - table_id: 표 1-1
+      title: 옥수수 분류군별 배유 전분 특성, 당 함량 및 용도별 수확기 이화학 기준
+      columns:
+      - 분류군
+      - 주요 전분 조성(아밀로펙틴/아밀로스)
+      - 가용성 당 함량(%)
+      - 적정 수확 수분율(%)
+      - 주요 가공 적성 및 용도
+      purpose: 재배 목적별 생화학적 수확 적기 판별 및 가공 적성 평가 기준 제공
+    - table_id: 표 1-2
+      title: C4 옥수수와 C3 작물의 광합성·수분이용효율 정량 비교 및 환경 한계치
+      columns:
+      - 생리적 지표
+      - 옥수수(C4 작물)
+      - 벼/밀(C3 작물)
+      - 생리학적 임계치
+      - 포장 정밀 관리 착안점
+      purpose: C4 고유의 높은 광포화점과 수분이용효율을 센서 기반 환경제어에 연계하는 이론적 근거 제시
+    visuals:
+    - fig_id: 그림 1-01
+      type: A
+      aspect_ratio: '4:3'
+      method: nano_banana_pro
+      title: 출웅기 직립초형 고밀식 옥수수 군락의 포장 수광 상태 실사
+      description: 상위엽이 직립하여 하부 엽까지 균일하게 직사광이 투과되는 대단위 포장의 건강한 C4 군락 실사
+    - fig_id: 그림 1-02
+      type: B
+      aspect_ratio: '4:3'
+      method: nano_banana_pro
+      title: 찰옥수수와 초당옥수수의 종실 횡단면 배유 구조 및 수분 후 키세니아(Xenia) 발현 표본
+      description: 불완전 타가수분으로 인해 단옥수수 이삭 내에 딱딱한 전분질 종실이 혼입된 키세니아 피해 종실 접사
+    - fig_id: 그림 1-03
+      type: C
+      aspect_ratio: '16:9'
+      method: nano_banana_pro
+      title: 옥수수 C4 엽육세포 및 유관속초세포 간 말산 순환과 이산화탄소 농축 메커니즘 도해
+      description: PEP 카복실레이스와 루비스코의 공간적 격리를 통한 광호흡 억제 및 고효율 탄소 고정 회로도
+    - fig_id: 그림 1-04
+      type: D
+      aspect_ratio: '16:9'
+      method: python
+      title: 광합성유효방사(PAR) 및 온도 변화에 따른 C4 옥수수와 C3 작물의 순광합성 속도 비교 곡선
+      description: 광도 0~2000 μmol/m²s 및 온도 15~42°C 범위에서의 동화 속도 변화 수리 반응 곡선
     keywords_ko:
-    - 옥수수 일반/역사/용도
+    - 테오신테
+    - 배유 구조
+    - 크란츠 해부
+    - 키세니아 현상
+    - C4 광합성
     keywords_en:
-    - 'Corn: General Information/History/Uses'
+    - teosinte evolution
+    - endosperm composition
+    - Kranz anatomy
+    - xenia effect
+    - C4 photosynthesis
     evidence_packet: digital_corn_cultivation_20261122_154130_evidence.json
     assigned_sources: []
   - chapter_id: ch02
     chapter_number: 2
-    title: 제2장. 품종의 원리와 디지털 현장 관리
-    target_pages: 40
-    summary_ko: 디지털 옥수수 재배에서 품종의 과학적 메커니즘, 정량 측정 지표 및 디지털 정밀 관리 전략을 다룹니다.
+    title: 제2장. 옥수수 생태형 분류 및 디지털 초고속 표현형 기반 품종 선발
+    target_pages: 46
+    summary_ko: 숙기군별 유효적산온도(GDD) 요구도와 일장 반응 생리를 해석하고 지역별 기후 자원에 최적화된 생태형 분류법을 정립한다. 드론 다분광·LiDAR 센싱 기반 수관 체적, 간장, 식생지수 추출을 통해 내도복성 및 바이오매스를 정량
+      스크리닝한다. 농가의 단순 다수성 선호에 따른 등숙 불량 관행을 교정하고 데이터 기반 품종 추천 알고리즘을 실증한다.
     sections:
-    - 2.1 기초 원리 및 개념
-    - 2.2 정량 측정·모델링
-    - 2.3 국내외 기준 비교
-    - 2.4 디지털 현장 적용
+    - 2.1 숙기군(조·중·만생종)의 GDD(유효적산온도) 요구도 및 환경 적응 생리
+    - 2.2 초고속 디지털 표현형(High-Throughput Phenotyping)의 분광·구조 지표 기준
+    - '2.3 농가 관행 오해 교정: 무상기간 무시한 만생종 무리한 도입과 미숙 이삭 피해 진단'
+    - '2.4 현장 실증: UAV 다분광 정사영상 기반 우수 품종 선발 및 지역 맞춤형 배치'
+    tables:
+    - table_id: 표 2-1
+      title: 국내 주요 장려 품종(사료용·식용)의 생육 일수, 요구 GDD 및 내도복 취약 지수
+      columns:
+      - 품종명
+      - 용도
+      - 출사 소요일(일)
+      - 성숙 요구 GDD(°C·d)
+      - 간장 및 착수고율(%)
+      - 내도복성 등급
+      purpose: 지역별 무상일수 및 기상 데이터에 따른 과학적 품종 선택 가이드라인 제시
+    - table_id: 표 2-2
+      title: 드론 다분광 센서 기반 디지털 표현형 지표와 포장 생체량 간 상관성 기준
+      columns:
+      - 식생·구조 지표
+      - 센서 파장 대역(nm)
+      - 추정 대상 형질
+      - 상관계수(R²)
+      - 육종 및 선발 임계치
+      purpose: 비파괴 원격 센싱을 통한 대규모 포장의 생육 활력 및 수량 잠재력 조기 선별
+    visuals:
+    - fig_id: 그림 2-01
+      type: A
+      aspect_ratio: '4:3'
+      method: nano_banana_pro
+      title: 드론 센서 탑재 UAV가 대규모 옥수수 육종 시험포를 자율 비행하며 촬영하는 현장
+      description: 격자형으로 구획된 수백 개 옥수수 품종 시험구 상공을 정밀 저고도 비행하는 다분광 드론 실사
+    - fig_id: 그림 2-02
+      type: B
+      aspect_ratio: '4:3'
+      method: nano_banana_pro
+      title: 내도복성 우수 품종과 도복 취약 품종의 뿌리 발달 및 하부 절간 굵기 비교 표본
+      description: 강풍 통과 후 뿌리 지지 각도와 제3~4절간의 목질화 두께 차이를 마이크로 스케일러로 비교한 접사
+    - fig_id: 그림 2-03
+      type: C
+      aspect_ratio: '16:9'
+      method: nano_banana_pro
+      title: 디지털 초고속 표현형 분석 파이프라인 및 AI 기반 품종 추천 아키텍처
+      description: RGB/다분광 원시영상 수집, CSM 작물 수고 모델링, 엽면적 추출, 기후 데이터 연동 매칭 알고리즘 도해
+    - fig_id: 그림 2-04
+      type: D
+      aspect_ratio: '16:9'
+      method: python
+      title: 적산온도(GDD) 누적에 따른 숙기군별(조·중·만생) 지상부 건물중 축적 시뮬레이션 곡선
+      description: GDD 0~1800°C·d 경과에 따른 품종군별 S자형 로지스틱 생육 모델 비교 그래프
     keywords_ko:
-    - 품종
+    - 옥수수 생태형
+    - 유효적산온도
+    - 초고속 표현형
+    - 도복 저항성
+    - 품종 배치
     keywords_en:
-    - Varieties
-    evidence_packet: digital_corn_cultivation_20261122_154130_evidence.json
-    assigned_sources: []
-  - chapter_id: ch03
-    chapter_number: 3
-    title: 제3장. 파종의 원리와 디지털 현장 관리
-    target_pages: 40
-    summary_ko: 디지털 옥수수 재배에서 파종의 과학적 메커니즘, 정량 측정 지표 및 디지털 정밀 관리 전략을 다룹니다.
-    sections:
-    - 3.1 기초 원리 및 개념
-    - 3.2 정량 측정·모델링
-    - 3.3 국내외 기준 비교
-    - 3.4 디지털 현장 적용
-    keywords_ko:
-    - 파종
-    keywords_en:
-    - Sowing
+    - maize ecotypes
+    - growing degree days
+    - high-throughput phenotyping
+    - lodging resistance
+    - variety placement
     evidence_packet: digital_corn_cultivation_20261122_154130_evidence.json
     assigned_sources: []
 - part_number: 2
-  title: 제2부. 디지털 옥수수 재배 핵심 영역 2
-  pages: 120
+  title: 제2부. 파종 및 생육·생리 동태의 정밀 제어
+  summary_ko: 종자 발아 생리와 공압식 파종 메커니즘을 분석하여 포장 결주를 방지하고 최적 입모율을 확립한다. V기 및 R기 형태 형성학적 단계 전이를 정밀 계측하고, ASI(개화수염간격) 연장 및 한발·고온 등 복합 환경 스트레스를 열화상·분광
+    센서로 조기 진단하여 농가 관행 오판을 교정한다.
+  pages: 138
   chapters:
+  - chapter_id: ch03
+    chapter_number: 3
+    title: 제3장. 디지털 정밀 파종 공학 및 균일 입모 관리
+    target_pages: 46
+    summary_ko: 지온, 토양수분, 종자-토양 접촉도에 따른 옥수수 출아 생리를 규명하고 진공 공압식 배종기의 유체역학적 원리를 정립한다. 토양 공간 변이에 기초한 가변 파종(VRS) 처방 기준과 깊이 제어 시스템을 구축한다. 농가에서 흔히 저지르는
+      조기 파종 동해 및 과도한 심파(深播)로 인한 출아 지연을 진단하고 드론 영상 기반 결주 보파 기술을 실증한다.
+    sections:
+    - 3.1 옥수수 종자 수분 흡수, 배유 효소 활성화 및 지온별 출아 생리 메커니즘
+    - 3.2 진공 공압식 가변 배종(VRS) 메커니즘 및 파종 심도·진압 압력 정량 기준
+    - '3.3 농가 관행 오해 교정: 조기 저온 파종에 따른 종자 부패 및 심파 피해 포장 진단'
+    - '3.4 현장 실증: RTK-GPS 연동 고속 가변 파종 및 UAV 유묘 카운팅 보파 처방'
+    tables:
+    - table_id: 표 3-1
+      title: 토양 온도 및 유효수분 조건에 따른 옥수수 출아 소요일수 및 유묘 활력 기준표
+      columns:
+      - 토양 5cm 지온(°C)
+      - 토양 체적수분율(%)
+      - 출아 소요일(일)
+      - 출아율(%)
+      - 저온 묘마름병 위험도
+      purpose: 봄철 안전 파종 한계기 설정 및 저온 장애 회피를 위한 정량 기준 제공
+    - table_id: 표 3-2
+      title: 토양 비옥도 및 지형별 사료용·식용 옥수수 권장 가변 재식밀도 설정표
+      columns:
+      - 토양 비옥도 등급
+      - 예상 수분 보유력
+      - 이랑 너비(cm)
+      - 주간 거리(cm)
+      - 목표 재식본수(주/10a)
+      - 기대 종실 수량(kg/10a)
+      purpose: 포장 내 마이크로 존별 수량 잠재력을 극대화하기 위한 가변 파종 처방전 수립
+    visuals:
+    - fig_id: 그림 3-01
+      type: A
+      aspect_ratio: '4:3'
+      method: nano_banana_pro
+      title: 트랙터 부착식 6조 공압식 가변 정밀 파종기의 고속 파종 및 디스크 진압 현장
+      description: 파종 깊이 센서와 다운포스 유압 제어기가 장착된 정밀 파종기가 이랑을 주행하며 균일하게 종자를 매설하는 실사
+    - fig_id: 그림 3-02
+      type: B
+      aspect_ratio: '4:3'
+      method: nano_banana_pro
+      title: 파종 심도별(2cm, 5cm, 8cm) 출아 유묘의 중배축(Mesocotyl) 신장 및 종자근 발달 비교 접사
+      description: 심파로 인해 중배축이 비정상적으로 신장하여 에너지가 고갈된 유약 묘와 적정 심도 건묘의 형태 비교
+    - fig_id: 그림 3-03
+      type: C
+      aspect_ratio: '16:9'
+      method: nano_banana_pro
+      title: 공압식 진공 배종 디스크의 흡착 원리와 가변 속도 전동 모터 제어 루프 블록도
+      description: 진공압 센서, 싱귤레이터 브러시, 광학 종자 센서, CAN 버스 통신 모듈 간의 실시간 피드백 회로도
+    - fig_id: 그림 3-04
+      type: D
+      aspect_ratio: '16:9'
+      method: python
+      title: 재식밀도(주/ha) 증가에 따른 개체당 이삭 수량 및 총 군락 곡실 수량 포화 곡선
+      description: 밀식에 따른 개체 간 차광 경합과 적정 재식밀도 피크점을 나타내는 비선형 회귀 곡선
+    keywords_ko:
+    - 정밀 파종
+    - 가변 배종
+    - 출아 지온
+    - 중배축 신장
+    - 결주 판정
+    keywords_en:
+    - precision planting
+    - variable rate seeding
+    - germination temperature
+    - mesocotyl elongation
+    - skip detection
+    evidence_packet: digital_corn_cultivation_20261122_154130_evidence.json
+    assigned_sources: []
   - chapter_id: ch04
     chapter_number: 4
-    title: 제4장. 생육관리의 원리와 디지털 현장 관리
-    target_pages: 40
-    summary_ko: 디지털 옥수수 재배에서 생육관리의 과학적 메커니즘, 정량 측정 지표 및 디지털 정밀 관리 전략을 다룹니다.
+    title: 제4장. 옥수수 생육 단계별 발달 생리 및 수관 아키텍처
+    target_pages: 46
+    summary_ko: 발아(VE)부터 생리적 성숙기(R6)까지의 V기/R기 표준 단계 판정과 엽령 지수 모델을 정립한다. 수관 상·하부의 직립 엽각 형성과 지주근(Brace root) 발달 메커니즘을 밝혀 수광 효율 및 도복 방지 기준을 제시한다.
+      영양생장기 질소 과다에 의한 과번무 오판을 엽면적 지수(LAI)와 수관 투광률로 교정하고 군락 3D 복원 실증을 수행한다.
     sections:
-    - 4.1 기초 원리 및 개념
-    - 4.2 정량 측정·모델링
-    - 4.3 국내외 기준 비교
-    - 4.4 디지털 현장 적용
+    - 4.1 옥수수 엽칼라(Leaf Collar) 기준 생육단계(VE~VT, R1~R6)의 발달 생리
+    - 4.2 군락 소광계수(k), 엽면적 지수(LAI) 및 지주근(Brace root) 역학 기준
+    - '4.3 농가 관행 오해 교정: 초기 과도한 엽면적 확보(웃자람)와 유효 수량 저하 포장 진단'
+    - '4.4 현장 실증: 지상 라이다(LiDAR) 및 다분광 드론을 활용한 3D 수관 아키텍처 복원'
+    tables:
+    - table_id: 표 4-1
+      title: 옥수수 전 생육단계(V1~R6)별 표준 판정 형태 지표, 누적 GDD 및 영농 관리 포인트
+      columns:
+      - 생육 코드
+      - 단계 명칭
+      - 핵심 형태적 판정 지표
+      - 누적 GDD 범위(°C·d)
+      - 주요 농작업 및 취약 요인
+      purpose: 시비, 관수, 예찰 등 현장 의사결정의 과학적 타이밍 설정을 위한 표준 기준표
+    - table_id: 표 4-2
+      title: 초형(직립형 vs 광엽포복형)에 따른 엽각, 군락 광차폐율 및 군락 광합성량 비교
+      columns:
+      - 초형 구분
+      - 상위엽 경각(°)
+      - 소광계수(k)
+      - 적정 LAI 범위
+      - 밀식 적응성 등급
+      purpose: 밀식 재배 시 하위엽 광투과도 확보 및 광이용효율 최적화 근거 제시
+    visuals:
+    - fig_id: 그림 4-01
+      type: A
+      aspect_ratio: '4:3'
+      method: nano_banana_pro
+      title: 출사기(R1) 옥수수 군락에서 수염이 균일하게 추출되어 꽃가루를 수분하는 포장 실사
+      description: 맑은 오전 포장에서 웅수 꽃가루가 황금빛으로 비산하며 암수염에 안착하는 건강한 군락 풍경
+    - fig_id: 그림 4-02
+      type: B
+      aspect_ratio: '4:3'
+      method: nano_banana_pro
+      title: 하부 마디 지주근(Brace Root) 다발의 토양 관입 및 표면 지지 구조 클로즈업 접사
+      description: 줄기 기부 2~3마디에서 방사형으로 뻗어 나와 지표면을 강력하게 지지하는 지주근 형태 표본
+    - fig_id: 그림 4-03
+      type: C
+      aspect_ratio: '16:9'
+      method: nano_banana_pro
+      title: 옥수수 엽칼라(Collared Leaf) 형성 과정 및 V기/R기 단계별 식별 인포그래픽
+      description: 잎몸과 잎집 경계부의 엽금(칼라) 육안 판별법과 수염 추출, 유숙기, 호숙기, 흑층 형성 모식도
+    - fig_id: 그림 4-04
+      type: D
+      aspect_ratio: '16:9'
+      method: python
+      title: 파종 후 일수(DAP)에 따른 엽면적 지수(LAI) 발달 및 군락 광합성 속도 곡선
+      description: 영양생장기 급격한 LAI 상승과 개화기 최대 도달 후 등숙기 노화 감쇠 모델 그래프
     keywords_ko:
-    - 생육관리
+    - 엽칼라
+    - 생육 단계
+    - 소광계수
+    - 지주근
+    - 수관 아키텍처
     keywords_en:
-    - Growth Management
+    - leaf collar method
+    - growth stages
+    - light extinction coefficient
+    - brace root
+    - canopy architecture
     evidence_packet: digital_corn_cultivation_20261122_154130_evidence.json
     assigned_sources: []
   - chapter_id: ch05
     chapter_number: 5
-    title: 제5장. 생리 및 생리장애의 원리와 디지털 현장 관리
-    target_pages: 40
-    summary_ko: 디지털 옥수수 재배에서 생리 및 생리장애의 과학적 메커니즘, 정량 측정 지표 및 디지털 정밀 관리 전략을 다룹니다.
+    title: 제5장. 옥수수 생리장애 진단 및 비생물적 스트레스 반응
+    target_pages: 46
+    summary_ko: 개화수염신장간격(ASI) 증대에 따른 수정 장애, 고온 불임, 침수 무산소 호흡, 저온 안토시아닌 발현의 분자생리학적 기작을 밝힌다. 엽온 기반 작물수분스트레스지수(CWSI)와 분광 지표를 통한 비생물적 스트레스 정량 판정 기준을
+      정립한다. 농가에서 흔히 병해충으로 오진하는 생리장애를 정확히 감별하고 항스트레스 생리활성제 처방을 실증한다.
     sections:
-    - 5.1 기초 원리 및 개념
-    - 5.2 정량 측정·모델링
-    - 5.3 국내외 기준 비교
-    - 5.4 디지털 현장 적용
+    - 5.1 고온·한발에 의한 개화수염신장간격(ASI) 연장 및 침수 에틸렌 축적 메커니즘
+    - 5.2 작물수분스트레스지수(CWSI) 및 엽록소 형광(Fv/Fm) 정량 판정 기준치
+    - '5.3 농가 관행 오해 교정: 저온 인산 결핍 자색화 현상과 바이러스병 오진 감별 진단'
+    - '5.4 현장 실증: 열화상 드론 연동 조기 한발 예찰 및 수분 스트레스 완화제 살포'
+    tables:
+    - table_id: 표 5-1
+      title: 옥수수 주요 비생물적 스트레스의 가시 증상, 취약 생육기 및 병해충 유사 증상 감별표
+      columns:
+      - 생리장애 요인
+      - 발생 생육기
+      - 대표적 잎·줄기·이삭 증상
+      - 오진하기 쉬운 병해충
+      - 과학적 현장 감별법
+      purpose: 불필요한 농약 살포를 방지하고 환경 스트레스에 즉각 대처하기 위한 감별 기준
+    - table_id: 표 5-2
+      title: 엽온 기반 CWSI 지수 범위에 따른 옥수수 기공 전도도 저하율 및 관수 트리거 기준
+      columns:
+      - CWSI 지수
+      - 수관-대기 온도차(Tc-Ta, °C)
+      - 기공전도도 감수율(%)
+      - 생리적 위험도
+      - 처방 대책
+      purpose: 열화상 센서를 활용한 정밀 관수 자동 제어 트리거 설정
+    visuals:
+    - fig_id: 그림 5-01
+      type: A
+      aspect_ratio: '4:3'
+      method: nano_banana_pro
+      title: 한낮 고온 건조 스트레스로 인해 잎이 튜브 형태로 완전히 말린 옥수수 포장 실사
+      description: 토양 균열이 발생한 포장에서 수분 보존을 위해 엽신을 단단히 말아올린 심각한 가뭄 현장 실사
+    - fig_id: 그림 5-02
+      type: B
+      aspect_ratio: '4:3'
+      method: nano_banana_pro
+      title: 수정 불량으로 인한 옥수수 이삭 끝달림 불량(Tip Blanking) 및 왜소 종실 표본
+      description: 출사기 수분 부족으로 끝부분 수염의 수정이 실패하여 알이 차지 않고 비어있는 이삭 종단면 접사
+    - fig_id: 그림 5-03
+      type: C
+      aspect_ratio: '16:9'
+      method: nano_banana_pro
+      title: 개화수염신장간격(ASI) 증대에 따른 수분-수정 실패 메커니즘 인포그래픽
+      description: 화분 비산 피크 시기와 수염 추출 시기가 4일 이상 지연될 때 종실 결실률이 급감하는 기작 다이어그램
+    - fig_id: 그림 5-04
+      type: D
+      aspect_ratio: '16:9'
+      method: python
+      title: 개화기 수분 결핍 지속 일수 및 ASI 일수에 따른 옥수수 최종 감수율 곡선
+      description: ASI 증가(0일~8일)에 따른 이삭당 립수 및 종실 수량의 가파른 감소 지수 곡선
     keywords_ko:
-    - 생리 및 생리장애
+    - 생리장애
+    - ASI 간격
+    - 수분 스트레스
+    - CWSI
+    - 끝달림 불량
     keywords_en:
-    - Physiology and Physiological Disorders
-    evidence_packet: digital_corn_cultivation_20261122_154130_evidence.json
-    assigned_sources: []
-  - chapter_id: ch06
-    chapter_number: 6
-    title: 제6장. 토양관리의 원리와 디지털 현장 관리
-    target_pages: 40
-    summary_ko: 디지털 옥수수 재배에서 토양관리의 과학적 메커니즘, 정량 측정 지표 및 디지털 정밀 관리 전략을 다룹니다.
-    sections:
-    - 6.1 기초 원리 및 개념
-    - 6.2 정량 측정·모델링
-    - 6.3 국내외 기준 비교
-    - 6.4 디지털 현장 적용
-    keywords_ko:
-    - 토양관리
-    keywords_en:
-    - Soil Management
+    - physiological disorders
+    - anthesis-silking interval
+    - water stress
+    - CWSI
+    - tip blanking
     evidence_packet: digital_corn_cultivation_20261122_154130_evidence.json
     assigned_sources: []
 - part_number: 3
-  title: 제3부. 디지털 옥수수 재배 핵심 영역 3
-  pages: 120
+  title: 제3부. 근권 환경 센싱 및 수분·양분 자율 공급
+  summary_ko: 토양 전기전도도(ECa)와 투과 레이더(GPR)를 통해 다짐 경반층을 3차원 매핑하고 심토파쇄 처방을 정립한다. FDR 센서 및 기상 예보 기반 가변관개(VRI) 기준을 구축하고, 질소·인산·칼륨의 동적 흡수 모델과 실시간 SPAD/NDVI
+    센싱을 결합하여 농가의 관행적 기비 과다 투입을 교정하고 자율 양수분 제어를 실증한다.
+  pages: 138
   chapters:
+  - chapter_id: ch06
+    chapter_number: 6
+    title: 제6장. 디지털 토양 물리·화학성 평가 및 경반층 관리
+    target_pages: 46
+    summary_ko: 대형 농기계 반복 주행에 따른 토양 압밀과 경반층 형성 메커니즘을 규명하고 겉보기 토양 전기전도도(ECa) 매핑 기법을 정립한다. 콘 관입 저항치(Cone Index) 및 용적밀도 정량 기준을 설정한다. 농가에서 배수 불량과
+      근계 발달 부진을 단순 강우 탓으로 돌리는 관행을 교정하고 RTK 자율주행 심토파쇄 처방을 실증한다.
+    sections:
+    - 6.1 대형 농기계 주행에 따른 토양 3상 구조 붕괴 및 경반층 형성 역학
+    - 6.2 관입저항(Cone Index 2.0MPa 임계치) 및 전자기유도(EM38) 정량 기준
+    - '6.3 농가 관행 오해 교정: 표토 배수 불량 및 습해를 단순 기상 탓으로 오인하는 관행 진단'
+    - '6.4 현장 실증: 3D 토양 다짐 맵 기반 RTK 가변 심토파쇄(Subsoiling) 및 근계 회복'
+    tables:
+    - table_id: 표 6-1
+      title: 토양 다짐 정도(콘 관입저항치)에 따른 옥수수 근계 신장 저해율 및 용적밀도 기준표
+      columns:
+      - 토양 깊이(cm)
+      - 관입저항(MPa)
+      - 토양 용적밀도(g/cm³)
+      - 근계 하향 신장 저해율(%)
+      - 심토파쇄 필요 여부
+      purpose: 토양 압밀에 의한 물리적 장해 수준 판정 및 파쇄 작업 여부 결정
+    - table_id: 표 6-2
+      title: 토양 ECa(겉보기 전기전도도) 구역별 점토 함량, 유효수분 보유력 및 처방 기준
+      columns:
+      - ECa 관리 구역
+      - ECa 범위(mS/m)
+      - 추정 토성
+      - 유효 수분 보유량(mm/m)
+      - 토양 개량 처방
+      purpose: 토양 공간 변이에 기초한 정밀 토양 개량 및 양수분 존 구획
+    visuals:
+    - fig_id: 그림 6-01
+      type: A
+      aspect_ratio: '4:3'
+      method: nano_banana_pro
+      title: 토양 저항 센서 및 견인식 EM 센서를 장착한 트랙터의 포장 토양 물리성 전수 조사 현장
+      description: 수확 후 나지 상태의 포장을 정밀 주행하며 토양 다짐과 수분 센싱 데이터를 실시간 수집하는 실사
+    - fig_id: 그림 6-02
+      type: B
+      aspect_ratio: '4:3'
+      method: nano_banana_pro
+      title: 경반층에 가로막혀 수평으로 굴곡 성장한 옥수수 주근(Tap root) 및 지하부 표본
+      description: 토심 25cm 지점의 단단한 다짐층을 뚫지 못하고 L자형으로 휘어진 불량 근계 토양 단면 접사
+    - fig_id: 그림 6-03
+      type: C
+      aspect_ratio: '16:9'
+      method: nano_banana_pro
+      title: 진동식 심토파쇄기(Subsoiler)의 파쇄선 전파 원리 및 토양 공극률 복원 메커니즘
+      description: 파쇄 생크(Shank)가 견인되며 V자형 파쇄 균열을 형성하여 배수성과 통기성을 회복시키는 도해
+    - fig_id: 그림 6-04
+      type: D
+      aspect_ratio: '16:9'
+      method: python
+      title: 토심(0~60cm)별 관입저항치(Cone Index) 분포 곡선 및 심토파쇄 전후 비교
+      description: 심토파쇄 전 25~35cm 구간에서 2.5MPa를 초과하던 저항이 시공 후 1.0MPa 이하로 감소한 프로파일 그래프
+    keywords_ko:
+    - 토양 다짐
+    - 경반층
+    - 콘 관입저항
+    - 심토파쇄
+    - 토양 ECa
+    keywords_en:
+    - soil compaction
+    - hardpan layer
+    - cone penetration resistance
+    - subsoiling
+    - apparent soil EC
+    evidence_packet: digital_corn_cultivation_20261122_154130_evidence.json
+    assigned_sources: []
   - chapter_id: ch07
     chapter_number: 7
-    title: 제7장. 물관리의 원리와 디지털 현장 관리
-    target_pages: 40
-    summary_ko: 디지털 옥수수 재배에서 물관리의 과학적 메커니즘, 정량 측정 지표 및 디지털 정밀 관리 전략을 다룹니다.
+    title: 제7장. 옥수수 수분 생리 및 스마트 정밀 관개 공학
+    target_pages: 46
+    summary_ko: 증산과 기공 제어의 증발산(ETc) 메커니즘을 밝히고 토양수분장력(pF)과 FDR 체적수분 센싱 체계를 정립한다. 피벗 및 점적 관개 시스템의 가변관개(VRI) 구역 제어 기준을 설정한다. 농가에서 흔히 행하는 육안 건조 시
+      관수하는 지연 관개 관행을 교정하고 기상-토양 연동 자동 관개 알고리즘을 실증한다.
     sections:
-    - 7.1 기초 원리 및 개념
-    - 7.2 정량 측정·모델링
-    - 7.3 국내외 기준 비교
-    - 7.4 디지털 현장 적용
+    - 7.1 옥수수 증발산(ETc) 모델(FAO-56 듀얼 챔버 계수) 및 수분 흡수 생리
+    - 7.2 FDR 체적수분센서 및 토양수분장력(-30~-50kPa 임계치) 정량 기준
+    - '7.3 농가 관행 오해 교정: 한낮 시들음 발생 후 관수하는 지연 관개 피해 진단'
+    - '7.4 현장 실증: 센터피벗 가변관개(VRI) 및 지중점적(SDI) 자동 관수 시스템 운용'
+    tables:
+    - table_id: 표 7-1
+      title: 옥수수 생육단계별 작물계수(Kc), 일일 수분 소모량 및 수분 민감도 지수(Ky)
+      columns:
+      - 생육 단계
+      - 표준 작물계수(Kc)
+      - 일평균 물 소모량(mm/일)
+      - 수분 스트레스 민감도(Ky)
+      - 관수 최우선 순위
+      purpose: 한정된 수자원 조건에서 수량 손실을 최소화하는 단계별 정밀 관수 계획 수립
+    - table_id: 표 7-2
+      title: 토성별 옥수수 최적 유효수분 고갈율(MAD) 및 관개 개시 장력 임계치
+      columns:
+      - 토성 구분
+      - 포장용수량(%)
+      - 위조점(%)
+      - 허용 고갈율(MAD, %)
+      - 관개 시작 토양장력(kPa)
+      purpose: 토양 센서 기반 자동 관수 밸브 개폐 트리거 설정을 위한 물리적 지표
+    visuals:
+    - fig_id: 그림 7-01
+      type: A
+      aspect_ratio: '4:3'
+      method: nano_banana_pro
+      title: 초대형 센터피벗 관개기가 가변 노즐로 옥수수 원형 포장에 정밀 살수하는 현장
+      description: 광활한 옥수수 밭 상공에서 회전하며 구역별 처방전에 따라 수량을 조절 살포하는 피벗 시스템 실사
+    - fig_id: 그림 7-02
+      type: B
+      aspect_ratio: '4:3'
+      method: nano_banana_pro
+      title: 지중 30cm에 매설된 점적 튜브 주변의 수분 확산 습윤 패턴 단면 표본
+      description: 지중점적 라인에서 방출된 수분이 중력과 모세관 현상으로 구형 습윤 구역을 형성한 토양 프로파일 접사
+    - fig_id: 그림 7-03
+      type: C
+      aspect_ratio: '16:9'
+      method: nano_banana_pro
+      title: FAO-56 펜만-몬테이스(Penman-Monteith) 증발산 계산 및 가변관수(VRI) 폐루프 제어 블록도
+      description: 일사량, 풍속, 온습도 기상대 데이터와 토양 FDR 센서가 결합된 지능형 펌프 제어 흐름도
+    - fig_id: 그림 7-04
+      type: D
+      aspect_ratio: '16:9'
+      method: python
+      title: 옥수수 출사기 전후 토양수분장력 저하에 따른 일일 증산 속도 및 기공전도도 반응 곡선
+      description: 토양수분장력이 -50kPa 이하로 떨어질 때 기공이 급격히 닫히는 비선형 감쇠 특성 그래프
     keywords_ko:
-    - 물관리
+    - 가변관개(VRI)
+    - 증발산량
+    - 작물계수
+    - 토양수분장력
+    - 지중점적
     keywords_en:
-    - Water Management
+    - variable rate irrigation
+    - evapotranspiration
+    - crop coefficient
+    - soil matric potential
+    - subsurface drip irrigation
     evidence_packet: digital_corn_cultivation_20261122_154130_evidence.json
     assigned_sources: []
   - chapter_id: ch08
     chapter_number: 8
-    title: 제8장. 양분관리의 원리와 디지털 현장 관리
-    target_pages: 40
-    summary_ko: 디지털 옥수수 재배에서 양분관리의 과학적 메커니즘, 정량 측정 지표 및 디지털 정밀 관리 전략을 다룹니다.
+    title: 제8장. 옥수수 양분 흡수 동태 및 실시간 데이터 기반 양분 관리
+    target_pages: 46
+    summary_ko: 질소(N), 인산(P), 칼륨(K)의 단계별 흡수 곡선과 전이(Translocation) 메커니즘을 밝힌다. 엽록소계(SPAD) 및 능동형 광학 캐노피 센서(NDVI, NDRE) 기반 질소 충족 지수(NSI) 기준을 확립한다.
+      농가에서 흔히 저지르는 전량 기비 위주 시비와 늦은 추비로 인한 도복 및 환경오염을 교정하고 가변 추비기 실증을 수행한다.
     sections:
-    - 8.1 기초 원리 및 개념
-    - 8.2 정량 측정·모델링
-    - 8.3 국내외 기준 비교
-    - 8.4 디지털 현장 적용
+    - 8.1 옥수수 N-P-K 체내 전류 생리 및 단계별 양분 흡수 속도 역학
+    - 8.2 질소충족지수(NSI 0.90 임계치) 및 다분광 식생지수 정량 기준
+    - '8.3 농가 관행 오해 교정: 전량 기비 위주 질소 과다 투입과 V8기 이후 지연 추비 피해 진단'
+    - '8.4 현장 실증: 온고잉(On-the-go) 캐노피 센서 연동 트랙터 가변 사이드드레싱(추비)'
+    tables:
+    - table_id: 표 8-1
+      title: 옥수수 생육단계별 N-P-K 누적 흡수 비율 및 결핍·과잉 시 생리적 진단 증상
+      columns:
+      - 양분 원소
+      - V6기 흡수율(%)
+      - R1기 흡수율(%)
+      - R6기 최종 축적량(kg/10a)
+      - 결핍 시 가시 증상
+      - 과잉 시 부작용
+      purpose: 생육 단계별 양분 요구량 예측 및 비료 분시 비율 결정을 위한 정량 기준
+    - table_id: 표 8-2
+      title: 옥수수 V6~V10기 엽록소 SPAD 측정치 및 NSI(질소충족지수)별 추비 처방 기준
+      columns:
+      - SPAD 실측치
+      - 충족구 대비 비(NSI)
+      - 질소 영양 상태
+      - 추천 질소 추비량(kg/10a)
+      - 살포 방법
+      purpose: 실시간 비파괴 센싱을 통한 가변 질소 추비 처방 공식 제공
+    visuals:
+    - fig_id: 그림 8-01
+      type: A
+      aspect_ratio: '4:3'
+      method: nano_banana_pro
+      title: 고간극(High-clearance) 트랙터가 V8기 옥수수 군락 사이로 질소를 액비로 가변 주입하는 실사
+      description: 옥수수 수관을 손상시키지 않고 이랑 사이 근권 부근에 정밀하게 사이드드레싱 주입 장치가 작동하는 현장
+    - fig_id: 그림 8-02
+      type: B
+      aspect_ratio: '4:3'
+      method: nano_banana_pro
+      title: 하위엽 엽맥을 따라 V자형으로 황화되는 전형적 질소 결핍 잎 표본 접사
+      description: 체내 이동성이 큰 질소가 상위엽으로 이동하면서 하위엽 끝부터 주맥을 따라 누렇게 괴사한 잎 클로즈업
+    - fig_id: 그림 8-03
+      type: C
+      aspect_ratio: '16:9'
+      method: nano_banana_pro
+      title: 옥수수 전 생육주기 N, P2O5, K2O 흡수 곡선 및 전이 경로 인포그래픽
+      description: 파종 후 출사기까지 급격한 칼륨·질소 흡수와 출사 후 종실로의 인산 재이동 경로를 나타낸 기작도
+    - fig_id: 그림 8-04
+      type: D
+      aspect_ratio: '16:9'
+      method: python
+      title: 능동형 반사계 NDRE 지수와 옥수수 엽면 질소 함량(g/m²) 간의 보정 검량선
+      description: 식생지수와 실제 파괴 분석 질소 농도 간의 R²=0.88에 달하는 강력한 멱함수 상관 회귀선
     keywords_ko:
-    - 양분관리
+    - 양분 흡수 동태
+    - 질소 추비
+    - SPAD
+    - 질소충족지수(NSI)
+    - 가변 사이드드레싱
     keywords_en:
-    - Nutrient Management
-    evidence_packet: digital_corn_cultivation_20261122_154130_evidence.json
-    assigned_sources: []
-  - chapter_id: ch09
-    chapter_number: 9
-    title: 제9장. 양분 및 생육모델의 원리와 디지털 현장 관리
-    target_pages: 40
-    summary_ko: 디지털 옥수수 재배에서 양분 및 생육모델의 과학적 메커니즘, 정량 측정 지표 및 디지털 정밀 관리 전략을 다룹니다.
-    sections:
-    - 9.1 기초 원리 및 개념
-    - 9.2 정량 측정·모델링
-    - 9.3 국내외 기준 비교
-    - 9.4 디지털 현장 적용
-    keywords_ko:
-    - 양분 및 생육모델
-    keywords_en:
-    - Nutrient and Growth Modeling
+    - nutrient dynamics
+    - nitrogen topdressing
+    - SPAD meter
+    - nitrogen sufficiency index
+    - variable side-dressing
     evidence_packet: digital_corn_cultivation_20261122_154130_evidence.json
     assigned_sources: []
 - part_number: 4
-  title: 제4부. 디지털 옥수수 재배 핵심 영역 4
-  pages: 120
+  title: 제4부. 작물 생육 모델링 및 지능형 병해충·잡초 방제
+  summary_ko: APSIM-Maize 및 DSSAT 기반 옥수수 생육 디지털 트윈을 구축하여 수량과 생리 과정을 모의한다. 주요 나비목 해충과 반점병의 발병 기작을 디지털 예찰 모델로 규명한다. 딥러닝 비전 센서 기반 잡초 분별과 농가의 예방적
+    전면 제초제 살포 관행을 교정하여 패치별 가변 방제(VRA)를 실증한다.
+  pages: 138
   chapters:
+  - chapter_id: ch09
+    chapter_number: 9
+    title: 제9장. 작물 생육·양분 모델링 및 디지털 트윈 시뮬레이션
+    target_pages: 46
+    summary_ko: 기상-토양-유전 매개변수를 결합한 메커니즘 기반 작물 모델(APSIM, DSSAT-CERES-Maize)의 수학적 구조를 해석한다. 유효적산온도, 일사량, 근권 질소 동태의 상호작용 알고리즘을 정립한다. 농가의 단편적 직관에
+      의존한 파종일·수확일 결정을 교정하고 이상기상 시나리오별 수량 예측 디지털 트윈을 실증한다.
+    sections:
+    - 9.1 작물 생리 메커니즘 모델(APSIM-Maize, CERES-Maize)의 탄소 분배 및 생육 수리엔진
+    - '9.2 유전모수(Genetic Coefficients: P1, P2, P5, G2, G3) 캘리브레이션 정량 기준'
+    - '9.3 농가 관행 오해 교정: 단순 과거 평균 기후 기반의 파종일 고정 관행과 위험도 진단'
+    - '9.4 현장 실증: 기상 빅데이터 연동 포장 단위 디지털 트윈 수량 예측 및 최적 의사결정'
+    tables:
+    - table_id: 표 9-1
+      title: DSSAT CERES-Maize 모델의 품종 유전모수 정의, 측정 방법 및 표준 입력 범위
+      columns:
+      - 유전모수 코드
+      - 생리적 정의
+      - 단위
+      - 표준 변이 범위
+      - 포장 실측 및 보정 방법
+      purpose: 디지털 트윈 모델의 국소 포장 적합화를 위한 품종별 생리 모수 최적화
+    - table_id: 표 9-2
+      title: 가상 기후 시나리오(조기가뭄, 개화기고온)별 모델 예측 감수율과 포장 실측치 비교 검증표
+      columns:
+      - 기상 시나리오
+      - 모델 모의 출사일 오차(RMSE)
+      - 수량 예측치(kg/10a)
+      - 실측 수량(kg/10a)
+      - 수량 예측 정확도(%)
+      purpose: 이상기후에 따른 생산 위험도 사전 평가 및 작물 모델 신뢰성 검증
+    visuals:
+    - fig_id: 그림 9-01
+      type: A
+      aspect_ratio: '4:3'
+      method: nano_banana_pro
+      title: 기상 관측 스테이션과 자동 토양 센서가 설치된 모델 검증용 옥수수 스마트 실증 포장
+      description: 일사계, 초음파 풍속계, 토양 심도별 다점 센서가 설치된 포장에서 데이터가 무선 전송되는 현장
+    - fig_id: 그림 9-02
+      type: B
+      aspect_ratio: '4:3'
+      method: nano_banana_pro
+      title: 옥수수 생장점의 영양생장에서 생식생장으로의 전환 분열조직 현미경 절편 표본
+      description: V5~V6기에 줄기 기부 생장점에서 웅수 원기가 형성되는 순간을 광학 현미경으로 촬영한 접사
+    - fig_id: 그림 9-03
+      type: C
+      aspect_ratio: '16:9'
+      method: nano_banana_pro
+      title: APSIM 작물 모델의 바이오매스 생산, 일사이용효율(RUE), 질소 제한 팩터 연산 흐름도
+      description: 온도, 수분, 질소 스트레스 계수가 매일 군락 동화량에 곱해져 기관별로 전류되는 수리 구조도
+    - fig_id: 그림 9-04
+      type: D
+      aspect_ratio: '16:9'
+      method: python
+      title: DSSAT 시뮬레이션 건물중 축적 곡선과 실제 옥수수 포장 파괴 조사값 간의 검증 산점도
+      description: 1:1 기준선 주변에 실측 데이터가 높은 결정계수(R²=0.94)로 일치함을 보여주는 검증 그래프
+    keywords_ko:
+    - 작물 모델링
+    - APSIM
+    - DSSAT
+    - 유전모수
+    - 디지털 트윈
+    keywords_en:
+    - crop modeling
+    - APSIM maize
+    - DSSAT CERES-Maize
+    - genetic coefficients
+    - digital twin
+    evidence_packet: digital_corn_cultivation_20261122_154130_evidence.json
+    assigned_sources: []
   - chapter_id: ch10
     chapter_number: 10
-    title: 제10장. 병해충 및 잡초 발생 및 방제의 원리와 디지털 현장 관리
-    target_pages: 40
-    summary_ko: 디지털 옥수수 재배에서 병해충 및 잡초 발생 및 방제의 과학적 메커니즘, 정량 측정 지표 및 디지털 정밀 관리 전략을 다룹니다.
+    title: 제10장. 데이터 기반 옥수수 병해충 예찰 및 정밀 방제 공학
+    target_pages: 46
+    summary_ko: 조명나방, 열대거세미나방, 깨씨무늬병, 그을음무늬병의 발생 생태와 온도 반응 역학을 규명한다. 스마트 페로몬 트랩 및 분광 영상 기반 경제적 피해 한계 수준(EIL) 기준을 확립한다. 농가에서 관행적으로 행하는 발생 후 무차별
+      살충제 살포 관행을 교정하고 드론 가변 국소 살포(VRA) 방제를 실증한다.
     sections:
-    - 10.1 기초 원리 및 개념
-    - 10.2 정량 측정·모델링
-    - 10.3 국내외 기준 비교
-    - 10.4 디지털 현장 적용
+    - 10.1 주요 병해충(조명나방, 열대거세미나방, 깨씨무늬병)의 생활환 및 기상 의존 감염 생리
+    - 10.2 유효적산온도 기반 부화 예측 및 경제적 피해 허용 수준(ET, EIL) 정량 기준
+    - '10.3 농가 관행 오해 교정: 조명나방 줄기 침입 후 살포하는 무효 방제와 천적 파괴 관행 진단'
+    - '10.4 현장 실증: 스마트 트랩 IoT 데이터 연동 농업용 드론 야간 정밀 국소 방제'
+    tables:
+    - table_id: 표 10-1
+      title: 옥수수 핵심 병해충별 최적 발병 환경, 요방제 수준(ET) 및 주요 진단 특성
+      columns:
+      - 병해충명
+      - 호발 기상 조건
+      - 가해 부위 및 형태적 특징
+      - 경제적 요방제 수준(ET)
+      - 추천 방제 적기
+      purpose: 피해를 최소화하면서 농약 투입량을 절감하기 위한 방제 결정 가이드
+    - table_id: 표 10-2
+      title: 드론 분광 영상 기반 깨씨무늬병 감염도(Severity Index)와 방제 처방 기준표
+      columns:
+      - 병해 감염 등급
+      - 수관 분광 반사율 편차
+      - 예상 엽면적 손실률(%)
+      - 드론 방제 처방
+      - 방제 회피 시 손실률
+      purpose: 원격 분광 센싱을 활용한 살균제 가변 살포 맵 제작 기준
+    visuals:
+    - fig_id: 그림 10-01
+      type: A
+      aspect_ratio: '4:3'
+      method: nano_banana_pro
+      title: 농업용 대형 드론이 야간에 조명나방 다발 지역을 정밀 하향 분무 방제하는 포장 현장
+      description: RTK 경로를 따라 옥수수 수관 상부 2m 고도에서 정밀 유적을 분사하는 자율비행 드론 실사
+    - fig_id: 그림 10-02
+      type: B
+      aspect_ratio: '4:3'
+      method: nano_banana_pro
+      title: 조명나방 유충이 옥수수 줄기를 뚫고 들어가 배설물을 배출한 줄기 종단면 표본
+      description: 줄기 내부 유관속이 갉아먹혀 도복 위험성이 극도로 높아진 내부 가해 상태 고배율 접사
+    - fig_id: 그림 10-03
+      type: C
+      aspect_ratio: '16:9'
+      method: nano_banana_pro
+      title: 조명나방 성충 우화, 산란, 난괴 부화의 적산온도 모델 및 방제 적기 타임라인
+      description: 난괴 부화 후 1~2령 유충이 줄기로 파고들기 전 엽초에 머무는 3~5일간의 골든타임 도해
+    - fig_id: 그림 10-04
+      type: D
+      aspect_ratio: '16:9'
+      method: python
+      title: 온도에 따른 조명나방 난 발육 속도 곡선 및 누적 산란율 시뮬레이션 곡선
+      description: 비선형 발육 모델(Briére)을 적용한 온도별 발육 속도 및 포장 산란 피크 추정 그래프
     keywords_ko:
-    - 병해충 및 잡초 발생 및 방제
+    - 조명나방
+    - 열대거세미나방
+    - 깨씨무늬병
+    - 경제적 요방제 수준
+    - 드론 가변방제
     keywords_en:
-    - Pests and Weeds (Occurrence and Control)
+    - Asian corn borer
+    - fall armyworm
+    - bipolaris leaf blight
+    - economic injury level
+    - drone VRA spray
     evidence_packet: digital_corn_cultivation_20261122_154130_evidence.json
     assigned_sources: []
   - chapter_id: ch11
     chapter_number: 11
-    title: 제11장. 수확의 원리와 디지털 현장 관리
-    target_pages: 40
-    summary_ko: 디지털 옥수수 재배에서 수확의 과학적 메커니즘, 정량 측정 지표 및 디지털 정밀 관리 전략을 다룹니다.
+    title: 제11장. 지능형 잡초 인식 및 자율선택제초 시스템
+    target_pages: 46
+    summary_ko: 바랭이, 명아주, 개비름 등 주요 잡초와의 광·수분·양분 경합 생리와 임계 제초 기간(CPWC)을 규명한다. 엣지 AI 딥러닝 객체 검출(YOLOv8 등) 기반 광엽/화본과 잡초 분별 알고리즘을 구축한다. 농가의 관행적 포장
+      전면 토양처리제 남용과 저항성 잡초 유발을 교정하고 노즐별 스팟 살포 및 자율 중경 제초를 실증한다.
     sections:
-    - 11.1 기초 원리 및 개념
-    - 11.2 정량 측정·모델링
-    - 11.3 국내외 기준 비교
-    - 11.4 디지털 현장 적용
+    - 11.1 옥수수 군락 내 난방제 잡초의 생육 속도 및 잡초 경합 임계 기간(CPWC) 생리
+    - 11.2 실시간 비전 딥러닝 기반 잡초 검출 정확도(mAP 0.92 이상) 및 스팟 분무 기준
+    - '11.3 농가 관행 오해 교정: 동일 계통 제초제 연용에 따른 저항성 잡초 확산 및 약해 포장 진단'
+    - '11.4 현장 실증: 카메라 연동 스마트 붐스프레이어 국소 살포 및 자율주행 기계적 중경 제초'
+    tables:
+    - table_id: 표 11-1
+      title: 옥수수 포장 주요 우점 잡초의 발생 생태, 경합 위해도 및 임계 제초 기간(CPWC)
+      columns:
+      - 잡초 분류군
+      - 우점 잡초종
+      - 발생 성기
+      - 10a당 감수율(%)
+      - 임계 제초 생육기(CPWC)
+      purpose: 제초제 투입 시기 최적화 및 잡초 경합에 의한 수량 감소 방지 기준
+    - table_id: 표 11-2
+      title: 딥러닝 비전 노즐 살포 시스템과 관행 전면 살포 방식의 방제 효율 및 경제성 비교
+      columns:
+      - 구분 항목
+      - 관행 전면 살포
+      - 스마트 딥러닝 스팟 살포
+      - 개선율(%)
+      - 현장 실증 평가
+      purpose: 정밀 제초 시스템 도입에 따른 제초제 절감량 및 토양 환경 보전 효과 입증
+    visuals:
+    - fig_id: 그림 11-01
+      type: A
+      aspect_ratio: '4:3'
+      method: nano_banana_pro
+      title: 이랑 사이를 자율주행하며 잡초만을 감지해 타깃 살포하는 지능형 붐스프레이어 실사
+      description: 붐대에 다점 카메라가 장착된 트랙터가 잡초 위치에만 솔레노이드 밸브를 순간 개방 분무하는 현장
+    - fig_id: 그림 11-02
+      type: B
+      aspect_ratio: '4:3'
+      method: nano_banana_pro
+      title: 옥수수 유묘와 초기 바랭이(화본과 잡초)의 형태적 특징 비교 클로즈업 표본
+      description: 초기 엽설(Ligule) 유무와 엽초 털의 미세 구조를 통해 비전 AI가 식별하는 특징점 접사
+    - fig_id: 그림 11-03
+      type: C
+      aspect_ratio: '16:9'
+      method: nano_banana_pro
+      title: 엣지 컴퓨팅 기반 실시간 잡초 바운딩 박스 검출 및 초고속 밸브 트리거 시스템 아키텍처
+      description: RGB 카메라 프레임 입력, 텐서RT 추론, 마이크로초 단위 노즐 액추에이터 구동 순서도
+    - fig_id: 그림 11-04
+      type: D
+      aspect_ratio: '16:9'
+      method: python
+      title: 옥수수 파종 후 잡초 방제 시기별 최종 곡실 수량 변화 및 CPWC 구간 모델 곡선
+      description: 초기 무제초 허용 한계와 후기 제초 불필요 구간을 정의하는 이중 로지스틱 임계 기간 그래프
     keywords_ko:
-    - 수확
+    - 지능형 잡초 인식
+    - 임계 제초 기간(CPWC)
+    - 스팟 살포
+    - 자율 중경 제초
+    - 저항성 잡초
     keywords_en:
-    - Harvesting
-    evidence_packet: digital_corn_cultivation_20261122_154130_evidence.json
-    assigned_sources: []
-  - chapter_id: ch12
-    chapter_number: 12
-    title: 제12장. 농기계 활용의 원리와 디지털 현장 관리
-    target_pages: 40
-    summary_ko: 디지털 옥수수 재배에서 농기계 활용의 과학적 메커니즘, 정량 측정 지표 및 디지털 정밀 관리 전략을 다룹니다.
-    sections:
-    - 12.1 기초 원리 및 개념
-    - 12.2 정량 측정·모델링
-    - 12.3 국내외 기준 비교
-    - 12.4 디지털 현장 적용
-    keywords_ko:
-    - 농기계 활용
-    keywords_en:
-    - and Use of Agricultural Machinery
+    - smart weed detection
+    - critical period of weed control
+    - spot spraying
+    - autonomous cultivation
+    - herbicide resistance
     evidence_packet: digital_corn_cultivation_20261122_154130_evidence.json
     assigned_sources: []
 - part_number: 5
-  title: 제5부. 디지털 옥수수 재배 핵심 영역 5
-  pages: 120
+  title: 제5부. 수확 가공, 스마트 농기계 및 글로벌 산업 생태계
+  summary_ko: 블랙레이어(Black Layer) 형성과 곡실 수분 함량에 따른 수확 손실 역학을 분석하고 콤바인 질량유량 센서 교정을 정립한다. 사일리지 젖산 발효와 ISOBUS 기반 농기계 자율주행 편대 작업을 구축한다. 글로벌 콘벨트 공급망
+    구조와 바이오에탄올·PLA 신소재 밸류체인을 분석하여 미래 옥수수 산업 생태계를 완성한다.
+  pages: 94
   chapters:
+  - chapter_id: ch12
+    chapter_number: 12
+    title: 제12장. 정밀 수확·가공 후 수확 관리 및 스마트 농기계 작업 체계
+    target_pages: 46
+    summary_ko: 블랙레이어(흑층) 출현 생리와 곡실 수분 탈수 역학, 사일리지 발효 품질 화학을 규명한다. 콤바인 질량유량 수량센서 교정 및 RTK-GNSS 연동 자율주행 궤적 제어 기준을 정립한다. 농가에서 흔히 겪는 수확 수분율 오판에 따른
+      종실 균열, 건조비용 폭탄 및 사일리지 낙산 부패를 교정하고 무인 수확 편대 작업을 실증한다.
+    sections:
+    - 12.1 종실 흑층(Black Layer) 형성 생리, 등숙 완료 판정 및 탈립 손실 역학
+    - 12.2 콤바인 수량모니터(충격판 질량유량 센서) 캘리브레이션 및 수분 보정 기준
+    - '12.3 농가 관행 오해 교정: 수확 적기 오판에 따른 건조 에너지 낭비 및 사일리지 낙산 부패 진단'
+    - '12.4 현장 실증: ISOBUS Class 3 연동 자율주행 콤바인-덤프트레일러 무인 협동 수확 작업'
+    tables:
+    - table_id: 표 12-1
+      title: 곡실용 및 사료용 옥수수의 최적 수확 시기별 수분율, 물리적 손실률 및 건조 비용 기준
+      columns:
+      - 수확 용도
+      - 적정 수확 수분율(%)
+      - 탈립 및 깨짐 손실률(%)
+      - 수확 후 건조 소요 열량
+      - 사일리지 유기산 품질 등급
+      purpose: 수확 작업의 경제성과 가공·저장 품질을 극대화하기 위한 수분율 기준
+    - table_id: 표 12-2
+      title: 스마트 수확 콤바인의 센서 종류별 측정 오차 한계, 보정 주기 및 데이터 표준
+      columns:
+      - 센서 명칭
+      - 측정 원리
+      - 허용 오차(%)
+      - 필수 보정 주기
+      - ISOBUS 파라미터 규격
+      purpose: 포장 내 정밀 수량 지도(Yield Map) 작성을 위한 수량 모니터 센서 캘리브레이션 가이드
+    visuals:
+    - fig_id: 그림 12-01
+      type: A
+      aspect_ratio: '4:3'
+      method: nano_banana_pro
+      title: 자율주행 옥수수 콤바인이 옥수수를 수확하며 나란히 달리는 트랙터 트레일러로 종실을 배출하는 실사
+      description: 광활한 포장에서 RTK 자율주행으로 언로딩 스파우트와 곡물 트레일러가 완벽히 동기화 주행하는 현장
+    - fig_id: 그림 12-02
+      type: B
+      aspect_ratio: '4:3'
+      method: nano_banana_pro
+      title: 생리적 성숙기(R6)에 도달한 옥수수 종실 기부의 선명한 흑층(Black Layer) 형성 접사
+      description: 배유 영양분 이동이 종료되어 종실 밑바닥 태좌 조직이 검게 변한 성숙 완료 표본 사진
+    - fig_id: 그림 12-03
+      type: C
+      aspect_ratio: '16:9'
+      method: nano_banana_pro
+      title: 콤바인 충격판(Impact Plate) 유량 센서 원리 및 공간 수량 매핑 데이터 처리 파이프라인
+      description: 곡물 충격력 측정, 실시간 수분 보정, GNSS 위치 결합, 지오스탯 공간 보간 맵 생성 흐름도
+    - fig_id: 그림 12-04
+      type: D
+      aspect_ratio: '16:9'
+      method: python
+      title: 수확 시 종실 수분 함량(%)에 따른 수확 작업 탈립 손실률 및 기계적 파립률 곡선
+      description: 수분 30% 이상에서의 분쇄 손실과 15% 이하에서의 과도한 자연 탈립을 나타내는 U자형 손실 곡선
+    keywords_ko:
+    - 수확 콤바인
+    - 블랙레이어
+    - 수량 모니터
+    - 자율주행 수확
+    - 사일리지 품질
+    keywords_en:
+    - combine harvester
+    - black layer maturity
+    - yield monitor
+    - autonomous harvesting
+    - silage quality
+    evidence_packet: digital_corn_cultivation_20261122_154130_evidence.json
+    assigned_sources: []
   - chapter_id: ch13
     chapter_number: 13
-    title: 제13장. 옥수수 일반/역사/용도의 원리와 디지털 현장 관리
-    target_pages: 40
-    summary_ko: 디지털 옥수수 재배에서 옥수수 일반/역사/용도의 과학적 메커니즘, 정량 측정 지표 및 디지털 정밀 관리 전략을 다룹니다.
+    title: 제13장. 전 세계 옥수수 생산·유통 공급망 및 산업적 다각화 활용
+    target_pages: 48
+    summary_ko: 글로벌 옥수수 3대 벨트(미국 콘벨트, 브라질 세하두, 중국 동북 3성)의 기후·물류 경쟁력과 곡물 메이저의 유통 네트워크를 정량 분석한다. 배유 전분 기반 바이오에탄올 공정 및 PLA 생분해성 바이오 플라스틱 등 신소재 가치사슬을
+      규명한다. 농가와 가공 기업의 가격 변동 리스크 관행을 교정하고 글로벌 디지털 곡물 트레이딩 실증을 제시한다.
     sections:
-    - 13.1 기초 원리 및 개념
-    - 13.2 정량 측정·모델링
-    - 13.3 국내외 기준 비교
-    - 13.4 디지털 현장 적용
+    - 13.1 글로벌 주요 옥수수 벨트(미국, 브라질, 중국, 우크라이나)의 생산 체계 및 물류망 구조
+    - 13.2 글로벌 곡물 유통 메이저(ABCD) 물류 인프라, 해상 운임(BDI) 및 수급 예측 정량 기준
+    - '13.3 농가·가공기업 오해 교정: 단순 현물 가격 의존 관행과 선물(CBOT) 헤지 부재 리스크 진단'
+    - '13.4 현장 실증: 전분당·사료·바이오에탄올·PLA 바이오 플라스틱 산업 밸류체인 및 부산물 자원화'
+    tables:
+    - table_id: 표 13-1
+      title: 전 세계 주요 옥수수 수출국(미국, 브라질, 아르헨티나, 우크라이나)의 생산 단가 및 물류 경쟁력
+      columns:
+      - 국가/지역
+      - ha당 평균 수량(톤)
+      - 부셸당 생산 원가($)
+      - 내륙/항만 물류비 비중(%)
+      - 주요 수출 시장
+      purpose: 글로벌 곡물 시장에서의 국가별 원가 구조 및 공급망 취약점 분석
+    - table_id: 표 13-2
+      title: 옥수수 산업적 다운스트림(식품·사료·바이오화학) 가공 용도별 요구 품위 규격 및 부가가치
+      columns:
+      - 가공 용도
+      - 요구 품위 기준(수분, 용적중, 파립률)
+      - 주요 변환 공정
+      - 톤당 부가가치 창출액
+      - 주요 부산물 및 용도
+      purpose: 곡실 옥수수의 단순 사료용 소비를 넘어선 고부가가치 바이오 신소재 가치사슬 제시
+    visuals:
+    - fig_id: 그림 13-01
+      type: A
+      aspect_ratio: '4:3'
+      method: nano_banana_pro
+      title: 미국 미시시피강 연안 대형 곡물 엘리베이터에서 파나막스급 벌크선으로 옥수수를 선적하는 실사
+      description: 수만 톤의 황금빛 옥수수가 컨베이어를 통해 화물선 홀드 안으로 쏟아져 들어가는 국제 곡물 터미널 현장
+    - fig_id: 그림 13-02
+      type: B
+      aspect_ratio: '4:3'
+      method: nano_banana_pro
+      title: 옥수수 전분으로 압출 성형된 생분해성 PLA 펠릿 및 의료·포장용 시제품 표본
+      description: 천연 옥수수 알갱이와 이를 화학적으로 전환해 합성한 투명 PLA 펠릿 및 친환경 컵 접사 비교
+    - fig_id: 그림 13-03
+      type: C
+      aspect_ratio: '16:9'
+      method: nano_banana_pro
+      title: 옥수수 습식 분쇄(Wet Milling) 및 바이오에탄올 발효·PLA 합성 전 과정 공정 계통도
+      description: 침지, 마쇄, 전분 분리 후 포도당 당화, 젖산 발효, 락타이드 중합을 거치는 화학 공학 흐름도
+    - fig_id: 그림 13-04
+      type: D
+      aspect_ratio: '16:9'
+      method: python
+      title: 최근 20년간 글로벌 옥수수 생산량 추이 및 용도별(사료, 에탄올, 식용, 산업용) 소비 비중 변화 곡선
+      description: 글로벌 생산량의 지속적 증가와 바이오에탄올 의무 혼합에 따른 산업용 수요 비중 급증 적층 그래프
     keywords_ko:
-    - 옥수수 일반/역사/용도
+    - 글로벌 옥수수 벨트
+    - 곡물 공급망
+    - 바이오에탄올
+    - PLA 생분해 플라스틱
+    - 곡물 선물 헤지
     keywords_en:
-    - 'Corn: General Information/History/Uses'
-    evidence_packet: digital_corn_cultivation_20261122_154130_evidence.json
-    assigned_sources: []
-  - chapter_id: ch14
-    chapter_number: 14
-    title: 제14장. 품종의 원리와 디지털 현장 관리
-    target_pages: 40
-    summary_ko: 디지털 옥수수 재배에서 품종의 과학적 메커니즘, 정량 측정 지표 및 디지털 정밀 관리 전략을 다룹니다.
-    sections:
-    - 14.1 기초 원리 및 개념
-    - 14.2 정량 측정·모델링
-    - 14.3 국내외 기준 비교
-    - 14.4 디지털 현장 적용
-    keywords_ko:
-    - 품종
-    keywords_en:
-    - Varieties
-    evidence_packet: digital_corn_cultivation_20261122_154130_evidence.json
-    assigned_sources: []
-  - chapter_id: ch15
-    chapter_number: 15
-    title: 제15장. 파종의 원리와 디지털 현장 관리
-    target_pages: 40
-    summary_ko: 디지털 옥수수 재배에서 파종의 과학적 메커니즘, 정량 측정 지표 및 디지털 정밀 관리 전략을 다룹니다.
-    sections:
-    - 15.1 기초 원리 및 개념
-    - 15.2 정량 측정·모델링
-    - 15.3 국내외 기준 비교
-    - 15.4 디지털 현장 적용
-    keywords_ko:
-    - 파종
-    keywords_en:
-    - Sowing
+    - global corn belt
+    - grain supply chain
+    - bioethanol
+    - PLA bioplastic
+    - CBOT hedging
     evidence_packet: digital_corn_cultivation_20261122_154130_evidence.json
     assigned_sources: []

@@ -1,0 +1,12 @@
+이미지 번호: 그림 6-8
+이미지 파일명: fig_ch06_v08.png
+단원: 제6장. 디지털 토양 물리·화학성 평가 및 경반층 관리 (ch06)
+결합 절: 6.3 농가 관행 오해 교정: 표토 배수 불량 및 습해를 단순 기상 탓으로 오인하는 관행 진단
+시각화 유형: photorealistic_macro
+제목: [그림 6-8] 표토 침수로 인한 옥수수 지주근(Brace Root) 과다 형성과 피층 통기조직
+
+[문맥 기반 이미지 설명]
+[그림 6-8] 경반층 정체수로 인한 표토 혐기 상태에 대응하여 옥수수 하위 마디에서 비정상적으로 과다 분화된 지주근과 그 횡단면을 촬영한 초근접 매크로 사진입니다. 뿌리 내부 피층 세포가 산소 결핍 스트레스로 인해 용해되면서 통기조직(Aerenchyma)이 형성된 미세 구조가 관찰됩니다. 이는 외견상 단순 침수 피해로 보이는 증상이 실상은 경반층에 의한 지하부 환원 환경 조성의 직접적 결과임을 진단합니다 [SRC-102].
+
+[나노바나나 생성 프롬프트]
+Ultra-sharp macro photograph of the lower stem base of a Zea mays plant emerging from waterlogged muddy soil. Adventitious reddish-purple brace roots aggressively sprout in thick rings from the lower aerial nodes. Beside the main stem, a high-magnification microscope inset shows a cross-section of a water-stressed corn root, revealing hollow, spoke-wheel aerenchyma air chambers formed in the cortical parenchyma cells due to hypoxia. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

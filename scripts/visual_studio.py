@@ -34,15 +34,84 @@ ZERO_TEXT_RULE = (
     "ZERO titles, ZERO captions, ZERO logos, ZERO tablet/monitor screens, ZERO signboards, ZERO watermarks anywhere in the image."
 )
 
-# 작물/분야 국문 -> 순수 영문 시각 주체 매핑 (어떤 주제 교재든 정확하고 한글 없는 순수 영문 장면 생성)
+# 작물/분야 국문 -> 순수 영문 시각 주체 매핑 (긴 복합 작물명 우선; 1글자 작물명 '밀/벼/쌀/콩'은 비작물 복합어 제외 후 경계 매칭)
+NON_CROP_COMPOUND_MASK = (
+    "정밀", "밀도", "밀식", "치밀", "긴밀", "과밀", "밀착", "밀폐", "기밀", "비밀", "밀접", "밀집", "밀어", "밀리",
+    "재배", "무경운", "실무", "전파", "파종", "파괴", "주파", "선별", "선배", "배수", "배양", "배유", "분배",
+)
+
 CROP_SUBJECT_MAP: list[tuple[tuple[str, ...], str, str]] = [
-    (("고구마", "sweet potato"), "sweet potato (Ipomoea batatas) plants with lush heart-shaped green vines and rich reddish-purple orange storage roots", "sweet potato (Ipomoea batatas) plant showing leafy vines, fibrous feeder roots, and cross-section of a fleshy orange-red storage tuberous root"),
-    (("밀", "wheat"), "winter wheat (Triticum aestivum) stalks with green flag leaves and ripening golden spikes", "mature winter wheat plant showing fibrous root system, crown, tillers, hollow culm, leaf sheath, and ripening grain spike"),
-    (("벼", "쌀", "rice"), "paddy rice (Oryza sativa) plants with lush green leaves and drooping golden panicles", "rice plant showing flooded paddy root zone, tillers, culms, and grain panicle structure"),
-    (("감자", "potato"), "potato (Solanum tuberosum) plants with green compound foliage and clean golden-brown tubers in dark soil", "potato plant showing stems, stolons, fibrous roots, and developing underground tubers"),
-    (("토양", "유기물", "soil"), "fertile dark crumbly agricultural topsoil profile with healthy crop roots and earthworm channels", "layered agricultural soil profile showing organic matter aggregates, clay minerals, mycorrhizal hyphae, and root hairs"),
-    (("수확 후", "저장", "postharvest"), "freshly harvested agricultural produce inside a clean modern temperature-controlled postharvest facility", "cutaway illustration of a controlled-atmosphere postharvest cold storage and curing room"),
+    (("옥수수", "단옥수수", "찰옥수수", "사료용 옥수수", "corn", "maize", "zea mays"),
+     "tall green maize corn (Zea mays) plants with broad arching leaves, golden tassels, and developing ears with silky husks in neat agricultural rows",
+     "mature maize corn (Zea mays) plant showing brace prop roots, nodal stalk, broad parallel-veined C4 leaves, apical tassel, and longitudinal cross-section of a golden kernel cob ear"),
+    (("고구마", "sweet potato", "ipomoea batatas"),
+     "sweet potato (Ipomoea batatas) plants with lush heart-shaped green vines and rich reddish-purple orange storage roots",
+     "sweet potato (Ipomoea batatas) plant showing leafy vines, fibrous feeder roots, and cross-section of a fleshy orange-red storage tuberous root"),
+    (("감자", "씨감자", "potato", "solanum tuberosum"),
+     "potato (Solanum tuberosum) plants with green compound foliage and clean golden-brown tubers in dark soil",
+     "potato (Solanum tuberosum) plant showing stems, stolons, fibrous roots, and developing underground tubers"),
+    (("보리", "맥류", "barley", "hordeum vulgare"),
+     "barley (Hordeum vulgare) crop field with dense green stems and long-awned ripening spikes",
+     "barley (Hordeum vulgare) plant showing fibrous root system, tillers, culm, and long-awned grain spike"),
+    (("대두", "콩", "soybean", "glycine max"),
+     "soybean (Glycine max) plants with lush trifoliate green leaves and clustered hairy pods along sturdy stems",
+     "soybean (Glycine max) plant showing nitrogen-fixing root nodules, trifoliate leaves, stem nodes, and cross-section of developing seed pods"),
+    (("고추", "pepper", "capsicum"),
+     "red chili pepper (Capsicum annuum) plants cultivated on mulched agricultural ridges laden with glossy green and crimson fruits",
+     "pepper (Capsicum annuum) plant showing taproot zone, branching stems, white blossoms, and longitudinal cross-section of a fruit"),
+    (("배추", "napa cabbage", "brassica rapa"),
+     "napa cabbage (Brassica rapa) heading crops neatly arranged in raised mulched Korean farm beds",
+     "napa cabbage (Brassica rapa) cross-section showing dense overlapping inner heading leaves, core meristem, and root system"),
+    (("마늘", "garlic", "allium sativum"),
+     "garlic (Allium sativum) plants with upright blue-green flat leaves growing in mulched ridges and harvested white bulbs",
+     "garlic (Allium sativum) plant showing fibrous roots, subterranean segmented clove bulb cross-section, and pseudostem"),
+    (("양파", "onion", "allium cepa"),
+     "onion (Allium cepa) plants with tubular green leaves and round golden-skinned bulbs emerging from loamy soil",
+     "onion (Allium cepa) plant showing concentric fleshy bulb scales in cross-section, basal plate, and fibrous roots"),
+    (("딸기", "strawberry", "fragaria"),
+     "strawberry (Fragaria x ananassa) plants in elevated smart greenhouse beds with white blossoms and glossy red berries",
+     "strawberry (Fragaria x ananassa) plant showing crown, runners, trifoliate leaves, root zone, and fruit cross-section"),
+    (("토마토", "tomato", "solanum lycopersicum"),
+     "greenhouse tomato (Solanum lycopersicum) vines trained on trellises with ripening red fruit clusters",
+     "tomato (Solanum lycopersicum) plant showing root system, compound leaves, flowering truss, and fruit cross-section"),
+    (("사과", "과수원", "apple", "malus domestica"),
+     "Korean apple orchard (Malus domestica) rows with leafy canopies and ripening red apples above grass-covered orchard floor",
+     "apple (Malus domestica) fruiting spur showing leaves, flower bud, and cross-section of an apple fruit"),
+    (("잡초", "weed", "herbicide"),
+     "Korean agricultural crop field showing competitive annual and perennial weeds emerging between crop rows",
+     "botanical comparison of grass, sedge, and broadleaf agricultural weeds showing stem cross-sections and root propagules"),
+    (("겨울밀", "우리밀", "밀", "wheat", "triticum"),
+     "winter wheat (Triticum aestivum) stalks with green flag leaves and ripening golden spikes",
+     "mature winter wheat (Triticum aestivum) plant showing fibrous root system, crown, tillers, hollow culm, leaf sheath, and ripening grain spike"),
+    (("벼", "수도작", "쌀", "rice", "oryza sativa"),
+     "paddy rice (Oryza sativa) plants with lush green leaves and drooping golden panicles in a flooded field",
+     "rice (Oryza sativa) plant showing flooded paddy root zone, tillers, culms, leaf ligule-auricle junction, and grain panicle structure"),
+    (("토양", "유기물", "soil"),
+     "fertile dark crumbly agricultural topsoil profile with healthy crop roots and earthworm channels",
+     "layered agricultural soil profile showing organic matter aggregates, clay minerals, mycorrhizal hyphae, and root hairs"),
+    (("수확 후", "저장", "postharvest"),
+     "freshly harvested agricultural produce inside a clean modern temperature-controlled postharvest facility",
+     "cutaway illustration of a controlled-atmosphere postharvest cold storage and curing room"),
 ]
+
+
+def _match_crop_key(key: str, text_blob: str) -> bool:
+    """1글자 국문 작물명('밀'·'벼'·'쌀'·'콩')이 '정밀재배'·'밀도' 같은 비작물 복합어에 오매칭되지 않도록 정밀 검사한다."""
+    k = key.lower().strip()
+    if not k:
+        return False
+    # 영문 키워드는 단어 경계 매칭
+    if re.fullmatch(r"[a-z0-9 \-]+", k):
+        return bool(re.search(rf"(?<![a-z]){re.escape(k)}(?![a-z])", text_blob))
+    # 2글자 이상 국문 키워드는 직접 매칭
+    if len(k) >= 2:
+        return k in text_blob
+    # 1글자 국문 작물명('밀', '벼', '쌀', '콩'): 비작물 복합어를 먼저 마스킹한 뒤 독립 어절/작물 복합어만 허용
+    masked = text_blob
+    for comp in NON_CROP_COMPOUND_MASK:
+        masked = masked.replace(comp, " ")
+    # 앞이 공백/문장시작/구두점이고 뒤가 공백/구두점/조사/재배/품종/이삭/생산/수확 등인 경우에만 매칭
+    return bool(re.search(rf"(?:^|[\s·,:/\(\)\[\]《》\-]){re.escape(k)}(?:$|[\s·,:/\(\)\[\]《》\-의은는이가을를과와도에서로]|재배|품종|농사|생산|수확|이삭|알곡|가루|전분|밭|논|작물)", masked))
 
 # 단원 세부 주제(한국어 키워드) -> {crop_field} / {crop_bot} 슬롯을 조합하는 범용 영문 장면 템플릿
 CHAPTER_THEME_SCENES: list[tuple[tuple[str, ...], str, str]] = [
@@ -139,12 +208,12 @@ CHAPTER_VISUAL_TEMPLATES: list[dict[str, str]] = [
 
 
 def _resolve_english_visual_scenes(topic_ko: str, topic_en: str, chapter: dict[str, Any]) -> tuple[str, str, str]:
-    """한글 주제·단원 제목을 해당 작물/분야에 맞는 순수 영문 시각 장면으로 변환한다 (한글 글자 유입 0% 보장)."""
+    """한글 주제·단원 제목을 해당 작물/분야에 맞는 순수 영문 시각 장면으로 변환한다 (정밀재배→밀 오매칭 완전 차단)."""
     topic_blob = f"{topic_ko} {topic_en}".lower()
     crop_field = ""
     crop_bot = ""
     for keys, cf, cb in CROP_SUBJECT_MAP:
-        if any(k.lower() in topic_blob for k in keys):
+        if any(_match_crop_key(k, topic_blob) for k in keys):
             crop_field, crop_bot = cf, cb
             break
     if not crop_field:
@@ -274,27 +343,33 @@ def _generate_with_nano_banana(
     *,
     prompt: str,
     out_path: Path,
-    model: str = "gemini-2.5-flash-image",
+    model: str = "nano-banana-pro-preview",
     api_key: str,
 ) -> tuple[bool, str]:
-    """Google Gemini 나노바나나(Nano Banana) API로 실사진/과학 일러스트를 생성한다."""
+    """Google Gemini 나노바나나(Nano Banana Pro 우선 폴백 체인) API로 실사진/과학 일러스트를 생성한다."""
     from google import genai
     from google.genai import types
 
     client = genai.Client(api_key=api_key)
-    response = client.models.generate_content(
-        model=model,
-        contents=prompt,
-        config=types.GenerateContentConfig(response_modalities=["IMAGE"]),
-    )
+    chain = [model] + [m for m in ("nano-banana-pro-preview", "gemini-nano-banana-2.1", "gemini-3.1-flash-image", "gemini-2.5-flash-image") if m != model]
+    last_err = ""
     out_path.parent.mkdir(parents=True, exist_ok=True)
-    for part in response.candidates[0].content.parts:
-        inline = getattr(part, "inline_data", None)
-        if inline and getattr(inline, "data", None):
-            raw = inline.data if isinstance(inline.data, bytes) else base64.b64decode(inline.data)
-            out_path.write_bytes(raw)
-            return True, f"Nano Banana ({model})"
-    return False, "Gemini 응답에 이미지 바이너리가 없습니다."
+    for mdl in chain:
+        try:
+            response = client.models.generate_content(
+                model=mdl,
+                contents=prompt,
+                config=types.GenerateContentConfig(response_modalities=["IMAGE"]),
+            )
+            for part in response.candidates[0].content.parts:
+                inline = getattr(part, "inline_data", None)
+                if inline and getattr(inline, "data", None):
+                    raw = inline.data if isinstance(inline.data, bytes) else base64.b64decode(inline.data)
+                    out_path.write_bytes(raw)
+                    return True, f"Nano Banana ({mdl})"
+        except Exception as exc:
+            last_err = f"{mdl}: {str(exc)[:90]}"
+    return False, last_err or "Gemini 응답에 이미지 바이너리가 없습니다."
 
 
 def _svg_canvas(title: str, subtitle: str, body: str, accent: str = "#0f172a") -> str:

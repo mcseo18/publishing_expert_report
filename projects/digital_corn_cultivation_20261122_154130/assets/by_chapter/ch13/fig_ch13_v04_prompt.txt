@@ -1,0 +1,12 @@
+이미지 번호: 그림 13-4
+이미지 파일명: fig_ch13_v04.png
+단원: 제13장. 전 세계 옥수수 생산·유통 공급망 및 산업적 다각화 활용 (ch13)
+결합 절: 13.2 글로벌 곡물 유통 메이저(ABCD) 물류 인프라, 해상 운임(BDI) 및 수급 예측 정량 기준
+시각화 유형: photorealistic_field
+제목: [그림 13-4] 글로벌 곡물 메이저 수출 항만의 벌크선 옥수수 선적 공정
+
+[문맥 기반 이미지 설명]
+[그림 13-4] 글로벌 곡물 메이저(ABCD)가 운영하는 심수항만 수출 터미널에서 대형 벌크선 창구로 황금빛 옥수수 알곡이 고속 컨베이어 슈트를 통해 쏟아져 들어가는 현장이다 [SRC-110]. 대형 금속 사일로 컴플렉스와 해상 로더 암이 유기적으로 연결되어 글로벌 해상 운송망의 핵심 거점을 형성한다. 발틱건화물지수(BDI)와 연계되는 글로벌 곡물 대량 유통의 물리적 현장을 생생하게 보여준다 [SRC-107].
+
+[나노바나나 생성 프롬프트]
+Professional industrial documentary photograph of a deep-water grain export terminal on the lower Mississippi River. A massive bulk carrier vessel is docked alongside towering cylindrical steel storage silos. A gigantic enclosed telescopic loading spout discharges a dense, golden river of dry yellow corn kernels directly into the cavernous cargo hold of the ship. Golden grain dust catches the sharp morning sunlight. High depth of field showing industrial gantry cranes, marine docking bollards, river water ripples, and the sheer volume of cascading agricultural grain. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

@@ -1,0 +1,12 @@
+이미지 번호: 그림 9-6
+이미지 파일명: fig_ch09_v06.png
+단원: 제9장. 작물 생육·양분 모델링 및 디지털 트윈 시뮬레이션 (ch09)
+결합 절: 9.3 농가 관행 오해 교정: 단순 과거 평균 기후 기반의 파종일 고정 관행과 위험도 진단
+시각화 유형: photorealistic_field
+제목: [그림 9-6] 파종일 고정 관행에 따른 이상 조기 가뭄 피해 옥수수 캐노피
+
+[문맥 기반 이미지 설명]
+[그림 9-6] 과거 30년 평균 기후에만 의존하여 기계적으로 파종일을 고정했을 때 발생하는 조기 한발 피해 양상을 보여주는 시험 포장 전경입니다. 개화 수분기(R1)에 갑작스러운 고온과 토양 건조가 겹치면서 잎이 위쪽으로 말려 올라가고(leaf rolling), 출사와 화분 비산 간의 탈동기화(ASI)가 일어난 현장을 대비합니다. 단순 과거 통계에 안주하는 파종 의사결정의 농업적 위험성을 생생하게 고발합니다 [SRC-111, SRC-112].
+
+[나노바나나 생성 프롬프트]
+National Geographic documentary style photorealistic field photograph of drought-stressed corn (Zea mays) plants standing in dry, cracked agricultural silt-loam soil. The long broad leaves are tightly curled inwards into vertical needle-like shapes due to severe heat, while pale immature tassels struggle under blazing midday sun. Dusty horizon and harsh dry atmospheric haze. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

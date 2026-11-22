@@ -1,0 +1,12 @@
+이미지 번호: 그림 7-2
+이미지 파일명: fig_ch07_v02.png
+단원: 제7장. 옥수수 수분 생리 및 스마트 정밀 관개 공학 (ch07)
+결합 절: 7.1 옥수수 증발산(ETc) 모델(FAO-56 듀얼 챔버 계수) 및 수분 흡수 생리
+시각화 유형: photorealistic_macro
+제목: [그림 7-2] 수분 스트레스에 따른 옥수수 잎 공변세포 개폐 및 기공 미세구조
+
+[문맥 기반 이미지 설명]
+[그림 7-2] 수분 충만 상태와 가뭄 스트레스 조건에서 옥수수 잎 표피 조직의 기공 개폐 동태를 확대한 현미경 초정밀 사진입니다. 옥수수는 C4 식물로서 가뭄 스트레스 노출 시 앱시스산 신호 전달에 의해 공변세포의 팽압을 낮추어 기공을 신속하게 닫음으로써 증산 손실을 억제합니다 [SRC-103]. 이러한 기공 전도도 제어는 토양 수분 결핍 조건에서 작물의 생리적 안정성을 유지하는 핵심 기작입니다.
+
+[나노바나나 생성 프롬프트]
+Photorealistic laboratory fluorescence microscopy macro capture of the abaxial epidermis of a Zea mays corn leaf. On one side, dumbbell-shaped stomatal guard cells are turgid and wide open, exposing the clear stomatal pore with visible chloroplasts glowing in vivid green inside the cells. On the opposing side under water deficit conditions, the guard cells appear flaccid and tightly compressed, fully closing the aperture. Extremely sharp cellular texture of undulating epidermal cell walls, high magnification with vivid botanical contrast and laboratory depth of field. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

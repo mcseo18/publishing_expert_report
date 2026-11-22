@@ -1,0 +1,12 @@
+이미지 번호: 그림 9-2
+이미지 파일명: fig_ch09_v02.png
+단원: 제9장. 작물 생육·양분 모델링 및 디지털 트윈 시뮬레이션 (ch09)
+결합 절: 9.1 작물 생리 메커니즘 모델(APSIM-Maize, CERES-Maize)의 탄소 분배 및 생육 수리엔진
+시각화 유형: scientific_anatomy
+제목: [그림 9-2] 일사량 기반 순수동화량의 기관별 탄소 분배(Carbon Partitioning) 구조
+
+[문맥 기반 이미지 설명]
+[그림 9-2] 잎에서 생성된 순수 탄소 동화량이 생육 단계에 따라 각 기관으로 분배되는 수리엔진의 분배 비율(α_i) 메커니즘을 상세히 나타냅니다. 영양생장기에는 주로 잎과 줄기, 부정근 조직으로 탄소가 이동하며, 생식생장기에는 이삭 축과 옥수수 낟알의 배유 조직으로 탄소 플럭스가 집중되는 생리적 경로를 보여줍니다. [SRC-101]과 [SRC-102]에 근거하여 자가영양 호흡 손실을 제외한 순수동화량의 시공간적 흐름을 단면 예술로 구현했습니다.
+
+[나노바나나 생성 프롬프트]
+Scientific anatomical cutaway illustration of a healthy corn plant (Zea mays) on a pure white background displaying carbon assimilate allocation vectors. Fine glowing golden and amber flow arrows originate from the chloroplast-rich mesophyll inside the broad green leaves, branching downwards into the thick stalk internodes, crown roots, and primarily converging into the developing ear with its developing rows of plump kernels and silk attachments. Detailed botanical cutaway revealing stalk vascular bundles and ear cob pith. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

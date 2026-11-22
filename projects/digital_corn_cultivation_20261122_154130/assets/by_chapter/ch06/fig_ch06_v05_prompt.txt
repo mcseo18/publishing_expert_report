@@ -1,0 +1,12 @@
+이미지 번호: 그림 6-5
+이미지 파일명: fig_ch06_v05.png
+단원: 제6장. 디지털 토양 물리·화학성 평가 및 경반층 관리 (ch06)
+결합 절: 6.2 관입저항(Cone Index) 및 전자기유도(EM38) 정량 기준
+시각화 유형: scientific_anatomy
+제목: [그림 6-5] 2.0 MPa 경반층 임계치 도달에 따른 옥수수 근계 수평 굴절 해부도
+
+[문맥 기반 이미지 설명]
+[그림 6-5] 토양 심도별 관입저항치가 2.0 MPa를 초과할 때 옥수수 주근과 절간근이 경반층 표면에서 수평으로 꺾이는 근계 생리적 거동을 나타낸 단면도입니다. 0-25cm 표토층에서는 정상적으로 수직 발달하던 뿌리가 경반층 경계면에서 급격한 물리적 침투 저항을 만나 L자 형태로 굴절됩니다. 이는 경반층이 단순한 물리적 경계가 아니라 수분 및 양분 접근성을 극단적으로 제한하는 결정적 장벽임을 실증합니다 [SRC-102].
+
+[나노바나나 생성 프롬프트]
+Detailed scientific botanical cross-section on a clean white background illustrating a single Zea mays corn plant root system meeting a compacted soil layer. The vertical taproot and crown roots grow straight down through the loose topsoil, but upon reaching the compacted hardpan layer at twenty-five centimeters depth, the root tips abruptly bend horizontally, forming flattened pancake-like branched clusters along the barrier. Highly precise anatomical rendering of vascular bundles, root caps, and soil compaction gradient. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

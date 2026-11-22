@@ -1,7 +1,7 @@
 """6단계 전문 교재 제작 오케스트레이터 (단일 통합 대시보드 · 체크포인트 이어하기 · 보고서 자동 생성).
 
 새로운 표준 제작 절차 (6단계):
-  1단계 [stage1_topic_outline]    : 주제 설정 → 초기 RAG/학술 탐색 + OpenAI API(또는 Gemma 4)로
+  1단계 [stage1_topic_outline]    : 주제 설정 → 초기 RAG/학술 탐색 + Google Gemini API(또는 Gemma 4)로
                                     목차·단원별 요약·핵심 영역별 키워드 제시 → 사용자 검토·재요청·직접 수정 후 확정
   2단계 [stage2_source_collect]   : 확정 키워드 기반 문헌·교과서·교재·웹사이트(eco-browser/학술/기관) 수집·저장
                                     → 「2단계 자료 수집 현황 보고서(02_collection_report.md)」 자동 생성
@@ -54,8 +54,8 @@ STAGE_DEFINITIONS: list[dict[str, str]] = [
         "agent_name": "outline-architect",
         "title": "주제 탐색 · 목차/요약/키워드 설계 및 검토",
         "short_title": "목차·키워드 확정",
-        "tier": "초기 검색 + OpenAI API / 로컬 Gemma 4 + 사용자 검토·재요청",
-        "description": "주제를 바탕으로 초기 탐색과 OpenAI API를 활용해 목차·단원 요약·핵심 영역별 키워드를 제시하고 사용자 검토·수정 후 확정합니다.",
+        "tier": "초기 검색 + Google Gemini API / 로컬 Gemma 4 + 사용자 검토·재요청",
+        "description": "주제를 바탕으로 초기 탐색과 Google Gemini API를 활용해 목차·단원 요약·핵심 영역별 키워드를 제시하고 사용자 검토·수정 후 확정합니다.",
     },
     {
         "stage_id": "stage2_source_collect",
@@ -198,6 +198,291 @@ def load_events(project_id: str, limit: int = 120, cfg: PlatformConfig | None = 
     return out
 
 
+def _last_work_path(project_ws: Path) -> Path:
+    return project_ws / "last_work_session.json"
+
+
+def build_last_work_summary(
+    state: dict[str, Any],
+    *,
+    overrides: dict[str, Any] | None = None,
+    cfg: PlatformConfig | None = None,
+) -> dict[str, Any]:
+    """프로젝트의 마지막 작업 상태(탭·단계·열람 단원·마지막 실행 내용·체크포인트)를 요약 객체로 생성한다."""
+    prev = dict(state.get("last_work_session") or {})
+    ov = {k: v for k, v in (overrides or {}).items() if v is not None}
+    stages = state.get("stages") or []
+
+    active_st = None
+    if ov.get("last_stage_id"):
+        active_st = next((s for s in stages if s.get("stage_id") == ov["last_stage_id"]), None)
+    if not active_st and state.get("active_stage_id"):
+        active_st = next((s for s in stages if s.get("stage_id") == state.get("active_stage_id")), None)
+    if not active_st:
+        active_st = (
+            next((s for s in stages if s.get("status") in ("RUNNING", "WAITING_REVIEW", "INTERRUPTED", "ERROR")), None)
+            or next((s for s in reversed(stages) if s.get("status") == "DONE"), None)
+            or (stages[0] if stages else None)
+        )
+
+    stage_id = ov.get("last_stage_id") or prev.get("last_stage_id") or (active_st.get("stage_id") if active_st else "stage1_topic_outline")
+    stage_obj = next((s for s in stages if s.get("stage_id") == stage_id), active_st) or {}
+    stage_order = stage_obj.get("order", "")
+    stage_title = stage_obj.get("short_title") or stage_obj.get("title") or stage_id
+    stage_status = stage_obj.get("status", "PENDING")
+    stage_progress = int(stage_obj.get("progress") or (100 if stage_status == "DONE" else 0))
+    stage_action = stage_obj.get("current_action") or ""
+
+    last_ev_msg = ""
+    try:
+        evs = load_events(state["project_id"], limit=1, cfg=cfg)
+        if evs:
+            last_ev_msg = str(evs[-1].get("message") or "")
+    except Exception:
+        pass
+
+    done_cnt = sum(1 for s in stages if s.get("status") == "DONE")
+    ck = state.get("checkpoint") or {}
+    auto_summary = ov.get("last_action_summary") or stage_action or last_ev_msg or f"{stage_order}단계 {stage_title} ({stage_status})"
+
+    now_iso = utc_now_iso()
+    return {
+        "project_id": state["project_id"],
+        "topic_ko": state.get("topic_ko", ""),
+        "workspace_dir": str(state.get("workspace_dir") or ""),
+        "last_tab": ov.get("last_tab") or prev.get("last_tab") or "workflow",
+        "last_subtab": ov.get("last_subtab") if "last_subtab" in ov else prev.get("last_subtab", ""),
+        "last_stage_id": stage_id,
+        "last_stage_order": stage_order,
+        "last_stage_title": stage_title,
+        "last_stage_status": stage_status,
+        "last_stage_progress": stage_progress,
+        "last_open_chapter": ov.get("last_open_chapter") if "last_open_chapter" in ov else prev.get("last_open_chapter", ""),
+        "last_visual_filter": ov.get("last_visual_filter") if "last_visual_filter" in ov else prev.get("last_visual_filter", "ALL"),
+        "last_action_summary": auto_summary,
+        "last_event_message": last_ev_msg,
+        "done_stages": done_cnt,
+        "total_stages": len(stages),
+        "overall_status": state.get("overall_status", "IDLE"),
+        "completed_chapters_count": len(ck.get("completed_chapters") or []),
+        "completed_visuals_count": len(ck.get("completed_visuals") or []),
+        "saved_at": now_iso,
+        "saved_at_local": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+    }
+
+
+def write_last_work_session(
+    project_id: str,
+    overrides: dict[str, Any] | None = None,
+    *,
+    cfg: PlatformConfig | None = None,
+) -> dict[str, Any]:
+    """프로젝트 폴더(projects/<pid>/last_work_session.json)와 state.json에 마지막 작업 기록을 영구 저장한다."""
+    cfg = cfg or get_config()
+    st = load_project_state(project_id, cfg)
+    if not st:
+        raise FileNotFoundError(f"Project not found: {project_id}")
+    session = build_last_work_summary(st, overrides=overrides, cfg=cfg)
+    st["last_work_session"] = session
+    save_project_state(st, cfg)
+    try:
+        ws = Path(st.get("workspace_dir") or cfg.project_dir(project_id))
+        ws.mkdir(parents=True, exist_ok=True)
+        _last_work_path(ws).write_text(json.dumps(session, ensure_ascii=False, indent=2), encoding="utf-8")
+    except Exception:
+        pass
+    return session
+
+
+def scan_project_folders(include_archived: bool = False, cfg: PlatformConfig | None = None) -> list[dict[str, Any]]:
+    """워크스페이스 projects/ 폴더(및 선택 시 아카이브 폴더)를 스캔하여 폴더별 마지막 작업 기록과 진행 현황을 반환한다."""
+    cfg = cfg or get_config()
+    results: list[dict[str, Any]] = []
+    seen_paths: set[str] = set()
+
+    roots: list[tuple[Path, bool]] = [(cfg.workspace_root / "projects", False)]
+    if include_archived:
+        arch = cfg.e_data_root / "_archived_projects"
+        if arch.is_dir():
+            roots.append((arch, True))
+
+    for root_dir, is_arch in roots:
+        if not root_dir.is_dir():
+            continue
+        for p in sorted(root_dir.iterdir()):
+            if not p.is_dir() or p.name.startswith(".") or p.name.startswith("_"):
+                continue
+            resolved = str(p.resolve())
+            if resolved in seen_paths:
+                continue
+            seen_paths.add(resolved)
+
+            pid = p.name
+            st = load_project_state(pid, cfg)
+            lw_file = _last_work_path(p)
+            lw_disk: dict[str, Any] = {}
+            if lw_file.is_file():
+                try:
+                    lw_disk = json.loads(lw_file.read_text(encoding="utf-8"))
+                except Exception:
+                    lw_disk = {}
+
+            bp_path = p / "blueprints" / "master_outline.yaml"
+            bp_meta: dict[str, Any] = {}
+            bp_ch_cnt = 0
+            if bp_path.is_file():
+                try:
+                    bp_obj = yaml.safe_load(bp_path.read_text(encoding="utf-8")) or {}
+                    bp_meta = bp_obj.get("book_metadata") or {}
+                    bp_ch_cnt = sum(len(pt.get("chapters") or []) for pt in (bp_obj.get("parts") or []))
+                except Exception:
+                    pass
+
+            ch_cnt_disk = len(list((p / "chapters").glob("*.mdx"))) if (p / "chapters").is_dir() else 0
+            vis_cnt_disk = 0
+            vp = p / "assets" / "visuals_plan.json"
+            if vp.is_file():
+                try:
+                    vis_cnt_disk = int(json.loads(vp.read_text(encoding="utf-8")).get("total_generated") or 0)
+                except Exception:
+                    pass
+            exp_cnt_disk = sum(1 for f in (p / "exports").rglob("*") if f.is_file()) if (p / "exports").is_dir() else 0
+
+            # 프로젝트 폴더로 볼 수 있는 최소 흔적이 없으면 건너뜀
+            if not (st or lw_disk or bp_path.is_file() or ch_cnt_disk > 0 or vis_cnt_disk > 0 or exp_cnt_disk > 0):
+                continue
+
+            lw = lw_disk or (st.get("last_work_session") if st else None) or (build_last_work_summary(st, cfg=cfg) if st else {})
+            topic_ko = (st or {}).get("topic_ko") or lw.get("topic_ko") or bp_meta.get("title_ko") or pid
+            done_stages = sum(1 for s in ((st or {}).get("stages") or []) if s.get("status") == "DONE")
+            total_stages = len((st or {}).get("stages") or []) or len(STAGE_DEFINITIONS)
+            updated_at = lw.get("saved_at") or (st or {}).get("updated_at") or datetime.fromtimestamp(p.stat().st_mtime).isoformat()
+
+            results.append(
+                {
+                    "project_id": pid,
+                    "folder_path": resolved,
+                    "rel_folder": f"projects/{pid}" if not is_arch else str(p),
+                    "is_archived": is_arch,
+                    "is_registered": bool(st),
+                    "hidden": bool((st or {}).get("hidden_from_list", False)),
+                    "topic_ko": topic_ko,
+                    "target_pages": int((st or {}).get("target_pages") or bp_meta.get("target_total_pages") or bp_meta.get("target_pages") or 0),
+                    "chapter_count": int((st or {}).get("chapter_count") or bp_ch_cnt or ch_cnt_disk),
+                    "drafted_chapters": ch_cnt_disk,
+                    "visuals_count": vis_cnt_disk,
+                    "exports_count": exp_cnt_disk,
+                    "done_stages": done_stages,
+                    "total_stages": total_stages,
+                    "overall_status": (st or {}).get("overall_status") or lw.get("overall_status") or "IDLE",
+                    "updated_at": updated_at,
+                    "last_work_session": lw,
+                }
+            )
+    return sorted(results, key=lambda x: str(x.get("updated_at") or ""), reverse=True)
+
+
+def load_project_from_folder(folder_path: str, cfg: PlatformConfig | None = None) -> dict[str, Any]:
+    """지정된 프로젝트 폴더에서 프로젝트 상태와 마지막 작업 기록(last_work_session.json)을 복원·불러온다."""
+    cfg = cfg or get_config()
+    raw_p = Path(folder_path.strip().strip('"').strip("'"))
+    if not raw_p.is_absolute():
+        cand = (cfg.workspace_root / raw_p).resolve()
+        if cand.is_dir():
+            raw_p = cand
+        else:
+            cand2 = (cfg.workspace_root / "projects" / raw_p).resolve()
+            if cand2.is_dir():
+                raw_p = cand2
+    else:
+        raw_p = raw_p.resolve()
+
+    if not raw_p.is_dir():
+        raise FileNotFoundError(f"지정한 프로젝트 폴더를 찾을 수 없습니다: {folder_path}")
+
+    pid = raw_p.name
+    # 아카이브 폴더에서 선택한 경우 projects/<pid>로 안전 복원(이동/복사)
+    target_ws = cfg.project_dir(pid)
+    if raw_p != target_ws.resolve() and "_archived_projects" in str(raw_p):
+        if not target_ws.exists():
+            shutil.copytree(raw_p, target_ws)
+        raw_p = target_ws.resolve()
+
+    # 폴더 내 last_work_session.json 읽기
+    lw_file = _last_work_path(raw_p)
+    lw_disk: dict[str, Any] = {}
+    if lw_file.is_file():
+        try:
+            lw_disk = json.loads(lw_file.read_text(encoding="utf-8"))
+        except Exception:
+            lw_disk = {}
+
+    st = load_project_state(pid, cfg)
+    if not st:
+        # state.json이 없는 폴더면 디스크 자산(master_outline.yaml, chapters, assets, exports)에서 자동 재구성
+        bp_path = raw_p / "blueprints" / "master_outline.yaml"
+        bp_obj = yaml.safe_load(bp_path.read_text(encoding="utf-8")) if bp_path.is_file() else {}
+        bp_meta = (bp_obj or {}).get("book_metadata") or {}
+        parts = (bp_obj or {}).get("parts") or []
+        ch_files = sorted((raw_p / "chapters").glob("*.mdx")) if (raw_p / "chapters").is_dir() else []
+        ch_count = sum(len(pt.get("chapters") or []) for pt in parts) or len(ch_files) or 10
+
+        st = create_project(
+            topic_ko=lw_disk.get("topic_ko") or bp_meta.get("title_ko") or pid,
+            topic_en=bp_meta.get("title_en") or pid,
+            target_audience=bp_meta.get("target_audience") or "대학 전공 심화, 연구자 및 현장 실무자",
+            target_pages=int(bp_meta.get("target_total_pages") or bp_meta.get("target_pages") or 400),
+            chapter_count=max(3, min(24, ch_count)),
+            project_id_override=pid,
+            cfg=cfg,
+        )
+        st["workspace_dir"] = str(raw_p)
+        if bp_obj and parts:
+            st["blueprint_preview"] = bp_obj
+            st["outline_approved"] = True
+            st["stages"][0].update({"status": "DONE", "progress": 100, "current_action": f"폴더에서 목차 복원 ({len(parts)}부 {ch_count}장)"})
+        if ch_files:
+            st["checkpoint"]["completed_chapters"] = [f.stem for f in ch_files]
+            st["stages"][3].update({"status": "DONE" if len(ch_files) >= ch_count else "INTERRUPTED", "progress": min(100, int(len(ch_files) / max(1, ch_count) * 100)), "current_action": f"폴더에서 원고 {len(ch_files)}개 장 복원"})
+        vp = raw_p / "assets" / "visuals_plan.json"
+        if vp.is_file():
+            try:
+                vdata = json.loads(vp.read_text(encoding="utf-8"))
+                vids = [v.get("figure_id") for v in (vdata.get("visuals") or []) if v.get("figure_id")]
+                st["checkpoint"]["completed_visuals"] = vids
+                st["stages"][4].update({"status": "DONE", "progress": 100, "current_action": f"폴더에서 시각화 {len(vids)}종 복원"})
+            except Exception:
+                pass
+        if (raw_p / "exports").is_dir() and any((raw_p / "exports").rglob("*.pdf")):
+            st["stages"][5].update({"status": "DONE", "progress": 100, "current_action": "폴더에서 출판 산출물 복원"})
+    else:
+        st["workspace_dir"] = str(raw_p)
+        if st.get("hidden_from_list"):
+            st["hidden_from_list"] = False
+
+    lw_final = lw_disk or st.get("last_work_session") or build_last_work_summary(st, cfg=cfg)
+    st["last_work_session"] = lw_final
+    save_project_state(st, cfg)
+    try:
+        _last_work_path(raw_p).write_text(json.dumps(lw_final, ensure_ascii=False, indent=2), encoding="utf-8")
+    except Exception:
+        pass
+
+    append_event(
+        pid,
+        "orchestrator",
+        lw_final.get("last_stage_id") or "stage1_topic_outline",
+        f"폴더에서 이전 프로젝트 불러오기 완료: {lw_final.get('last_action_summary') or st.get('topic_ko', pid)}",
+        cfg=cfg,
+    )
+    return {
+        "status": "LOADED",
+        "project": st,
+        "events": load_events(pid, limit=150, cfg=cfg),
+        "last_work_session": lw_final,
+    }
+
+
 def save_project_state(state: dict[str, Any], cfg: PlatformConfig | None = None) -> None:
     """체크포인트 안전 보장을 위해 임시 파일 작성 후 원자적(os.replace)으로 state.json을 저장한다."""
     state["updated_at"] = utc_now_iso()
@@ -209,22 +494,54 @@ def save_project_state(state: dict[str, Any], cfg: PlatformConfig | None = None)
         # Windows에서 백신·동기화 프로그램이 state.json을 잠시 잡고 있으면 os.replace가
         # [WinError 5] 액세스 거부로 실패할 수 있으므로 잠시 기다렸다가 최대 5회 재시도한다.
         last_exc: Exception | None = None
+        replaced = False
         for attempt in range(5):
             try:
                 os.replace(tmp, sp)
-                return
+                replaced = True
+                break
             except PermissionError as exc:
                 last_exc = exc
                 time.sleep(0.3 * (attempt + 1))
-        # 마지막 수단: 원자적 교체 대신 직접 덮어쓰기
-        try:
-            sp.write_text(payload, encoding="utf-8")
+        if not replaced:
+            # 마지막 수단: 원자적 교체 대신 직접 덮어쓰기
             try:
-                tmp.unlink()
-            except OSError:
-                pass
-        except Exception:
-            raise last_exc if last_exc else RuntimeError("state.json 저장 실패")
+                sp.write_text(payload, encoding="utf-8")
+                try:
+                    tmp.unlink()
+                except OSError:
+                    pass
+            except Exception:
+                raise last_exc if last_exc else RuntimeError("state.json 저장 실패")
+    # 프로젝트 폴더 내부에도 마지막 작업 요약(last_work_session.json)을 항상 최신 동기화 (폴더 단위 불러오기 복원용)
+    try:
+        ws_str = state.get("workspace_dir")
+        if ws_str and Path(ws_str).is_dir():
+            lw = state.get("last_work_session")
+            if not isinstance(lw, dict) or not lw.get("last_stage_id"):
+                lw = build_last_work_summary(state, cfg=cfg)
+            else:
+                stages = state.get("stages") or []
+                act = next((s for s in stages if s.get("stage_id") == (state.get("active_stage_id") or lw.get("last_stage_id"))), None)
+                if act and act.get("current_action"):
+                    lw = {
+                        **lw,
+                        "topic_ko": state.get("topic_ko", lw.get("topic_ko", "")),
+                        "last_stage_id": act.get("stage_id", lw.get("last_stage_id")),
+                        "last_stage_order": act.get("order", lw.get("last_stage_order", "")),
+                        "last_stage_title": act.get("short_title") or act.get("title") or lw.get("last_stage_title", ""),
+                        "last_stage_status": act.get("status", lw.get("last_stage_status", "")),
+                        "last_stage_progress": int(act.get("progress") or (100 if act.get("status") == "DONE" else 0)),
+                        "last_action_summary": act.get("current_action") or lw.get("last_action_summary", ""),
+                        "done_stages": sum(1 for s in stages if s.get("status") == "DONE"),
+                        "total_stages": len(stages),
+                        "overall_status": state.get("overall_status", lw.get("overall_status", "IDLE")),
+                        "saved_at": state.get("updated_at", utc_now_iso()),
+                        "saved_at_local": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                    }
+            _last_work_path(Path(ws_str)).write_text(json.dumps(lw, ensure_ascii=False, indent=2), encoding="utf-8")
+    except Exception:
+        pass
 
 
 def _migrate_to_v2_if_needed(state: dict[str, Any], cfg: PlatformConfig) -> dict[str, Any]:
@@ -304,8 +621,6 @@ def _migrate_to_v2_if_needed(state: dict[str, Any], cfg: PlatformConfig) -> dict
     state.setdefault("domain_keywords", [])
     opts = dict(state.get("options") or {})
     opts.setdefault("use_gemini_outline", True)
-    opts.setdefault("use_openai_outline", True)
-    opts.setdefault("openai_model", "gpt-4o-mini")
     opts.setdefault("use_fal_ai", False)
     opts.setdefault("fal_model", "fal-ai/nano-banana")
     opts.setdefault("use_nano_banana", True)
@@ -486,8 +801,6 @@ def create_project(
 
     opts = {
         "use_gemini_outline": True,
-        "use_openai_outline": True,
-        "openai_model": "gpt-4o-mini",
         "use_fal_ai": False,
         "fal_model": "fal-ai/nano-banana",
         "use_nano_banana": True,
@@ -609,7 +922,6 @@ def get_ai_engines_status(cfg: PlatformConfig | None = None) -> dict[str, Any]:
         "ollama": ollama_info,
         "claude_code": claude_info,
         "local_rag": rag_info,
-        "openai_configured": bool(resolve_api_key("OPENAI_API_KEY", None, cfg)),
         "fal_configured": bool(resolve_api_key("FAL_KEY", None, cfg)),
         "gemini_configured": bool(resolve_api_key("GEMINI_API_KEY", None, cfg)),
     }
@@ -623,8 +935,6 @@ def update_project_options(project_id: str, updates: dict[str, Any], cfg: Platfo
     opts = dict(st.get("options") or {})
     allowed_keys = {
         "use_gemini_outline",
-        "use_openai_outline",
-        "openai_model",
         "use_fal_ai",
         "fal_model",
         "use_nano_banana",
@@ -717,34 +1027,8 @@ def _should_stop(project_id: str) -> bool:
 
 
 # ============================================================
-# OpenAI API (또는 Gemma 4 폴백) 목차·요약·핵심 영역별 키워드 설계기
+# Google Gemini API (또는 Gemma 4 폴백) 목차·요약·핵심 영역별 키워드 설계기
 # ============================================================
-def _call_openai_outline_json(
-    *,
-    prompt: str,
-    system_prompt: str,
-    model: str = "gpt-4o-mini",
-    api_key: str,
-) -> dict[str, Any]:
-    resp = requests.post(
-        "https://api.openai.com/v1/chat/completions",
-        headers={"Authorization": f"Bearer {api_key}", "Content-Type": "application/json"},
-        json={
-            "model": model or "gpt-4o-mini",
-            "response_format": {"type": "json_object"},
-            "temperature": 0.4,
-            "messages": [
-                {"role": "system", "content": system_prompt},
-                {"role": "user", "content": prompt},
-            ],
-        },
-        timeout=90,
-    )
-    resp.raise_for_status()
-    content = resp.json()["choices"][0]["message"]["content"]
-    return json.loads(content)
-
-
 GEMINI_OUTLINE_CHAIN = [
     "gemini-3.8-flash",
     "gemini-3-flash-preview",
@@ -791,16 +1075,13 @@ def _generate_outline_proposal(
     feedback_prompt: str = "",
     initial_context: str = "",
 ) -> tuple[dict[str, Any], str]:
-    """목차·요약·핵심 영역별 키워드를 생성한다. 엔진 순서: Gemini API → OpenAI API → 로컬 Ollama Gemma 4."""
+    """목차·요약·핵심 영역별 키워드를 생성한다. 엔진 순서: Google Gemini API → 로컬 Ollama Gemma 4."""
     n_ch = int(state.get("chapter_count") or 15)
     t_pages = int(state.get("target_pages") or 500)
     per_ch = max(15, round(t_pages / max(1, n_ch)))
     opts = state.get("options") or {}
     use_gemini = bool(opts.get("use_gemini_outline", True))
     gemini_key = resolve_api_key("GEMINI_API_KEY", None, cfg) if use_gemini else ""
-    use_openai = bool(opts.get("use_openai_outline", True))
-    openai_key = resolve_api_key("OPENAI_API_KEY", None, cfg) if use_openai else ""
-    openai_model = opts.get("openai_model") or "gpt-4o-mini"
 
     prev_outline = state.get("blueprint_preview")
     prev_summary_txt = ""
@@ -859,15 +1140,7 @@ def _generate_outline_proposal(
             engine_used = f"Gemini ({gmodel})"
         except Exception as exc:
             raw = None
-            nxt = "OpenAI" if openai_key else "로컬 Gemma 4"
-            append_event(state["project_id"], "outline-architect", "stage1_topic_outline", f"Gemini API 호출 실패 → {nxt} 폴백: {exc}", level="WARN", cfg=cfg)
-
-    if raw is None and openai_key:
-        try:
-            raw = _call_openai_outline_json(prompt=user_prompt, system_prompt=sys_prompt, model=openai_model, api_key=openai_key)
-            engine_used = f"OpenAI ({openai_model})"
-        except Exception as exc:
-            append_event(state["project_id"], "outline-architect", "stage1_topic_outline", f"OpenAI API 호출 실패 → 로컬 Gemma 4 폴백: {exc}", level="WARN", cfg=cfg)
+            append_event(state["project_id"], "outline-architect", "stage1_topic_outline", f"Gemini API 호출 실패 → 로컬 Gemma 4 폴백: {exc}", level="WARN", cfg=cfg)
 
     if raw is None:
         try:
@@ -1192,7 +1465,7 @@ def revise_stage1_outline(
     project_id: str,
     feedback_prompt: str,
     *,
-    use_openai: bool | None = None,
+    use_gemini: bool | None = None,
     cfg: PlatformConfig | None = None,
 ) -> dict[str, Any]:
     """1단계: 사용자의 수정·재요청 프롬프트를 반영해 목차·요약·영역별 키워드를 재생성한다."""
@@ -1200,8 +1473,8 @@ def revise_stage1_outline(
     st = load_project_state(project_id, cfg)
     if not st:
         raise FileNotFoundError(f"Project not found: {project_id}")
-    if use_openai is not None:
-        st.setdefault("options", {})["use_openai_outline"] = use_openai
+    if use_gemini is not None:
+        st.setdefault("options", {})["use_gemini_outline"] = use_gemini
 
     append_event(project_id, "outline-architect", "stage1_topic_outline", f"사용자 재요청 반영 중: {feedback_prompt[:120]}", cfg=cfg)
     outline, engine_used = _generate_outline_proposal(st, cfg, feedback_prompt=feedback_prompt)
@@ -1275,7 +1548,7 @@ def _run_stage1_topic_outline(state: dict[str, Any], cfg: PlatformConfig) -> Non
     pid = state["project_id"]
     sid = "stage1_topic_outline"
     _update_stage(state, sid, cfg, status="RUNNING", progress=15, started_at=utc_now_iso(), current_action="초기 로컬 RAG 및 최신 학술 동향 선조회 중...", error="")
-    append_event(pid, "outline-architect", sid, f"1단계 시작: 《{state['topic_ko']}》 초기 탐색 + OpenAI/Gemma 목차·요약·키워드 설계", cfg=cfg)
+    append_event(pid, "outline-architect", sid, f"1단계 시작: 《{state['topic_ko']}》 초기 탐색 + Google Gemini/Gemma 목차·요약·키워드 설계", cfg=cfg)
 
     # 1) 초기 RAG 선조회 + 학술 타이틀 3~5편 스캔 (목차의 최신성 확보)
     kws = list(dict.fromkeys((state.get("keywords_ko") or []) + (state.get("keywords_en") or [])))[:10]
@@ -1290,7 +1563,7 @@ def _run_stage1_topic_outline(state: dict[str, Any], cfg: PlatformConfig) -> Non
     except Exception:
         pass
 
-    _update_stage(state, sid, cfg, progress=55, current_action="OpenAI API(또는 Gemma 4)로 목차 · 단원 요약 · 핵심 영역별 키워드 초안 생성 중...")
+    _update_stage(state, sid, cfg, progress=55, current_action="Google Gemini API(또는 Gemma 4)로 목차 · 단원 요약 · 핵심 영역별 키워드 초안 생성 중...")
     outline, engine_used = _generate_outline_proposal(state, cfg, initial_context="\n".join(preview_lines))
     master_path = _save_outline_files(state, outline, cfg)
 
@@ -1589,8 +1862,35 @@ def _run_stage5_visuals_generate(state: dict[str, Any], cfg: PlatformConfig) -> 
     opts = state.get("options", {})
     per_ch = max(10, int(opts.get("visuals_per_chapter") or 10))
     use_fal = bool(opts.get("use_fal_ai", False))
-    fal_model = opts.get("fal_model") or "fal-ai/nano-banana"
+    fal_model = opts.get("fal_model") or "fal-ai/nano-banana-pro"
     use_nb = bool(opts.get("use_nano_banana", True))
+
+    ch_dir = Path(state["workspace_dir"]) / "chapters"
+    drafted_files = sorted(ch_dir.glob("*.mdx"))
+    gemini_key = resolve_api_key("GEMINI_API_KEY", None, cfg)
+
+    # 원고가 집필되어 있고 GEMINI_API_KEY가 있으면 『weed_control』 문맥 기반 Nano Banana Pro 엔진을 기본 사용
+    if drafted_files and gemini_key and (use_nb or use_fal):
+        try:
+            from context_visual_director import rebuild_project_visuals_with_nano_banana
+
+            res = rebuild_project_visuals_with_nano_banana(
+                pid,
+                per_chapter_count=per_ch,
+                primary_model="nano-banana-pro-preview",
+                backend="fal" if (use_fal and resolve_api_key("FAL_KEY", None, cfg)) else "google",
+                max_workers=4,
+                purge_first=False,
+                cfg=cfg,
+            )
+            # 최신 state 동기화
+            fresh = load_project_state(pid, cfg)
+            if fresh:
+                state.clear()
+                state.update(fresh)
+            return
+        except Exception as exc:
+            append_event(pid, "visual-artist", sid, f"문맥 기반 Nano Banana Pro 엔진 폴백 → visual_studio 사용: {exc}", level="WARN", cfg=cfg)
 
     _update_stage(
         state,

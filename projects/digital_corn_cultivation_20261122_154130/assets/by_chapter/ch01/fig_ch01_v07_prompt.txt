@@ -1,0 +1,12 @@
+이미지 번호: 그림 1-7
+이미지 파일명: fig_ch01_v07.png
+단원: 제1장. 옥수수의 기원, 분류 체계 및 식물학적 형태생리 (ch01)
+결합 절: 1.3 농가 관행 오해 교정: 단옥수수·찰옥수수 혼작 수분(Xenia) 피해 진단
+시각화 유형: photorealistic_field
+제목: [그림 1-7] 이종 수분(Xenia) 방지를 위한 품종별 포장 격리 및 수분 차단 거리 확보 현장
+
+[문맥 기반 이미지 설명]
+[그림 1-7] 단옥수수와 찰옥수수 간의 꽃가루 교잡을 물리적으로 차단하기 위해 공간적 격리 거리를 확보하여 조성한 정밀 옥수수 연구 포장의 전경이다. 개화기에 도달한 옥수수 군락 상부의 수꽃 이삭(tassel)에서 미세한 황색 꽃가루가 바람을 타고 비산하는 순간을 포착하고 있다 [SRC-104]. 200m 이상의 물리적 격리나 개화 시기 조절, 또는 완충대 식재가 고품질 당도와 식감을 보존하기 위해 필수적임을 보여준다.
+
+[나노바나나 생성 프롬프트]
+High-angle documentary field photograph of a modern hybrid maize research station under sunny morning skies. Two distinctly separated varietal plots of tall green maize crops are separated by a broad open buffer fallow zone. In the foreground field, towering maize stalks have fully extended tassels shedding plumes of fine golden-yellow pollen dust into the gentle breeze. Pristine straight tractor furrows, drip irrigation tubing running between rows, and weather monitoring anemometer poles emphasize strict agronomic isolation and genetic purity management. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

@@ -1,0 +1,12 @@
+이미지 번호: 그림 10-4
+이미지 파일명: fig_ch10_v04.png
+단원: 제10장. 데이터 기반 옥수수 병해충 예찰 및 정밀 방제 공학 (ch10)
+결합 절: 10.2 유효적산온도 기반 부화 예측 및 경제적 피해 허용 수준(ET, EIL) 정량 기준
+시각화 유형: scientific_anatomy
+제목: [그림 10-4] 유효적산온도(ADD) 기반 조명나방 발육 단계 전이 생리 모델
+
+[문맥 기반 이미지 설명]
+[그림 10-4] 임계온도(T_threshold) 이상의 일평균 유효온도가 누적됨에 따라 조명나방의 알, 유충(1령~5령), 번데기, 성충으로 진행되는 생육 속도와 발달 단계를 나타낸 생리 해부학적 일러스트레이션이다. 각 생육 단계별로 요구되는 열량 적산치와 옥수수 출수기·수염 추출기의 물음 시기가 정밀하게 매핑되어 있다. 기상 센서로부터 수집된 실시간 온도 데이터를 통해 다음 세대 유충의 대량 부화 시점을 오차 없이 예측하는 수학적 모델의 생물학적 기전을 나타낸다 [SRC-106].
+
+[나노바나나 생성 프롬프트]
+Scientific anatomical artwork on an isolated pure white background showing the biological life-cycle progression of the Asian corn borer insect mapped along a continuous thermal gradient. Starting from clusters of flattened eggs, advancing into small 1st-instar neonate larvae, growing into robust mature caterpillars with dorsal pinacula spots, transforming into smooth reddish-brown chrysalis pupae, and emerging as pale yellow-brown moths with serrated wing patterns. Subtle thermal color bands transition from cool cyan to warm amber along the development arc. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

@@ -1,0 +1,12 @@
+이미지 번호: 그림 7-1
+이미지 파일명: fig_ch07_v01.png
+단원: 제7장. 옥수수 수분 생리 및 스마트 정밀 관개 공학 (ch07)
+결합 절: 7.1 옥수수 증발산(ETc) 모델(FAO-56 듀얼 챔버 계수) 및 수분 흡수 생리
+시각화 유형: scientific_anatomy
+제목: [그림 7-1] 옥수수 군락 증발산(ETc) 듀얼 계수 모델 및 수분 수지 모식도
+
+[문맥 기반 이미지 설명]
+[그림 7-1] 옥수수 생육 중기 군락에서 일어나는 증발산(ETc)의 두 성분인 토양 표면 증발(Es)과 잎 표면 증산(Tr)의 경로를 도식화한 모식도입니다. FAO-56 듀얼 챔버 계수법에 따라 대기 기준 증발산량(ETo)에 작물 계수(Kc)가 승산되어 총 수분 소비량이 산출되는 메커니즘을 보여줍니다 [SRC-103]. 활발한 광합성 조건에서 엽신 기공을 통한 활성 증산과 뿌리계 수분 흡수 흐름이 유기적으로 연계되어 표현되어 있습니다.
+
+[나노바나나 생성 프롬프트]
+Scientific anatomical cross-section illustration on a clean pure white background depicting a mature Zea mays corn stalk and root system in soil, showing water movement dynamics. Translucent blue arrows demonstrate water vapor evaporating from the bare soil surface representing soil evaporation, while vibrant upward cyan streams travel inside the vascular xylem of the tall corn stalk, flowing outward through stomata on broad green arching leaves representing crop transpiration. Soft golden sunlight rays shine from above, with subtle atmospheric vapor particles floating. Richly detailed editorial botanical artwork in realistic textbook rendering style with clean soft shadows. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

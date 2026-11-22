@@ -1,0 +1,12 @@
+이미지 번호: 그림 3-10
+이미지 파일명: fig_ch03_v10.png
+단원: 제3장. 디지털 정밀 파종 공학 및 균일 입모 관리 (ch03)
+결합 절: 3.4 현장 실증: RTK-GPS 연동 고속 가변 파종 및 UAV 유묘 카운팅 보파 처방
+시각화 유형: photorealistic_field
+제목: [그림 3-10] 스마트 농업용 드론의 결주 구역 정밀 국소 보파 작업 현장
+
+[문맥 기반 이미지 설명]
+[그림 3-10] UAV 유묘 카운팅 처방 맵 데이터를 수신한 농업용 멀티콥터 드론이 발아 실패로 결주가 발생한 옥수수 포장 구역 상공에서 저고도로 정지 비행하며 정밀 보파 작업을 수행하는 현장 사진입니다. 정밀하게 조절된 종자 살포 디스크로부터 결주 지점에만 선별적으로 종자와 입제 활성제가 투하되는 첨단 정밀농업의 순간을 포착하였습니다. 3.4.2절의 결주 보파 처방 실증 기술을 완성합니다.
+
+[나노바나나 생성 프롬프트]
+Photorealistic field photograph of an industrial six-rotor agricultural drone hovering low at three meters above an emerging corn field early in the morning. Below the drone, straight rows of young two-leaf corn sprouts stretch across dark fertile soil, showing an empty gap where seeds previously failed to emerge. The drone precision spreader discharges a targeted cluster of treated corn seeds down into the exact vacant spot. Golden sunlight backlights the drone propellers and fine dust in the air. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

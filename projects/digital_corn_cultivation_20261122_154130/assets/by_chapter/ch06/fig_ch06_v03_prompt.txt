@@ -1,0 +1,12 @@
+이미지 번호: 그림 6-3
+이미지 파일명: fig_ch06_v03.png
+단원: 제6장. 디지털 토양 물리·화학성 평가 및 경반층 관리 (ch06)
+결합 절: 6.1 대형 농기계 주행에 따른 토양 3상 구조 붕괴 및 경반층 형성 역학
+시각화 유형: photorealistic_macro
+제목: [그림 6-3] 비압밀 입상 구조와 고다짐 경반층 판상 구조의 마크로 비교
+
+[문맥 기반 이미지 설명]
+[그림 6-3] 초근접 접사 촬영을 통해 건전한 토양의 부슬부슬한 입상(Granular) 떼알 구조와 압밀을 겪은 경반층의 치밀한 판상(Platy) 구조를 극명하게 대조합니다. 압밀된 토립자는 거대공극을 완전히 상실하여 토양 내 공기와 수분의 수직적 유동 통로가 차단되어 있습니다. 이러한 미세 구조 붕괴는 옥수수 유근의 신장 압력을 무력화하여 뿌리가 측면으로 굴절되는 근본적인 원인을 설명합니다 [SRC-102].
+
+[나노바나나 생성 프롬프트]
+Ultra-sharp macro split photograph of two distinct soil ped structures under laboratory lighting. The left frame reveals an uncompacted crumb aggregate teeming with intricate porous fissures, organic matter fibers, and airy micro-cavities. The right frame shows a dense, horizontally laminated platy hardpan fragment, tightly cemented with flattened clay-silt particles and completely devoid of visible aeration voids. Crisp focal depth highlighting microscopic textural differences and mineral grains. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

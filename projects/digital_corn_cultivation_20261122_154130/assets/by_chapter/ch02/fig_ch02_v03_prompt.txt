@@ -1,0 +1,12 @@
+이미지 번호: 그림 2-3
+이미지 파일명: fig_ch02_v03.png
+단원: 제2장. 옥수수 생태형 분류 및 디지털 초고속 표현형 기반 품종 선발 (ch02)
+결합 절: 2.2 초고속 디지털 표현형(High-Throughput Phenotyping)의 분광·구조 지표 기준
+시각화 유형: photorealistic_macro
+제목: [그림 2-3] 옥수수 엽신 횡단면의 엽록체 밀도 및 분광 반사율 측정 미세구조
+
+[문맥 기반 이미지 설명]
+[그림 2-3] 다분광 식생지수 산정의 기본 생화학적 토대가 되는 옥수수 잎의 횡단면을 고배율 광학 현미경으로 촬영한 마이크로 사진이다. C4 작물 고유의 크란츠(Kranz) 구조를 형성하는 유관속초 세포와 엽육 세포 내부의 고밀도 엽록체가 선명하게 드러난다. 이러한 세포 수준의 엽록소 집적도는 근적외선 및 적색광 파장대의 흡수·반사율을 결정하여 정밀 HTP 식생지수 추출의 물리적 근거를 제공한다 [SRC-101].
+
+[나노바나나 생성 프롬프트]
+Ultra-sharp laboratory microphotograph of a fresh Zea mays leaf cross-section. Visible Kranz anatomy showing circular bundle sheath cells packed with dark green chloroplasts surrounding translucent vascular bundles, flanked by spongy and palisade mesophyll cells. Clear cellular cell walls, epidermal cuticle layer with microscopic stomatal apertures, captured under high-resolution laboratory optical microscopy with bright backlighting. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

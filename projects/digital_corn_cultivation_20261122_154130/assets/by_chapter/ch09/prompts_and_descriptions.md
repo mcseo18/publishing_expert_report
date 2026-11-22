@@ -1,0 +1,167 @@
+# 제9장. 작물 생육·양분 모델링 및 디지털 트윈 시뮬레이션 — 문맥 기반 시각화 기획서 (이미지 번호 · 설명 · 프롬프트)
+
+- **단원 ID**: `ch09`
+- **총 시각화 수**: **10종** (Google Gemini Nano Banana 전량 제작)
+- **생성 시각**: `2026-11-22T08:12:06+00:00`
+
+---
+
+## [그림 9-1] 작물 메커니즘 모델의 기상·토양·생리 피드백 시스템 개요
+
+- **이미지 번호 / 파일명**: `그림 9-1` / `fig_ch09_v01.png`
+- **문서 결합 절(Section)**: 단원 요약
+- **시각화 유형**: `scientific_anatomy`
+
+### 문맥 기반 상세 설명 (줄글)
+[그림 9-1] APSIM 및 CERES-Maize 모델의 핵심 메커니즘 엔진을 구성하는 환경 인자 간 상호작용 체계를 정밀하게 도해합니다. 태양 복사 에너지와 기온, 강수량 데이터가 캐노피 광합성 및 유효적산온도(GDD) 연산 엔진으로 유입되는 경로를 보여줍니다. 지하부 토양 매트릭스에서는 유기물 분해 및 질산태/암모늄태 질소 플럭스가 뿌리 흡수 동태로 연계되는 물리화학적 피드백 루프를 명확하게 시각화합니다 [SRC-100].
+
+### 나노바나나 생성 프롬프트 (Pure English · Zero-Text)
+```text
+Scientific textbook cross-section illustration on a clean pure white background showing the mechanistic biophysical pathways of a single mature Zea mays plant. Glowing solar radiation vectors enter the green upper leaf canopy, while atmospheric temperature indicators surround the developing tassel. A vertical subterranean soil profile cutout shows fine layered loam textures, soil moisture moisture gradient, and glowing blue nitrate and ammonium ion transport pathways entering the branched root system. Clean technical rendering with rich painterly shading and subtle directional flow vectors. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.
+```
+
+---
+
+## [그림 9-2] 일사량 기반 순수동화량의 기관별 탄소 분배(Carbon Partitioning) 구조
+
+- **이미지 번호 / 파일명**: `그림 9-2` / `fig_ch09_v02.png`
+- **문서 결합 절(Section)**: 9.1 작물 생리 메커니즘 모델(APSIM-Maize, CERES-Maize)의 탄소 분배 및 생육 수리엔진
+- **시각화 유형**: `scientific_anatomy`
+
+### 문맥 기반 상세 설명 (줄글)
+[그림 9-2] 잎에서 생성된 순수 탄소 동화량이 생육 단계에 따라 각 기관으로 분배되는 수리엔진의 분배 비율(α_i) 메커니즘을 상세히 나타냅니다. 영양생장기에는 주로 잎과 줄기, 부정근 조직으로 탄소가 이동하며, 생식생장기에는 이삭 축과 옥수수 낟알의 배유 조직으로 탄소 플럭스가 집중되는 생리적 경로를 보여줍니다. [SRC-101]과 [SRC-102]에 근거하여 자가영양 호흡 손실을 제외한 순수동화량의 시공간적 흐름을 단면 예술로 구현했습니다.
+
+### 나노바나나 생성 프롬프트 (Pure English · Zero-Text)
+```text
+Scientific anatomical cutaway illustration of a healthy corn plant (Zea mays) on a pure white background displaying carbon assimilate allocation vectors. Fine glowing golden and amber flow arrows originate from the chloroplast-rich mesophyll inside the broad green leaves, branching downwards into the thick stalk internodes, crown roots, and primarily converging into the developing ear with its developing rows of plump kernels and silk attachments. Detailed botanical cutaway revealing stalk vascular bundles and ear cob pith. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.
+```
+
+---
+
+## [그림 9-3] 근권 토양-뿌리 계면에서의 질소 무기화 및 질산염 흡수 미세 환경
+
+- **이미지 번호 / 파일명**: `그림 9-3` / `fig_ch09_v03.png`
+- **문서 결합 절(Section)**: 9.1 작물 생리 메커니즘 모델(APSIM-Maize, CERES-Maize)의 탄소 분배 및 생육 수리엔진
+- **시각화 유형**: `photorealistic_macro`
+
+### 문맥 기반 상세 설명 (줄글)
+[그림 9-3] 옥수수 지지근 및 측근 주변의 근권 토양 계면을 초근접 매크로 촬영으로 포착한 장면입니다. 토양 공극 사이의 수분 피막과 유기질 부식질 입자, 그리고 토양 미생물 군집의 상호작용을 통해 질산화가 활발히 진행되는 미세 생태계를 사실적으로 보여줍니다. 기온과 수분에 따른 질소 무기화 반응이 뿌리털을 통해 흡수되는 현장 생리 과정을 실물 수준으로 전달합니다 [SRC-106, SRC-107].
+
+### 나노바나나 생성 프롬프트 (Pure English · Zero-Text)
+```text
+Ultra-sharp macro laboratory photograph of real Zea mays brace roots and lateral root hairs penetrating crumbly dark agricultural rhizosphere soil. Fine crystalline moisture droplets adhere to soil aggregates, with tiny soil pore spaces visible around microscopic root hairs. Natural studio fiber-optic macro lighting capturing rich earthy textures, humus granules, and translucent root epidermal cells in extreme detail. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.
+```
+
+---
+
+## [그림 9-4] 유전모수(G2, G3) 추정을 위한 등숙기 이삭 및 낟알 발달 단계 해부
+
+- **이미지 번호 / 파일명**: `그림 9-4` / `fig_ch09_v04.png`
+- **문서 결합 절(Section)**: 9.2 유전모수(Genetic Coefficients: P1, P2, P5, G2, G3) 캘리브레이션 정량 기준
+- **시각화 유형**: `photorealistic_macro`
+
+### 문맥 기반 상세 설명 (줄글)
+[그림 9-4] 등숙기 옥수수 이삭의 종단면을 해부하여 낟알의 전분 축적률(G3)과 잠재 입수(G2)를 산정하는 실내 정밀 분석 장면입니다. 낟알 내부의 배젖과 배, 유선(milk line)의 이동 궤적을 선명하게 관찰할 수 있도록 절단된 이삭 단면을 정밀 측정자와 함께 구성했습니다. 모델 유전모수 캘리브레이션을 위한 표준 샘플링 프로토콜의 정량적 정밀성을 사실적으로 묘사합니다 [SRC-108, SRC-109].
+
+### 나노바나나 생성 프롬프트 (Pure English · Zero-Text)
+```text
+High-resolution macro laboratory photograph of a halved mature corn cob (Zea mays) resting on a clean brushed stainless-steel measurement table beside a precision metric depth caliper. The longitudinal cross-section reveals bright yellow dent corn kernels, visible starch accumulation lines, white cob pith tissue, and attached silk bases. Crisp, clinical overhead laboratory lighting highlighting glistening kernel endosperm texture. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.
+```
+
+---
+
+## [그림 9-5] 생육 단계별 유효적산온도(GDD) 추적을 위한 농업기상 시험포장 표현형 측정
+
+- **이미지 번호 / 파일명**: `그림 9-5` / `fig_ch09_v05.png`
+- **문서 결합 절(Section)**: 9.2 유전모수(Genetic Coefficients: P1, P2, P5, G2, G3) 캘리브레이션 정량 기준
+- **시각화 유형**: `photorealistic_field`
+
+### 문맥 기반 상세 설명 (줄글)
+[그림 9-5] 농업연구소 시험 포장에서 연구자가 옥수수의 엽령(V-stage) 전개와 출사기(R1) 도달 시점을 계측하는 현장 장면입니다. 품종별 P1(개화 소요 유효적산온도) 계수를 보정하기 위해 캐노피 상단에 설치된 소형 자동 일사·온습도 센서 타워가 배경에 배치되어 있습니다. 다변량 최적화 알고리즘에 투입할 현장 생육 지표 관측 과정을 생생한 다큐멘터리 사진으로 기록합니다 [SRC-105, SRC-110].
+
+### 나노바나나 생성 프롬프트 (Pure English · Zero-Text)
+```text
+Photorealistic documentary agricultural research station photograph of an agronomist in field boots inspecting a row of tall green maize plants (Zea mays) in early tassel stage. The agronomist holds a digital measuring clip clipboard. In the background between planting rows, a compact micrometeorological tripod station with solar radiation sensor and ambient temp probe stands under bright, natural summer morning sunlight. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.
+```
+
+---
+
+## [그림 9-6] 파종일 고정 관행에 따른 이상 조기 가뭄 피해 옥수수 캐노피
+
+- **이미지 번호 / 파일명**: `그림 9-6` / `fig_ch09_v06.png`
+- **문서 결합 절(Section)**: 9.3 농가 관행 오해 교정: 단순 과거 평균 기후 기반의 파종일 고정 관행과 위험도 진단
+- **시각화 유형**: `photorealistic_field`
+
+### 문맥 기반 상세 설명 (줄글)
+[그림 9-6] 과거 30년 평균 기후에만 의존하여 기계적으로 파종일을 고정했을 때 발생하는 조기 한발 피해 양상을 보여주는 시험 포장 전경입니다. 개화 수분기(R1)에 갑작스러운 고온과 토양 건조가 겹치면서 잎이 위쪽으로 말려 올라가고(leaf rolling), 출사와 화분 비산 간의 탈동기화(ASI)가 일어난 현장을 대비합니다. 단순 과거 통계에 안주하는 파종 의사결정의 농업적 위험성을 생생하게 고발합니다 [SRC-111, SRC-112].
+
+### 나노바나나 생성 프롬프트 (Pure English · Zero-Text)
+```text
+National Geographic documentary style photorealistic field photograph of drought-stressed corn (Zea mays) plants standing in dry, cracked agricultural silt-loam soil. The long broad leaves are tightly curled inwards into vertical needle-like shapes due to severe heat, while pale immature tassels struggle under blazing midday sun. Dusty horizon and harsh dry atmospheric haze. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.
+```
+
+---
+
+## [그림 9-7] 파종 시나리오별 수분 스트레스 및 수량 불확실성 시뮬레이션 메커니즘
+
+- **이미지 번호 / 파일명**: `그림 9-7` / `fig_ch09_v07.png`
+- **문서 결합 절(Section)**: 9.3 농가 관행 오해 교정: 단순 과거 평균 기후 기반의 파종일 고정 관행과 위험도 진단
+- **시각화 유형**: `scientific_anatomy`
+
+### 문맥 기반 상세 설명 (줄글)
+[그림 9-7] 동일 품종을 서로 다른 파종일(조기, 적기, 만파)에 식재했을 때 발달 단계별 기상 변동성과 맞닥뜨리는 위험도 경로를 3개 식물 개체 단면으로 대조합니다. 정상 강우 시나리오에서 튼실하게 낟알이 찬 이삭과, 출사기 가뭄 시나리오에서 선단 불임(tip abort)이 발생한 불완전한 이삭의 해부학적 차이를 시각화합니다. 최적 파종일 역산 알고리즘의 생리학적 당위성을 증명하는 도해입니다 [SRC-112, SRC-120].
+
+### 나노바나나 생성 프롬프트 (Pure English · Zero-Text)
+```text
+Scientific anatomical textbook illustration on a pure white background comparing three maize plants subjected to different planting dates and weather scenarios. The center plant displays a robust root system and fully pollinated ear with packed golden kernels. The right plant displays an early-drought condition with stunted stalk height, aborted kernel tips on a small ear, and shriveled lower leaves. Rendered in clean botanical cross-sections with refined scientific lighting. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.
+```
+
+---
+
+## [그림 9-8] 포장 단위 IoT 센서 네트워크 및 기상 빅데이터 수집 인프라
+
+- **이미지 번호 / 파일명**: `그림 9-8` / `fig_ch09_v08.png`
+- **문서 결합 절(Section)**: 9.4 현장 실증: 기상 빅데이터 연동 포장 단위 디지털 트윈 수량 예측 및 최적 의사결정
+- **시각화 유형**: `photorealistic_field`
+
+### 문맥 기반 상세 설명 (줄글)
+[그림 9-8] 대규모 상업용 옥수수 포장에 구축된 포장 단위 디지털 트윈의 실시간 데이터 수집 현장입니다. 규칙적인 이랑 사이로 토양 매트릭 수두 및 전기전도도(EC) 센서 프로브가 깊이별로 매설되어 있고, 캐노피 상단에는 무선 텔레메트리 기지국이 설치되어 있습니다. 실시간 미기상과 수분 스트레스 데이터가 시뮬레이션 모델 엔진으로 전송되는 스마트 정밀농업의 인프라를 사실적으로 보여줍니다 [SRC-121].
+
+### 나노바나나 생성 프롬프트 (Pure English · Zero-Text)
+```text
+Documentary agricultural field photograph of high-tech telemetry sensing equipment installed in an expansive commercial maize (Zea mays) field. A vertical solar-powered field station probe is positioned between uniform green corn rows, with subterranean sensor cables extending into the damp tilled soil. Crisp golden-hour sunlight illuminates lush corn foliage and modern agronomic monitoring hardware. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.
+```
+
+---
+
+## [그림 9-9] 물·질소 관리 다목적 최적화를 위한 디지털 트윈 가상 시뮬레이션 프레임워크
+
+- **이미지 번호 / 파일명**: `그림 9-9` / `fig_ch09_v09.png`
+- **문서 결합 절(Section)**: 9.4 현장 실증: 기상 빅데이터 연동 포장 단위 디지털 트윈 수량 예측 및 최적 의사결정
+- **시각화 유형**: `scientific_anatomy`
+
+### 문맥 기반 상세 설명 (줄글)
+[그림 9-9] 실제 포장 옥수수 군락과 이에 대응하는 가상 디지털 트윈 복제체를 나란히 비교하는 고급 과학 일러스트레이션입니다. 지하 점적관수 튜브에서 용출되는 질소 비료 용액과 수분이 토양 다공질을 통해 뿌리로 이동하는 실제 현상과, 이를 수치화하여 모니터링하는 컴퓨터 모델 그리드 체계를 중첩하여 표현합니다. 환경 부하 감소와 수량 극대화를 동시에 달성하는 다목적 최적화의 원리를 설명합니다 [SRC-120].
+
+### 나노바나나 생성 프롬프트 (Pure English · Zero-Text)
+```text
+Scientific dual-panel conceptual rendering on a pure white background. On one side, an anatomically detailed cutaway of Zea mays in healthy soil with subterranean drip irrigation emitting blue water and green nutrient droplets into the root network. On the adjoining side, a matching virtual mesh wireframe twin of the exact same corn stalk and root layers, glowing with volumetric finite-element calculation grids. Elegant academic technical art. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.
+```
+
+---
+
+## [그림 9-10] 수확 후 옥수수 낟알의 호흡률 및 에틸렌 방출 제어 저온 저장 미세 조직
+
+- **이미지 번호 / 파일명**: `그림 9-10` / `fig_ch09_v10.png`
+- **문서 결합 절(Section)**: 오해와 진실: 현장·이론 핵심 오해 교정
+- **시각화 유형**: `photorealistic_macro`
+
+### 문맥 기반 상세 설명 (줄글)
+[그림 9-10] 수확 후 저장 온도 및 가스 농도 제어가 종실의 신선도와 세포 호흡에 미치는 영향을 규명하기 위한 실험실 해부 사진입니다. 저온 제어 분위기(CA)에서 보관된 단옥수수의 낟알 세포벽과 과피(pericarp) 조직을 극저온 주사형 단면 기법 수준으로 선명하게 포착했습니다. 품질 저하가 단순 온도 하강이 아닌 에틸렌 생성 및 호흡 대사의 생화학적 반응 속도에 좌우됨을 실증합니다 [SRC-109, SRC-110].
+
+### 나노바나나 생성 프롬프트 (Pure English · Zero-Text)
+```text
+Ultra-sharp macro scientific laboratory photograph of fresh sweet corn kernels excised from the cob under controlled-atmosphere low temperature storage. Microscopic cross-section visible across the translucent kernel pericarp and starchy cellular layers, displaying moisture preservation without cell wall collapse. Glistening cellular textures illuminated by clean scientific lab lighting. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.
+```
+
+---

@@ -1,0 +1,12 @@
+이미지 번호: 그림 9-4
+이미지 파일명: fig_ch09_v04.png
+단원: 제9장. 작물 생육·양분 모델링 및 디지털 트윈 시뮬레이션 (ch09)
+결합 절: 9.2 유전모수(Genetic Coefficients: P1, P2, P5, G2, G3) 캘리브레이션 정량 기준
+시각화 유형: photorealistic_macro
+제목: [그림 9-4] 유전모수(G2, G3) 추정을 위한 등숙기 이삭 및 낟알 발달 단계 해부
+
+[문맥 기반 이미지 설명]
+[그림 9-4] 등숙기 옥수수 이삭의 종단면을 해부하여 낟알의 전분 축적률(G3)과 잠재 입수(G2)를 산정하는 실내 정밀 분석 장면입니다. 낟알 내부의 배젖과 배, 유선(milk line)의 이동 궤적을 선명하게 관찰할 수 있도록 절단된 이삭 단면을 정밀 측정자와 함께 구성했습니다. 모델 유전모수 캘리브레이션을 위한 표준 샘플링 프로토콜의 정량적 정밀성을 사실적으로 묘사합니다 [SRC-108, SRC-109].
+
+[나노바나나 생성 프롬프트]
+High-resolution macro laboratory photograph of a halved mature corn cob (Zea mays) resting on a clean brushed stainless-steel measurement table beside a precision metric depth caliper. The longitudinal cross-section reveals bright yellow dent corn kernels, visible starch accumulation lines, white cob pith tissue, and attached silk bases. Crisp, clinical overhead laboratory lighting highlighting glistening kernel endosperm texture. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

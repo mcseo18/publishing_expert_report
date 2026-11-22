@@ -1,0 +1,12 @@
+이미지 번호: 그림 2-9
+이미지 파일명: fig_ch02_v09.png
+단원: 제2장. 옥수수 생태형 분류 및 디지털 초고속 표현형 기반 품종 선발 (ch02)
+결합 절: 2.4 현장 실증: UAV 다분광 정사영상 기반 우수 품종 선발 및 지역 맞춤형 배치
+시각화 유형: photorealistic_field
+제목: [그림 2-9] 다분광 정사영상 촬영을 위해 옥수수 품종 비교 시험포 상공을 비행하는 정밀 농업 UAV
+
+[문맥 기반 이미지 설명]
+[그림 2-9] 지역 적응성 우수 품종을 정밀 선발하기 위해 옥수수 육종 시험포 상공에서 정사영상을 취득 중인 산업용 멀티콥터 드론의 비행 장면이다. 드론 기체 하부에 장착된 다분광 센서가 격자형으로 정렬된 품종별 마이크로플롯(microplots)을 정밀한 고도에서 스캐닝하고 있다. 이 과정을 통해 획득된 고해상도 분광 데이터는 품종별 식생 활력도와 군락 발달 추이를 시계열적으로 추적하는 핵심 기반이 된다 [SRC-101].
+
+[나노바나나 생성 프롬프트]
+Photorealistic outdoor action photograph of an agricultural multi-rotor mapping drone hovering precisely over an experimental corn breeding field. Below, grid-patterned microplots of various Zea mays corn cultivars show contrasting shades of green and canopy densities. The drone carries a downward-facing multi-lens camera pod capturing data under clear bright afternoon sunlight, with wide agricultural horizon in the background. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

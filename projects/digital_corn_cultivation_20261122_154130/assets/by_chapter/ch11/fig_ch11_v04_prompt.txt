@@ -1,0 +1,12 @@
+이미지 번호: 그림 11-4
+이미지 파일명: fig_ch11_v04.png
+단원: 제11장. 지능형 잡초 인식 및 자율선택제초 시스템 (ch11)
+결합 절: 11.2 실시간 비전 딥러닝 기반 잡초 검출 정확도(mAP 0.92 이상) 및 스팟 분무 기준
+시각화 유형: scientific_anatomy
+제목: [그림 11-4] 엣지 AI 컴퓨터 비전 모델의 옥수수 작물 대 광엽·화본과 잡초 다중 클래스 경계 상자 검출 구조
+
+[문맥 기반 이미지 설명]
+[그림 11-4] 하향식 RGB 카메라와 엣지 AI 프로세서가 결합된 객체 검출 모델이 옥수수 군락 내 광엽 잡초 및 화본과 잡초를 분별하는 비전 파이프라인의 구조적 표현이다. mAP 0.92 이상의 높은 신뢰도로 옥수수 본엽을 보호 작물로 인식하고 바랭이와 명아주에만 각각 녹색 및 적색 감지 경계 상자를 부여한다. 식별된 중심 2차원 좌표(x, y)는 스팟 노즐의 개폐 타이밍과 연동되어 정밀 살포 제어 신호로 변환된다 [SRC-104].
+
+[나노바나나 생성 프롬프트]
+Scientific studio-quality schematic illustration depicting edge AI vision recognition in an agricultural maize row. From a high downward perspective on a pure white background, young green Zea mays plants with prominent arching leaf blades are surrounded by small weed rosettes on dark soil. Semi-transparent geometric bounding boxes in distinct contrasting colors frame the weed targets and the main corn stalks, showing spatial classification markers. Subtle coordinate projection cones emanate downwards from an overhead multispectral sensor lens towards weed targets with crisp mathematical precision. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

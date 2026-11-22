@@ -1,16 +1,70 @@
 chapter_id: ch03
 chapter_number: 3
-title: 제3장. 파종의 원리와 디지털 현장 관리
-target_pages: 40
-summary_ko: 디지털 옥수수 재배에서 파종의 과학적 메커니즘, 정량 측정 지표 및 디지털 정밀 관리 전략을 다룹니다.
+title: 제3장. 디지털 정밀 파종 공학 및 균일 입모 관리
+target_pages: 46
+summary_ko: 지온, 토양수분, 종자-토양 접촉도에 따른 옥수수 출아 생리를 규명하고 진공 공압식 배종기의 유체역학적 원리를 정립한다. 토양 공간 변이에 기초한 가변 파종(VRS) 처방 기준과 깊이 제어 시스템을 구축한다. 농가에서 흔히 저지르는
+  조기 파종 동해 및 과도한 심파(深播)로 인한 출아 지연을 진단하고 드론 영상 기반 결주 보파 기술을 실증한다.
 sections:
-- 3.1 기초 원리 및 개념
-- 3.2 정량 측정·모델링
-- 3.3 국내외 기준 비교
-- 3.4 디지털 현장 적용
+- 3.1 옥수수 종자 수분 흡수, 배유 효소 활성화 및 지온별 출아 생리 메커니즘
+- 3.2 진공 공압식 가변 배종(VRS) 메커니즘 및 파종 심도·진압 압력 정량 기준
+- '3.3 농가 관행 오해 교정: 조기 저온 파종에 따른 종자 부패 및 심파 피해 포장 진단'
+- '3.4 현장 실증: RTK-GPS 연동 고속 가변 파종 및 UAV 유묘 카운팅 보파 처방'
+tables:
+- table_id: 표 3-1
+  title: 토양 온도 및 유효수분 조건에 따른 옥수수 출아 소요일수 및 유묘 활력 기준표
+  columns:
+  - 토양 5cm 지온(°C)
+  - 토양 체적수분율(%)
+  - 출아 소요일(일)
+  - 출아율(%)
+  - 저온 묘마름병 위험도
+  purpose: 봄철 안전 파종 한계기 설정 및 저온 장애 회피를 위한 정량 기준 제공
+- table_id: 표 3-2
+  title: 토양 비옥도 및 지형별 사료용·식용 옥수수 권장 가변 재식밀도 설정표
+  columns:
+  - 토양 비옥도 등급
+  - 예상 수분 보유력
+  - 이랑 너비(cm)
+  - 주간 거리(cm)
+  - 목표 재식본수(주/10a)
+  - 기대 종실 수량(kg/10a)
+  purpose: 포장 내 마이크로 존별 수량 잠재력을 극대화하기 위한 가변 파종 처방전 수립
+visuals:
+- fig_id: 그림 3-01
+  type: A
+  aspect_ratio: '4:3'
+  method: nano_banana_pro
+  title: 트랙터 부착식 6조 공압식 가변 정밀 파종기의 고속 파종 및 디스크 진압 현장
+  description: 파종 깊이 센서와 다운포스 유압 제어기가 장착된 정밀 파종기가 이랑을 주행하며 균일하게 종자를 매설하는 실사
+- fig_id: 그림 3-02
+  type: B
+  aspect_ratio: '4:3'
+  method: nano_banana_pro
+  title: 파종 심도별(2cm, 5cm, 8cm) 출아 유묘의 중배축(Mesocotyl) 신장 및 종자근 발달 비교 접사
+  description: 심파로 인해 중배축이 비정상적으로 신장하여 에너지가 고갈된 유약 묘와 적정 심도 건묘의 형태 비교
+- fig_id: 그림 3-03
+  type: C
+  aspect_ratio: '16:9'
+  method: nano_banana_pro
+  title: 공압식 진공 배종 디스크의 흡착 원리와 가변 속도 전동 모터 제어 루프 블록도
+  description: 진공압 센서, 싱귤레이터 브러시, 광학 종자 센서, CAN 버스 통신 모듈 간의 실시간 피드백 회로도
+- fig_id: 그림 3-04
+  type: D
+  aspect_ratio: '16:9'
+  method: python
+  title: 재식밀도(주/ha) 증가에 따른 개체당 이삭 수량 및 총 군락 곡실 수량 포화 곡선
+  description: 밀식에 따른 개체 간 차광 경합과 적정 재식밀도 피크점을 나타내는 비선형 회귀 곡선
 keywords_ko:
-- 파종
+- 정밀 파종
+- 가변 배종
+- 출아 지온
+- 중배축 신장
+- 결주 판정
 keywords_en:
-- Sowing
+- precision planting
+- variable rate seeding
+- germination temperature
+- mesocotyl elongation
+- skip detection
 evidence_packet: digital_corn_cultivation_20261122_154130_evidence.json
 assigned_sources: []

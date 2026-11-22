@@ -1,0 +1,12 @@
+이미지 번호: 그림 1-1
+이미지 파일명: fig_ch01_v01.png
+단원: 제1장. 옥수수의 기원, 분류 체계 및 식물학적 형태생리 (ch01)
+결합 절: 1.1 테오신테 진화 유전학 및 C4 크란츠 해부생리 원리
+시각화 유형: scientific_anatomy
+제목: [그림 1-1] 테오신테와 현대 옥수수의 분얼 구조 및 이삭 착생 형태 비교 해부도
+
+[문맥 기반 이미지 설명]
+[그림 1-1] 야생 조상종인 테오신테(Zea mays ssp. parviglumis)와 현대 재배 옥수수(Zea mays)의 초형 및 분얼 형태학적 차이를 시각화한 해부학적 비교도이다. 테오신테의 다발성 곁가지(분얼)와 소형 다벽 이삭 구조가 현대 단일 주간 및 거대 이삭 구조로 진화한 에너지 재배분 과정을 명확히 보여준다 [SRC-103]. 주경 정단의 웅수(tassel)와 액아 부위의 암이삭(ear)으로 영양 물질이 집중되도록 선택된 진화 유전학적 형태 변화를 고증한다.
+
+[나노바나나 생성 프롬프트]
+Scientific botanical illustration on a pure white background comparing wild teosinte (Zea mays ssp. parviglumis) and modern domesticated maize (Zea mays). On the left, a bushy teosinte plant featuring multiple slender branching tillers, numerous diminutive two-ranked spikes with hard seed cases, and narrow leaves. On the right, a robust modern corn stalk featuring a single thick erect culm, broad arching dark green leaves, suppressed lateral tillering, a large terminal tassel shedding pollen, and large solitary ears with protruding silks at mid-stem nodes. Detailed botanical ink and watercolor style with precise cross-hatching and shaded plant morphology. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

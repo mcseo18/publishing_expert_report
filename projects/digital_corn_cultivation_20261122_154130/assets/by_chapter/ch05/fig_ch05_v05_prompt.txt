@@ -1,0 +1,12 @@
+이미지 번호: 그림 5-5
+이미지 파일명: fig_ch05_v05.png
+단원: 제5장. 옥수수 생리장애 진단 및 비생물적 스트레스 반응 (ch05)
+결합 절: 5.2 작물수분스트레스지수(CWSI) 및 엽록소 형광(Fv/Fm) 정량 판정 기준치
+시각화 유형: photorealistic_macro
+제목: [그림 5-5] CWSI 임계치 초과 시 옥수수 잎의 기공 밀폐 및 엽권(Leaf Rolling) 접사
+
+[문맥 기반 이미지 설명]
+[그림 5-5] 토양 수분 결핍으로 작물수분스트레스지수(CWSI)가 0.6 이상으로 상승할 때 나타나는 옥수수 잎의 전형적인 증산 회피 반응이다. 엽신 양측 가장자리가 안쪽으로 단단하게 말려 원통형을 이루는 엽권(leaf rolling) 현상과 더불어 기공 복합체가 완전히 닫힌 미세 표면을 포착한다. 이는 일사 수광 면적을 줄이고 체내 수분 손실을 억제하려는 작물의 강력한 생존 행동을 대변한다 [SRC-104, SRC-106].
+
+[나노바나나 생성 프롬프트]
+High-magnification macro photograph of a living Zea mays leaf blade under acute water deficit stress. The broad green blade edges are tightly rolled inward forming an elongated cylindrical shape, exposing the prominent corrugated veins and pale lower leaf surface. Detailed focus reveals completely shut stomatal pores along the parallel leaf ridges with dry micro-soil particles resting on the waxy cuticle under harsh glaring sunlight. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

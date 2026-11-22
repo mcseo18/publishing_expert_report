@@ -1,0 +1,12 @@
+이미지 번호: 그림 5-3
+이미지 파일명: fig_ch05_v03.png
+단원: 제5장. 옥수수 생리장애 진단 및 비생물적 스트레스 반응 (ch05)
+결합 절: 5.2 작물수분스트레스지수(CWSI) 및 엽록소 형광(Fv/Fm) 정량 판정 기준치
+시각화 유형: photorealistic_field
+제목: [그림 5-3] 옥수수 엽면 엽록소 형광(Fv/Fm) 현장 진단을 위한 암적응 클립 측정
+
+[문맥 기반 이미지 설명]
+[그림 5-3] 포장 현장에서 옥수수 상위 엽에 암적응 광학 클립을 장착하고 휴대용 엽록소 형광 분석기를 연결하여 광계 II 최대 양자 효율(Fv/Fm)을 비파괴적으로 정량 측정하는 작업이다. 건전한 옥수수 잎은 0.78~0.83의 정상 범위를 유지하지만, 급성 수분 결핍 조건에서는 0.65 미만으로 급락하여 광합성 반응 중심의 심각한 손상을 지시한다. 광화학적 스트레스 수준을 현장에서 즉각 판정하는 정밀 생리 진단 기법이다 [SRC-103].
+
+[나노바나나 생성 프롬프트]
+Photorealistic agricultural field documentary photograph of an agronomic researcher using a specialized portable chlorophyll fluorometer on a tall Zea mays maize plant. A matte-black optical dark-adaptation leaf clip is clamped onto the middle portion of an expansive green maize leaf blade, connected via optical fiber sensor to a digital diagnostic field meter. Bright daylight illuminating the dense green corn rows in the background, showing realistic botanical leaf veins and natural field depth of field. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

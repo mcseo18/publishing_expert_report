@@ -1,0 +1,12 @@
+이미지 번호: 그림 5-7
+이미지 파일명: fig_ch05_v07.png
+단원: 제5장. 옥수수 생리장애 진단 및 비생물적 스트레스 반응 (ch05)
+결합 절: 5.3 농가 관행 오해 교정: 저온 인산 결핍 자색화 현상과 바이러스병 오진 감별 진단
+시각화 유형: scientific_anatomy
+제목: [그림 5-7] 안토시아닌 자색화 생리장애와 옥수수 모자이크 바이러스(MDMV) 병변의 조직학적 감별
+
+[문맥 기반 이미지 설명]
+[그림 5-7] 농가에서 자주 오인되는 저온 인산 결핍 자색화와 바이러스 감염병(MDMV)의 세포 조직학적 차이를 대비한 과학 해부도이다. 좌측 생리장애는 표피 및 엽육세포 액포 내에 안토시아닌이 균일하게 채워진 반면, 우측 바이러스병은 엽록체 파괴로 인한 불규칙한 황화 줄무늬와 세포 괴사 반점이 산재한다. 외관상 붉거나 누런 변색을 육안 관찰과 세포학적 근거로 정확히 감별 진단할 수 있다 [SRC-102, SRC-104].
+
+[나노바나나 생성 프롬프트]
+Comparative scientific botanical illustration on a clean white background distinguishing two maize leaf conditions. On the left side, a maize leaf tissue cross-section showing low-temperature phosphate deficiency with cells having intact cell walls and vacuoles uniformly filled with magenta-purple anthocyanin pigments. On the right side, a maize leaf tissue cross-section infected with maize dwarf mosaic virus, showing ruptured chloroplasts, yellow chlorotic mosaic streaks, irregular cellular necrosis, and distorted vascular bundles. Crisp anatomical details with clear biological textures. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

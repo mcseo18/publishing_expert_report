@@ -1,0 +1,12 @@
+이미지 번호: 그림 3-7
+이미지 파일명: fig_ch03_v07.png
+단원: 제3장. 디지털 정밀 파종 공학 및 균일 입모 관리 (ch03)
+결합 절: 3.3 농가 관행 오해 교정: 조기 저온 파종에 따른 종자 부패 및 심파 피해 포장 진단
+시각화 유형: photorealistic_field
+제목: [그림 3-7] 과도한 심파로 인한 중배축 고사 및 출아 지연 포장 굴취 진단
+
+[문맥 기반 이미지 설명]
+[그림 3-7] 농가 포장에서 직접 굴취한 심파(약 10cm 매설) 피해 옥수수 유묘와 표준 심도(5cm) 건전 유묘를 나란히 비교한 필드 진단 사진입니다. 심파 유묘는 토양 표면에 도달하기 전 산소 결핍과 에너지 고갈로 황백화되고 비틀린 중배축(mesocotyl)과 엽초 파열 결주 피해를 명확히 보여줍니다. 3.3.2절의 관행적 심파 오류에 따른 출아 불량 현상을 포장에서 직접 규명합니다.
+
+[나노바나나 생성 프롬프트]
+Field documentary photograph of two excavated young corn seedlings laid side by side on dark field soil next to a metric measuring ruler. The left seedling, planted at a standard 5 cm depth, exhibits a short sturdy mesocotyl, deep green erect coleoptile, and vigorous nodal roots. The right seedling, planted excessively deep at 10 cm, reveals an overly elongated, twisted, pale yellow chlorotic mesocotyl with leaf rupture below the soil line. Natural overcast outdoor lighting. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

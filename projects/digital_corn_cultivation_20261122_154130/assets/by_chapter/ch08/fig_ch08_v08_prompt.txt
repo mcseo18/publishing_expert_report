@@ -1,0 +1,12 @@
+이미지 번호: 그림 8-8
+이미지 파일명: fig_ch08_v08.png
+단원: 제8장. 옥수수 양분 흡수 동태 및 실시간 데이터 기반 양분 관리 (ch08)
+결합 절: 8.4 현장 실증: 온고잉(On-the-go) 캐노피 센서 연동 트랙터 가변 사이드드레싱(추비)
+시각화 유형: photorealistic_field
+제목: [그림 8-8] 능동형 캐노피 광학 센서 장착 하이클리어런스 트랙터의 실시간 가변 사이드드레싱 작업
+
+[문맥 기반 이미지 설명]
+[그림 8-8] V6~V8 생육 단계의 옥수수 포장 이랑 사이를 주행하는 하이클리어런스 트랙터에 전방 능동형 다분광 캐노피 센서와 후방 액비 주입식 가변 사이드드레서가 장착된 모습입니다. 전방 센서가 옥수수 캐노피의 NDRE 반사율을 실시간 판독하여 엽색 불량 구간을 식별하고, 후방 쿨터 노즐이 토양 표층 아래로 UAN 질소 용액을 정량 차등 주입합니다. 전통적인 균일 시비 대비 비료 투입 효율을 극대화하는 온고잉 정밀 농업의 현장 구현체를 제시합니다 [SRC-106].
+
+[나노바나나 생성 프롬프트]
+Field documentary photograph of a modern high-clearance ag sprayer-tractor driving between tall green rows of V7 Zea mays maize crops. Forward-facing active optical multispectral canopy sensors mounted on outrigger booms emit modulated light pulses onto corn foliage. Heavy-duty rear side-dressing coulters slice into the rich brown soil between crop rows, precisely injecting liquid nitrogen fertilizer adjacent to maize root zones, bathed in early morning golden sunlight and dust. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

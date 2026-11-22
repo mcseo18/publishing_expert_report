@@ -1,0 +1,12 @@
+이미지 번호: 그림 7-4
+이미지 파일명: fig_ch07_v04.png
+단원: 제7장. 옥수수 수분 생리 및 스마트 정밀 관개 공학 (ch07)
+결합 절: 7.2 FDR 체적수분센서 및 토양수분장력(-30~-50kPa 임계치) 정량 기준
+시각화 유형: photorealistic_field
+제목: [그림 7-4] 옥수수 근권 다심도 FDR 센서 매설 및 실시간 계측 노드
+
+[문맥 기반 이미지 설명]
+[그림 7-4] 옥수수 시험포장 이랑의 작물 근권 깊이별(20cm, 40cm, 60cm)로 정밀하게 매설된 다채널 FDR(주파수 영역 반사 측정) 체적수분센서와 데이터 로거의 현장 모습입니다. FDR 센서는 토양 유전율을 고주파 펄스로 측정하여 체적수분함량(θ)을 오차 없이 실시간으로 정량화합니다 [SRC-103]. 옥수수 주근계가 발달한 활성 근권의 수분 거동을 연속 모니터링하여 관개 의사결정의 기반 데이터를 수집합니다.
+
+[나노바나나 생성 프롬프트]
+Photorealistic agricultural research field documentary photograph showing a soil profile trench cut beside a robust growing green Zea mays corn plant. Installed at depth intervals of 20, 40, and 60 centimeters inside the dark crumbly soil wall are three multi-pronged stainless steel FDR capacitance moisture sensors with industrial waterproof cables neatly routed to a solar-powered telemetry logger mounted on a metal stake above the soil. Natural sunny daylight, crisp soil stratigraphy texture, shallow depth of field. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

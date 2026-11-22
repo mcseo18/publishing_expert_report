@@ -1,0 +1,12 @@
+이미지 번호: 그림 2-4
+이미지 파일명: fig_ch02_v04.png
+단원: 제2장. 옥수수 생태형 분류 및 디지털 초고속 표현형 기반 품종 선발 (ch02)
+결합 절: 2.2 초고속 디지털 표현형(High-Throughput Phenotyping)의 분광·구조 지표 기준
+시각화 유형: scientific_anatomy
+제목: [그림 2-4] LiDAR 3D 스캐닝 기반 옥수수 수관 체적 및 엽면적지수(LAI) 공간 구조 모델
+
+[문맥 기반 이미지 설명]
+[그림 2-4] 초고속 표현형(HTP) 분석 기술을 통해 옥수수 군락의 수관 체적과 엽면적지수(LAI)를 3차원으로 측정한 구조적 모식도이다. 지표면으로부터 줄기 상단까지 옥수수 잎의 착생 각도, 엽폭, 그리고 빛이 투과하는 공간적 층위가 정밀한 점군 밀도 그래디언트로 시각화되어 있다. 이 3차원 군락 구조는 군락 내 광투과율과 광합성 수광 효율성을 정량적으로 산정하는 핵심 기초 데이터로 활용된다 [SRC-101].
+
+[나노바나나 생성 프롬프트]
+Scientific editorial visual on a pure white background rendering a realistic three-dimensional architectural model of a mature Zea mays maize stalk. Thousands of fine structural depth points highlight the leaf inclination angles, ear node height, broad leaf curvature, and canopy volume. Shaded in realistic botanical greens transitioning into translucent depth planes that represent spatial light interception and leaf area density. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

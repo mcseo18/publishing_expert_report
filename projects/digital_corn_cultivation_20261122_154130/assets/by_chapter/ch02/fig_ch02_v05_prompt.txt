@@ -1,0 +1,12 @@
+이미지 번호: 그림 2-5
+이미지 파일명: fig_ch02_v05.png
+단원: 제2장. 옥수수 생태형 분류 및 디지털 초고속 표현형 기반 품종 선발 (ch02)
+결합 절: 2.2 초고속 디지털 표현형(High-Throughput Phenotyping)의 분광·구조 지표 기준
+시각화 유형: photorealistic_field
+제목: [그림 2-5] 포장형 초고속 표현형 지상 로버의 옥수수 생육 군락 다분광 및 구조 스캐닝
+
+[문맥 기반 이미지 설명]
+[그림 2-5] 시험 재배지 이랑 사이를 주행하며 옥수수 개체군의 분광 지표와 수관 높이를 비파괴적으로 수집하는 지상형 디지털 표현형 측정 로봇의 현장 작동 사진이다. 로버에 탑재된 정밀 LiDAR 센서와 다분광 카메라 모듈이 옥수수 엽관을 다각도에서 동시 측정하고 있다. 현장에서 실시간 수집되는 대규모 시계열 데이터는 품종별 건물중 생산 잠재력과 바이오매스 축적 속도를 정밀하게 구명한다 [SRC-101].
+
+[나노바나나 생성 프롬프트]
+Agricultural documentary field photograph of an autonomous field phenotyping robotic rover operating between neatly spaced rows of lush green Zea mays maize crops in an experimental research station. The rover features metallic sensor arms mounted with downward-angled multispectral lens housings and optical LiDAR sensors scanning the corn canopy. Golden morning sunlight, dust motes in the air, crisp soil furrow texture. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

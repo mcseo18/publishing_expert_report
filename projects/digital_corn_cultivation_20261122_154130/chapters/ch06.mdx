@@ -1,0 +1,164 @@
+---
+chapter_id: "ch06"
+title: "제6장. 디지털 토양 물리·화학성 평가 및 경반층 관리"
+audience: "대학 전공 심화, 대학원생, 연구자 및 선도 현장 실무자"
+evidence_packet: "digital_corn_cultivation_20261122_154130_evidence.json"
+---
+
+# 제6장. 디지털 토양 물리·화학성 평가 및 경반층 관리
+
+본 장에서는 대형 농기계의 반복적 주행이 토양에 미치는 물리적 영향, 특히 토양 압밀(Soil Compaction)과 경반층(Hardpan) 형성 메커니즘을 심층적으로 분석한다. 이를 기반으로 토양의 물리적 특성을 정량적으로 평가하기 위한 첨단 진단 기법과 이를 활용한 정밀 영농 기술, 즉 RTK(Real-Time Kinematic) 자율주행 기반의 심토파쇄(Subsoiling) 처방을 정립하는 것을 목표로 한다. 또한, 농업 현장에서 흔히 발생하는 배수 불량 및 습해 문제를 단순한 기상 조건의 결과로 치부하는 관행적 오해를 과학적으로 교정한다.
+
+## 6.1 대형 농기계 주행에 따른 토양 3상 구조 붕괴 및 경반층 형성 역학
+
+토양은 공기, 물, 고체 입자(토립)로 이루어진 3상(Three-Phase) 매질이다. 대형 농기계의 중량(Load)이 지표면을 가로지르며 가하는 접지압력(Ground Pressure)은 이 토양 구조에 심각한 변형을 초래한다 [SRC-104]. 이 압력은 토양 입자 간의 간격(Pore Space)을 감소시키고, 특히 점토질이나 사질토의 경우 입자 배열을 불규칙하게 재배열시켜 공극 구조를 파괴하는 '구조 붕괴(Structure Breakdown)'를 유발한다 [SRC-102].
+
+토양 압밀의 직접적인 결과는 **용적 밀도(Bulk Density, ρ<sub>b</sub>)의 증가**와 **공극률(Porosity)의 감소**이다 [SRC-102]. 용적 밀도가 증가하면 토양의 전반적인 강도가 높아지며, 이는 작물의 뿌리 생육에 필수적인 물리적 환경을 저해한다.
+
+더 나아가, 반복적인 고압력 충격은 토양 심층부에서 특정한 심도를 넘어선 치밀화 현상을 유발하는데, 이것이 바로 **경반층(Hardpan)**이다 [SRC-102]. 경반층은 토양의 강도가 급격히 증가하는 경계층으로, 뿌리의 깊은 침투(Root penetration)를 물리적으로 저해하여 근계 발달 부진을 초래하는 주요 원인이다 [SRC-102]. 경반층의 형성은 토양의 압축 저항 한계를 초과하는 과도한 지반 하중과 충격 응력의 반복적인 작용에 의해 발생하는 지반 공학적 현상으로 해석되어야 한다 [SRC-102].
+
+## 6.2 관입저항(Cone Index) 및 전자기유도(EM38) 정량 기준
+
+토양의 물리적 밀도 및 압축 상태를 현장에서 객관적이고 정량적으로 측정하기 위해서는 비파괴 또는 최소 침습적인 방법론이 요구된다.
+
+### 6.2.1 콘 관입 저항치 (Cone Index) 기반 정량화
+토양의 국부적인 강도 및 다짐 정도를 평가하는 핵심 지표 중 하나는 콘 관입 시험(Cone Penetration Test)을 통해 도출되는 **콘 관입 저항치(Cone Index)**이다 [SRC-102]. 이 지수는 콘 관입 시 발생하는 저항력을 측정하며, 토양의 지지력(Bearing Capacity) 및 압밀 정도를 반영한다.
+
+본 연구에서는 토양의 심각한 물리적 교란이 발생한 임계값으로 **2.0 MPa**를 콘 관입 저항치 임계치로 설정한다 [SRC-102]. 이 기준치 이상의 저항은 토양 구조가 회복 불가능한 수준으로 치밀화되었거나 경반층이 발달했을 가능성을 시사하며, 이는 농업적 조치(예: 심토파쇄)가 필요한 지점으로 판단한다 [SRC-102].
+
+### 6.2.2 전자기유도(EM38)를 활용한 토양 특성 매핑
+토양의 전기적 특성을 이용하는 방법 중 하나는 전자기유도 기반 측정 기술이다 [SRC-102]. 이 기술은 토양의 수분 함량, 유기물 함량, 그리고 전도도와 같은 물리화학적 특성을 비접촉 방식으로 측정할 수 있는 잠재력을 가진다 [SRC-102]. 특히 **겉보기 토양 전기전도도(EC<sub>a</sub>) 매핑 기법**은 토양의 이온 이동 및 전해질 농도를 공간적으로 시각화하여, 물 이동 경로 및 염류 집적 지역을 파악하는 데 유용하다 [SRC-102].
+
+이러한 정량적 데이터(Cone Index, EC<sub>a</sub>)를 수집하고 GIS 플랫폼 상에 3차원적으로 매핑하는 것이 현장 문제 해결의 기초가 된다 [SRC-102].
+
+## 6.3 농가 관행 오해 교정: 표토 배수 불량 및 습해를 단순 기상 탓으로 오인하는 관행 진단
+
+많은 농가에서 밭이나 논의 배수가 원활하지 않고 작물 근계가 제대로 발달하지 않는 현상을 단순히 '최근 강우량이 많았기 때문' 또는 '날씨 탓'으로 치부하는 경향이 있다 [SRC-104]. 그러나 이러한 현상은 단순한 기상학적 요인 외에, 토양의 물리적 특성 악화(압밀 및 경반층 형성)에 의해 구조적으로 유발되는 경우가 많다 [SRC-102].
+
+**진단적 교정**:
+1. **물리적 저항성:** 토양 깊은 곳에 형성된 경반층은 물의 수직적 투수성을 현저히 낮춘다. 이는 표토층에 물이 정체되게 만들고, 산소 공급을 차단하여 토양 내 호기성 미생물 활동을 저해한다 [SRC-102].
+2. **근계 발달 저해:** 콘 관입 저항치(> 2.0 MPa)가 높은 영역은 물리적 장벽으로 작용하여, 작물의 뿌리가 충분한 심도를 확보하지 못하고 얕게 분포하게 만든다. 근계가 얕게 퍼지면 토양 수분 및 양분 흡수 능력이 제한되며, 이는 습해 및 영양분 결핍 증상으로 오인되기 쉽다 [SRC-102].
+
+따라서, 농가 스스로 현장에 대한 물리적 진단을 수행하기 위해 관입 저항치 측정 및 EC<sub>a</sub> 매핑을 실시하는 것이 필수적이다 [SRC-102].
+
+## 6.4 현장 실증: 3D 토양 다짐 맵 기반 RTK 가변 심토파쇄(Subsoiling) 및 근계 회복
+
+과학적 진단(6.2)과 관행 교정(6.3)을 통해 경반층 및 심토 다짐 발생 지역이 3차원 지도로 구축된다. 이 '3D 토양 다짐 맵'을 기반으로, 농기계의 주행 패턴 및 경반층의 깊이, 강도를 반영한 최적화된 **RTK(Real-Time Kinematic) 자율주행 심토파쇄(Subsoiling) 처방**이 이루어진다 [SRC-104].
+
+RTK 기술은 GPS 신호를 센티미터 수준의 정밀도로 보정하여, 농기계가 미리 설정된 디지털 지도(3D 맵)를 따라 오차 없이 정밀하게 작업하도록 한다. 이는 불필요한 토양 교란(Over-tillage)을 방지하고, 경반층이 존재하는 특정 지점에만 국소적이고 필요한 강도의 파쇄 작업을 수행하게 한다 [SRC-102].
+
+성공적인 심토파쇄는 물리적 장벽을 해소하여 토양의 수직적 투과성을 회복시키고, 뿌리가 깊숙이 침투할 수 있는 물리적 공간을 제공함으로써 근계의 활력 및 발달을 촉진시킨다 [SRC-102].
+
+***
+
+## 핵심 용어집
+
+| 핵심 용어 | 정의 및 설명 | 관련 측정/개념 |
+| :--- | :--- | :--- |
+| **경반층 (Hardpan)** | 토양 심층부에서 압밀 및 충격에 의해 강도가 급격히 증가하여 뿌리의 생육을 물리적으로 저해하는 치밀화 구역 [SRC-102]. | 콘 관입 저항치 (> 2.0 MPa), 용적밀도 |
+| **용적 밀도 (ρ<sub>b</sub>)** | 단위 체적당 토양 고체 입자의 질량을 나타내는 지표로, 압밀의 주요 결과물임 [SRC-102]. | 콘 관입 시험 |
+| **겉보기 토양 전기전도도 (EC<sub>a</sub>)** | 토양 용액 내 이온의 총 농도를 간접적으로 나타내는 지표로, 물의 이동 및 염류 분포를 매핑하는 데 활용됨 [SRC-102]. | GIS 토양 매핑, 수분 이동 분석 |
+| **심토파쇄 (Subsoiling)** | 토양 깊은 층의 압밀 및 경반층을 파쇄하여 토양의 물리적 구조를 개선하는 농작업 [SRC-102]. | RTK 가변 처방, 물리적 장벽 해소 |
+| **RTK 자율주행** | 실시간 위성항법(RTK)을 이용해 농기계를 센티미터 단위의 정밀도로 제어하여, 정밀 농업 처방을 구현하는 시스템 [SRC-102]. | 3D 토양 다짐 맵 기반 적용 |
+| **3상 구조 붕괴** | 토양을 구성하는 고체, 액체, 기체 상의 균형이 외부 압력에 의해 파괴되어 공극 구조가 손실되는 현상 [SRC-102]. | 토양 압밀, 공극률 감소 |
+
+***
+
+## 이해도 점검 연습문제 및 해설
+
+**문제 1.** 대형 농기계 반복 주행에 의해 토양이 치밀화될 때 발생하는 핵심적인 물리적 메커니즘과 그 결과로 나타나는 현상을 연결하여 설명하시오.
+**정답 및 상세 풀이:** 핵심 메커니즘은 농기계의 접지압력에 의한 토양 3상 구조의 붕괴(Structure Breakdown)이며, 이는 입자 간 간격 감소로 이어져 용적 밀도 증가와 공극률 감소를 초래한다. 이로 인해 심토층에는 물리적 강도가 높아진 경반층이 형성되며, 이는 뿌리의 물리적 침투를 저해한다 [SRC-102].
+
+**문제 2.** 농업 현장에서 배수 불량을 단순 기상 탓으로 돌릴 때, 본 단원이 제시하는 과학적 교정 관점은 무엇이며, 이를 확인하기 위한 정량적 진단 방법은 무엇인가?
+**정답 및 상세 풀이:** 단순 기상 탓으로 돌리는 것은 토양의 물리적 특성 악화를 간과하는 것이다. 배수 불량 및 근계 발달 저해는 경반층 형성으로 인한 수직적 투수성 저하와 뿌리 생육 공간 제한에 의해 구조적으로 유발될 수 있다. 이를 확인하기 위해서는 콘 관입 저항치(임계치 2.0 MPa) 측정 및 겉보기 토양 전기전도도(EC<sub>a</sub>) 매핑과 같은 정량적 진단 방법이 필요하다 [SRC-102].
+
+**문제 3.** 3D 토양 다짐 맵을 기반으로 RTK 자율주행 심토파쇄 처방을 실행하는 과정의 의의를 서술하시오.
+**정답 및 상세 풀이:** 이 과정의 의의는 진단 결과를 기반으로 한 '정밀 처방'을 실현하는 것이다. 3D 맵을 통해 경반층의 정확한 위치와 강도를 파악한 후, RTK 기술을 이용하여 오차 없이 해당 지점 및 깊이에만 국소적이고 최적화된 파쇄 작업을 수행하게 한다. 이는 불필요한 토양 교란을 방지하고 물리적 장벽을 효율적으로 해소하여 근계 회복을 극대화한다 [SRC-102].
+
+***
+
+## 오해와 진실: 현장·이론 핵심 오해 교정
+
+**오해 1. "토양의 습해는 오직 강우량이나 지표면 배수로의 문제다."**
+**진실:** 토양의 물리적 압밀과 경반층 형성으로 인해 수직적 투수성이 저하되면, 표토에 물이 정체되어 호기성 환경이 파괴되고 이는 습해와 유사한 상태를 유발한다. 즉, 구조적 문제(물리적 장벽)가 기상학적 문제(과다 강우)의 증상처럼 보일 수 있다 [SRC-102].
+
+**오해 2. "토양의 강도가 높아지면 무조건 깊은 뿌리가 자라지 못한다."**
+**진실:** 높은 강도(높은 콘 관입 저항치)는 단순히 뿌리의 물리적 침투 저항을 나타낼 뿐만 아니라, 토양의 공극 구조 파괴로 인한 산소 결핍 상태를 동반한다. 이는 뿌리 활력 저하의 다면적인 원인이며, 심토파쇄를 통해 물리적 장벽을 제거하는 것이 핵심 해결책이다 [SRC-102].
+
+**오해 3. "농업에서 전기전도도(EC) 측정은 염류 농도 확인 외에 큰 의미가 없다."**
+**진실:** EC<sub>a</sub> 매핑은 토양의 화학적 특성을 넘어, 토양 내 수분 보유 능력, 이온 이동 경로, 그리고 잠재적인 물 스트레스 영역을 공간적으로 시각화하여 수리적 특성(Hydraulic Property) 분석에 중요한 기초 자료를 제공한다 [SRC-102].
+
+## 참고문헌 및 근거 출처 목록
+
+| 출처 ID | 유형 | 제목 | URL | 라이선스 |
+| :--- | :--- | :--- | :--- | :--- |
+| `SRC-100` | web | 농촌진흥청 | https://www.rda.go.kr/ | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-101` | web | 보도자료 < 새소식 < 정책홍보 < 농촌진흥청 | https://www.rda.go.kr/board/board.do?boardId=farmprmninfo&prgId=day_farmprmninfoEntry | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-102` | web | 한국식품연구원 | https://www.kfri.re.kr/ | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-103` | web | 국립식량과학원 | https://www.nics.go.kr/index.do | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-104` | web | 농림축산식품부 | https://www.mafra.go.kr/home/index.do | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-105` | web | 국민 안심이 기준입니다, 식품의약품안전처 | https://www.mfds.go.kr/index.do | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-106` | web | 한국농촌경제연구원 | https://www.krei.re.kr/krei/index.do | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-107` | web | 저온 유통 - 위키백과, 우리 모두의 백과사전 | https://ko.wikipedia.org/wiki/%EC%BD%9C%EB%93%9C_%EC%B2%B4%EC%9D%B8 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-108` | web | 에틸렌 - 위키백과, 우리 모두의 백과사전 | https://ko.wikipedia.org/wiki/%EC%97%90%ED%8B%B8%EB%A0%8C | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-109` | web | [2021] Inhibition of Ethylene Binding and Biosynthesis Maintains Fruit Quality of ‘Formosa’ Plums during Postharvest Storage (Horticultural Science and Technology) | https://doi.org/10.7235/hort.20210033 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-111` | web | [2010] Cold storage and fruit quality (Postharvest Biology and Technology for Preserving Fruit Quality) | https://doi.org/10.1201/9781439802670-c4 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-110` | web | [1998] Effects of storage temperature and atmosphere on saskatoon (Amelanchier alnifolia Nutt.) fruit quality, respiration and ethylene production (Postharvest Biology and Technology) | https://doi.org/10.1016/s0925-5214(98)00012-x | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-112` | web | [2013] Postharvest treatments for preserving quality of ‘Kinnow’ fruit under different storage conditions (Advances in Horticultural Science) | https://doi.org/10.36253/ahsc-18414 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-120` | web | [2021] Effects of postharvest ultraviolet-C treatment on shelf-life and quality of bitter gourd fruit during storage (Food Packaging and Shelf Life) | https://doi.org/10.1016/j.fpsl.2021.100665 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-121` | web | [2020] Evaluation of Postharvest Shelf Life and Quality of Lemon Treated with  Different Coatings during Storage (Food Science and Engineering) | https://doi.org/10.37256/fse.122020463 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-122` | web | [2026] Aloe Vera-Honey Composite Edible Coatings Extend Postharvest Shelf Life and Preserve Quality of Roma Tomatoes Under Tropical Ambient Storage in Rwanda (Journal of Food Science and Horticulture) | https://doi.org/10.69739/jfsh.v1i1.1696 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-123` | web | [2024] Different Postharvest Treatments and Storage Conditions for Shelf-life Enhancement and Quality Retention of Litchi (Journal of Food Chemistry &amp; Nanotechnology) | https://doi.org/10.17756/jfcn.2024-s1-015 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-124` | web | [2019] Understanding Food Loss and Waste—Why Are We Losing and Wasting Food? (Foods) | http://dx.doi.org/10.3390/foods8080297 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-125` | pdf | [2020] Nanotechnologies in Food Science: Applications, Recent Trends, and Future Perspectives (Nano-Micro Letters) | https://doi.org/10.1007/s40820-020-0383-9 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-126` | web | [2020] ZnO Nanostructures in Active Antibacterial Food Packaging: Preparation Methods, Antimicrobial Mechanisms, Safety Issues, Future Prospects, and Challenges (Food Reviews International) | https://doi.org/10.1080/87559129.2020.1737709 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-127` | web | [2019] Value-added chemicals from food supply chain wastes: State-of-the-art review and future prospects (Chemical Engineering Journal) | https://doi.org/10.1016/j.cej.2019.121983 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-263` | web | [2020] Citrus Essential Oils (CEOs) and Their Applications in Food: An Overview (Plants) | http://dx.doi.org/10.3390/plants9030357 | 학술 논문 오픈액세스(OpenAlex) - 변환적 분석 및 정식 학술 인용 |
+| `SRC-128` | web | [2024] Advances in strawberry postharvest preservation and packaging: A comprehensive review (Comprehensive Reviews in Food Science and Food Safety) | https://doi.org/10.1111/1541-4337.13417 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-129` | pdf | [2019] Characterization of Fruit Quality Attributes and Cell Wall Metabolism in 1-Methylcyclopropene (1-MCP)-Treated ‘Summer King’ and ‘Green Ball’ Apples During Cold Storage (Frontiers in Plant Science) | https://doi.org/10.3389/fpls.2019.01513 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-130` | web | [2014] Shelf life extension and antioxidant activity of ‘Hayward’ kiwi fruit as a result of prestorage conditioning and 1-methylcyclopropene treatment (Journal of Food Science and Technology) | https://doi.org/10.1007/s13197-014-1300-3 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-131` | web | [2012] Effects of Vibration Stress on the Quality of Packaged Apples during Simulated Transport (Journal of Biosystems Engineering) | https://doi.org/10.5307/jbe.2012.37.1.044 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-264` | web | [2025] Plant–Microbe Interactions for Improving Postharvest Shelf Life and Quality of Fresh Produce Through Protective Mechanisms (Horticulturae) | https://doi.org/10.3390/horticulturae11070732 | 학술 논문 오픈액세스(OpenAlex) - 변환적 분석 및 정식 학술 인용 |
+| `SRC-132` | web | [2022] Prediction of Total Soluble Solids and pH of Strawberry Fruits Using RGB, HSV and HSL Colour Spaces and Machine Learning Models (Foods) | https://doi.org/10.3390/foods11142086 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-133` | web | [2017] Nondestructive Estimation of Moisture Content, pH and Soluble Solid Contents in Intact Tomatoes Using Hyperspectral Imaging (Applied Sciences) | https://doi.org/10.3390/app7010109 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-134` | web | [2024] Prediction of Soluble-Solid Content in Citrus Fruit Using Visible–Near-Infrared Hyperspectral Imaging Based on Effective-Wavelength Selection Algorithm (Sensors) | https://doi.org/10.3390/s24051512 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-135` | pdf | [2018] Hyperspectral imaging technique to evaluate the firmness and the sweetness index of tomatoes (Korean Journal of Agricultural Science) | https://doi.org/10.7744/kjoas.20180075 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-265` | web | [2022] Field Application of a Vis/NIR Hyperspectral Imaging System for Nondestructive Evaluation of Physicochemical Properties in ‘Madoka’ Peaches (Plants) | https://doi.org/10.3390/plants11172327 | 학술 논문 오픈액세스(OpenAlex) - 변환적 분석 및 정식 학술 인용 |
+| `SRC-136` | web | Technical Platform on the Measurement and Reduction of Food Loss and Waste / Food and Agriculture Organization of the United Nations | https://www.fao.org/platform-food-loss-waste/en/ | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-137` | web | FLW Database / Technical Platform on the Measurement and Reduction of Food Loss and Waste / Food and Agriculture Organization of the United Nations | https://www.fao.org/food-loss-and-food-waste/flw-data/en/ | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-138` | web | Codex / Home | https://www.fao.org/fao-who-codexalimentarius/en/ | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-139` | web | Ask IFAS: Topic - Postharvest and Handling | https://edis.ifas.ufl.edu/topics/postharvest | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-140` | web | ARS Home : USDA ARS | https://www.ars.usda.gov/ | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-141` | web | National Programs : USDA ARS | https://www.ars.usda.gov/research/programs/ | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-142` | web | NFRI / National Agriculture and Food Research Organization | https://www.naro.go.jp/english/laboratory/nfri/index.html | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-143` | web | Ministry of Agriculture, Forestry and Fisheries | https://www.maff.go.jp/e/index.html | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-144` | web | Postharvest - Wikipedia | https://en.wikipedia.org/wiki/Postharvest | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-145` | web | Controlled atmosphere - Wikipedia | https://en.wikipedia.org/wiki/Controlled_atmosphere | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-146` | web | Modified atmosphere - Wikipedia | https://en.wikipedia.org/wiki/Modified_atmosphere | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-147` | web | 1-Methylcyclopropene - Wikipedia | https://en.wikipedia.org/wiki/1-Methylcyclopropene | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-148` | web | Cold chain - Wikipedia | https://en.wikipedia.org/wiki/Cold_chain | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-149` | pdf | [2014] Agricultural uses of plant biostimulants (Plant and Soil) | https://doi.org/10.1007/s11104-014-2131-8 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-150` | web | [2017] Biostimulants in Plant Science: A Global Perspective (Frontiers in Plant Science) | https://doi.org/10.3389/fpls.2016.02049 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-151` | web | [1986] The commercial storage of fruits, vegetables, and florist and nursery stocks (Biodiversity Heritage Library (Smithsonian Institution)) | https://www.biodiversitylibrary.org/item/295012 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-152` | web | [2017] Reducing Postharvest Losses during Storage of Grain Crops to Strengthen Food Security in Developing Countries (Foods) | https://doi.org/10.3390/foods6010008 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-266` | web | [2015] Bioactive Compounds and Antioxidant Activity in Different Types of Berries (International Journal of Molecular Sciences) | http://dx.doi.org/10.3390/ijms161024673 | 학술 논문 오픈액세스(OpenAlex) - 변환적 분석 및 정식 학술 인용 |
+| `SRC-153` | web | [2019] The role of hydrogen and fuel cells in the global energy system (Energy & Environmental Science) | https://doi.org/10.1039/c8ee01157e | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-154` | web | [2018] Methanol as a fuel for internal combustion engines (Progress in Energy and Combustion Science) | https://doi.org/10.1016/j.pecs.2018.10.001 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-155` | web | [2017] Overview of Ice Nucleating Particles (Meteorological Monographs) | https://doi.org/10.1175/amsmonographs-d-16-0006.1 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-156` | web | [2021] Liquid Hydrogen: A Review on Liquefaction, Storage, Transportation, and Safety (Energies) | https://doi.org/10.3390/en14185917 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-267` | web | [2022] Hydrogen liquefaction: a review of the fundamental physics, engineering practice and future opportunities (Energy & Environmental Science) | https://doi.org/10.1039/d2ee00099g | 학술 논문 오픈액세스(OpenAlex) - 변환적 분석 및 정식 학술 인용 |
+| `SRC-157` | web | [2013] Advances in Fruit Aroma Volatile Research (Molecules) | https://doi.org/10.3390/molecules18078200 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-158` | web | [2019] Tomato Fruit Development and Metabolism (Frontiers in Plant Science) | https://doi.org/10.3389/fpls.2019.01554 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-159` | web | [2019] Chemical Composition of Mango (Mangifera indica L.) Fruit: Nutritional and Phytochemical Compounds (Frontiers in Plant Science) | https://doi.org/10.3389/fpls.2019.01073 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-160` | web | [2016] Induced resistance to control postharvest decay of fruit and vegetables (Postharvest Biology and Technology) | https://www.sciencedirect.com/science/article/pii/S0925521416301946/pdf | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-268` | pdf | [2020] Primary Metabolism in Fresh Fruits During Storage (Frontiers in Plant Science) | https://doi.org/10.3389/fpls.2020.00080 | 학술 논문 오픈액세스(OpenAlex) - 변환적 분석 및 정식 학술 인용 |
+| `SRC-161` | web | [2014] Near-infrared spectroscopy and hyperspectral imaging: non-destructive analysis of biological materials (Chemical Society Reviews) | https://doi.org/10.1039/c4cs00062e | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-162` | web | [2020] Visible-NIR ‘point’ spectroscopy in postharvest fruit and vegetable assessment: The science behind three decades of commercial use (Postharvest Biology and Technology) | https://doi.org/10.1016/j.postharvbio.2020.111246 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-163` | web | [2015] Fruit Quality Evaluation Using Spectroscopy Technology: A Review (Sensors) | http://dx.doi.org/10.3390/s150511889 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-164` | web | [2019] Monitoring strategies for quality control of agricultural products using visible and near-infrared spectroscopy: A review (Trends in Food Science & Technology) | https://www.sciencedirect.com/science/article/abs/pii/S0924224418304825 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-269` | web | [2011] Machine vision system: a tool for quality inspection of food and agricultural products (Journal of Food Science and Technology) | https://doi.org/10.1007/s13197-011-0321-4 | 학술 논문 오픈액세스(OpenAlex) - 변환적 분석 및 정식 학술 인용 |
+| `SRC-165` | web | [1995] Biosolids–Yard Trimming Composts Increases Bell Pepper (Capsicum annuum L.) and Cucumber (Cucumis sativus L.) Yields (HortScience) | https://doi.org/10.21273/hortsci.30.4.892 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-166` | web | [1995] Physiology of Lightly Processed Fruits and Vegetables (HortScience) | https://doi.org/10.21273/hortsci.30.1.18 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-167` | web | [2006] Nutritional and medicinal use of Cactus pear (Opuntia spp.) cladodes and fruits (Frontiers in bioscience) | https://doi.org/10.2741/1992 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-168` | web | [2017] Antifungal Microbial Agents for Food Biopreservation—A Review (Microorganisms) | https://doi.org/10.3390/microorganisms5030037 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-270` | web | [2010] Effect of hydroxypropylmethylcellulose and chitosan coatings with and without bergamot essential oil on quality and safety of cold-stored grapes (Postharvest Biology and Technology) | https://doi.org/10.1016/j.postharvbio.2010.11.004 | 학술 논문 오픈액세스(OpenAlex) - 변환적 분석 및 정식 학술 인용 |

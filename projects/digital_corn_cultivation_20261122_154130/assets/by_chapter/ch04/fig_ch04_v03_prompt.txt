@@ -1,0 +1,12 @@
+이미지 번호: 그림 4-3
+이미지 파일명: fig_ch04_v03.png
+단원: 제4장. 옥수수 생육 단계별 발달 생리 및 수관 아키텍처 (ch04)
+결합 절: 4.1 옥수수 엽칼라(Leaf Collar) 기준 생육단계(VE~VT, R1~R6)의 발달 생리
+시각화 유형: photorealistic_field
+제목: [그림 4-3] 개화·수분기(R1 단계) 옥수수 수꽃 화분 비산과 암술 수염의 포장 전경
+
+[문맥 기반 이미지 설명]
+[그림 4-3] 수분 및 수정이 활발히 일어나는 R1기 옥수수 시험 포장의 생생한 현장 다큐멘터리 사진입니다. 최상부 수꽃(tassel)에서 노란 꽃가루 입자가 부드럽게 비산하며, 아래쪽 엽액에서 자라난 암이삭 끝의 촉촉하고 붉은빛이 감도는 비단 수염(silks)으로 낙하하는 역동적인 순간을 포착했습니다. 이는 수정 성공률과 착립수를 결정짓는 핵심 생식 생장 단계의 미기상학적 현장 조건을 보여줍니다 [SRC-103].
+
+[나노바나나 생성 프롬프트]
+Photorealistic documentary field photograph of a vigorous maize canopy at the R1 silking stage during early morning. Warm directional sunlight catches golden pollen dust shedding from the spreading branches of the top tassel, floating gently toward fresh pinkish-cream silks emerging abundantly from the husk tips below. Robust, broad emerald-green leaves with parallel venation frame the scene with shallow cinematic depth of field. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

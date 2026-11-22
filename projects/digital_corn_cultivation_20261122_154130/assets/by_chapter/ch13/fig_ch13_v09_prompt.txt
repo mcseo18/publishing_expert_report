@@ -1,0 +1,12 @@
+이미지 번호: 그림 13-9
+이미지 파일명: fig_ch13_v09.png
+단원: 제13장. 전 세계 옥수수 생산·유통 공급망 및 산업적 다각화 활용 (ch13)
+결합 절: 13.4 현장 실증: 전분당·사료·바이오에탄올·PLA 바이오 플라스틱 산업 밸류체인 및 부산물 자원화
+시각화 유형: photorealistic_macro
+제목: [그림 13-9] 배유 전분 과립의 편광 현미경 결정 구조와 친환경 PLA 수지 펠릿
+
+[문맥 기반 이미지 설명]
+[그림 13-9] 옥수수 배유에서 추출된 원형 전분 과립의 편광 현미경 결정상과, 이를 발효·중합하여 성형한 반투명 PLA(폴리젖산) 바이오 플라스틱 펠릿의 미세 구조를 나란히 비교한 매크로 사진이다 [SRC-112, SRC-120]. 천연 고분자인 아밀로오스·아밀로펙틴 결정 구조가 젖산 발효 및 개환 중합을 거쳐 친환경 산업용 수지로 전환되는 물성적 변화를 시각적으로 입증한다.
+
+[나노바나나 생성 프롬프트]
+Laboratory split-view macro photograph showcasing corn biopolymer synthesis. On the left side, an ultra-sharp polarized light microscopy view of pure Zea mays corn starch granules displaying brilliant birefringent Maltese cross interference patterns on a dark field. On the right side, an extreme macro photograph of freshly synthesized translucent crystalline poly-lactic acid (PLA) bioplastic pellets resting in a glass petri dish under soft laboratory lighting. Detailed crystal facets of the biodegradable polymer beads and microscopic roundness of the raw starch granules are crisply resolved. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

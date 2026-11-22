@@ -1,0 +1,12 @@
+이미지 번호: 그림 8-7
+이미지 파일명: fig_ch08_v07.png
+단원: 제8장. 옥수수 양분 흡수 동태 및 실시간 데이터 기반 양분 관리 (ch08)
+결합 절: 8.3 농가 관행 오해 교정: 전량 기비 위주 질소 과다 투입과 V8기 이후 지연 추비 피해 진단
+시각화 유형: photorealistic_field
+제목: [그림 8-7] 전량 기비 용탈 토양과 V8기 이후 지연 시비로 발생한 옥수수 도복(Lodging) 피해구
+
+[문맥 기반 이미지 설명]
+[그림 8-7] 파종 전 전량 기비 시비로 강우에 의해 질소가 조기 용탈되고, 이후 V8기를 지나 뒤늦게 추비가 투입된 시험 포장에서 발생한 줄기 기부 도복 피해 실태입니다. 초기 질소 결핍으로 간주가 가늘어지고 기형 발달한 지주근(Brace roots)이 후기 태풍 및 강풍 하중을 견디지 못하고 쓰러진 현장을 기록합니다. 이는 시기적 공급 불일치가 단순한 수량 감소를 넘어 포장 구조 붕괴로 이어짐을 경고합니다 [SRC-106].
+
+[나노바나나 생성 프롬프트]
+Documentary agricultural field photograph of a corn research plot affected by severe root lodging and stem buckling. Rows of Zea mays stalks tilted and fallen diagonally at the ground level, exposing underdeveloped brittle aerial brace roots and weakened lower stem bases emerging from rain-eroded compacted soil. Stark side-by-side contrast with an upright, sturdy, well-timed side-dressed corn plot standing firm in the background under dynamic sky. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

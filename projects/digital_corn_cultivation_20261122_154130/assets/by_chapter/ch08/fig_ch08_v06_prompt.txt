@@ -1,0 +1,12 @@
+이미지 번호: 그림 8-6
+이미지 파일명: fig_ch08_v06.png
+단원: 제8장. 옥수수 양분 흡수 동태 및 실시간 데이터 기반 양분 관리 (ch08)
+결합 절: 8.3 농가 관행 오해 교정: 전량 기비 위주 질소 과다 투입과 V8기 이후 지연 추비 피해 진단
+시각화 유형: photorealistic_macro
+제목: [그림 8-6] V8기 질소 결핍 옥수수 잎의 전형적인 엽맥 중심 'V자형' 황화 증상
+
+[문맥 기반 이미지 설명]
+[그림 8-6] 질소 공급 지연으로 인해 V8 생육기 옥수수 하위 엽에서 발생하는 전형적인 결핍 징후인 잎 끝에서 엽맥을 따라 엽저 방향으로 진행되는 황화(Chlorosis) 현상을 초근접 촬영한 사진입니다. 체내 이동성이 높은 질소가 생장점의 상위 유엽으로 전류되면서 하위엽에서 엽록소가 파괴되는 생리적 특성을 실물로 확인합니다. 이러한 황화 패턴은 NDRE 수치 급락과 일치하며 적기 추비 실패에 따른 영양 장애를 명확히 입증합니다 [SRC-106].
+
+[나노바나나 생성 프롬프트]
+Extreme macro photograph of a maize leaf blade from the lower canopy of a V8 Zea mays plant displaying textbook nitrogen deficiency. A distinct chlorotic pale yellow V-shaped pattern begins precisely at the leaf tip and extends along the central midrib toward the base, while the outer leaf margins remain dull green. Crisp macro view capturing cellular venation, fine cuticle ridges, and the harsh physiological boundary between healthy and chlorotic yellowing leaf tissue under balanced natural overcast daylight. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

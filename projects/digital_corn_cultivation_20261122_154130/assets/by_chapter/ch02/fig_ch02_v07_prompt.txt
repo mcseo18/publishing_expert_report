@@ -1,0 +1,12 @@
+이미지 번호: 그림 2-7
+이미지 파일명: fig_ch02_v07.png
+단원: 제2장. 옥수수 생태형 분류 및 디지털 초고속 표현형 기반 품종 선발 (ch02)
+결합 절: 2.3 농가 관행 오해 교정: 무상기간 무시한 만생종 무리한 도입과 미숙 이삭 피해 진단
+시각화 유형: scientific_anatomy
+제목: [그림 2-7] 정상 등숙 이삭과 저온·GDD 결핍 미숙 이삭의 종단면 생리 비교 해부도
+
+[문맥 기반 이미지 설명]
+[그림 2-7] 유효적산온도가 충족되어 생리적 성숙기에 도달한 정상 이삭과 GDD 결핍으로 발달이 정지된 미숙 이삭의 종단면을 비교한 과학적 해부도이다. 정상 이삭은 알곡 기부에 뚜렷한 블랙레이어(black layer)가 형성되어 전분이 치밀하게 축적된 반면, 미숙 이삭은 수분 함량이 과다하고 알곡 선단부에 미충진 공실이 발생한다. 이러한 해부학적 진단은 농가의 단순 다수성 선호 관행이 초래하는 생리적 취약성을 객관적으로 증명한다 [SRC-100, SRC-103].
+
+[나노바나나 생성 프롬프트]
+Scientific cross-section illustration on a pure clean white background showing a direct side-by-side comparative longitudinal dissection of two Zea mays corn cobs. Left side shows a fully mature, dense yellow dent ear with dark brown physiological black layers at the kernel bases and tightly packed starchy endosperm. Right side shows a cold-damaged immature ear with shrunken translucent milk-stage kernels, empty apical rachis, and water-soaked porous pith tissue. Masterful scientific botanical illustration. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

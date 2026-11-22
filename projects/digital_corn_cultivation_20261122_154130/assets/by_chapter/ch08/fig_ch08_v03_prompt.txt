@@ -1,0 +1,12 @@
+이미지 번호: 그림 8-3
+이미지 파일명: fig_ch08_v03.png
+단원: 제8장. 옥수수 양분 흡수 동태 및 실시간 데이터 기반 양분 관리 (ch08)
+결합 절: 8.1 옥수수 N-P-K 체내 전류 생리 및 단계별 양분 흡수 속도 역학
+시각화 유형: scientific_anatomy
+제목: [그림 8-3] 생육 단계별(V6-V12-VT-곡실형성기) 질소·인산·칼륨 체내 분배 및 축적 동태
+
+[문맥 기반 이미지 설명]
+[그림 8-3] 옥수수의 V6기부터 V12기, 출수기(VT), 곡실 충실기(R단계)에 이르는 생육 단계별 체내 N-P-K 축적 양상을 해부학적으로 나타냅니다. V6에서 V12기 사이에 급격히 가속화되는 엽신 및 간엽 조직 내 질소 요구도와 생육 후기 이삭으로의 양분 재이동 과정을 묘사합니다. 이는 질소 요구량이 폭증하는 특정 생육 단계에 맞춘 분할 시비의 생리적 당위성을 실증합니다 [SRC-106].
+
+[나노바나나 생성 프롬프트]
+Scientific botanical illustration on a crisp white background showing four sequential developmental stages of a maize corn plant: V6 vegetative whorl stage, vigorous V12 stalk elongation stage, VT tasseling stage with emerging silk, and R3 grain milk stage. Colored gradients along the stalks, leaves, and developing cob husks illustrate localized biological accumulation concentrations of nitrogen, phosphorus, and potassium, rendering organ-specific nutrient partitioning dynamics in elegant academic scientific publishing art. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

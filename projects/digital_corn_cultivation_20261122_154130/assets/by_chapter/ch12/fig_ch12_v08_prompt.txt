@@ -1,0 +1,12 @@
+이미지 번호: 그림 12-8
+이미지 파일명: fig_ch12_v08.png
+단원: 제12장. 정밀 수확·가공 후 수확 관리 및 스마트 농기계 작업 체계 (ch12)
+결합 절: 12.3 농가 관행 오해 교정: 수확 적기 오판에 따른 건조 에너지 낭비 및 사일리지 낙산 부패 진단
+시각화 유형: scientific_anatomy
+제목: [그림 12-8] 벙커 사일로 단면의 옥수수 사일리지 정상 젖산 발효층과 낙산 부패층 비교
+
+[문맥 기반 이미지 설명]
+[그림 12-8] 벙커 사일로 내 옥수수 사일리지의 혐기적 발효 안정화 구간과 상부·측벽의 불완전 진압에 따른 낙산(Butyric acid) 부패층을 대비한 생화학적 단면 분석도이다. 유산균(LAB)에 의해 pH 3.8~4.2로 유지되는 황록색 정상 혐기 발효 구역과, 공기 침투 및 수분 불균형으로 클로스트리디움(Clostridium)이 증식하여 검게 변질된 낙산 부패 구역의 미생물 균총 및 화학적 차이를 도해한다 [SRC-111].
+
+[나노바나나 생성 프롬프트]
+Detailed scientific cutaway illustration of a concrete bunker silo packed with chopped corn whole-plant silage on a pure white background. The cross-section reveals distinct stratification: an optimal deep core layer of uniform olive-green fermented silage with high lactic acid, juxtaposed with an upper peripheral spoiled layer showing dark brown to blackish slimy discoloration caused by Clostridium butyric acid spoilage and aerobic fungal infiltration. Fine artistic scientific rendering with magnifying bubble insets displaying bacterial rod morphology. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

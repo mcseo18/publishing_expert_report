@@ -1,0 +1,12 @@
+이미지 번호: 그림 13-2
+이미지 파일명: fig_ch13_v02.png
+단원: 제13장. 전 세계 옥수수 생산·유통 공급망 및 산업적 다각화 활용 (ch13)
+결합 절: 13.1 글로벌 주요 옥수수 벨트(미국, 브라질, 중국, 우크라이나)의 생산 체계 및 물류망 구조
+시각화 유형: photorealistic_field
+제목: [그림 13-2] 브라질 세하두 적색 라테라이트 토양에서의 옥수수 대규모 재배 및 내륙 운송
+
+[문맥 기반 이미지 설명]
+[그림 13-2] 브라질 마투그로수주 세하두(Cerrado) 지역의 특유한 적색 옥시솔(Oxisol) 토양 위에서 생육하는 광활한 사프리냐(Safrinha) 옥수수 군락을 보여준다. 열대 특유의 짙은 적색 토양과 짙푸른 녹색 옥수수 잎, 굵직한 옥수수 이삭의 대비가 뚜렷하며, 원경에는 내륙 운송용 대형 복합 트레일러 트럭들이 비포장 도로를 따라 줄지어 이동하고 있다 [SRC-112]. 토지 개간 기반의 대규모 생산 체계와 내륙 운송 인프라의 특징적 경관을 포착하였다 [SRC-106].
+
+[나노바나나 생성 프롬프트]
+High-resolution documentary field photograph of a massive Zea mays maize field in the Cerrado region of Mato Grosso, Brazil. The soil is deeply reddish-brown weathered tropical Oxisol, contrasting against vibrant green corn plants bearing large developed ears with drying golden silks. In the distance, a long convoy of silver multi-trailer road train grain trucks kicks up fine red dust along a straight unpaved agricultural access road bordering the plantation. Tropical afternoon sun with towering cumulus clouds on the horizon, sharp botanical detailing on the broad arching corn leaves and sturdy stalk nodes. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

@@ -1,0 +1,12 @@
+이미지 번호: 그림 11-2
+이미지 파일명: fig_ch11_v02.png
+단원: 제11장. 지능형 잡초 인식 및 자율선택제초 시스템 (ch11)
+결합 절: 11.1 옥수수 군락 내 난방제 잡초의 생육 속도 및 잡초 경합 임계 기간(CPWC) 생리
+시각화 유형: scientific_anatomy
+제목: [그림 11-2] 잡초 경합 임계 기간(CPWC) 동안 옥수수 근계와 광엽 잡초 직근 간 지하부 양수분 쟁탈 기전
+
+[문맥 기반 이미지 설명]
+[그림 11-2] 옥수수의 수염뿌리(관근계)와 침입성 광엽 잡초인 명아주(Chenopodium album)의 직근계가 표토층 0~30 cm에서 얽혀 양수분을 흡수하는 지하부 단면 구조도이다. 광합성 동화 산물의 생육 곡선과 잡초의 바이오매스 축적 속도가 교차하는 CPWC 구간에서 일어나는 질산태 질소와 수분 고갈대를 시각화하였다. 뿌리 주변의 영양소 흡수 경합이 심화되면서 옥수수 절간 신장 촉진 물질 합성이 저해되는 생리적 상호작용을 정밀하게 보여준다 [SRC-103].
+
+[나노바나나 생성 프롬프트]
+Detailed scientific cross-section illustration on a clean white background showing the subterranean competition between a young Zea mays root system and an invasive Chenopodium album broadleaf weed. The corn exhibits fibrous crown roots with dense root hairs spreading horizontally through stratified brown soil layers, while the weed develops a deep central taproot with dense lateral branches. Surrounding soil particles display gradient shading representing depleted moisture and nitrate depletion zones near root surfaces. Artistically rendered in realistic scientific textbook style with natural soil textures and detailed cellular root cortex shading. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

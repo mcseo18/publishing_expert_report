@@ -1,0 +1,12 @@
+이미지 번호: 그림 5-9
+이미지 파일명: fig_ch05_v09.png
+단원: 제5장. 옥수수 생리장애 진단 및 비생물적 스트레스 반응 (ch05)
+결합 절: 5.4 현장 실증: 열화상 드론 연동 조기 한발 예찰 및 수분 스트레스 완화제 살포
+시각화 유형: scientific_anatomy
+제목: [그림 5-9] 수분 스트레스 완화제(삼투조절물질·항산화제)의 엽면 흡수 및 삼투 조절 기작
+
+[문맥 기반 이미지 설명]
+[그림 5-9] 가뭄 스트레스 구역에 엽면 살포된 완화제 액적이 옥수수 잎의 큐티클층 미세 균열과 기공을 통해 엽육 조직 내부로 침투하는 분자 메커니즘을 묘사한다. 세포질 내로 흡수된 프롤린 및 글리신베타인은 세포 삼투압과 팽압을 복원하고, 함께 공급된 항산화 물질은 엽록체 주변의 활성산소를 신속히 소거한다. 이를 통해 광계 II의 붕괴를 막고 광합성 시스템의 조기 회복을 유도한다 [SRC-111].
+
+[나노바나나 생성 프롬프트]
+Detailed scientific botanical cross-section on a pure white background illustrating the foliar uptake of stress mitigation agents on a Zea mays leaf. Microscopic aqueous spray droplets sitting on the waxy leaf cuticle and penetrating through open stomata into intercellular mesophyll chambers. Inside the cells, glowing protective osmoprotectant molecules stabilize cell membranes and water vacuoles, while antioxidant compounds neutralize energetic free radical particles around green chloroplasts, depicted in refined textbook medical art style. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

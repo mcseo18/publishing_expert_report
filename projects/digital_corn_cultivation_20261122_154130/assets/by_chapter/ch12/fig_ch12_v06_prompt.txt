@@ -1,0 +1,12 @@
+이미지 번호: 그림 12-6
+이미지 파일명: fig_ch12_v06.png
+단원: 제12장. 정밀 수확·가공 후 수확 관리 및 스마트 농기계 작업 체계 (ch12)
+결합 절: 12.2 콤바인 수량모니터(충격판 질량유량 센서) 캘리브레이션 및 수분 보정 기준
+시각화 유형: photorealistic_macro
+제목: [그림 12-6] 콤바인 곡물탱크 내 용적 유전율식 수분 센서 표면의 옥수수 낱알 접촉부
+
+[문맥 기반 이미지 설명]
+[그림 12-6] 수확 작업 중 콤바인 내부 곡물 유로에 설치된 정전용량식(Capacitance) 실시간 곡물 수분 측정 센서 표면을 근접 촬영한 매크로 사진이다. 매끄러운 스테인리스 전극 판 사이로 갓 탈곡된 고수분 옥수수 낱알들이 연속적으로 접촉하며 통과하고 있다. 유전율 변화를 통해 측정된 실시간 수분 데이터는 질량유량 센서의 진질량 보정 공식에 즉각 반영되어 정밀 수량맵을 구축한다 [SRC-101, SRC-104].
+
+[나노바나나 생성 프롬프트]
+Ultra-sharp macro photograph inside a modern combine grain processing channel, focusing on an industrial capacitive moisture sensor bypass cell. Freshly harvested glossy yellow maize kernels fill the chamber, pressing firmly against polished dual parallel metal sensing plates. Details of kernel dust, pericarp gloss, surface oil, and tiny starch scuffs visible on the individual grain surfaces. Crisp industrial documentary lighting highlighting polished metal reflection and organic grain textures. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

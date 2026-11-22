@@ -471,8 +471,10 @@ tr.row-bad td { background: rgba(239,68,68,.06); }
       </div>
     </div>
     <div class="proj-controls">
-      <select id="projectSelect" class="proj-select" onchange="selectProject(this.value)"></select>
+      <select id="projectSelect" class="proj-select" onchange="onProjectSelectChange(this.value)"></select>
+      <button class="btn-primary" onclick="openLoadFolderModal()" title="폴더에서 이전 프로젝트를 불러오고 마지막 작업을 복원합니다">📂 폴더 불러오기</button>
       <button onclick="openNewModal()">+ 새 교재</button>
+      <button class="btn-sm" onclick="resetDashboardToFreshStart(true)" title="화면을 초기 상태로 비우고 새 작업을 시작합니다">🧹 초기화</button>
       <button class="btn-green" id="btnRunAll" onclick="onMainRunClick()" title="완료되지 않은 단계를 순서대로 이어서 실행합니다">▶ 이어하기</button>
       <button class="btn-amber" id="btnStop" onclick="stopCurrentPipeline()" disabled title="실행 중일 때만 누를 수 있습니다. 현재 단원·그림까지 저장한 뒤 멈춥니다.">⏹ 중단</button>
       <button class="btn-sm" onclick="document.getElementById('helpModal').classList.add('open')" title="사용 안내">❓ 도움말</button>
@@ -555,7 +557,6 @@ tr.row-bad td { background: rgba(239,68,68,.06); }
           <select id="pcEngine" style="width:270px">
             <option value="antigravity_gemini" selected>Gemini 빠른 모드 (기본·권장)</option>
             <option value="gemini_pro">Gemini 정밀 모드 (느리지만 꼼꼼함)</option>
-            <option value="openai">OpenAI (ChatGPT)</option>
             <option value="ollama_gemma">내 컴퓨터 AI (Gemma · 인터넷 없이)</option>
           </select>
           <label class="label" style="margin:0">장 수:</label>
@@ -893,15 +894,7 @@ tr.row-bad td { background: rgba(239,68,68,.06); }
         <div id="engineStatusBox" class="mb8"></div>
 
         <div style="border-top:1px solid var(--border);padding-top:12px;margin-top:12px;">
-          <div class="grid-2">
-            <div>
-              <label class="label">1단계 목차 설계 OpenAI 모델 (Gemini 실패 시 2순위)</label>
-              <select id="optOpenaiModel">
-                <option value="gpt-4o-mini">gpt-4o-mini (빠름·권장)</option>
-                <option value="gpt-4o">gpt-4o (고정밀)</option>
-                <option value="gpt-4.1-mini">gpt-4.1-mini</option>
-              </select>
-            </div>
+          <div class="grid-3">
             <div>
               <label class="label">로컬 집필 모델 (Ollama Gemma 4)</label>
               <select id="optGemmaModel">
@@ -912,6 +905,7 @@ tr.row-bad td { background: rgba(239,68,68,.06); }
             <div>
               <label class="label">5단계 fal.ai 시각화 모델</label>
               <select id="optFalModel">
+                <option value="fal-ai/nano-banana-pro">fal-ai/nano-banana-pro (나노바나나 Pro 2K)</option>
                 <option value="fal-ai/nano-banana">fal-ai/nano-banana (나노바나나 실사/인포그래픽)</option>
                 <option value="fal-ai/flux/schnell">fal-ai/flux/schnell (초고속 실사)</option>
                 <option value="fal-ai/flux-pro/v1.1">fal-ai/flux-pro/v1.1 (출판용 고해상도)</option>
@@ -923,10 +917,9 @@ tr.row-bad td { background: rgba(239,68,68,.06); }
             </div>
           </div>
           <div class="flex mt12">
-            <label class="flex"><input type="checkbox" id="optUseGemini" /> 1단계 Gemini API 사용 (1순위)</label>
-            <label class="flex"><input type="checkbox" id="optUseOpenai" /> 1단계 OpenAI API 사용 (2순위)</label>
+            <label class="flex"><input type="checkbox" id="optUseGemini" /> 1단계 Google Gemini API 사용 (미사용 시 로컬 Gemma 4)</label>
             <label class="flex"><input type="checkbox" id="optUseFal" /> 5단계 fal.ai API 사용</label>
-            <label class="flex"><input type="checkbox" id="optUseNanoBanana" /> 5단계 나노바나나(Gemini) 폴백</label>
+            <label class="flex"><input type="checkbox" id="optUseNanoBanana" /> 5단계 나노바나나(Gemini) 이미지 사용</label>
             <label class="flex"><input type="checkbox" id="optUseClaude" /> 4단계 Claude Code 정밀 감사</label>
           </div>
           <div class="mt12">
@@ -1060,8 +1053,7 @@ tr.row-bad td { background: rgba(239,68,68,.06); }
     <label class="label mt8">핵심 키워드 (영문, 쉼표 구분)</label>
     <input id="npKwEn" placeholder="예: winter wheat, precision agriculture, UAV NDVI, nitrogen management" />
     <div class="flex mt12">
-      <label class="flex"><input type="checkbox" id="npUseGemini" checked /> 1단계 Gemini API로 목차·요약·키워드 설계 (1순위)</label>
-      <label class="flex"><input type="checkbox" id="npUseOpenai" checked /> Gemini 실패 시 OpenAI API 사용 (2순위)</label>
+      <label class="flex"><input type="checkbox" id="npUseGemini" checked /> 1단계 Google Gemini API로 목차·요약·키워드 설계 (실패 시 로컬 Gemma 4)</label>
       <label class="flex"><input type="checkbox" id="npUseFal" /> 5단계 fal.ai API 시각화 사용</label>
       <label class="flex"><input type="checkbox" id="npAutoStart" checked /> 생성 즉시 1단계 초안 작성</label>
     </div>
@@ -1090,6 +1082,34 @@ tr.row-bad td { background: rgba(239,68,68,.06); }
       <li><strong>6단계 출판물 받기</strong>: [전체 산출물 zip 받기] 또는 [출판 폴더 열기]로 PDF·Word·블로그 파일을 받습니다.</li>
     </ol>
     <div class="muted mt8">• 완료된 단계를 다시 실행하면 직전 결과가 자동 백업되며, ⚙️ 설정 탭의 [백업 · 되돌리기]에서 복원할 수 있습니다.<br>• 화면 위에 빨간 띠가 보이면 서버가 꺼진 것입니다. 폴더의 <code>교재플랫폼_시작.bat</code>을 다시 실행하세요.</div>
+  </div>
+</div>
+
+<!-- 📂 폴더에서 이전 프로젝트 불러오기 모달 (마지막 작업 기록 표시 및 복원) -->
+<div class="modal-bg" id="loadFolderModal">
+  <div class="modal" style="max-width:860px">
+    <div class="card-head">
+      <div>
+        <h3 class="card-title">📂 폴더에서 이전 프로젝트 불러오기 (마지막 작업 자동 복원)</h3>
+        <div class="muted" id="lfProjectsRootHint">프로젝트 폴더별 <code>last_work_session.json</code>을 읽어 마지막 작업 단계·탭·열람 단원으로 바로 이어서 작업합니다.</div>
+      </div>
+      <button class="btn-sm" onclick="closeLoadFolderModal()">닫기</button>
+    </div>
+
+    <div class="card" style="background:var(--card);padding:12px;margin-bottom:12px">
+      <label class="label">폴더 경로 직접 입력 또는 Windows 폴더 선택 창으로 열기</label>
+      <div class="flex">
+        <input id="lfDirectPath" placeholder="예: projects/digital_corn_cultivation_20261122_154130 또는 전체 폴더 경로" style="flex:1" />
+        <button onclick="browseFolderDialog()">📁 폴더 찾기 창</button>
+        <button class="btn-primary" onclick="loadProjectFromInputPath()">📂 이 경로 불러오기</button>
+      </div>
+      <div class="flex mt8" style="justify-content:space-between">
+        <label class="flex"><input type="checkbox" id="lfIncludeArchived" onchange="refreshFolderModalList()" /> 아카이브(삭제 보관) 폴더도 함께 보기</label>
+        <button class="btn-sm" onclick="refreshFolderModalList()">🔄 폴더 목록 새로고침</button>
+      </div>
+    </div>
+
+    <div id="lfFolderListBox" style="max-height:460px;overflow-y:auto;">폴더 목록을 스캔 중...</div>
   </div>
 </div>
 
@@ -1123,9 +1143,8 @@ const STATUS_META = {
 };
 
 const API_KEY_LABELS = [
-  { key: "OPENAI_API_KEY", title: "OpenAI API 키 (1단계 목차 설계 2순위)", ph: "sk-..." },
+  { key: "GEMINI_API_KEY", title: "Google Gemini API 키 (1단계 목차 설계 · 계획서 챗봇 · 5단계 나노바나나 이미지)", ph: "AIza..." },
   { key: "FAL_KEY", title: "fal.ai API 키 (5단계 실사·인포그래픽 시각화)", ph: "fal key..." },
-  { key: "GEMINI_API_KEY", title: "Google Gemini API 키 (1단계 목차 설계 1순위 · 계획서 만들기 · 5단계 나노바나나 이미지)", ph: "AIza..." },
   { key: "KMA_HUB_KEY", title: "기상청 API 허브 키 (ASOS 종관기상)", ph: "authKey..." },
   { key: "OPENWEATHER_API_KEY", title: "OpenWeatherMap API 키 (실시간 기상·예보)", ph: "appid..." },
   { key: "DATA_GO_KR_API_KEY", title: "공공데이터포털 서비스키 (data.go.kr)", ph: "Decoding 키 권장" },
@@ -1200,7 +1219,34 @@ function renderMd(md) {
 // ============================================================
 // 메인 탭 / 서브 탭 전환
 // ============================================================
-function switchMainTab(tabId) {
+let CURRENT_TAB = "workflow";
+let PROJECT_FOLDERS_CACHE = [];
+let RESTORED_WORK_BANNER = null;
+let LAST_WORK_TIMER = null;
+
+function recordLastWork(overrides = {}) {
+  if (!CURRENT_PID || !CURRENT_STATE) return;
+  const payload = {
+    last_tab: overrides.last_tab || CURRENT_TAB || "workflow",
+    last_stage_id: overrides.last_stage_id || SELECTED_STAGE || "stage1_topic_outline",
+    last_open_chapter: overrides.last_open_chapter !== undefined ? overrides.last_open_chapter : (OPEN_CHAPTER || ""),
+    last_visual_filter: overrides.last_visual_filter !== undefined ? overrides.last_visual_filter : (typeof VIS_FILTER_CH !== "undefined" ? VIS_FILTER_CH : "ALL"),
+    ...(overrides.last_subtab !== undefined ? { last_subtab: overrides.last_subtab } : {}),
+    ...(overrides.last_action_summary ? { last_action_summary: overrides.last_action_summary } : {}),
+  };
+  clearTimeout(LAST_WORK_TIMER);
+  LAST_WORK_TIMER = setTimeout(() => {
+    if (!CURRENT_PID) return;
+    fetch(`/api/projects/${encodeURIComponent(CURRENT_PID)}/last-work`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    }).catch(() => {});
+  }, 320);
+}
+
+function switchMainTab(tabId, skipRecord = false) {
+  CURRENT_TAB = tabId;
   document.querySelectorAll(".nav-tab").forEach(b => b.classList.toggle("active", b.dataset.tab === tabId));
   document.querySelectorAll(".tab-view").forEach(v => v.classList.toggle("active", v.id === "tab-" + tabId));
   if (tabId === "planchat") loadPlanChatTab();
@@ -1208,16 +1254,18 @@ function switchMainTab(tabId) {
   if (tabId === "explorer") loadExplorerMeta();
   if (tabId === "settings") loadSettingsTab();
   if (tabId === "library") renderLibraryTab();
+  if (!skipRecord && CURRENT_PID) recordLastWork({ last_tab: tabId });
 }
 
-function switchSubTab(subId) {
+function switchSubTab(subId, skipRecord = false) {
   document.querySelectorAll(".subtab").forEach(b => b.classList.toggle("active", b.dataset.sub === subId));
   document.querySelectorAll(".subpanel").forEach(p => p.classList.toggle("active", p.id === "sub-" + subId));
   if (subId === "exp-chat") loadResearchChat();
+  if (!skipRecord && CURRENT_PID) recordLastWork({ last_tab: "explorer", last_subtab: subId });
 }
 
 // ============================================================
-// 초기화 & 프로젝트 로드
+// 초기화 & 프로젝트 로드 (새로 시작 시 초기화 · 폴더 불러오기 시 마지막 작업 복원)
 // ============================================================
 let SERVER_DOWN = false;
 let LAST_STAGE_SIG = "";
@@ -1231,12 +1279,13 @@ try { DISMISSED_WARN = JSON.parse(sessionStorage.getItem("dismissedWarn") || "{}
 
 async function init() {
   try {
-    await loadProjectsList();
+    // 대시보드를 새로 시작할 때는 이전 프로젝트를 자동 로드하지 않고 초기 화면으로 시작한다
+    await loadProjectsList("", { freshStart: true });
   } catch (e) {
     console.error(e);
     setServerDown(true);
   }
-  if (location.hash === "#explorer") switchMainTab("explorer");
+  if (location.hash === "#explorer") switchMainTab("explorer", true);
   startPolling();
   // 스크롤하면 상단 영역을 접는다(D1). 접히면 화면 높이가 바뀌어 스크롤 위치가 다시 기준선을 넘나들며
   // 화면이 떨리는 문제가 있어, 접기/펴기 기준을 크게 벌리고(히스테리시스) 짧은 화면에서는 접지 않는다.
@@ -1260,31 +1309,123 @@ async function init() {
   });
 }
 
-async function loadProjectsList(preferPid = "") {
+async function fetchProjectFolders(includeArchived = false) {
+  try {
+    const res = await api(`/api/projects/folders?include_archived=${includeArchived ? "true" : "false"}`);
+    PROJECT_FOLDERS_CACHE = res.folders || [];
+    const hint = document.getElementById("lfProjectsRootHint");
+    if (hint && res.projects_root) {
+      hint.innerHTML = `기본 폴더: <code>${esc(res.projects_root)}</code> · 각 폴더의 <code>last_work_session.json</code>을 읽어 마지막 작업 위치로 복원합니다.`;
+    }
+    return PROJECT_FOLDERS_CACHE;
+  } catch (e) {
+    console.warn(e);
+    return [];
+  }
+}
+
+async function resetDashboardToFreshStart(showToast = false) {
+  CURRENT_PID = "";
+  CURRENT_STATE = null;
+  CURRENT_EVENTS = [];
+  STAGE_REPORTS = {};
+  VISUALS_CACHE = null;
+  CHAPTERS_CACHE = null;
+  KG_PREVIEW_CACHE = null;
+  STAGE1_DIRTY = false;
+  OPEN_CHAPTER = null;
+  CHAPTER_EDITING = false;
+  LAST_STAGE_SIG = "";
+  SELECTED_STAGE = "stage1_topic_outline";
+  RESTORED_WORK_BANNER = null;
+  if (typeof PLAN_CHAT_STATE !== "undefined") {
+    PLAN_CHAT_STATE = { history: [], plan: null, plan_markdown: "", search_papers: [] };
+  }
+  const sel = document.getElementById("projectSelect");
+  if (sel) sel.value = "";
+  const logWrap = document.getElementById("liveLogWrap");
+  if (logWrap) logWrap.innerHTML = '<span class="muted">초기 상태입니다. 새 교재를 만들거나 폴더에서 이전 프로젝트를 불러오세요.</span>';
+  const logCnt = document.getElementById("logCountMeta");
+  if (logCnt) logCnt.textContent = "0건";
+
+  await fetchProjectFolders(false);
+  switchMainTab("workflow", true);
+  renderTopProgress();
+  renderNotices();
+  renderStageDetail();
+  renderLibraryTab();
+  renderProjManageTable();
+  if (showToast) toast("🧹 대시보드를 초기 상태로 전환했습니다. 새 작업을 시작하거나 폴더에서 불러오세요.");
+}
+
+function onProjectSelectChange(val) {
+  if (!val) {
+    resetDashboardToFreshStart(true);
+    return;
+  }
+  selectProject(val, true, true);
+}
+
+async function loadProjectsList(preferPid = "", opts = {}) {
+  const freshStart = !!(opts && opts.freshStart);
   const data = await api("/api/projects");
   PROJECTS = data.projects || [];
   const sel = document.getElementById("projectSelect");
-  if (!PROJECTS.length) {
-    sel.innerHTML = '<option value="">(프로젝트 없음 — 새 교재를 만드세요)</option>';
-    CURRENT_PID = "";
-    CURRENT_STATE = null;
-    renderTopProgress();
-    renderStageDetail();
-    renderNotices();
-    return;
-  }
-  sel.innerHTML = PROJECTS.map(p =>
+  const placeholderOpt = `<option value="">-- 초기 화면 (새 작업 시작 / 폴더에서 불러오기) --</option>`;
+  sel.innerHTML = placeholderOpt + PROJECTS.map(p =>
     `<option value="${esc(p.project_id)}">《${esc(p.topic_ko)}》 ${p.done_stages}/${p.total_stages}단계 · ${p.target_pages}쪽${p.overall_status === "RUNNING" ? " · 진행 중" : ""}</option>`
   ).join("");
+
+  if (freshStart && !preferPid) {
+    await resetDashboardToFreshStart(false);
+    return;
+  }
+  if (!PROJECTS.length) {
+    await resetDashboardToFreshStart(false);
+    return;
+  }
   const nextPid = preferPid && PROJECTS.some(p => p.project_id === preferPid)
     ? preferPid
-    : (CURRENT_PID && PROJECTS.some(p => p.project_id === CURRENT_PID) ? CURRENT_PID : PROJECTS[0].project_id);
+    : (CURRENT_PID && PROJECTS.some(p => p.project_id === CURRENT_PID) ? CURRENT_PID : "");
   sel.value = nextPid;
-  await selectProject(nextPid, true);
+  if (nextPid) {
+    await selectProject(nextPid, true, true);
+  } else {
+    await resetDashboardToFreshStart(false);
+  }
 }
 
-async function selectProject(pid, autoFocusStage = false) {
-  if (!pid) return;
+async function applyRestoredLastWork(lw) {
+  if (!lw || !CURRENT_PID) return;
+  RESTORED_WORK_BANNER = lw;
+  if (lw.last_stage_id) SELECTED_STAGE = lw.last_stage_id;
+  if (lw.last_visual_filter && typeof VIS_FILTER_CH !== "undefined") VIS_FILTER_CH = lw.last_visual_filter;
+
+  renderTopProgress();
+  renderNotices();
+  await loadStageSideData(SELECTED_STAGE);
+  renderStageDetail();
+
+  const targetTab = lw.last_tab || "workflow";
+  if (targetTab && targetTab !== CURRENT_TAB) {
+    switchMainTab(targetTab, true);
+  }
+  if (targetTab === "explorer" && lw.last_subtab) {
+    switchSubTab(lw.last_subtab, true);
+  }
+  if (targetTab === "workflow" && SELECTED_STAGE === "stage4_manuscript_draft" && lw.last_open_chapter) {
+    OPEN_CHAPTER = lw.last_open_chapter;
+    setTimeout(() => {
+      if (typeof openChapterPreview === "function") openChapterPreview(lw.last_open_chapter, true);
+    }, 150);
+  }
+}
+
+async function selectProject(pid, autoFocusStage = false, restoreLastWork = true) {
+  if (!pid) {
+    await resetDashboardToFreshStart(false);
+    return;
+  }
   if (pid !== CURRENT_PID) { STAGE1_DIRTY = false; OPEN_CHAPTER = null; CHAPTER_EDITING = false; }
   CURRENT_PID = pid;
   STAGE_REPORTS = {};
@@ -1292,12 +1433,140 @@ async function selectProject(pid, autoFocusStage = false) {
   CHAPTERS_CACHE = null;
   KG_PREVIEW_CACHE = null;
   LAST_STAGE_SIG = "";
+  const sel = document.getElementById("projectSelect");
+  if (sel && sel.value !== pid) sel.value = pid;
+
   await refreshCurrentProject(autoFocusStage);
+  const lw = CURRENT_STATE && CURRENT_STATE.last_work_session;
+  if (restoreLastWork && lw && lw.last_stage_id) {
+    await applyRestoredLastWork(lw);
+    toast(`📌 《${CURRENT_STATE.topic_ko}》 마지막 작업 복원: ${lw.last_stage_order ? lw.last_stage_order + "단계 " : ""}${lw.last_stage_title || ""} (${lw.saved_at_local || ""})`, 4800);
+  } else {
+    RESTORED_WORK_BANNER = null;
+  }
   if (document.getElementById("tab-planchat")?.classList.contains("active")) {
     await loadPlanChatTab();
   }
   if (document.getElementById("tab-settings")?.classList.contains("active")) {
     loadSnapshots();
+  }
+}
+
+function openLoadFolderModal() {
+  document.getElementById("loadFolderModal").classList.add("open");
+  refreshFolderModalList();
+}
+function closeLoadFolderModal() {
+  document.getElementById("loadFolderModal").classList.remove("open");
+}
+
+function renderFolderCardList(folders) {
+  if (!folders || !folders.length) {
+    return `<div class="muted" style="padding:18px;text-align:center">발견된 이전 프로젝트 폴더가 없습니다. [+ 새 교재]로 새 프로젝트를 시작하거나 위 입력창에 폴더 경로를 직접 입력해 주세요.</div>`;
+  }
+  const tabNames = { workflow: "제작 진행", planchat: "계획서 만들기", covertoc: "표지·목차", library: "자료실", explorer: "데이터 찾기", settings: "설정" };
+  return folders.map(f => {
+    const lw = f.last_work_session || {};
+    const sm = STATUS_META[f.overall_status] || STATUS_META.IDLE;
+    const lwTime = lw.saved_at_local || (f.updated_at || "").replace("T", " ").slice(0, 19);
+    const lwTab = tabNames[lw.last_tab] || "제작 진행";
+    const lwStage = lw.last_stage_order ? `${lw.last_stage_order}단계 ${lw.last_stage_title || ""}` : (lw.last_stage_title || "1단계");
+    const lwDesc = lw.last_action_summary || lw.last_event_message || "저장된 작업 기록 없음";
+    const lwCh = lw.last_open_chapter ? ` · 마지막 열람: ${lw.last_open_chapter}` : "";
+    return `
+      <div class="ch-row" style="margin-bottom:10px;padding:12px">
+        <div class="flex" style="justify-content:space-between;align-items:flex-start">
+          <div>
+            <div class="flex">
+              <strong style="font-size:14.5px;color:#e0f2fe">《${esc(f.topic_ko)}》</strong>
+              <span class="badge ${sm.cls}">${sm.icon} ${f.done_stages}/${f.total_stages}단계 · ${sm.label}</span>
+              ${f.is_archived ? '<span class="badge b-warn">아카이브</span>' : ""}
+              ${f.hidden ? '<span class="badge b-wait">숨김</span>' : ""}
+            </div>
+            <div class="muted mt8" style="font-size:12px">
+              📁 <code>${esc(f.rel_folder)}</code> · 원고 ${f.drafted_chapters || 0}장 · 시각화 ${f.visuals_count || 0}종 · 출판물 ${f.exports_count || 0}개
+            </div>
+          </div>
+          <button class="btn-primary btn-sm" onclick="loadProjectFromFolderPath('${esc(f.folder_path).replace(/\\/g, "\\\\")}')">📂 불러오기 (마지막 작업 이어하기)</button>
+        </div>
+        <div style="margin-top:8px;background:#0a1222;border-left:3px solid var(--accent);padding:7px 10px;border-radius:0 6px 6px 0;font-size:12px">
+          <div><strong>📌 마지막 작업 기록</strong> <span class="muted">(${esc(lwTime || "-")})</span></div>
+          <div style="color:#cbd5e1;margin-top:2px">화면: <strong>${esc(lwTab)}</strong> → <strong>${esc(lwStage)}</strong>${esc(lwCh)}</div>
+          <div class="muted" style="margin-top:2px">작업 내용: ${esc(lwDesc)}</div>
+        </div>
+      </div>`;
+  }).join("");
+}
+
+async function refreshFolderModalList() {
+  const box = document.getElementById("lfFolderListBox");
+  if (!box) return;
+  box.innerHTML = "폴더 및 마지막 작업 기록 스캔 중...";
+  const incArch = !!document.getElementById("lfIncludeArchived")?.checked;
+  const folders = await fetchProjectFolders(incArch);
+  box.innerHTML = renderFolderCardList(folders);
+}
+
+async function browseFolderDialog() {
+  toast("📁 Windows 폴더 선택 창을 여는 중...");
+  try {
+    const res = await api("/api/projects/browse-folder-dialog", { method: "POST" });
+    if (res.status === "OK" && res.folder_path) {
+      document.getElementById("lfDirectPath").value = res.folder_path;
+      await loadProjectFromFolderPath(res.folder_path);
+    } else if (res.status === "CANCELLED") {
+      toast("폴더 선택이 취소되었습니다.");
+    } else {
+      toast("폴더 창을 열 수 없습니다. 경로를 직접 입력해 주세요: " + (res.detail || ""));
+    }
+  } catch (e) { toast("❌ " + e.message); }
+}
+
+async function loadProjectFromInputPath() {
+  const p = (document.getElementById("lfDirectPath")?.value || "").trim();
+  if (!p) return toast("불러올 프로젝트 폴더 경로를 입력해 주세요.");
+  await loadProjectFromFolderPath(p);
+}
+
+async function loadProjectFromFolderPath(folderPath) {
+  toast("📂 폴더에서 이전 프로젝트와 마지막 작업 기록을 불러오는 중...");
+  try {
+    const res = await api("/api/projects/load-folder", {
+      method: "POST",
+      body: JSON.stringify({ folder_path: folderPath }),
+    });
+    closeLoadFolderModal();
+    const proj = res.project;
+    const lw = res.last_work_session || proj.last_work_session;
+    // 목록 갱신 후 해당 프로젝트 활성화 + 마지막 작업 위치 정확히 복원
+    const listData = await api("/api/projects");
+    PROJECTS = listData.projects || [];
+    const sel = document.getElementById("projectSelect");
+    if (sel) {
+      sel.innerHTML = `<option value="">-- 초기 화면 (새 작업 시작 / 폴더에서 불러오기) --</option>` + PROJECTS.map(p =>
+        `<option value="${esc(p.project_id)}">《${esc(p.topic_ko)}》 ${p.done_stages}/${p.total_stages}단계 · ${p.target_pages}쪽${p.overall_status === "RUNNING" ? " · 진행 중" : ""}</option>`
+      ).join("");
+      sel.value = proj.project_id;
+    }
+    CURRENT_PID = proj.project_id;
+    CURRENT_STATE = proj;
+    CURRENT_EVENTS = res.events || [];
+    STAGE_REPORTS = {};
+    VISUALS_CACHE = null;
+    CHAPTERS_CACHE = null;
+    KG_PREVIEW_CACHE = null;
+    STAGE1_DIRTY = false;
+    OPEN_CHAPTER = null;
+    CHAPTER_EDITING = false;
+    LAST_STAGE_SIG = stageSignature(CURRENT_STATE);
+
+    renderLiveLogs();
+    renderLibraryTab();
+    renderProjManageTable();
+    await applyRestoredLastWork(lw);
+    toast(`✅ 폴더 불러오기 완료! 마지막 작업(${lw?.last_stage_order ? lw.last_stage_order + "단계 " : ""}${lw?.last_stage_title || ""})으로 복원했습니다.`, 5200);
+  } catch (e) {
+    toast("❌ " + e.message, 5000);
   }
 }
 
@@ -1400,7 +1669,7 @@ function setServerDown(down) {
 // 알림 띠: 서버 끊김(H4) · 다음 할 일(D4) · AI 엔진 경고(H3)
 // ============================================================
 function nextActionInfo(st) {
-  if (!st) return { text: "아직 교재가 없습니다. <strong>[+ 새 교재]</strong>를 눌러 주제를 입력하세요.", btn: "＋ 새 교재 만들기", act: "openNewModal()" };
+  if (!st) return { text: "대시보드가 <strong>초기 상태</strong>입니다. <strong>[+ 새 교재]</strong>로 새로 시작하거나 <strong>[📂 폴더 불러오기]</strong>로 이전 프로젝트의 마지막 작업을 이어하세요.", btn: "📂 폴더에서 불러오기", act: "openLoadFolderModal()" };
   const stages = st.stages || [];
   const running = stages.find(s => s.status === "RUNNING");
   if (st.overall_status === "RUNNING" || running) {
@@ -1429,8 +1698,7 @@ function nextActionInfo(st) {
 // 로그 속 영어·기술 오류를 쉬운 한국어로 바꿔 보여 줌
 function explainEngineWarning(msg) {
   const m = String(msg || "");
-  if (/Gemini/i.test(m) && /실패|오류|429|quota|limit/i.test(m)) return { key: "gemini", text: "Gemini API로 목차를 만들지 못해 다음 순서의 AI(OpenAI 또는 내 컴퓨터 Gemma)로 대신 만들었습니다. 설정 탭에서 Gemini API 키와 사용량 한도를 확인하세요." };
-  if (/429|Too Many Requests/i.test(m)) return { key: "openai429", text: "OpenAI 사용량 한도를 넘었습니다(429 오류). 이번에는 내 컴퓨터 AI(Gemma)로 대신 만들었습니다. OpenAI 결제·한도를 확인하거나 잠시 후 다시 시도하세요." };
+  if (/Gemini/i.test(m) && /실패|오류|429|quota|limit/i.test(m)) return { key: "gemini", text: "Gemini API로 목차를 만들지 못해 내 컴퓨터 AI(Gemma 4)로 대신 만들었습니다. 설정 탭에서 Gemini API 키와 사용량 한도를 확인하세요." };
   if (/JSON extraction failed|structured JSON/i.test(m)) return { key: "gemmajson", text: "내 컴퓨터 AI(Gemma)가 목차를 정해진 형식으로 만들지 못해 여러 번 재시도했습니다. 목차가 이상하면 1단계에서 [AI 재요청]을 눌러 보세요." };
   if (/폴백 템플릿/.test(m)) return { key: "draftfallback", text: "AI 집필이 실패한 단원에 '틀 원고'(같은 문장이 반복되는 임시 원고)가 들어갔습니다. 4단계 품질 점검표에서 확인 후 다시 집필해야 합니다." };
   if (/WinError 5|액세스가 거부/.test(m)) return { key: "winerr5", text: "진행 기록 파일을 저장하지 못했습니다(다른 프로그램이 파일을 사용 중). 이제 자동으로 다시 시도하지만, 반복되면 백신·OneDrive 동기화 예외에 E:\\SMC_Report_Platform_Data 폴더를 추가하세요." };
@@ -1447,6 +1715,10 @@ function renderNotices() {
   }
   const na = SERVER_DOWN ? null : nextActionInfo(CURRENT_STATE);
   if (na) out.push(`<div class="notice notice-next"><span>👉 ${na.text}</span>${na.btn ? `<button class="btn-primary btn-sm" onclick="${na.act}">${na.btn}</button>` : ""}</div>`);
+  if (CURRENT_STATE && !SERVER_DOWN && RESTORED_WORK_BANNER && RESTORED_WORK_BANNER.project_id === CURRENT_PID) {
+    const lw = RESTORED_WORK_BANNER;
+    out.push(`<div class="notice" style="background:rgba(34,197,94,.12);border-color:rgba(34,197,94,.45);color:#bbf7d0"><span>📌 <strong>마지막 작업 기록 복원됨</strong> (${esc(lw.saved_at_local || "")}) — ${lw.last_stage_order ? esc(lw.last_stage_order) + "단계 " : ""}${esc(lw.last_stage_title || "")}${lw.last_open_chapter ? " · " + esc(lw.last_open_chapter) : ""} : ${esc(lw.last_action_summary || "")}</span><button class="btn-sm" onclick="RESTORED_WORK_BANNER=null;renderNotices()">닫기</button></div>`);
+  }
   if (CURRENT_STATE && !SERVER_DOWN) {
     const seen = new Set();
     const recent = (CURRENT_EVENTS || []).filter(ev => ev.level === "WARN" || ev.level === "ERROR").slice(-40);
@@ -1623,6 +1895,7 @@ async function selectStage(stageId) {
   renderNotices();
   await loadStageSideData(stageId);
   renderStageDetail();
+  recordLastWork({ last_tab: "workflow", last_stage_id: stageId });
 }
 
 async function loadStageSideData(stageId) {
@@ -1668,7 +1941,36 @@ function updateStageHeaderLive() {
 function renderStageDetail() {
   const host = document.getElementById("stageDetailHost");
   if (!CURRENT_STATE) {
-    host.innerHTML = `<div class="card"><h3>교재를 선택하거나 [+ 새 교재]를 눌러 시작하세요.</h3></div>`;
+    const folders = PROJECT_FOLDERS_CACHE || [];
+    host.innerHTML = `
+      <div class="grid-2">
+        <div class="card" style="background:linear-gradient(145deg,#13203b,#0f182c);border-color:rgba(56,189,248,.45)">
+          <h2 class="card-title" style="font-size:19px">✨ 새 교재 제작 시작하기 (초기 상태)</h2>
+          <p class="muted mt8">대시보드를 새로 시작할 때마다 깨끗한 초기 상태로 열립니다. 새 주제를 입력하거나 AI 계획서 챗봇으로 목차·표·시각화·검색 쿼리를 대화형으로 기획해 보세요.</p>
+          <div class="flex mt12">
+            <button class="btn-primary" onclick="openNewModal()">📘 + 새 교재 만들기</button>
+            <button class="btn-green" onclick="openNewModal();toast('새 교재를 만든 뒤 [💬 계획서 만들기] 탭에서 상세 기획할 수 있습니다.')">💬 AI 계획서 챗봇 시작</button>
+            <button onclick="openLoadFolderModal()">📂 폴더 찾아서 불러오기</button>
+          </div>
+          <div class="mt12 muted" style="font-size:12px;border-top:1px solid var(--border);padding-top:10px">
+            • 작업 중인 프로젝트의 <strong>마지막 탭 · 단계 · 열람 단원 · 진행 현황</strong>은 각 프로젝트 폴더의 <code>last_work_session.json</code>에 자동 기록됩니다.<br>
+            • 다음에 대시보드를 다시 열었을 때 오른쪽 또는 상단 <strong>[📂 폴더 불러오기]</strong>에서 폴더를 선택하면 마지막 작업 지점으로 바로 복원됩니다.
+          </div>
+        </div>
+
+        <div class="card" style="background:var(--surface)">
+          <div class="card-head">
+            <div>
+              <h3 class="card-title">📂 폴더에서 이전 프로젝트 불러오기 (${folders.length}개 폴더 발견)</h3>
+              <div class="muted">각 프로젝트 폴더에 기록된 마지막 작업을 확인하고 클릭 한 번으로 이어서 작업하세요.</div>
+            </div>
+            <button class="btn-sm" onclick="openLoadFolderModal()">📁 전체 폴더 / 경로 지정</button>
+          </div>
+          <div style="max-height:420px;overflow-y:auto;">
+            ${renderFolderCardList(folders.slice(0, 6))}
+          </div>
+        </div>
+      </div>`;
     return;
   }
   const st = CURRENT_STATE;
@@ -1703,7 +2005,7 @@ function renderStageDetail() {
     </div>`;
 }
 
-// --- 1단계: Gemini(1순위)·OpenAI(2순위) 목차/요약/영역별 키워드 제안 · 재요청 · 직접 편집 · 확정 ---
+// --- 1단계: Google Gemini(1순위)·로컬 Gemma 4(폴백) 목차/요약/영역별 키워드 제안 · 재요청 · 직접 편집 · 확정 ---
 function renderStage1Body(st) {
   const bp = st.blueprint_preview;
   const opts = st.options || {};
@@ -1759,12 +2061,12 @@ function renderStage1Body(st) {
       ${kwChipsHtml}
     </div>
 
-    <!-- 사용자 검토 및 OpenAI 재요청 바 -->
+    <!-- 사용자 검토 및 Gemini AI 재요청 바 -->
     <div class="card" style="background:#131f38;border-color:rgba(56,189,248,.4)">
       <h3 class="card-title mb8">✏️ 목차·요약·키워드 검토 및 AI 재요청</h3>
       <div class="flex">
         <input id="stage1Feedback" placeholder="예: 3부에 드론 영상 기반 질소 시비 처방 단원을 추가하고, 수확 후 품질 평가 단원을 2개 장으로 세분화해줘" style="flex:1" />
-        <label class="flex" title="Gemini가 1순위이고, Gemini가 실패하면 OpenAI, 그다음 내 컴퓨터 AI(Gemma) 순서로 만듭니다"><input type="checkbox" id="stage1UseOpenai" ${opts.use_openai_outline!==false ? "checked" : ""} /> Gemini 실패 시 OpenAI 사용</label>
+        <label class="flex" title="Gemini API로 목차를 재구성하며, 미등록 시 내 컴퓨터 AI(Gemma 4)로 자동 폴백합니다"><input type="checkbox" id="stage1UseGemini" ${opts.use_gemini_outline!==false ? "checked" : ""} /> Gemini API 사용</label>
         <button class="btn-amber" onclick="reviseStage1()">🔄 AI 재요청 반영</button>
       </div>
       <div class="flex mt12" style="justify-content:space-between">
@@ -1893,6 +2195,7 @@ let VIS_FILTER_CH = "ALL";
 function setVisChapterFilter(val) {
   VIS_FILTER_CH = val;
   renderStageDetail();
+  recordLastWork({ last_tab: "workflow", last_stage_id: "stage5_visuals_generate", last_visual_filter: val });
 }
 
 function renderStage5Body(st) {
@@ -2219,12 +2522,12 @@ async function saveStage1EditsOnly() {
 async function reviseStage1() {
   const fb = document.getElementById("stage1Feedback").value.trim();
   if (!fb) return toast("수정·재요청 내용을 입력해 주세요.");
-  const useOpenai = document.getElementById("stage1UseOpenai").checked;
+  const useGemini = document.getElementById("stage1UseGemini")?.checked !== false;
   toast("🔄 AI가 수정 요청을 반영해 목차·요약·키워드를 재구성 중입니다...");
   try {
     const res = await api(`/api/projects/${CURRENT_PID}/stage1/revise`, {
       method: "POST",
-      body: JSON.stringify({ feedback_prompt: fb, use_openai: useOpenai }),
+      body: JSON.stringify({ feedback_prompt: fb, use_gemini: useGemini }),
     });
     CURRENT_STATE = res.project;
     renderTopProgress();
@@ -2337,6 +2640,9 @@ async function openChapterPreview(cid, keepEditing = false) {
   }
   if (keepEditing && CHAPTER_EDITING) return;
   OPEN_CHAPTER = cid;
+  if (!keepEditing) {
+    recordLastWork({ last_tab: "workflow", last_stage_id: "stage4_manuscript_draft", last_open_chapter: cid, last_action_summary: `4단계 단원 원고 열람 (${cid})` });
+  }
   const titleEl = document.getElementById("chViewerTitle");
   const bodyEl = document.getElementById("chViewerBody");
   const btnEl = document.getElementById("chViewerBtns");
@@ -2831,11 +3137,9 @@ async function loadSettingsTab() {
   await Promise.all([loadApiKeysPanel(), refreshEngineStatus()]);
   if (CURRENT_STATE) {
     const o = CURRENT_STATE.options || {};
-    document.getElementById("optOpenaiModel").value = o.openai_model || "gpt-4o-mini";
     document.getElementById("optGemmaModel").value = o.gemma_model || "gemma4:latest";
-    document.getElementById("optFalModel").value = o.fal_model || "fal-ai/nano-banana";
+    document.getElementById("optFalModel").value = o.fal_model || "fal-ai/nano-banana-pro";
     document.getElementById("optVisPerCh").value = Math.max(10, o.visuals_per_chapter || 10);
-    document.getElementById("optUseOpenai").checked = o.use_openai_outline !== false;
     document.getElementById("optUseGemini").checked = o.use_gemini_outline !== false;
     document.getElementById("optUseFal").checked = !!o.use_fal_ai;
     document.getElementById("optUseNanoBanana").checked = o.use_nano_banana !== false;
@@ -2882,9 +3186,8 @@ async function refreshEngineStatus() {
     const rag = st.local_rag || {};
     document.getElementById("engineStatusBox").innerHTML = `
       <div class="flex">
-        <span class="badge ${st.openai_configured?'b-done':'b-wait'}">OpenAI API: ${st.openai_configured?'연결 가능':'키 미등록(Gemma폴백)'}</span>
+        <span class="badge ${st.gemini_configured?'b-done':'b-wait'}">Google Gemini(목차·챗봇·나노바나나): ${st.gemini_configured?'연결 가능':'키 미등록(Gemma폴백)'}</span>
         <span class="badge ${st.fal_configured?'b-done':'b-wait'}">fal.ai API: ${st.fal_configured?'연결 가능':'키 미등록'}</span>
-        <span class="badge ${st.gemini_configured?'b-done':'b-wait'}">Gemini(목차 1순위·나노바나나): ${st.gemini_configured?'연결 가능':'키 미등록'}</span>
         <span class="badge ${ol.online?'b-done':'b-err'}">Ollama: ${ol.online?'ONLINE ('+(ol.models||[]).length+'모델)':'OFFLINE'}</span>
         <span class="badge ${cl.installed?'b-done':'b-wait'}">Claude Code: ${cl.installed?esc(cl.version||'설치됨'):'미설치'}</span>
         <span class="badge b-run">로컬 RAG: ${(rag.nodes||0).toLocaleString()}노드</span>
@@ -2898,12 +3201,10 @@ async function saveCurrentProjectOptions() {
     const res = await api(`/api/projects/${CURRENT_PID}/options`, {
       method: "PATCH",
       body: JSON.stringify({
-        openai_model: document.getElementById("optOpenaiModel").value,
         gemma_model: document.getElementById("optGemmaModel").value,
         fal_model: document.getElementById("optFalModel").value,
         visuals_per_chapter: Math.max(10, parseInt(document.getElementById("optVisPerCh").value, 10) || 10),
         use_gemini_outline: document.getElementById("optUseGemini").checked,
-        use_openai_outline: document.getElementById("optUseOpenai").checked,
         use_fal_ai: document.getElementById("optUseFal").checked,
         use_nano_banana: document.getElementById("optUseNanoBanana").checked,
         use_claude_review: document.getElementById("optUseClaude").checked,
@@ -2994,7 +3295,6 @@ async function submitNewProject() {
         keywords_ko: document.getElementById("npKwKo").value.split(",").map(x=>x.trim()).filter(Boolean),
         keywords_en: document.getElementById("npKwEn").value.split(",").map(x=>x.trim()).filter(Boolean),
         use_gemini_outline: document.getElementById("npUseGemini").checked,
-        use_openai_outline: document.getElementById("npUseOpenai").checked,
         use_fal_ai: document.getElementById("npUseFal").checked,
         auto_start: document.getElementById("npAutoStart").checked,
       }),

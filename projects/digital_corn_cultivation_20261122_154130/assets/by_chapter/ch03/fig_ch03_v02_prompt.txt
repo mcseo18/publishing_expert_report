@@ -1,0 +1,12 @@
+이미지 번호: 그림 3-2
+이미지 파일명: fig_ch03_v02.png
+단원: 제3장. 디지털 정밀 파종 공학 및 균일 입모 관리 (ch03)
+결합 절: 3.1 옥수수 종자 수분 흡수, 배유 효소 활성화 및 지온별 출아 생리 메커니즘
+시각화 유형: photorealistic_macro
+제목: [그림 3-2] 지온 구배에 따른 옥수수 유근 및 중배축 발달 비교 매크로
+
+[문맥 기반 이미지 설명]
+[그림 3-2] 항온 배양기에서 10°C 저온, 22°C 최적온도, 35°C 고온 지온 조건에 각각 노출된 옥수수 발아 종자의 생육 상태를 정밀 접사한 사진입니다. 저온 처리구에서는 유근 신장이 억제되고 배유 막 불안정이 관찰되는 반면, 최적온도에서는 건강한 흰색 1차근과 근모가 활발하게 발달한 대조를 나타냅니다 [SRC-110]. 3.1.3절의 지온 결정론을 포장 진단 관점에서 비교 실증합니다.
+
+[나노바나나 생성 프롬프트]
+Ultra-sharp laboratory macro photograph showing three germinating yellow Zea mays corn kernels placed side by side on dark damp germination paper under bright clean laboratory lighting. The left kernel at 10 degrees Celsius shows minimal radicle emergence with dull, water-soaked tissue. The center kernel at 22 degrees Celsius displays vigorous white radicle extension covered in fine root hairs and healthy green coleoptile tip. The right kernel at 35 degrees Celsius shows stunted, brownish-tipped radicle. Crisp focus on cellular textures and fine root hairs. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

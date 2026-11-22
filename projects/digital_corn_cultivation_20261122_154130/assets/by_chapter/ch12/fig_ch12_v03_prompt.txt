@@ -1,0 +1,12 @@
+이미지 번호: 그림 12-3
+이미지 파일명: fig_ch12_v03.png
+단원: 제12장. 정밀 수확·가공 후 수확 관리 및 스마트 농기계 작업 체계 (ch12)
+결합 절: 12.1 종실 흑층(Black Layer) 형성 생리, 등숙 완료 판정 및 탈립 손실 역학
+시각화 유형: scientific_anatomy
+제목: [그림 12-3] 옥수수 유선(Milk Line) 이동 및 통도조직 붕괴에 따른 흑층 형성 기작
+
+[문맥 기반 이미지 설명]
+[그림 12-3] 옥수수 낱알 내부에서 유선(Milk Line)이 덴트 형성 후 기부로 하강하며 세포 괴사성 흑층이 축적되는 생화학적 과정을 나타낸 학술 단면도이다. 통도 사부 조직의 압착과 갈변 색소 침착, 에틸렌 생성에 따른 세포벽 붕괴 및 호흡 대사 변화를 입체적으로 도해한다 [SRC-108, SRC-109]. 등숙 완료 판정 시 물리적 탈수와 생리적 전류 종결의 상관관계를 명확히 설명한다.
+
+[나노바나나 생성 프롬프트]
+Nature-style scientific biological cross-section illustration of a single maize kernel showing maturity progression on a pure white background. The illustration details the internal anatomy including the starchy crown, descending milk line boundary separating liquid milky endosperm from solidified vitreous starch, embryo axis, and the basal placental-chalazal region. Microscopic anatomical inset shows vascular phloem collapse, phenolic deposition, and suberized cellular sealing that forms the mature black layer. Rich scientific rendering, layered shading, clean educational medical-art aesthetic. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

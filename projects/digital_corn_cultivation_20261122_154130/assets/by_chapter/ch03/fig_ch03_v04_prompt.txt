@@ -1,0 +1,12 @@
+이미지 번호: 그림 3-4
+이미지 파일명: fig_ch03_v04.png
+단원: 제3장. 디지털 정밀 파종 공학 및 균일 입모 관리 (ch03)
+결합 절: 3.2 진공 공압식 가변 배종(VRS) 메커니즘 및 파종 심도·진압 압력 정량 기준
+시각화 유형: photorealistic_field
+제목: [그림 3-4] 정밀 개구 디스크 및 진압 롤러의 포장 작업 단면
+
+[문맥 기반 이미지 설명]
+[그림 3-4] 포장에서 대형 트랙터에 견인되는 공압식 파종 유닛의 V자형 오프너 디스크와 고무 진압 롤러(press wheel)의 작동 모습을 측면에서 포착한 실사 사진입니다. 파종기가 토양을 5cm 정심도로 절개하여 옥수수 종자를 투하하고, 배후 진압 롤러가 종자-토양 접촉도를 극대화하며 복토하는 순간의 토양 미세 구조를 선명히 보여줍니다. 3.2.1절의 심도 제어 및 진압 압력 기준을 현장 수준에서 증명합니다.
+
+[나노바나나 생성 프롬프트]
+Close-up photorealistic field photograph of an agricultural corn row-unit planter operating in rich crumbly dark loam soil at golden hour. Heavy steel double-disk furrow openers slice a clean V-shaped furrow, placing a bright yellow corn kernel at exact five centimeter depth, followed by dual angled rubber press wheels firmly packing the moist soil aggregates around the seed. Crisp focus on soil texture, seed depth placement, and mechanical components. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

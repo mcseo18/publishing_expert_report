@@ -1,6 +1,6 @@
 ---
 name: textbook-publishing-factory
-description: 주제를 설정하면 ① 초기 검색 + OpenAI API로 목차·요약·영역별 키워드 제시 및 사용자 검토·재요청·확정 → ② eco-browser·학술·기관 자료 분리 수집 및 현황 보고서 → ③ C:\SMC_GRAPHRAG 지식그래프 증분 구축 및 KG 보고서 → ④ 단원별 교재 집필(체크포인트 이어하기)·인용 감사 → ⑤ 단원당 10개+ 시각화(fal.ai API 선택 체크 · 나노바나나 · Vector SVG · 줄글 해설) → ⑥ 다중 판형 PDF·Word DOCX·네이버 블로그 HTML 출판 및 완료 종합 보고서까지 단일 HTML 대시보드(http://127.0.0.1:8501)에서 6단계로 실행하는 표준 제작 스킬.
+description: 주제를 설정하면 ① 초기 검색 + Google Gemini API(또는 로컬 Gemma 4)로 목차·요약·영역별 키워드 제시 및 사용자 검토·재요청·확정 → ② eco-browser·학술·기관 자료 분리 수집 및 현황 보고서 → ③ C:\SMC_GRAPHRAG 지식그래프 증분 구축 및 KG 보고서 → ④ 단원별 교재 집필(체크포인트 이어하기)·인용 감사 → ⑤ 단원당 10개+ 시각화(『weed_control』 A/B/C/D 4유형 · fal.ai/나노바나나 Pro · Python 차트 · 줄글 해설) → ⑥ 다중 판형 PDF·Word DOCX·네이버 블로그 HTML 출판 및 완료 종합 보고서까지 단일 HTML 대시보드(http://127.0.0.1:8501)에서 6단계로 실행하는 표준 제작 스킬.
 ---
 
 # textbook-publishing-factory — 전문 교재·보고서 6단계 표준 제작 지침 (v2.0)
@@ -18,8 +18,8 @@ description: 주제를 설정하면 ① 초기 검색 + OpenAI API로 목차·�
 
 ## 2. 6단계 표준 교재 제작 파이프라인 (단일 통합 대시보드 `http://127.0.0.1:8501`)
 
-1. **1단계 `stage1_topic_outline` (`outline-architect`): 주제 탐색 · OpenAI 목차/요약/영역별 키워드 제안 & 사용자 검토 확정**
-   - 초기 로컬 RAG(`C:\SMC_GRAPHRAG`) 선조회 + 학술 스캔 후 **OpenAI API**(`OPENAI_API_KEY`, 미등록 시 로컬 Ollama Gemma 4 폴백)로 교재 개요, 핵심 영역별 키워드(`domain_keywords`), 부·단원별 요약(`summary_ko`)과 절 구성을 제시한다.
+1. **1단계 `stage1_topic_outline` (`outline-architect`): 주제 탐색 · Google Gemini API 목차/요약/영역별 키워드 제안 & 사용자 검토 확정**
+   - 초기 로컬 RAG(`C:\SMC_GRAPHRAG`) 선조회 + 학술 스캔 후 **Google Gemini API**(`GEMINI_API_KEY`, 미등록 시 로컬 Ollama Gemma 4 폴백)로 교재 개요, 핵심 영역별 키워드(`domain_keywords`), 부·단원별 요약(`summary_ko`)과 절 구성을 제시한다.
    - `WAITING_REVIEW` 게이트에서 자동 대기하며, 사용자는 **AI 재요청 프롬프트** 또는 **직접 편집기**로 무제한 수정한 뒤 `[✅ 목차·키워드 최종 확정]`을 눌러 2단계로 진입한다.
 2. **2단계 `stage2_source_collect` (`web-scout`): 문헌·교과서·교재·웹사이트 수집 & 현황 보고서 생성**
    - 확정된 목차·키워드를 기반으로 `eco-browser` · OpenAlex/Europe PMC/Crossref(자동 폴백) · 국내외 공식기관·대학·교과서 자료를 4계층 분리 폴더에 저장하고 **`reports/02_collection_report.md`** 현황 보고서를 자동 생성한다.

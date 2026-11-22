@@ -4,7 +4,7 @@
 1. 사용자가 제시한 주제어·핵심 키워드와 대화 메시지로 부(Part)·장(Chapter)·절(Section)·핵심내용 요약·표(Table) 구성·
    시각화(A/B/C/D 4유형) 구성·국/영문 검색 쿼리를 포함한 전문 교재 계획서를 반복 협의·생성한다.
 2. 기본 AI 엔진: Antigravity · Google Gemini API (gemini-3.8-flash 우선, 폴백 체인 지원).
-   선택 엔진: Gemini Pro / OpenAI / 로컬 Ollama Gemma 4.
+   선택 엔진: Gemini Pro / 로컬 Ollama Gemma 4.
 3. 생성된 계획서를 현재 프로젝트의 청사진(master_outline.yaml, chNN.yaml)과 state.json(keywords_ko, keywords_en,
    domain_keywords, search_queries_ko, search_queries_en)에 즉시 반영하여 2단계 자동 수집, 자료실 학술 검색,
    심층 조사 챗봇 검색에 바로 활용한다.
@@ -425,36 +425,6 @@ def _call_gemini_plan_chat(
     raise RuntimeError(f"Gemini API 계획서 생성 실패: {last_err}")
 
 
-def _call_openai_plan_chat(
-    *,
-    system_prompt: str,
-    user_prompt: str,
-    api_key: str,
-    model: str = "gpt-4o-mini",
-) -> tuple[dict[str, Any], str]:
-    import urllib.request
-
-    payload = {
-        "model": model,
-        "response_format": {"type": "json_object"},
-        "temperature": 0.35,
-        "messages": [
-            {"role": "system", "content": system_prompt},
-            {"role": "user", "content": user_prompt},
-        ],
-    }
-    req = urllib.request.Request(
-        "https://api.openai.com/v1/chat/completions",
-        data=json.dumps(payload).encode("utf-8"),
-        headers={"Authorization": f"Bearer {api_key}", "Content-Type": "application/json"},
-        method="POST",
-    )
-    with urllib.request.urlopen(req, timeout=120) as resp:
-        data = json.loads(resp.read().decode("utf-8"))
-    content = data["choices"][0]["message"]["content"]
-    return json.loads(content), f"OpenAI ({model})"
-
-
 def run_plan_chat_turn(
     *,
     project_id: str,
@@ -562,7 +532,6 @@ def run_plan_chat_turn(
     )
 
     gemini_key = resolve_api_key("GEMINI_API_KEY", None, cfg)
-    openai_key = resolve_api_key("OPENAI_API_KEY", None, cfg)
 
     raw_resp: dict[str, Any] | None = None
     engine_used = ""
@@ -580,27 +549,7 @@ def run_plan_chat_turn(
         except Exception as exc:
             errors.append(str(exc))
 
-    if raw_resp is None and engine == "openai" and openai_key:
-        try:
-            raw_resp, engine_used = _call_openai_plan_chat(
-                system_prompt=system_prompt,
-                user_prompt=user_prompt,
-                api_key=openai_key,
-            )
-        except Exception as exc:
-            errors.append(str(exc))
-
-    # 자동 폴백: Gemini 우선 → 로컬 Ollama Gemma 4
-    if raw_resp is None and gemini_key and engine not in ("antigravity_gemini", "gemini_pro"):
-        try:
-            raw_resp, engine_used = _call_gemini_plan_chat(
-                system_prompt=system_prompt,
-                user_prompt=user_prompt,
-                api_key=gemini_key,
-                model_chain=GEMINI_DEFAULT_CHAIN,
-            )
-        except Exception as exc:
-            errors.append(str(exc))
+    # 자동 폴백: 로컬 Ollama Gemma 4
 
     if raw_resp is None:
         try:

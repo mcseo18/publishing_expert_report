@@ -1,0 +1,12 @@
+이미지 번호: 그림 1-8
+이미지 파일명: fig_ch01_v08.png
+단원: 제1장. 옥수수의 기원, 분류 체계 및 식물학적 형태생리 (ch01)
+결합 절: 1.4 현장 실증: 용도별 최적 군락 수광 아키텍처 구축 및 생체 데이터 획득
+시각화 유형: photorealistic_field
+제목: [그림 1-8] 직립엽형 옥수수 군락의 광 투과 아키텍처 및 군락 미기후 형성
+
+[문맥 기반 이미지 설명]
+[그림 1-8] 밀식 재배 조건에서 하부 잎까지 태양광이 균일하게 도달하도록 육종된 직립엽(erectophile) 구조의 옥수수 군락 내부 전경이다. 상부 엽신이 75도 이상의 가파른 각도로 직립하여 정오의 강한 직달광을 군락 하층부까지 깊숙이 투과시키는 광학적 설계를 실증한다 [SRC-103]. 이삭 착생 마디 주변의 부엽육 세포 광합성 능력을 극대화하여 군락 전체의 탄소 고정 잠재력을 높이는 구조적 메커니즘을 보여준다.
+
+[나노바나나 생성 프롬프트]
+Low-angle photorealistic field photograph inside a high-density modern hybrid maize field at midday. Tall, vigorous corn stalks stand symmetrically in rows, with upper leaves pointing steeply upright towards the sun in an erectophile architecture, allowing brilliant golden shafts of sunlight to filter down through the canopy to reach mid-stem ear nodes and lower leaves. Broad arching lower leaves cast clean dappled shadows on the rich, dark loamy soil bed. Rich shades of deep emerald green foliage with sharp botanical vein textures. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

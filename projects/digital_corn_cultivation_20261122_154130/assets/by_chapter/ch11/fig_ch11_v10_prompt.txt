@@ -1,0 +1,12 @@
+이미지 번호: 그림 11-10
+이미지 파일명: fig_ch11_v10.png
+단원: 제11장. 지능형 잡초 인식 및 자율선택제초 시스템 (ch11)
+결합 절: 11.4 현장 실증: 카메라 연동 스마트 붐스프레이어 국소 살포 및 자율주행 기계적 중경 제초
+시각화 유형: photorealistic_field
+제목: [그림 11-10] 자율주행 로봇 플랫폼의 옥수수 조간 물리적 중경 제초 및 제초 잔여 토양 현장
+
+[문맥 기반 이미지 설명]
+[그림 11-10] 소형 전동 자율주행 농업 로봇이 무인으로 옥수수 골 사이를 통과하며 로터리 호잉 휠로 잡초를 매몰 및 파쇄한 직후의 생생한 현장 모습이다. 화학약제를 일체 살포하지 않고 기계적 타격을 통해 바랭이와 비름 등 난방제 잡초의 생육을 억제하였으며, 경운된 부드러운 흙이 옥수수 밑둥을 북돋아주는 배토 효과까지 달성되었다. 친환경 저탄소 데이터 기반 정밀 옥수수 재배의 미래형 잡초 관리 체계를 집약적으로 보여준다 [SRC-104].
+
+[나노바나나 생성 프롬프트]
+Documentary agricultural field photograph of a compact autonomous weeding field robot operating between parallel rows of healthy, knee-high Zea mays plants under clear blue sky. The robot features rubber all-terrain tracks and rotary undercarriage cultivation tools that slice through the soil surface. Freshly tilled, pulverized brown earth surrounds the undisturbed corn stems, leaving weed residue drying harmlessly on the soil surface in the clean furrows behind the robot. Crisp natural daylight emphasizing the textured soil aggregates and glossy green corn foliage. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

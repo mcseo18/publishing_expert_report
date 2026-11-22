@@ -1,0 +1,12 @@
+이미지 번호: 그림 8-4
+이미지 파일명: fig_ch08_v04.png
+단원: 제8장. 옥수수 양분 흡수 동태 및 실시간 데이터 기반 양분 관리 (ch08)
+결합 절: 8.2 질소충족지수(NSI 0.90 임계치) 및 다분광 식생지수 정량 기준
+시각화 유형: photorealistic_field
+제목: [그림 8-4] 포장 내 휴대용 엽록소계(SPAD-502)를 이용한 옥수수 엽신 질소 충족도 현장 검정
+
+[문맥 기반 이미지 설명]
+[그림 8-4] 연구 포장에서 연구원이 V8 생육 단계 옥수수의 최상위 완전 전개엽 엽신에 휴대용 SPAD 엽록소계를 물려 광학적 엽록소 흡광도를 측정하는 현장 실증 장면입니다. 충분한 비료가 공급된 대조 질소 스트립(N-rich strip)과 일반 시험구를 즉각 비교하여 질소충족지수(NSI)를 산출하는 절차를 보여줍니다. 측정값이 NSI 0.90 임계치 미만으로 떨어지는 시점을 객관적으로 감지하여 정밀 추비 결정을 지원합니다 [SRC-106].
+
+[나노바나나 생성 프롬프트]
+Agricultural research station field photograph showing an agronomist using a handheld SPAD-502 chlorophyll meter clamped onto the midpoint of an upper expanded ear leaf of a healthy V8 maize plant. In the background, lush green field rows of Zea mays stretch under bright midday natural sunlight, showing an adjacent deeply green nitrogen-rich reference test strip beside moderately fertilized trial rows, crisp documentary focus on the optical measuring sensor and leaf texture. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

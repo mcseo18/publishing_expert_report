@@ -1,16 +1,69 @@
 chapter_id: ch09
 chapter_number: 9
-title: 제9장. 양분 및 생육모델의 원리와 디지털 현장 관리
-target_pages: 40
-summary_ko: 디지털 옥수수 재배에서 양분 및 생육모델의 과학적 메커니즘, 정량 측정 지표 및 디지털 정밀 관리 전략을 다룹니다.
+title: 제9장. 작물 생육·양분 모델링 및 디지털 트윈 시뮬레이션
+target_pages: 46
+summary_ko: 기상-토양-유전 매개변수를 결합한 메커니즘 기반 작물 모델(APSIM, DSSAT-CERES-Maize)의 수학적 구조를 해석한다. 유효적산온도, 일사량, 근권 질소 동태의 상호작용 알고리즘을 정립한다. 농가의 단편적 직관에 의존한
+  파종일·수확일 결정을 교정하고 이상기상 시나리오별 수량 예측 디지털 트윈을 실증한다.
 sections:
-- 9.1 기초 원리 및 개념
-- 9.2 정량 측정·모델링
-- 9.3 국내외 기준 비교
-- 9.4 디지털 현장 적용
+- 9.1 작물 생리 메커니즘 모델(APSIM-Maize, CERES-Maize)의 탄소 분배 및 생육 수리엔진
+- '9.2 유전모수(Genetic Coefficients: P1, P2, P5, G2, G3) 캘리브레이션 정량 기준'
+- '9.3 농가 관행 오해 교정: 단순 과거 평균 기후 기반의 파종일 고정 관행과 위험도 진단'
+- '9.4 현장 실증: 기상 빅데이터 연동 포장 단위 디지털 트윈 수량 예측 및 최적 의사결정'
+tables:
+- table_id: 표 9-1
+  title: DSSAT CERES-Maize 모델의 품종 유전모수 정의, 측정 방법 및 표준 입력 범위
+  columns:
+  - 유전모수 코드
+  - 생리적 정의
+  - 단위
+  - 표준 변이 범위
+  - 포장 실측 및 보정 방법
+  purpose: 디지털 트윈 모델의 국소 포장 적합화를 위한 품종별 생리 모수 최적화
+- table_id: 표 9-2
+  title: 가상 기후 시나리오(조기가뭄, 개화기고온)별 모델 예측 감수율과 포장 실측치 비교 검증표
+  columns:
+  - 기상 시나리오
+  - 모델 모의 출사일 오차(RMSE)
+  - 수량 예측치(kg/10a)
+  - 실측 수량(kg/10a)
+  - 수량 예측 정확도(%)
+  purpose: 이상기후에 따른 생산 위험도 사전 평가 및 작물 모델 신뢰성 검증
+visuals:
+- fig_id: 그림 9-01
+  type: A
+  aspect_ratio: '4:3'
+  method: nano_banana_pro
+  title: 기상 관측 스테이션과 자동 토양 센서가 설치된 모델 검증용 옥수수 스마트 실증 포장
+  description: 일사계, 초음파 풍속계, 토양 심도별 다점 센서가 설치된 포장에서 데이터가 무선 전송되는 현장
+- fig_id: 그림 9-02
+  type: B
+  aspect_ratio: '4:3'
+  method: nano_banana_pro
+  title: 옥수수 생장점의 영양생장에서 생식생장으로의 전환 분열조직 현미경 절편 표본
+  description: V5~V6기에 줄기 기부 생장점에서 웅수 원기가 형성되는 순간을 광학 현미경으로 촬영한 접사
+- fig_id: 그림 9-03
+  type: C
+  aspect_ratio: '16:9'
+  method: nano_banana_pro
+  title: APSIM 작물 모델의 바이오매스 생산, 일사이용효율(RUE), 질소 제한 팩터 연산 흐름도
+  description: 온도, 수분, 질소 스트레스 계수가 매일 군락 동화량에 곱해져 기관별로 전류되는 수리 구조도
+- fig_id: 그림 9-04
+  type: D
+  aspect_ratio: '16:9'
+  method: python
+  title: DSSAT 시뮬레이션 건물중 축적 곡선과 실제 옥수수 포장 파괴 조사값 간의 검증 산점도
+  description: 1:1 기준선 주변에 실측 데이터가 높은 결정계수(R²=0.94)로 일치함을 보여주는 검증 그래프
 keywords_ko:
-- 양분 및 생육모델
+- 작물 모델링
+- APSIM
+- DSSAT
+- 유전모수
+- 디지털 트윈
 keywords_en:
-- Nutrient and Growth Modeling
+- crop modeling
+- APSIM maize
+- DSSAT CERES-Maize
+- genetic coefficients
+- digital twin
 evidence_packet: digital_corn_cultivation_20261122_154130_evidence.json
 assigned_sources: []

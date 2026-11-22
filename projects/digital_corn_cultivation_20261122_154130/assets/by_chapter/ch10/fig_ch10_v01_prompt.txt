@@ -1,0 +1,12 @@
+이미지 번호: 그림 10-1
+이미지 파일명: fig_ch10_v01.png
+단원: 제10장. 데이터 기반 옥수수 병해충 예찰 및 정밀 방제 공학 (ch10)
+결합 절: 10.1 주요 병해충의 생활환 및 기상 의존 감염 생리
+시각화 유형: photorealistic_macro
+제목: [그림 10-1] 옥수수 엽면의 조명나방 난괴 및 부화 직후 유충 미세 구조
+
+[문맥 기반 이미지 설명]
+[그림 10-1] 옥수수 엽신의 이면 엽맥 사이에 비늘 모양으로 빽빽하게 산란된 조명나방 난괴와 부화 직후의 1령 유충을 초점 심도로 촬영한 매크로 사진이다. 주변 온도가 발육 영점온도 이상으로 상승함에 따라 알 껍질을 뚫고 나온 미세한 유충이 엽육 조직으로 이동하기 시작하는 생태적 초기 국면을 생생하게 보여준다. 이는 기상 변수에 따른 알 발육 기간 단축과 초기 침투 직전의 취약 방제 적기를 실증하는 시각 자료이다 [SRC-106].
+
+[나노바나나 생성 프롬프트]
+Extreme macro photography of a cluster of flat, overlapping, fish-scale-like insect egg masses laid on the underside of a vibrant green corn leaf (Zea mays). A tiny, translucent pale cream neonate borer caterpillar with a dark glossy head capsule is actively chewing its way out of the eggshell. Deep depth of field highlighting the fine parallel veins and crystalline micro-hairs of the maize leaf epidermis under crisp diffused laboratory lighting. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

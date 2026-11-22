@@ -1,16 +1,69 @@
 chapter_id: ch04
 chapter_number: 4
-title: 제4장. 생육관리의 원리와 디지털 현장 관리
-target_pages: 40
-summary_ko: 디지털 옥수수 재배에서 생육관리의 과학적 메커니즘, 정량 측정 지표 및 디지털 정밀 관리 전략을 다룹니다.
+title: 제4장. 옥수수 생육 단계별 발달 생리 및 수관 아키텍처
+target_pages: 46
+summary_ko: 발아(VE)부터 생리적 성숙기(R6)까지의 V기/R기 표준 단계 판정과 엽령 지수 모델을 정립한다. 수관 상·하부의 직립 엽각 형성과 지주근(Brace root) 발달 메커니즘을 밝혀 수광 효율 및 도복 방지 기준을 제시한다. 영양생장기
+  질소 과다에 의한 과번무 오판을 엽면적 지수(LAI)와 수관 투광률로 교정하고 군락 3D 복원 실증을 수행한다.
 sections:
-- 4.1 기초 원리 및 개념
-- 4.2 정량 측정·모델링
-- 4.3 국내외 기준 비교
-- 4.4 디지털 현장 적용
+- 4.1 옥수수 엽칼라(Leaf Collar) 기준 생육단계(VE~VT, R1~R6)의 발달 생리
+- 4.2 군락 소광계수(k), 엽면적 지수(LAI) 및 지주근(Brace root) 역학 기준
+- '4.3 농가 관행 오해 교정: 초기 과도한 엽면적 확보(웃자람)와 유효 수량 저하 포장 진단'
+- '4.4 현장 실증: 지상 라이다(LiDAR) 및 다분광 드론을 활용한 3D 수관 아키텍처 복원'
+tables:
+- table_id: 표 4-1
+  title: 옥수수 전 생육단계(V1~R6)별 표준 판정 형태 지표, 누적 GDD 및 영농 관리 포인트
+  columns:
+  - 생육 코드
+  - 단계 명칭
+  - 핵심 형태적 판정 지표
+  - 누적 GDD 범위(°C·d)
+  - 주요 농작업 및 취약 요인
+  purpose: 시비, 관수, 예찰 등 현장 의사결정의 과학적 타이밍 설정을 위한 표준 기준표
+- table_id: 표 4-2
+  title: 초형(직립형 vs 광엽포복형)에 따른 엽각, 군락 광차폐율 및 군락 광합성량 비교
+  columns:
+  - 초형 구분
+  - 상위엽 경각(°)
+  - 소광계수(k)
+  - 적정 LAI 범위
+  - 밀식 적응성 등급
+  purpose: 밀식 재배 시 하위엽 광투과도 확보 및 광이용효율 최적화 근거 제시
+visuals:
+- fig_id: 그림 4-01
+  type: A
+  aspect_ratio: '4:3'
+  method: nano_banana_pro
+  title: 출사기(R1) 옥수수 군락에서 수염이 균일하게 추출되어 꽃가루를 수분하는 포장 실사
+  description: 맑은 오전 포장에서 웅수 꽃가루가 황금빛으로 비산하며 암수염에 안착하는 건강한 군락 풍경
+- fig_id: 그림 4-02
+  type: B
+  aspect_ratio: '4:3'
+  method: nano_banana_pro
+  title: 하부 마디 지주근(Brace Root) 다발의 토양 관입 및 표면 지지 구조 클로즈업 접사
+  description: 줄기 기부 2~3마디에서 방사형으로 뻗어 나와 지표면을 강력하게 지지하는 지주근 형태 표본
+- fig_id: 그림 4-03
+  type: C
+  aspect_ratio: '16:9'
+  method: nano_banana_pro
+  title: 옥수수 엽칼라(Collared Leaf) 형성 과정 및 V기/R기 단계별 식별 인포그래픽
+  description: 잎몸과 잎집 경계부의 엽금(칼라) 육안 판별법과 수염 추출, 유숙기, 호숙기, 흑층 형성 모식도
+- fig_id: 그림 4-04
+  type: D
+  aspect_ratio: '16:9'
+  method: python
+  title: 파종 후 일수(DAP)에 따른 엽면적 지수(LAI) 발달 및 군락 광합성 속도 곡선
+  description: 영양생장기 급격한 LAI 상승과 개화기 최대 도달 후 등숙기 노화 감쇠 모델 그래프
 keywords_ko:
-- 생육관리
+- 엽칼라
+- 생육 단계
+- 소광계수
+- 지주근
+- 수관 아키텍처
 keywords_en:
-- Growth Management
+- leaf collar method
+- growth stages
+- light extinction coefficient
+- brace root
+- canopy architecture
 evidence_packet: digital_corn_cultivation_20261122_154130_evidence.json
 assigned_sources: []
