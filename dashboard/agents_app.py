@@ -61,6 +61,13 @@ from image_generation_studio import (  # noqa: E402
     update_queue_item,
     upload_custom_image,
 )
+from output_converter import (  # noqa: E402
+    CONVERSION_FORMATS,
+    KOREAN_JOURNAL_PDF_SPEC,
+    convert_project_output,
+    list_project_outputs_summary,
+    publish_default_outputs,
+)
 from rag_capture_unifier import (  # noqa: E402
     get_unified_rag_status,
     search_unified_smc_rag,
@@ -2193,3 +2200,48 @@ def api_image_studio_sync(project_id: str) -> dict[str, Any]:
         raise HTTPException(status_code=404, detail="Project not found")
     except Exception as exc:
         raise HTTPException(status_code=400, detail=f"원고·출판물 결합 동기화 오류: {exc}")
+
+
+# ============================================================
+# 기본 2종 출판(PDF + 블로그 단일 HTML) 및 사후 포맷 변환 모듈 API
+# ============================================================
+@app.get("/api/output-converter/formats")
+def api_output_converter_formats() -> dict[str, Any]:
+    return {
+        "formats": CONVERSION_FORMATS,
+        "korean_journal_pdf_spec": KOREAN_JOURNAL_PDF_SPEC,
+    }
+
+
+@app.get("/api/projects/{project_id}/outputs-summary")
+def api_project_outputs_summary(project_id: str) -> dict[str, Any]:
+    try:
+        return list_project_outputs_summary(project_id)
+    except FileNotFoundError:
+        raise HTTPException(status_code=404, detail="Project not found")
+
+
+@app.post("/api/projects/{project_id}/publish-default")
+def api_publish_default_outputs(project_id: str) -> dict[str, Any]:
+    try:
+        return publish_default_outputs(project_id)
+    except FileNotFoundError as exc:
+        raise HTTPException(status_code=404, detail=str(exc))
+    except Exception as exc:
+        raise HTTPException(status_code=400, detail=f"기본 2종 출판 오류: {exc}")
+
+
+class ConvertOutputRequest(BaseModel):
+    target_format: str
+
+
+@app.post("/api/projects/{project_id}/convert-output")
+def api_convert_project_output(project_id: str, req: ConvertOutputRequest) -> dict[str, Any]:
+    try:
+        return convert_project_output(project_id, req.target_format)
+    except FileNotFoundError as exc:
+        raise HTTPException(status_code=404, detail=str(exc))
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc))
+    except Exception as exc:
+        raise HTTPException(status_code=400, detail=f"포맷 변환 오류: {exc}")

@@ -3078,84 +3078,163 @@ function renderStage5Body(st) {
   `;
 }
 
-// --- 6단계: 최종 출판 다운로드 (표지·목차 + 단원별 시각화 결합 표) + 06_final_book_report.md ---
+// --- 6단계: 기본 핵심 2종 산출물(PDF + 블로그용 단일 HTML) & 사후 포맷 변환 모듈 ---
 function renderStage6Body(st) {
   const outputs = st.outputs || {};
+  const converted = st.converted_outputs || {};
   const boundMap = st.bound_visuals_by_chapter || {};
   const rep = STAGE_REPORTS.stage6;
-  const coverKeys = Object.keys(outputs).filter(k => k.startsWith("00_cover_toc_"));
+  const otype = st.primary_output_type || (st.output_profile && st.output_profile.primary_output_type) || "textbook";
+  const isPaper = (otype === "paper");
   const chIds = [...new Set(Object.keys(outputs).filter(k => /^ch\d+_/.test(k)).map(k => k.split("_")[0]))].sort();
 
+  const pdfUrl = outputs.master_pdf || outputs.master_pdf_b5 || outputs.master_pdf_a4 || outputs.master_pdf_shinkuk || "";
+  const pdfLabel = outputs.master_pdf_label || (isPaper ? "국내 학회지 논문 규격 PDF (A4 2단 · 1단 표제/초록 · 3선표)" : "마스터 출판 PDF");
+  const blogUrl = outputs.blog_single_html || "";
+
+  const convBtns = [
+    { id: "docx", icon: "📝", name: "MS Word (DOCX)" },
+    { id: "korean_journal_pdf", icon: "📄", name: "국내 학회지 규격 PDF" },
+    { id: "b5_pdf", icon: "📗", name: "B5 교재 PDF" },
+    { id: "shinkuk_pdf", icon: "📕", name: "신국판 단행본 PDF" },
+    { id: "a4_pdf", icon: "📘", name: "A4 표준 PDF" },
+    { id: "markdown_master", icon: "📋", name: "통합 마크다운 (.md)" },
+    { id: "chapter_split_html", icon: "🌐", name: "단원별 분할 블로그 HTML" },
+    { id: "quarto_book", icon: "⚙️", name: "Quarto 프로젝트" },
+    { id: "cover_toc", icon: "🎨", name: "표지·목차 별도 생성" },
+  ];
+  const convList = Object.values(converted);
+
   return `
-    <div class="card" style="background:var(--surface)">
-      <div class="card-head" style="margin-bottom:8px">
-        <h3 class="card-title">🎨 표지 · 머리말 · 전체 목차 파일</h3>
-        <button class="btn-primary btn-sm" onclick="switchMainTab('covertoc')">🎨 표지 · 목차 디자인/미리보기</button>
-      </div>
-      ${coverKeys.length ? `
-        <div class="flex">
-          ${coverKeys.map(k => `<a class="badge b-done" style="padding:7px 12px;font-size:12.5px" href="${esc(outputs[k])}" target="_blank">⬇ ${esc(k.replace("00_cover_toc_","표지·목차 ").toUpperCase())}</a>`).join("")}
-        </div>
-      ` : `<div class="muted">상단 [🎨 표지 · 목차 디자인/미리보기] 또는 6단계 실행으로 표지·목차를 생성할 수 있습니다.</div>`}
-    </div>
-
-    <div class="card" style="background:var(--surface);border-color:rgba(234,179,8,.42)">
-      <div class="card-head" style="margin-bottom:8px">
+    <div class="card" style="background:linear-gradient(135deg,#07281e,#0f291e);border-color:rgba(234,179,8,.55)">
+      <div class="card-head" style="margin-bottom:10px">
         <div>
-          <h3 class="card-title">📚 싱글 소스 다중 판형 마스터 합본 제본 (신국판 · B5 · A4 · DOCX · Quarto)</h3>
-          <div class="muted">단일 원고로부터 신국판(152×225mm), B5 대학교재(182×257mm), A4 마스터(210×297mm) PDF와 Word 합본, <code>_quarto.yml</code>을 원클릭 동시 제본합니다.</div>
+          <h3 class="card-title" style="color:#fef08a">📦 기본 최종 산출물 (중복 제거 · 핵심 2종)</h3>
+          <div class="muted">중복 파일을 만들지 않고 <strong>① 마스터 PDF 1종</strong>${isPaper ? " (국내 학회지 2단 논문 규격 자동 적용)" : ""}과 <strong>② 블로그용 단일 통합 HTML 1종</strong>만 깔끔하게 생성합니다.</div>
         </div>
         <div class="flex">
-          <button class="btn-gold btn-sm" onclick="runMultiFormatMasterBind()">📚 3종 판형 원클릭 마스터 제본</button>
-          <button class="btn-primary btn-sm" onclick="switchMainTab('monetization')">💼 POD·수익화 패키징 이동</button>
+          <button class="btn-gold btn-sm" onclick="runPublishDefaultTwo()">⚡ 기본 2종(PDF + 블로그 HTML) 지금 생성/갱신</button>
+          <a class="badge b-run" style="padding:7px 12px;font-size:12.5px" href="/api/projects/${encodeURIComponent(st.project_id)}/exports.zip" download>⬇ 전체 산출물 ZIP</a>
+          <button class="btn-sm" onclick="openProjectFolder('exports')">📂 출판 폴더</button>
         </div>
       </div>
-      <div class="flex">
-        ${outputs.master_pdf_shinkuk ? `<a class="badge b-done" style="padding:7px 12px" href="${esc(outputs.master_pdf_shinkuk)}" target="_blank">📕 신국판 합본 PDF</a>` : ""}
-        ${outputs.master_pdf_b5 ? `<a class="badge b-done" style="padding:7px 12px" href="${esc(outputs.master_pdf_b5)}" target="_blank">📗 B5 대학교재 PDF</a>` : ""}
-        ${outputs.master_pdf_a4 ? `<a class="badge b-done" style="padding:7px 12px" href="${esc(outputs.master_pdf_a4)}" target="_blank">📘 A4 마스터 PDF</a>` : ""}
-        ${outputs.master_docx ? `<a class="badge b-run" style="padding:7px 12px" href="${esc(outputs.master_docx)}" target="_blank">📝 마스터 Word DOCX</a>` : ""}
-        ${outputs.master_quarto_yml ? `<a class="badge b-wait" style="padding:7px 12px" href="${esc(outputs.master_quarto_yml)}" target="_blank">⚙️ _quarto.yml</a>` : ""}
-        ${(!outputs.master_pdf_shinkuk && !outputs.master_pdf_b5 && !outputs.master_pdf_a4) ? `<span class="muted">아직 마스터 합본이 제본되지 않았습니다. 위 [📚 3종 판형 원클릭 마스터 제본] 버튼을 눌러주세요.</span>` : ""}
+
+      ${isPaper ? `
+        <div style="background:rgba(6,59,44,.75);border:1px solid #34d399;border-radius:9px;padding:9px 13px;margin-bottom:12px;font-size:12.5px;color:#d1fae5">
+          <strong>📄 국내 학회지 논문 규격 PDF 자동 적용 중:</strong> A4 (210×297mm · 상하 25mm/좌우 20mm) · 1단 전폭 표제부 및 단일 초록 박스 · 본문 2단 편집 · 학술지 3선표 · 최하단 내어쓰기 단일 통합 참고문헌
+        </div>
+      ` : ""}
+
+      <div class="grid-2" style="gap:12px">
+        <div class="card" style="background:var(--surface);margin-bottom:0;border-color:rgba(52,211,153,.4)">
+          <div style="font-size:12px;color:#34d399;font-weight:800">기본 산출물 ① · 인쇄 / 투고용 마스터 PDF</div>
+          <div style="font-size:14.5px;font-weight:800;margin:4px 0 8px">${esc(pdfLabel)}</div>
+          ${pdfUrl ? `
+            <div class="flex">
+              <a class="badge b-done" style="padding:8px 14px;font-size:13px" href="${esc(pdfUrl)}" target="_blank">📕 마스터 PDF 열기</a>
+              <a class="badge b-run" style="padding:8px 14px;font-size:13px" href="${esc(pdfUrl)}" download>⬇ PDF 다운로드</a>
+            </div>
+          ` : `<div class="muted">아직 생성되지 않았습니다. 위 [⚡ 기본 2종 지금 생성/갱신] 또는 6단계 실행을 눌러주세요.</div>`}
+        </div>
+
+        <div class="card" style="background:var(--surface);margin-bottom:0;border-color:rgba(3,199,90,.45)">
+          <div style="font-size:12px;color:#4ade80;font-weight:800">기본 산출물 ② · 네이버 블로그 / 웹 발행용 단일 HTML</div>
+          <div style="font-size:14.5px;font-weight:800;margin:4px 0 8px">전체 원고 1파일 통합 블로그 HTML (원클릭 복사 지원)</div>
+          ${blogUrl ? `
+            <div class="flex">
+              <a class="badge b-done" style="padding:8px 14px;font-size:13px" href="${esc(blogUrl)}" target="_blank">🟢 블로그 단일 HTML 열기</a>
+              <a class="badge b-run" style="padding:8px 14px;font-size:13px" href="${esc(blogUrl)}" download>⬇ HTML 다운로드</a>
+            </div>
+          ` : `<div class="muted">아직 생성되지 않았습니다. 위 [⚡ 기본 2종 지금 생성/갱신] 또는 6단계 실행을 눌러주세요.</div>`}
+        </div>
       </div>
     </div>
 
-    <div class="card" style="background:var(--surface)">
-      <div class="card-head" style="margin-bottom:8px">
-        <h3 class="card-title">📦 단원별 출판물 <span class="muted" style="font-weight:500">PDF · Word · 웹페이지 · 네이버 블로그</span></h3>
-        <div class="flex">
-          <span class="badge b-done">${chIds.length}개 단원 출판됨</span>
-          ${chIds.length ? `<a class="badge b-run" style="padding:7px 12px;font-size:12.5px" href="/api/projects/${encodeURIComponent(st.project_id)}/exports.zip" download>⬇ 전체 산출물 zip 받기</a>` : ""}
-          <button class="btn-sm" onclick="openProjectFolder('exports')">📂 출판 폴더 열기</button>
+    <div class="card" style="background:var(--surface);border-color:rgba(56,189,248,.38)">
+      <div class="card-head" style="margin-bottom:10px">
+        <div>
+          <h3 class="card-title">🔄 추가 포맷 사후 변환 모듈 <span class="muted" style="font-weight:500">(필요할 때만 개별 변환)</span></h3>
+          <div class="muted">Word(DOCX), 신국판·B5·A4 추가 판형, 국내 학회지 규격 PDF, 단원별 분할 HTML, Quarto, 표지·목차 등은 필요 시 아래 버튼으로 즉시 변환합니다.</div>
         </div>
+        <button class="btn-sm" onclick="switchMainTab('monetization')">💼 POD·수익화 패키징 이동</button>
       </div>
-      ${chIds.length ? `
-        <div style="max-height:420px;overflow:auto;">
+
+      <div class="flex" style="gap:8px;margin-bottom:12px">
+        ${convBtns.map(b => `<button class="btn-sm" onclick="runConvertOutput('${b.id}')" title="${esc(b.name)}로 변환">${b.icon} ${esc(b.name)}</button>`).join("")}
+      </div>
+
+      ${convList.length ? `
+        <div style="border-top:1px solid var(--border);padding-top:10px">
+          <div class="muted mb8" style="font-weight:700;color:#cbd5e1">✅ 사후 변환 완료된 파일 (${convList.length}종)</div>
+          <div class="flex" style="gap:8px">
+            ${convList.map(c => `
+              <a class="badge b-done" style="padding:7px 12px;font-size:12.5px" href="${esc(c.url || '#')}" target="_blank">
+                ${esc(c.icon || "📄")} ${esc(c.name_ko || c.format)} (${esc(c.size_kb || 0)} KB)
+              </a>
+            `).join("")}
+          </div>
+        </div>
+      ` : `<div class="muted">아직 추가 변환된 포맷이 없습니다. 필요한 포맷 버튼을 클릭하면 <code>exports/converted/</code>에 깔끔하게 생성됩니다.</div>`}
+    </div>
+
+    ${chIds.length ? `
+      <details class="card" style="background:var(--surface)">
+        <summary style="cursor:pointer;font-weight:700;color:#94a3b8">📁 이전 버전 단원별 개별 출판물 (${chIds.length}개 단원 — 호환 보관)</summary>
+        <div style="max-height:360px;overflow:auto;margin-top:10px">
           <table class="tbl">
-            <thead><tr><th>단원</th><th>들어간 그림</th><th>교재 PDF</th><th>Word 파일</th><th>웹페이지</th><th>네이버 블로그용</th></tr></thead>
+            <thead><tr><th>단원</th><th>그림</th><th>PDF</th><th>DOCX</th><th>웹페이지</th><th>네이버HTML</th></tr></thead>
             <tbody>
               ${chIds.map(cid => {
                 const vc = Number(boundMap[cid] || 0);
                 return `<tr>
                   <td><strong>${esc(cid)}</strong></td>
-                  <td><span class="badge ${vc>0?'b-done':'b-wait'}">${vc>0 ? `🔗 ${vc}종 결합됨` : '0종'}</span></td>
-                  <td>${outputs[cid+"_textbook_pdf"] ? `<a class="badge b-run" href="${esc(outputs[cid+"_textbook_pdf"])}" target="_blank">📕 PDF</a>` : "-"}</td>
-                  <td>${outputs[cid+"_report_docx"] ? `<a class="badge b-run" href="${esc(outputs[cid+"_report_docx"])}" target="_blank">📘 DOCX</a>` : "-"}</td>
-                  <td>${outputs[cid+"_naver_web"] ? `<a class="badge b-done" href="${esc(outputs[cid+"_naver_web"])}" target="_blank">🌐 웹페이지</a>` : "-"}</td>
-                  <td>${outputs[cid+"_naver_pure"] ? `<a class="badge b-done" href="${esc(outputs[cid+"_naver_pure"])}" target="_blank">🟢 네이버HTML</a>` : "-"}</td>
+                  <td><span class="badge ${vc>0?'b-done':'b-wait'}">${vc}종</span></td>
+                  <td>${outputs[cid+"_textbook_pdf"] ? `<a class="badge b-run" href="${esc(outputs[cid+"_textbook_pdf"])}" target="_blank">PDF</a>` : "-"}</td>
+                  <td>${outputs[cid+"_report_docx"] ? `<a class="badge b-run" href="${esc(outputs[cid+"_report_docx"])}" target="_blank">DOCX</a>` : "-"}</td>
+                  <td>${outputs[cid+"_naver_web"] ? `<a class="badge b-done" href="${esc(outputs[cid+"_naver_web"])}" target="_blank">웹</a>` : "-"}</td>
+                  <td>${outputs[cid+"_naver_pure"] ? `<a class="badge b-done" href="${esc(outputs[cid+"_naver_pure"])}" target="_blank">네이버</a>` : "-"}</td>
                 </tr>`;
               }).join("")}
             </tbody>
           </table>
         </div>
-      ` : `<div class="muted">6단계 출판을 실행하면 각 단원의 시각화(10종+)가 결합된 교재 PDF·보고서 DOCX·네이버 블로그 HTML 파일이 생성됩니다.</div>`}
-    </div>
+      </details>
+    ` : ""}
 
     <div class="card" style="background:var(--surface)">
-      <h3 class="card-title mb8">📄 6단계 교재 생성 완료 종합 보고서 (06_final_book_report.md)</h3>
-      <div class="md-box">${rep && rep.exists ? renderMd(rep.content) : '<span class="muted">6단계 완료 시 교재 생성 완료 종합 보고서가 자동 생성됩니다.</span>'}</div>
+      <h3 class="card-title mb8">📄 6단계 출판 완료 종합 보고서 (06_final_book_report.md)</h3>
+      <div class="md-box">${rep && rep.exists ? renderMd(rep.content) : '<span class="muted">6단계 완료 시 출판 완료 종합 보고서가 자동 생성됩니다.</span>'}</div>
     </div>
   `;
+}
+
+async function runPublishDefaultTwo() {
+  if (!CURRENT_PID) return toast("먼저 프로젝트를 선택해 주세요.");
+  toast("⚡ 기본 2종 산출물(마스터 PDF + 블로그용 단일 HTML)을 생성 중입니다...", 5000);
+  try {
+    const res = await api(`/api/projects/${encodeURIComponent(CURRENT_PID)}/publish-default`, { method: "POST" });
+    const d = res.default_outputs || {};
+    toast(`✅ 기본 2종 생성 완료! PDF(${d.master_pdf?.size_kb || 0}KB) + 블로그 HTML(${d.blog_single_html?.size_kb || 0}KB)`, 5000);
+    await loadCurrentProject();
+  } catch (e) {
+    toast("❌ 기본 출판 오류: " + e.message, 5000);
+  }
+}
+
+async function runConvertOutput(targetFormat) {
+  if (!CURRENT_PID) return toast("먼저 프로젝트를 선택해 주세요.");
+  toast(`🔄 [${targetFormat}] 포맷으로 변환 중입니다...`, 5000);
+  try {
+    const res = await api(`/api/projects/${encodeURIComponent(CURRENT_PID)}/convert-output`, {
+      method: "POST",
+      body: JSON.stringify({ target_format: targetFormat }),
+    });
+    const c = res.conversion || {};
+    toast(`✅ 변환 완료: ${c.icon || ""} ${c.name_ko || targetFormat} (${c.size_kb || 0} KB)`, 5000);
+    await loadCurrentProject();
+  } catch (e) {
+    toast("❌ 포맷 변환 오류: " + e.message, 5000);
+  }
 }
 
 // ============================================================

@@ -398,6 +398,72 @@ def test_academic_paper_review_standard_rules_and_enforcement():
     assert "paperStandardBanner" in r_setup.text
 
 
+def test_default_two_outputs_korean_journal_pdf_and_converter():
+    """기본 2종 산출물(PDF + 블로그용 단일 HTML), 국내 학회지 논문 규격 PDF 조판, 사후 포맷 변환 모듈 검증."""
+    from pathlib import Path
+    from output_converter import (
+        CONVERSION_FORMATS,
+        KOREAN_JOURNAL_PDF_SPEC,
+        render_korean_journal_html,
+        render_single_blog_html,
+    )
+
+    # 1) 국내 학회지 논문 규격 규칙 문서 및 스펙 검증
+    rule_file = Path(__file__).resolve().parent.parent / ".agents" / "rules" / "academic-paper-review-standard.md"
+    rule_text = rule_file.read_text(encoding="utf-8")
+    assert "국내 학회지 논문 규격" in rule_text
+    assert "2단 편집" in rule_text
+    assert "3선표" in rule_text
+    assert KOREAN_JOURNAL_PDF_SPEC["page_size"] == "210mm 297mm"
+    assert KOREAN_JOURNAL_PDF_SPEC["column_count"] == 2
+    assert KOREAN_JOURNAL_PDF_SPEC["three_line_table"] is True
+
+    # 2) 사후 변환 포맷 카탈로그 검증
+    for required_fmt in ("docx", "korean_journal_pdf", "b5_pdf", "shinkuk_pdf", "a4_pdf", "markdown_master", "chapter_split_html"):
+        assert required_fmt in CONVERSION_FORMATS
+
+    # 3) 국내 학회지 논문 규격 HTML 렌더링 (1단 표제/초록 + 2단 본문 + 최하단 참고문헌)
+    sample_state = {
+        "project_id": "test_paper",
+        "topic_ko": "저탄소 벼 물관리 메타분석",
+        "topic_en": "Meta-analysis of Low-Carbon Rice Water Management",
+        "primary_output_type": "paper",
+        "keywords_ko": ["간단관개", "메탄저감", "벼수량"],
+    }
+    sample_chs = [
+        {"index": 1, "chapter_id": "ch01", "chapter_role": "abstract", "title": "1. 초록 (Abstract)", "body": "# 1. 초록\n\n## 1.1 국문 초록\n본 총설은 AWD의 메탄 저감 효과를 정량 분석하였다 [SRC-01]."},
+        {"index": 2, "chapter_id": "ch02", "chapter_role": "methods", "title": "2. 재료 및 방법", "body": "# 2. 재료 및 방법\n\n## 2.1 문헌 탐색\nPRISMA 기준에 따라 선별하였다 [SRC-01]."},
+        {"index": 3, "chapter_id": "ch03", "chapter_role": "results_discussion", "title": "3. 결과 및 고찰", "body": "# 3. 결과 및 고찰\n\n## 3.1 정량 비교\n| 처리 | CH4 저감(%) |\n|---|---|\n| AWD | 42.5 [SRC-01] |"},
+        {"index": 4, "chapter_id": "ch04", "chapter_role": "core_summary", "title": "4. 핵심 내용 요약", "body": "# 4. 핵심 내용 요약\n\n- AWD는 CH4 배출을 42.5% 저감한다 [SRC-01]."},
+        {"index": 5, "chapter_id": "ch05", "chapter_role": "references", "title": "5. 참고문헌", "body": "# 5. 참고문헌\n\n1. Kim et al. (2024). AWD Study. *Field Crops Res.* `[SRC-01]`"},
+    ]
+    j_html = render_korean_journal_html(sample_state, sample_chs)
+    assert "column-count: 2" in j_html
+    assert "abstract-box" in j_html
+    assert "journal-two-col" in j_html
+    assert "journal-references" in j_html
+    assert "210mm 297mm" in j_html
+
+    # 4) 블로그용 단일 HTML 통합 렌더링 (1파일 + 복사 버튼 + 전체 섹션 포함)
+    b_html = render_single_blog_html(sample_state, sample_chs)
+    assert "blogCopyRoot" in b_html
+    assert "copyBlogBody()" in b_html
+    assert "sec-ch01" in b_html and "sec-ch05" in b_html
+
+    # 5) REST API 및 대시보드 UI 확인
+    client = TestClient(agents_app)
+    r_fmt = client.get("/api/output-converter/formats")
+    assert r_fmt.status_code == 200
+    assert "docx" in r_fmt.json()["formats"]
+    assert r_fmt.json()["korean_journal_pdf_spec"]["column_count"] == 2
+
+    r_ui = client.get("/")
+    assert r_ui.status_code == 200
+    assert "runPublishDefaultTwo" in r_ui.text
+    assert "runConvertOutput" in r_ui.text
+
+
+
 
 
 

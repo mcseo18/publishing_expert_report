@@ -1,0 +1,96 @@
+book_metadata:
+  title_ko: 작물 대상 3차원 이미지 모델 개발
+  title_en: Development of 3D Image Models for Crops
+  target_audience: 국내외 학회지 심사위원, 대학교수, 농학·생명과학 연구자
+  book_summary_ko: 《작물 대상 3차원 이미지 모델 개발》 75p 전문 대학교재 및 현장 실무 지침서
+  target_pages: 60
+  target_total_pages: 60
+  chapter_count: 5
+  engine_used: Ollama (gemma4:latest)
+  generated_at: '2026-11-22T22:20:28+00:00'
+  primary_output_type: paper
+  paper_structure_enforced: true
+  results_discussion_share_pct: 66.7
+domain_keywords:
+- domain: Development of 3D Image Models for Crops
+  keywords_ko:
+  - 작물 3D 모델링
+  - 디지털 트윈
+  - 3D 재구성
+  - 데이터 획득
+  - NeRF
+  - 3D 복원
+  - 점군 생성
+  - 형태학적 분석
+  - 시계열 모델링
+  - 3D 의미론적 분할
+  - 3D 비전 AI
+  - 고정밀 모델
+  - 정밀 농업
+  - 참고문헌
+  - 문헌 고찰
+  keywords_en:
+  - Crop 3D Modeling
+  - Digital Twin
+  - 3D Reconstruction
+  - Data Acquisition
+  - NeRF
+  - Point Cloud Generation
+  - Morphological Analysis
+  - Time-series Modeling
+  - 3D Semantic Segmentation
+  - 3D Vision AI
+  - High-fidelity Model
+  - Precision Agriculture
+  - References
+  - Literature Review
+parts:
+- part_number: 1
+  title: 학술 논문 · 리뷰 표준 5대 구성 (SCI(E) / KCI 등재지 즉시 투고 수준)
+  pages: 60
+  chapters:
+  - chapter_id: ch01
+    chapter_number: 1
+    title: 1. 초록 (Abstract)
+    target_pages: 10
+    summary_ko: 《작물 대상 3차원 이미지 모델 개발》 전체 연구/리뷰의 배경, 방법, 핵심 정량 결과, 학술적 의의를 집약한 단일 통합 초록(국·영문) 및 핵심어.
+    sections:
+    - 1.1 국문 초록 및 핵심어 (Keywords)
+    - 1.2 영문 Abstract & Keywords
+  - chapter_id: ch02
+    chapter_number: 2
+    title: 2. 재료 및 방법 (Materials and Methods)
+    target_pages: 10
+    summary_ko: 작물 대상 3차원 이미지 모델 개발의 연구 설계, 문헌/데이터 선정·제외 기준, 정량 추출·통계·품질 평가 절차를 4개 세부 절로 재현 가능하게 기술한다.
+    sections:
+    - 2.1 데이터 획득 및 전처리 (Data Acquisition and Preprocessing)
+    - 2.2 3D 복원 알고리즘 설계 (3D Reconstruction Algorithm Design)
+    - 2.3 작물 특화 모델 구현 (Crop-Specific Model Implementation)
+    - 2.4 성능 평가 지표 및 검증 (Performance Metrics and Validation)
+  - chapter_id: ch03
+    chapter_number: 3
+    title: 3. 결과 및 고찰 (Results and Discussion)
+    target_pages: 20
+    summary_ko: 작물 대상 3차원 이미지 모델 개발에 대해 SCI(E) / KCI 등재지 즉시 투고 수준 즉시 투고 수준의 6단계 심층 논리(정량 발견→기작 해석→선행연구 비교·불일치 규명→경계조건·트레이드오프→학술·현장 함의→한계·향후과제)로
+      5개 세부 절을 심도 있게 전개한다.
+    sections:
+    - 3.1 단일 시점 및 다중 시점 3D 복원 성능 분석
+    - 3.2 딥러닝 기반 작물 형태학적 특징 추출 및 분할
+    - 3.3 가려짐 영역(Occlusion) 복원 및 구조적 정합 연구
+    - 3.4 4D 생육 모델링을 위한 시계열 데이터 통합
+    - 3.5 종합 고찰, 방법론적 한계(Limitations) 및 향후 연구 과제
+  - chapter_id: ch04
+    chapter_number: 4
+    title: 4. 핵심 내용 요약 (Core Summary & Highlights)
+    target_pages: 10
+    summary_ko: 《작물 대상 3차원 이미지 모델 개발》 전체 분석의 핵심 정량 발견(Highlights 4~6개)과 학술·실무 종합 결론을 단 1회 압축 정리한다.
+    sections:
+    - 4.1 핵심 연구 발견 (Highlights)
+    - 4.2 종합 결론 (Concluding Remarks)
+  - chapter_id: ch05
+    chapter_number: 5
+    title: 5. 참고문헌 (References)
+    target_pages: 10
+    summary_ko: 본문(1~4항목)에서 실제 인용된 모든 [SRC-NN] 1차 근거 출처를 중복 없이 APA 7th / 한국농학계 표준 서식으로 마지막에 단 1회 통합 수록한다.
+    sections:
+    - 5.1 통합 참고문헌 목록 (APA 7th / 한국농학계 표준)

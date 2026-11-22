@@ -2107,89 +2107,47 @@ def _run_stage5_visuals_generate(state: dict[str, Any], cfg: PlatformConfig) -> 
 
 
 def _run_stage6_publish_report(state: dict[str, Any], cfg: PlatformConfig) -> None:
-    from build_outputs import (
-        _load_all_sources_map,
-        _parse_frontmatter,
-        build_curriculum,
-        build_executive_report,
-        build_interactive_web,
-        build_textbook,
-    )
-    from figure_registry import load_chapter_visuals
+    from output_converter import publish_default_outputs
 
     pid = state["project_id"]
     sid = "stage6_publish_report"
-    _update_stage(state, sid, cfg, status="RUNNING", progress=10, started_at=utc_now_iso(), current_action="단원별 시각화 자료 로드 및 문서 결합 출판 준비 중...", error="")
+    otype = state.get("primary_output_type") or (state.get("output_profile") or {}).get("primary_output_type") or "textbook"
+    pdf_desc = "국내 학회지 논문 규격 PDF(A4 2단)" if otype == "paper" else "마스터 PDF"
+    _update_stage(
+        state,
+        sid,
+        cfg,
+        status="RUNNING",
+        progress=15,
+        started_at=utc_now_iso(),
+        current_action=f"기본 핵심 산출물 2종({pdf_desc} + 블로그용 단일 HTML) 생성 중...",
+        error="",
+    )
+    append_event(pid, "book-publisher", sid, f"6단계 시작: 중복 제거 기본 2종 출판 ({pdf_desc} + 블로그용 단일 HTML)", cfg=cfg)
 
-    ws_path = Path(state["workspace_dir"])
-    ch_dir = ws_path / "chapters"
-    exp_root = ws_path / "exports"
-    exp_root.mkdir(parents=True, exist_ok=True)
-    e_proj_exp = cfg.project_e_exports_dir(pid)
-    e_proj_exp.mkdir(parents=True, exist_ok=True)
-    sources_map = _load_all_sources_map(cfg)
-    visuals_map = load_chapter_visuals(project_ws=ws_path)
-    total_vis_loaded = sum(len(v) for v in visuals_map.values())
-    append_event(pid, "book-publisher", sid, f"시각화 자산 {total_vis_loaded}종({len(visuals_map)}개 단원) 로드 완료 → PDF·DOCX·네이버 HTML 결합 시작", cfg=cfg)
+    res = publish_default_outputs(pid, cfg=cfg)
+    fresh = load_project_state(pid, cfg)
+    if fresh:
+        state.clear()
+        state.update(fresh)
 
-    built_files: list[str] = []
-    outputs_map: dict[str, str] = {}
-    bound_visuals_by_ch: dict[str, int] = {}
-    ch_files = sorted(ch_dir.glob("*.mdx"))
-    pub_done: set[str] = set(state.setdefault("checkpoint", {}).get("published_chapters") or [])
+    d_out = res.get("default_outputs") or {}
+    pdf_info = d_out.get("master_pdf") or {}
+    blog_info = d_out.get("blog_single_html") or {}
+    built_files = res.get("built_files") or []
 
-    for idx, p in enumerate(ch_files, 1):
-        if _should_stop(pid):
-            _update_stage(state, sid, cfg, status="INTERRUPTED", current_action=f"출판 중단 ({len(pub_done)}/{len(ch_files)}장 완료 — 이어하기 가능)")
-            return
-        cid = p.stem
-        meta, body = _parse_frontmatter(p.read_text(encoding="utf-8"))
-        meta["book_title"] = state.get("topic_ko", "")
-        out_dir = exp_root / cid
-        out_dir.mkdir(parents=True, exist_ok=True)
-        n_vis = len(visuals_map.get(cid, []))
+    append_event(
+        pid,
+        "book-publisher",
+        sid,
+        f"기본 산출물 2종 완료: ① {pdf_info.get('label_ko', '마스터 PDF')} ({pdf_info.get('size_kb', 0)} KB), "
+        f"② 블로그용 단일 HTML ({blog_info.get('size_kb', 0)} KB) · 시각화 {res.get('total_visuals_bound', 0)}종 결합",
+        cfg=cfg,
+    )
 
-        build_textbook(cid, meta, body, out_dir, visuals_map=visuals_map)
-        build_curriculum(cid, meta, body, out_dir, visuals_map=visuals_map)
-        build_executive_report(cid, meta, body, out_dir, visuals_map=visuals_map)
-        r_wb = build_interactive_web(cid, meta, body, sources_map, out_dir, visuals_map=visuals_map)
-
-        e_ch = e_proj_exp / cid
-        e_ch.mkdir(parents=True, exist_ok=True)
-        for f in out_dir.iterdir():
-            if f.is_file():
-                shutil.copy2(f, e_ch / f.name)
-                built_files.append(str(f))
-
-        outputs_map[f"{cid}_textbook_pdf"] = f"/project-files/{pid}/exports/{cid}/{cid}_textbook.pdf"
-        outputs_map[f"{cid}_report_docx"] = f"/project-files/{pid}/exports/{cid}/{cid}_report.docx"
-        outputs_map[f"{cid}_naver_web"] = f"/project-files/{pid}/exports/{cid}/{cid}_interactive.html"
-        outputs_map[f"{cid}_naver_pure"] = f"/project-files/{pid}/exports/{cid}/{cid}_naver_blog.html"
-        bound_visuals_by_ch[cid] = n_vis
-        pub_done.add(cid)
-        state["checkpoint"]["published_chapters"] = sorted(pub_done)
-        state["bound_visuals_by_chapter"] = bound_visuals_by_ch
-        _update_stage(state, sid, cfg, progress=18 + int((idx / max(1, len(ch_files))) * 70), current_action=f"{cid} 출판 완료 (시각화 {n_vis}종 PDF·DOCX·HTML 결합)")
-        append_event(pid, "book-publisher", sid, f"{cid} 출판 완료 (시각화 {n_vis}종 결합 · 해시태그 20개 소단원 {r_wb.get('subsections_with_20_hashtags')}곳)", cfg=cfg)
-
-    state["outputs"] = outputs_map
-    # 표지(Cover) · 머리말 · 전체 목차(TOC) 페이지 자동 생성 및 산출물 연결
-    try:
-        from build_cover_toc import build_project_cover_and_toc
-
-        fm_res = build_project_cover_and_toc(pid, cfg=cfg)
-        for k, u in (fm_res.get("files") or {}).items():
-            outputs_map[f"00_cover_toc_{k}"] = u
-        built_files.extend([str(Path(fm_res["local_dir"]) / f"cover_and_toc.{ext}") for ext in ("html", "pdf", "docx", "md") if (Path(fm_res["local_dir"]) / f"cover_and_toc.{ext}").is_file()])
-        append_event(pid, "book-publisher", sid, f"표지 · 머리말 · 전체 목차 페이지({fm_res['chapter_count']}장) 생성 완료", cfg=cfg)
-    except Exception as exc:
-        append_event(pid, "book-publisher", sid, f"표지·목차 생성 경고: {exc}", level="WARN", cfg=cfg)
-    state["outputs"] = outputs_map
-    save_project_state(state, cfg)
-
-    _update_stage(state, sid, cfg, progress=94, current_action="6단계 교재 생성 완료 종합 보고서(06_final_book_report.md) 작성 중...")
+    _update_stage(state, sid, cfg, progress=92, current_action="6단계 출판 완료 종합 보고서(06_final_book_report.md) 작성 중...")
     rep_md = _write_stage6_report(state, {"published_files": len(built_files)}, cfg)
-    append_event(pid, "book-publisher", sid, f"6단계 교재 생성 완료 종합 보고서 작성 완료: {rep_md.name}", cfg=cfg)
+    append_event(pid, "book-publisher", sid, f"6단계 출판 완료 종합 보고서 작성 완료: {rep_md.name}", cfg=cfg)
     _update_stage(
         state,
         sid,
@@ -2197,9 +2155,15 @@ def _run_stage6_publish_report(state: dict[str, Any], cfg: PlatformConfig) -> No
         status="DONE",
         progress=100,
         finished_at=utc_now_iso(),
-        current_action=f"최종 출판({len(built_files)}개 파일) 및 교재 완료 보고서 생성 완료",
-        metrics={"published_files": len(built_files), "chapters_published": len(ch_files), "report": rep_md.name},
-        artifacts=[str(rep_md)] + built_files[:6],
+        current_action=f"기본 산출물 2종 완료 ({pdf_info.get('label_ko', 'PDF')} + 블로그용 단일 HTML) · 추가 포맷은 변환 모듈에서 선택 생성",
+        metrics={
+            "published_files": len(built_files),
+            "chapters_published": res.get("chapters_count", 0),
+            "total_visuals_bound": res.get("total_visuals_bound", 0),
+            "master_pdf_mode": pdf_info.get("mode", ""),
+            "report": rep_md.name,
+        },
+        artifacts=[str(rep_md)] + built_files,
     )
 
 

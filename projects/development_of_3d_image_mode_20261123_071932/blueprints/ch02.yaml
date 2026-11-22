@@ -1,0 +1,10 @@
+chapter_id: ch02
+chapter_number: 2
+title: 2. 재료 및 방법 (Materials and Methods)
+target_pages: 10
+summary_ko: 작물 대상 3차원 이미지 모델 개발의 연구 설계, 문헌/데이터 선정·제외 기준, 정량 추출·통계·품질 평가 절차를 4개 세부 절로 재현 가능하게 기술한다.
+sections:
+- 2.1 데이터 획득 및 전처리 (Data Acquisition and Preprocessing)
+- 2.2 3D 복원 알고리즘 설계 (3D Reconstruction Algorithm Design)
+- 2.3 작물 특화 모델 구현 (Crop-Specific Model Implementation)
+- 2.4 성능 평가 지표 및 검증 (Performance Metrics and Validation)
