@@ -1,0 +1,12 @@
+이미지 번호: 그림 9-7
+이미지 파일명: fig_ch09_v07.png
+단원: 제9장. 농작업 무인 자동화와 RTK-GPS 자율주행 농기계 기술 (ch09)
+결합 절: 9.3 추대 제거(마늘종 꺾기) 및 중경 제초 자동화 로봇 기술
+시각화 유형: photorealistic_macro
+제목: [그림 9-7] 3D 비전 기반 마늘종(추대) 자동 절단·피킹 로봇 엔드이펙터
+
+[문맥 기반 이미지 설명]
+[그림 9-7] 마늘 생육 후기 마늘종(꽃대)을 자동으로 식별하여 절단하는 스마트 농업 로봇의 정밀 엔드이펙터(End-Effector) 클로즈업 사진이다. 다관절 로봇 팔 선단에 탑재된 스테레오 깊이 카메라와 고성능 조명이 마늘 엽초 사이로 솟아오른 둥근 꽃봉오리와 줄기를 인식하고 초소형 전동 전정 가위가 정확한 위치를 집어내 절단한다 [SRC-103]. 이 자동화 기술은 마늘 인경으로의 양분 집중을 유도하는 필수 농작업의 노동력을 획기적으로 절감한다.
+
+[나노바나나 생성 프롬프트]
+An ultra-sharp macro photograph of a robotic picking gripper operating on a standing mature garlic plant. A specialized miniature carbon-fiber robotic claw with dual sharp tungsten cutter blades holds and snips the coiled green floral scape (garlic scape) just above the strap-like leaves. An integrated compact stereo depth camera and circular LED ring light illuminate the dew droplets on the garlic sheath in crisp botanical detail. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

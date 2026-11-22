@@ -1,0 +1,12 @@
+이미지 번호: 그림 4-10
+이미지 파일명: fig_ch04_v10.png
+단원: 제4장. 정밀 양파 재배를 위한 스마트 토양 물리·화학성 평가 및 작부체계 (ch04)
+결합 절: 오해와 진실: 현장·이론 핵심 오해 교정
+시각화 유형: scientific_anatomy
+제목: [그림 4-10] 토양 경반층 존재 유무에 따른 양파 구 비대 및 근계 신장 양상 비교
+
+[문맥 기반 이미지 설명]
+[그림 4-10] 단순히 표토에 유기물을 투입하더라도 심토에 단단한 경반층이 잔존하면 양파 뿌리가 수평으로 굴절되어 생육이 크게 억제됩니다. 반면 심토 파쇄 및 물리성 개량을 거친 토양에서는 뿌리가 수직으로 깊게 신장하여 수분과 양분을 균형 있게 흡수합니다. 본 비교도는 토양 가비중과 물리적 층위 구조의 종합적 관리가 건전한 구 비대를 달성하는 필수 요건임을 증명합니다 [SRC-27].
+
+[나노바나나 생성 프롬프트]
+Scientific cross-section editorial illustration on a clean pure white background comparing two distinct soil profile conditions for Allium cepa cultivation. Left side illustrates a dense hardpan layer where the onion root system is flattened horizontally with a stunted, deformed bulb. Right side illustrates deep, fractured subsoil with loose aggregate structure where healthy white roots penetrate deeply and uniformly beneath a large, perfectly spherical golden onion bulb. Rendered with realistic geological stratification and detailed botanical textures. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

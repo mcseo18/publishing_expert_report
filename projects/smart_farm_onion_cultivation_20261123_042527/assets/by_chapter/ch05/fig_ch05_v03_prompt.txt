@@ -1,0 +1,12 @@
+이미지 번호: 그림 5-3
+이미지 파일명: fig_ch05_v03.png
+단원: 제5장. 토양 수분 모니터링 센서 네트워크와 스마트 관개 자동화 (ch05)
+결합 절: 5.1 FDR/TDR 센서 및 텐시오미터(Tensiometer)의 원리, 보정 계수 및 설치 프로토콜
+시각화 유형: photorealistic_macro
+제목: [그림 5-3] 토양 유형별 체적 수분 함량(θv) 보정 곡선 도출을 위한 유전율 측정 실험
+
+[문맥 기반 이미지 설명]
+[그림 5-3] 포장에서 채취한 불교란 토양 코어 샘플에 고주파 FDR 센서를 삽입하여 유전율(ε)과 실제 건토 중량 간의 상관관계를 분석하는 실내 보정 실험 장면이다. 센서 측정값은 토양의 물리적 특성인 용적밀도와 유기물 함량에 따라 오차가 발생하므로 엄격한 보정 곡선(Calibration Curve) 확립이 필수적이다 [SRC-118]. 정밀 전자저울과 분석 기기가 결합된 정밀 계측 환경을 보여준다.
+
+[나노바나나 생성 프롬프트]
+Photorealistic macro photograph in an agricultural research laboratory. An undisturbed soil core sample packed inside a stainless steel cylindrical sampling ring sits on a precision digital balance. A three-pronged FDR dielectric sensor probe is inserted firmly into the loamy soil surface. A digital benchtop meter and laboratory glassware are visible in soft focus in the background. Crisp laboratory lighting, showing fine soil crumb structure and brushed metallic surfaces of the measurement instrument. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

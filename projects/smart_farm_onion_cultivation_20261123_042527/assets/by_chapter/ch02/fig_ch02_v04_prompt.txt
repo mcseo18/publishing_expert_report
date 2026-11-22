@@ -1,0 +1,12 @@
+이미지 번호: 그림 2-4
+이미지 파일명: fig_ch02_v04.png
+단원: 제2장. 양파의 식물학적 분류체계와 스마트 팜 맞춤형 품종 특성 (ch02)
+결합 절: 생리·분자 메커니즘
+시각화 유형: scientific_anatomy
+제목: [그림 2-4] 양파 저장 인경 세포막에서의 에틸렌 수용체 결합 및 노화 신호전달 제어 경로
+
+[문맥 기반 이미지 설명]
+[그림 2-4] 수확 후 저장 인경의 실질 세포(parenchyma cell) 막에서 일어나는 식물 호르몬 에틸렌(C2H4)의 수용체 결합 및 노화 신호전달 메커니즘을 상세히 표현한 분자생물학적 단면도이다. 에틸렌 분자가 막단백질 수용체와 결합하여 세포벽 분해 효소 활성화를 유도하는 단계와, 이를 차단하여 구근 저장성을 유지하는 억제 기작을 직관적으로 보여준다. 문헌 [SRC-108]과 [SRC-109]의 에틸렌 화학반응 및 수확 후 호르몬 제어 이론을 체계적으로 뒷받침한다.
+
+[나노바나나 생성 프롬프트]
+Scientific biological illustration set against a clean pure white background detailing the cellular membrane mechanisms in an onion bulb storage scale during post-harvest dormancy. Detailed cutaway of onion parenchymal cell wall and lipid bilayer membrane featuring transmembrane ethylene receptor protein complexes. Shaded molecular models of ethylene molecules approaching binding sites alongside competing inhibitor molecules preventing breakdown cascades. The surrounding cytoplasm illustrates vacuolar storage of reserve carbohydrates, with realistic biological texturing, painterly medical scientific journal quality, zero text. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

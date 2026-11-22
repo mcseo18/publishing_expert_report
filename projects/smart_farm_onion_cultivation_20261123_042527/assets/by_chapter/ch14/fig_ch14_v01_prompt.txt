@@ -1,0 +1,12 @@
+이미지 번호: 그림 14-1
+이미지 파일명: fig_ch14_v01.png
+단원: 제14장. 양파 비파괴 선별 및 유통 디지털 트레이서빌리티 (ch14)
+결합 절: 개념 소개 및 이론적 배경
+시각화 유형: photorealistic_macro
+제목: [그림 14-1] 건전 양파와 잠복형 내부 인편 부패 양파의 횡단면 비교
+
+[문맥 기반 이미지 설명]
+[그림 14-1] 외관상으로는 황동색 외피가 온전하여 육안 선별이 불가능하지만 절단 시 내부 다육질 인편에 박테리아성 무름 증상이 발생한 양파와 완전 무결한 정상 양파의 단면을 대비한 초고해상도 매크로 사진입니다. 전통적인 육안 검사 및 파괴 검사의 치명적 한계를 보여주며 비파괴 내부 품질 진단 기술 도입의 당위성을 제시합니다 [SRC-161]. 인편 층 사이의 수분 이상 및 미세 조직 변성을 비파괴 분광 센서로 판별하기 위한 형태학적 대조군을 명확히 전달합니다.
+
+[나노바나나 생성 프롬프트]
+Macro studio photograph of two Allium cepa yellow onion bulbs cut in half crosswise, set side by side on a clean neutral grey laboratory counter. One onion bulb displays pristine, succulent, glistening white concentric scales with firm structure. The adjacent onion bulb has an intact dry papery outer skin but reveals brown, watery, decaying inner fleshy scales with bacterial soft rot in the central rings. Dramatic clinical ring-light illumination, crisp focus showing cellular moisture droplets, fine fibrous tissues, and textural contrasts between healthy and diseased scales. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

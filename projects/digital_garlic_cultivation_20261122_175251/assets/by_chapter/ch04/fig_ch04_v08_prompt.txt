@@ -1,0 +1,12 @@
+이미지 번호: 그림 4-8
+이미지 파일명: fig_ch04_v08.png
+단원: 제4장. 토양 물리·화학성 진단과 디지털 지도를 활용한 입지 최적화 (ch04)
+결합 절: 4.4 필지 단위 토양 디지털 매핑과 정밀 경운 공간 의사결정
+시각화 유형: scientific_anatomy
+제목: [그림 4-8] GIS 기반 격자 데이터와 연동된 다층 토양 전자지도(Electronic Soil Map) 입체 모식도
+
+[문맥 기반 이미지 설명]
+[그림 4-8] 마늘 재배 필지의 지형 표고와 센서·NIR 분석 데이터를 공간 보간하여 생성한 다층(multi-layer) 토양 전자지도의 입체 단면도이다 [SRC-110]. 필지 경계 내에서 유기물 함량, 용적밀도, 토양 산도(pH)가 고유한 색채 구배 격자로 표현되어 공간적 이질성을 한눈에 보여준다. 이 공간 의사결정 모델은 취약 구역을 사전에 식별하고 구역별 맞춤형 관리를 실행할 수 있는 정밀 농업의 시각적 플랫폼 역할을 한다.
+
+[나노바나나 생성 프롬프트]
+Scientific 3D isometric cutaway model on a crisp pure white background representing a multi-layer digital electronic soil map of a garlic farm field. The top surface displays the topography of a cultivated garlic field with neat planting rows. Hovering semitransparent spatial grid layers underneath slice through the terrain, each showing smooth color gradient heatmaps depicting soil pH, bulk density, and organic matter distribution from cool blues to warm ambers. Elegant, technical scientific rendering, high precision, clean aesthetics. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

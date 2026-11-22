@@ -1,0 +1,12 @@
+이미지 번호: 그림 12-7
+이미지 파일명: fig_ch12_v07.png
+단원: 제12장. 분광 센싱·드론 예찰 및 마늘 작물생육모형(Crop Growth Model) (ch12)
+결합 절: 12.3 적산온도, 일장, 광합성 효율 기반 마늘 생육 모형 수리적 설계
+시각화 유형: photorealistic_field
+제목: [그림 12-7] 기상 관측 타워와 토양 수분 프로파일러가 설치된 마늘 스마트 생육 검증 포장
+
+[문맥 기반 이미지 설명]
+[그림 12-7] 마늘 생육 모델의 구동 변수를 측정하기 위해 온습도, 일사량, 풍속을 실시간 수집하는 농업 기상 타워가 설치된 연구 포장의 전경입니다. 마늘 군락 사이 토양 속에는 깊이별(10cm, 20cm, 40cm) FDR 토양 수분 및 지온 센서가 매설되어 지하부 환경을 상시 감시합니다 [SRC-110]. 봄철 구근 비대기에 접어들어 진녹색 엽관을 자랑하는 남도마늘 군락의 생동감 넘치는 현장이 담겨 있습니다 [SRC-111].
+
+[나노바나나 생성 프롬프트]
+Agricultural research station documentary photograph of a thriving garlic field equipped with an automated agrometeorological micrometeorology tower. The sleek metal tripod station features a pyranometer, sonic anemometer, and ambient temperature sensors standing above dense rows of erect garlic plants. Clean sensor cables lead into the mulched soil where moisture probe data loggers monitor the root zone. Clear blue sky with golden sunlight illuminating dew drops on the garlic leaves. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

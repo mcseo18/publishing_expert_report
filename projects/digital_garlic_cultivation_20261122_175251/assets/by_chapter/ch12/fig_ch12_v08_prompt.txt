@@ -1,0 +1,12 @@
+이미지 번호: 그림 12-8
+이미지 파일명: fig_ch12_v08.png
+단원: 제12장. 분광 센싱·드론 예찰 및 마늘 작물생육모형(Crop Growth Model) (ch12)
+결합 절: 12.4 수확량 예측을 위한 생육모형-원격탐사 데이터 동화(Data Assimilation)
+시각화 유형: scientific_anatomy
+제목: [그림 12-8] 앙상블 칼만 필터(EnKF)를 통한 생육모형 상태변수와 드론 분광 관측치의 오차 보정 동화
+
+[문맥 기반 이미지 설명]
+[그림 12-8] 작물생육모형의 이론적 예측 궤적과 드론 센서 관측치가 확률적으로 결합되는 앙상블 칼만 필터(EnKF)의 동화 원리를 시각화한 학술 일러스트입니다. 순수 흰색 배경 위에 시계열에 따라 분산되는 다수의 마늘 지상부 생체중(AGB) 시뮬레이션 곡선들이 드론 원격탐사 관측 시점에서 좁은 오차 범위로 수렴하는 상태 업데이트 과정을 보여줍니다 [SRC-103, SRC-104]. 실제 포장의 비균질성을 보정하여 수확량 예측 불확실성을 극소화하는 수학적 메커니즘을 표현합니다.
+
+[나노바나나 생성 프롬프트]
+Scientific computational concept illustration on a clean pure white background depicting data assimilation for crop growth. A bundle of finely curved ensemble trajectory lines representing simulated garlic biomass growth converges toward a focal observation point where an optical drone sensor symbol injects a measurement. The divergence narrows into an optimized predictive path leading to a realistic botanically illustrated mature garlic bulb. Elegant scientific vector styling with clean gradients, glowing Gaussian error envelopes, and technical clarity, devoid of text or labels. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

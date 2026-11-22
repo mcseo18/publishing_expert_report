@@ -1,0 +1,12 @@
+이미지 번호: 그림 8-8
+이미지 파일명: fig_ch08_v08.png
+단원: 제8장. 종구 조제, 정식 자동화 및 기계화 재배 양식 (ch08)
+결합 절: 8.3.2 천공 동시 작업기 공학 설계
+시각화 유형: scientific_anatomy
+제목: [그림 8-8] 생분해성 필름 피복 및 회전식 원추형 디블러 천공 복합 모듈 설계도
+
+[문맥 기반 이미지 설명]
+[그림 8-8] 멀칭 필름 피복과 동시에 마늘 파종을 위한 정격 규격의 식재 구멍을 타공하는 회전식 천공 드럼의 복합 기계 공학 단면도입니다. 롤러 외주면에 등간격으로 배열된 가열식 원추형 디블러 팁(dibbler tip)이 필름을 찢김 없이 열 절단하며 토양 내부에 일정한 깊이의 파종혈을 형성합니다. 토양 압축을 방지하면서 가스 교환 공극을 유지하기 위한 디블러 형상 변수와 천공 간격 설계 사양이 명확하게 묘사되어 있습니다.
+
+[나노바나나 생성 프롬프트]
+Scientific engineering cross-section illustration of a combined biodegradable film mulching and rotary punching mechanism on a pure white background. Heavy-duty cylindrical rotary drum equipped with protruding conical dibbler punchers rotating over a newly mulched raised bed. The heated stainless steel punchers melting precise clean circular holes into the taut biodegradable film and pressing distinct conical seed cavities into the soft loam soil below without tearing edges. Detailed technical aesthetic showing internal spring-loaded push pins, precision spacing, and layered soil density gradients in textbook technical art style. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

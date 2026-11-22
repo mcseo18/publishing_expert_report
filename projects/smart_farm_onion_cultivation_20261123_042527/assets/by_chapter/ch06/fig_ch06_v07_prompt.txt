@@ -1,0 +1,12 @@
+이미지 번호: 그림 6-7
+이미지 파일명: fig_ch06_v07.png
+단원: 제6장. 정밀 관비(Fertigation) 시스템과 실시간 양분 모니터링 (ch06)
+결합 절: 6.3. 토양 용액 센싱 및 비파괴 엽록소/엽내 질소 분광 센서를 활용한 영양 진단
+시각화 유형: scientific_anatomy
+제목: [그림 6-7] 양파 엽육 조직 내 가시광·근적외선(Vis/NIR) 분광 반사 및 흡수 메커니즘
+
+[문맥 기반 이미지 설명]
+[그림 6-7] 양파 원통형 잎의 큐티클층, 엽육 유조직, 해면상 세포벽 및 세포액 내부로 입사하는 광선(Vis/NIR)의 광학적 산란 및 흡수 경로를 해부학적으로 해석한 과학 일러스트레이션입니다. 가시광선 파장대(적색/청색)가 엽록체에 강하게 흡수되는 반면, 근적외선 파장대(NIR)는 엽육 세포 간극에서 다중 산란을 일으키며 질산태 질소(NO3-) 및 유기 결합 수분 구조에 따라 고유한 투과 반사 신호를 방출함을 명료하게 나타냅니다 [SRC-161, SRC-265].
+
+[나노바나나 생성 프롬프트]
+Scientific anatomical cross-section of a tubular Allium cepa onion leaf on a pure white background, illustrating internal optical interactions of light beams. Incident visible and near-infrared (Vis/NIR) radiation bands enter the waxy outer cuticle layer into the palisade and spongy mesophyll cells containing vibrant green chloroplasts. Detailed cellular view shows visible red wavelengths being absorbed within chloroplasts while near-infrared wavelengths scatter through intercellular air cavities and spongy cell walls before reflecting outward, rendered with elegant scientific lighting and textbook-grade anatomical realism. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

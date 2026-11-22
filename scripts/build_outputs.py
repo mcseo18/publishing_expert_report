@@ -158,29 +158,30 @@ def _print_css(accent: str, header_label: str) -> str:
       size: A4;
       margin: 20mm 18mm 20mm 18mm;
       @top-right {{ content: "{header_label}"; font-size: 8.5pt; color: #64748b; }}
-      @bottom-center {{ content: counter(page); font-size: 9pt; color: #475569; }}
+      @bottom-center {{ content: counter(page); font-size: 9pt; color: #1D3557; }}
     }}
     body {{
-      font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+      font-family: 'KoPubWorldBatang', 'KoPubBatang', 'Malgun Gothic', 'Apple SD Gothic Neo', 'Noto Sans KR', serif;
       font-size: 10.2pt;
       line-height: 1.72;
       color: #1e293b;
       margin: 0;
     }}
     .cover-banner {{
-      background: linear-gradient(135deg, {accent} 0%, #0f172a 100%);
+      background: linear-gradient(135deg, #063b2c 0%, #0f291e 55%, #1D3557 100%);
       color: #ffffff;
       padding: 20px 24px;
       border-radius: 10px;
+      border-bottom: 4px solid #eab308;
       margin-bottom: 18px;
     }}
-    .cover-banner .kicker {{ font-size: 9pt; letter-spacing: 0.8px; opacity: 0.85; text-transform: uppercase; }}
-    .cover-banner h1 {{ margin: 6px 0 4px; font-size: 18pt; color: #ffffff; border: none; padding: 0; }}
-    .cover-banner .meta {{ font-size: 9pt; opacity: 0.9; }}
-    h1 {{ font-size: 16pt; color: #0f172a; border-bottom: 2px solid {accent}; padding-bottom: 6px; margin-top: 22px; }}
-    h2 {{ font-size: 13pt; color: {accent}; border-left: 4px solid {accent}; padding-left: 10px; margin-top: 22px; page-break-after: avoid; }}
-    h3 {{ font-size: 11pt; color: #0f172a; margin-top: 14px; page-break-after: avoid; }}
-    h4 {{ font-size: 9.8pt; color: #047857; background: #ecfdf5; border-left: 3.5px solid #059669; padding: 4px 10px; margin: 10px 0 6px; border-radius: 0 6px 6px 0; page-break-after: avoid; }}
+    .cover-banner .kicker {{ font-family: 'KoPubWorldDotum', 'Pretendard', 'Malgun Gothic', sans-serif; font-size: 9pt; letter-spacing: 0.8px; color: #34d399; text-transform: uppercase; font-weight: 700; }}
+    .cover-banner h1 {{ font-family: 'KoPubWorldDotum', 'Pretendard', 'Malgun Gothic', sans-serif; margin: 6px 0 4px; font-size: 18pt; color: #ffffff; border: none; padding: 0; }}
+    .cover-banner .meta {{ font-family: 'KoPubWorldDotum', 'Malgun Gothic', sans-serif; font-size: 9pt; color: #fef08a; opacity: 0.95; }}
+    h1 {{ font-family: 'KoPubWorldDotum', 'Pretendard', 'Malgun Gothic', sans-serif; font-size: 16pt; color: #1D3557; border-bottom: 2px solid #063b2c; padding-bottom: 6px; margin-top: 22px; }}
+    h2 {{ font-family: 'KoPubWorldDotum', 'Pretendard', 'Malgun Gothic', sans-serif; font-size: 13pt; color: #1D3557; border-left: 4px solid #eab308; padding-left: 10px; margin-top: 22px; page-break-after: avoid; }}
+    h3 {{ font-family: 'KoPubWorldDotum', 'Pretendard', 'Malgun Gothic', sans-serif; font-size: 11pt; color: #063b2c; margin-top: 14px; page-break-after: avoid; }}
+    h4 {{ font-family: 'KoPubWorldDotum', 'Malgun Gothic', sans-serif; font-size: 9.8pt; color: #063b2c; background: #ecfdf5; border-left: 3.5px solid #34d399; padding: 4px 10px; margin: 10px 0 6px; border-radius: 0 6px 6px 0; page-break-after: avoid; }}
     blockquote, .callout {{
       background: #f8fafc;
       border-left: 4px solid {accent};

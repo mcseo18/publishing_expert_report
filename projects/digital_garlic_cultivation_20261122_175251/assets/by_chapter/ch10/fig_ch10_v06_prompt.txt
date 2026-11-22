@@ -1,0 +1,12 @@
+이미지 번호: 그림 10-6
+이미지 파일명: fig_ch10_v06.png
+단원: 제10장. 주요 병해충의 역학적 모델링과 종합적 방제(IPM) (ch10)
+결합 절: 10.2 토양 및 경엽 해충(뿌리응애, 마늘혹응애, 고자리파리)의 생태
+시각화 유형: photorealistic_field
+제목: [그림 10-6] 마늘 생육 초기 가경 기부를 가해하는 고자리파리 유충과 지하부 피해
+
+[문맥 기반 이미지 설명]
+[그림 10-6] 마늘의 생육 초기 지하부 줄기(가경 기부)를 파고들어 섭식하는 고자리파리(Delia antiqua) 유충의 포장 피해 양상을 현장 다큐멘터리 사진으로 보여준다. 10.2절에서 다룬 스트레스-해충 상호작용에 따라, 유충이 마늘 뿌리와 인경 내부를 파먹어 통도조직이 파괴됨으로써 지상부 마늘 잎 끝이 노랗게 마르는 고사 증상이 나타난다 [SRC-100]. 젖은 부식토양을 털어낸 마늘 기부의 벌레 먹은 흔적과 유충의 활동 상태가 선명하게 관찰된다.
+
+[나노바나나 생성 프롬프트]
+Field research documentary photograph of a young garlic (Allium sativum) plant carefully unearthed from damp, dark garden soil. The lower pseudostem and basal plate have been gently exposed, revealing creamy-white, legless cylindrical maggots of the onion fly (Delia antiqua) boring into the subterranean stem tissues. Feeding channels show softened, brown discolored margins, while the fibrous roots appear stunted and partially rotted. In the background, the lower leaves of the garlic plant display early yellowing and wilting, illuminated by realistic diffuse cloudy day outdoor lighting with crisp focus on the insect larvae. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

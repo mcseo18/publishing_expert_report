@@ -1,0 +1,12 @@
+이미지 번호: 그림 12-2
+이미지 파일명: fig_ch12_v02.png
+단원: 제12장. 분광 센싱·드론 예찰 및 마늘 작물생육모형(Crop Growth Model) (ch12)
+결합 절: 12.1 드론 다중분광·열적외선 센싱과 식생지수(NDVI, NDRE) 연산
+시각화 유형: scientific_anatomy
+제목: [그림 12-2] 마늘 엽육 조직 내 가시광선 흡수와 근적외선(NIR)·레드엣지(Red Edge) 반사 메커니즘
+
+[문맥 기반 이미지 설명]
+[그림 12-2] 본 다이어그램은 마늘 잎의 횡단면에서 엽록체가 풍부한 책상조직과 해면조직의 세포 간극 구조를 과학적으로 상세히 묘사합니다. 가시광선 청색 및 적색 대역은 엽록소 a와 b에 의해 강력하게 흡수되는 반면, 세포벽과 세포간극 경계면에서는 근적외선(NIR) 파장이 90% 이상 굴절 반사되는 원리를 보여줍니다 [SRC-103]. 엽록소 농도 변화에 극도로 민감한 705~740nm 레드엣지 대역의 흡수-반사 전이대가 마늘 엽육 내에서 정밀하게 표현되어 있습니다 [SRC-104].
+
+[나노바나나 생성 프롬프트]
+Scientific anatomical cross-section of a healthy garlic leaf mesophyll against a clean pure white background. Finely shaded cellular structure showing upper epidermis, tightly packed columnar palisade cells filled with green chloroplast granules, and spongy parenchyma cells with airy intercellular cavities. Realistic color-coded scientific light rays depicting incoming visible red and blue photons deeply absorbed by chloroplasts, while near-infrared rays strongly scatter and refract across intercellular cellulose walls. A distinct transitional red-edge spectral ray shows subtle absorption gradients across the internal cell layers in clean botanical illustration style. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

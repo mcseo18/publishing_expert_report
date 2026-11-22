@@ -1,0 +1,12 @@
+이미지 번호: 그림 13-7
+이미지 파일명: fig_ch13_v07.png
+단원: 제13장. 스마트 건조(Curing)와 CA/저온 저장 환경 최적화 제어 (ch13)
+결합 절: 13.3 양파 장기 저장을 위한 CA 저장 환경(O2 1~2%, CO2 3~5%, 저온 0℃, 습도 70%) 최적화 (현장 적용 및 실전 기술)
+시각화 유형: scientific_anatomy
+제목: [그림 13-7] 저온·저산소·고이산화탄소 CA 조건에서 양파 세포의 미토콘드리아 호흡 억제 기전
+
+[문맥 기반 이미지 설명]
+[그림 13-7] 0℃ 저온과 저산소(O2 1~2%), 고이산화탄소(CO2 3~5%) 환경에서 양파 유세포 미토콘드리아의 대사 억제 반응을 보여주는 생화학적 세포 모식도입니다[SRC-145]. 전자전달계의 최종 전자수용체인 산소 농도가 제한되고 이산화탄소가 효소 복합체 활성을 저해하여 호흡률(Qr)과 프룩탄(Fructan) 당류 소모가 지수함수적으로 억제됩니다[SRC-111]. 동시에 노화 호르몬인 에틸렌의 생합성 및 작용이 억제되어 구근의 장기 휴면이 유지됩니다[SRC-109].
+
+[나노바나나 생성 프롬프트]
+Detailed scientific illustration of an Allium cepa bulb parenchyma cell on a clean white background, highlighting a large mitochondrion embedded in cytoplasm. Surrounding low-oxygen molecular symbols and elevated carbon dioxide molecular representations interact with the outer mitochondrial membrane. The electron transport chain complexes on the inner cristae membrane show slowed, suppressed ATP production and drastically reduced carbon substrate consumption. Vacuolar storage compartments retain dense sugar carbohydrate reserves, illustrated in clear academic editorial style. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

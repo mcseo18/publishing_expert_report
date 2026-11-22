@@ -1,0 +1,12 @@
+이미지 번호: 그림 10-4
+이미지 파일명: fig_ch10_v04.png
+단원: 제10장. 주요 병해충의 역학적 모델링과 종합적 방제(IPM) (ch10)
+결합 절: 10.1 곰팡이성 및 세균성 병해(흑색경화균핵병, 잎마름병, 무름병)의 병리학
+시각화 유형: scientific_anatomy
+제목: [그림 10-4] 세균성 무름병 감염에 따른 마늘 인편의 펙틴 분해 및 세포벽 붕괴
+
+[문맥 기반 이미지 설명]
+[그림 10-4] 무름병균(Pectobacterium carotovorum)이 분비하는 펙틴 분해 효소에 의해 마늘 인편의 유조직 세포벽이 와해되는 세포학적 과정을 나타낸 학술 도해이다. 10.1절에서 언급된 바와 같이, 병원균은 마늘의 세포간극을 채우고 있는 중엽층의 펙틴을 가수분해하여 마늘 조직 전체를 점액성 연화 상태로 붕괴시킨다 [SRC-100]. 팽압을 잃고 터진 식물 세포로부터 영양분이 유출되어 2차 세균 증식이 가속화되는 감염 순환 메커니즘을 상세히 보여준다.
+
+[나노바나나 생성 프롬프트]
+Detailed editorial scientific anatomical illustration depicting the bacterial soft rot (Pectobacterium carotovorum) pathology inside the fleshy storage clove tissue of garlic (Allium sativum) on a clean white background. In the foreground, rod-shaped bacteria with flagella multiply rapidly within the intercellular spaces of garlic parenchyma cells. Translucent molecular enzyme clouds of pectolytic enzymes dissolve the middle lamella and cellulose cell walls. The adjacent garlic cells lose turgor pressure, rupture, and dissolve into a soft, water-soaked, macerated yellowish fluid, while an inset shows the intact, firm cell wall structure for comparison, with refined scientific textures and subtle lighting. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

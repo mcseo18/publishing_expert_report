@@ -1,0 +1,12 @@
+이미지 번호: 그림 6-10
+이미지 파일명: fig_ch06_v10.png
+단원: 제6장. 토양수분 포텐셜 해석과 센서 기반 지능형 관수 제어 (ch06)
+결합 절: 오해와 진실: 현장·이론 핵심 오해 교정
+시각화 유형: photorealistic_macro
+제목: [그림 6-10] 토양수분 포텐셜 스트레스(pF 2.5 초과)와 정상 관수 마늘의 근계·구 비교
+
+[문맥 기반 이미지 설명]
+[그림 6-10] 고도 건조 상태(과도한 매트릭 장력, pF 2.5 초과)에서 수분 흡수가 저해되어 발육이 위축된 마늘 구·근계와 센서 기반 지능형 관수로 최적 포텐셜을 유지한 정상 마늘의 비교 매크로 사진이다[SRC-107, SRC-104]. 좌측 개체는 근모 탈수 및 갈변 괴사와 구 비대 위축을 보이는 반면, 우측 개체는 굵고 유백색인 건전한 섬유근과 충실하게 살이 오른 구를 나타낸다. '포텐셜이 낮다(장력이 높다)'는 물리적 의미가 마늘 생체 조직에 미치는 파괴적 영향을 시각적으로 명백히 입증한다.
+
+[나노바나나 생성 프롬프트]
+Crisp laboratory comparative macro photograph on a neutral grey slate background showing two harvested whole garlic bulbs (Allium sativum) with roots thoroughly washed. The specimen on the left, subjected to high matric suction stress, exhibits stunted bulb formation, desiccated brown root tips, and withered fibrous roots. The specimen on the right, cultivated under optimal sensor-regulated soil water potential, displays a robust, symmetrical multi-clove bulb with bright white papery sheath and thick, turgid, ivory-white fibrous root cascades, captured under balanced high-CRI laboratory lighting. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

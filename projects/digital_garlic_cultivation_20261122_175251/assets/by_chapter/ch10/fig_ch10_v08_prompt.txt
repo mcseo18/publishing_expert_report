@@ -1,0 +1,12 @@
+이미지 번호: 그림 10-8
+이미지 파일명: fig_ch10_v08.png
+단원: 제10장. 주요 병해충의 역학적 모델링과 종합적 방제(IPM) (ch10)
+결합 절: 10.3 기상 감응형 병해충 발병 예측 역학 모델 수식화
+시각화 유형: photorealistic_field
+제목: [그림 10-8] 마늘 포장 내 자동 공기 포자 채집기 및 기상 감지 노드 네트워크
+
+[문맥 기반 이미지 설명]
+[그림 10-8] 마늘 재배지 한가운데 설치된 자동 공기 회전식 포자 채집기와 IoT 미기상 센서가 가동 중인 포장 현장 사진이다. 10.3절에서 강조된 역학 모델링의 신뢰도를 확보하기 위해, 공기 중 부유하는 잎마름병 포자 농도와 일일 기상 데이터를 동기화하여 수집한다 [SRC-100]. 정연하게 조성된 비닐 멀칭 마늘 이랑 사이에서 첨단 관측 기기가 작동하며 기상 감응형 발병 예측의 데이터 기반을 마련하는 과정을 포착했다.
+
+[나노바나나 생성 프롬프트]
+A documentary agricultural photograph of an automated volumetric spore trap and wireless weather telemetry unit stationed in a commercial garlic (Allium sativum) field. The specialized cylindrical spore trap with its wind vane tail sits atop a tripod at canopy height, surrounded by flourishing emerald-green garlic plants standing firmly in plastic-mulched raised beds. Nearby, a multi-parameter sensor pod measures canopy temperature, dew point, and barometric pressure. The scene is illuminated by crisp early morning sunlight casting gentle shadows across the neatly tilled soil between rows, capturing the quiet precision of agricultural epidemiology. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

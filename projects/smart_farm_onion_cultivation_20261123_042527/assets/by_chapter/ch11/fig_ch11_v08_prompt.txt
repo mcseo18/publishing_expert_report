@@ -1,0 +1,12 @@
+이미지 번호: 그림 11-8
+이미지 파일명: fig_ch11_v08.png
+단원: 제11장. 양파 육묘 공정의 전주기 스마트 환경 제어 및 묘소질 진단 (ch11)
+결합 절: 11.3 3차원 근계 스캐닝 및 엽면적 비파괴 계측을 통한 이식 적기 묘소질 지수(QI) 산정
+시각화 유형: photorealistic_macro
+제목: [그림 11-8] 다분광 스테레오 비전을 통한 양파 유묘 엽면적 지수(LAI) 및 건물 밀도 비파괴 계측
+
+[문맥 기반 이미지 설명]
+[그림 11-8] 비파괴 영상 계측 챔버 내에서 다분광 및 스테레오 비전 카메라를 통해 양파 유묘 트레이의 엽면적과 엽색 지수를 판별하는 초점 접사 장면이다. 곧게 뻗은 3~4매의 양파 엽신들이 교차하는 상부 캐노피의 굴곡과 엽면적이 고해상도 광학 렌즈를 통해 선명하게 포착된다. 추출된 엽면적 지수(LAI)와 지상부 건물 밀도 데이터가 묘소질 지수(QI) 산정 모델로 통합되는 분석적 기반을 나타낸다 [SRC-102], [SRC-103].
+
+[나노바나나 생성 프롬프트]
+Top-down macro photograph of young onion seedlings in a nursery tray under analytical multispectral lighting inside a smart phenotyping chamber. Four slender, erect tubular green leaves per cell cast sharp micro-shadows onto the dark substrate. Dual camera lenses and diffused calibration ring lights reflect subtly in the backdrop. The onion leaf tips, sheath junctions, and vibrant emerald green pigmentation are in ultra-sharp focus, capturing the exact spatial leaf distribution and structural vigor of healthy transplantable seedlings. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

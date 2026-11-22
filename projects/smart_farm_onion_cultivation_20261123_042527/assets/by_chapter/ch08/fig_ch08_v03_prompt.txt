@@ -1,0 +1,12 @@
+이미지 번호: 그림 8-3
+이미지 파일명: fig_ch08_v03.png
+단원: 제8장. 기상 이변에 따른 생리장해 원인 분석 및 스마트 제어 기술 (ch08)
+결합 절: 생리·분자 메커니즘 심층 분석
+시각화 유형: photorealistic_field
+제목: [그림 8-3] 월동기 양파 포장의 서릿발 피해 및 생분해성 멀칭 보온 효과
+
+[문맥 기반 이미지 설명]
+[그림 8-3] 한겨울 저온 노출로 인해 토양 수분이 동결되며 서릿발에 의해 들뜬 무멀칭 양파 유묘와 생분해성 멀칭 필름으로 보호된 이랑을 대조한 현장 사진입니다. 급격한 동결 시 토양 입자 간 얼음 기둥이 형성되어 양파 근계가 지표면 위로 솟구치며 단근 및 건조 피해를 입습니다 [SRC-155]. 멀칭 필름은 지온 급강하를 완충하여 균일 동결에 의한 식물체 치명 손상을 능동적으로 차단합니다.
+
+[나노바나나 생성 프롬프트]
+National Geographic style documentary photograph of an overwintering onion cultivation field in late autumn or early winter under early morning frosty sunlight. On one raised bed, unprotected young onion seedlings show frost heaving damage, with needle ice crystals pushing moist dark soil upward around exposed white roots. On the adjacent raised bed, neat black biodegradable mulching film securely traps subterranean soil warmth, keeping the onion shoots upright and healthy with fine frost melting gently on the film surface, capturing crisp agricultural field depth-of-field. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

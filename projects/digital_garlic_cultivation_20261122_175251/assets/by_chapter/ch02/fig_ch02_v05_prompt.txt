@@ -1,0 +1,12 @@
+이미지 번호: 그림 2-5
+이미지 파일명: fig_ch02_v05.png
+단원: 제2장. 국내외 마늘 산업 현황, 주산단지 생태환경 및 스마트 벨트 (ch02)
+결합 절: 2.2 국내 한지형 및 난지형 마늘 주산단지의 지리·기후적 특성
+시각화 유형: photorealistic_field
+제목: [그림 2-5] 남도 해안 난지형 마늘 주산단지의 지형적 생태 환경
+
+[문맥 기반 이미지 설명]
+[그림 2-5] 온화한 해양성 기후를 누리는 남부 난지형 마늘 주산단지의 광활한 포장 전경을 담은 현장 사진이다. 완만한 구릉지와 해안선에 인접한 포장에서 투명 비닐 멀칭을 뚫고 솟아오른 짙은 녹색의 마늘 잎들이 균일하게 군락을 이루고 있다. 풍부한 일조량과 해풍에 의한 온난한 미기후가 난지형 마늘의 신속한 초기 생육과 대사 활성에 기여하는 생태적 환경을 생생히 전달한다.
+
+[나노바나나 생성 프롬프트]
+Broad panoramic agricultural field photograph of expansive warm-climate garlic fields located on coastal undulating hills overlooking a calm blue sea. Crisp, healthy green garlic foliage emerges uniformly through perforated clear plastic mulch along neatly contoured raised crop beds. Golden morning sunlight washes over the vast landscape, revealing the gentle marine slope topography, coastal terracing, and vibrant green upright leaves fluttering in a gentle sea breeze. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

@@ -1,0 +1,12 @@
+이미지 번호: 그림 14-3
+이미지 파일명: fig_ch14_v03.png
+단원: 제14장. 양파 비파괴 선별 및 유통 디지털 트레이서빌리티 (ch14)
+결합 절: 생리·분자 메커니즘 및 첨단 분석 기술
+시각화 유형: photorealistic_field
+제목: [그림 14-3] 고속 롤러 컨베이어 라인 상의 양파 비파괴 근적외선(NIR) 분광 선별 시스템
+
+[문맥 기반 이미지 설명]
+[그림 14-3] 스마트 농산물산지유통센터 선별 라인에서 개별 롤러 컵에 안착된 양파 구가 고속으로 통과하는 광학 검사 순간을 포착한 현장 다큐멘터리 사진입니다. 400~1000 nm 파장대의 근적외선 센서 헤드가 롤러 위에서 자전하는 양파 구에 정밀 조명을 투사하여 내부 성분을 밀리초 단위로 수집합니다 [SRC-134]. 초당 수 개의 양파를 파괴하지 않고 당도, 수분, 내부 부패 여부를 자동으로 등급화하는 현대적 공정을 보여줍니다.
+
+[나노바나나 생성 프롬프트]
+Industrial agricultural facility documentary photograph showing a high-speed optical conveyor sorting line for yellow onions. Freshly cured dry-skinned yellow onion bulbs rest in individual rotating roller cups, advancing swiftly beneath an overhead stainless-steel near-infrared spectroscopy sensor enclosure. Bright halogen light beams illuminate each onion bulb as it passes under the optical aperture. Clean modern facility background with stainless steel guardrails, blurred mechanical motion, realistic industrial depth of field, and crisp reflections on metallic surfaces. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

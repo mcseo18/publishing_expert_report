@@ -1,0 +1,12 @@
+이미지 번호: 그림 7-9
+이미지 파일명: fig_ch07_v09.png
+단원: 제7장. 디지털 트윈과 양파 생육·수율 시뮬레이션 모델링 (ch07)
+결합 절: 현장 적용·실전 기술
+시각화 유형: photorealistic_field
+제목: [그림 7-9] 수확기 양파 도복(Lodging) 진행 및 현장 분광 방사계 실측
+
+[문맥 기반 이미지 설명]
+[그림 7-9] 수확 적기를 판정하기 위해 양파 잎의 자연 도복률이 70% 이상 진행된 채종 및 수율 검증 포장의 현장 사진입니다. 쓰러진 잎 사이로 황금색 껍질이 완전히 형성된 대구경 양파 구근들이 지표면에 노출되어 있으며, 연구원이 휴대용 광학 분광기 센서를 잔여 잎에 접촉시켜 최종 RUE 및 건물 축적률을 측정합니다. 이 현장 데이터는 디지털 트윈이 최종 수율 및 규격별 출하량을 확정 짓는 핵심 검증치입니다 [SRC-134].
+
+[나노바나나 생성 프롬프트]
+An authentic high resolution field photograph of an onion field at harvest maturity under bright afternoon sun. Over seventy percent of the tall onion foliage has naturally lodged and fallen flat across the raised beds, revealing large round yellow onions with glistening golden brown dried outer scales protruding from the soil line. In the midground, a female agronomist in a field vest gently holds a portable leaf clip optical spectrometer against an intact green onion leaf. Earthy agricultural tones, sharp botanical detail of dry papery tunics and soil crust. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

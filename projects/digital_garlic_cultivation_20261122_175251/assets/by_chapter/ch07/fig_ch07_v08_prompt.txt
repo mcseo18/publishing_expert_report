@@ -1,0 +1,12 @@
+이미지 번호: 그림 7-8
+이미지 파일명: fig_ch07_v08.png
+단원: 제7장. 생육 단계별 생리 지표와 윤작·혼작 최적 작부체계 (ch07)
+결합 절: 7.3 마늘 중심 윤작체계(마늘-벼, 마늘-콩)의 물질순환 및 지력 유지
+시각화 유형: photorealistic_macro
+제목: [그림 7-8] 윤작 토양의 입단 구조 발달 및 마늘 근계 유기 잔재물 분해층
+
+[문맥 기반 이미지 설명]
+[그림 7-8] 윤작을 통해 유기물 함량이 개선된 마늘 재배 토양의 입단(crumb structure) 구조를 촬영한 고배율 매크로 사진이다. 마늘 뿌리 분비물과 유기 잔재물이 토양 미생물에 의해 안정된 떼알 구조로 발달하여 통기성과 보수성이 극대화된 상태를 보여준다 [SRC-103]. 이는 연작으로 인해 토양이 단립화되고 경화되는 물리적 열화를 방지하는 핵심 토양 생태적 지표이다.
+
+[나노바나나 생성 프롬프트]
+High-magnification macro shot of fertile, crumb-structured rhizosphere soil from an active crop rotation field. Distinct porous granular aggregates clustered around decaying organic root hairs of Allium sativum, intertwined with delicate white mycorrhizal mycelium threads, rich dark humus coloration, and fine glistening moisture films along microscopic soil pore networks. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

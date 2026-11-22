@@ -1,0 +1,12 @@
+이미지 번호: 그림 15-4
+이미지 파일명: fig_ch15_v04.png
+단원: 제15장. 노지 스마트 팜 데이터 표준화 및 지속가능한 디지털 농업 플랫폼 (ch15)
+결합 절: 15.2 이종 농업 데이터(위성, 기상, 센서, 생육) 수집·통합을 위한 클라우드 빅데이터 아키텍처
+시각화 유형: scientific_anatomy
+제목: [그림 15-4] 위성 원격탐사와 지상 센서 데이터가 결합된 노지 양파 클라우드 빅데이터 수집 체계
+
+[문맥 기반 이미지 설명]
+[그림 15-4] 인공위성의 다중분광 밴드 관측 데이터와 지상 미기상 관측기 및 양파 군락 센서 데이터가 클라우드 데이터 레이크로 통합되는 입체적 과정을 묘사한다. 엽면적이 확장되는 양파 군락의 분광 반사율 특성과 캐노피 미기상 파라미터가 시계열 스트리밍 파이프라인으로 전송되는 데이터 흐름을 명시한다 [SRC-152]. 다양한 포맷을 가진 이종 데이터가 메타데이터 표준에 맞춰 정렬되는 융합 아키텍처를 시각적으로 전달한다 [SRC-56].
+
+[나노바나나 생성 프롬프트]
+Detailed scientific editorial illustration on a pure white background depicting multi-tier agricultural remote sensing over an onion crop canopy. In the upper layer, an Earth observation satellite projects downward multispectral scan cones with calibrated wavelength bands. In the middle layer, an isometric field slice shows a dense commercial onion bed (Allium cepa) with bright green tubular foliage and partially exposed developing bulbs, monitored by an automated mini weather station and spectral canopy radiometer. Dynamic layered streams of geometric data packets and multi-frequency waves converge upward into a structured cloud data lake cube, rendered in a sophisticated, richly shaded scientific textbook art style. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

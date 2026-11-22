@@ -1,0 +1,23 @@
+{
+  "project_id": "digital_garlic_cultivation_20261122_175251",
+  "topic_ko": "디지털 마늘 재배",
+  "workspace_dir": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\digital_garlic_cultivation_20261122_175251",
+  "last_tab": "workflow",
+  "last_subtab": "",
+  "last_stage_id": "stage1_topic_outline",
+  "last_stage_order": "1",
+  "last_stage_title": "목차·키워드 확정",
+  "last_stage_status": "DONE",
+  "last_stage_progress": 100,
+  "last_open_chapter": "",
+  "last_visual_filter": "ALL",
+  "last_action_summary": "목차·요약·핵심 키워드 확정 완료 (5부 15장)",
+  "last_event_message": "목차·요약·영역별 키워드 초안 제시 완료(Gemini (gemini-3.8-flash)) — 사용자 검토 및 확정 대기 중",
+  "done_stages": 6,
+  "total_stages": 6,
+  "overall_status": "DONE",
+  "completed_chapters_count": 0,
+  "completed_visuals_count": 0,
+  "saved_at": "2026-11-22T09:27:11+00:00",
+  "saved_at_local": "2026-11-22 18:27:11"
+}

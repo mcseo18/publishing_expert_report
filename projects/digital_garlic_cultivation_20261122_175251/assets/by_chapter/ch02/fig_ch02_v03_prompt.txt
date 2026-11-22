@@ -1,0 +1,12 @@
+이미지 번호: 그림 2-3
+이미지 파일명: fig_ch02_v03.png
+단원: 제2장. 국내외 마늘 산업 현황, 주산단지 생태환경 및 스마트 벨트 (ch02)
+결합 절: 2.2 국내 한지형 및 난지형 마늘 주산단지의 지리·기후적 특성
+시각화 유형: scientific_anatomy
+제목: [그림 2-3] 국내 한지형 및 난지형 마늘의 형태학적·생육적 구조 비교
+
+[문맥 기반 이미지 설명]
+[그림 2-3] 국내 주요 주산단지의 기후적 차이에 따라 분화된 한지형 마늘과 난지형 마늘의 식물체 및 구 형태를 비교 분석한 과학 일러스트레이션이다. 한지형 마늘은 맹아 휴면성이 깊고 인편 수가 6~8개로 굵고 규칙적인 반면, 난지형 마늘은 조기 맹아성과 10~12개 이상의 다인편 구조 및 풍성한 지상부 엽초를 형성한다. 기후대별 적응 기작과 인편 배열의 해부학적 차이가 마늘의 저장성과 가공 적성에 미치는 영향을 명확히 보여준다.
+
+[나노바나나 생성 프롬프트]
+Scientific cross-sectional botanical illustration on a clean pure white background comparing a temperate cold-type garlic plant and a subtropical warm-type garlic plant (Allium sativum). On the left, a temperate garlic shows a robust stem, deep root crown, and a transverse cross-section of a 6-clove bulb displaying thick symmetrical cloves wrapped in firm purple-tinted skins. On the right, a warm-type garlic displays taller, broader foliage, earlier vegetative shoot emergence, and a multi-clove bulb cross-section with 10 to 12 smaller layered cloves, rendered with rich watercolor shading and precise biological textures. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

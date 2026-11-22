@@ -1,0 +1,12 @@
+이미지 번호: 그림 12-5
+이미지 파일명: fig_ch12_v05.png
+단원: 제12장. 분광 센싱·드론 예찰 및 마늘 작물생육모형(Crop Growth Model) (ch12)
+결합 절: 12.2 분광 데이터를 활용한 엽면적지수(LAI) 및 지상부 생체중 추정
+시각화 유형: photorealistic_macro
+제목: [그림 12-5] 마늘 지상부 생체중(AGB) 산정을 위한 위줄기(가경) 기저부와 잎 절편 샘플링
+
+[문맥 기반 이미지 설명]
+[그림 12-5] 농업 연구실 실험대 위에서 마늘의 지상부 생체중(AGB) 추정 회귀식을 검증하기 위해 채취한 마늘 개체의 정밀 매크로 사진입니다. 단단하고 곧은 위줄기(가경) 횡단면의 조밀한 섬유 관속과 신선한 엽신(Leaf Blade)의 두께, 세포 밀도가 마이크로미터 눈금자 옆에서 선명하게 관찰됩니다 [SRC-107]. 잎의 비면적(SLA)과 단위 엽중량 분석을 위한 생체 수분 함량과 조직 팽압이 생생하게 묘사됩니다 [SRC-108].
+
+[나노바나나 생성 프롬프트]
+Photorealistic laboratory macro shot of freshly harvested Allium sativum shoots prepared for biomass analysis. A clean laboratory work surface displays cross-sectioned succulent garlic pseudo-stems revealing concentric leaf sheaths, vibrant pale green core vascular bundles, and trimmed strap blades. Minute dew droplets cling to the cut surfaces, alongside an analytical precision scale and stainless steel forceps, with sharp focus on the crisp botanical cellular textures under balanced laboratory ring light. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

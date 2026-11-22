@@ -1,0 +1,12 @@
+이미지 번호: 그림 5-8
+이미지 파일명: fig_ch05_v08.png
+단원: 제5장. 토양 수분 모니터링 센서 네트워크와 스마트 관개 자동화 (ch05)
+결합 절: 5.4 토양 수분 결핍 지수(CWSI) 기반 무인 밸브 연동 자동 관개 알고리즘 구현
+시각화 유형: photorealistic_field
+제목: [그림 5-8] 열화상 진단 기반 양파 엽온 모니터링 및 작물 수분 결핍 지수(CWSI) 판별
+
+[문맥 기반 이미지 설명]
+[그림 5-8] 포장 현장에서 열화상 센서와 분광 반사계 장비를 사용하여 양파 엽채류 군락의 캐노피 온도를 정밀 스캔하는 진단 모습이다. 충분히 관수되어 기공 증산 냉각이 활발한 군락과 수분 스트레스로 기공이 닫혀 온도가 상승한 구역의 열적 대비를 가색상(False-color) 모니터 화면으로 직접 비교한다. 이렇게 실시간 계측된 엽온 지표는 수분 결핍 지수(CWSI) 알고리즘의 핵심 판별 인자로 작용하여 자동 관개 여부를 결정짓는다.
+
+[나노바나나 생성 프롬프트]
+Photorealistic field photograph of an agricultural specialist holding a professional handheld thermal imaging optical camera pointed at rows of onion plants in an open field. The camera's bright screen displays a sharp false-color infrared heatmap of the onion canopy, contrasting cool blue-green transpirational leaf temperatures with warm yellow-orange areas of dry leaf tips. In the background, lush green onion rows extend in natural afternoon daylight. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

@@ -1,0 +1,12 @@
+이미지 번호: 그림 4-10
+이미지 파일명: fig_ch04_v10.png
+단원: 제4장. 토양 물리·화학성 진단과 디지털 지도를 활용한 입지 최적화 (ch04)
+결합 절: 4.4 필지 단위 토양 디지털 매핑과 정밀 경운 공간 의사결정
+시각화 유형: photorealistic_macro
+제목: [그림 4-10] 다짐 토양과 최적 개량 토양에서 수확된 마늘 구근 및 근계 생육 비교
+
+[문맥 기반 이미지 설명]
+[그림 4-10] 동일한 유전형의 마늘을 토양 용적밀도가 높고 공극률이 불량한 미개량 구역과 심경·유기물 개량을 거친 다공성 입단 토양에서 각각 재배하여 세척한 구근 비교 표본이다 [SRC-100]. 좌측의 다짐 토양 시료는 뿌리가 짧고 왜곡되며 구의 비대가 비대칭적인 반면, 우측의 개량 토양 시료는 굵고 곧은 섬유근이 방사형으로 치밀하게 뻗어 균일하고 건실한 구근을 형성하였다. 이는 정밀 토양 진단과 물리성 개량이 마늘의 최종 생산성에 미치는 직접적 영향을 시각적으로 증명한다.
+
+[나노바나나 생성 프롬프트]
+High-resolution macro comparative photograph on a clean slate background showing two freshly harvested, washed garlic bulbs (Allium sativum) with exposed root systems. On the left, a bulb grown in compacted high-density soil exhibits stunted, crooked, sparse root fibers and a slightly flattened, irregular bulb. On the right, a bulb grown in optimized, porous, organic-rich soil displays an abundant, uniform, radiating mass of long white healthy fibrous roots and a perfectly plump, symmetrical bulb with pearlescent tunic. Razor-sharp biological clarity, balanced scientific studio lighting. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

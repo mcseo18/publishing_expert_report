@@ -1,0 +1,12 @@
+이미지 번호: 그림 10-5
+이미지 파일명: fig_ch10_v05.png
+단원: 제10장. 주요 병해충의 역학적 모델링과 종합적 방제(IPM) (ch10)
+결합 절: 10.2 토양 및 경엽 해충(뿌리응애, 마늘혹응애, 고자리파리)의 생태
+시각화 유형: photorealistic_macro
+제목: [그림 10-5] 마늘 인경 기부와 인편 틈새에서 군집을 형성한 뿌리응애의 실체 현미경상
+
+[문맥 기반 이미지 설명]
+[그림 10-5] 마늘 인경 밑바닥 뿌리 방석(basal plate)과 인편 사이의 미세 틈새에 서식하는 뿌리응애(Rhizoglyphus robini) 무리를 실체현미경으로 극초점 촬영한 모습이다. 10.2절에 기술된 것처럼 이들 토양성 응애는 마늘 지하부 조직을 구기로 갉아먹으며 상처를 유발하여 2차 곰팡이 및 세균 침입의 통로를 제공한다 [SRC-100]. 반투명하고 윤기 있는 난형 몸체와 갈색 다리를 가진 성충, 약충 및 알들이 손상된 마늘 조직 위에 고밀도로 서식하는 생태를 보여준다.
+
+[나노바나나 생성 프롬프트]
+High-magnification stereomicroscopic documentary photograph of garlic bulb mites (Rhizoglyphus robini) infesting the basal plate of an Allium sativum bulb. The mites have glossy, translucent pearl-white oval bodies with reddish-brown legs and chelicerae, clustered densely around the cracked root ring and peeled clove flesh. Tiny spherical translucent eggs and developing nymphs crawl among microscopic chewed plant fibers and dark brown feeding wounds. Crisp macro optics reveal individual setae on the mites' bodies with professional laboratory ring-light illumination, casting natural micro-shadows on the garlic tissue. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

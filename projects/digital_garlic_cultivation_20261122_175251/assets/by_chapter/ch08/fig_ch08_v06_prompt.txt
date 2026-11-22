@@ -1,0 +1,12 @@
+이미지 번호: 그림 8-6
+이미지 파일명: fig_ch08_v06.png
+단원: 제8장. 종구 조제, 정식 자동화 및 기계화 재배 양식 (ch08)
+결합 절: 8.2.2 식부 자세 제어
+시각화 유형: photorealistic_field
+제목: [그림 8-6] 트랙터 부착형 자동 직립 마늘 파종기의 식부 유닛 및 진압 휠 현장 작동
+
+[문맥 기반 이미지 설명]
+[그림 8-6] 포장에서 트랙터 후방에 연결된 다조식 정밀 마늘 파종기가 두둑 위를 주행하며 인편을 직립 파종하는 고해상도 현장 사진입니다. 회전식 디스펜서 버킷에서 공급된 인편이 자세 제어 센서와 안내 빗살을 거쳐 토양에 수직으로 주입된 직후 후방의 경사진 한 쌍의 고무 진압 휠(press wheel)이 복토와 진압을 수행합니다. 균일하게 정렬된 파종 라인과 미세 파쇄된 쇄토 상태의 두둑 표면이 농업 연구 포장의 정밀도를 생생하게 나타냅니다.
+
+[나노바나나 생성 프롬프트]
+Action documentary photograph of a multi-row tractor-mounted precision garlic planter operating on a wide raised garden bed in an agricultural research field during autumn afternoon. Clean mechanical planter units featuring visible stainless steel drop chutes, sensor cables, and angled rubber-coated furrow packing press wheels firming soil around freshly planted garlic cloves. Freshly tilled dark crumbly soil bed with distinct uniform straight row lines, tractor tires moving cleanly in furrows, sharp focus on mechanical assemblies and soil texture under natural soft sunlight. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

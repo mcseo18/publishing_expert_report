@@ -1,0 +1,12 @@
+이미지 번호: 그림 13-5
+이미지 파일명: fig_ch13_v05.png
+단원: 제13장. 스마트 건조(Curing)와 CA/저온 저장 환경 최적화 제어 (ch13)
+결합 절: 13.2 에너지 고효율 스마트 건조 챔버의 복합 열원(열펌프, 외기 도입) 자동 제어 알고리즘 (생리·분자 메커니즘)
+시각화 유형: scientific_anatomy
+제목: [그림 13-5] 열펌프와 외기 도입 복합 열원 챔버의 열·수분 물질전달 공학 사이클
+
+[문맥 기반 이미지 설명]
+[그림 13-5] 스마트 건조 챔버 내에서 열펌프의 증발기-응축기 사이클과 외기 도입 댐퍼가 연동되는 열 및 물질 전달 메커니즘을 나타낸 3차원 투시도입니다. 습기를 머금은 실내 공기가 열펌프를 거쳐 제습·재가열되거나, 외부 공기의 절대습도가 낮을 때 자동 댐퍼를 통해 외기가 직접 유입되어 환기되는 동적 흐름을 묘사합니다[SRC-102]. 이는 작물 표면 온도와 수분 방출 속도에 맞추어 에너지 소비를 최소화하는 복합 제어 원리를 뒷받침합니다[SRC-102].
+
+[나노바나나 생성 프롬프트]
+Three-dimensional cutaway architectural engineering diagram of a smart drying chamber containing stacked bulk crates of onions on a pure white background. The chamber illustrates thermodynamic air movement paths: cool moist air extracted from the onions passes through a heat pump evaporator coil for condensation moisture removal, reheats through a condenser coil, mixes dynamically with fresh dry outside air through motorized damper louvers, and is forced back beneath the pallet floor grates by axial circulation fans, painted with elegant industrial visualization techniques. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

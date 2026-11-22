@@ -1,0 +1,264 @@
+book_metadata:
+  title_ko: 스마트 팜 양파 재배
+  title_en: Smart Farm Onion Cultivation
+  target_audience: 대학 전공 심화, 대학원생, 연구자 및 선도 현장 실무자
+  book_summary_ko: 본 교재는 기후변화와 농촌 고령화에 대응하여 양파(Allium cepa L.) 산업의 지속가능성과 생산성을 극대화하기 위한 스마트 팜 기반 전주기 재배 표준 지침서입니다. 기초 식물학적 특성과 유전자원 분포, 생육 단계별
+    환경 반응 생리에서부터 노지·시설 스마트 팜의 센서 계측, 정밀 수분·양분 공급 알고리즘, 병해충·생리장해 AI 예찰 시스템을 심도 있게 다룹니다. 나아가 무인 자동화 농작업 기계화, 수확 후 CA 저장 관리 및 디지털 트윈 기반 전과정 데이터 통합
+    체계를 아우름으로써 대학 전공 심화 과정, 대학원생, 농업 연구자 및 첨단 영농 실무자에게 학술적 깊이와 현장 적용성을 동시에 제공합니다.
+  target_pages: 500
+  target_total_pages: 500
+  chapter_count: 15
+  engine_used: Gemini (gemini-3.8-flash)
+  generated_at: '2026-11-22T19:26:44+00:00'
+domain_keywords:
+- domain: 작물생리 및 유전학 (Crop Physiology & Genetics)
+  keywords_ko:
+  - 양파 식물학
+  - 인경 형성 기작
+  - 일장 및 감응 온도
+  - 유전자원 보존
+  - 추대 생리
+  keywords_en:
+  - Allium cepa botany
+  - bulb formation mechanism
+  - photoperiod and thermal response
+  - germplasm conservation
+  - bolting physiology
+- domain: 스마트 토양·수분·양분 관리 (Smart Soil, Water & Nutrient Management)
+  keywords_ko:
+  - 토양 수분 장력
+  - TDR/FDR 센서
+  - 정밀 점적관비(Fertigation)
+  - 양분 흡수 모델링
+  - 작물 증산량(ETc) 산정
+  keywords_en:
+  - soil matric potential
+  - TDR/FDR sensors
+  - precision fertigation
+  - nutrient uptake modeling
+  - crop evapotranspiration
+- domain: 스마트 작물보호 및 생육 진단 (Smart Crop Protection & Growth Diagnostics)
+  keywords_ko:
+  - 노균병 디지털 예찰
+  - 양파 흑색썩음균핵병
+  - 총채벌레 통합방제
+  - 분광 영상 진단
+  - 머신러닝 병해 진단
+  keywords_en:
+  - downy mildew digital forecasting
+  - Stromatinia cepivora
+  - Thrips tabaci IPM
+  - spectral imaging diagnostics
+  - machine learning disease detection
+- domain: 기계화 및 스마트 수확후관리 (Mechanization & Smart Postharvest)
+  keywords_ko:
+  - 자동 정식기
+  - 자율주행 수확기
+  - 큐어링(건조) 자동화
+  - CA 저장 모니터링
+  - 맹아 억제 제어
+  keywords_en:
+  - automated transplanter
+  - autonomous onion harvester
+  - automated curing process
+  - controlled atmosphere storage
+  - sprouting inhibition control
+- domain: 디지털 농업 및 데이터 플랫폼 (Digital Agriculture & Data Platforms)
+  keywords_ko:
+  - 노지 디지털 트윈
+  - 생육 예측 모델
+  - 스마트 팜 데이터 표준화
+  - 전과정 디지털화
+  - 수율 최적화
+  keywords_en:
+  - open-field digital twin
+  - growth prediction model
+  - smart farm data standardization
+  - life-cycle digitization
+  - yield optimization
+parts:
+- part_number: 1
+  title: 제1부. 양파의 기원·생물학적 특성 및 글로벌 산업 동향
+  pages: 100
+  chapters:
+  - chapter_id: ch01
+    chapter_number: 1
+    title: 제1장. 양파의 기원, 진화와 국내외 산업 생태계 현황
+    target_pages: 33
+    summary_ko: 유라시아 스텝 지대 기원의 양파 야생종 분화 과정과 유전자원 보존 현황을 분석하고, 글로벌 생산 벨트와 한국 양파 산업의 수급 체계 및 스마트 농업 전환 당위성을 규명합니다. 주요 수출입국의 생산 통계 지표와 기후변화에 따른
+      재배적지 이동 모델을 정량적으로 해석하여 미래 산업 발전 전략을 도출합니다.
+    sections:
+    - 1.1 양파(Allium cepa L.)의 기원 중심지와 중앙아시아 스텝 지대 야생 근연종의 진화 경로
+    - 1.2 전 세계 파속 유전자원의 수집·보존(In-situ/Ex-situ) 및 지속가능한 농업을 위한 유전적 다변화
+    - 1.3 글로벌 양파 생산 벨트(아시아, 북미, 유럽)의 재배 면적, 단수 및 교역 동향 분석
+    - 1.4 국내 양파 산업의 구조적 취약성(노동력 집약, 수급 불안정)과 스마트 팜 도입의 필연성
+  - chapter_id: ch02
+    chapter_number: 2
+    title: 제2장. 양파의 식물학적 분류체계와 스마트 팜 맞춤형 품종 특성
+    target_pages: 33
+    summary_ko: 식물학적 형태 형성과 일장·온도 감응성에 기반한 단일·중일·장일형 품종군 분류 체계를 구명하고 기계화·스마트 팜 적합 품종의 특성을 분석합니다. 디지털 제어 환경과 무인 정식·수확 기계화에 최적화된 초형, 인경 균일도, 피막성
+      및 저장성 지표를 정량적으로 제시합니다.
+    sections:
+    - 2.1 Allium속의 계통분류학적 위치와 유전체(Genome) 구성을 통한 품종군 분화
+    - 2.2 단일계·중일계·장일계 품종의 감온·감광성 반응 특성과 지리적 분포 한계
+    - 2.3 노지 스마트 팜 기계화 적합 초형(직립성, 엽각) 및 인경 특성(구형 지수, 피막 강도)
+    - 2.4 시설 차광 및 보광 재배를 위한 고기능성 다수확 양파 품종 선발 기준
+  - chapter_id: ch03
+    chapter_number: 3
+    title: 제3장. 양파의 생육 단계별 생리 기작과 인경 비대 메커니즘
+    target_pages: 34
+    summary_ko: 종자 발아부터 엽초 발달, 인경 형성 유도, 도복 및 휴면에 이르는 전주기 생리 단계별 호르몬 상호작용과 탄소 동화산물 전위 경로를 다룹니다. 특히 한계 일장 및 임계 온도 노출에 따른 광유도 피토크롬 신호전달계와 불시 추대(Bolting),
+      분구(Splitting)의 발생 기작을 정밀 해석합니다.
+    sections:
+    - '3.1 맹아, 본엽 전개 및 뿌리 생장 다이내믹스: 옥신-시토키닌 호르몬 상호작용'
+    - 3.2 일장 감응과 FT-homolog 유전자 발현을 통한 인경 팽창 신호전달 캐스케이드
+    - 3.3 저온 노출 기간(Vernalization)과 유효 적산온도에 따른 불시 추대 생리 모델
+    - 3.4 도복(Lodging) 전후 광합성 산물의 재분배 효율과 인경 성숙·내재적 휴면 진입
+- part_number: 2
+  title: 제2부. 스마트 토양 환경 제어와 정밀 수분·양분 관리
+  pages: 100
+  chapters:
+  - chapter_id: ch04
+    chapter_number: 4
+    title: 제4장. 정밀 양파 재배를 위한 스마트 토양 물리·화학성 평가 및 작부체계
+    target_pages: 33
+    summary_ko: 양파 뿌리권의 발달을 촉진하는 물리적 삼상 분포, 투수성, 토양 전도도(EC) 및 pH의 정량적 임계 한계를 규명하고 다분광 센서 기반 토양 맵핑을 학습합니다. 벼, 콩, 사료작물과의 윤작 및 녹비작물 투입이 토양 지력 회복과
+      선충 억제에 미치는 영향을 데이터 기반으로 실증합니다.
+    sections:
+    - 4.1 양파 근계 발달을 위한 최적 토양 물리성(공극률, 가비중, 용수량)과 토층 개량 기술
+    - 4.2 토양 pH(6.0~6.8) 및 염류집적도(EC)가 미량원소 흡수와 뿌리 활력에 미치는 영향
+    - 4.3 다분광·초분광 토양 센서를 활용한 포장 내 물리화학성 공간 변이성 매핑 기법
+    - 4.4 토양 전염성 병원균 저감 및 지력 증진을 위한 데이터 기반 고수익 작부체계 설계
+  - chapter_id: ch05
+    chapter_number: 5
+    title: 제5장. 토양 수분 모니터링 센서 네트워크와 스마트 관개 자동화
+    target_pages: 33
+    summary_ko: TDR, FDR 및 텐시오미터 기반의 실시간 토양 수분 장력 계측 체계와 작물 증발산량(ETc) 산정 모델을 결합한 지능형 관개 제어 알고리즘을 구축합니다. 생육 초기 활착기부터 인경 비대기, 수확 전 단수기까지 토양 수분 포화도
+      제어를 통한 열과 방지 및 생산성 극대화 방안을 다룹니다.
+    sections:
+    - 5.1 FDR/TDR 센서 및 텐시오미터(Tensiometer)의 원리, 보정 계수 및 설치 프로토콜
+    - 5.2 기상 데이터(온·습도, 일사량, 풍속) 기반 Penman-Monteith 작물 증발산량(ETc) 산출
+    - 5.3 점적 관개(Drip irrigation) 시스템의 수리학적 설계와 포장 내 관수 균일도(CU) 평가
+    - 5.4 토양 수분 결핍 지수(CWSI) 기반 무인 밸브 연동 자동 관개 알고리즘 구현
+  - chapter_id: ch06
+    chapter_number: 6
+    title: 제6장. 정밀 관비(Fertigation) 시스템과 실시간 양분 모니터링
+    target_pages: 34
+    summary_ko: 질소, 인산, 칼륨, 칼슘, 황 등 주요 필수 원소의 흡수 동역학을 분석하고 생육 단계별 최적 N-P-K-Ca 비료 배합 및 점적관비 처방 기준을 정량화합니다. 토양 용액 추출 센서(Suction lysimeter) 및 근적외선
+      분광을 활용한 엽내 질산태 질소 실시간 모니터링 체계를 소개합니다.
+    sections:
+    - 6.1 양파 주요 생육 단계별 필수 다량원소(N, P, K, Ca, Mg, S) 흡수 패턴 및 체내 이동성
+    - '6.2 생육 시기별 실시간 정밀 관비 처방 모델: 기비-추비 비율 분할 및 시비 농도(EC) 제어'
+    - 6.3 토양 용액 센싱 및 비파괴 엽록소(SPAD)/엽내 질소 분광 센서를 활용한 영양 진단
+    - 6.4 스마트 관비 믹서(Venturi, Proportional pump)의 제어 로직과 비료 용해도·침전 방지 기술
+- part_number: 3
+  title: 제3부. 디지털 데이터 기반 생육 예측 및 작물 보호
+  pages: 133
+  chapters:
+  - chapter_id: ch07
+    chapter_number: 7
+    title: 제7장. 디지털 트윈과 양파 생육·수율 시뮬레이션 모델링
+    target_pages: 33
+    summary_ko: DSSAT, CropSyst 등 기작 중심 작물 생육 모델을 양파에 적용하여 일사량, 온도, 수분, 양분 조건에 따른 인경 비대와 바이오매스 축적 과정을 시뮬레이션합니다. 드론 및 근접 센싱 영상 데이터를 융합한 디지털 트윈
+      플랫폼을 통해 수확기 수율 및 출하 규격을 사전에 정밀 예측합니다.
+    sections:
+    - 7.1 작물 생장 시뮬레이션 엔진 구조와 양파 특화 유전 모수(Genetic coefficients) 보정
+    - 7.2 광합성 유효 방사(PAR) 차단율과 광이용효율(RUE)에 기초한 건물중 분배 모델링
+    - 7.3 UAV 초분광 영상 및 정규식생지수(NDVI/NDRE)를 활용한 실시간 생육량 보정(Data Assimilation)
+    - 7.4 가상 포장 디지털 트윈을 통한 포장 균일도 평가 및 최종 구 크기별 수확량 예측
+  - chapter_id: ch08
+    chapter_number: 8
+    title: 제8장. 기상 이변에 따른 생리장해 원인 분석 및 스마트 제어 기술
+    target_pages: 33
+    summary_ko: 이상 고온, 가뭄, 습해, 동해 등 기후변화 리스크로 인해 발생하는 생리장해(쌍구, 열과, 중심부 공동화, 붕소·칼슘 결핍)의 유발 기작을 구명합니다. 미기상 센서 데이터와 연동된 스프링클러 미스트 냉각, 스마트 배수 밸브 가동
+      등 실시간 완화 제어 전략을 정립합니다.
+    sections:
+    - 8.1 고온·건조 조건 하에서의 칼슘 이동 제한과 엽선괴사(Tip-burn) 및 중심부 갈변 기작
+    - 8.2 월동기 동해·서릿발 피해 발생 조건과 토양 멀칭(생분해성 필름) 보온 계측 제어
+    - 8.3 생육 후기 과습 조건에 의한 뿌리 질식, 열과(Cracking) 발생 및 지하배수 스마트 밸브 제어
+    - 8.4 포장 미기상(초근접 온도, 포화차 VPD) 모니터링을 통한 생리장해 조기 경보 및 자동 분무 완화
+  - chapter_id: ch09
+    chapter_number: 9
+    title: 제9장. 주요 병해의 조기 예찰 알고리즘과 컴퓨터 비전 기반 스마트 방제
+    target_pages: 34
+    summary_ko: 노균병(Peronospora destructor), 흑색썩음균핵병, 잎말림병 등 치명적 진균·세균병의 포자 비산 조건과 환경 역치 모델을 수립합니다. 포장 내 무인 카메라 및 딥러닝 객체 검출(YOLOv8 등) 모델을 결합한
+      발병 조기 진단 및 가변 살포(VRA) 방제 체계를 설계합니다.
+    sections:
+    - 9.1 양파 노균병(1차·2차 감염)의 병태생리와 습도·온도 연동 병원균 포자 비산 예측 모델
+    - 9.2 흑색썩음균핵병(Stromatinia cepivora) 및 세균성 중심썩음병의 감염 경로와 토양 센서 진단
+    - 9.3 합성곱 신경망(CNN) 및 Vision Transformer 기반 양파 엽 병변 고정밀 자동 검출 모델
+    - 9.4 무인 방제 드론 및 붐스프레이어 연동 처방 맵(Prescription map) 기반 가변 약제 살포
+  - chapter_id: ch10
+    chapter_number: 10
+    title: 제10장. 해충·잡초의 스마트 모니터링 및 AI 종합 방제(IPM)
+    target_pages: 33
+    summary_ko: 파총채벌레(Thrips tabaci), 고자리파리, 뿌리응애의 발육 단계별 유효 적산온도 모델을 정립하고 스마트 페로몬 트랩을 통한 밀도 모니터링을 상용화합니다. 자율주행 로봇 기반 초정밀 레이저/스프레이 잡초 제거 시스템과
+      생물학적 방제 기술의 최적 융합 프로토콜을 제시합니다.
+    sections:
+    - 10.1 파총채벌레의 생리적 약제 저항성 기작 및 스마트 디지털 트랩을 이용한 개체군 밀도 추적
+    - 10.2 고자리파리 및 뿌리응애의 지중 발생 모니터링과 유효 적산일도(GDD) 기반 방제 최적기 산정
+    - 10.3 딥러닝 기반 광학 작물-잡초 실시간 구분 알고리즘 및 지능형 마이크로 타깃 제초 시스템
+    - 10.4 천적 곤충 및 미생물 제제를 연계한 환경친화적 디지털 IPM(종합병해충관리) 통합 프로토콜
+- part_number: 4
+  title: 제4부. 스마트 농작업 자동화 및 지능형 수확 후 관리
+  pages: 100
+  chapters:
+  - chapter_id: ch11
+    chapter_number: 11
+    title: 제11장. 양파 육묘 공정의 전주기 스마트 환경 제어 및 묘소질 진단
+    target_pages: 33
+    summary_ko: 플러그 트레이 육묘 온실 내 광도, DLI, 온·습도, 공기 유동의 정밀 복합 환경 제어를 통해 묘소질(근원경, 엽수, 묘건물중)을 최적화합니다. 머신 비전을 활용한 불량 묘 선별 및 근계 형성 균일도 비파괴 판별 알고리즘을
+      현장에 적용합니다.
+    sections:
+    - 11.1 우량 묘 생산을 위한 플러그 육묘장 환경 인자(DLI, 온도차 DIF, 양액 농도)의 동적 제어
+    - 11.2 묘의 도장 방지 및 충실도 향상을 위한 물리적 자극(Brushing)과 스마트 LED 보광 스펙트럼
+    - 11.3 3차원 근계 스캐닝 및 엽면적 비파괴 계측을 통한 이식 적기 묘소질 지수(QI) 산정
+    - 11.4 트레이 자동 이송 및 이미지 판별 기반 불량 묘 자동 도태·보식 로봇 시스템
+  - chapter_id: ch12
+    chapter_number: 12
+    title: 제12장. 자율주행 기반 정식·포장관리 및 지능형 수확 로봇
+    target_pages: 33
+    summary_ko: RTK-GNSS 기반 센티미터급 정밀 자율주행 양파 자동 정식기의 작동 메커니즘과 포장 주행 제어 경로 생성 기법을 학습합니다. 굴취, 줄기 절단, 인경 손상 최소화 수집을 자율적으로 수행하는 지능형 수확 머신과 비전 센서 기반
+      실시간 손실 모니터링 기술을 다룹니다.
+    sections:
+    - 12.1 RTK-GNSS 및 슬램(SLAM) 기반 노지 자율주행 플랫폼의 포장 주행선 추종 제어 알고리즘
+    - 12.2 고속 전자동 양파 정식기의 묘 취출-천공-복토 메커니즘과 정식 심도 일정화 유압 제어
+    - 12.3 줄기 절단 및 굴취 수집 일관 수확기의 동역학 해석과 외피 충격 최소화 완충 설계
+    - 12.4 수확 동시 포장 내 등급 판별 및 인경 크기·중량 맵핑을 위한 온보드 컴퓨터 비전
+  - chapter_id: ch13
+    chapter_number: 13
+    title: 제13장. 스마트 건조(Curing)와 CA/저온 저장 환경 최적화 제어
+    target_pages: 34
+    summary_ko: 수확 후 부패율 저감을 위한 스마트 송풍 건조(Curing) 챔버의 열·수분 수지 모델과 다단계 습도 감응 제어 프로세스를 구축합니다. 맹아 및 호흡 억제를 위한 저온·CA(Controlled Atmosphere) 저장고 내
+      산소, 이산화탄소, 에틸렌 농도의 동적 정밀 제어 기법을 실증합니다.
+    sections:
+    - '13.1 수확 후 인경의 큐어링(Curing) 생리: 외피 건조 메커니즘과 네크 썩음병균 침입 차단막 형성'
+    - 13.2 에너지 고효율 스마트 건조 챔버의 복합 열원(열펌프, 외기 도입) 자동 제어 알고리즘
+    - 13.3 양파 장기 저장을 위한 CA 저장 환경(O2 1~2%, CO2 3~5%, 저온 0℃, 습도 70%) 최적화
+    - 13.4 저장 중 생체중량 감모, 부패, 조기 맹아 발생 모니터링을 위한 IoT 가스·온습도 센서망
+- part_number: 5
+  title: 제5부. 전과정 디지털화·품질 표준화 및 미래 농업 플랫폼
+  pages: 67
+  chapters:
+  - chapter_id: ch14
+    chapter_number: 14
+    title: 제14장. 양파 비파괴 선별 및 유통 디지털 트레이서빌리티
+    target_pages: 33
+    summary_ko: 초음파, 근적외선(NIR), X선 컴퓨터 단층촬영(CT) 기술을 응용한 양파 내부 중심부 부패 및 당도 비파괴 정밀 판별 장치를 다룹니다. 생산부터 유통, 소비 단계까지 농산물 이력 데이터를 무결하게 연결하는 블록체인 및 RFID
+      콜드체인 추적 시스템을 설계합니다.
+    sections:
+    - 14.1 근적외선(NIR) 분광분석을 이용한 양파 내부 부패, 당도, 피루브산(매운맛) 비파괴 고속 선별
+    - 14.2 인공지능 기반 다채널 영상 선별기의 외관 등급(외경, 착색도, 외피 결점) 실시간 분류
+    - 14.3 스마트 산지유통센터(APC) 물류 자동화와 AGV 기반 팔레타이징 최적 동선 제어
+    - 14.4 블록체인 기반 생산 이력·재배 이력 및 저온 유통망(Cold chain) 모니터링 시스템 구축
+  - chapter_id: ch15
+    chapter_number: 15
+    title: 제15장. 노지 스마트 팜 데이터 표준화 및 지속가능한 디지털 농업 플랫폼
+    target_pages: 34
+    summary_ko: 포장 센서, 기상 관측망, 농기계 텔레매틱스(ISOBUS) 데이터의 국가·국제 표준 규격(ISO 11783) 통합과 클라우드 데이터 파이프라인을 구축합니다. 양파 생산-공급망 전주기 탄소 발자국 평가(LCA)와 생성형 AI 기반
+      농가 맞춤형 영농 의사결정 지원 플랫폼의 미래 모델을 제시합니다.
+    sections:
+    - 15.1 노지 스마트 팜 센서-액추에이터 인터페이스 및 농기계 텔레매틱스(ISOBUS) 데이터 표준화
+    - 15.2 이종 농업 데이터(위성, 기상, 센서, 생육) 수집·통합을 위한 클라우드 빅데이터 아키텍처
+    - 15.3 비료·에너지 투입 절감에 따른 전과정 환경영향평가(LCA) 및 저탄소 농업 인증 프로토콜
+    - 15.4 거대언어모델(LLM)과 농업 온톨로지 기반 전주기 영농 의사결정 지원 서비스(FEMS)의 미래

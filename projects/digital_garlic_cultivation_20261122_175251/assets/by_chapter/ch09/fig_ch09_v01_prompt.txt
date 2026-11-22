@@ -1,0 +1,12 @@
+이미지 번호: 그림 9-1
+이미지 파일명: fig_ch09_v01.png
+단원: 제9장. 농작업 무인 자동화와 RTK-GPS 자율주행 농기계 기술 (ch09)
+결합 절: 단원 개요
+시각화 유형: photorealistic_field
+제목: [그림 9-1] 정밀 노지 마늘 재배 포장에서의 자율주행 트랙터 작업 전경
+
+[문맥 기반 이미지 설명]
+[그림 9-1] 본 사진은 검은색 비닐 멀칭이 시공된 규칙적인 마늘 이랑 사이를 고정밀 자율주행 트랙터가 주행하며 정밀 방제 작업을 수행하는 전경을 보여준다. 캐빈 상단에 장착된 RTK-GNSS 수신기 안테나와 작업기 센서가 결합되어 센티미터 수준의 오차 범위 내에서 마늘 생육 라인을 정확히 추종한다. 이처럼 정밀 농업 기반의 자율주행 농기계 기술은 마늘 경운, 파종, 방제 등 전 생육 주기 작업의 효율성을 비약적으로 향상시킨다.
+
+[나노바나나 생성 프롬프트]
+An ultra-sharp documentary field photograph of a modern autonomous tractor driving precisely along elevated raised beds of young green garlic (Allium sativum) plants covered with black plastic mulch. Golden morning sunlight illuminates the long straight parallel crop rows extending towards the horizon. The tractor features a dual RTK-GNSS antenna dome on its cab roof, rugged all-terrain narrow tires aligned accurately in the furrows without disturbing garlic foliage, clear rural agricultural research landscape in crisp focus. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

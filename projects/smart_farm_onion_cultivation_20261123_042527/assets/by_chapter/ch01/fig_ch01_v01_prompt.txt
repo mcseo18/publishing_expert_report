@@ -1,0 +1,12 @@
+이미지 번호: 그림 1-1
+이미지 파일명: fig_ch01_v01.png
+단원: 제1장. 양파의 기원, 진화와 국내외 산업 생태계 현황 (ch01)
+결합 절: 개념 소개·이론적 배경: 양파의 기원과 유전적 다양성
+시각화 유형: photorealistic_field
+제목: [그림 1-1] 중앙아시아 스텝 지대의 야생 파속(Allium) 서식지와 원종 양파 형태
+
+[문맥 기반 이미지 설명]
+[그림 1-1] 양파(Allium cepa L.)의 1차 기원 중심지로 알려진 중앙아시아 톈산산맥 인근 건조 스텝 지대의 자연 서식지를 조명합니다. 척박한 자갈질 토양과 극한의 일교차 속에서 진화한 야생 파속 식물은 가늘고 곧은 엽초와 단단한 지하 인경을 형성하여 건조 스트레스에 적응합니다. 이러한 야생 유전자원은 현대 재배 양파의 환경 스트레스 저항성 및 유전적 다양성 확보를 위한 진화생물학적 기초가 됩니다 [SRC-100].
+
+[나노바나나 생성 프롬프트]
+Documentary-style wide telephoto field photograph of a rugged arid steppe landscape in Central Asia at the foothills of rocky mountains under morning sunlight. In the foreground, wild Allium plants grow amidst rocky limestone scree and dry coarse soil, displaying slender tubular glaucous-green leaves, small compact globose purple-violet umbel flowers on slender scapes, and partially exposed small subterranean fibrous bulbs anchored deep into dry fissures. Realistic natural depth-of-field, crisp geological and botanical textures. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

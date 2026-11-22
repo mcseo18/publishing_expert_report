@@ -1,0 +1,12 @@
+이미지 번호: 그림 1-3
+이미지 파일명: fig_ch01_v03.png
+단원: 제1장. 마늘의 기원·역사 및 디지털 농업 패러다임의 태동 (ch01)
+결합 절: 1.1 Allium속의 식물학적 기원 및 지리적 전파 경로
+시각화 유형: photorealistic_macro
+제목: [그림 1-3] 마늘 기원지 토양 환경에 적응한 야생성 뿌리 및 기저판 발달 특성
+
+[문맥 기반 이미지 설명]
+[그림 1-3] 중앙아시아의 건조하고 척박한 토양 환경에서 Allium속 식물이 획득한 뿌리계 및 지하 저장기관의 적응 양상을 보여주는 초근접 접사 사진이다 [SRC-103]. 거친 석회질 사양토를 파고드는 굵고 치밀한 백색 부정근(adventitious roots)과 이를 지탱하는 단단한 기저판의 미세 구조를 관찰할 수 있다. 이러한 강한 환경 적응성은 마늘이 유라시아 전역으로 전파되며 다양한 생태형으로 분화하는 생리적 토대가 되었다 [SRC-101, SRC-104].
+
+[나노바나나 생성 프롬프트]
+An ultra-sharp macro photograph of the basal plate and adventitious root system of a freshly excavated garlic plant (Allium sativum). Thick, crisp ivory-white roots emerge radially from the fibrous woody basal disc, anchored firmly into dry, gravelly steppe soil crumbs and mineral grains. Moisture droplets cling to root hairs, highlighting the tactile texture of subterranean storage tissue under bright studio macro lighting. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

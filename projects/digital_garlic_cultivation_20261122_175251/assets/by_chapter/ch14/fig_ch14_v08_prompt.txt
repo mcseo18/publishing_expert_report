@@ -1,0 +1,12 @@
+이미지 번호: 그림 14-8
+이미지 파일명: fig_ch14_v08.png
+단원: 제14장. 스마트 건조(Curing), CA 저온저장 및 유통 품질 제어 (ch14)
+결합 절: 14.3 저장 중 맹아 억제 기작, 호흡열 분석 및 부패균 억제 센싱
+시각화 유형: scientific_anatomy
+제목: [그림 14-8] 적외선 열화상 기반 마늘 팔레트 호흡열 및 국소 이상 발열 모니터링
+
+[문맥 기반 이미지 설명]
+[그림 14-8] 저장고 내 적재된 마늘 팔레트 더미의 호흡열(Respiration Heat) 분포를 적외선 열화상 스펙트럼 형태로 시각화한 분석도이다. 안정적인 저온을 유지하는 정상 마늘 부위는 짙은 청색과 녹색의 균일한 온도대를 나타낸다 [SRC-111]. 마늘 내부에서 부패균(푸른곰팡이병 등) 증식이나 급격한 생리 대사 증가로 국소 발열 핫스팟이 형성된 구간은 주황색과 적색으로 가시화되어 부패 초기 징후를 조기에 감지한다.
+
+[나노바나나 생성 프롬프트]
+Scientific analytical illustration depicting a 3D isometric view of bulk palletized garlic crates undergoing thermal imaging analysis on a white background. False-color thermal spectrum overlay ranging from deep cool indigo and dark blue over stable cold garlic sacks, transitioning to a localized warning hot spot of radiant yellow, amber, and vibrant crimson inside an internal crate center where pathogen metabolic activity generates heat. Clean editorial render without flat graphics. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

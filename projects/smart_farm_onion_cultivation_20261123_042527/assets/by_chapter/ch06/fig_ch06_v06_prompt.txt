@@ -1,0 +1,12 @@
+이미지 번호: 그림 6-6
+이미지 파일명: fig_ch06_v06.png
+단원: 제6장. 정밀 관비(Fertigation) 시스템과 실시간 양분 모니터링 (ch06)
+결합 절: 6.3. 토양 용액 센싱 및 비파괴 엽록소/엽내 질소 분광 센서를 활용한 영양 진단
+시각화 유형: photorealistic_macro
+제목: [그림 6-6] 원통형 양파 엽면에 체결된 휴대용 광학 엽록소(SPAD) 센서의 비파괴 진단
+
+[문맥 기반 이미지 설명]
+[그림 6-6] 스마트 팜 포장에서 연구원의 손에 쥐어진 휴대용 광학 엽록소 센서(SPAD 클립)가 양파의 매끄러운 원통형 중공엽 표면에 체결된 모습을 촬영한 초접사 사진입니다. 두 파장의 광선이 잎 세포 내 엽록소 층을 투과하며 흡수율을 계측하는 광학 센서 챔버의 정밀한 접촉부를 포착하고 있습니다. 잎 조직을 훼손하지 않고 광합성 잠재력과 질소 영양도를 신속하게 판정하는 비파괴 영양 진단 기술을 구현합니다 [SRC-161].
+
+[나노바나나 생성 프롬프트]
+Close-up macro documentary photograph of a modern optical handheld chlorophyll SPAD clamp attached securely onto the smooth, cylindrical tubular green leaf blade of an Allium cepa onion plant. The measurement head gently pinches the waxy green onion leaf tissue without bruising. Laboratory-gloved hands hold the diagnostic meter securely against the natural greenhouse backdrop with shallow depth-of-field, capturing the fine waxy cuticle texture of the onion leaf and the clean optical sensor contact points. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

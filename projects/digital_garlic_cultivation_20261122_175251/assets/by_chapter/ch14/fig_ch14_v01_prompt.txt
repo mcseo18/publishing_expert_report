@@ -1,0 +1,12 @@
+이미지 번호: 그림 14-1
+이미지 파일명: fig_ch14_v01.png
+단원: 제14장. 스마트 건조(Curing), CA 저온저장 및 유통 품질 제어 (ch14)
+결합 절: 14.1 수확 후 수분 증발 메커니즘과 차압식 스마트 예건(Curing) 시스템
+시각화 유형: scientific_anatomy
+제목: [그림 14-1] 마늘 구경 표피 및 경부 수분 증발 동역학(VPD) 메커니즘 단면도
+
+[문맥 기반 이미지 설명]
+[그림 14-1] 수확 직후 마늘의 외피 인편과 줄기 절단부(경부)에서 발생하는 수분 증발 동역학을 시각화한 모식도이다. 마늘 내부 조직과 외부 대기 간의 수증기압 포화차(Vapor Pressure Deficit, VPD) 구배에 따라 수분이 모세관 현상과 세포 간극을 거쳐 외부로 방출되는 경로를 보여준다 [SRC-100]. 정밀한 습도와 기류 제어를 통해 급격한 탈수를 방지하고 외피를 균일하게 경화시키는 예건 생리 메커니즘을 설명한다.
+
+[나노바나나 생성 프롬프트]
+Scientific anatomical cross-section illustration of an intact harvested garlic bulb cut vertically, focusing on the fibrous neck junction, multi-layered papery outer tunic scales, and fleshy storage cloves on a pure white background. Gradient arrows indicate water vapor diffusion paths moving from the moist inner storage parenchyma through intercellular spaces out toward dry atmospheric air. Richly detailed botanical rendering with warm beige and translucent pearl-white cellular textures, showing dry cell layer condensation and gradual cuticle thickening at the neck seal. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

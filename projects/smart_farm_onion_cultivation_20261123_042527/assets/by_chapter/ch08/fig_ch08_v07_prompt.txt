@@ -1,0 +1,12 @@
+이미지 번호: 그림 8-7
+이미지 파일명: fig_ch08_v07.png
+단원: 제8장. 기상 이변에 따른 생리장해 원인 분석 및 스마트 제어 기술 (ch08)
+결합 절: 생리·분자 메커니즘 심층 분석
+시각화 유형: photorealistic_field
+제목: [그림 8-7] 포장 미기상 관측 센서와 연동된 스마트 미스트 증발 냉각 시스템
+
+[문맥 기반 이미지 설명]
+[그림 8-7] 한낮의 고온 및 높은 포화차 증기압(VPD) 조건에서 포장 미기상 관측 타워의 지시에 따라 미세 안개 분무를 살포하는 양파 포장 전경입니다. 미스트 입자가 증발하면서 양파 엽면 온도를 신속하게 하강시켜 열 스트레스와 엽선괴사 발생을 조기에 방지합니다. 미기상 복합 센서가 군락 상단부의 온도, 습도, 일사량을 실시간으로 측정하여 최적의 냉각 시점을 결정합니다.
+
+[나노바나나 생성 프롬프트]
+High-resolution agricultural research station photograph of a wide onion field under intense midday summer sunlight. Above the dense field of dark green tubular onion leaves, overhead fine misting nozzles emit a delicate, shimmering aerosol spray that creates a soft evaporative cooling haze. In the foreground stands a sleek stainless-steel microclimate weather station mast equipped with cup anemometer, solar radiation sensor, and temperature-humidity probes, with distant mountains under a bright clear sky. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

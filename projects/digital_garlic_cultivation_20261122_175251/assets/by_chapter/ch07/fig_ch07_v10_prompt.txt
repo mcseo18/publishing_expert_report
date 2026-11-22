@@ -1,0 +1,12 @@
+이미지 번호: 그림 7-10
+이미지 파일명: fig_ch07_v10.png
+단원: 제7장. 생육 단계별 생리 지표와 윤작·혼작 최적 작부체계 (ch07)
+결합 절: 7.4 연작장해(선충, 염류집적)의 디지털 진단 및 작부 최적화 알고리즘
+시각화 유형: photorealistic_field
+제목: [그림 7-10] 마늘 재배지 토양 전기전도도(EC) 및 수분 실시간 디지털 센싱 현장
+
+[문맥 기반 이미지 설명]
+[그림 7-10] 마늘 포장의 염류 집적도를 정밀 평가하기 위해 다심도 토양 전기전도도(EC) 프로브 센서를 투입하여 진단하는 디지털 농업 현장 사진이다. 디지털 측정 장비는 토양의 실시간 수분, 온도, EC 데이터를 수집하여 작부 최적화 알고리즘의 기초 입력값으로 전송한다 [SRC-110]. 연작장해 조기 진단과 데이터 기반 윤작 의사결정의 통합적 실행 장면을 보여준다.
+
+[나노바나나 생성 프롬프트]
+Photorealistic documentary photograph of agricultural field sensing in a garlic plot. An agricultural scientist kneeling beside a raised bed of young upright garlic plants, inserting a professional stainless steel multi-depth soil probe measuring electrical conductivity and moisture into the soil profile. Sunlight glints off the digital handheld telemetry unit, surrounded by clean mulch and thriving green garlic foliage. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

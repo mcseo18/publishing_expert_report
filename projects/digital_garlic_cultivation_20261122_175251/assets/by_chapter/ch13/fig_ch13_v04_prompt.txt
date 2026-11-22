@@ -1,0 +1,12 @@
+이미지 번호: 그림 13-4
+이미지 파일명: fig_ch13_v04.png
+단원: 제13장. 디지털 수확 적기 판별과 마늘 굴취·수집·절단 복합 기계화 (ch13)
+결합 절: 13.2.1 굴취작업 시의 동역학적 분석
+시각화 유형: scientific_anatomy
+제목: [그림 13-4] 마늘 수확기 굴취날(Digger blade)의 토양 전단 및 침투 동역학
+
+[문맥 기반 이미지 설명]
+[그림 13-4] 콤바인 굴취날이 토양 내로 진입할 때 발생하는 전단 응력장과 마늘 구 뿌리권의 분리 과정을 표현한 동역학적 단면 일러스트레이션이다. 특수 각도로 설계된 굴취 블레이드가 토양 전단면을 형성하며 지하 15cm 깊이에서 마늘 구 밑단을 들어 올리는 궤적이 명확히 묘사된다. 이는 토양 강도를 극복하면서 구체 손상을 최소화하는 굴취 각도와 주파수 동역학을 시각화한다[SRC-104].
+
+[나노바나나 생성 프롬프트]
+A highly detailed scientific mechanical and soil mechanics illustration on a pure white background showing a subterranean wedge-shaped steel digger blade cutting horizontally beneath a garlic plant bed. Curved isometric streamlines and shaded shear stress zones indicate soil fracture lines moving upward through dense loam. The intact garlic bulb rests just above the leading edge of the polished steel share blade, with its root clusters severed cleanly without fracturing the basal plate. Shaded technical rendering showing cutaway soil strata, metallic reflections, and physical trajectory paths without text or annotations. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

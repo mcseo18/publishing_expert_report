@@ -1,0 +1,12 @@
+이미지 번호: 그림 14-10
+이미지 파일명: fig_ch14_v10.png
+단원: 제14장. 스마트 건조(Curing), CA 저온저장 및 유통 품질 제어 (ch14)
+결합 절: 14.4 RFID/IoT 기반 콜드체인 추적 및 유통 단계별 품질 등급화
+시각화 유형: photorealistic_field
+제목: [그림 14-10] RFID/IoT 온도 로거 부착 마늘 출하 팔레트 및 물류 검수
+
+[문맥 기반 이미지 설명]
+[그림 14-10] 저온 유통 단계에서 실시간 품질 이력을 수집하기 위해 스마트 RFID/IoT 태그가 부착된 마늘 출하 팔레트를 검수하는 물류 현장이다. 각 마늘 상자에는 온습도, 충격, 위치 데이터를 연속 기록하는 데이터 로거가 부착되어 유통 중 온도 이탈(Temperature Excursion) 여부를 모니터링한다 [SRC-107]. 휴대형 리더기를 통해 산지부터 도매시장까지의 콜드체인 이력이 무선 스캔되어 동적 품질 등급이 판정된다 [SRC-105].
+
+[나노바나나 생성 프롬프트]
+Photorealistic documentary photograph in a refrigerated distribution center hub. A logistical technician wearing cold-protection thermal work gloves holding a handheld wireless digital optical scanner, scanning an active electronic RFID/IoT datalogger tag securely affixed to a heavy-duty plastic crate filled with premium sorted garlic bulbs in breathable red mesh netting. Forklift transport, insulated delivery trucks, and pallets of packaged garlic in an ambient chilled warehouse lighting. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

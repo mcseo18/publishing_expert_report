@@ -1,0 +1,24 @@
+chapter_id: ch03
+chapter_number: 3
+title: 제3장. 물 수지 및 질소 동태 모델링
+target_pages: 25
+summary_ko: 작물의 생장에 필수적인 물과 주요 영양소인 질소의 거동을 물리적으로 모델링하는 방법을 학습합니다. 토양-작물-대기 시스템 간의 복잡한 수분 이동과 질소 순환 과정을 정량적 방정식으로 표현합니다.
+sections:
+- 3.1 작물 및 토양의 물 수지(Water Balance) 모델링 원리
+- 3.2 증발산(Evapotranspiration) 계산 및 작물 수분 스트레스 반응
+- 3.3 질소(N)의 흡수, 이동, 분해(Mineralization) 과정 모델링
+- 3.4 양분 이용 효율(Nutrient Use Efficiency)과 질소 동태의 상호작용
+tables: []
+visuals: []
+keywords_ko:
+- 물 수지
+- 질소 동태
+- 증발산
+- 양분 흡수
+keywords_en:
+- Water Balance
+- Nitrogen Dynamics
+- Evapotranspiration
+- Nutrient Uptake
+evidence_packet: crop_growth_model_20261123_051626_evidence.json
+assigned_sources: []

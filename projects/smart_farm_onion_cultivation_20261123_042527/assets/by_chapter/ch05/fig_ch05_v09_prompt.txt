@@ -1,0 +1,12 @@
+이미지 번호: 그림 5-9
+이미지 파일명: fig_ch05_v09.png
+단원: 제5장. 토양 수분 모니터링 센서 네트워크와 스마트 관개 자동화 (ch05)
+결합 절: 5.4 토양 수분 결핍 지수(CWSI) 기반 무인 밸브 연동 자동 관개 알고리즘 구현
+시각화 유형: photorealistic_macro
+제목: [그림 5-9] CWSI 임계치 연동 자동 관수 제어용 전동 솔레노이드 밸브 매니폴드
+
+[문맥 기반 이미지 설명]
+[그림 5-9] 스마트 양파 포장 구역별 관수를 제어하는 관개 헤드 유닛의 산업용 솔레노이드 밸브(Solenoid Valve)와 디지털 압력 게이지 매니폴드 설비이다. CWSI 수치가 위험 임계값에 도달할 때 자동 제어 컨트롤러로부터 전기 신호를 인가받아 플런저가 즉시 개방되는 정밀 액추에이터의 기계적 구동부를 보여준다. 지역 농업 현장의 수자원 관리 자동화 기준 및 신뢰성 평가 기준을 완벽히 충족하는 견고한 시스템이다 [SRC-106].
+
+[나노바나나 생성 프롬프트]
+Photorealistic macro photograph of an outdoor smart irrigation manifold assembly beside an onion field. Focus on heavy-duty brass and industrial nylon solenoid valves connected to rigid PVC piping, equipped with glycerin-filled stainless steel pressure gauges and waterproof wire conduits. Tiny droplets of condensation cling to the metallic valve bodies. The field of green onion foliage is visible blurred softly in the sunny background. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

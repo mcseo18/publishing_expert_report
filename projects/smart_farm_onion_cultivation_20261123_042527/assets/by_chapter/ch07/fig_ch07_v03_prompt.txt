@@ -1,0 +1,12 @@
+이미지 번호: 그림 7-3
+이미지 파일명: fig_ch07_v03.png
+단원: 제7장. 디지털 트윈과 양파 생육·수율 시뮬레이션 모델링 (ch07)
+결합 절: 개념 소개·이론적 배경
+시각화 유형: photorealistic_macro
+제목: [그림 7-3] 저온 유통 및 저장 중 양파 구근의 호흡열·에틸렌 모니터링 환경
+
+[문맥 기반 이미지 설명]
+[그림 7-3] 수확 후 저온 유통(Cold Chain) 및 저장고 시뮬레이션 모델에 필요한 양파 구근의 환경 반응 측정 챔버를 관찰한 매크로 사진입니다. 단단하게 큐어링된 구근 목부(neck)와 갈색 외피 주변으로 정밀 온습도 센서와 가스 흡입 튜브가 장착되어 에틸렌 방출 및 호흡량을 모니터링합니다. 이는 수확 후 호르몬 작용과 저장 수명 예측 모델의 검증 데이터로 활용됩니다 [SRC-107, SRC-108].
+
+[나노바나나 생성 프롬프트]
+A macro photograph inside an agricultural cold storage research chamber. Several fully cured yellow onions with golden copper dry papery tunics and tightly closed dried necks resting on a perforated stainless steel mesh shelf. A slender stainless steel temperature probe and thin silicone air sampling tube are positioned closely against the bulb shoulder. Delicate moisture droplets condensing on the steel grid, crisp fibrous texture of the onion skins, soft cool LED lighting, shallow depth of field focusing sharply on the smooth curve of the onion skin and the micro instrument probe. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

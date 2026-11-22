@@ -1,0 +1,12 @@
+이미지 번호: 그림 13-10
+이미지 파일명: fig_ch13_v10.png
+단원: 제13장. 디지털 수확 적기 판별과 마늘 굴취·수집·절단 복합 기계화 (ch13)
+결합 절: 13.4 자주식 마늘 콤바인의 작업 효율성 분석 및 현장 트러블슈팅
+시각화 유형: photorealistic_field
+제목: [그림 13-10] 굴취·절단·톤백 수집 일관 자주식 마늘 콤바인의 포장 연속 작업
+
+[문맥 기반 이미지 설명]
+[그림 13-10] 굴취부터 토사 분리, 줄기 절단, 대용량 톤백(Bulk bag) 적재까지 전 공정을 연속 수행하는 궤도형 자주식 마늘 콤바인의 종합 현장 사진이다. 크롤러 트랙이 장착된 콤바인이 두둑을 따라 전진하며 수확한 마늘 구를 후방 마네트 톤백에 균일하게 채우고 있다. 동력 전달 효율성과 공정 간 버퍼링 설계를 통해 작업 단절 없이 시간당 최대 수확 효율을 달성함을 보여준다[SRC-108, SRC-109].
+
+[나노바나나 생성 프롬프트]
+Wide-angle documentary agricultural photograph of an advanced rubber-tracked self-propelled all-in-one garlic combine harvester operating in a vast, level garlic field during late spring. The green and white machine straddles raised crop rows, unearthing garlic plants at the front, while trimmed, uniform garlic bulbs pour smoothly from the rear overhead boom conveyor into an industrial-sized woven breathable bulk ton-bag mounted on the rear carrier. Soft dust trails rise against the golden setting sun, highlighting continuous automated farm mechanization. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

@@ -1,4 +1,4 @@
-param(
+﻿param(
     [ValidateSet("all", "agents", "main", "explorer", "stop")]
     [string]$Target = "all",
     [switch]$NoBrowser
@@ -70,11 +70,11 @@ function Ensure-Server([int]$Port, [string]$AppModule, [string]$Label) {
 
 $urls = @()
 if ($Target -eq "all" -or $Target -eq "agents") {
-    Ensure-Server -Port 8501 -AppModule "dashboard.agents_app:app" -Label "Unified Textbook Publishing Dashboard"
+    Ensure-Server -Port 8501 -AppModule "dashboard.agents_app:app" -Label "참참살이 영농 AI 출판도우미 통합 대시보드"
     $urls += "http://127.0.0.1:8501"
 }
 if ($Target -eq "explorer") {
-    Ensure-Server -Port 8501 -AppModule "dashboard.agents_app:app" -Label "Unified Textbook Publishing Dashboard (Explorer Tab)"
+    Ensure-Server -Port 8501 -AppModule "dashboard.agents_app:app" -Label "참참살이 영농 AI 출판도우미 (데이터 탐색)"
     $urls += "http://127.0.0.1:8501/#explorer"
 }
 if ($Target -eq "main") {

@@ -1,0 +1,12 @@
+이미지 번호: 그림 12-8
+이미지 파일명: fig_ch12_v08.png
+단원: 제12장. 자율주행 기반 정식·포장관리 및 지능형 수확 로봇 (ch12)
+결합 절: 12.3 줄기 절단 및 굴취 수집 일관 수확기의 동역학 해석과 외피 충격 최소화 완충 설계 (현장 적용·실전 기술)
+시각화 유형: photorealistic_macro
+제목: [그림 12-8] 기계 수확 완충 처리 유무에 따른 양파 인경 보호 외피 세포 미세 구조
+
+[문맥 기반 이미지 설명]
+[그림 12-8] 완충 시스템을 거친 양파와 무완충 충격을 받은 양파의 외피(Tunic) 단면을 관찰한 고배율 매크로 사진입니다. 좌측의 완충 처리된 인경은 다층의 건조 외피 세포벽이 밀착된 채 온전하게 유지되어 내부 수분 손실과 병원균 침입을 차단합니다. 반면 우측의 충격 손상 인경은 외피 박리와 육질 비늘잎의 세포 파열 및 갈변 침출액이 발생하여 저장 중 부패 위험을 높입니다 [SRC-108, SRC-118].
+
+[나노바나나 생성 프롬프트]
+A scientific macro comparison photograph of two onion bulb outer skin cross-sections placed side by side under laboratory ring lighting. The left specimen shows undamaged golden-brown papery dry tunic layers tightly adhering to crisp, pristine white flesh scales with intact cellular structure. The right specimen displays fractured, bruised outer tunic layers with crushed translucent fleshy scale tissue underneath, exhibiting slight brownish oxidation and moisture leakage from mechanical impact. Razor-sharp biological texture, high magnification, crisp clean contrast. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

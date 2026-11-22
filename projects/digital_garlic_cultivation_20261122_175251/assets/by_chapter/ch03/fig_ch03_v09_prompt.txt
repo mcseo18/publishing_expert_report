@@ -1,0 +1,12 @@
+이미지 번호: 그림 3-9
+이미지 파일명: fig_ch03_v09.png
+단원: 제3장. 마늘 품종별 유전 특성, 생리적 분화 및 디지털 계통 분류 (ch03)
+결합 절: 3.4 무병종구(바이러스 프리) 생산 체계 및 조직배양 대량 증식
+시각화 유형: photorealistic_macro
+제목: [그림 3-9] 무병종구 생산을 위한 마늘 생장점(생장원기) 미세 적출 미세현미경 관찰
+
+[문맥 기반 이미지 설명]
+[그림 3-9] 실체현미경 하에서 미세 메스와 핀셋을 사용하여 마늘 인편 내부의 0.2~0.3mm 크기 생장점 분열조직(Shoot Apical Meristem)만을 정밀하게 절제하는 조직배양 초기 단계를 포착한 연구실 접사 사진이다. 바이러스 이행 속도보다 세포 분열 속도가 빠른 엽원기 1~2매를 포함한 투명한 돔 형태의 분열조직 덩어리가 극도로 정밀하게 분리되고 있다 [SRC-103]. 이 무균 미세 수술 기법은 OYDV 및 LYSV 등 종구 전염성 바이러스를 완전히 배제한 무병 모본 확립의 결정적 과정이다.
+
+[나노바나나 생성 프롬프트]
+Laboratory stereomicroscope macro photograph showing microsurgical excision of a garlic shoot apical meristem. Under high-magnification optical field, tiny precision surgical micro-scalpel and ultra-fine micro-tweezers isolate a glistening, translucent 0.2-millimeter meristematic dome with two minute leaf primordia from the inner core of an Allium sativum clove. Circular microscopic light field illumination, extreme micro-sharpness, sterile stainless-steel instruments reflecting soft cool laboratory light. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

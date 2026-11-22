@@ -1,0 +1,12 @@
+이미지 번호: 그림 12-6
+이미지 파일명: fig_ch12_v06.png
+단원: 제12장. 분광 센싱·드론 예찰 및 마늘 작물생육모형(Crop Growth Model) (ch12)
+결합 절: 12.3 적산온도, 일장, 광합성 효율 기반 마늘 생육 모형 수리적 설계
+시각화 유형: scientific_anatomy
+제목: [그림 12-6] 적산온도(GDD)와 일장 반응에 따른 마늘 생육 단계별 탄소 동화 및 분배 경로
+
+[문맥 기반 이미지 설명]
+[그림 12-6] 적산온도(GDD)와 일장(Photoperiod) 변화에 따라 마늘의 잎에서 합성된 동화산물이 지하부 인편(Clove)으로 전류되는 과정을 나타낸 메커니즘 도해입니다. 생육 초기 잎과 위줄기 형성에 집중되던 탄수화물이 일장이 길어지고 적산온도가 임계치에 도달함에 따라 줄기 기저부의 기저판(Basal Plate)을 거쳐 6~8개의 어린 인편으로 급격히 재분배되는 생리적 물질 전달 흐름을 보여줍니다 [SRC-109, SRC-110]. 환경 스트레스 인자가 광합성 효율과 호흡 소모에 미치는 피드백 루프가 정교하게 표현되어 있습니다 [SRC-102].
+
+[나노바나나 생성 프롬프트]
+Scientific anatomical cutaway illustration on a pure white background showing the carbon translocation pathway of an Allium sativum plant across developmental stages. Vibrant green leaves display phloem transport pathways moving sucrose down the pseudo-stem into the expanding basal bulb. The bulb is cross-sectioned to reveal internal embryonic cloves swelling around the central axis above fibrous white rootlets. Luminous botanical rendering with distinct flow arrows representing assimilate partitioning driven by thermal accumulation and daylight photoperiod. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

@@ -1,0 +1,144 @@
+book_metadata:
+  title_ko: 토양 유기물 분해에 관한 장단기 모델 리뷰
+  title_en: A Review of Short- and Long-Term Models for Soil Organic Matter Decomposition
+  target_audience: 국내외 학회지 심사위원, 대학교수, 농학·생명과학 연구자
+  book_summary_ko: 본 논문은 농경지 및 산림 생태계에서 토양 유기물(SOM) 분해 역학을 모의하는 단기(생물계절 및 연간 미생물 반응) 및 장기(수십~수백 년 단위 탄소 격리 및 부식화) 동적 모델을 체계적으로 비교·분석한 종합 고찰 연구이다.
+    1차 반응속도론 기반의 고전적 구획 모델(RothC, Century)부터 미생물 효소 반응론 및 물리화학적 광물 결합 기작을 반영한 차세대 명시적 모델(MIMICS, Millennial, BAMS1, SoilR)에 이르는 수리적 지배방정식과 매개변수화
+    체계를 심도 있게 검토하였다. 기후변화 시나리오 하에서 토양 탄소 중립 및 온실가스 배출 저감 예측의 불확실성을 완화하기 위한 토양 탄소 동태 모델의 정량적 평가 기준과 다중 스케일 통합 프레임워크를 제시한다.
+  target_pages: 90
+  target_total_pages: 90
+  chapter_count: 6
+  engine_used: Gemini (gemini-3.8-flash)
+  generated_at: '2026-11-22T21:06:55+00:00'
+domain_keywords:
+- domain: 토양 탄소 생지화학 및 분해 동태
+  keywords_ko:
+  - 토양 유기물
+  - 탄소 격리
+  - 체류 시간
+  - 부식질 동태
+  - 미생물 호흡
+  keywords_en:
+  - soil organic matter
+  - carbon sequestration
+  - residence time
+  - humus dynamics
+  - microbial respiration
+- domain: 수리적 모델링 및 반응속도론
+  keywords_ko:
+  - 1차 반응속도론
+  - 미카엘리스-멘텐 반응
+  - 구획 모델
+  - 지배방정식
+  - SoilR 패키지
+  keywords_en:
+  - first-order kinetics
+  - Michaelis-Menten kinetics
+  - compartment model
+  - governing equation
+  - SoilR package
+- domain: 단·장기 시공간 모델 시스템
+  keywords_ko:
+  - RothC 모델
+  - Century 모델
+  - BAMS1 모델
+  - 미생물 명시적 모델
+  - 연직 다층 모델
+  keywords_en:
+  - RothC model
+  - Century model
+  - BAMS1 model
+  - microbial-explicit model
+  - vertically resolved model
+- domain: 환경 요인 및 기후변화 영향
+  keywords_ko:
+  - 온도 민감도 (Q10)
+  - 토양 수분 스트레스
+  - UV-B 복사
+  - 질소 순환 결합
+  - 프라이밍 효과
+  keywords_en:
+  - temperature sensitivity (Q10)
+  - soil moisture stress
+  - UV-B radiation
+  - nitrogen cycle coupling
+  - priming effect
+parts:
+- part_number: 1
+  title: 제1부. 서론 및 문헌 탐색 체계 (Introduction & Methodology)
+  pages: 30
+  chapters:
+  - chapter_id: ch01
+    chapter_number: 1
+    title: '제1장. 국문·영문 초록 및 서론: 토양 유기물 분해 모델링의 학술적 배경과 패러다임 전환 (Abstract & Introduction)'
+    target_pages: 15
+    summary_ko: 본 단원에서는 토양 유기물의 생지화학적 순환과 기후변화 완화 기능의 중요성을 조명하고, 고전적 부식화 패러다임에서 미생물 연속체 및 물리화학적 보호 기작으로 전환된 최신 학술적 흐름을 소개한다. 특히 단기 탄소 플럭스 추정과
+      장기 탄소 저장량 예측 간의 시공간적 불일치 문제를 해결하기 위한 수리적 모델링의 필요성과 본 리뷰의 연구 범위를 정립한다.
+    sections:
+    - 1.1 국문 및 영문 초록, 주제별 핵심 학술 키워드 (Abstract & Keywords)
+    - 1.2 전 지구 탄소 순환에서 토양 유기탄소(SOC)의 위상과 분해 역학의 중요성
+    - 1.3 고전적 부식화 개념에서 미생물 연속체(Microbial Continuum) 패러다임으로의 전환
+    - 1.4 장기 기후변화 예측과 단기 농경지 관리 간의 시공간적 스케일 간극 및 모델링의 필요성
+  - chapter_id: ch02
+    chapter_number: 2
+    title: '제2장. 체계적 문헌고찰 방법론 및 모델 분류 기준 (Materials & Methods: Literature Scope & Classification)'
+    target_pages: 15
+    summary_ko: 본 단원은 PRISMA 가이드라인에 입각하여 지난 40여 년간 KCI, SCI(E) 데이터베이스에 발표된 토양 유기물 분해 모델 연구 논문의 문헌 수집 및 메타 선별 절차를 기술한다. 단기 모델(일~수년, 미생물 바이오매스 중심)과
+      장기 모델(수십~수천 년, 구획 분할 중심)을 구별하는 정량적 매개변수 기준과 지배방정식 유형화 틀을 정립한다.
+    sections:
+    - 2.1 문헌 수집 및 메타 분석 선정 프로토콜 (PRISMA 가이드라인 적용)
+    - 2.2 단기 및 장기 토양 분해 모델의 시공간적 스케일 및 구획(Pool) 분류 체계
+    - '2.3 수리적 구조에 따른 모델 분류: 1차 반응속도론(Linear) vs. 비선형 미생물 효소 반응론'
+    - 2.4 모델 불확실성 평가 및 R 패키지(SoilR 등)를 활용한 비교 평가 기준 수립
+- part_number: 2
+  title: 제2부. 모델 지배방정식 및 정량적 종합 (Results & Quantitative Synthesis)
+  pages: 30
+  chapters:
+  - chapter_id: ch03
+    chapter_number: 3
+    title: 제3장. 고전적 장기 분해 구획 모델의 수리적 메커니즘과 정량적 거동 (Long-Term Compartmental Models)
+    target_pages: 15
+    summary_ko: 본 단원에서는 RothC 및 Century 모델로 대표되는 장기 구획 모델의 선형 미분방정식 체계와 불활성/난분해성 유기물 분할 기준을 정량적으로 분석한다. 수십 년 이상의 장기 연대 방사성 탄소(14C) 추적 자료 및 현장
+      실측치와의 비교를 통해 장기 체류 시간 모의의 강점과 환경 민감도 함수(수분·온도 계수)의 한계를 검토한다.
+    sections:
+    - 3.1 1차 감쇄 속도론 기반의 장기 구획 모델 지배방정식 수립 및 정상상태 해석
+    - 3.2 RothC 및 Century 모델의 탄소 분획 구성(DPM, RPM, BIO, HUM, IOM) 및 플럭스 전이율
+    - 3.3 토양 방사성 동위원소(14C) 동태 분석 및 SoilR을 활용한 회전 시간(Turnover Time) 산출
+    - '3.4 장기 모델의 한계: 물리적 광물 보호 기작 및 유효 공극 구조 반영의 결여'
+  - chapter_id: ch04
+    chapter_number: 4
+    title: 제4장. 차세대 단기 및 명시적 미생물 분해 모델의 수리적 메커니즘 (Short-Term & Microbial-Explicit Models)
+    target_pages: 15
+    summary_ko: 본 단원에서는 시간 단위부터 연간 변동을 모의하는 기질-미생물 효소 결합 단기 모델과 미생물 탄소이용효율(CUE)을 명시적으로 반영한 모델(BAMS1, MIMICS 등)의 수리 구조를 규명한다. 환경 스트레스 요인(UV-B 복사,
+      건습 반복)과 프라이밍 효과가 미생물 생체량 및 단기 유기물 분해 플럭스에 미치는 비선형적 영향을 정량화한다.
+    sections:
+    - 4.1 미카엘리스-멘텐 및 역미카엘리스-멘텐 기반 효소 반응속도론 수리화
+    - 4.2 미생물 탄소이용효율(CUE)의 가변성과 바이오매스 사멸체의 광물 흡착 모델링
+    - '4.3 다상·다성분·연직 다층 모델(BAMS1)의 유효성: 급속 분해성 유기물의 장기 잔류 현상 규명'
+    - 4.4 단기 환경 변동성(UV-B 복사 노출, 건습 반복, 동결 융해)에 따른 분해 가속 반응 모의
+- part_number: 3
+  title: 제3부. 종합 토론 및 미래 전망 (Discussion & Conclusion)
+  pages: 30
+  chapters:
+  - chapter_id: ch05
+    chapter_number: 5
+    title: '제5장. 고찰: 단·장기 모델의 생물물리학적 불일치 해소 및 질소 순환 결합 메커니즘 (Discussion: Multi-Scale Synthesis & Limiting Factors)'
+    target_pages: 15
+    summary_ko: 본 단원에서는 단기 미생물 동태와 장기 탄소 격리 모델 간의 불일치를 해소하기 위한 이론적 통합 방안과 탄소-질소 연계 순환 모델링의 기작을 심층 고찰한다. 토양 깊이별 광물 결합 유기물(MAOM)과 입자상 유기물(POM)의
+      물리적 보호 메커니즘, 기온 상승에 따른 Q10 온도 민감도 매개변수의 비선형적 거동 한계를 비판적으로 논의한다.
+    sections:
+    - '5.1 단기 미생물 프로세스와 장기 유기물 보존 간의 스케일 통합 기작: POM 및 MAOM 분획화'
+    - '5.2 탄소-질소 순환 결합(C-N Coupling) 모델링: 질소 무기화-부동화 및 작물 생산 환경 영향'
+    - 5.3 온도 민감도(Q10) 파라미터화의 열역학적 맹점 및 토양 수분 결합 함수 비교
+    - 5.4 미생물 군집 다양성 및 유전자 정보(Omics) 기반 매개변수화의 현재 기술적 한계
+  - chapter_id: ch06
+    chapter_number: 6
+    title: '제6장. 결론 및 미래 전망: 기후변화 대응 정밀 토양 탄소 관리 모델의 발전 방향 (Conclusion & Future Perspectives)'
+    target_pages: 15
+    summary_ko: 본 단원에서는 전체 비교 고찰 결과를 종합하여 농경지 및 자연 생태계 토양 탄소 중립 평가를 위한 최적 모델 선택 가이드라인을 제시한다. 디지털 토양 맵핑, 원격 탐사, 인공지능(AI) 기법과 결합된 차세대 하이브리드 토양 유기물
+      동태 모델의 연구 방향과 국가 온실가스 인벤토리 고도화를 위한 정책적 시사점을 도출한다.
+    sections:
+    - 6.1 단·장기 토양 유기물 분해 모델의 주요 성과 및 한계 요약
+    - 6.2 생태계 유형 및 모델링 목적별 최적 모델 선정 의사결정 매트릭스
+    - 6.3 AI 머신러닝-생물지화학 하이브리드 모델링 및 고해상도 디지털 토양 공간화 전망
+    - 6.4 국가 토양 탄소 인벤토리 보고 체계(Tier 3) 고도화 및 학술적 제언

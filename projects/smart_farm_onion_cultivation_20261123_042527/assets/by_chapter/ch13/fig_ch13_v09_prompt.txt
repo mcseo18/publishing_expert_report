@@ -1,0 +1,12 @@
+이미지 번호: 그림 13-9
+이미지 파일명: fig_ch13_v09.png
+단원: 제13장. 스마트 건조(Curing)와 CA/저온 저장 환경 최적화 제어 (ch13)
+결합 절: 13.4 저장 중 생체중량 감모, 부패, 조기 맹아 발생 모니터링을 위한 IoT 가스·온습도 센서망 (관련 법규 및 정책 지침)
+시각화 유형: photorealistic_macro
+제목: [그림 13-9] 양파 저장 컨테이너 내부 매립형 IoT 무선 복합 가스·온습도 센서 노드
+
+[문맥 기반 이미지 설명]
+[그림 13-9] 대형 저장 상자 속 양파 구근들 사이에 직접 매립된 산업용 무선 IoT 센서 노드의 근접 사진입니다. 양파 표면과 심부 온도를 측정하는 금속 침상 프로브와 주변 공기의 산소, 이산화탄소, 암모니아, 휘발성 에틸렌 농도를 실시간 감지하는 마이크로 가스 챔버가 장착되어 있습니다[SRC-102]. 미세한 부패 가스 발생이나 조기 맹아 징후를 조기에 감지하여 클라우드 관제 플랫폼으로 무선 데이터를 전송합니다[SRC-105].
+
+[나노바나나 생성 프롬프트]
+Macro photograph of a rugged industrial IoT multi-sensor node nestled securely among golden dry onion bulbs inside a wooden crate. The compact matte-grey weather-sealed device features a visible miniature perforated air-sampling sensor chamber, a slender stainless steel pulp temperature needle probe penetrating an onion bulb, and an omnidirectional wireless antenna. A tiny status LED shines softly, capturing the realistic texture of dry onion skins and rugged monitoring hardware. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

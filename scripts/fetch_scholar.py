@@ -37,36 +37,24 @@ from compliance import (
 )
 from config import PlatformConfig, get_config
 
-# 토양학·농업과학 주요 국내 학회지 ISSN 및 학회명 매핑
+# 농학·작물·원예·토양·식품·잡초·농공학·기상 주요 국내 18대 학회지 ISSN 및 학회명 매핑
 KOREAN_SOCIETY_JOURNALS: list[dict[str, str]] = [
-    {
-        "society": "한국토양비료학회",
-        "journal_ko": "한국토양비료학회지",
-        "journal_en": "Korean Journal of Soil Science and Fertilizer",
-        "issn": "0367-6315",
-        "eissn": "2288-2162",
-    },
-    {
-        "society": "한국환경농학회",
-        "journal_ko": "한국환경농학회지",
-        "journal_en": "Korean Journal of Environmental Agriculture",
-        "issn": "1225-3537",
-        "eissn": "2233-4173",
-    },
-    {
-        "society": "한국농림기상학회",
-        "journal_ko": "한국농림기상학회지",
-        "journal_en": "Korean Journal of Agricultural and Forest Meteorology",
-        "issn": "1229-5671",
-        "eissn": "2288-1859",
-    },
-    {
-        "society": "한국유기농업학회",
-        "journal_ko": "한국유기농업학회지",
-        "journal_en": "Korean Journal of Organic Agriculture",
-        "issn": "1229-3571",
-        "eissn": "2287-819X",
-    },
+    {"society": "한국토양비료학회", "journal_ko": "한국토양비료학회지", "journal_en": "Korean Journal of Soil Science and Fertilizer", "issn": "0367-6315", "eissn": "2288-2162"},
+    {"society": "한국작물학회", "journal_ko": "한국작물학회지", "journal_en": "Korean Journal of Crop Science", "issn": "0252-9777", "eissn": "2287-8432"},
+    {"society": "한국원예학회", "journal_ko": "원예과학기술지", "journal_en": "Horticultural Science and Technology", "issn": "1226-8763", "eissn": "2465-8588"},
+    {"society": "한국환경농학회", "journal_ko": "한국환경농학회지", "journal_en": "Korean Journal of Environmental Agriculture", "issn": "1225-3537", "eissn": "2233-4173"},
+    {"society": "한국농림기상학회", "journal_ko": "한국농림기상학회지", "journal_en": "Korean Journal of Agricultural and Forest Meteorology", "issn": "1229-5671", "eissn": "2288-1859"},
+    {"society": "한국잡초학회", "journal_ko": "잡초·잔디학회지", "journal_en": "Weed & Turfgrass Science", "issn": "2287-7924", "eissn": "2288-7997"},
+    {"society": "한국식물병리학회", "journal_ko": "식물병연구", "journal_en": "Research in Plant Disease", "issn": "1598-2262", "eissn": "2233-9191"},
+    {"society": "한국응용곤충학회", "journal_ko": "한국응용곤충학회지", "journal_en": "Korean Journal of Applied Entomology", "issn": "1225-0171", "eissn": "2287-545X"},
+    {"society": "한국생물환경조절학회", "journal_ko": "생물환경조절학회지", "journal_en": "Journal of Bio-Environment Control", "issn": "1229-4675", "eissn": "2765-3641"},
+    {"society": "한국농업기계학회", "journal_ko": "바이오시스템공학", "journal_en": "Journal of Biosystems Engineering", "issn": "1738-1266", "eissn": "2234-1862"},
+    {"society": "한국식품저장유통학회", "journal_ko": "한국식품저장유통학회지", "journal_en": "Korean Journal of Food Preservation", "issn": "1738-7248", "eissn": "2287-7428"},
+    {"society": "한국식품과학회", "journal_ko": "한국식품과학회지", "journal_en": "Korean Journal of Food Science and Technology", "issn": "0367-6293", "eissn": "2383-9635"},
+    {"society": "한국유기농업학회", "journal_ko": "한국유기농업학회지", "journal_en": "Korean Journal of Organic Agriculture", "issn": "1229-3571", "eissn": "2287-819X"},
+    {"society": "한국육종학회", "journal_ko": "한국육종학회지", "journal_en": "Korean Journal of Breeding Science", "issn": "0250-3360", "eissn": "2287-5174"},
+    {"society": "한국농공학회", "journal_ko": "한국농공학회논문집", "journal_en": "Journal of the Korean Society of Agricultural Engineers", "issn": "1738-3692", "eissn": "2093-7709"},
+    {"society": "한국농약과학회", "journal_ko": "농약과학회지", "journal_en": "The Korean Journal of Pesticide Science", "issn": "1226-6183", "eissn": "2287-2051"},
 ]
 
 
@@ -518,11 +506,15 @@ def ingest_paper_record(
     paper: dict[str, Any],
     packet_id: str = "ch01_evidence",
     topic: str = "",
-    download_oa_pdf: bool = False,
+    download_oa_pdf: bool = True,
+    capture_webpage: bool = True,
+    auto_unify_rag: bool = True,
     force: bool = False,
     cfg: PlatformConfig | None = None,
 ) -> dict[str, Any]:
-    """검색 또는 BibTeX로 확보한 논문 1편을 E:\\SMC_Report_Platform_Data 및 근거 패킷에 등록한다."""
+    """검색 또는 BibTeX로 확보한 논문 1편을 최대한 다운로드(OA PDF) 또는 웹 캡쳐해 E:\\ 및 C:\\SMC_GRAPHRAG 통합 RAG에 결합한다."""
+    from rag_capture_unifier import download_or_capture_resource, unify_source_to_smc_graphrag
+
     cfg = cfg or get_config()
     registry = SourcesRegistry(cfg.sources_registry_path)
 
@@ -555,31 +547,30 @@ def ingest_paper_record(
         f"- **분류**: {category} | **오픈액세스**: {'예' if paper.get('is_oa') else '메타데이터/초록'}",
         "",
         "## 초록 (Abstract)",
-        abstract if abstract else "(오픈 초록 미제공 — 학술지 원문 또는 ego-browser 기관 구독 세션으로 보강 가능)",
+        abstract if abstract else "(오픈 초록 미제공 — 학술지 원문 또는 캡쳐/기관 세션으로 보강)",
     ]
 
-    pdf_saved_path = ""
-    if download_oa_pdf and paper.get("pdf_url"):
-        try:
-            r = requests.get(paper["pdf_url"], headers={"User-Agent": USER_AGENT}, timeout=25)
-            if r.status_code == 200 and "pdf" in (r.headers.get("content-type", "").lower()):
-                dest = cfg.raw_docs_dir / f"scholar_{slugify(title, 40)}.pdf"
-                dest.write_bytes(r.content)
-                pdf_saved_path = str(dest)
-                from pypdf import PdfReader
+    source_id = registry.next_source_id()
+    slug = slugify(f"{year}_{title}", 46)
 
-                reader = PdfReader(str(dest))
-                extracted_pages = []
-                for idx, p in enumerate(reader.pages[:15], start=1):
-                    t = (p.extract_text() or "").strip()
-                    if t:
-                        extracted_pages.append(f"<!-- page: {idx} -->\n{t}")
-                if extracted_pages:
-                    md_lines.append("")
-                    md_lines.append("## 오픈액세스 본문 발췌 (PDF)")
-                    md_lines.extend(extracted_pages)
-        except Exception:
-            pass
+    # 최대한 공개 PDF 다운로드 또는 논문 랜딩페이지 스크린샷(PNG) 캡쳐
+    cap_res = download_or_capture_resource(
+        url=url if url.startswith(("http://", "https://")) else "",
+        pdf_url=str(paper.get("pdf_url") or ""),
+        doi=doi,
+        source_id=source_id,
+        slug=slug,
+        download_pdf=download_oa_pdf,
+        capture_screenshot=capture_webpage,
+        cfg=cfg,
+    )
+    pdf_saved_path = cap_res.get("pdf_path") or ""
+    cap_png_path = cap_res.get("capture_png_path") or ""
+    cap_mode = cap_res.get("capture_mode") or "metadata_only"
+    if cap_res.get("pdf_text"):
+        md_lines.append("")
+        md_lines.append("## 오픈액세스 본문 발췌 (PDF 다운로드)")
+        md_lines.append(cap_res["pdf_text"])
 
     raw_md = "\n".join(md_lines)
     cleaned_md, pii_count = mask_pii(raw_md)
@@ -590,8 +581,6 @@ def ingest_paper_record(
         if dup_h:
             return {"status": "SKIPPED_DUPLICATE", "existing": dup_h}
 
-    source_id = registry.next_source_id()
-    slug = slugify(f"{year}_{title}", 46)
     raw_json_path = cfg.raw_web_dir / f"{source_id}_{slug}_meta.json"
     parsed_md_path = cfg.parsed_dir / f"{source_id}_{slug}.md"
 
@@ -610,7 +599,7 @@ def ingest_paper_record(
     now = utc_now_iso()
     license_note = (
         f"학술 논문 오픈액세스({provider}) - 변환적 분석 및 정식 학술 인용"
-        if paper.get("is_oa")
+        if paper.get("is_oa") or pdf_saved_path
         else f"학술 서지 메타데이터·초록({provider}) - 정식 인용 목적(원문 무단 복제 금지)"
     )
     source_item = {
@@ -656,7 +645,7 @@ def ingest_paper_record(
             "journal": journal,
             "doi": doi,
             "cited_by_count": cited,
-            "is_oa": bool(paper.get("is_oa")),
+            "is_oa": bool(paper.get("is_oa") or pdf_saved_path),
             "url": url,
             "normalized_url": norm_url,
             "title": source_item["title"],
@@ -665,6 +654,9 @@ def ingest_paper_record(
             "robots_status": source_item["robots_status"],
             "sha256": content_hash,
             "raw_path": source_item["raw_path"],
+            "pdf_path": pdf_saved_path,
+            "capture_png_path": cap_png_path,
+            "capture_mode": cap_mode,
             "parsed_path": str(parsed_md_path),
             "packet_path": str(packet_path),
             "parser_engine": f"scholar_{provider.lower()}",
@@ -672,6 +664,26 @@ def ingest_paper_record(
             "table_count": 0,
         }
     )
+
+    rag_unified = None
+    if auto_unify_rag:
+        try:
+            rag_unified = unify_source_to_smc_graphrag(
+                source_id=source_id,
+                title=source_item["title"],
+                markdown_text=cleaned_md,
+                parsed_path=parsed_md_path,
+                url=url,
+                source_type=source_item["source_type"],
+                provider=provider,
+                capture_mode=cap_mode,
+                raw_path=source_item["raw_path"],
+                pdf_path=pdf_saved_path,
+                capture_png_path=cap_png_path,
+                cfg=cfg,
+            )
+        except Exception:
+            rag_unified = None
 
     return {
         "status": "OK",
@@ -682,8 +694,13 @@ def ingest_paper_record(
         "cited_by_count": cited,
         "category": category,
         "pdf_downloaded": bool(pdf_saved_path),
+        "pdf_path": pdf_saved_path,
+        "capture_png_path": cap_png_path,
+        "capture_mode": cap_mode,
         "parsed_path": str(parsed_md_path),
         "packet_path": str(packet_path),
+        "rag_unified": bool(rag_unified),
+        "rag_summary": rag_unified.get("unified_totals") if isinstance(rag_unified, dict) else None,
     }
 
 

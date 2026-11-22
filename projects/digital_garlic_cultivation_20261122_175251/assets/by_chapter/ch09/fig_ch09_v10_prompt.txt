@@ -1,0 +1,12 @@
+이미지 번호: 그림 9-10
+이미지 파일명: fig_ch09_v10.png
+단원: 제9장. 농작업 무인 자동화와 RTK-GPS 자율주행 농기계 기술 (ch09)
+결합 절: 9.4 자율 군집 농작업 제어 시스템과 노지 필드 안전 메커니즘
+시각화 유형: scientific_anatomy
+제목: [그림 9-10] 다중 센서 융합 기반 필드 안전 보호막 및 비상 정지·폴백 메커니즘
+
+[문맥 기반 이미지 설명]
+[그림 9-10] 노지 농작업 로봇에 구축된 3단계 안전 보호 구역(Safety Envelope)과 다중 센서 융합 구조를 시각화한 학술 단면도이다. 차체 상부의 3D 라이다(LiDAR) 반구형 스캔 영역, 전방 밀리미터파 레이더 빔, 초음파 근접 센서 구역이 단계별로 중첩되어 비정형 장애물 출현 시 즉시 비상 정지를 수행한다. 동시에 RTK 보정 신호 단절 시 IMU 기반의 추측 항법으로 전환되어 장비를 안전 속도로 감속시키는 폴백(Failover) 모드의 메커니즘을 상세히 보여준다.
+
+[나노바나나 생성 프롬프트]
+An academic 3D scientific technical illustration on a pure white background showing the safety perception envelope of an autonomous agricultural robot in a garlic field. Translucent concentric sensor lobes emanate outward: a dome-shaped 3D LiDAR point cloud in cyan, forward millimeter-wave radar cones in deep amber, and close-proximity ultrasonic detection zones in soft violet. Clear dimensional safety perimeter boundaries surround the machine with subtle internal IMU and failover architecture schematics. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

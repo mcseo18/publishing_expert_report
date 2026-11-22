@@ -1,0 +1,12 @@
+이미지 번호: 그림 3-6
+이미지 파일명: fig_ch03_v06.png
+단원: 제3장. 마늘 품종별 유전 특성, 생리적 분화 및 디지털 계통 분류 (ch03)
+결합 절: 3.3 유전자 분석 및 디지털 이미지 표현형 기반 품종 판별 기술
+시각화 유형: scientific_anatomy
+제목: [그림 3-6] 분자 마커(SSR/SNP) 기반 마늘 유전체 다형성 밴드 분석도
+
+[문맥 기반 이미지 설명]
+[그림 3-6] 한지형(단양, 서산) 및 난지형(남도, 대서) 품종 간의 유전적 다형성을 탐지하기 위한 아가로스 겔 전기영동 밴드 패턴 분석을 시각화한 학술 도해이다. 특정 유전자좌(Locus)에서 증폭된 SSR(단순반복서열) 마커의 크기 차이로 인해 각 품종별 고유한 분자 지문(DNA fingerprinting)이 형성된다 [SRC-103]. 이는 단순 외형 표현형으로 구별하기 어려운 근연 계통 간의 정확한 유전적 분열 계통수를 확립하는 기초가 된다.
+
+[나노바나나 생성 프롬프트]
+Scientific laboratory rendering of a horizontal DNA electrophoresis gel illumination showing polymorphic molecular marker bands for garlic cultivar discrimination. Distinct glowing ultraviolet bands aligned in vertical lanes representing cold-climate versus warm-climate Allium sativum genotypes, clearly separated by base-pair ladder markers on the side. Crisp scientific aesthetic, clean blue-and-dark gradient transilluminator view, completely unadorned by words or text, displaying molecular genetics methodology. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

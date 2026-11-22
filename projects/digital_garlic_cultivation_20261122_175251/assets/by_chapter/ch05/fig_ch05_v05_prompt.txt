@@ -1,0 +1,12 @@
+이미지 번호: 그림 5-5
+이미지 파일명: fig_ch05_v05.png
+단원: 제5장. 정밀 양분 역학과 스마트 관비(Fertigation) 및 시비 처방 (ch05)
+결합 절: 5.3 점적관수 기반 자동 관비 시스템 설계 및 양액 배합 알고리즘
+시각화 유형: photorealistic_macro
+제목: [그림 5-5] 자동 관비 제어 스테이션의 다채널 양액 도징 펌프 및 측정 챔버
+
+[문맥 기반 이미지 설명]
+[그림 5-5] 지능형 관비 시스템의 핵심부인 다채널 도징 펌프(dosing pump) 및 유량 측정 매니폴드를 정밀 촬영한 매크로 사진입니다. 질소·인산·칼륨 기본 양액과 미량원소 및 칼슘 액비 탱크에 연결된 고정밀 연동식 펌프 헤드, 유량계, 투명 바이패스 관 내부에 장착된 유리 전극 EC 및 pH 프로브가 선명하게 포착되어 있습니다. 이 장치는 토양 센싱 모듈의 신호를 받아 양액 배합 알고리즘에 따른 비례 주입을 정밀하게 제어합니다 [SRC-100].
+
+[나노바나나 생성 프롬프트]
+Crisp photorealistic macro photograph of a high-tech agricultural fertigation dosing manifold in an equipment shed. Modern peristaltic dosing pump heads with translucent tubing feeding into clear PVC mixing chambers, showcasing precision digital flow sensors and glass bulb pH and EC probe electrodes submerged in circulating nutrient-rich water. Clean industrial design, metallic brass and matte polymer fittings, droplets of moisture on the transparent casing, illuminated by focused technical studio lighting. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

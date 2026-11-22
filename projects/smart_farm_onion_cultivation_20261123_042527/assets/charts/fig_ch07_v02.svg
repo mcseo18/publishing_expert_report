@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" width="800" height="420" style="background:#ffffff;font-family:'Malgun Gothic', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;">
+  <rect x="0" y="0" width="800" height="420" rx="12" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+  <rect x="0" y="0" width="800" height="58" rx="12" fill="#0f172a"/>
+  <rect x="0" y="42" width="800" height="16" fill="#0f172a"/>
+  <text x="22" y="27" font-size="14.5" font-weight="700" fill="#f8fafc">그림 7-2. 제7장. 디지털 트윈과 양파 생육·수율 시뮬레이션 모델링 — 과학</text>
+  <text x="22" y="47" font-size="11" fill="#cbd5e1">스마트 팜 양파 재배 · 7.2 광합성 유효 방사(PAR) 차단율과 광이용효율(RUE)에 기초한 건물중 분배 모델링</text>
+  <defs><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 1 L 10 5 L 0 9 z" fill="#334155"/></marker></defs>
+  <rect x="34" y="128" width="164" height="158" rx="10" fill="#e0f2fe" stroke="#334155" stroke-width="1.4"/>
+  <text x="116" y="162" text-anchor="middle" font-size="11" font-weight="700" fill="#475569">STEP 1</text>
+  <text text-anchor="middle" font-size="12" font-weight="700" fill="#0f172a"><tspan x="116" y="206.0">7.1 작물 생장</tspan><tspan x="116" y="224.0">시뮬레이션 엔진</tspan><tspan x="116" y="242.0">구조와 양파 특화</tspan></text>
+  <line x1="198" y1="208" x2="222" y2="208" stroke="#334155" stroke-width="2" marker-end="url(#ar)"/>
+  <rect x="222" y="128" width="164" height="158" rx="10" fill="#dcfce7" stroke="#334155" stroke-width="1.4"/>
+  <text x="304" y="162" text-anchor="middle" font-size="11" font-weight="700" fill="#475569">STEP 2</text>
+  <text text-anchor="middle" font-size="12" font-weight="700" fill="#0f172a"><tspan x="304" y="206.0">7.2 광합성 유효</tspan><tspan x="304" y="224.0">방사(PAR)</tspan><tspan x="304" y="242.0">차단율과</tspan></text>
+  <line x1="386" y1="208" x2="410" y2="208" stroke="#334155" stroke-width="2" marker-end="url(#ar)"/>
+  <rect x="410" y="128" width="164" height="158" rx="10" fill="#fef3c7" stroke="#334155" stroke-width="1.4"/>
+  <text x="492" y="162" text-anchor="middle" font-size="11" font-weight="700" fill="#475569">STEP 3</text>
+  <text text-anchor="middle" font-size="12" font-weight="700" fill="#0f172a"><tspan x="492" y="206.0">7.3 UAV 초분광</tspan><tspan x="492" y="224.0">영상 및</tspan><tspan x="492" y="242.0">정규식생지수를 활용한</tspan></text>
+  <line x1="574" y1="208" x2="598" y2="208" stroke="#334155" stroke-width="2" marker-end="url(#ar)"/>
+  <rect x="598" y="128" width="164" height="158" rx="10" fill="#f3e8ff" stroke="#334155" stroke-width="1.4"/>
+  <text x="680" y="162" text-anchor="middle" font-size="11" font-weight="700" fill="#475569">STEP 4</text>
+  <text text-anchor="middle" font-size="12" font-weight="700" fill="#0f172a"><tspan x="680" y="206.0">7.4 가상 포장</tspan><tspan x="680" y="224.0">디지털 트윈을 통한</tspan><tspan x="680" y="242.0">포장 균일도 평가 및</tspan></text>
+  <text x="400" y="348" text-anchor="middle" font-size="11" fill="#64748b">실사진/도해 생성 프롬프트 준비됨 (fal.ai 또는 나노바나나 API 키 활성화 시 실사 PNG 자동 대체)</text>
+</svg>

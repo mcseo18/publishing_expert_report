@@ -1,0 +1,12 @@
+이미지 번호: 그림 3-4
+이미지 파일명: fig_ch03_v04.png
+단원: 제3장. 양파의 생육 단계별 생리 기작과 인경 비대 메커니즘 (ch03)
+결합 절: 생리·분자 메커니즘 심층 분석
+시각화 유형: photorealistic_field
+제목: [그림 3-4] 저온 감응(춘화) 스트레스에 의해 발생한 양파 불시 추대 포장
+
+[문맥 기반 이미지 설명]
+[그림 3-4] 월동 후 유효 적산온도 및 부적절한 저온 노출(Vernalization)로 인해 인경 비대가 억제되고 화경(Scape)이 비정상적으로 신장한 불시 추대 현상을 촬영한 포장 생태 사진입니다. 정상적인 영양 생장을 지속하며 비대 중인 포기들 사이로 높게 솟아오른 원통형 화경과 선단의 미성숙 산형화서 포엽(Spathe)이 대조를 이룹니다. 본문 3.3절에서 강조한 저온 스트레스 모델과 인경 형성 간의 자원 배분 길항 작용을 현장감 있게 보여줍니다.
+
+[나노바나나 생성 프롬프트]
+Photorealistic documentary agricultural field photograph of an Allium cepa onion crop during late spring under bright overcast morning daylight. In a bed of healthy green onion plants, several abnormal plants exhibit tall, hollow, rigid cylindrical flowering scapes bolting high above the leafy canopy, topped with immature teardrop-shaped flower umbel bracts. Deep focus capturing the dark mulched raised soil bed, individual bluish-green tubular leaves, and crisp botanical textures. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

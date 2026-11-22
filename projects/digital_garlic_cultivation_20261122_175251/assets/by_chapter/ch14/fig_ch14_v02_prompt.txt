@@ -1,0 +1,12 @@
+이미지 번호: 그림 14-2
+이미지 파일명: fig_ch14_v02.png
+단원: 제14장. 스마트 건조(Curing), CA 저온저장 및 유통 품질 제어 (ch14)
+결합 절: 14.1 수확 후 수분 증발 메커니즘과 차압식 스마트 예건(Curing) 시스템
+시각화 유형: photorealistic_field
+제목: [그림 14-2] 스마트 차압식 마늘 예건 챔버 및 통풍 건조 현장
+
+[문맥 기반 이미지 설명]
+[그림 14-2] 대용량 수확 마늘을 적재한 차압식 예건(Curing) 스마트 챔버 내부의 공기 순환 및 음압 형성 구조를 포착한 사진이다. 팔레트 빈에 적재된 마늘 더미 위로 차압 타포린 시트가 밀착되어 건조 공기가 마늘 사이의 틈새를 균일하게 통과하도록 유도한다 [SRC-100]. 열풍 및 제습 모듈과 연결된 차압 송풍기가 일정한 압력차를 형성하여 마늘 줄기 절단부의 부패를 차단하고 건조 잠열을 효과적으로 배출한다.
+
+[나노바나나 생성 프롬프트]
+Photorealistic documentary photograph inside a modern agricultural smart curing warehouse for allium crops. Stacked heavy-duty plastic vented pallet bins completely filled with freshly harvested mature garlic bulbs with dried beige stems intact. Heavy industrial air-suction tarp tightly draped over the pallet tunnel forming a negative differential pressure chamber. Overhead industrial ductwork, large exhaust suction fans, and digital environmental sensor probes hanging between crate layers in clean industrial daylight. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

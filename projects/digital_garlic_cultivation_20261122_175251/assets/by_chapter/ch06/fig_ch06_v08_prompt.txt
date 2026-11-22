@@ -1,0 +1,12 @@
+이미지 번호: 그림 6-8
+이미지 파일명: fig_ch06_v08.png
+단원: 제6장. 토양수분 포텐셜 해석과 센서 기반 지능형 관수 제어 (ch06)
+결합 절: 6.3 FDR, TDR 센서 기반 다심도 토양수분 계측 네트워크
+시각화 유형: photorealistic_field
+제목: [그림 6-8] 노지 마늘 스마트 관수 연구 포장의 무선 텔레메트리 IoT 계측 노드
+
+[문맥 기반 이미지 설명]
+[그림 6-8] 첨단 노지 마늘 재배 현장에 설치된 무선 IoT 관수 제어 스테이션과 다심도 센서 통신 노드를 촬영한 다큐멘터리 사진이다[SRC-117, SRC-118]. 소형 태양광 패널과 데이터 로거 함체에서 연결된 센서 라인들이 마늘 이랑 지하부로 직결되어 실시간 수분 장력 데이터를 클라우드로 전송한다. 지평선 너머로 균일하게 자란 푸른 마늘 잎과 점적 호스가 정밀 농업의 현장 구현을 극명하게 드러낸다.
+
+[나노바나나 생성 프롬프트]
+High-detail field documentary photograph of a solar-powered agricultural IoT telemetry station installed in a lush, sprawling garlic field (Allium sativum). A compact weatherproof enclosure and a small photovoltaic panel are mounted on an aluminum mast between tidy crop rows of healthy upright garlic foliage. Heavy-duty black shielded sensor cables extend down into the soil bed where buried multi-depth sensors monitor root moisture, under a crisp blue sky with soft morning sun. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

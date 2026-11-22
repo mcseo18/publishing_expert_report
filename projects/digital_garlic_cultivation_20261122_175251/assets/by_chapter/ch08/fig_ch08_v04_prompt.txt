@@ -1,0 +1,12 @@
+이미지 번호: 그림 8-4
+이미지 파일명: fig_ch08_v04.png
+단원: 제8장. 종구 조제, 정식 자동화 및 기계화 재배 양식 (ch08)
+결합 절: 8.2.1 직립 침투형 메커니즘
+시각화 유형: scientific_anatomy
+제목: [그림 8-4] 덕빌 개폐형 노즐을 이용한 마늘 인편 직립 투하 및 토양 침투 메커니즘
+
+[문맥 기반 이미지 설명]
+[그림 8-4] 파종기의 오리부리형(duckbill) 침투 노즐이 두둑 토양 속으로 진입하여 마늘 인편을 직립 상태로 안착시키는 공학적 동작 메커니즘을 보여주는 과학적 단면도입니다. 인편의 둥근 밑동(발근부)이 아래를 향하고 뾰족한 발아부(생장점)가 정확히 상부를 향하도록 가이드 튜브와 클램프 핑거가 자세를 보정합니다. 노즐 선단이 설정된 토양 깊이 D까지 도달한 후 개방되면서 미세 토양 입자가 기저부를 안정적으로 지지하는 연속 과정을 묘사합니다.
+
+[나노바나나 생성 프롬프트]
+Scientific mechanical cross-section illustration of a robotic garlic planter duckbill penetration mechanism penetrating rich cultivated loam soil on a pure white background. Split mechanical view of twin tapered steel beak blades opening inside the soil furrow to deposit an individual garlic clove perfectly upright with its flat basal root plate facing downwards and sharp shoot apex pointing vertically upward. Clear directional arrows indicating mechanical descent angle and blade opening motion, with visible soil crumbs surrounding the seedling pocket, rendered in realistic editorial textbook art style with precise metallic textures and natural earth tones. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

@@ -1,0 +1,12 @@
+이미지 번호: 그림 5-7
+이미지 파일명: fig_ch05_v07.png
+단원: 제5장. 정밀 양분 역학과 스마트 관비(Fertigation) 및 시비 처방 (ch05)
+결합 절: 5.4 공간 변량 시비(Variable Rate Application, VRA) 처방도 작성 및 현장 적용
+시각화 유형: photorealistic_field
+제목: [그림 5-7] 마늘 생육 필지 상공의 분광 드론 예찰 및 VRA 가변 시비기 작업
+
+[문맥 기반 이미지 설명]
+[그림 5-7] 대규모 마늘 재배 포장에서 다중분광 센서를 탑재한 드론이 캐노피 반사율을 매핑하고, 이에 연동된 트랙터 기반 VRA 시비기가 변량 살포를 수행하는 현장 전경입니다. 드론이 공중에서 취득한 식생지수와 토양 분석 데이터를 바탕으로 구역별(Zone) 비료 요구량 처방도가 실시간으로 차속 및 노즐 토출량에 반영됩니다. 토양 특성과 작물 수요가 불균일한 광역 포장에서 비료 투입량을 최적화하고 환경 부하를 낮추는 정밀 농업의 현장 구현 사례입니다 [SRC-100].
+
+[나노바나나 생성 프롬프트]
+Photorealistic documentary field photograph of an expansive commercial garlic farm during mid-season growth under open blue sky and soft morning light. In the foreground, a modern agricultural tractor equipped with a wide rear spray boom operates smoothly across long straight green garlic rows, adjusting localized spray atomization. High above the field, a compact octocopter drone equipped with a downward-facing multispectral camera hovers steadily, surveying the vast textured agricultural landscape. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

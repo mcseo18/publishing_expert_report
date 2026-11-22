@@ -1,0 +1,12 @@
+이미지 번호: 그림 4-4
+이미지 파일명: fig_ch04_v04.png
+단원: 제4장. 토양 물리·화학성 진단과 디지털 지도를 활용한 입지 최적화 (ch04)
+결합 절: 4.2 토양 화학성 기준치와 산도(pH), 염류(EC)의 디지털 측정 기법
+시각화 유형: scientific_anatomy
+제목: [그림 4-4] 마늘 근모 표면과 토양 유기·광물 복합체의 양이온교환(CEC) 메커니즘
+
+[문맥 기반 이미지 설명]
+[그림 4-4] 토양 pH 6.0~7.0의 조건에서 마늘 근모 세포막과 음전하를 띤 점토-부식 복합체 간 양이온 치환 과정을 설명하는 과학 일러스트레이션이다 [SRC-100]. 점토 광물 표면에 흡착된 칼슘(Ca²⁺), 마그네슘(Mg²⁺), 칼륨(K⁺) 이온들이 수소 이온(H⁺)과의 가역적 치환을 통해 마늘 뿌리 세포막의 운반체 단백질로 흡수되는 양상을 정밀하게 시각화하였다. 양이온교환용량(CEC)이 높을수록 토양의 보비력이 증대되어 안정적인 양분 공급이 유지됨을 보여준다.
+
+[나노바나나 생성 프롬프트]
+Scientific anatomical illustration on a pure white background detailing the rhizosphere of an Allium sativum garlic root hair. A delicate translucent root hair cell wall is positioned next to negatively charged microscopic clay platelets and spongy dark brown humus organic matter complexes. Hydrated glowing spheres representing nutrient cations like calcium, magnesium, and potassium dissociate from mineral surfaces and diffuse toward cellular ion transport channels. Richly shaded painterly scientific art style, clear molecular gradients, no text. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

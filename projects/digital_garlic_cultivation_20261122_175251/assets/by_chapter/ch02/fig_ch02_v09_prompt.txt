@@ -1,0 +1,12 @@
+이미지 번호: 그림 2-9
+이미지 파일명: fig_ch02_v09.png
+단원: 제2장. 국내외 마늘 산업 현황, 주산단지 생태환경 및 스마트 벨트 (ch02)
+결합 절: 2.4 권역별 스마트 마늘 농업 실증단지 조성 현황과 발전 방향
+시각화 유형: photorealistic_field
+제목: [그림 2-9] 스마트 마늘 농업 실증단지의 자율주행 붐스프레이어 및 IoT 관수 제어
+
+[문맥 기반 이미지 설명]
+[그림 2-9] 권역별 스마트 마늘 농업 실증단지에서 운용되는 첨단 자동화 생육 관리 시스템의 현장 모습이다. 정밀 GPS와 비전 센서를 탑재한 지능형 방제·관수 붐스프레이어가 균일하게 조성된 마늘 두둑 위를 주행하며 작물 수관부에 정밀 분무를 수행하고 있다. 포장 곳곳에 배치된 IoT 게이트웨이 노드와 함께 데이터 기반의 예측 농업(Predictive Farming)을 실증하는 현장을 생생히 보여준다[SRC-101, SRC-111].
+
+[나노바나나 생성 프롬프트]
+Crisp agricultural field photograph of an autonomous high-clearance smart boom sprayer gently moving along wide raised beds in a modern digital garlic demonstration farm. Fine atomized mist sprays uniformly downward onto the vibrant green rows of mature garlic plants (Allium sativum). In the background, pole-mounted IoT wireless communication gateways and neat furrow irrigation systems span across the laser-leveled experimental field under clear daylight. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

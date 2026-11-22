@@ -1,0 +1,12 @@
+이미지 번호: 그림 8-1
+이미지 파일명: fig_ch08_v01.png
+단원: 제8장. 종구 조제, 정식 자동화 및 기계화 재배 양식 (ch08)
+결합 절: 8.1.1 종구 파쇄 및 분리
+시각화 유형: photorealistic_macro
+제목: [그림 8-1] 마늘 종구 기계식 롤러 파쇄 및 인편 분리 공정
+
+[문맥 기반 이미지 설명]
+[그림 8-1] 수확 후 건조된 원형 마늘 구(bulb)가 탄성 고무 롤러 사이를 통과하며 낱개 인편(clove)으로 부드럽게 분리되는 탈편 장치의 내부 매크로 사진입니다. 종구의 표피 손상과 기저부(basal plate) 균열을 최소화하기 위해 롤러 간극과 회전 속도가 정밀하게 제어됩니다. 분리된 건강한 마늘 인편들과 탈락된 마른 외피 조각들이 하단 진동 스크리닝 메쉬 체 위로 균일하게 쏟아져 내리는 장면을 선명하게 포착하고 있습니다.
+
+[나노바나나 생성 프롬프트]
+Close-up macro documentary photograph inside a mechanical garlic bulb cracking machine, showing dry mature garlic bulbs passing between pair of ribbed soft vulcanized rubber rollers, separating intact individual garlic cloves from the central stalk. Papery dry outer husks and individual garlic cloves with undamaged protective tunics and solid root plates tumbling onto a stainless steel vibrating mesh screen below. Industrial workshop lighting with sharp highlights on metallic mechanical parts and warm natural tones on the garlic skins, ultra-clear focus and depth of field. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

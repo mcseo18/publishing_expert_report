@@ -1,0 +1,12 @@
+이미지 번호: 그림 13-3
+이미지 파일명: fig_ch13_v03.png
+단원: 제13장. 디지털 수확 적기 판별과 마늘 굴취·수집·절단 복합 기계화 (ch13)
+결합 절: 13.1.2 구 비대 정지기(Bulb Enlargement Cessation) 모델링
+시각화 유형: photorealistic_macro
+제목: [그림 13-3] 비대 정지기 도달 마늘 구의 종단면 미세 구조와 인편 충진 상태
+
+[문맥 기반 이미지 설명]
+[그림 13-3] 생육 모델 예측을 통해 구 비대 정지기에 도달한 마늘 구의 수직 절개 단면을 포착한 초고해상도 매크로 사진이다. 중심 위경(줄기 기부) 주위로 단단하게 밀집된 개별 인편(cloves)들과 건조된 인편 보호 외피가 치밀한 배열을 형성하고 있다. 구 내부로의 건물 및 당도 축적이 포화되어 추가적인 비대와 무게 증가가 멈춘 생리적 성숙 상태를 증명한다[SRC-102, SRC-103].
+
+[나노바나나 생성 프롬프트]
+Ultra-sharp macro laboratory photograph of a freshly harvested mature garlic bulb (Allium sativum) cut cleanly in longitudinal cross-section on a slate laboratory counter. The interior reveals six densely packed, plump cloves with pristine porcelain-white flesh, separated by delicate violet-veined papery tunics and tightly anchored to the basal plate. The outer tunic layers are dry, parchment-thin, and slightly papery. Studio ring lighting highlights the glistening cellular moisture, tight cellular density, and distinct concentric growth patterns of the garlic cloves. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

@@ -1,0 +1,12 @@
+이미지 번호: 그림 10-2
+이미지 파일명: fig_ch10_v02.png
+단원: 제10장. 주요 병해충의 역학적 모델링과 종합적 방제(IPM) (ch10)
+결합 절: 10.1 곰팡이성 및 세균성 병해(흑색경화균핵병, 잎마름병, 무름병)의 병리학
+시각화 유형: photorealistic_macro
+제목: [그림 10-2] 마늘 흑색경화균핵병 감염 인경 기부의 균핵 형성 및 조직 괴사
+
+[문맥 기반 이미지 설명]
+[그림 10-2] 흑색경화균핵병(Stromatinia cepivora)에 감염된 마늘 인경의 기부와 뿌리 접합부에 형성된 조밀한 백색 균사와 좁쌀 크기의 검은 균핵(sclerotia)을 초밀착 매크로 촬영으로 포착했다. 본문의 10.1절에서 다룬 것처럼 균핵은 토양 내에서 오랜 기간 생존하다가 마늘 뿌리 분비물에 반응하여 발아하여 조직을 괴사시킨다 [SRC-100]. 감염된 기부 조직은 수분 흡수 능력을 상실하고 갈색으로 부패하여 지상부 시듦 증상을 유발한다.
+
+[나노바나나 생성 프롬프트]
+Ultra-sharp macro laboratory photograph of the basal plate and lower bulb of a harvested garlic (Allium sativum) infected with black rot (Stromatinia cepivora). Dense, snow-white cottony fungal mycelium coats the junction between the fibrous roots and the outer garlic clove skins. Embedded within the white fungal mat are numerous tiny, poppy-seed-sized, jet-black resting structures called sclerotia. The underlying bulb tissue exhibits moist dark brown necrotic decay, illuminated by crisp lateral fiber-optic studio lighting highlighting the contrasting textures of black sclerotia, white hyphae, and paper-like garlic scales. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

@@ -1,0 +1,12 @@
+이미지 번호: 그림 2-3
+이미지 파일명: fig_ch02_v03.png
+단원: 제2장. 양파의 식물학적 분류체계와 스마트 팜 맞춤형 품종 특성 (ch02)
+결합 절: 개념 소개·이론적 배경
+시각화 유형: photorealistic_field
+제목: [그림 2-3] 지리적 기후 적응성 검증을 위한 노지 양파 품종 비교 실증 포장
+
+[문맥 기반 이미지 설명]
+[그림 2-3] 위도별 광주기 및 온도 환경에 적응된 다양한 양파 품종군을 시험 재배하는 농업연구소 노지 실증 포장의 주간 전경이다. 흑색 생분해성 멀칭 필름이 피복된 규격 이랑 위에서 직립성 엽초를 건전하게 올리며 비대 초기 단계에 진입한 양파 개체들이 규칙적인 간격으로 정렬되어 있다. [SRC-104] 및 [SRC-107]에 서술된 온도 감응성과 일장 반응에 따른 실제 지상부 생육 균일성을 현장 다큐멘터리 시각으로 증명한다.
+
+[나노바나나 생성 프롬프트]
+Photorealistic field photograph of an expansive agricultural experimental station field planted with uniform Allium cepa onion cultivars under crisp morning daylight. Broad raised beds covered in black biodegradable mulch showcase perfectly spaced rows of vigorous onion plants with upright tubular cylindrical emerald green leaves standing proudly. In the foreground, developing onion bulb crowns peek out from the loose, moist loamy soil with golden outer skins emerging, soft natural sunlight casting gentle shadows, depth-of-field softly blurring the distant automated weather station and sensor masts, rich natural textures, high-resolution documentary photography, zero text. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

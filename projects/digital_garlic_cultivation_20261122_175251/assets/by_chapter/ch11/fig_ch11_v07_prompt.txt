@@ -1,0 +1,12 @@
+이미지 번호: 그림 11-7
+이미지 파일명: fig_ch11_v07.png
+단원: 제11장. 컴퓨터 비전 및 딥러닝 기반 디지털 병해충·생리장해 진단 (ch11)
+결합 절: 11.3 2차 생장(벌마늘), 열개, 스펀지마늘 등 생리장해의 시각적 진단 알고리즘
+시각화 유형: scientific_anatomy
+제목: [그림 11-7] 정상 마늘 조직과 스펀지마늘(Spongy Garlic) 유조직 붕괴 비교 단면
+
+[문맥 기반 이미지 설명]
+[그림 11-7] 정상적인 단단한 마늘 인편 유세포 조직과 유조직 붕괴가 일어난 스펀지마늘의 내부 세포 구조를 정밀하게 대조한 과학 해부도입니다. 정상 세포의 팽윤하고 균일한 다각형 세포벽 구조와 달리, 스펀지마늘은 세포 간극 확장, 세포벽 융해 및 다공성 공간 형성이 두드러집니다. [SRC-100], [SRC-110]에서 언급된 미묘한 질감(Texture) 변화 및 내부 대사 이상을 딥러닝 모델이 감지하는 학술적 배경을 나타냅니다.
+
+[나노바나나 생성 프롬프트]
+A scientific comparative anatomical illustration on a clean white background showing the internal tissue of garlic cloves. On the left, a healthy dense garlic clove cross-section with compact, turgid polygonal parenchyma cells rich in cytoplasmic starch granules. On the right, a spongy garlic (physiological breakdown) cross-section showing collapsed cell walls, large irregular air voids, desiccated fibrous strands, and porous spongy matrix. Richly shaded cellular detail in watercolor scientific textbook art style. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

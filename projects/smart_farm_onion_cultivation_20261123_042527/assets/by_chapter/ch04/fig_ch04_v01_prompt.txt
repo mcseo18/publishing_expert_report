@@ -1,0 +1,12 @@
+이미지 번호: 그림 4-1
+이미지 파일명: fig_ch04_v01.png
+단원: 제4장. 정밀 양파 재배를 위한 스마트 토양 물리·화학성 평가 및 작부체계 (ch04)
+결합 절: 개념 소개 및 이론적 배경
+시각화 유형: scientific_anatomy
+제목: [그림 4-1] 양파 근계 발달과 토양 삼상 분포 및 물리적 구조의 상호작용
+
+[문맥 기반 이미지 설명]
+[그림 4-1] 양파의 원활한 뿌리 신장과 정상적인 구 비대를 달성하기 위해서는 토양의 고상, 액상, 기상이 조화롭게 구성된 삼상 구조가 선행되어야 합니다. 공극률이 충분히 확보된 토양 환경에서는 산소의 확산과 공급이 원활하여 뿌리 호흡이 촉진되고 양수분 흡수 효율이 극대화됩니다. 반면 토양 가비중이 과도하게 높아 다져진 토층에서는 근계 신장이 물리적으로 저해되므로 체계적인 토층 개량이 필수적입니다 [SRC-27].
+
+[나노바나나 생성 프롬프트]
+Editorial scientific cross-section illustration on a clean pure white background showing an Allium cepa onion plant with its root system penetrating deep soil layers. The subterranean profile reveals soil aggregates, open pore networks filled with blue water films and white air pockets, contrasting healthy white branching roots in loose, porous loam against stunted roots encountering a dense, compacted subsoil horizon. Painted in rich, highly detailed botanical textbook style with delicate volumetric shading and clear root architecture. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

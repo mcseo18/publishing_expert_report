@@ -1,0 +1,12 @@
+이미지 번호: 그림 14-5
+이미지 파일명: fig_ch14_v05.png
+단원: 제14장. 스마트 건조(Curing), CA 저온저장 및 유통 품질 제어 (ch14)
+결합 절: 14.2 장기 저장을 위한 온도, 상대습도 및 기체 농도(O2, CO2) 최적 조건
+시각화 유형: photorealistic_field
+제목: [그림 14-5] 상업용 CA(기체제어) 마늘 저온저장고 및 기체 제어 장비
+
+[문맥 기반 이미지 설명]
+[그림 14-5] 장기 보관을 위해 산소(O2) 농도를 2~3%로 낮추고 이산화탄소(CO2)를 3~5%로 유지하는 밀폐형 CA 저온저장 시설 전경이다. 수천 개의 마늘 목재 상자가 정렬된 대형 냉장 챔버 전면에는 기밀 도어와 기체 배관 라인이 설비되어 있다 [SRC-107, SRC-110]. 질소 발생기, 이산화탄소 흡착기(Scrubber), 정밀 온습도 센서가 연동되어 최적의 휴면 환경을 자동 유지한다.
+
+[나노바나나 생성 프롬프트]
+Wide photorealistic documentary photograph inside a high-tech industrial controlled atmosphere cold storage facility dedicated to garlic. Floor-to-ceiling rows of wooden and galvanized metal storage pallets laden with cured garlic bulbs. Stainless steel hermetic sealing doors with heavy-duty airlock gaskets, overhead cooling evaporators emitting faint cold mist, and visible nitrogen purge pipe junctions with digital pressure gauge meters in cold fluorescent lighting. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

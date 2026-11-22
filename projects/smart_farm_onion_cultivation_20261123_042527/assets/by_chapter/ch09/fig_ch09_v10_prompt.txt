@@ -1,0 +1,12 @@
+이미지 번호: 그림 9-10
+이미지 파일명: fig_ch09_v10.png
+단원: 제9장. 주요 병해의 조기 예찰 알고리즘과 컴퓨터 비전 기반 스마트 방제 (ch09)
+결합 절: 오해와 진실: 현장·이론 핵심 오해 교정
+시각화 유형: scientific_anatomy
+제목: [그림 9-10] 균일 전면 살포(관행)와 처방 맵 기반 가변 차등 살포(스마트 정밀 방제) 비교
+
+[문맥 기반 이미지 설명]
+[그림 9-10] 관행적인 균일 전면 살포와 데이터 기반 가변 차등 살포(VRA)의 토양 환경 부하 및 약제 흡착 효율 차이를 비교한 과학 일러스트레이션입니다. 균일 살포 시 무발병 건전 개체와 토양으로 농약이 과도하게 유출(Runoff)되어 약해 및 토양 오염을 유발하는 반면, 처방 맵 기반 가변 살포는 병변 부위에만 최적 농도로 약액 방울이 적중하여 화학제 사용량을 획기적으로 절감합니다 [SRC-102], [SRC-269]. 정밀 농업 방제 철학의 핵심적인 환경적·생리적 이점을 직관적으로 제시합니다.
+
+[나노바나나 생성 프롬프트]
+Side-by-side comparative scientific illustration on a pure white background showing two different agricultural spraying methodologies on parallel rows of Allium cepa onion plants. The left section illustrates conventional uniform broadcast spraying with excessive heavy chemical droplets pooling uselessly on plastic mulch and dripping into bare soil around healthy green bulbs. The right section illustrates targeted variable-rate precision application with fine aerosolized mist droplets landing exclusively on infected onion leaves with yellow lesions, highlighting optimized coverage and zero chemical runoff. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

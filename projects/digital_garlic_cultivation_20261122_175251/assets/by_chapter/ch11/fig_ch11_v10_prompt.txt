@@ -1,0 +1,12 @@
+이미지 번호: 그림 11-10
+이미지 파일명: fig_ch11_v10.png
+단원: 제11장. 컴퓨터 비전 및 딥러닝 기반 디지털 병해충·생리장해 진단 (ch11)
+결합 절: 11.4 엣지 디바이스 기반 모바일 현장 진단 애플리케이션 아키텍처
+시각화 유형: scientific_anatomy
+제목: [그림 11-10] 마늘 현장 진단용 엣지 컴퓨팅 신경망 경량화(양자화·가지치기) 파이프라인
+
+[문맥 기반 이미지 설명]
+[그림 11-10] 서버급 대규모 합성곱 신경망이 모바일 엣지 디바이스에 적합하도록 가지치기(Pruning)와 8비트 정수 양자화(INT8 Quantization)를 거치는 최적화 파이프라인 도해입니다. 복잡하고 무거운 신경망 가중치 텐서가 희소화(Sparsification) 및 압축되어 저전력 엣지 추론 가속기에서 저지연으로 구동되는 과정을 시각화합니다. [SRC-100] 및 연습문제 2번에서 다룬 모델 압축 기술과 클라우드 대비 엣지 추론의 장단점을 명확히 설명합니다.
+
+[나노바나나 생성 프롬프트]
+A sophisticated scientific system architecture illustration on a pure white background demonstrating neural network model compression for edge computing. On the left side, a dense multi-layered convolutional neural network processing garlic plant leaf images with thick interconnected floating-point weight matrices. Flowing toward the right, visual nodes dissolve through pruning filters and consolidate into a compact, ultra-streamlined quantized model represented by neat low-precision data nodes flowing into a microchip edge processor. Rendered in clean scientific editorial aesthetic with precise geometric styling. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

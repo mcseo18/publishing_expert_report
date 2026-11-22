@@ -1,0 +1,12 @@
+이미지 번호: 그림 8-2
+이미지 파일명: fig_ch08_v02.png
+단원: 제8장. 종구 조제, 정식 자동화 및 기계화 재배 양식 (ch08)
+결합 절: 8.1.2 정밀 등급 선별
+시각화 유형: scientific_anatomy
+제목: [그림 8-2] 광학 영상 및 근적외선 기반 마늘 인편 비파괴 정밀 선별 시스템
+
+[문맥 기반 이미지 설명]
+[그림 8-2] 고속 이송 컨베이어 위에서 마늘 인편을 크기, 형태 및 내부 건전도에 따라 3차원 광학 카메라와 근적외선(NIR) 빔으로 스캔하는 정밀 선별 원리를 묘사한 과학 일러스트레이션입니다. [SRC-103] 품종 기준에 부합하는 충실한 배(embryo)와 치밀한 유조직을 지닌 최상급 인편, 내부 갈변이나 부패가 발생한 불량 인편의 단면 밀도 차이를 투과 광학선으로 시각화했습니다. 선별 노즐에서 고압 에어 제트가 분사되어 결함 인편을 실시간으로 배출하는 동적 메커니즘을 상세히 표현합니다.
+
+[나노바나나 생성 프롬프트]
+Detailed scientific cross-sectional illustration of an automated optical garlic clove grading system on an isolated pure white background. Individual separated garlic cloves traveling along a conveyor belt, illuminated by focused near-infrared light beams and multispectral line sensors. Internal cross-section of a healthy dense garlic clove displaying crisp storage parenchymal tissue and vibrant green dormant bud contrasted against an internally deteriorated clove with fungal rot shown in cross-section. High-speed pneumatic air ejector nozzles diverting defective cloves downwards with stylized transparent airflow trails, rendering in clean botanical textbook style with rich watercolor shading and realistic textures. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

@@ -1,0 +1,12 @@
+이미지 번호: 그림 6-6
+이미지 파일명: fig_ch06_v06.png
+단원: 제6장. 토양수분 포텐셜 해석과 센서 기반 지능형 관수 제어 (ch06)
+결합 절: 6.3 FDR, TDR 센서 기반 다심도 토양수분 계측 네트워크
+시각화 유형: photorealistic_macro
+제목: [그림 6-6] 토양 단면 내 고정밀 TDR 및 FDR 다심도 수분 센서 매설 상태
+
+[문맥 기반 이미지 설명]
+[그림 6-6] 마늘 이랑 토양 단면의 15cm 및 30cm 깊이에 매설된 고정밀 FDR 센서 프로브와 스테인리스 스틸 TDR 로드를 근접 촬영한 매크로 사진이다[SRC-117, SRC-118]. 센서 프로브 주변의 토양 공극과 마늘 세근이 밀접하게 접촉하여 유전율을 실시간으로 감지하는 계측 지점을 명확히 보여준다. 계측 오차를 방지하기 위해 에어 포켓 없이 균일하게 밀착된 센서 설치 기법의 실증적 사례를 제공한다.
+
+[나노바나나 생성 프롬프트]
+Sharp laboratory-grade macro photograph of soil moisture sensing hardware installed in a cut-away soil profile beside garlic roots. Two high-precision stainless steel TDR parallel waveguide rods and a robust cylindrical FDR dielectric sensor probe are embedded horizontally at distinct soil depths of fifteen and thirty centimeters. Fine white garlic roots weave naturally around the dark loamy soil particles adjacent to the sensors, captured with pristine lighting and tack-sharp focus on the metallic sensor surfaces and soil aggregates. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

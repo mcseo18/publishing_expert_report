@@ -1,0 +1,12 @@
+이미지 번호: 그림 8-1
+이미지 파일명: fig_ch08_v01.png
+단원: 제8장. 기상 이변에 따른 생리장해 원인 분석 및 스마트 제어 기술 (ch08)
+결합 절: 개념 소개 및 이론적 배경
+시각화 유형: photorealistic_macro
+제목: [그림 8-1] 기상 이변에 따른 양파 구 생리장해 및 중심부 이상 증상 비교
+
+[문맥 기반 이미지 설명]
+[그림 8-1] 기상 이변으로 인한 환경 스트레스 조건에서 발생한 양파 구의 중심부 갈변 및 공동화 증상을 정상적인 건전 양파 구 단면과 대비하여 보여줍니다. 고온·건조 및 급격한 수분 변화는 양파 내부 다육인편의 정상적인 세포 분열과 대사 활성을 심각하게 교란합니다 [SRC-268]. 칼슘 흡수 불균형과 세포벽 붕괴로 인해 중심부 조직이 수침상으로 변색되고 괴사되는 전형적인 생리장해 양상을 명확하게 관찰할 수 있습니다 [SRC-100].
+
+[나노바나나 생성 프롬프트]
+Ultra-sharp macro cross-section photograph of two harvested Allium cepa onion bulbs sliced longitudinally on a dark slate laboratory bench. The bulb on the left is pristine with dense, milky white concentric scales and a firm pale-yellow core. The bulb on the right exhibits physiological disorder symptoms caused by climate stress, showing central core browning, hollow internal cavities, and localized tissue disintegration between the fleshy leaf bases. Clean studio macro lighting highlights the crisp cellular texture and watery translucency of damaged tissue. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

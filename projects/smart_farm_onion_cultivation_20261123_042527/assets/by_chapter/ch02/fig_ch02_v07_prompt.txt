@@ -1,0 +1,12 @@
+이미지 번호: 그림 2-7
+이미지 파일명: fig_ch02_v07.png
+단원: 제2장. 양파의 식물학적 분류체계와 스마트 팜 맞춤형 품종 특성 (ch02)
+결합 절: 현장 적용·실전 기술
+시각화 유형: photorealistic_macro
+제목: [그림 2-7] 양파 인경의 구형 지수(Spherical Index) 및 피막 강도 정밀 물리 특성 측정
+
+[문맥 기반 이미지 설명]
+[그림 2-7] 스마트 팜 수확 후 선별 표준화를 위해 양파 구의 장경·단경 비율(구형 지수)과 건조 외피의 인장 강도를 정밀 측정하는 시험 분석 환경이다. 정밀 디지털 버니어 캘리퍼스와 물성 분석기(Texture Analyzer) 센서가 완벽한 구형을 띤 양파 인경과 접촉하여 기계적 충격 저항성을 수치화하고 있다. 문헌 [SRC-102]에 명시된 선별 자동화 및 충격 방지형 다수확 양파 품종의 물리적 판별 기준을 입증한다.
+
+[나노바나나 생성 프롬프트]
+High-detail photorealistic macro laboratory photograph showing precision measurement of a harvested Allium cepa onion bulb. A perfectly spherical, heavy golden-brown onion sits firmly on an agricultural engineering testing stand. Stainless steel digital measurement calipers gently cradle the equatorial diameter of the bulb, while an ultra-fine texture analyzer probe contacts the smooth, multi-layered dry outer papery tunic to test skin puncture strength. Laboratory desk environment with soft directional LED lighting, immaculate metallic textures and natural onion papery skin flakes, zero text. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

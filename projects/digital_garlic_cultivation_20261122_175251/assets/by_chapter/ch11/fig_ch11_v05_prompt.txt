@@ -1,0 +1,12 @@
+이미지 번호: 그림 11-5
+이미지 파일명: fig_ch11_v05.png
+단원: 제11장. 컴퓨터 비전 및 딥러닝 기반 디지털 병해충·생리장해 진단 (ch11)
+결합 절: 11.2 객체 탐지(YOLO) 및 이미지 분할을 활용한 병해충 식별
+시각화 유형: photorealistic_macro
+제목: [그림 11-5] 수확 후 마늘 인편 기부의 뿌리응애(Aceria tulipae) 현미경적 피해 양상
+
+[문맥 기반 이미지 설명]
+[그림 11-5] 마늘 인편 바닥의 줄기 기부와 인편 틈새에 서식하는 미세 뿌리응애 군집 및 그로 인한 조직 변색을 포착한 초고해상도 매크로 사진입니다. 현미경 렌즈를 통해 확대된 마늘 인피 표면의 거친 질감과 미세 해충의 군집 상태를 사실적으로 보여줍니다. [SRC-100]에서 다중 모달리티 데이터 융합과 초소형 객체 탐지 신경망이 미세 해충 진단에 필수적임을 보여주는 시각 자료입니다.
+
+[나노바나나 생성 프롬프트]
+High-magnification laboratory macro photograph of the basal plate of a harvested garlic bulb (Allium sativum). Translucent, microscopic bulb mites cluster inside tiny crevices between peeling fibrous outer protective scales and the ivory-white clove tissue. Delicate cellular papillae, fibrous root scars, and micro-lesions showing golden-brown oxidation, illuminated by coaxial laboratory ring lights revealing pristine microscopic surface details. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

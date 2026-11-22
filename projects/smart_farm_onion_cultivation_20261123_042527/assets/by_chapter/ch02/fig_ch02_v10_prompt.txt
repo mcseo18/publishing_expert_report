@@ -1,0 +1,12 @@
+이미지 번호: 그림 2-10
+이미지 파일명: fig_ch02_v10.png
+단원: 제2장. 양파의 식물학적 분류체계와 스마트 팜 맞춤형 품종 특성 (ch02)
+결합 절: 관련 법규·정책 지침
+시각화 유형: photorealistic_macro
+제목: [그림 2-10] 콜드체인(Cold Chain) 및 에틸렌 저감 센서가 결합된 양파 스마트 저온 저장고
+
+[문맥 기반 이미지 설명]
+[그림 2-10] 수확 후 부패 및 조기 발아를 방지하기 위해 0~1℃의 온도와 적정 습도로 제어되는 스마트 저온 저장고 내부의 팔레트 매크로 뷰이다. 통기성 플라스틱 컨테이너에 적재된 양파 구근들 인근에 에틸렌 가스 농도를 실시간 감지하는 무선 환경 센서와 공기 순환 필터 노즐이 밀착 배치되어 있다. 문헌 [SRC-107] 및 [SRC-108]에서 언급된 저온 유통 체계와 호르몬 반응 억제 기술을 융합한 현대적 스마트 저장 실태를 증명한다.
+
+[나노바나나 생성 프롬프트]
+Photorealistic macro photograph inside a climate-controlled smart agricultural cold storage facility for onions. High-grade ventilated slatted bulk bins stacked securely are filled with cured golden onions with tight, shiny dry tunics. Close-up focus on a sleek industrial environmental monitoring sensor module mounted on the bin frame, featuring tiny digital indicator LEDs and atmospheric sensing probes detecting ethylene and relative humidity. Cool ambient LED lighting, crisp metallic textures, subtle cold mist condensation on equipment, hyper-realistic documentary quality, zero text. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

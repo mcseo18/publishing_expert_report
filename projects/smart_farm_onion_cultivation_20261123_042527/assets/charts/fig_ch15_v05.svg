@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" width="800" height="420" style="background:#ffffff;font-family:'Malgun Gothic', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;">
+  <rect x="0" y="0" width="800" height="420" rx="12" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+  <rect x="0" y="0" width="800" height="58" rx="12" fill="#0f172a"/>
+  <rect x="0" y="42" width="800" height="16" fill="#0f172a"/>
+  <text x="22" y="27" font-size="14.5" font-weight="700" fill="#f8fafc">그림 15-5. 제15장. 노지 스마트 팜 데이터 표준화 및 지속가능한 디지털 농업</text>
+  <text x="22" y="47" font-size="11" fill="#cbd5e1">스마트 팜 양파 재배 · 15.1 노지 스마트 팜 센서-액추에이터 인터페이스 및 농기계 텔레매틱스(ISOBUS) 데이터 표준화</text>
+  <defs><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 1 L 10 5 L 0 9 z" fill="#334155"/></marker></defs>
+  <rect x="34" y="128" width="164" height="158" rx="10" fill="#e0f2fe" stroke="#334155" stroke-width="1.4"/>
+  <text x="116" y="162" text-anchor="middle" font-size="11" font-weight="700" fill="#475569">STEP 1</text>
+  <text text-anchor="middle" font-size="12" font-weight="700" fill="#0f172a"><tspan x="116" y="206.0">15.1 노지 스마트</tspan><tspan x="116" y="224.0">팜 센서-액추에이터</tspan><tspan x="116" y="242.0">인터페이스 및 농기계</tspan></text>
+  <line x1="198" y1="208" x2="222" y2="208" stroke="#334155" stroke-width="2" marker-end="url(#ar)"/>
+  <rect x="222" y="128" width="164" height="158" rx="10" fill="#dcfce7" stroke="#334155" stroke-width="1.4"/>
+  <text x="304" y="162" text-anchor="middle" font-size="11" font-weight="700" fill="#475569">STEP 2</text>
+  <text text-anchor="middle" font-size="12" font-weight="700" fill="#0f172a"><tspan x="304" y="206.0">15.2 이종 농업</tspan><tspan x="304" y="224.0">데이터</tspan><tspan x="304" y="242.0">센서, 생육)</tspan></text>
+  <line x1="386" y1="208" x2="410" y2="208" stroke="#334155" stroke-width="2" marker-end="url(#ar)"/>
+  <rect x="410" y="128" width="164" height="158" rx="10" fill="#fef3c7" stroke="#334155" stroke-width="1.4"/>
+  <text x="492" y="162" text-anchor="middle" font-size="11" font-weight="700" fill="#475569">STEP 3</text>
+  <text text-anchor="middle" font-size="12" font-weight="700" fill="#0f172a"><tspan x="492" y="206.0">15.3 비료·에너지</tspan><tspan x="492" y="224.0">투입 절감에 따른</tspan><tspan x="492" y="242.0">전과정</tspan></text>
+  <line x1="574" y1="208" x2="598" y2="208" stroke="#334155" stroke-width="2" marker-end="url(#ar)"/>
+  <rect x="598" y="128" width="164" height="158" rx="10" fill="#f3e8ff" stroke="#334155" stroke-width="1.4"/>
+  <text x="680" y="162" text-anchor="middle" font-size="11" font-weight="700" fill="#475569">STEP 4</text>
+  <text text-anchor="middle" font-size="12" font-weight="700" fill="#0f172a"><tspan x="680" y="206.0">15.4</tspan><tspan x="680" y="224.0">거대언어모델(LLM)과</tspan><tspan x="680" y="242.0">농업 온톨로지 기반</tspan></text>
+</svg>

@@ -1,0 +1,167 @@
+# 제14장. 양파 비파괴 선별 및 유통 디지털 트레이서빌리티 — 문맥 기반 시각화 기획서 (이미지 번호 · 설명 · 프롬프트)
+
+- **단원 ID**: `ch14`
+- **총 시각화 수**: **10종** (Google Gemini Nano Banana 전량 제작)
+- **생성 시각**: `2026-11-22T19:45:55+00:00`
+
+---
+
+## [그림 14-1] 건전 양파와 잠복형 내부 인편 부패 양파의 횡단면 비교
+
+- **이미지 번호 / 파일명**: `그림 14-1` / `fig_ch14_v01.png`
+- **문서 결합 절(Section)**: 개념 소개 및 이론적 배경
+- **시각화 유형**: `photorealistic_macro`
+
+### 문맥 기반 상세 설명 (줄글)
+[그림 14-1] 외관상으로는 황동색 외피가 온전하여 육안 선별이 불가능하지만 절단 시 내부 다육질 인편에 박테리아성 무름 증상이 발생한 양파와 완전 무결한 정상 양파의 단면을 대비한 초고해상도 매크로 사진입니다. 전통적인 육안 검사 및 파괴 검사의 치명적 한계를 보여주며 비파괴 내부 품질 진단 기술 도입의 당위성을 제시합니다 [SRC-161]. 인편 층 사이의 수분 이상 및 미세 조직 변성을 비파괴 분광 센서로 판별하기 위한 형태학적 대조군을 명확히 전달합니다.
+
+### 나노바나나 생성 프롬프트 (Pure English · Zero-Text)
+```text
+Macro studio photograph of two Allium cepa yellow onion bulbs cut in half crosswise, set side by side on a clean neutral grey laboratory counter. One onion bulb displays pristine, succulent, glistening white concentric scales with firm structure. The adjacent onion bulb has an intact dry papery outer skin but reveals brown, watery, decaying inner fleshy scales with bacterial soft rot in the central rings. Dramatic clinical ring-light illumination, crisp focus showing cellular moisture droplets, fine fibrous tissues, and textural contrasts between healthy and diseased scales. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.
+```
+
+---
+
+## [그림 14-2] 근적외선(NIR) 투과 및 산란을 통한 양파 내부 광학 침투 메커니즘
+
+- **이미지 번호 / 파일명**: `그림 14-2` / `fig_ch14_v02.png`
+- **문서 결합 절(Section)**: 개념 소개 및 이론적 배경
+- **시각화 유형**: `scientific_anatomy`
+
+### 문맥 기반 상세 설명 (줄글)
+[그림 14-2] 근적외선 분광 광원이 양파 구에 조사될 때 다육질 인편을 투과 및 다중 산란하며 화학적 흡수 신호를 방출하는 과정을 도식화한 정밀 과학 일러스트레이션입니다. 특정 파장대의 빛이 수분, 가용성 당류, 피루브산 분자와 상호작용하여 분자 진동 흡수 스펙트럼을 형성하는 물리적 원리를 순백색 배경 위에 표현합니다 [SRC-161]. 비파괴 선별기가 외피 손상 없이 내부 인편의 화학적 이상 유무를 실시간으로 판별하는 광학적 기작을 명확히 설명합니다.
+
+### 나노바나나 생성 프롬프트 (Pure English · Zero-Text)
+```text
+A refined scientific editorial illustration on a pure white background demonstrating light propagation through an Allium cepa onion bulb. A focused beam of near-infrared light in warm golden and deep red spectral rays enters the curved outer tunic of a cross-sectioned onion bulb, scattering through the semi-translucent fleshy white concentric scales. Glowing molecular vibrations representing water and organic acid bonds absorb specific wavelengths, with scattered emerging photon rays captured by an opposing optical detector. Highly detailed painterly rendering with precise ray tracing, volumetric light dispersion, and crisp botanical cross-section anatomy. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.
+```
+
+---
+
+## [그림 14-3] 고속 롤러 컨베이어 라인 상의 양파 비파괴 근적외선(NIR) 분광 선별 시스템
+
+- **이미지 번호 / 파일명**: `그림 14-3` / `fig_ch14_v03.png`
+- **문서 결합 절(Section)**: 생리·분자 메커니즘 및 첨단 분석 기술
+- **시각화 유형**: `photorealistic_field`
+
+### 문맥 기반 상세 설명 (줄글)
+[그림 14-3] 스마트 농산물산지유통센터 선별 라인에서 개별 롤러 컵에 안착된 양파 구가 고속으로 통과하는 광학 검사 순간을 포착한 현장 다큐멘터리 사진입니다. 400~1000 nm 파장대의 근적외선 센서 헤드가 롤러 위에서 자전하는 양파 구에 정밀 조명을 투사하여 내부 성분을 밀리초 단위로 수집합니다 [SRC-134]. 초당 수 개의 양파를 파괴하지 않고 당도, 수분, 내부 부패 여부를 자동으로 등급화하는 현대적 공정을 보여줍니다.
+
+### 나노바나나 생성 프롬프트 (Pure English · Zero-Text)
+```text
+Industrial agricultural facility documentary photograph showing a high-speed optical conveyor sorting line for yellow onions. Freshly cured dry-skinned yellow onion bulbs rest in individual rotating roller cups, advancing swiftly beneath an overhead stainless-steel near-infrared spectroscopy sensor enclosure. Bright halogen light beams illuminate each onion bulb as it passes under the optical aperture. Clean modern facility background with stainless steel guardrails, blurred mechanical motion, realistic industrial depth of field, and crisp reflections on metallic surfaces. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.
+```
+
+---
+
+## [그림 14-4] 양파 세포 내 피루브산 및 당류 분자의 분광 흡수 반응 메커니즘
+
+- **이미지 번호 / 파일명**: `그림 14-4` / `fig_ch14_v04.png`
+- **문서 결합 절(Section)**: 생리·분자 메커니즘 및 첨단 분석 기술
+- **시각화 유형**: `scientific_anatomy`
+
+### 문맥 기반 상세 설명 (줄글)
+[그림 14-4] 양파 인편 유조직 세포 내 액포에 축적된 피루브산과 가용성 당류 분자가 특정 전자기파에 반응하는 분자 수준 메커니즘을 묘사한 학술 일러스트레이션입니다. 400~1000 nm 대역의 광선이 분자의 C-H 및 O-H 결합 진동 모드를 선택적으로 여기시켜 흡수 피크를 생성하는 생화학적 반응을 순백색 배경 위에 정밀하게 나타냅니다 [SRC-134]. 비파괴 화학량론적 모델링을 통해 매운맛과 당도를 동시에 정량화하는 생리적 기반을 설명합니다.
+
+### 나노바나나 생성 프롬프트 (Pure English · Zero-Text)
+```text
+Scientific anatomical illustration on a pure white background depicting onion bulb parenchyma cell ultrastructure during infrared irradiation. A close-up view reveals plant cell walls, large central vacuoles, and floating molecular structures of pyruvic acid and glucose molecules. Coherent infrared electromagnetic waveforms intersect the molecules, causing localized vibrational stretching and bending transitions indicated by radiant energy rings. High-end scientific textbook rendering with semi-translucent organelle textures, elegant molecular bonds, and a pristine, uncluttered scientific aesthetic. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.
+```
+
+---
+
+## [그림 14-5] 다채널 머신비전 카메라 및 확산 조명 기반 양파 외관 등급 선별 라인
+
+- **이미지 번호 / 파일명**: `그림 14-5` / `fig_ch14_v05.png`
+- **문서 결합 절(Section)**: 생리·분자 메커니즘 및 첨단 분석 기술
+- **시각화 유형**: `photorealistic_field`
+
+### 문맥 기반 상세 설명 (줄글)
+[그림 14-5] 다채널 영상 선별기 챔버 내부에서 초고속 카메라와 돔형 LED 확산 조명이 양파 구의 360도 전방위 외관을 스캐닝하는 실제 장비 현장 사진입니다. 회전 롤러 위를 주행하는 황색 양파의 구경, 구형도, 외피 착색 균일도를 실시간으로 감지합니다. 인공지능 알고리즘이 표면의 결점과 물리적 손상을 인식하여 사전 정의된 규격에 맞춰 고속 분류하는 과정을 생생하게 보여줍니다.
+
+### 나노바나나 생성 프롬프트 (Pure English · Zero-Text)
+```text
+Photographic view inside a modern automated onion optical sorting machine. Multiple high-resolution industrial digital cameras and curved LED diffuse lighting panels are mounted around a conveyor carrying harvested yellow onions on spinning rollers. Crisp directional lighting reveals the paper-thin copper skins, stem necks, and basal plates of the onions as they rotate. Industrial environment with brushed aluminum, sensor wires, optical lens elements, and clean hygienic food-processing machinery. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.
+```
+
+---
+
+## [그림 14-6] 머신비전 AI 결점 인식 대상인 양파 표피 미세 균열 및 타박 상처
+
+- **이미지 번호 / 파일명**: `그림 14-6` / `fig_ch14_v06.png`
+- **문서 결합 절(Section)**: 생리·분자 메커니즘 및 첨단 분석 기술
+- **시각화 유형**: `photorealistic_macro`
+
+### 문맥 기반 상세 설명 (줄글)
+[그림 14-6] 수확 및 이송 과정에서 발생할 수 있는 양파 외피 균열과 내부 인편 타박 부위를 초접사로 촬영한 매크로 사진입니다. 건조된 겉껍질 아래로 투영되는 인편 세포의 멍듦과 미세 파열 형태학적 특징을 선명하게 포착합니다. AI 다채널 비전 시스템이 표면의 흙탕물 얼룩과 실제 병징성 상처를 명확히 구분하여 판정하기 위한 학습 데이터의 미세 표면 특징을 보여줍니다.
+
+### 나노바나나 생성 프롬프트 (Pure English · Zero-Text)
+```text
+Ultra-sharp macro photograph of the surface of an Allium cepa bulb exhibiting subtle mechanical damage. The flaky, coppery-brown papery outer skin is partly split, exposing the underlying creamy-white fleshy scale which shows a faint, water-soaked contusion bruise and micro-cracking from physical impact. Raking side lighting accentuates the micro-ridges of the tunic, dry cellular striations, and delicate textural contrast between brittle dry skin and turgid damaged tissue. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.
+```
+
+---
+
+## [그림 14-7] 스마트 산지유통센터(APC) 내 무인운반차(AGV) 양파 상자 물류 이송
+
+- **이미지 번호 / 파일명**: `그림 14-7` / `fig_ch14_v07.png`
+- **문서 결합 절(Section)**: 생리·분자 메커니즘 및 첨단 분석 기술
+- **시각화 유형**: `photorealistic_field`
+
+### 문맥 기반 상세 설명 (줄글)
+[그림 14-7] 대형 스마트 APC 내부에서 팔레타이징된 양파 박스 더미를 이송하는 무인운반차(AGV)의 주행 장면을 담은 현장 사진입니다. 각 박스에 부착된 식별 태그와 연동된 공급망 제어 모듈(SCCM)의 지시에 따라 최적 경로를 자율 주행합니다 [SRC-107]. 사람의 개입 없이 입고, 비파괴 선별, 저온 저장창고 배치가 동기화되어 물류 동선 낭비를 차단하는 스마트 농업 물류의 중심축을 묘사합니다.
+
+### 나노바나나 생성 프롬프트 (Pure English · Zero-Text)
+```text
+Wide-angle documentary photograph inside an expansive smart Agricultural Production Center (APC) warehouse. A sleek industrial automated guided vehicle (AGV) with glowing status indicators glides along a smooth polished concrete floor, carrying a heavy pallet loaded with uniform ventilated cardboard crates filled with sorted yellow onions. In the background, robotic arms palletize boxes beneath high industrial warehouse ceilings, with safety floor markings and ambient LED high-bay lighting. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.
+```
+
+---
+
+## [그림 14-8] 통기성 양파 포장재에 부착된 초박형 스마트 RFID 및 온도 로거
+
+- **이미지 번호 / 파일명**: `그림 14-8` / `fig_ch14_v08.png`
+- **문서 결합 절(Section)**: 생리·분자 메커니즘 및 첨단 분석 기술
+- **시각화 유형**: `photorealistic_macro`
+
+### 문맥 기반 상세 설명 (줄글)
+[그림 14-8] 양파 출하용 플라스틱 통기 크레이트 표면에 장착된 RFID 태그와 일체형 콜드체인 데이터 로거 칩의 초접사 사진입니다. 유통 중 저온 유지 상태와 환경 변화를 실시간으로 기록하며 공급망 제어 모듈(SCCM)과 무선으로 데이터를 교환합니다 [SRC-107]. 박스 내부에 담긴 단단한 양파들의 외피 질감과 대비되어 농식품 물류 디지털 트레이서빌리티의 핵심 센서 하드웨어를 사실적으로 증명합니다.
+
+### 나노바나나 생성 프롬프트 (Pure English · Zero-Text)
+```text
+Macro photograph of a flexible ultra-thin smart RFID transponder and digital cold chain temperature data logger tag adhered to the side of a heavy-duty blue ventilated plastic harvest crate. Inside the crate, mesh bags containing cured golden onions are partially visible. Detailed focus on the micro-circuitry, copper printed antenna coils, and miniature temperature probe module embedded in the adhesive tag. Crisp depth of field with realistic plastic texture and natural industrial ambient light. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.
+```
+
+---
+
+## [그림 14-9] 양파 재배부터 소비까지의 콜드체인 블록체인 디지털 트레이서빌리티 전주기 흐름
+
+- **이미지 번호 / 파일명**: `그림 14-9` / `fig_ch14_v09.png`
+- **문서 결합 절(Section)**: 생리·분자 메커니즘 및 첨단 분석 기술
+- **시각화 유형**: `scientific_anatomy`
+
+### 문맥 기반 상세 설명 (줄글)
+[그림 14-9] 양파 스마트팜 수확부터 APC 비파괴 선별, 저온 리퍼 트럭 운송, 소비자 QR 코드 검증으로 이어지는 전 과정의 디지털 데이터 사슬을 입체적으로 조망한 과학 일러스트레이션입니다. 각 유통 거점에서 센서가 측정한 온습도 및 재배 이력이 암호화된 분산 원장 데이터로 동기화되는 과정을 순백색 배경 위에 나타냅니다 [SRC-107, SRC-148]. 최종 소비자가 스캔을 통해 완전한 무결성을 실시간 검증하는 포괄적 공급망 아키텍처를 시각화합니다.
+
+### 나노바나나 생성 프롬프트 (Pure English · Zero-Text)
+```text
+Scientific anatomical illustration on a pure white background mapping the digital traceability lifecycle of Allium cepa onions. Sequential isometric vignettes depict: an onion farm field with precise harvest, a smart packing center with optical sorting scanners, a refrigerated transport semi-truck with temperature sensor symbols, and a retail market shelf where packaged onions are scanned. Connected by flowing glowing blue and cyan cryptographic data strands and geometric block nodes linking each phase seamlessly. Elegant editorial style, clean shading, and crisp botanical details. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.
+```
+
+---
+
+## [그림 14-10] 다중 온습도 모니터링 센서가 장착된 양파 대규모 저온 저장고 적재 현장
+
+- **이미지 번호 / 파일명**: `그림 14-10` / `fig_ch14_v10.png`
+- **문서 결합 절(Section)**: 오해와 진실: 현장·이론 핵심 오해 교정
+- **시각화 유형**: `photorealistic_field`
+
+### 문맥 기반 상세 설명 (줄글)
+[그림 14-10] 단순 냉장 보관을 넘어 정밀 콜드체인 관리가 이루어지는 대형 양파 저온저장고의 실제 내부 현장 사진입니다. 통풍성이 확보된 목재 벌크 빈에 가득 담긴 양파들 사이사이에 센서 프로브가 깊숙이 삽입되어 내부 온도와 상대습도를 지속적으로 계측합니다 [SRC-107, SRC-148]. 센서 데이터의 정확성 검증과 균일한 냉기 순환을 통해 내부 부패율을 억제하고 데이터 신뢰성을 확보하는 현장 프로세스를 증명합니다.
+
+### 나노바나나 생성 프롬프트 (Pure English · Zero-Text)
+```text
+Documentary photograph inside a commercial onion cold storage facility. Massive stacks of heavy slatted wooden bulk containers are filled to the brim with cured yellow onions under a uniform cold storage temperature. A technical staff member in cold-weather jacket inspects a wireless sensor probe inserted deep into the onion pile, measuring internal temperature and humidity. Overhead industrial refrigeration evaporator fans circulate cool misty air beneath high insulated panel walls, captured with realistic commercial camera lighting and sharp focal depth. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.
+```
+
+---

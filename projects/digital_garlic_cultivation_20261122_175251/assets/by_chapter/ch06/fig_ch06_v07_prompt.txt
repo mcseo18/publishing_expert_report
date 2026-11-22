@@ -1,0 +1,12 @@
+이미지 번호: 그림 6-7
+이미지 파일명: fig_ch06_v07.png
+단원: 제6장. 토양수분 포텐셜 해석과 센서 기반 지능형 관수 제어 (ch06)
+결합 절: 6.3 FDR, TDR 센서 기반 다심도 토양수분 계측 네트워크
+시각화 유형: scientific_anatomy
+제목: [그림 6-7] 마늘 다심도 토양수분 계측 네트워크의 전자기장 감지 구역 모식도
+
+[문맥 기반 이미지 설명]
+[그림 6-7] 마늘 주근계가 분포하는 15cm, 30cm, 50cm 심도별로 FDR 및 TDR 센서가 형성하는 고주파 전자기장 감지 체적을 도시한 학술 해부도이다[SRC-117, SRC-118]. 토양층별 불균일한 수분 이동과 마늘 뿌리의 선택적 수분 흡수 패턴을 다층 센싱 네트워크가 포착하는 물리적 메커니즘을 상세히 설명한다. 각 심도별 용적수분함량(θ)과 포텐셜 데이터가 수집되어 구 비대 불균일을 방지하는 원리를 보여준다.
+
+[나노바나나 생성 프롬프트]
+Scientific editorial cutaway illustration on a solid white background demonstrating a multi-depth soil moisture sensing array in a garlic crop bed. Three cylindrical FDR sensor probes are vertically arranged at 15cm, 30cm, and 50cm depths beside a full-grown garlic plant with swollen bulb and fibrous root network. Ellipsoidal translucent electromagnetic sensing fields in soft cyan emanate outward from each sensor probe through stratified soil layers, visualizing the measurement spheres interacting with soil water content and root density. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

@@ -1,6 +1,6 @@
-# 전문 분야 교재 · 보고서 제작 통합 플랫폼 (`publishing_expert_report`)
+# 참참살이 영농 AI 출판도우미 (`publishing_expert_report` v3.0)
 
-> **Antigravity Ultra · Claude Code Pro · OpenAI API · 로컬 Ollama Gemma 4 (`gemma4:26b` / `gemma4:latest`) · `fal.ai` / 나노바나나 · 로컬 지식그래프(`C:\SMC_GRAPHRAG`)**를 결합한 근거 기반(Evidence-Based) 전문 대학교재·기술보고서 자동화 제작 플랫폼입니다.
+> **한정 자원 기반의 고효율 AI 전문 출판 프레임워크** — Emerald Agri(`#063b2c`/`#34d399`) · Golden Wheat(`#0f291e`/`#eab308`) 프리미엄 브랜드 UI, 4분할 엔터프라이즈 스튜디오 워크벤치, 로컬 GraphRAG(`C:\SMC_GRAPHRAG`), 싱글 소스 다중 판형(신국판·B5·A4) 조판, 시니어 직관 GDD 신호등 진단, 4단계 수익화(POD·B2B/B2G·네이버 블로그·SaaS) 패키징을 통합 제공합니다.
 
 ---
 
@@ -9,8 +9,8 @@
 - **단일 HTML 통합 대시보드 (`http://127.0.0.1:8501`)**: 여러 포트·주소를 오가지 않고 단일 화면 상단의 **6단계 진행상황 진도 바**와 6개 통합 탭으로 전체 제작 과정을 직관적으로 제어합니다.
 - **6단계 표준 교재 제작 파이프라인 + 체크포인트 자동 이어하기**:
   - 작업 중 중단·오류·서버 재시작이 발생해도 `state.json`(원자적 저장)과 단원·시각화별 체크포인트를 보존해 중단 지점부터 바로 이어서 실행합니다.
-- **Graph-First 선조회 & 증분 지식그래프 (`C:\SMC_GRAPHRAG`)**:
-  - 웹 수집 전 기존 로컬 RAG 지식그래프를 선조회해 중복 수집을 방지하며, 기존 `graph.json`은 절대 덮어쓰지 않고 `graph_platform_incremental.json`에 증분(Append-Only) 통합합니다.
+- **Graph-First 선조회 & `C:\SMC_GRAPHRAG` 통합 RAG 결합 (`scripts/rag_capture_unifier.py`)**:
+  - 검색·수집된 모든 논문·웹·통계·NotebookLM 자료는 최대한 **공개 PDF 다운로드 또는 웹페이지 풀페이지 스크린샷(PNG) 캡쳐**로 아카이브하고, `C:\SMC_GRAPHRAG\unified_rag\` (SQLite FTS5 통합 DB + 정제 문서 + 캡쳐) 및 `graph_platform_incremental.json`에 자동 결합(기존 `graph.json` 무훼손)합니다.
 - **법적 컴플라이언스 & 출처 무결성 게이트**:
   - `robots.txt` 점검, PII(개인정보) 자동 마스킹, 웹 프롬프트 인젝션 방어, 모든 사실·수치에 `[SRC-NN]` 인용키 강제, 원문 15어절 이상 무단 복제 자동 차단(`scripts/verify_citations.py`).
 
@@ -24,7 +24,7 @@
 | **2단계** | `web-scout`<br>eco-browser · OpenAlex/Europe PMC/Crossref 자동 폴백 | 확정 키워드로 국내외 공식기관·학회지·SCI·웹사이트 자료를 4계층 분리 폴더(`E:\SMC_Report_Platform_Data\projects\<id>\collected\`)에 저장 → **`02_collection_report.md`** 생성 |
 | **3단계** | `kg-builder`<br>로컬 Gemma 4 + `C:\SMC_GRAPHRAG` | 수집 자료에서 엔티티·관계를 추출해 증분 지식그래프 구축(기존 `graph.json` 무훼손) → **`03_kg_report.md`** 생성 |
 | **4단계** | `domain-drafter` · `citation-auditor`<br>로컬 Gemma 4 + Claude Code(선택) | `[SRC-NN]` 인용, **오해와 진실(≥3선)**, **1:1 문제↔풀이 연결**, 수식/첨자 정제 및 인용 무결성 감사 (단원별 체크포인트 저장) |
-| **5단계** | `visual-artist`<br>**`fal.ai` API(체크 선택)** · 나노바나나 · Vector SVG | **단원당 10개 이상**의 실사진·과학 인포그래픽 및 정량 벡터 차트 생성 + 표 없는 자연스러운 학술 **줄글 해설(`visuals_text_guide.md`)** 작성 (이미지별 체크포인트 저장) |
+| **5단계** | `visual-artist` · **`image_generation_studio`**<br>하이브리드(A·B=AI / C·D=무료 0원) · 분할 배치 · 직접 업로드 | **단원당 0~25개 자유 설정** · 비용·예산 상한·장수별(1/3/5/10장) 분할 생성, 무료 로컬 도표(0원), 외부 이미지 직접 업로드(0원) 후 본문·출판물 원클릭 결합 + 줄글 해설(`visuals_text_guide.md`) |
 | **6단계** | `book-publisher`<br>표지·목차 스튜디오 + 다중 포맷 제본 | **표지 · 머리말 · 전체 목차(HTML/PDF/DOCX/MD)** + 신국판·B5·A4 PDF · Word DOCX · 네이버 블로그 HTML(표 내부 수식 무손실 · 소단원별 해시태그 20개) 출판 → **`06_final_book_report.md`** 생성 |
 
 ---

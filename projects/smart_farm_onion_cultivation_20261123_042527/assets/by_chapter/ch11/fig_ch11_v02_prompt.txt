@@ -1,0 +1,12 @@
+이미지 번호: 그림 11-2
+이미지 파일명: fig_ch11_v02.png
+단원: 제11장. 양파 육묘 공정의 전주기 스마트 환경 제어 및 묘소질 진단 (ch11)
+결합 절: 11.1 우량 묘 생산을 위한 플러그 육묘장 환경 인자(DLI, 온도차 DIF, 양액 농도)의 동적 제어
+시각화 유형: scientific_anatomy
+제목: [그림 11-2] 주야간 및 부위별 온도차(DIF) 처리에 따른 양파 유묘 줄기 기부와 엽신 세포 신장 기작
+
+[문맥 기반 이미지 설명]
+[그림 11-2] DIF(온도차) 환경 조절이 양파 유묘의 기부와 관상엽 세포 분열 및 신장에 미치는 생리적 메커니즘을 상세히 도해한다. 잎과 줄기 기부의 미세 온도 구배에 따른 세포벽 이완 억제와 목질화 유도 과정이 단면 구조로 명확히 표현된다. 주야간 변온 관리를 통해 묘의 도장을 억제하고 줄기 기부의 직경(근원경)을 두텁게 다지는 생리적 구조 변화를 보여준다 [SRC-102].
+
+[나노바나나 생성 프롬프트]
+A detailed botanical textbook anatomical illustration of a single young onion seedling stem base and tubular leaf junction, isolated on a pure white background. A longitudinal microscopic cross-section reveals cellular layers: thick-walled hypodermal cells, compact parenchyma cells with dense cytoplasm, and central vascular bundles. Shaded thermal color gradient zones subtly tint the stem base and leaf tissue, indicating cellular turgor and restricted cell elongation due to controlled differential temperature. Clean, elegant scientific rendering with soft shadow rendering, crisp cellular membranes, and fine botanical accuracy. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

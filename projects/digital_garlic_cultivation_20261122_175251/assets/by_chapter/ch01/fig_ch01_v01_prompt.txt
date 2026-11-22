@@ -1,0 +1,12 @@
+이미지 번호: 그림 1-1
+이미지 파일명: fig_ch01_v01.png
+단원: 제1장. 마늘의 기원·역사 및 디지털 농업 패러다임의 태동 (ch01)
+결합 절: 단원 요약
+시각화 유형: photorealistic_field
+제목: [그림 1-1] 전통 노지 마늘 포장과 디지털 환경 계측 기술의 융합 전경
+
+[문맥 기반 이미지 설명]
+[그림 1-1] 전통적인 마늘 재배 방식에서 데이터 기반의 정밀 노지 스마트팜으로 전환되는 과도기적 포장 생태계를 조망한다. 마늘(Allium sativum L.)의 푸른 잎줄기가 질서정연하게 도열된 두둑 사이로 토양 수분 및 미기상 계측 장비가 배치되어 있다. 이는 기후변화와 농촌 고령화라는 구조적 한계를 극복하기 위해 제안된 디지털 농업 패러다임의 현장 적용 양상을 명확히 보여준다 [SRC-102, SRC-106].
+
+[나노바나나 생성 프롬프트]
+A wide-angle documentary agricultural photograph of an open-field garlic (Allium sativum) farm at sunrise. Rows of vibrant green garlic plants with upright linear leaves grow uniformly on raised beds covered with biodegradable black plastic mulch. Slender solar-powered microclimate sensor poles and wireless telemetry nodes are anchored along the field ridges. The morning sunlight casts long shadows, illuminating the dewy garlic leaves and dark organic soil, with realistic depth of field and authentic research station ambiance. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

@@ -1,0 +1,12 @@
+이미지 번호: 그림 1-3
+이미지 파일명: fig_ch01_v03.png
+단원: 제1장. 양파의 기원, 진화와 국내외 산업 생태계 현황 (ch01)
+결합 절: 생리·분자 메커니즘: 수확 후 품질 관리와 작물 특성 분석
+시각화 유형: scientific_anatomy
+제목: [그림 1-3] 양파 구(Bulb)의 호흡 대사와 저온 저장에 따른 세포벽 팽압 유지 기전
+
+[문맥 기반 이미지 설명]
+[그림 1-3] 수확 후 양파 인경의 호흡 작용과 저온 유통(Cold Chain) 조건에서의 세포 생리 변화를 비교한 해부학적 단면도입니다. 상온 저장 시 미토콘드리아의 급격한 호흡 증가로 인해 저장 탄수화물이 소모되고 세포벽 펙틴질이 분해되면서 인편 조직의 연화가 가속화됩니다. 반면 0~1℃ 저온 환경에서는 호흡 효소 활성이 억제되어 세포벽 팽압과 프럭탄 함량이 온전히 보존됩니다 [SRC-107].
+
+[나노바나나 생성 프롬프트]
+Scientific anatomical cross-section illustration on a pure white background showing half of a stratified Allium cepa bulb. The left side illustrates ambient storage with loosening fleshy scales, cellular degradation, active mitochondrial oxidative respiration in micro-insets, and loss of turgor pressure. The right side illustrates cold chain storage at zero degrees Celsius with tightly compacted, glossy, translucent white parenchymal storage cells maintaining intact pectin middle lamella and rigid cell walls. Rich medical-textbook digital painting style with precise volumetric shading. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

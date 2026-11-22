@@ -1,0 +1,12 @@
+이미지 번호: 그림 15-5
+이미지 파일명: fig_ch15_v05.png
+단원: 제15장. 디지털 마늘 재배의 경제성 평가, 탄소 배출량 및 미래 전망 (ch15)
+결합 절: 15.2 스마트 농기계 및 IoT 장비 투자의 손익분기점 (BEP) 산출 모델
+시각화 유형: photorealistic_macro
+제목: [그림 15-5] 마늘 근권 환경 정밀 모니터링 다중 센서 프로브 시스템
+
+[문맥 기반 이미지 설명]
+[그림 15-5] 마늘 뿌리 인근의 토양 수분, 지온, 전기전도도(EC)를 실시간 측정하는 스마트 토양 프로브의 매설 단면을 초근접 포착한 장면입니다. 이와 같은 IoT 계측 장비는 과잉 관수와 비료 낭비를 방지하여 자원 투입 비용을 억제하고 수확량을 안정화함으로써 연간 순이익 증분을 창출합니다 [SRC-107]. 자본 회수 기간 산출 모델에서 변동비용 절감과 직결되는 정밀 센싱 하드웨어의 작동 환경을 나타냅니다.
+
+[나노바나나 생성 프롬프트]
+Close-up macro photograph of a soil profile cross-section exposing a multi-parameter stainless steel sensor probe buried adjacent to the developing bulb and fibrous root cluster of a growing garlic plant. The dark loamy soil particles cling to the sensor needles and the dense pale white adventitious roots of the garlic bulb. An industrial-grade data cable extends upward through the soil profile toward a micro-logger, illuminated by sharp natural laboratory lighting showcasing damp soil granules and root architecture. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

@@ -1,0 +1,12 @@
+이미지 번호: 그림 8-5
+이미지 파일명: fig_ch08_v05.png
+단원: 제8장. 종구 조제, 정식 자동화 및 기계화 재배 양식 (ch08)
+결합 절: 8.2.1 직립 침투형 메커니즘
+시각화 유형: scientific_anatomy
+제목: [그림 8-5] 마늘 인편 식부 자세(직립 vs 전도)에 따른 지하부 뿌리 발달 비교 단면
+
+[문맥 기반 이미지 설명]
+[그림 8-5] 토양 내 마늘 인편의 정립 식부와 전도(역립 및 횡와) 식부가 초기 발근 및 맹아 출현에 미치는 영향을 비교한 지하부 식물해부도입니다. [SRC-106]의 파종 깊이 기준에 부합하는 수직 직립 인편은 기저부에서 뿌리가 방사형으로 고르게 신장하고 지상부 싹이 직선으로 신속히 출현합니다. 반면 180도 역립되거나 누워 파종된 인편은 싹이 U자형으로 굴곡 성장하여 초기 생육 에너지 소모와 기형구 발생을 유발함을 보여줍니다.
+
+[나노바나나 생성 프롬프트]
+Comparative scientific underground botanical illustration showing cross-sections of soil profiles with differently oriented planted garlic cloves on an isolated clean white background. Left profile displays an upright garlic clove with flat basal plate downward, emitting straight vigorous adventitious roots spreading radially into the moist soil pores and a crisp straight green shoot emerging upward. Right profiles show inverted and tilted garlic cloves displaying curled distorted shoots looping unnaturally through compacted soil particles and asymmetric sparse root growth, illustrated with delicate natural rendering of plant vascular tissues and soil horizons. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

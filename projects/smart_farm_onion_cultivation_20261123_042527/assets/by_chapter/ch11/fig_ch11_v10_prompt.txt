@@ -1,0 +1,12 @@
+이미지 번호: 그림 11-10
+이미지 파일명: fig_ch11_v10.png
+단원: 제11장. 양파 육묘 공정의 전주기 스마트 환경 제어 및 묘소질 진단 (ch11)
+결합 절: 오해와 진실: 현장·이론 핵심 오해 교정
+시각화 유형: scientific_anatomy
+제목: [그림 11-10] 동적 환경 제어(DIF·브러싱) 적용 묘와 관행 도장 묘의 형태학적·해부학적 비교 분석
+
+[문맥 기반 이미지 설명]
+[그림 11-10] 단순 항온 및 무자극 관행 조건에서 웃자란 불량 도장 묘(좌측)와 동적 DIF·스마트 보광·브러싱을 적용하여 육성한 강건 우량 묘(우측)를 1:1로 비교한 학술 해부도이다. 좌측의 묘는 가늘고 힘없이 휘어진 엽신과 엉성한 근계를 보이는 반면, 우측의 우량 묘는 굵은 근원경, 직립한 엽신, 치밀하게 형성된 플러그 근계 볼을 명확히 보여준다. 묘소질은 단순 성장 속도가 아니라 형태적 충실도와 구조적 완성도에 의해 결정됨을 시각적으로 실증한다 [SRC-102], [SRC-103].
+
+[나노바나나 생성 프롬프트]
+A scientific botanical comparison plate on a clean white background comparing two individual young onion seedlings side-by-side. The seedling on the left represents poor, leggy growth: elongated, weak, flopping pale-green tubular leaves, an extremely thin stem base, and a sparse, fragile root system. The seedling on the right represents optimal smart-controlled growth: thick and stout basal stem neck, deeply colored erect tubular green leaves, and a dense, compact, cohesive white root plug tightly holding substrate particles. Beautifully rendered editorial botanical illustration with lifelike shading, clear structural contrast, and textbook precision. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

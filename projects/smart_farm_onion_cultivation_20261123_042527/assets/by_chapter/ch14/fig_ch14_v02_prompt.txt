@@ -1,0 +1,12 @@
+이미지 번호: 그림 14-2
+이미지 파일명: fig_ch14_v02.png
+단원: 제14장. 양파 비파괴 선별 및 유통 디지털 트레이서빌리티 (ch14)
+결합 절: 개념 소개 및 이론적 배경
+시각화 유형: scientific_anatomy
+제목: [그림 14-2] 근적외선(NIR) 투과 및 산란을 통한 양파 내부 광학 침투 메커니즘
+
+[문맥 기반 이미지 설명]
+[그림 14-2] 근적외선 분광 광원이 양파 구에 조사될 때 다육질 인편을 투과 및 다중 산란하며 화학적 흡수 신호를 방출하는 과정을 도식화한 정밀 과학 일러스트레이션입니다. 특정 파장대의 빛이 수분, 가용성 당류, 피루브산 분자와 상호작용하여 분자 진동 흡수 스펙트럼을 형성하는 물리적 원리를 순백색 배경 위에 표현합니다 [SRC-161]. 비파괴 선별기가 외피 손상 없이 내부 인편의 화학적 이상 유무를 실시간으로 판별하는 광학적 기작을 명확히 설명합니다.
+
+[나노바나나 생성 프롬프트]
+A refined scientific editorial illustration on a pure white background demonstrating light propagation through an Allium cepa onion bulb. A focused beam of near-infrared light in warm golden and deep red spectral rays enters the curved outer tunic of a cross-sectioned onion bulb, scattering through the semi-translucent fleshy white concentric scales. Glowing molecular vibrations representing water and organic acid bonds absorb specific wavelengths, with scattered emerging photon rays captured by an opposing optical detector. Highly detailed painterly rendering with precise ray tracing, volumetric light dispersion, and crisp botanical cross-section anatomy. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

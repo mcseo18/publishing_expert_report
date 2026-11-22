@@ -1083,6 +1083,26 @@ def save_explorer_dataset_to_project(
         }
     )
 
+    # C:\SMC_GRAPHRAG 통합 RAG 즉시 결합 (FTS5 + 증분 KG + LightRAG)
+    try:
+        from rag_capture_unifier import unify_source_to_smc_graphrag
+
+        unify_source_to_smc_graphrag(
+            source_id=sid,
+            title=title,
+            markdown_text=cleaned_md,
+            parsed_path=parsed_path,
+            url=url,
+            source_type="dataset",
+            provider=source_kind,
+            project_id=project_id,
+            capture_mode="api_dataset_download",
+            raw_path=source_item["raw_path"],
+            cfg=cfg,
+        )
+    except Exception:
+        pass
+
     # 프로젝트 state.json & collection_manifest.json 동기화
     existing_sources = list(st.get("collected_sources") or [])
     existing_sources.append(

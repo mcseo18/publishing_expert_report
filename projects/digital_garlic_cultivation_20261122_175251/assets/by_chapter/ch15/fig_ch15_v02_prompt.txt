@@ -1,0 +1,12 @@
+이미지 번호: 그림 15-2
+이미지 파일명: fig_ch15_v02.png
+단원: 제15장. 디지털 마늘 재배의 경제성 평가, 탄소 배출량 및 미래 전망 (ch15)
+결합 절: 15.1 관행 재배 대비 디지털 기계화 농업의 투입 노동력 및 비용 편익 분석 (B/C ratio)
+시각화 유형: scientific_anatomy
+제목: [그림 15-2] 정밀 기계화 마늘 수확 메커니즘 및 구근 손상 방지 해부도
+
+[문맥 기반 이미지 설명]
+[그림 15-2] 자주식 마늘 수확기가 흙을 진동 굴취하고 인발 벨트를 통해 줄기를 잡아 올려 마늘 구근의 물리적 손상을 최소화하는 이송 메커니즘을 상세히 도해합니다. 정밀 센서가 토양 심도와 구근 위치를 감지하여 굴취날 깊이를 능동적으로 제어함으로써 상품화율을 극대화합니다 [SRC-101]. 수작업 수확 대비 상처 발생률을 낮추고 작업 속도를 높여 비용 편익비(B/C ratio)를 크게 향상시키는 기술적 기반을 보여줍니다.
+
+[나노바나나 생성 프롬프트]
+Richly detailed scientific cutaway illustration on a pure white background showing the mechanical digging and lifting mechanism of an automated garlic harvester. A hardened steel vibrating spade blade undercuts the soil beneath a mature Allium sativum bulb without damaging the basal plate or root fibrous network. Dual rubberized gripper belts gently clamp the erect green-yellow garlic pseudostem and pull the plant upward. Detailed cross-sections show clean soil separation from the multi-cloved bulb and pristine paper-like tunic layers intact, shaded in an elegant scientific textbook aesthetic. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

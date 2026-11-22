@@ -1,0 +1,12 @@
+이미지 번호: 그림 12-9
+이미지 파일명: fig_ch12_v09.png
+단원: 제12장. 분광 센싱·드론 예찰 및 마늘 작물생육모형(Crop Growth Model) (ch12)
+결합 절: 12.4 수확량 예측을 위한 생육모형-원격탐사 데이터 동화(Data Assimilation)
+시각화 유형: photorealistic_macro
+제목: [그림 12-9] 수확 직전 비대기 마늘 구근의 종단면 인편 배열과 수확지수(Harvest Index) 측정
+
+[문맥 기반 이미지 설명]
+[그림 12-9] 수확 지수(Harvest Index) 산출 및 최종 수확량 예측 모델 검증을 위해 완숙기에 접어든 마늘 구근을 수직 절단한 고해상도 매크로 사진입니다. 여러 겹의 단단한 외피(외피 인편) 내부로 알차게 들어찬 6~7개의 유백색 마늘 쪽들과 중심부 추대(Scape) 기저부가 선명하게 드러납니다 [SRC-105]. 지하부 구근 생체중과 지상부 마른 줄기 무게의 상관성을 과학적으로 측정하는 표준 샘플의 물리적 특성을 포착했습니다 [SRC-107].
+
+[나노바나나 생성 프롬프트]
+Ultra-detailed macro photograph of a mature Allium sativum bulb cut longitudinally in half resting on a neutral laboratory slate surface. The interior reveals plump, ivory-colored individual cloves with crisp cell texture tightly wrapped in thin purple-tinted papery tunics, surrounding the solid central flower stalk core. Delicate fibrous roots anchor the basal plate below. Exceptional focus stacking highlighting botanical grain, natural oils, and crisp cross-sectional anatomy under diffused studio lighting. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

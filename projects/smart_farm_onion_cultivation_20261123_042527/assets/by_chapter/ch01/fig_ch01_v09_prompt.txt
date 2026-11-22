@@ -1,0 +1,12 @@
+이미지 번호: 그림 1-9
+이미지 파일명: fig_ch01_v09.png
+단원: 제1장. 양파의 기원, 진화와 국내외 산업 생태계 현황 (ch01)
+결합 절: 관련 법규·정책 지침
+시각화 유형: scientific_anatomy
+제목: [그림 1-9] 스마트 팜 기반 차압 통풍식 양파 큐어링 및 온·습도 제어 챔버 모식도
+
+[문맥 기반 이미지 설명]
+[그림 1-9] 정부 표준 농축산 설비 규격에 맞추어 설계된 스마트 팜 양파 차압 통풍 건조(Curing) 챔버의 내부 공조 구조도입니다. 강제 송풍 팬과 공기 순환 댐퍼, 온열 덕트가 연동되어 수확된 양파 표면의 수분을 35~38℃의 가온 공기로 신속히 건조시켜 병원균 침입을 차폐합니다. 디지털 환경 센서와 연계된 제어 시스템은 관련 안전 지침 및 푸드테크 기술 표준화 체계에 부합하도록 정밀 제어됩니다 [SRC-102, SRC-105].
+
+[나노바나나 생성 프롬프트]
+Architectural and mechanical scientific 3D cutaway schematic on a clean white background depicting an advanced smart-farm negative-pressure curing and storage chamber for Allium cepa. Cutaway reveals large stacked wooden slatted bulk bins filled with onions, ceiling-mounted axial suction fans, heat exchanger coils, directional airflow path arrows indicating hot dry air sweeping downwards through bulb crates, and digital humidity-temperature environmental sensor nodes mounted along wall columns. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

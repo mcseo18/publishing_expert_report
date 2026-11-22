@@ -1,0 +1,12 @@
+이미지 번호: 그림 4-1
+이미지 파일명: fig_ch04_v01.png
+단원: 제4장. 차세대 단기 및 미생물 명시적 분해 모델의 수리적 메커니즘 (Short-Term & Microbial-Explicit Models) (ch04)
+결합 절: 4.1 미카엘리스-멘텐 및 역미카엘리스-멘텐 기반 효소 반응속도론 수리화
+시각화 유형: scientific_anatomy
+제목: [그림 4-1] 미생물 효소 반응속도론 및 탄소이용효율(CUE)의 미시적 메커니즘
+
+[문맥 기반 이미지 설명]
+[그림 4-1] 미카엘리스-멘텐 방정식에 기반한 효소-기질 복합체 형성과 미생물의 탄소 흡수 과정을 시각화한 도해입니다. 미생물이 분비한 효소가 유기물 고분자를 분해하고, 생성된 단량체가 미생물 세포 내로 유입되어 생체량으로 전환되는 CUE 과정을 보여줍니다 [SRC-32]. 또한, 사멸한 미생물 잔해(necromass)가 토양 광물 표면에 흡착되어 탄소가 장기적으로 안정화되는 물리화학적 결합 상태를 묘사합니다 [SRC-225].
+
+[나노바나나 생성 프롬프트]
+Scientific illustration on a pure white background showing a microscopic soil environment. Soil bacteria and fungal hyphae secreting globular enzyme molecules. Enzymes docking onto complex organic matter chains, breaking them into small sugar monomers. A cross-section of a bacterial cell showing carbon uptake. Nearby, fragments of dead microbial cells (necromass) are adhering to the flat, crystalline surfaces of clay minerals. High-end biological textbook art, detailed textures, soft shading, professional color palette. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

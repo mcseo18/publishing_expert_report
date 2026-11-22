@@ -1,0 +1,11 @@
+chapter_id: ch09
+chapter_number: 9
+title: 제9장. 주요 병해의 조기 예찰 알고리즘과 컴퓨터 비전 기반 스마트 방제
+target_pages: 34
+summary_ko: 노균병(Peronospora destructor), 흑색썩음균핵병, 잎말림병 등 치명적 진균·세균병의 포자 비산 조건과 환경 역치 모델을 수립합니다. 포장 내 무인 카메라 및 딥러닝 객체 검출(YOLOv8 등) 모델을 결합한 발병 조기
+  진단 및 가변 살포(VRA) 방제 체계를 설계합니다.
+sections:
+- 9.1 양파 노균병(1차·2차 감염)의 병태생리와 습도·온도 연동 병원균 포자 비산 예측 모델
+- 9.2 흑색썩음균핵병(Stromatinia cepivora) 및 세균성 중심썩음병의 감염 경로와 토양 센서 진단
+- 9.3 합성곱 신경망(CNN) 및 Vision Transformer 기반 양파 엽 병변 고정밀 자동 검출 모델
+- 9.4 무인 방제 드론 및 붐스프레이어 연동 처방 맵(Prescription map) 기반 가변 약제 살포

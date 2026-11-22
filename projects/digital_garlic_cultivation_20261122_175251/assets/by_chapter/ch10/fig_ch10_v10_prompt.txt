@@ -1,0 +1,12 @@
+이미지 번호: 그림 10-10
+이미지 파일명: fig_ch10_v10.png
+단원: 제10장. 주요 병해충의 역학적 모델링과 종합적 방제(IPM) (ch10)
+결합 절: 10.4 디지털 환경에서의 정밀 화학방제와 생물학적 통합 방제(IPM)
+시각화 유형: scientific_anatomy
+제목: [그림 10-10] 마늘 근권부에서 유용 미생물(Bacillus velezensis)의 길항 작용 및 생물막 형성
+
+[문맥 기반 이미지 설명]
+[그림 10-10] 생물학적 IPM의 핵심 원리로서, 유용 미생물인 바실러스 벨레젠시스(Bacillus velezensis)가 마늘 뿌리 표면에 보호 생물막(Biofilm)을 형성하고 토양 병원균의 침입을 길항적으로 차단하는 분자 생태학적 메커니즘을 표현한 도해이다. 10.4절에 기술된 바와 같이, 미생물은 항균 펩타이드를 분비하여 흑색경화균핵병균의 균사 생장을 억제하고 마늘 식물체의 전신 획득 저항성을 유도한다 [SRC-100]. 깨끗한 마늘 근모와 표피 세포 위에서 유익균과 병원균 균사가 접촉하여 저해되는 반응이 정밀하게 묘사되었다.
+
+[나노바나나 생성 프롬프트]
+Scientific American editorial illustration depicting beneficial rhizosphere biocontrol bacteria (Bacillus velezensis) colonizing the root surface of a garlic (Allium sativum) plant on a pure white background. The botanical cutaway shows a garlic root tip and delicate root hairs coated in a luminescent protective extracellular biofilm formed by rod-shaped beneficial bacteria. On the outer perimeter, invasive dark fungal hyphae of white rot fungal pathogens approach the root zone but are inhibited and lysed by secreted antimicrobial lipopeptides. Microscopic cross-sections of the root epidermis display healthy turgid plant cells with activated systemic resistance pathways, illustrated with rich academic scientific shading and natural colors. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

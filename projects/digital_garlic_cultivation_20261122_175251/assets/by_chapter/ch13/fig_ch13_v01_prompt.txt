@@ -1,0 +1,12 @@
+이미지 번호: 그림 13-1
+이미지 파일명: fig_ch13_v01.png
+단원: 제13장. 디지털 수확 적기 판별과 마늘 굴취·수집·절단 복합 기계화 (ch13)
+결합 절: 13.1.1 경엽 황화율을 이용한 비파괴적 수확 시기 예측
+시각화 유형: photorealistic_field
+제목: [그림 13-1] 수확 적기 마늘 포장의 경엽 황화 상태 현장 분석
+
+[문맥 기반 이미지 설명]
+[그림 13-1] 수확 적기에 도달한 마늘 포장의 지상부 경엽 황화율을 보여주는 고해상도 현장 사진이다. 하부 엽부터 시작하여 상부 엽의 50~70%가 황갈색으로 자연 건조 및 황화된 상태이며, 마늘 줄기 밑동과 지표면 융기부가 뚜렷하게 관찰된다. 경엽 황화는 엽록소 분해와 구체로의 동화산물 전위 완료를 알리는 중요한 외관 생리 지표로서 비파괴적 수확 판별의 기준이 된다[SRC-100, SRC-101].
+
+[나노바나나 생성 프롬프트]
+Documentary-style agricultural field photograph of mature garlic (Allium sativum) plants ready for harvest under natural afternoon sunlight. The garlic foliage shows 60 percent physiological leaf senescence, with lower arching leaves dry and golden-tan, while the upper erect leaves retain a faint chlorotic pale green. The raised soil ridges are dry and cracked from root expansion, revealing the broad top shoulder of white-tunic garlic bulbs bulging through the red-brown sandy loam earth. Shallow depth of field focusing on foreground plants with sweeping rows extending into the soft-focus agricultural horizon. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

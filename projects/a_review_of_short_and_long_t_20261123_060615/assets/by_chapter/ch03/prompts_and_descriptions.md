@@ -1,0 +1,39 @@
+# 제3장. 고전적 장기 분해 구획 모델의 수리적 메커니즘과 정량적 거동 (Long-Term Compartmental Models) — 문맥 기반 시각화 기획서 (이미지 번호 · 설명 · 프롬프트)
+
+- **단원 ID**: `ch03`
+- **총 시각화 수**: **2종** (Google Gemini Nano Banana 전량 제작)
+- **생성 시각**: `2026-11-22T21:11:05+00:00`
+
+---
+
+## [그림 3-1] RothC 및 Century 구획 모델의 유기탄소 분획 구조와 생지화학적 전이 플럭스 해부도
+
+- **이미지 번호 / 파일명**: `그림 3-1` / `fig_ch03_v01.png`
+- **문서 결합 절(Section)**: 3.2. RothC 및 Century 모델의 탄소 분획 구성 및 플럭스 전이율
+- **시각화 유형**: `scientific_anatomy`
+
+### 문맥 기반 상세 설명 (줄글)
+[그림 3-1] RothC 및 Century 모델에서 규정하는 토양 유기탄소 분획(DPM, RPM, BIO, HUM, IOM) 간의 전이 플럭스와 미생물 호흡 방출 경로를 개념적으로 도식화한 모식도이다. 식물 잔류 유기물이 미생물에 의해 불안정한 분획과 점토 광물 결합 부식물질로 분할 전이되는 동태를 보여주며, 바이오차와 같은 난분해성 물질이 불활성 탄소 풀(IOM)에 기여하는 양상을 설명한다 [SRC-64, SRC-226]. 이와 같은 1차 반응 속도론 기반의 분획 분할 구조는 토양 탄소 격리 잠재력을 수리적으로 해석하는 토대가 된다 [SRC-45, SRC-221].
+
+### 나노바나나 생성 프롬프트 (Pure English · Zero-Text)
+```text
+A scientific editorial biological mechanism illustration on a clean pure white background, depicting the compartmental fractionation of soil organic carbon. On the left, fresh plant litter and decomposing root residues split into decomposing particulate organic matter and resistant plant tissue. In the central soil matrix, fine porous soil aggregates host microbial biomass colonies, transforming labile carbon into humified organic matter and recalcitrant inert black carbon particles. Translucent arrows illustrate the biochemical flux pathways connecting the compartmental pools, accompanied by gaseous carbon dioxide plumes diffusing upward from active microbial respiration sites. Rendered with rich academic watercolor shading, displaying distinct textural contrasts between porous black biochar particles, brown amorphous humus colloids, and crystalline mineral clay surfaces. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.
+```
+
+---
+
+## [그림 3-2] 토양 미세골재 내 점토 광물-유기물 복합체 및 유효 공극의 입체 현미경적 구조
+
+- **이미지 번호 / 파일명**: `그림 3-2` / `fig_ch03_v02.png`
+- **문서 결합 절(Section)**: 3.4. 장기 모델의 한계: 물리적 광물 보호 기작 및 유효 공극 구조 반영의 결여
+- **시각화 유형**: `photorealistic_macro`
+
+### 문맥 기반 상세 설명 (줄글)
+[그림 3-2] 고전적 장기 구획 모델이 간과하기 쉬운 물리적 광물 보호 기작과 유효 공극 구조의 복잡성을 시각화한 고배율 현미경 단면 사진이다. 점토 광물 표면에 흡착된 유기분자와 0.2 마이크로미터 이하의 미세 공극 내부에 포획된 탄소 화합물은 토양 미생물과 세포외 효소의 접근이 물리적으로 차단되어 장기적인 안정성을 획득한다 [SRC-30, SRC-32]. 이러한 미세골재 내 물리화학적 장벽 효과는 단순한 1차 감쇄 속도 상수만으로는 모사하기 어려운 실제 토양의 비선형적 탄소 잔류 메커니즘을 명확히 보여준다 [SRC-228].
+
+### 나노바나나 생성 프롬프트 (Pure English · Zero-Text)
+```text
+An ultra-sharp macro photograph of a soil microaggregate cross-section, captured under high-magnification laboratory scientific lighting. Layered platelet structures of clay phyllosilicate minerals are intimately coated with dark organic carbon films and reddish iron oxide precipitates. Sub-micron pore channels weave through the dense mineral matrix, revealing tiny trapped organic molecules shielded inside narrow fissure voids inaccessible to the larger rod-shaped soil bacteria positioned outside in the wider inter-aggregate macropores. Crisp focus, hyper-detailed natural earthy textures of silt grains, glossy organic gels, and crumbly aggregate edges showing rich geological and biological depth-of-field. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.
+```
+
+---

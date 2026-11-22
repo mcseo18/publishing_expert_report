@@ -1,0 +1,12 @@
+이미지 번호: 그림 13-8
+이미지 파일명: fig_ch13_v08.png
+단원: 제13장. 스마트 건조(Curing)와 CA/저온 저장 환경 최적화 제어 (ch13)
+결합 절: 13.3 양파 장기 저장을 위한 CA 저장 환경(O2 1~2%, CO2 3~5%, 저온 0℃, 습도 70%) 최적화 (현장 적용 및 실전 기술)
+시각화 유형: photorealistic_macro
+제목: [그림 13-8] 8개월 CA 저장 후 양파 구근 내부 인편의 신선도 및 휴면 상태 단면
+
+[문맥 기반 이미지 설명]
+[그림 13-8] 저온 및 CA 환경에서 8개월간 장기 보관된 양파를 수직으로 절단하여 촬영한 초근접 단면 사진입니다. 외피는 바삭하고 건조한 황금빛 구리색을 유지하고 있으며, 내부 다육 인편은 수분 손실 없이 치밀하고 투명한 유백색을 띠고 있습니다[SRC-145]. 구근 기저부의 생장점은 신장하지 않고 완벽한 휴면 상태를 유지하여 내부 맹아나 중심부 갈변이 전혀 발생하지 않았음을 증명합니다[SRC-107, SRC-111].
+
+[나노바나나 생성 프롬프트]
+Razor-sharp macro photograph of a longitudinal halved yellow onion bulb stored for eight months under controlled atmosphere conditions. The concentric ring scales are glistening, crunchy, translucent white, and turgid with sap, perfectly free of internal sprouting or decay. At the flat basal plate, the central pale yellow shoot primordium remains completely dormant and unextended. Outer parchment tunics are dry, intact, and deep golden bronze, placed on a dark reflective laboratory tray. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

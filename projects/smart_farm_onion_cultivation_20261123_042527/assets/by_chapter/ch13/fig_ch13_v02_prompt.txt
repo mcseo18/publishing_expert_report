@@ -1,0 +1,12 @@
+이미지 번호: 그림 13-2
+이미지 파일명: fig_ch13_v02.png
+단원: 제13장. 스마트 건조(Curing)와 CA/저온 저장 환경 최적화 제어 (ch13)
+결합 절: 13.1 수확 후 인경의 큐어링(Curing) 생리: 외피 건조 메커니즘과 네크 썩음병균 침입 차단막 형성 (개념 소개 및 이론적 배경)
+시각화 유형: photorealistic_macro
+제목: [그림 13-2] 큐어링 전후 양파 인경 및 외피 건조 상태의 매크로 비교
+
+[문맥 기반 이미지 설명]
+[그림 13-2] 수확 직후 절단면이 젖어 있고 연녹색 수분이 남아 있는 미건조 인경과, 큐어링 완료 후 갈색으로 바짝 말라 밀봉된 완숙 인경의 형태학적 차이를 근접 촬영으로 대비하여 보여줍니다. 외피의 수분 증발을 통해 최외곽 인편이 얇고 질긴 보호성 껍질로 변형되면서 병원체 침입을 물리적으로 막아냅니다[SRC-107]. 이는 저장 초기에 요구되는 최적의 외피 건조 상태를 판별하는 중요한 육안 검사 기준이 됩니다[SRC-102].
+
+[나노바나나 생성 프롬프트]
+Extreme macro photographic comparison of two harvested yellow onions side by side on a clean slate laboratory surface. On the left, an uncured onion displays a moist, open, succulent green cut neck with glistening cell sap and loose fleshy outer scales. On the right, a fully cured onion shows a completely dried, tightly twisted, parchment-like golden-brown neck sealed shut, surrounded by crisp, glossy, paper-thin copper tunic scales. Crisp focus, directional studio side lighting, high botanical fidelity. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

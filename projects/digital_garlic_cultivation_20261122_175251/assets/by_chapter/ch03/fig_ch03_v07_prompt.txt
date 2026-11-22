@@ -1,0 +1,12 @@
+이미지 번호: 그림 3-7
+이미지 파일명: fig_ch03_v07.png
+단원: 제3장. 마늘 품종별 유전 특성, 생리적 분화 및 디지털 계통 분류 (ch03)
+결합 절: 3.3 유전자 분석 및 디지털 이미지 표현형 기반 품종 판별 기술
+시각화 유형: photorealistic_macro
+제목: [그림 3-7] 고해상도 디지털 이미지 기반 마늘 인편 형태 특성 3차원 계측 시스템
+
+[문맥 기반 이미지 설명]
+[그림 3-7] 디지털 이미지 표현형 분석을 위해 특수 제작된 회전 턴테이블 위에서 조명 조건이 통제된 상태로 마늘 인편의 3차원 기하학적 특성을 획득하는 광학 챔버 내부를 촬영한 매크로 사진이다. 고해상도 산업용 카메라 렌즈가 인편의 장축, 단축 곡률반경, 기저판 부착 각도, 표피 반사도를 다각도에서 동시 캡처하고 있다 [SRC-103]. 인위적 오차를 배제한 표준화된 원시 이미지 수집은 후속 딥러닝 형질 분류 알고리즘의 핵심 입력 데이터가 된다.
+
+[나노바나나 생성 프롬프트]
+Macro laboratory photograph inside a calibrated digital phenotyping imaging lightbox. A pristine single unpeeled garlic clove rests vertically on a motorized matte black turntable, illuminated by ring diffuse white LED lights. High-precision optical camera lenses and sensor arrays positioned at orthogonal angles focus sharply on the clove's contour curvature, basal plate boundary, and tunic surface reflectance. Ultra-clean laboratory setup, pristine optical reflection, scientific precision. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

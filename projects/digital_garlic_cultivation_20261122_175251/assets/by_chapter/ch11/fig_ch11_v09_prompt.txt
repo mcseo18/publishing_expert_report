@@ -1,0 +1,12 @@
+이미지 번호: 그림 11-9
+이미지 파일명: fig_ch11_v09.png
+단원: 제11장. 컴퓨터 비전 및 딥러닝 기반 디지털 병해충·생리장해 진단 (ch11)
+결합 절: 11.4 엣지 디바이스 기반 모바일 현장 진단 애플리케이션 아키텍처
+시각화 유형: photorealistic_field
+제목: [그림 11-9] 마늘 재배 포장에서 엣지 디바이스 기반 모바일 진단 앱을 구동하는 현장 실증
+
+[문맥 기반 이미지 설명]
+[그림 11-9] 통신망이 불안정한 농촌 포장에서 농업인이 스마트폰 단말기의 온디바이스(On-device) AI를 구동하여 마늘 잎의 상태를 실시간 촬영·진단하는 장면입니다. 스마트폰 화면에는 촬영된 마늘 잎과 추론 엔진이 즉시 생성한 진단 신뢰도 정보가 표시되며, 외부 클라우드 접속 없이 신속한 의사결정을 내릴 수 있습니다. [SRC-100]의 경량 딥러닝 모델(MobileNet, TinyYOLO)과 엣지 컴퓨팅 아키텍처의 현장 적용성을 입증합니다.
+
+[나노바나나 생성 프롬프트]
+National Geographic style documentary photograph of an agricultural agronomist in a wide garlic field holding an industrial ruggedized smartphone above a healthy and partially spotted garlic canopy. The smartphone screen visibly renders a camera viewfinder targeting garlic leaves with real-time green focusing brackets. Morning sunlight illuminates the broad flat garlic foliage and raised cultivation beds covered in black plastic mulch, with soft natural bokeh in the background. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

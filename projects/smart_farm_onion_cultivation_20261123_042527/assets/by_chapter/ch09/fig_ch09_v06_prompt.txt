@@ -1,0 +1,12 @@
+이미지 번호: 그림 9-6
+이미지 파일명: fig_ch09_v06.png
+단원: 제9장. 주요 병해의 조기 예찰 알고리즘과 컴퓨터 비전 기반 스마트 방제 (ch09)
+결합 절: 9.3 합성곱 신경망(CNN) 및 Vision Transformer 기반 양파 엽 병변 고정밀 자동 검출 모델
+시각화 유형: scientific_anatomy
+제목: [그림 9-6] Vision Transformer 및 CNN 딥러닝 기반 양파 엽 병반 특징 추출 및 어텐션 맵
+
+[문맥 기반 이미지 설명]
+[그림 9-6] 양파 잎에 발생한 미세 노균병 병반을 CNN과 Vision Transformer(ViT) 구조가 픽셀 단위로 분할하여 인식하는 전산 비전 메커니즘을 묘사한 구조도입니다. 패치 토큰 분할을 거쳐 엽록소 분해 부위와 괴사 병변의 경계를 어텐션 히트맵으로 활성화하는 과정을 가시화합니다 [SRC-269]. 단순 질병 분류를 넘어 위치 좌표와 병반 면적 비율을 기반으로 심각도(Severity)를 정량화하는 분석 알고리즘의 원리를 뒷받침합니다.
+
+[나노바나나 생성 프롬프트]
+Scientific cross-sectional concept illustration on a pure white background showing computer vision deep learning feature processing of an Allium cepa onion leaf. An infected tubular green leaf exhibiting yellow chlorotic patches is partitioned into an array of microscopic grid patches. Above the leaf, multi-layered visual feature maps and luminous glowing orange and cyan attention heatmaps highlight the irregular disease lesion contours, depicting mathematical tensor matrices and spatial attention networks in clean academic medical rendering. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

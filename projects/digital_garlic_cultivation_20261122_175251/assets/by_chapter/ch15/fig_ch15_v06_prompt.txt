@@ -1,0 +1,12 @@
+이미지 번호: 그림 15-6
+이미지 파일명: fig_ch15_v06.png
+단원: 제15장. 디지털 마늘 재배의 경제성 평가, 탄소 배출량 및 미래 전망 (ch15)
+결합 절: 15.3 화학비료 절감 및 디젤 대체에 따른 마늘 생애주기 탄소발자국 (LCA) 평가
+시각화 유형: scientific_anatomy
+제목: [그림 15-6] 정밀 점적 관수시비 시스템의 토양 질소 동태 및 아산화질소(N2O) 억제 기전
+
+[문맥 기반 이미지 설명]
+[그림 15-6] 마늘 재배 두둑 내부의 점적 튜브를 통한 처방 관수시비와 전통적 표면 살포 방식 간의 토양 내 질산태 및 암모늄태 질소 이동 양상을 대조한 과학 도해입니다. 마늘 근권에 정밀하게 투입된 양분은 작물 흡수율을 극대화하고 혐기 조건에서의 탈질 작용 및 아산화질소(N2O) 배출을 억제합니다 [SRC-103]. 이는 비료 제조 및 사용 단계에서 발생하는 생애주기 탄소발자국(LCA)을 대폭 저감하는 결정적 생화학적 메커니즘입니다.
+
+[나노바나나 생성 프롬프트]
+A scientific anatomical cross-section illustration on a clean pure white background depicting a garlic plant bulb and root system inside a raised soil bed with an embedded drip irrigation emitter. Transparent flow streams of dissolved ammonium and nitrate ions move precisely toward the active fibrous root tips. Shaded molecular structures indicate minimized gaseous nitrous oxide escaping from the soil surface compared to high loss zones, rendered with delicate biological texturing, cross-sectional soil stratification, and clear botanical accuracy of Allium sativum. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

@@ -1,0 +1,251 @@
+book_metadata:
+  title_ko: 디지털 마늘 재배
+  title_en: Digital Garlic Cultivation
+  target_audience: 대학 전공 심화, 대학원생, 연구자 및 선도 현장 실무자
+  book_summary_ko: 본 교재는 전통적인 마늘 재배 방식을 넘어 사물인터넷(IoT), 인공지능(AI), 컴퓨터 비전, 정밀 농기계 및 작물생육모형을 결합한 최첨단 '디지털 마늘 재배' 전 과정을 체계화한 전문 학술서입니다. 생리·생태적 특성과
+    품종 분류부터 토양 수분·양분 역학, 전주기 자동화 기계화, 병해충의 딥러닝 기반 조기 진단 및 수확 후 스마트 저장 유통까지 포괄적으로 다룹니다. 총 500쪽 분량, 5개 부 15개 장으로 구성되어 대학 심화 교육, 연구개발(R&D), 스마트 노지
+    실무 현장에서의 정량적 의사결정을 지원하는 표준 지침서 역할을 수행합니다.
+  target_pages: 500
+  target_total_pages: 500
+  chapter_count: 15
+  engine_used: Gemini (gemini-3.8-flash)
+  generated_at: '2026-11-22T08:53:56+00:00'
+domain_keywords:
+- domain: 작물생리 및 유전학
+  keywords_ko:
+  - 마늘 생리생태
+  - 인편 분화
+  - 추대
+  - 휴면타파
+  - 난지형·한지형 품종
+  keywords_en:
+  - garlic physiology
+  - clove differentiation
+  - bolting
+  - dormancy breaking
+  - ecotype cultivars
+- domain: 정밀 토양 및 수분 관리
+  keywords_ko:
+  - 스마트 관수
+  - 토양수분포텐셜
+  - 정밀 시비
+  - 양분결핍 진단
+  - 전기전도도 센서
+  keywords_en:
+  - smart irrigation
+  - soil matric potential
+  - variable rate fertilization
+  - nutrient deficiency diagnosis
+  - EC sensor
+- domain: 농업기계 및 무인자동화
+  keywords_ko:
+  - 마늘 파종기
+  - 수확 자동화
+  - RTK-GPS 자율주행
+  - 줄기절단기
+  - 턴오버 메커니즘
+  keywords_en:
+  - garlic planter
+  - harvest automation
+  - RTK-GPS autonomous navigation
+  - stem topper
+  - turnover mechanism
+- domain: 디지털 생육진단 및 모델링
+  keywords_ko:
+  - 작물생육모형
+  - 드론 다중분광영상
+  - NDVI
+  - 인공지능 병해충 진단
+  - 디지털 트윈
+  keywords_en:
+  - crop growth model
+  - UAV multispectral imagery
+  - NDVI
+  - AI pest and disease diagnosis
+  - agricultural digital twin
+- domain: 수확 후 관리 및 농업경제
+  keywords_ko:
+  - 스마트 예건
+  - 저온 CA 저장
+  - 맹아 억제
+  - 수익성 분석
+  - 디지털 유통
+  keywords_en:
+  - smart curing
+  - controlled atmosphere storage
+  - sprout inhibition
+  - economic feasibility analysis
+  - digital supply chain
+parts:
+- part_number: 1
+  title: 제1부. 마늘의 작물생태학적 기초와 디지털 전환 환경
+  pages: 100
+  chapters:
+  - chapter_id: ch01
+    chapter_number: 1
+    title: 제1장. 마늘의 기원·역사 및 디지털 농업 패러다임의 태동
+    target_pages: 33
+    summary_ko: 마늘(Allium sativum L.)의 진화적 기원과 재배 역사, 그리고 노동집약적 전통 노지 농업에서 데이터 기반 디지털 농업으로의 전환 배경을 분석합니다. 기후변화와 농촌 인구 고령화에 대응하기 위한 정밀 농업 기술의 당위성과
+      스마트 노지 마늘 농업의 프레임워크를 정립합니다.
+    sections:
+    - 1.1 Allium속의 식물학적 기원 및 지리적 전파 경로
+    - 1.2 마늘의 역사적 재배 변천사와 산업적 위상
+    - 1.3 기후변화 및 농업 노동력 구조 변화의 위기 요인
+    - 1.4 노지 스마트팜 패러다임과 마늘 디지털 재배의 개념적 정의
+  - chapter_id: ch02
+    chapter_number: 2
+    title: 제2장. 국내외 마늘 산업 현황, 주산단지 생태환경 및 스마트 벨트
+    target_pages: 33
+    summary_ko: 국내외 마늘 주산지의 기후·토양 생태 환경과 생산·소비 유통 구조의 공간적 특성을 데이터 기반으로 규명합니다. 주산단지별 미기상 네트워크 구축과 스마트 농업 실증 벨트의 구축 전략 및 지리정보시스템(GIS) 분석 사례를 제시합니다.
+    sections:
+    - 2.1 글로벌 마늘 수급 동향과 주요 수출입국의 생산 체계
+    - 2.2 국내 한지형 및 난지형 마늘 주산단지의 지리·기후적 특성
+    - 2.3 주산지 미기상 데이터 플랫폼 구축 및 지형학적 공간 분석
+    - 2.4 권역별 스마트 마늘 농업 실증단지 조성 현황과 발전 방향
+  - chapter_id: ch03
+    chapter_number: 3
+    title: 제3장. 마늘 품종별 유전 특성, 생리적 분화 및 디지털 계통 분류
+    target_pages: 34
+    summary_ko: 한지형·난지형 품종의 저온 요구도, 인편 분화 및 추대 특성 등 유전생리적 차이를 정량적으로 분석합니다. 분자 마커 및 형태학적 이미지 기반 딥러닝 계통 분류 기술을 통해 맞춤형 디지털 재배 기반을 마련합니다.
+    sections:
+    - '3.1 마늘 품종의 생태형 분류: 한지형, 난지형(남도, 대서 등)'
+    - 3.2 저온감응(Vernalization), 휴면(Dormancy) 및 추대(Bolting)의 유전생리
+    - 3.3 유전자 분석 및 디지털 이미지 표현형 기반 품종 판별 기술
+    - 3.4 무병종구(바이러스 프리) 생산 체계 및 조직배양 대량 증식
+- part_number: 2
+  title: 제2부. 토양·양수분 환경의 정밀 제어 및 생육 메커니즘
+  pages: 100
+  chapters:
+  - chapter_id: ch04
+    chapter_number: 4
+    title: 제4장. 토양 물리·화학성 진단과 디지털 지도를 활용한 입지 최적화
+    target_pages: 33
+    summary_ko: 마늘 생육에 최적화된 토양 물리성(용적밀도, 공극률)과 화학성(pH, 유기물, 양이온교환용량)의 기준을 정량화합니다. 디지털 토양 센서와 토양 전자지도를 융합하여 필지 단위의 정밀 토양 관리 방안을 확립합니다.
+    sections:
+    - 4.1 마늘 근계 발달을 위한 최적 토양 물리성 지표와 개량 기술
+    - 4.2 토양 화학성 기준치와 산도(pH), 염류(EC)의 디지털 측정 기법
+    - 4.3 근적외선(NIR) 분광분석 및 토양 센서 노드 네트워크
+    - 4.4 필지 단위 토양 디지털 매핑과 정밀 경운 공간 의사결정
+  - chapter_id: ch05
+    chapter_number: 5
+    title: 제5장. 정밀 양분 역학과 스마트 관비(Fertigation) 및 시비 처방
+    target_pages: 33
+    summary_ko: 생육 단계별 질소, 인산, 칼륨, 칼슘, 유황 등의 흡수 역학 및 양분 결핍·과잉 증상을 규명합니다. 실시간 토양 EC/수분 데이터와 연동된 지능형 자동 관비(Fertigation) 시스템 및 변량 시비(VRA) 기술을 다룹니다.
+    sections:
+    - 5.1 주요 대량·미량 원소의 생리적 역할 및 체내 이동 기전
+    - 5.2 마늘 전주기 양분 흡수 곡선과 흡수 패턴의 수치 모델링
+    - 5.3 점적관수 기반 자동 관비 시스템 설계 및 양액 배합 알고리즘
+    - 5.4 공간 변량 시비(Variable Rate Application) 처방도 작성 및 현장 적용
+  - chapter_id: ch06
+    chapter_number: 6
+    title: 제6장. 토양수분 포텐셜 해석과 센서 기반 지능형 관수 제어
+    target_pages: 34
+    summary_ko: 마늘 생육 전반의 수분 스트레스가 구 비대에 미치는 영향을 토양수분장력 이론에 기반하여 분석합니다. FDR/TDR 센서 및 기상 예측 데이터를 결합한 실시간 자동 관수 스케줄링 모델을 구축합니다.
+    sections:
+    - 6.1 토양수분포텐셜(pF)과 마늘 뿌리의 수분 흡수 한계점
+    - 6.2 월동기, 해빙기, 구 비대기별 정량적 토양 수분 임계치
+    - 6.3 FDR, TDR 센서 기반 다심도 토양수분 계측 네트워크
+    - 6.4 증발산량(ET0) 추정과 인공지능 기반 지능형 관수 의사결정
+- part_number: 3
+  title: 제3부. 작부체계 고도화와 농작업 기계화·자동화
+  pages: 100
+  chapters:
+  - chapter_id: ch07
+    chapter_number: 7
+    title: 제7장. 생육 단계별 생리 지표와 윤작·혼작 최적 작부체계
+    target_pages: 33
+    summary_ko: 파종부터 맹아, 월동, 신초 신장, 구 비대, 성숙에 이르는 단계별 발육 척도를 정립하고 작부체계를 설계합니다. 벼, 콩, 양파 등과의 최적 윤작 시스템 구축을 통해 연작장해를 예방하고 토양 생산성을 극대화합니다.
+    sections:
+    - 7.1 마늘의 생육 단계별(BBCH 척도) 발육 기준 및 형태학적 지표
+    - 7.2 월동기 내한성 기작과 봄철 생육 재생기 생리 관리
+    - 7.3 마늘 중심 윤작체계(마늘-벼, 마늘-콩)의 물질순환 및 지력 유지
+    - 7.4 연작장해(선충, 염류집적)의 디지털 진단 및 작부 최적화 알고리즘
+  - chapter_id: ch08
+    chapter_number: 8
+    title: 제8장. 종구 조제, 정식 자동화 및 기계화 재배 양식
+    target_pages: 33
+    summary_ko: 우량 종구의 정밀 선별, 분구 및 소독의 자동화 설비와 직립 파종기의 기계적 메커니즘을 상세히 다룹니다. 파종 깊이, 주간·조간 거리 표준화 및 비닐 멀칭 자동화 등 일관 기계화 재배 양식을 규명합니다.
+    sections:
+    - 8.1 종구 파쇄, 정밀 등급 선별 및 인편 소독 자동화 프로세스
+    - 8.2 인편 직립 침투형 정밀 파종 메커니즘과 식부 자세 제어
+    - 8.3 생분해성 멀칭 필름 피복 및 천공 동시 작업기 공학 설계
+    - 8.4 표준화된 두둑 조성과 기계화 전용 재배 양식 설계 기준
+  - chapter_id: ch09
+    chapter_number: 9
+    title: 제9장. 농작업 무인 자동화와 RTK-GPS 자율주행 농기계 기술
+    target_pages: 34
+    summary_ko: RTK-GNSS 기반의 고정밀 위치 제어 기술을 적용한 트랙터 및 작업기의 자율주행 원리를 설명합니다. 마늘 밭 경운, 파종, 방제 작업에서의 경로 추종 알고리즘과 군집 자율주행 농작업 플랫폼을 구현합니다.
+    sections:
+    - 9.1 센티미터급 RTK-GNSS 측위 원리와 현장 통신 인프라 구축
+    - 9.2 자율주행 트랙터의 조향 제어 및 경로 계획(Path Planning) 알고리즘
+    - 9.3 추대 제거(마늘종 꺾기) 및 중경 제초 자동화 로봇 기술
+    - 9.4 자율 군집 농작업 제어 시스템과 노지 필드 안전 메커니즘
+- part_number: 4
+  title: 제4부. 스마트 예찰·진단과 작물생육 모델링
+  pages: 100
+  chapters:
+  - chapter_id: ch10
+    chapter_number: 10
+    title: 제10장. 주요 병해충의 역학적 모델링과 종합적 방제(IPM)
+    target_pages: 33
+    summary_ko: 녹병, 흑색경화균핵병, 잎마름병 및 뿌리응애, 파굴파리 등 주요 병해충의 감염 메커니즘과 발생 환경을 분석합니다. 미기상 데이터 기반의 발생 예측 역학 모델과 유용 미생물, 정밀 약제 살포를 융합한 IPM 전략을 구축합니다.
+    sections:
+    - 10.1 곰팡이성 및 세균성 병해(흑색경화균핵병, 잎마름병, 무름병)의 병리학
+    - 10.2 토양 및 경엽 해충(뿌리응애, 마늘혹응애, 고자리파리)의 생태
+    - 10.3 기상 감응형 병해충 발병 예측 역학 모델 수식화
+    - 10.4 디지털 환경에서의 정밀 화학방제와 생물학적 통합 방제(IPM)
+  - chapter_id: ch11
+    chapter_number: 11
+    title: 제11장. 컴퓨터 비전 및 딥러닝 기반 디지털 병해충·생리장해 진단
+    target_pages: 33
+    summary_ko: CNN, Transformer 등 인공지능 영상인식 모델을 활용하여 현장에서 실시간으로 병징과 생리장해를 판별하는 기법을 다룹니다. 스마트폰 및 에지 컴퓨팅 장비와 결합된 이상 증상(스펀지마늘, 벌마늘 등) 탐지 파이프라인을
+      구축합니다.
+    sections:
+    - 11.1 마늘 병징 영상 데이터베이스 구축 및 데이터 증강(Augmentation)
+    - 11.2 객체 탐지(YOLO) 및 이미지 분할을 활용한 병해충 식별
+    - 11.3 2차 생장(벌마늘), 열개, 스펀지마늘 등 생리장해의 시각적 진단 알고리즘
+    - 11.4 엣지 디바이스 기반 모바일 현장 진단 애플리케이션 아키텍처
+  - chapter_id: ch12
+    chapter_number: 12
+    title: 제12장. 분광 센싱·드론 예찰 및 마늘 작물생육모형(Crop Growth Model)
+    target_pages: 34
+    summary_ko: 무인기(UAV) 다중분광센서를 이용한 정규식생지수(NDVI) 등 공간 식생정보 추출과 바이오매스 모니터링 기법을 정립합니다. 기상-토양-작물 생육 매개변수를 통합한 프로세스 기반 마늘 성장 시뮬레이션 모델을 구축합니다.
+    sections:
+    - 12.1 드론 다중분광·열적외선 센싱과 식생지수(NDVI, NDRE) 연산
+    - 12.2 분광 데이터를 활용한 엽면적지수(LAI) 및 지상부 생체중 추정
+    - 12.3 적산온도, 일장, 광합성 효율 기반 마늘 생육 모형 수리적 설계
+    - 12.4 수확량 예측을 위한 생육모형-원격탐사 데이터 동화(Data Assimilation)
+- part_number: 5
+  title: 제5부. 기계화 수확, 스마트 후처리 및 데이터 기반 경제성 평가
+  pages: 100
+  chapters:
+  - chapter_id: ch13
+    chapter_number: 13
+    title: 제13장. 디지털 수확 적기 판별과 마늘 굴취·수집·절단 복합 기계화
+    target_pages: 33
+    summary_ko: 외관 지표와 생육 모델 예측치에 기반한 마늘 최적 수확 시기 결정 기준을 정량화합니다. 굴취, 흙털기, 줄기 절단, 톤백 수집을 일관화한 자주식 콤바인의 구조적 역학 및 작업 성능을 분석합니다.
+    sections:
+    - 13.1 경엽 황화율 및 구 비대 정지기 기반 수확 적기 디지털 판별
+    - 13.2 마늘 굴취날(Digger blade)의 진동 메커니즘과 손상률 저감 공학
+    - 13.3 주행 연동형 줄기 자동 절단기 및 수직 반송 이송 시스템
+    - 13.4 자주식 마늘 콤바인의 작업 효율성 분석 및 현장 트러블슈팅
+  - chapter_id: ch14
+    chapter_number: 14
+    title: 제14장. 스마트 건조(Curing), CA 저온저장 및 유통 품질 제어
+    target_pages: 33
+    summary_ko: 수확 후 부패 방지를 위한 열풍 및 제습형 스마트 건조(예건) 챔버의 온습도 제어 메커니즘을 규명합니다. 맹아 억제 및 중량 감모 최소화를 위한 CA 저장, 저온 저장고 센서 모니터링 기술과 스마트 유통 프로세스를 다룹니다.
+    sections:
+    - 14.1 수확 후 수분 증발 메커니즘과 차압식 스마트 예건(Curing) 시스템
+    - 14.2 장기 저장을 위한 온도, 상대습도 및 기체 농도(O2, CO2) 최적 조건
+    - 14.3 저장 중 맹아 억제 기작, 호흡열 분석 및 부패균 억제 센싱
+    - 14.4 RFID/IoT 기반 콜드체인 추적 및 유통 단계별 품질 등급화
+  - chapter_id: ch15
+    chapter_number: 15
+    title: 제15장. 디지털 마늘 재배의 경제성 평가, 탄소 배출량 및 미래 전망
+    target_pages: 34
+    summary_ko: 기계화·자동화 도입에 따른 생산비 절감, 노동시간 단축 및 투자수익률(ROI)을 계량경제학적으로 분석합니다. 정밀 관수·시비에 따른 농업 탄소 배출 저감 효과와 농장 디지털 트윈 기반 자율영농의 미래 청사진을 제시합니다.
+    sections:
+    - 15.1 관행 재배 대비 디지털 기계화 농업의 투입 노동력 및 비용 편익 분석(B/C ratio)
+    - 15.2 스마트 농기계 및 IoT 장비 투자의 손익분기점(BEP) 산출 모델
+    - 15.3 화학비료 절감 및 디젤 대체에 따른 마늘 생애주기 탄소발자국(LCA) 평가
+    - 15.4 생성형 AI와 디지털 트윈 기반의 차세대 무인 자동화 농장 비전

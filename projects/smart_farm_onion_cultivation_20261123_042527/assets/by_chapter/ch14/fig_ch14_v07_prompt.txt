@@ -1,0 +1,12 @@
+이미지 번호: 그림 14-7
+이미지 파일명: fig_ch14_v07.png
+단원: 제14장. 양파 비파괴 선별 및 유통 디지털 트레이서빌리티 (ch14)
+결합 절: 생리·분자 메커니즘 및 첨단 분석 기술
+시각화 유형: photorealistic_field
+제목: [그림 14-7] 스마트 산지유통센터(APC) 내 무인운반차(AGV) 양파 상자 물류 이송
+
+[문맥 기반 이미지 설명]
+[그림 14-7] 대형 스마트 APC 내부에서 팔레타이징된 양파 박스 더미를 이송하는 무인운반차(AGV)의 주행 장면을 담은 현장 사진입니다. 각 박스에 부착된 식별 태그와 연동된 공급망 제어 모듈(SCCM)의 지시에 따라 최적 경로를 자율 주행합니다 [SRC-107]. 사람의 개입 없이 입고, 비파괴 선별, 저온 저장창고 배치가 동기화되어 물류 동선 낭비를 차단하는 스마트 농업 물류의 중심축을 묘사합니다.
+
+[나노바나나 생성 프롬프트]
+Wide-angle documentary photograph inside an expansive smart Agricultural Production Center (APC) warehouse. A sleek industrial automated guided vehicle (AGV) with glowing status indicators glides along a smooth polished concrete floor, carrying a heavy pallet loaded with uniform ventilated cardboard crates filled with sorted yellow onions. In the background, robotic arms palletize boxes beneath high industrial warehouse ceilings, with safety floor markings and ambient LED high-bay lighting. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

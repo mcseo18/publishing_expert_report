@@ -1,0 +1,12 @@
+이미지 번호: 그림 2-1
+이미지 파일명: fig_ch02_v01.png
+단원: 제2장. 국내외 마늘 산업 현황, 주산단지 생태환경 및 스마트 벨트 (ch02)
+결합 절: 2.1 글로벌 마늘 수급 동향과 주요 수출입국의 생산 체계
+시각화 유형: photorealistic_macro
+제목: [그림 2-1] 글로벌 유통 마늘의 저온 및 CA 저장 환경 모니터링
+
+[문맥 기반 이미지 설명]
+[그림 2-1] 글로벌 신선 마늘 수출입 공급망에서 품질 유지를 위해 적용되는 제어대기(CA) 저장 및 저온 유통(콜드체인) 시스템의 모니터링 환경을 나타낸다. 마늘 구의 호흡률을 억제하고 맹아 출현을 방지하기 위해 정밀한 온도와 습도, 가스 조성이 유지되는 환경을 보여준다[SRC-107, SRC-109]. 수확 후 손실을 최소화하고 상품성을 유지하는 스마트 저장 기술의 핵심 원리를 설명한다.
+
+[나노바나나 생성 프롬프트]
+Ultra-detailed macro photograph of cured Allium sativum garlic bulbs resting on a stainless steel perforated storage rack inside a commercial controlled-atmosphere cold room. A slender metallic digital probe is gently inserted near the basal plate of a garlic bulb, with fine condensation beads on the outer papery white and purplish tunic. Soft cool-toned LED lighting illuminates the crisp fibrous roots, delicate tunic layers, and ambient mist in the background, conveying industrial cold-chain precision. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

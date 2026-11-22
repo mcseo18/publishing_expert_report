@@ -1,0 +1,12 @@
+이미지 번호: 그림 7-4
+이미지 파일명: fig_ch07_v04.png
+단원: 제7장. 생육 단계별 생리 지표와 윤작·혼작 최적 작부체계 (ch07)
+결합 절: 7.2 월동기 내한성 기작과 봄철 생육 재생기 생리 관리
+시각화 유형: photorealistic_macro
+제목: [그림 7-4] 월동기 마늘 기저부 및 유조직의 세포막 동해 방지 미세 구조
+
+[문맥 기반 이미지 설명]
+[그림 7-4] 저온 환경에 노출된 월동기 마늘의 줄기 기저판(basal plate) 유조직을 동결 상태에서 관찰한 초근접 매크로 사진이다. 저온 순화 과정에서 세포질 내 삼투조절 물질과 당류가 고농도로 축적되어 세포벽 사이의 세포외 동결(apoplastic freezing)을 유도하고 세포 파괴를 방지하는 내한성 기작을 보여준다 [SRC-111]. 봄철 재생기의 생장 활력을 결정짓는 세포막 무결성 유지 메커니즘을 시각화한다.
+
+[나노바나나 생성 프롬프트]
+Cryogenic macro photograph of frozen winter garlic plant tissue cross-section near the basal plate. Minute microscopic ice crystals forming exclusively along intercellular cell walls while intracellular cytoplasm remains intact, dense with concentrated protective solutes and sugars. Subtle frost rime on outer tissue surfaces, delicate icy gleam, revealing cellular resilience and membrane fluidity against frost stress under freezing winter laboratory lighting. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

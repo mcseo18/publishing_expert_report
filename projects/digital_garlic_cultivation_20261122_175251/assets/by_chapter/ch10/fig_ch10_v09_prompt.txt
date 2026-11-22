@@ -1,0 +1,12 @@
+이미지 번호: 그림 10-9
+이미지 파일명: fig_ch10_v09.png
+단원: 제10장. 주요 병해충의 역학적 모델링과 종합적 방제(IPM) (ch10)
+결합 절: 10.4 디지털 환경에서의 정밀 화학방제와 생물학적 통합 방제(IPM)
+시각화 유형: photorealistic_field
+제목: [그림 10-9] 역학 모델 기반 위험 구역 변량 정밀 살포를 수행하는 농업용 드론
+
+[문맥 기반 이미지 설명]
+[그림 10-9] 역학 모델을 통해 마늘 잎마름병 발병 위험도가 70% 이상으로 예측된 특정 구획에만 타깃 살포를 실시하는 정밀 농업 드론의 방제 현장이다. 10.4절의 정밀 화학방제 원리에 따라 전면 살포 방식을 탈피하여 농약 사용량을 대폭 절감하고 저항성 유발을 방지한다 [SRC-100]. 드론 하부 노즐에서 미세하게 분무되는 약제 미립자가 바람의 와류를 타고 마늘 수관 하부까지 균일하게 침투하는 모습을 현실감 넘치게 담아냈다.
+
+[나노바나나 생성 프롬프트]
+National Geographic style documentary field photograph of a modern multi-rotor agricultural hexacopter drone performing variable-rate precision spraying over an extensive garlic (Allium sativum) plantation. The drone hovers approximately two meters above the lush green garlic canopy, emitting ultra-fine atomized spray mists from downward-directed pressure nozzles. Downwash air currents gently ruffle the flat linear garlic leaves, distributing the micro-droplets deep into the plant canopy. The field displays zoned management blocks, with crisp afternoon sunlight highlighting the mist cone against the dark green foliage and brown field borders. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

@@ -1,0 +1,167 @@
+# 제7장. 생육 단계별 생리 지표와 윤작·혼작 최적 작부체계 — 문맥 기반 시각화 기획서 (이미지 번호 · 설명 · 프롬프트)
+
+- **단원 ID**: `ch07`
+- **총 시각화 수**: **10종** (Google Gemini Nano Banana 전량 제작)
+- **생성 시각**: `2026-11-22T09:08:38+00:00`
+
+---
+
+## [그림 7-1] BBCH 표준 척도에 따른 마늘 생육 단계별 형태학적 발달 구조
+
+- **이미지 번호 / 파일명**: `그림 7-1` / `fig_ch07_v01.png`
+- **문서 결합 절(Section)**: 7.1 마늘의 생육 단계별(BBCH 척도) 발육 기준 및 형태학적 지표
+- **시각화 유형**: `scientific_anatomy`
+
+### 문맥 기반 상세 설명 (줄글)
+[그림 7-1] 국제 표준 BBCH 척도에 기반한 마늘(Allium sativum)의 주요 발육 단계를 연속적인 생체 해부도로 제시한 그림이다. 파종 후 맹아 출현(BBCH 09)부터 영양생장기 신초 신장, 그리고 인편 분화 및 구 비대기(BBCH 45-49)에 이르는 생리적 전환 과정을 정밀하게 보여준다 [SRC-100]. 각 단계별 저장엽의 당류 축적 및 유관속 다발의 비대 양상이 명확히 묘사되어 작기 관리의 기준점을 제공한다 [SRC-109].
+
+### 나노바나나 생성 프롬프트 (Pure English · Zero-Text)
+```text
+Scientific anatomical progression illustration of Allium sativum garlic plants depicting sequential BBCH developmental stages from left to right on a pure white background. The sequence showcases an emerging sprouted clove with adventitious roots, advancing into a vigorous multi-leaf vegetative stalk with fibrous basal root system, culminating in a swelling garlic bulb showing a longitudinal cross-section with individual developing cloves, protective sheath tunics, and basal plate. Painterly scientific botanical rendering with precise cellular textures and accurate biological colors. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.
+```
+
+---
+
+## [그림 7-2] 구 비대기 마늘 인편의 횡단면 미세 구조 및 유관속 조직
+
+- **이미지 번호 / 파일명**: `그림 7-2` / `fig_ch07_v02.png`
+- **문서 결합 절(Section)**: 7.1 마늘의 생육 단계별(BBCH 척도) 발육 기준 및 형태학적 지표
+- **시각화 유형**: `photorealistic_macro`
+
+### 문맥 기반 상세 설명 (줄글)
+[그림 7-2] 구 비대 초기에 급격한 전분 및 유리당 축적이 일어나는 마늘 인편의 정밀 횡단면 매크로 사진이다. 저장엽(storage scale) 세포 내부의 농밀한 유조직과 수분 및 양분을 분배하는 유관속 다발의 배열이 선명하게 관찰된다 [SRC-109]. 비대기 환경 스트레스와 에틸렌 농도 변화에 반응하여 비대 조직의 치밀도가 형성되는 생리적 현상을 실물 수준으로 증명한다 [SRC-108].
+
+### 나노바나나 생성 프롬프트 (Pure English · Zero-Text)
+```text
+Ultra-sharp macro photography of a freshly cut transverse cross-section of a swelling Allium sativum garlic bulb showing multiple plump developing cloves arranged around the central core. Detailed translucent fleshy storage scale cells glistening with cellular sap, delicate vascular bundles visible within the parenchyma tissue, and surrounding thin papery tunics. Crisp studio lighting, laboratory focus on organic textures, moisture droplets, and crystalline starch-bearing cell layers. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.
+```
+
+---
+
+## [그림 7-3] 신초 신장기 마늘 포장의 균일 수관 형성 및 생육 현황
+
+- **이미지 번호 / 파일명**: `그림 7-3` / `fig_ch07_v03.png`
+- **문서 결합 절(Section)**: 7.1 마늘의 생육 단계별(BBCH 척도) 발육 기준 및 형태학적 지표
+- **시각화 유형**: `photorealistic_field`
+
+### 문맥 기반 상세 설명 (줄글)
+[그림 7-3] 신초 신장기 동안 광합성 동화작용을 극대화하기 위해 형성된 마늘 포장의 균일한 수관 구조를 담은 포장 사진이다. 뚜렷한 직립형 선형 엽신들이 규칙적인 재식열을 따라 전개되어 있으며, 건강한 엽색과 엽초의 직립성이 돋보인다 [SRC-100]. 이는 향후 구 비대에 투입될 광합성 산물의 저장 기반을 확립하는 핵심 생육 단계의 전형적인 모습을 보여준다.
+
+### 나노바나나 생성 프롬프트 (Pure English · Zero-Text)
+```text
+Photorealistic field photograph of an expansive commercial garlic field during the active vegetative shoot elongation stage. Pristine parallel rows of Allium sativum plants with vibrant blue-green straplike leaves standing upright, casting crisp morning shadows across neatly leveled raised soil beds covered with specialized agricultural mulching film. Natural bright daylight, wide shot emphasizing uniform crop canopy architecture and vigorous vegetative vigor. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.
+```
+
+---
+
+## [그림 7-4] 월동기 마늘 기저부 및 유조직의 세포막 동해 방지 미세 구조
+
+- **이미지 번호 / 파일명**: `그림 7-4` / `fig_ch07_v04.png`
+- **문서 결합 절(Section)**: 7.2 월동기 내한성 기작과 봄철 생육 재생기 생리 관리
+- **시각화 유형**: `photorealistic_macro`
+
+### 문맥 기반 상세 설명 (줄글)
+[그림 7-4] 저온 환경에 노출된 월동기 마늘의 줄기 기저판(basal plate) 유조직을 동결 상태에서 관찰한 초근접 매크로 사진이다. 저온 순화 과정에서 세포질 내 삼투조절 물질과 당류가 고농도로 축적되어 세포벽 사이의 세포외 동결(apoplastic freezing)을 유도하고 세포 파괴를 방지하는 내한성 기작을 보여준다 [SRC-111]. 봄철 재생기의 생장 활력을 결정짓는 세포막 무결성 유지 메커니즘을 시각화한다.
+
+### 나노바나나 생성 프롬프트 (Pure English · Zero-Text)
+```text
+Cryogenic macro photograph of frozen winter garlic plant tissue cross-section near the basal plate. Minute microscopic ice crystals forming exclusively along intercellular cell walls while intracellular cytoplasm remains intact, dense with concentrated protective solutes and sugars. Subtle frost rime on outer tissue surfaces, delicate icy gleam, revealing cellular resilience and membrane fluidity against frost stress under freezing winter laboratory lighting. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.
+```
+
+---
+
+## [그림 7-5] 이른 봄 생육 재생기 마늘의 신초 돌출 및 근계 활력 회복
+
+- **이미지 번호 / 파일명**: `그림 7-5` / `fig_ch07_v05.png`
+- **문서 결합 절(Section)**: 7.2 월동기 내한성 기작과 봄철 생육 재생기 생리 관리
+- **시각화 유형**: `photorealistic_field`
+
+### 문맥 기반 상세 설명 (줄글)
+[그림 7-5] 월동 후 지온 상승에 맞추어 생육 재생기를 맞이한 마늘 포장의 생생한 현장 사진이다. 멀칭 필름 천공부를 뚫고 강건하게 솟아오른 선명한 에메랄드빛 신초와 토양 속으로 새롭게 뻗어 나가는 백색 부정근이 관찰된다 [SRC-111]. 이 시기의 신속한 엽면적 확보와 근계 활력은 후기 구 비대를 위한 필수 전제 조건임을 나타낸다 [SRC-108].
+
+### 나노바나나 생성 프롬프트 (Pure English · Zero-Text)
+```text
+Photorealistic agricultural documentary field shot of young garlic shoots breaking through perforated holes of mulch film in early spring. Radiant fresh emerald-green upright garlic sprouts emerging vibrantly from dark moist soil beds, accompanied by a cutaway view of the root zone showing fresh white adventitious roots actively colonizing rich damp earth under soft warm morning sunlight. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.
+```
+
+---
+
+## [그림 7-6] 마늘-콩 윤작 체계의 생물학적 질소 고정 및 토양 양분 순환 메커니즘
+
+- **이미지 번호 / 파일명**: `그림 7-6` / `fig_ch07_v06.png`
+- **문서 결합 절(Section)**: 7.3 마늘 중심 윤작체계(마늘-벼, 마늘-콩)의 물질순환 및 지력 유지
+- **시각화 유형**: `scientific_anatomy`
+
+### 문맥 기반 상세 설명 (줄글)
+[그림 7-6] 마늘 수확 후 후작으로 배치된 콩의 뿌리혹박테리아에 의한 생물학적 질소 고정과 토양 물질순환 기작을 나타낸 과학 해부도이다. 콩 뿌리의 근류(root nodules)에서 공중질소가 가용성 질소로 전환되는 과정과, 마늘 잔재물의 유기물 분해가 상호작용하여 토양 비옥도를 복원하는 과정을 상세히 도해한다 [SRC-103]. 이는 연작으로 인한 영양소 불균형을 교정하는 핵심 생태적 해법이다.
+
+### 나노바나나 생성 프롬프트 (Pure English · Zero-Text)
+```text
+Scientific botanical illustration on a pure white background showcasing the rhizospheric nitrogen cycling between a harvested garlic bulb root zone and an alternating soybean plant root. Detailed anatomical cross-section of pinkish-red leguminous root nodules colonized by Rhizobium bacteria fixing nitrogen, nutrient diffusion streams depicted flowing through soil pore networks, enriched soil organic matter, and decomposed garlic root fragments. Highly detailed biological textbook visual. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.
+```
+
+---
+
+## [그림 7-7] 마늘-벼 윤작 포장의 담수 토양 환원 및 지력 갱신 전경
+
+- **이미지 번호 / 파일명**: `그림 7-7` / `fig_ch07_v07.png`
+- **문서 결합 절(Section)**: 7.3 마늘 중심 윤작체계(마늘-벼, 마늘-콩)의 물질순환 및 지력 유지
+- **시각화 유형**: `photorealistic_field`
+
+### 문맥 기반 상세 설명 (줄글)
+[그림 7-7] 마늘 수확 직후 담수 상태로 전환되어 벼가 이앙된 마늘-벼 윤작 현장의 광각 풍경이다. 담수 조건은 마늘 연작 과정에서 집적된 토양 전염성 병원균과 선충의 밀도를 획기적으로 억제하며, 토양 유기물의 환원 분해를 촉진한다 [SRC-104]. 마늘 재배지와 벼 식재지가 맞물려 순환하는 토지 이용의 전형을 시각적으로 입증한다.
+
+### 나노바나나 생성 프롬프트 (Pure English · Zero-Text)
+```text
+Photorealistic panoramic field photograph of an agricultural rotation landscape showing a harvested garlic field partitioned alongside freshly flooded, mirrored rice paddy fields where young bright-green rice seedlings are neatly transplanted. Distant view of agricultural levees, irrigation channels, dynamic cloud reflections on the water surface, showcasing sustainable rotational farming under clear daytime sky. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.
+```
+
+---
+
+## [그림 7-8] 윤작 토양의 입단 구조 발달 및 마늘 근계 유기 잔재물 분해층
+
+- **이미지 번호 / 파일명**: `그림 7-8` / `fig_ch07_v08.png`
+- **문서 결합 절(Section)**: 7.3 마늘 중심 윤작체계(마늘-벼, 마늘-콩)의 물질순환 및 지력 유지
+- **시각화 유형**: `photorealistic_macro`
+
+### 문맥 기반 상세 설명 (줄글)
+[그림 7-8] 윤작을 통해 유기물 함량이 개선된 마늘 재배 토양의 입단(crumb structure) 구조를 촬영한 고배율 매크로 사진이다. 마늘 뿌리 분비물과 유기 잔재물이 토양 미생물에 의해 안정된 떼알 구조로 발달하여 통기성과 보수성이 극대화된 상태를 보여준다 [SRC-103]. 이는 연작으로 인해 토양이 단립화되고 경화되는 물리적 열화를 방지하는 핵심 토양 생태적 지표이다.
+
+### 나노바나나 생성 프롬프트 (Pure English · Zero-Text)
+```text
+High-magnification macro shot of fertile, crumb-structured rhizosphere soil from an active crop rotation field. Distinct porous granular aggregates clustered around decaying organic root hairs of Allium sativum, intertwined with delicate white mycorrhizal mycelium threads, rich dark humus coloration, and fine glistening moisture films along microscopic soil pore networks. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.
+```
+
+---
+
+## [그림 7-9] 마늘 뿌리혹선충 감염 병리 및 염류 집적에 따른 뿌리 괴사 단면
+
+- **이미지 번호 / 파일명**: `그림 7-9` / `fig_ch07_v09.png`
+- **문서 결합 절(Section)**: 7.4 연작장해(선충, 염류집적)의 디지털 진단 및 작부 최적화 알고리즘
+- **시각화 유형**: `scientific_anatomy`
+
+### 문맥 기반 상세 설명 (줄글)
+[그림 7-9] 연작장해로 인해 마늘 근계에 발생하는 선충(Nematode) 침입과 토양 염류 집적의 복합 피해를 설명하는 과학 해부도이다. 마늘 뿌리 피층을 관통한 선충과 거대세포(giant cells) 형성으로 인한 혹 형성, 그리고 과도한 염류에 의한 세포 탈수 및 흑변 괴사 과정을 정밀하게 비교 묘사한다 [SRC-110]. 작부 최적화 알고리즘이 해결해야 할 생물학적 병리 상태를 가시화한다.
+
+### 나노바나나 생성 프롬프트 (Pure English · Zero-Text)
+```text
+Detailed scientific medical-botanical illustration of an Allium sativum garlic root suffering continuous cropping pathology on a pure white background. Longitudinal cutaway revealing parasitic root-knot nematodes embedded in cellular root tissues causing abnormal swollen feeding galls, juxtaposed with cellular dehydration, hyper-saline salt crystal encrustation on root epidermal membranes, and brown necrotic vascular bundles. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.
+```
+
+---
+
+## [그림 7-10] 마늘 재배지 토양 전기전도도(EC) 및 수분 실시간 디지털 센싱 현장
+
+- **이미지 번호 / 파일명**: `그림 7-10` / `fig_ch07_v10.png`
+- **문서 결합 절(Section)**: 7.4 연작장해(선충, 염류집적)의 디지털 진단 및 작부 최적화 알고리즘
+- **시각화 유형**: `photorealistic_field`
+
+### 문맥 기반 상세 설명 (줄글)
+[그림 7-10] 마늘 포장의 염류 집적도를 정밀 평가하기 위해 다심도 토양 전기전도도(EC) 프로브 센서를 투입하여 진단하는 디지털 농업 현장 사진이다. 디지털 측정 장비는 토양의 실시간 수분, 온도, EC 데이터를 수집하여 작부 최적화 알고리즘의 기초 입력값으로 전송한다 [SRC-110]. 연작장해 조기 진단과 데이터 기반 윤작 의사결정의 통합적 실행 장면을 보여준다.
+
+### 나노바나나 생성 프롬프트 (Pure English · Zero-Text)
+```text
+Photorealistic documentary photograph of agricultural field sensing in a garlic plot. An agricultural scientist kneeling beside a raised bed of young upright garlic plants, inserting a professional stainless steel multi-depth soil probe measuring electrical conductivity and moisture into the soil profile. Sunlight glints off the digital handheld telemetry unit, surrounded by clean mulch and thriving green garlic foliage. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.
+```
+
+---

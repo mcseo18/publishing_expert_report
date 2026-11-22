@@ -1,0 +1,12 @@
+이미지 번호: 그림 5-4
+이미지 파일명: fig_ch05_v04.png
+단원: 제5장. 정밀 양분 역학과 스마트 관비(Fertigation) 및 시비 처방 (ch05)
+결합 절: 5.2 마늘 전주기 양분 흡수 곡선과 흡수 패턴의 수치 모델링
+시각화 유형: photorealistic_field
+제목: [그림 5-4] 근권 다심도 토양 수분·EC 센서가 매설된 스마트 마늘 시험 포장
+
+[문맥 기반 이미지 설명]
+[그림 5-4] 마늘의 전주기 양분 흡수 패턴을 실시간으로 추적하기 위해 지하 근권에 다심도 토양 센서가 설치된 첨단 연구 포장의 현장 전경입니다. 검은색 유공 비닐 멀칭 사이로 균일하게 생육 중인 마늘 줄기 주변으로 깊이별 수분 함량 및 전기전도도(EC) 센서 프로브와 무선 로거가 배치되어 있습니다. 수집된 실시간 데이터는 양분 흡수 포화도를 예측하고 비료 이용 효율(NUE)을 극대화하는 수치 모델의 기본 입력 변수로 활용됩니다 [SRC-100].
+
+[나노바나나 생성 프롬프트]
+Photorealistic documentary field photograph of a smart garlic agricultural research plot under clear natural daylight. Lush, linear rows of thriving garlic plants emerge through dark plastic agricultural mulch, with cylindrical soil moisture and electrical conductivity sensor probes installed at multiple depths near the bulb root zone. Slender black sensor cables neatly connect to a rugged weatherproof telemetry node mounted on a low metal stake beside the planting bed, capturing crisp natural field textures and fertile agricultural soil. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

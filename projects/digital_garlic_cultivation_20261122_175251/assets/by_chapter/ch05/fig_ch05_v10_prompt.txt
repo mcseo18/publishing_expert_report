@@ -1,0 +1,12 @@
+이미지 번호: 그림 5-10
+이미지 파일명: fig_ch05_v10.png
+단원: 제5장. 정밀 양분 역학과 스마트 관비(Fertigation) 및 시비 처방 (ch05)
+결합 절: 오해와 진실: 현장·이론 핵심 오해 교정
+시각화 유형: photorealistic_field
+제목: [그림 5-10] 수확 후 건조 큐어링 및 정밀 온습도 제어 저온 저장 시설
+
+[문맥 기반 이미지 설명]
+[그림 5-10] 수확된 마늘의 생화학적 활성 안정화와 저장력 유지를 위한 현대식 예건(curing) 및 저온 콜드체인 시설의 내부 전경입니다. 건조대 위에 줄기째 엮여 균일하게 통풍 건조 중인 마늘 다발들과 디지털 온습도 및 에틸렌 감지 센서 유닛이 천장 및 벽체에 체계적으로 설치되어 있습니다. 포장 단계에서의 균형 잡힌 관비 처방이 수확 후 저장 중 호흡열과 중량 감모율, 맹아 억제 등 수확 후 생리 안정성에 직결됨을 실증합니다 [SRC-107, SRC-108, SRC-110].
+
+[나노바나나 생성 프롬프트]
+Photorealistic documentary photograph inside a modern agricultural postharvest curing and cold-storage facility for harvested garlic. Heavy wooden slatted bins and suspended drying racks are stacked neatly with bundles of harvested Allium sativum garlic bulbs featuring dried papery white and purplish outer tunics. Overhead ventilation ducts and mounted wireless digital environmental monitoring sensors with tiny illuminated green indicator lights oversee the cool, dimly lit, spotless industrial storage room. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

@@ -1,0 +1,12 @@
+이미지 번호: 그림 9-2
+이미지 파일명: fig_ch09_v02.png
+단원: 제9장. 주요 병해의 조기 예찰 알고리즘과 컴퓨터 비전 기반 스마트 방제 (ch09)
+결합 절: 9.1 양파 노균병(Peronospora destructor)의 병태생리와 습도·온도 연동 병원균 포자 비산 예측 모델
+시각화 유형: photorealistic_field
+제목: [그림 9-2] 양파 생육 캐노피 내부 미기후 온습도 및 엽면 젖음 센서 관측 시스템
+
+[문맥 기반 이미지 설명]
+[그림 9-2] 양파 포장 내 이랑 사이에 정밀 설치된 현장 미기후 측정 스테이션과 엽면 젖음 센서(Leaf wetness sensor)의 설치 상태를 나타냅니다. 노균병 포자 비산 및 1차 감염의 핵심 인자인 캐노피 내부의 상대습도, 온도, 결로 지속시간을 실시간으로 수집하는 스마트팜 환경 센싱 장치를 실증합니다. 수집된 미기후 데이터는 환경 역치(θopt) 기반의 조기 경보 알고리즘에 직접 연계됩니다.
+
+[나노바나나 생성 프롬프트]
+Photorealistic agricultural documentary field shot within an open commercial onion field. An automated microclimate monitoring station with a solar-powered telemetry box, aspirated temperature and relative humidity radiation shield, and an artificial dielectric leaf wetness sensor clipped among vibrant upright tubular green onion leaves. Warm morning daylight illuminating dew-covered raised garden beds covered with black mulch, shallow depth of field blurring distant farm field horizon. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

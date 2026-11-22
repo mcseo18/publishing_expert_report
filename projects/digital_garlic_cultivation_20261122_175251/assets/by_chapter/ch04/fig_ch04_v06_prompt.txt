@@ -1,0 +1,12 @@
+이미지 번호: 그림 4-6
+이미지 파일명: fig_ch04_v06.png
+단원: 제4장. 토양 물리·화학성 진단과 디지털 지도를 활용한 입지 최적화 (ch04)
+결합 절: 4.3 근적외선(NIR) 분광분석 및 토양 센서 노드 네트워크
+시각화 유형: photorealistic_macro
+제목: [그림 4-6] 휴대용 근적외선(NIR) 분광분석기를 이용한 건조 토양 시료의 비파괴 성분 측정
+
+[문맥 기반 이미지 설명]
+[그림 4-6] 마늘 재배 필지에서 채취한 건조 분쇄 토양 시료의 유기물 및 점토 광물 조성을 신속히 정량화하는 휴대용 NIR 분광기 측정 장면이다 [SRC-117]. 사파이어 광학 윈도우에서 방출된 근적외선 광선이 토양 표면에 입사되어 특정 흡수 밴드의 분광 반사율을 비파괴적으로 스캔한다. 이 방식은 복잡한 화학 전처리 없이 유기물 함량 등의 거시적 물성을 수초 만에 획득하여 디지털 지도화의 고밀도 기준 데이터를 제공한다.
+
+[나노바나나 생성 프롬프트]
+Macro photograph inside a mobile agricultural field laboratory. A handheld portable near-infrared (NIR) spectrometer optical nose cone is pressed gently against a flat glass optical dish filled with finely sieved, dry dark brown agricultural soil. A subtle warm halogen optical reflection glows on the sapphire window of the instrument. In the clean background, stainless steel laboratory spatulas, numbered sample tins, and soil analysis logbooks are neatly arranged with shallow focus. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

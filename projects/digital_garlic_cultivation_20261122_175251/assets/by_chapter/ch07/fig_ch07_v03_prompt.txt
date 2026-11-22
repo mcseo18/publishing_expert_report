@@ -1,0 +1,12 @@
+이미지 번호: 그림 7-3
+이미지 파일명: fig_ch07_v03.png
+단원: 제7장. 생육 단계별 생리 지표와 윤작·혼작 최적 작부체계 (ch07)
+결합 절: 7.1 마늘의 생육 단계별(BBCH 척도) 발육 기준 및 형태학적 지표
+시각화 유형: photorealistic_field
+제목: [그림 7-3] 신초 신장기 마늘 포장의 균일 수관 형성 및 생육 현황
+
+[문맥 기반 이미지 설명]
+[그림 7-3] 신초 신장기 동안 광합성 동화작용을 극대화하기 위해 형성된 마늘 포장의 균일한 수관 구조를 담은 포장 사진이다. 뚜렷한 직립형 선형 엽신들이 규칙적인 재식열을 따라 전개되어 있으며, 건강한 엽색과 엽초의 직립성이 돋보인다 [SRC-100]. 이는 향후 구 비대에 투입될 광합성 산물의 저장 기반을 확립하는 핵심 생육 단계의 전형적인 모습을 보여준다.
+
+[나노바나나 생성 프롬프트]
+Photorealistic field photograph of an expansive commercial garlic field during the active vegetative shoot elongation stage. Pristine parallel rows of Allium sativum plants with vibrant blue-green straplike leaves standing upright, casting crisp morning shadows across neatly leveled raised soil beds covered with specialized agricultural mulching film. Natural bright daylight, wide shot emphasizing uniform crop canopy architecture and vigorous vegetative vigor. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

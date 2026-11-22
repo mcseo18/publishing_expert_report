@@ -1,0 +1,12 @@
+이미지 번호: 그림 14-9
+이미지 파일명: fig_ch14_v09.png
+단원: 제14장. 스마트 건조(Curing), CA 저온저장 및 유통 품질 제어 (ch14)
+결합 절: 14.3 저장 중 맹아 억제 기작, 호흡열 분석 및 부패균 억제 센싱
+시각화 유형: photorealistic_macro
+제목: [그림 14-9] 저장 마늘 부패균 감지용 반도체식 VOC 가스 센서 탐침
+
+[문맥 기반 이미지 설명]
+[그림 14-9] 마늘 저장고의 미세 대기질을 실시간으로 감시하여 부패균 번식을 감지하는 반도체 가스 센서 및 프로브를 근접 촬영한 사진이다. 마늘 조직 붕괴 시 방출되는 디알릴 디설파이드(Diallyl disulfide) 등 휘발성 유기화합물(VOCs)과 미량 에틸렌 가스를 즉각 측정한다 [SRC-108, SRC-109]. 초소형 금속 산화물 센서 그리드가 통풍 구멍 근처에 장착되어 미생물 번식에 따른 대기 성분 변화를 실시간 분석한다.
+
+[나노바나나 생성 프롬프트]
+Crisp photorealistic macro photograph of a precision electronic-nose VOC sensor module with a micromachined gold-plated metal mesh cap positioned directly adjacent to a mesh crate of cured garlic bulbs. Stainless steel probe casing with tiny exposed micro-hotplate sensor elements detecting volatile allicin vapors. Background features softly blurred garlic bulb tunics and cold room cooling coils under sharp focal illumination. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

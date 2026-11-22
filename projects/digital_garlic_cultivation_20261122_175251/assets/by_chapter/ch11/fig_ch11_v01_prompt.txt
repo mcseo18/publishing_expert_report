@@ -1,0 +1,12 @@
+이미지 번호: 그림 11-1
+이미지 파일명: fig_ch11_v01.png
+단원: 제11장. 컴퓨터 비전 및 딥러닝 기반 디지털 병해충·생리장해 진단 (ch11)
+결합 절: 11.1 마늘 병징 영상 데이터베이스 구축 및 데이터 증강(Augmentation)
+시각화 유형: photorealistic_field
+제목: [그림 11-1] 다양한 자연광 환경에서의 마늘 엽병 병징 영상 데이터 수집 환경
+
+[문맥 기반 이미지 설명]
+[그림 11-1] 딥러닝 진단 모델의 일반화 성능을 높이기 위해 야외 마늘 포장에서 진행되는 정밀 병징 영상 촬영 과정을 보여줍니다. 연구원이 비반사 캘리브레이션 컬러 차트와 확산 조명 텐트를 활용하여 녹병(Puccinia allii)과 잎마름병 증상이 발생한 마늘 잎의 각도와 조도를 정밀하게 기록합니다. [SRC-100]에 기술된 바와 같이 실제 농작업 현장의 가변적인 기상 요소를 반영한 고품질 데이터베이스 구축의 기초가 됩니다.
+
+[나노바나나 생성 프롬프트]
+Documentary-style agricultural photography showing a research technician in a sunlit garlic field using a professional DSLR camera mounted on an adjustable ground tripod. A portable translucent diffusion tent shades a diseased garlic plant (Allium sativum) with elongated straplike leaves exhibiting rust pustules. Beside the garlic leaves rests a miniature 24-patch color calibration chart and a millimeter scale bar on the rich dark mulch soil, capturing accurate surface texture under diffuse daylight, sharp focus on botanical foliage with natural background garlic rows extending to the horizon. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

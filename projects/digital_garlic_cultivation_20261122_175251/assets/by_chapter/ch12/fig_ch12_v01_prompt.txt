@@ -1,0 +1,12 @@
+이미지 번호: 그림 12-1
+이미지 파일명: fig_ch12_v01.png
+단원: 제12장. 분광 센싱·드론 예찰 및 마늘 작물생육모형(Crop Growth Model) (ch12)
+결합 절: 12.1 드론 다중분광·열적외선 센싱과 식생지수(NDVI, NDRE) 연산
+시각화 유형: photorealistic_field
+제목: [그림 12-1] 다중분광 및 열적외선 짐벌 센서를 탑재한 농업용 쿼드콥터 드론의 마늘 포장 저고도 예찰
+
+[문맥 기반 이미지 설명]
+[그림 12-1] 본 사진은 정밀 농업용 쿼드콥터 무인항공기(UAV)가 푸른 마늘 재배 포장 상공 20미터 높이에서 정밀 비행하며 캐노피 분광 데이터를 취득하는 장면을 보여줍니다. 기체 하부에 장착된 일체형 5밴드 다중분광 및 열적외선(TIR) 짐벌 센서가 마늘 잎의 반사 스펙트럼과 표면 복사열을 실시간 스캐닝하고 있습니다 [SRC-101]. 규칙적인 두둑과 비닐 멀칭 사이로 건강하게 자라난 마늘 작물의 균일한 생육 상태가 자연 채광 아래 선명하게 드러납니다 [SRC-100].
+
+[나노바나나 생성 프롬프트]
+Documentary agricultural field photograph of a professional carbon-fiber quadcopter drone hovering at low altitude over an expansive garlic farm. The drone carries a stabilized gimbal with dual multispectral and thermal infrared optical sensors pointing downward at the lush green garlic rows. Straight raised cultivation beds with black mulch film and healthy, slender, strap-like garlic foliage stretch toward the horizon under bright morning daylight. Crisp botanical textures of individual Allium sativum plants with distinct parallel leaf venation and natural shallow depth of field. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

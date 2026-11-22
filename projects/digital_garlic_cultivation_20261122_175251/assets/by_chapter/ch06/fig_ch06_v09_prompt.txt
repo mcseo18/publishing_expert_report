@@ -1,0 +1,12 @@
+이미지 번호: 그림 6-9
+이미지 파일명: fig_ch06_v09.png
+단원: 제6장. 토양수분 포텐셜 해석과 센서 기반 지능형 관수 제어 (ch06)
+결합 절: 6.4 증발산량(ET0) 추정과 인공지능 기반 지능형 관수 의사결정
+시각화 유형: scientific_anatomy
+제목: [그림 6-9] 기상 증발산량(ET0) 및 작물계수(Kc) 연계 마늘 지능형 관수 알고리즘 구조
+
+[문맥 기반 이미지 설명]
+[그림 6-9] FAO-56 Penman-Monteith 모델 기반 기준 증발산량(ET0)과 마늘 생육 단계별 작물 계수(Kc)를 융합하여 작물 증발산량(ETc)을 산정하는 인공지능 관수 의사결정 체계도이다[SRC-100, SRC-104]. 대기 일사량, 풍속, 상대습도에 따른 잎 기공 증산과 지하부 실시간 토양수분 감소율이 인공신경망(ANN) 예측 모델로 수렴되는 과정을 도시하였다. 단순 임계치 사후 대응을 넘어 수분 스트레스 발생 24~48시간 전 선제적으로 점적 밸브를 개폐하는 스마트 제어 구조를 입증한다.
+
+[나노바나나 생성 프롬프트]
+Comprehensive scientific visual illustration on a clean white background showing the biophysical water flux and artificial intelligence decision-making framework for a garlic plant. Solar radiation, wind currents, and vapor pressure deficit act upon the broad erect leaves, triggering stomatal transpiration. At the root zone, multi-depth soil water depletion vectors interact with incoming drip water pulses. Stylized translucent data streams flow seamlessly from leaf-atmosphere interfaces and root zone moisture fields into a central automated control valve schematic, rendered in clean editorial scientific aesthetics. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

@@ -1,0 +1,12 @@
+이미지 번호: 그림 7-9
+이미지 파일명: fig_ch07_v09.png
+단원: 제7장. 생육 단계별 생리 지표와 윤작·혼작 최적 작부체계 (ch07)
+결합 절: 7.4 연작장해(선충, 염류집적)의 디지털 진단 및 작부 최적화 알고리즘
+시각화 유형: scientific_anatomy
+제목: [그림 7-9] 마늘 뿌리혹선충 감염 병리 및 염류 집적에 따른 뿌리 괴사 단면
+
+[문맥 기반 이미지 설명]
+[그림 7-9] 연작장해로 인해 마늘 근계에 발생하는 선충(Nematode) 침입과 토양 염류 집적의 복합 피해를 설명하는 과학 해부도이다. 마늘 뿌리 피층을 관통한 선충과 거대세포(giant cells) 형성으로 인한 혹 형성, 그리고 과도한 염류에 의한 세포 탈수 및 흑변 괴사 과정을 정밀하게 비교 묘사한다 [SRC-110]. 작부 최적화 알고리즘이 해결해야 할 생물학적 병리 상태를 가시화한다.
+
+[나노바나나 생성 프롬프트]
+Detailed scientific medical-botanical illustration of an Allium sativum garlic root suffering continuous cropping pathology on a pure white background. Longitudinal cutaway revealing parasitic root-knot nematodes embedded in cellular root tissues causing abnormal swollen feeding galls, juxtaposed with cellular dehydration, hyper-saline salt crystal encrustation on root epidermal membranes, and brown necrotic vascular bundles. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

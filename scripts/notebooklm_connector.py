@@ -441,6 +441,27 @@ def import_notebooklm_sources(
 
     imported_sids = [x["source_id"] for x in imported if x.get("source_id")]
     if imported_sids:
+        # C:\SMC_GRAPHRAG 통합 RAG(FTS5 + 증분 KG) 자동 결합
+        try:
+            from rag_capture_unifier import unify_source_to_smc_graphrag
+
+            for x in imported:
+                sid = x.get("source_id")
+                pp = (x.get("saved_files") or [""])[0]
+                if sid:
+                    unify_source_to_smc_graphrag(
+                        source_id=sid,
+                        title=x.get("title", sid),
+                        parsed_path=pp if pp and Path(pp).is_file() else None,
+                        url=x.get("url", ""),
+                        source_type="notebooklm",
+                        provider="NotebookLM",
+                        project_id=project_id,
+                        capture_mode="notebooklm_download",
+                        cfg=cfg,
+                    )
+        except Exception:
+            pass
         append_event(
             project_id,
             "notebooklm-import",

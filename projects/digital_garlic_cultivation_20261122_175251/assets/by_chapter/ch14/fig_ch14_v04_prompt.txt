@@ -1,0 +1,12 @@
+이미지 번호: 그림 14-4
+이미지 파일명: fig_ch14_v04.png
+단원: 제14장. 스마트 건조(Curing), CA 저온저장 및 유통 품질 제어 (ch14)
+결합 절: 14.2 장기 저장을 위한 온도, 상대습도 및 기체 농도(O2, CO2) 최적 조건
+시각화 유형: scientific_anatomy
+제목: [그림 14-4] 저온 환경 하 마늘 저장세포 호흡 대사 및 미토콘드리아 억제 모델
+
+[문맥 기반 이미지 설명]
+[그림 14-4] 영하 1도에서 0도 사이의 저온 저장 환경에서 마늘 인편 세포 내 호흡 속도가 급감하는 생리적 기작을 묘사한 생물학적 단면도이다. 온도 하강에 따른 호흡 Q10 계수 감소와 해당작용 및 미토콘드리아 TCA 회로 활성 저하 경로를 표현한다 [SRC-111]. 인지질 세포막의 유동성 유지와 대사산물 축적 억제를 통해 자가 소모를 최소화하는 저장 메커니즘을 증명한다.
+
+[나노바나나 생성 프롬프트]
+Scientific botanical mechanism illustration depicting garlic clove storage parenchyma tissue at cellular magnification against a pure white background. Illustrating low-temperature metabolic slowing inside a plant cell, showing cold-stabilized lipid bilayer cell membranes, subdued cytoplasmic enzymatic activity, and slowed mitochondrial respiration cycles. Rich academic botanical illustration in cool blue and soft green tones with deep shading, depicting crystalline cellular integrity and dormant vacuolar compartments. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

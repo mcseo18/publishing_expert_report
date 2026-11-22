@@ -1,0 +1,12 @@
+이미지 번호: 그림 9-4
+이미지 파일명: fig_ch09_v04.png
+단원: 제9장. 농작업 무인 자동화와 RTK-GPS 자율주행 농기계 기술 (ch09)
+결합 절: 9.1 센티미터급 RTK-GNSS 측위 원리와 현장 통신 인프라 구축
+시각화 유형: photorealistic_field
+제목: [그림 9-4] 마늘 재배 단지 외곽에 설치된 농업용 RTK 고정 기준국 인프라
+
+[문맥 기반 이미지 설명]
+[그림 9-4] 광활한 마늘 생산 단지의 가시선을 확보하기 위해 필드 경계에 가설된 독립형 무선 RTK 기준국(Base Station) 스테이션의 전경이다. 삼각대 상단의 초정밀 헬리컬 안테나와 함께 무정전 전원 공급을 위한 태양광 패널 및 전파 송신용 UHF/LTE 안테나 타워가 통합 구성되어 있다 [SRC-100]. 이 인프라는 지형지물에 의한 멀티패스 및 전파 음영 구역을 최소화하여 단지 내 모든 자율 농기계에 끊김 없는 보정 데이터를 송출한다.
+
+[나노바나나 생성 프롬프트]
+A photorealistic documentary shot of a solar-powered agricultural RTK base station erected on an elevated field boundary beside vast commercial garlic beds. The station features a calibrated high-precision choke-ring GNSS antenna mounted on a heavy survey tripod, a small solar photovoltaic panel, an industrial battery enclosure, and an omnidirectional radio whip antenna. Vast rows of thriving green garlic plants stretch across the fertile countryside under a blue sky. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

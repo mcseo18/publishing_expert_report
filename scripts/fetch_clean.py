@@ -164,9 +164,13 @@ def fetch_and_clean_url(
     license_note: str = "공개 웹 자료 - 변환적 분석 및 인용 목적(원본 미재게시)",
     use_crawl4ai: bool = True,
     extract_facts: bool = False,
+    capture_screenshot: bool = True,
+    auto_unify_rag: bool = True,
     force: bool = False,
     cfg: PlatformConfig | None = None,
 ) -> dict[str, Any]:
+    from rag_capture_unifier import download_or_capture_resource, unify_source_to_smc_graphrag
+
     cfg = cfg or get_config()
     norm_url = normalize_url(url)
     registry = SourcesRegistry(cfg.sources_registry_path)
@@ -189,22 +193,48 @@ def fetch_and_clean_url(
             "robots_status": robots_status,
         }
 
+    # 직접 PDF 링크인 경우 먼저 다운로드·파싱 시도
+    direct_pdf_mode = url.lower().split("?")[0].endswith(".pdf")
     fetched = None
     parser_engine = "requests_bs4"
-    if use_crawl4ai:
-        try:
-            fetched = asyncio.run(_fetch_with_crawl4ai(url))
-            if fetched is not None:
-                parser_engine = "crawl4ai"
-        except Exception:
-            fetched = None
+    if not direct_pdf_mode:
+        if use_crawl4ai:
+            try:
+                fetched = asyncio.run(_fetch_with_crawl4ai(url))
+                if fetched is not None:
+                    parser_engine = "crawl4ai"
+            except Exception:
+                fetched = None
 
-    if fetched is None:
-        fetched = _fetch_with_requests(url)
+        if fetched is None:
+            try:
+                fetched = _fetch_with_requests(url)
+            except Exception:
+                if direct_pdf_mode:
+                    fetched = ("", "", "", [])
+                else:
+                    raise
 
-    title, raw_html, raw_md, tables = fetched
+    title, raw_html, raw_md, tables = fetched if fetched else ("", "", "", [])
     if not title:
         title = urlparse(url).netloc + urlparse(url).path
+
+    source_id = registry.next_source_id()
+    slug = slugify(title)
+
+    # 최대한 PDF 다운로드 또는 웹페이지 스크린샷(PNG) 캡쳐 확보
+    cap_res = download_or_capture_resource(
+        url=url,
+        html_text=raw_html,
+        source_id=source_id,
+        slug=slug,
+        download_pdf=True,
+        capture_screenshot=capture_screenshot,
+        cfg=cfg,
+    )
+    if cap_res.get("pdf_text"):
+        parser_engine = "pdf_download_pypdf"
+        raw_md = (raw_md + "\n\n## 다운로드 PDF 본문\n\n" + cap_res["pdf_text"]).strip() if raw_md else f"# {title}\n\n{cap_res['pdf_text']}"
 
     cleaned_md, pii_count = mask_pii(raw_md)
     injection_warnings = detect_prompt_injection(cleaned_md)
@@ -219,14 +249,12 @@ def fetch_and_clean_url(
                 "existing": dup_hash,
             }
 
-    source_id = registry.next_source_id()
-    slug = slugify(title)
-
     raw_html_path = cfg.raw_web_dir / f"{source_id}_{slug}.html"
     parsed_md_path = cfg.parsed_dir / f"{source_id}_{slug}.md"
     tables_json_path = cfg.parsed_dir / f"{source_id}_{slug}_tables.json"
 
-    raw_html_path.write_text(raw_html, encoding="utf-8")
+    if raw_html:
+        raw_html_path.write_text(raw_html, encoding="utf-8")
     parsed_md_path.write_text(cleaned_md, encoding="utf-8")
     tables_json_path.write_text(json.dumps(tables, ensure_ascii=False, indent=2), encoding="utf-8")
 
@@ -258,9 +286,12 @@ def fetch_and_clean_url(
             )
 
     now = utc_now_iso()
+    pdf_path = cap_res.get("pdf_path") or ""
+    cap_png = cap_res.get("capture_png_path") or ""
+    cap_mode = cap_res.get("capture_mode") if cap_res.get("capture_mode") != "metadata_only" else "html_archive"
     source_item = {
         "source_id": source_id,
-        "source_type": "web",
+        "source_type": "pdf" if pdf_path else "web",
         "url": url,
         "title": title,
         "accessed_at": now,
@@ -268,7 +299,7 @@ def fetch_and_clean_url(
         "robots_status": robots_status,
         "license_note": license_note,
         "page_or_section": "웹 본문 전체",
-        "raw_path": str(raw_html_path),
+        "raw_path": pdf_path or (str(raw_html_path) if raw_html else str(parsed_md_path)),
         "parsed_path": str(parsed_md_path),
         "pii_masked": True,
         "pii_redaction_count": pii_count,
@@ -293,7 +324,7 @@ def fetch_and_clean_url(
     registry.append(
         {
             "source_id": source_id,
-            "source_type": "web",
+            "source_type": source_item["source_type"],
             "url": url,
             "normalized_url": norm_url,
             "title": title,
@@ -301,7 +332,10 @@ def fetch_and_clean_url(
             "robots_allowed": robots_allowed,
             "robots_status": robots_status,
             "sha256": content_hash,
-            "raw_path": str(raw_html_path),
+            "raw_path": source_item["raw_path"],
+            "pdf_path": pdf_path,
+            "capture_png_path": cap_png,
+            "capture_mode": cap_mode,
             "parsed_path": str(parsed_md_path),
             "packet_path": str(packet_path),
             "parser_engine": parser_engine,
@@ -312,12 +346,35 @@ def fetch_and_clean_url(
         }
     )
 
+    rag_unified = None
+    if auto_unify_rag:
+        try:
+            rag_unified = unify_source_to_smc_graphrag(
+                source_id=source_id,
+                title=title,
+                markdown_text=cleaned_md,
+                parsed_path=parsed_md_path,
+                url=url,
+                source_type=source_item["source_type"],
+                provider="web_fetch",
+                capture_mode=cap_mode,
+                raw_path=source_item["raw_path"],
+                pdf_path=pdf_path,
+                capture_png_path=cap_png,
+                cfg=cfg,
+            )
+        except Exception:
+            rag_unified = None
+
     return {
         "status": "OK",
         "source_id": source_id,
         "parser_engine": parser_engine,
         "title": title,
-        "raw_path": str(raw_html_path),
+        "raw_path": source_item["raw_path"],
+        "pdf_path": pdf_path,
+        "capture_png_path": cap_png,
+        "capture_mode": cap_mode,
         "parsed_path": str(parsed_md_path),
         "packet_path": str(packet_path),
         "robots_status": robots_status,
@@ -326,6 +383,8 @@ def fetch_and_clean_url(
         "chunk_count": len(chunks),
         "table_count": len(tables),
         "fact_count": len(extracted_facts),
+        "rag_unified": bool(rag_unified),
+        "rag_summary": rag_unified.get("unified_totals") if isinstance(rag_unified, dict) else None,
     }
 
 

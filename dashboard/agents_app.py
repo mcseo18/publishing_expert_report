@@ -29,6 +29,54 @@ if str(SCRIPTS_DIR) not in sys.path:
     sys.path.insert(0, str(SCRIPTS_DIR))
 
 from config import get_config  # noqa: E402
+from agro_framework import (  # noqa: E402
+    AGRO_CORE_KEYWORDS_31,
+    AGRO_SPECIALTY_CURRICULA,
+    BRAND_IDENTITY,
+    CONTEXT_AWARE_4STAGE_TEMPLATE,
+    CROP_GDD_PROFILES,
+    MULTI_TRIM_SPECS,
+    auto_repair_chapter_citations,
+    bind_project_master_formats,
+    build_citation_inspector_report,
+    compute_gdd_traffic_light,
+    generate_dual_dpi_assets,
+    render_live_dual_preview,
+)
+from monetization_packager import (  # noqa: E402
+    POD_PLATFORMS,
+    build_b2g_delivery_package,
+    build_naver_marketing_bundle,
+    build_pod_export_package,
+    generate_saas_license_package,
+    get_monetization_overview,
+    simulate_monetization_revenue,
+)
+from image_generation_studio import (  # noqa: E402
+    get_studio_state,
+    plan_visual_queue,
+    start_batch_generation_async,
+    stop_batch_generation,
+    sync_studio_to_pipeline,
+    update_queue_item,
+    upload_custom_image,
+)
+from rag_capture_unifier import (  # noqa: E402
+    get_unified_rag_status,
+    search_unified_smc_rag,
+    sync_all_existing_sources_to_smc_graphrag,
+)
+from deep_research_engine import (  # noqa: E402
+    harvest_selected_research_items,
+    load_deep_research_state,
+    start_deep_research_async,
+    stop_deep_research,
+)
+from output_type_profiles import (  # noqa: E402
+    PRIMARY_OUTPUT_TYPES,
+    get_output_type_spec,
+    resolve_output_profile,
+)
 from build_cover_toc import (  # noqa: E402
     build_project_cover_and_toc,
     load_cover_settings,
@@ -102,9 +150,13 @@ from subagent_orchestrator import (  # noqa: E402
     write_last_work_session,
 )
 
-app = FastAPI(title="전문 교재 제작 통합 플랫폼 (단일 HTML 6단계 관제)", version="2.0.0")
+app = FastAPI(
+    title="참참살이 영농 AI 출판도우미 · 통합 출판 프레임워크 대시보드",
+    version="3.0.0",
+)
 STATIC_DIR = Path(__file__).resolve().parent / "static"
 STATIC_UNIFIED = STATIC_DIR / "unified.html"
+STATIC_SETUP = STATIC_DIR / "setup.html"
 STATIC_AGENTS = STATIC_DIR / "_legacy" / "agents.html"
 
 
@@ -114,19 +166,21 @@ STATIC_AGENTS = STATIC_DIR / "_legacy" / "agents.html"
 class CreateProjectRequest(BaseModel):
     topic_ko: str
     topic_en: str = ""
+    primary_output_type: str = "textbook"  # textbook | web_publish | lecture | report | paper | storybook
+    output_profile: dict[str, Any] | None = None
     keywords_ko: list[str] = Field(default_factory=list)
     keywords_en: list[str] = Field(default_factory=list)
     domestic_agency_urls: list[str] = Field(default_factory=list)
     international_agency_urls: list[str] = Field(default_factory=list)
     target_audience: str = "대학 전공 심화, 대학원생, 연구자 및 선도 현장 실무자"
-    target_pages: int = Field(default=500, ge=50, le=1500)
-    chapter_count: int = Field(default=15, ge=3, le=24)
+    target_pages: int = Field(default=450, ge=10, le=1500)
+    chapter_count: int = Field(default=14, ge=3, le=24)
     papers_per_query: int = Field(default=5, ge=2, le=15)
     use_gemini_outline: bool = True
     use_fal_ai: bool = False
     fal_model: str = "fal-ai/nano-banana"
     use_nano_banana: bool = True
-    visuals_per_chapter: int = Field(default=10, ge=10, le=25)
+    visuals_per_chapter: int = Field(default=6, ge=0, le=25)
     gemma_model: str = "gemma4:latest"
     use_claude_review: bool = False
     use_claude_blueprint: bool = False
@@ -224,7 +278,17 @@ class ScholarSearchRequest(BaseModel):
 class ScholarIngestRequest(BaseModel):
     project_id: str
     paper: dict[str, Any]
-    download_pdf: bool = False
+    download_pdf: bool = True
+    capture_webpage: bool = True
+    auto_unify_rag: bool = True
+
+
+class ScholarBatchIngestRequest(BaseModel):
+    project_id: str
+    papers: list[dict[str, Any]]
+    download_pdf: bool = True
+    capture_webpage: bool = True
+    auto_unify_rag: bool = True
 
 
 class UrlCollectRequest(BaseModel):
@@ -232,11 +296,15 @@ class UrlCollectRequest(BaseModel):
     url: str
     title_hint: str = ""
     license_note: str = "공개 웹 자료"
+    capture_screenshot: bool = True
+    auto_unify_rag: bool = True
 
 
 class BibtexCollectRequest(BaseModel):
     project_id: str
     bibtex_text: str
+    download_pdf: bool = True
+    auto_unify_rag: bool = True
 
 
 class SaveApiKeysRequest(BaseModel):
@@ -392,6 +460,18 @@ def unified_index() -> HTMLResponse:
     return HTMLResponse(target.read_text(encoding="utf-8"))
 
 
+@app.get("/setup", response_class=HTMLResponse)
+def setup_wizard_page() -> HTMLResponse:
+    if not STATIC_SETUP.is_file():
+        return HTMLResponse("<h1>setup.html missing</h1>", status_code=500)
+    return HTMLResponse(STATIC_SETUP.read_text(encoding="utf-8"))
+
+
+@app.get("/api/output-types")
+def api_list_output_types() -> dict[str, Any]:
+    return {"output_types": PRIMARY_OUTPUT_TYPES}
+
+
 @app.get("/explorer")
 def explorer_redirect():
     return RedirectResponse(url="/#explorer")
@@ -497,7 +577,9 @@ def api_project_visibility(project_id: str, req: ProjectVisibilityRequest) -> di
 @app.post("/api/projects")
 def api_create_project(req: CreateProjectRequest) -> dict[str, Any]:
     if not req.topic_ko.strip():
-        raise HTTPException(status_code=400, detail="교재 주제(국문)를 입력해 주세요.")
+        raise HTTPException(status_code=400, detail="주제(국문)를 입력해 주세요.")
+    resolved_prof = resolve_output_profile(req.primary_output_type, req.output_profile)
+    type_spec = get_output_type_spec(req.primary_output_type)
     st = create_project(
         topic_ko=req.topic_ko,
         topic_en=req.topic_en,
@@ -506,6 +588,8 @@ def api_create_project(req: CreateProjectRequest) -> dict[str, Any]:
         target_audience=req.target_audience,
         target_pages=req.target_pages,
         chapter_count=req.chapter_count,
+        primary_output_type=req.primary_output_type,
+        output_profile=resolved_prof,
         options={
             "papers_per_query": req.papers_per_query,
             "domestic_agency_urls": req.domestic_agency_urls,
@@ -524,7 +608,7 @@ def api_create_project(req: CreateProjectRequest) -> dict[str, Any]:
             "enable_myths": req.enable_myths,
             "enable_linked_quiz": req.enable_linked_quiz,
             "draft_chapter_limit": req.draft_chapter_limit,
-            "trim_formats": ["shinkuk", "b5", "a4"],
+            "trim_formats": type_spec.get("trim_formats", ["shinkuk", "b5", "a4"]),
         },
     )
     run_info = None
@@ -532,6 +616,42 @@ def api_create_project(req: CreateProjectRequest) -> dict[str, Any]:
         # 1단계(주제 탐색 + Google Gemini 목차·요약·키워드 제시)를 즉시 시작하고 검토 게이트에서 자동 대기
         run_info = start_pipeline_async(st["project_id"], mode="single", target_stage="stage1_topic_outline")
     return {"status": "OK", "project": st, "run": run_info}
+
+
+class UpdateOutputProfileRequest(BaseModel):
+    primary_output_type: str = "textbook"
+    output_profile: dict[str, Any] = Field(default_factory=dict)
+    target_pages: int | None = None
+    chapter_count: int | None = None
+    target_audience: str | None = None
+    visuals_per_chapter: int | None = None
+
+
+@app.patch("/api/projects/{project_id}/output-profile")
+def api_update_output_profile(project_id: str, req: UpdateOutputProfileRequest) -> dict[str, Any]:
+    cfg = get_config()
+    st = load_project_state(project_id, cfg)
+    if not st:
+        raise HTTPException(status_code=404, detail="Project not found")
+    prof = resolve_output_profile(req.primary_output_type, req.output_profile)
+    spec = get_output_type_spec(req.primary_output_type)
+    st["primary_output_type"] = prof["primary_output_type"]
+    st["output_profile"] = prof
+    if req.target_pages is not None:
+        st["target_pages"] = max(10, int(req.target_pages))
+    if req.chapter_count is not None:
+        st["chapter_count"] = max(3, min(24, int(req.chapter_count)))
+    if req.target_audience is not None:
+        st["target_audience"] = req.target_audience.strip()
+    opts = st.setdefault("options", {})
+    if req.visuals_per_chapter is not None:
+        opts["visuals_per_chapter"] = max(0, min(25, int(req.visuals_per_chapter)))
+    opts["enable_myths"] = bool(prof.get("include_myths", True))
+    opts["enable_linked_quiz"] = bool(prof.get("include_exercises", True))
+    opts["enable_naver_blog"] = bool(prof.get("include_naver_hashtags", True))
+    opts["trim_formats"] = spec.get("trim_formats", ["shinkuk", "b5", "a4"])
+    save_project_state(st, cfg)
+    return {"status": "UPDATED", "project": st}
 
 
 @app.get("/api/projects/{project_id}")
@@ -1227,9 +1347,11 @@ def api_collect_scholar_ingest(req: ScholarIngestRequest) -> dict[str, Any]:
             packet_id=st["packet_id"],
             topic=st.get("topic_ko", ""),
             download_oa_pdf=req.download_pdf,
+            capture_webpage=req.capture_webpage,
+            auto_unify_rag=req.auto_unify_rag,
             cfg=cfg,
         )
-        sid = res.get("source_id")
+        sid = res.get("source_id") or (res.get("existing") or {}).get("source_id")
         if sid and not any(s.get("source_id") == sid for s in st.get("collected_sources", [])):
             st.setdefault("collected_sources", []).append(
                 {
@@ -1239,12 +1361,73 @@ def api_collect_scholar_ingest(req: ScholarIngestRequest) -> dict[str, Any]:
                     "year": req.paper.get("year"),
                     "provider": req.paper.get("provider", "Academic"),
                     "tier_folder": "04_international_journals",
+                    "capture_mode": res.get("capture_mode", ""),
+                    "pdf_downloaded": bool(res.get("pdf_downloaded")),
+                    "capture_png_path": res.get("capture_png_path", ""),
+                    "rag_unified": bool(res.get("rag_unified")),
                 }
             )
             save_project_state(st, cfg)
         return {"status": "OK", "result": res}
     except Exception as exc:
         raise HTTPException(status_code=400, detail=f"논문 적재 오류: {exc}")
+
+
+@app.post("/api/collect/scholar/ingest-batch")
+def api_collect_scholar_ingest_batch(req: ScholarBatchIngestRequest) -> dict[str, Any]:
+    cfg = get_config()
+    st = load_project_state(req.project_id, cfg)
+    if not st:
+        raise HTTPException(status_code=404, detail="Project not found")
+    results: list[dict[str, Any]] = []
+    pdf_cnt = 0
+    cap_cnt = 0
+    rag_cnt = 0
+    for paper in req.papers[:25]:
+        try:
+            res = ingest_paper_record(
+                paper=paper,
+                packet_id=st["packet_id"],
+                topic=st.get("topic_ko", ""),
+                download_oa_pdf=req.download_pdf,
+                capture_webpage=req.capture_webpage,
+                auto_unify_rag=req.auto_unify_rag,
+                cfg=cfg,
+            )
+            results.append(res)
+            if res.get("pdf_downloaded"):
+                pdf_cnt += 1
+            if res.get("capture_png_path"):
+                cap_cnt += 1
+            if res.get("rag_unified"):
+                rag_cnt += 1
+            sid = res.get("source_id") or (res.get("existing") or {}).get("source_id")
+            if sid and not any(s.get("source_id") == sid for s in st.get("collected_sources", [])):
+                st.setdefault("collected_sources", []).append(
+                    {
+                        "source_id": sid,
+                        "title": paper.get("title", ""),
+                        "url": paper.get("url", ""),
+                        "year": paper.get("year"),
+                        "provider": paper.get("provider", "Academic"),
+                        "tier_folder": "04_international_journals",
+                        "capture_mode": res.get("capture_mode", ""),
+                        "pdf_downloaded": bool(res.get("pdf_downloaded")),
+                        "capture_png_path": res.get("capture_png_path", ""),
+                        "rag_unified": bool(res.get("rag_unified")),
+                    }
+                )
+        except Exception as exc:
+            results.append({"status": "ERROR", "title": paper.get("title", ""), "error": str(exc)})
+    save_project_state(st, cfg)
+    return {
+        "status": "OK",
+        "processed": len(results),
+        "pdf_downloaded": pdf_cnt,
+        "web_captured": cap_cnt,
+        "rag_unified": rag_cnt,
+        "results": results,
+    }
 
 
 @app.post("/api/collect/url")
@@ -1259,6 +1442,8 @@ def api_collect_url(req: UrlCollectRequest) -> dict[str, Any]:
             packet_id=st["packet_id"],
             topic=req.title_hint or st.get("topic_ko", ""),
             license_note=req.license_note,
+            capture_screenshot=req.capture_screenshot,
+            auto_unify_rag=req.auto_unify_rag,
             cfg=cfg,
         )
         sid = res.get("source_id")
@@ -1270,6 +1455,10 @@ def api_collect_url(req: UrlCollectRequest) -> dict[str, Any]:
                     "url": req.url.strip(),
                     "provider": "직접 URL 수집",
                     "tier_folder": "01_domestic_agencies",
+                    "capture_mode": res.get("capture_mode", ""),
+                    "pdf_downloaded": bool(res.get("pdf_path")),
+                    "capture_png_path": res.get("capture_png_path", ""),
+                    "rag_unified": bool(res.get("rag_unified")),
                 }
             )
             save_project_state(st, cfg)
@@ -1289,9 +1478,109 @@ def api_collect_bibtex(req: BibtexCollectRequest) -> dict[str, Any]:
         raise HTTPException(status_code=400, detail="유효한 BibTeX 항목을 찾지 못했습니다.")
     results = []
     for p in entries:
-        res = ingest_paper_record(paper=p, packet_id=st["packet_id"], topic=st.get("topic_ko", ""), download_oa_pdf=False, cfg=cfg)
+        res = ingest_paper_record(
+            paper=p,
+            packet_id=st["packet_id"],
+            topic=st.get("topic_ko", ""),
+            download_oa_pdf=req.download_pdf,
+            capture_webpage=True,
+            auto_unify_rag=req.auto_unify_rag,
+            cfg=cfg,
+        )
         results.append(res)
     return {"status": "OK", "ingested_count": len(results), "results": results}
+
+
+# ============================================================
+# C:\SMC_GRAPHRAG 통합 RAG 아카이브 현황 · 일괄 결합 · 전문검색 API
+# ============================================================
+@app.get("/api/rag/unified/status")
+def api_rag_unified_status() -> dict[str, Any]:
+    return get_unified_rag_status()
+
+
+class RagUnifiedSyncRequest(BaseModel):
+    capture_missing_web: bool = False
+    use_ollama_kg: bool = False
+
+
+@app.post("/api/rag/unified/sync-all")
+def api_rag_unified_sync_all(req: RagUnifiedSyncRequest) -> dict[str, Any]:
+    return sync_all_existing_sources_to_smc_graphrag(
+        capture_missing_web=req.capture_missing_web,
+        use_ollama_kg=req.use_ollama_kg,
+    )
+
+
+class RagUnifiedSearchRequest(BaseModel):
+    query: str
+    limit: int = Field(default=12, ge=1, le=50)
+
+
+@app.post("/api/rag/unified/search")
+def api_rag_unified_search(req: RagUnifiedSearchRequest) -> dict[str, Any]:
+    return search_unified_smc_rag(req.query, limit=req.limit)
+
+
+# ============================================================
+# 대규모 4-Wave 멀티채널 딥 리서치 센터 API
+# ============================================================
+@app.get("/api/projects/{project_id}/deep-research")
+def api_deep_research_state(project_id: str) -> dict[str, Any]:
+    try:
+        return load_deep_research_state(project_id)
+    except Exception as exc:
+        raise HTTPException(status_code=400, detail=f"딥 리서치 상태 조회 오류: {exc}")
+
+
+class DeepResearchStartRequest(BaseModel):
+    query: str = ""
+    depth: str = "deep"  # standard | deep | exhaustive
+    channels: list[str] | None = None
+    year_from: int | None = 2016
+    enable_snowball: bool = True
+    auto_harvest_top_n: int = Field(default=25, ge=0, le=150)
+    chapter_mode: bool = False
+
+
+@app.post("/api/projects/{project_id}/deep-research/start")
+def api_deep_research_start(project_id: str, req: DeepResearchStartRequest) -> dict[str, Any]:
+    try:
+        return start_deep_research_async(
+            project_id=project_id,
+            query=req.query,
+            depth=req.depth,
+            channels=req.channels,
+            year_from=req.year_from,
+            enable_snowball=req.enable_snowball,
+            auto_harvest_top_n=req.auto_harvest_top_n,
+            chapter_mode=req.chapter_mode,
+        )
+    except FileNotFoundError:
+        raise HTTPException(status_code=404, detail="Project not found")
+    except Exception as exc:
+        raise HTTPException(status_code=400, detail=f"딥 리서치 실행 오류: {exc}")
+
+
+@app.post("/api/projects/{project_id}/deep-research/stop")
+def api_deep_research_stop(project_id: str) -> dict[str, Any]:
+    return stop_deep_research(project_id)
+
+
+class DeepResearchHarvestRequest(BaseModel):
+    ranks: list[int] = Field(default_factory=list)
+
+
+@app.post("/api/projects/{project_id}/deep-research/harvest")
+def api_deep_research_harvest(project_id: str, req: DeepResearchHarvestRequest) -> dict[str, Any]:
+    if not req.ranks:
+        raise HTTPException(status_code=400, detail="적재할 문헌을 1건 이상 선택해 주세요.")
+    try:
+        return harvest_selected_research_items(project_id=project_id, ranks=req.ranks)
+    except FileNotFoundError as exc:
+        raise HTTPException(status_code=404, detail=str(exc))
+    except Exception as exc:
+        raise HTTPException(status_code=400, detail=f"선택 문헌 적재 오류: {exc}")
 
 
 # ============================================================
@@ -1542,3 +1831,365 @@ def api_explorer_nlm_query(req: NotebookLmQueryRequest) -> dict[str, Any]:
         return query_notebooklm(req.notebook_id, req.question)
     except Exception as exc:
         raise HTTPException(status_code=400, detail=f"NotebookLM 질의 오류: {exc}")
+
+
+# ============================================================
+# 참참살이 영농 AI 출판도우미 — Phase 1~4 프레임워크 & 수익화 API
+# ============================================================
+@app.get("/api/framework/catalog")
+def api_framework_catalog() -> dict[str, Any]:
+    return {
+        "brand": BRAND_IDENTITY,
+        "core_keywords_31": AGRO_CORE_KEYWORDS_31,
+        "specialty_curricula": AGRO_SPECIALTY_CURRICULA,
+        "context_4stage_template": CONTEXT_AWARE_4STAGE_TEMPLATE,
+        "gdd_crop_profiles": CROP_GDD_PROFILES,
+        "trim_specs": MULTI_TRIM_SPECS,
+        "pod_platforms": POD_PLATFORMS,
+    }
+
+
+class WorkbenchPreviewRequest(BaseModel):
+    chapter_id: str = "ch01"
+    markdown: str = ""
+    mode: str = "print"  # print | web
+    trim_format: str = "b5"  # shinkuk | b5 | a4
+
+
+@app.post("/api/projects/{project_id}/workbench/preview")
+def api_workbench_preview(project_id: str, req: WorkbenchPreviewRequest) -> dict[str, Any]:
+    try:
+        return render_live_dual_preview(
+            project_id=project_id,
+            chapter_id=req.chapter_id,
+            markdown_text=req.markdown,
+            mode=req.mode,
+            trim_format=req.trim_format,
+        )
+    except Exception as exc:
+        raise HTTPException(status_code=400, detail=f"실시간 프리뷰 렌더링 오류: {exc}")
+
+
+@app.get("/api/projects/{project_id}/inspector/qa")
+def api_inspector_qa(project_id: str, chapter_id: str | None = None) -> dict[str, Any]:
+    try:
+        return build_citation_inspector_report(project_id, chapter_id=chapter_id or None)
+    except FileNotFoundError:
+        raise HTTPException(status_code=404, detail="Project not found")
+    except Exception as exc:
+        raise HTTPException(status_code=400, detail=f"인용·QA 검사 오류: {exc}")
+
+
+class InspectorAuditRequest(BaseModel):
+    chapter_id: str | None = None
+    auto_repair: bool = False
+
+
+@app.post("/api/projects/{project_id}/inspector/audit")
+def api_inspector_audit(project_id: str, req: InspectorAuditRequest) -> dict[str, Any]:
+    try:
+        repair_res = None
+        if req.auto_repair:
+            repair_res = auto_repair_chapter_citations(project_id, chapter_id=req.chapter_id)
+        report = build_citation_inspector_report(project_id, chapter_id=req.chapter_id)
+        return {"status": report["status"], "repair": repair_res, "report": report}
+    except FileNotFoundError:
+        raise HTTPException(status_code=404, detail="Project not found")
+    except Exception as exc:
+        raise HTTPException(status_code=400, detail=f"감사 실행 오류: {exc}")
+
+
+@app.post("/api/projects/{project_id}/visuals/optimize-dpi")
+def api_visuals_optimize_dpi(project_id: str) -> dict[str, Any]:
+    try:
+        return generate_dual_dpi_assets(project_id)
+    except FileNotFoundError:
+        raise HTTPException(status_code=404, detail="Project not found")
+    except Exception as exc:
+        raise HTTPException(status_code=400, detail=f"이중 해상도(300dpi/72dpi) 변환 오류: {exc}")
+
+
+class MultiFormatBindRequest(BaseModel):
+    trim_formats: list[str] = Field(default_factory=lambda: ["shinkuk", "b5", "a4"])
+    build_docx: bool = True
+
+
+@app.post("/api/projects/{project_id}/publish/multi-format")
+def api_publish_multi_format(project_id: str, req: MultiFormatBindRequest) -> dict[str, Any]:
+    try:
+        return bind_project_master_formats(
+            project_id,
+            trim_formats=req.trim_formats,
+            build_docx=req.build_docx,
+        )
+    except FileNotFoundError as exc:
+        raise HTTPException(status_code=404, detail=str(exc))
+    except Exception as exc:
+        raise HTTPException(status_code=400, detail=f"멀티 판형 마스터 제본 오류: {exc}")
+
+
+class GddDiagnoseRequest(BaseModel):
+    crop_key: str = "wheat"
+    station: str = "수원"
+    start_date: str = ""
+    end_date: str = ""
+    t_base_override: float | None = None
+    custom_daily_temps: list[dict[str, float]] | None = None
+
+
+@app.post("/api/agro/gdd-diagnose")
+def api_agro_gdd_diagnose(req: GddDiagnoseRequest) -> dict[str, Any]:
+    try:
+        return compute_gdd_traffic_light(
+            crop_key=req.crop_key,
+            station=req.station,
+            start_date=req.start_date,
+            end_date=req.end_date,
+            t_base_override=req.t_base_override,
+            custom_daily_temps=req.custom_daily_temps,
+        )
+    except Exception as exc:
+        raise HTTPException(status_code=400, detail=f"GDD 생육 진단 연산 오류: {exc}")
+
+
+@app.get("/api/projects/{project_id}/monetization/overview")
+def api_monetization_overview(project_id: str) -> dict[str, Any]:
+    try:
+        return get_monetization_overview(project_id)
+    except FileNotFoundError:
+        raise HTTPException(status_code=404, detail="Project not found")
+
+
+class PodExportRequest(BaseModel):
+    platform: str = "bookk"
+    author: str = "참참살이 영농 AI 출판위원회"
+    author_bio: str = "스마트 농업·작물생리·데이터 기반 정밀농업 전문 연구 및 현장 컨설팅 저자."
+    list_price_krw: int = 28000
+    isbn_placeholder: str = "발급 예정 (POD 플랫폼 신청)"
+    book_intro: str = ""
+
+
+@app.post("/api/projects/{project_id}/monetization/pod-export")
+def api_monetization_pod_export(project_id: str, req: PodExportRequest) -> dict[str, Any]:
+    try:
+        return build_pod_export_package(
+            project_id=project_id,
+            platform=req.platform,
+            author=req.author,
+            author_bio=req.author_bio,
+            list_price_krw=req.list_price_krw,
+            isbn_placeholder=req.isbn_placeholder,
+            book_intro=req.book_intro,
+        )
+    except FileNotFoundError:
+        raise HTTPException(status_code=404, detail="Project not found")
+    except Exception as exc:
+        raise HTTPException(status_code=400, detail=f"POD 패키지 생성 오류: {exc}")
+
+
+class B2gExportRequest(BaseModel):
+    client_org: str = "지역 농업기술센터 / 지자체 농정과"
+    contract_title: str = ""
+    trim_format: str = "a4"
+    contract_amount_krw: int = 5000000
+
+
+@app.post("/api/projects/{project_id}/monetization/b2g-export")
+def api_monetization_b2g_export(project_id: str, req: B2gExportRequest) -> dict[str, Any]:
+    try:
+        return build_b2g_delivery_package(
+            project_id=project_id,
+            client_org=req.client_org,
+            contract_title=req.contract_title,
+            trim_format=req.trim_format,
+            contract_amount_krw=req.contract_amount_krw,
+        )
+    except FileNotFoundError:
+        raise HTTPException(status_code=404, detail="Project not found")
+    except Exception as exc:
+        raise HTTPException(status_code=400, detail=f"B2B/B2G 패키지 생성 오류: {exc}")
+
+
+class BlogPackRequest(BaseModel):
+    academy_cta_title: str = "참참살이 영농 AI 아카데미 · 주간 정밀영농 리포트 구독 안내"
+    academy_cta_url: str = "https://blog.naver.com/"
+
+
+@app.post("/api/projects/{project_id}/monetization/blog-pack")
+def api_monetization_blog_pack(project_id: str, req: BlogPackRequest) -> dict[str, Any]:
+    try:
+        return build_naver_marketing_bundle(
+            project_id=project_id,
+            academy_cta_title=req.academy_cta_title,
+            academy_cta_url=req.academy_cta_url,
+        )
+    except FileNotFoundError:
+        raise HTTPException(status_code=404, detail="Project not found")
+    except Exception as exc:
+        raise HTTPException(status_code=400, detail=f"블로그 마케팅 번들 생성 오류: {exc}")
+
+
+class SaasPackRequest(BaseModel):
+    tenant_name: str = "참참살이 영농 AI 출판 파트너"
+    domain_vertical: str = "스마트 농업 · 생명과학"
+    plan_tier: str = "Pro Author (월 49,000원)"
+    monthly_quota_chapters: int = 40
+
+
+@app.post("/api/projects/{project_id}/monetization/saas-package")
+def api_monetization_saas_pack(project_id: str, req: SaasPackRequest) -> dict[str, Any]:
+    try:
+        return generate_saas_license_package(
+            project_id=project_id,
+            tenant_name=req.tenant_name,
+            domain_vertical=req.domain_vertical,
+            plan_tier=req.plan_tier,
+            monthly_quota_chapters=req.monthly_quota_chapters,
+        )
+    except FileNotFoundError:
+        raise HTTPException(status_code=404, detail="Project not found")
+    except Exception as exc:
+        raise HTTPException(status_code=400, detail=f"SaaS 라이선스 패키지 생성 오류: {exc}")
+
+
+class RevenueSimRequest(BaseModel):
+    pod_monthly_copies: int = 80
+    pod_unit_royalty: int = 8500
+    b2g_quarterly_contracts: int = 2
+    b2g_contract_value: int = 4500000
+    academy_subscribers: int = 60
+    academy_monthly_fee: int = 29000
+    saas_tenants: int = 15
+    saas_monthly_fee: int = 49000
+
+
+@app.post("/api/monetization/simulate")
+def api_monetization_simulate(req: RevenueSimRequest) -> dict[str, Any]:
+    return simulate_monetization_revenue(**req.model_dump())
+
+
+# ============================================================
+# 독립형 이미지 생성 스튜디오 (비용 제어 · 분할 배치 · 직접 업로드 · 결합)
+# ============================================================
+@app.get("/api/projects/{project_id}/image-studio")
+def api_image_studio_state(project_id: str) -> dict[str, Any]:
+    try:
+        return get_studio_state(project_id)
+    except FileNotFoundError:
+        raise HTTPException(status_code=404, detail="Project not found")
+    except Exception as exc:
+        raise HTTPException(status_code=400, detail=f"이미지 스튜디오 상태 조회 오류: {exc}")
+
+
+class StudioPlanRequest(BaseModel):
+    per_chapter_count: int = Field(default=6, ge=0, le=25)
+    type_counts: dict[str, int] | None = None
+    chapter_ids: list[str] | None = None
+    keep_existing: bool = True
+
+
+@app.post("/api/projects/{project_id}/image-studio/plan")
+def api_image_studio_plan(project_id: str, req: StudioPlanRequest) -> dict[str, Any]:
+    try:
+        return plan_visual_queue(
+            project_id=project_id,
+            per_chapter_count=req.per_chapter_count,
+            type_counts=req.type_counts,
+            chapter_ids=req.chapter_ids,
+            keep_existing=req.keep_existing,
+        )
+    except FileNotFoundError:
+        raise HTTPException(status_code=404, detail="Project not found")
+    except Exception as exc:
+        raise HTTPException(status_code=400, detail=f"시각화 기획 생성 오류: {exc}")
+
+
+class StudioGenerateRequest(BaseModel):
+    engine: str = "auto_hybrid"  # auto_hybrid | free_local_only | nano_banana | fal_ai
+    fal_model: str = "fal-ai/nano-banana-pro"
+    figure_ids: list[str] | None = None
+    chapter_ids: list[str] | None = None
+    visual_types: list[str] | None = None
+    only_pending: bool = True
+    max_batch: int = Field(default=5, ge=0, le=200)
+    budget_limit_usd: float = Field(default=0.0, ge=0.0, le=500.0)
+
+
+@app.post("/api/projects/{project_id}/image-studio/generate")
+def api_image_studio_generate(project_id: str, req: StudioGenerateRequest) -> dict[str, Any]:
+    try:
+        return start_batch_generation_async(
+            project_id=project_id,
+            engine=req.engine,
+            fal_model=req.fal_model,
+            figure_ids=req.figure_ids,
+            chapter_ids=req.chapter_ids,
+            visual_types=req.visual_types,
+            only_pending=req.only_pending,
+            max_batch=req.max_batch,
+            budget_limit_usd=req.budget_limit_usd,
+        )
+    except FileNotFoundError:
+        raise HTTPException(status_code=404, detail="Project not found")
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc))
+    except Exception as exc:
+        raise HTTPException(status_code=400, detail=f"이미지 분할 생성 시작 오류: {exc}")
+
+
+@app.post("/api/projects/{project_id}/image-studio/stop")
+def api_image_studio_stop(project_id: str) -> dict[str, Any]:
+    return stop_batch_generation(project_id)
+
+
+class StudioUpdateItemRequest(BaseModel):
+    title_ko: str | None = None
+    narrative_ko: str | None = None
+    prompt: str | None = None
+    target_section: str | None = None
+    type: str | None = None
+    status: str | None = None
+
+
+@app.patch("/api/projects/{project_id}/image-studio/items/{figure_id}")
+def api_image_studio_update_item(project_id: str, figure_id: str, req: StudioUpdateItemRequest) -> dict[str, Any]:
+    try:
+        return update_queue_item(
+            project_id=project_id,
+            figure_id=figure_id,
+            updates=req.model_dump(exclude_none=True),
+        )
+    except FileNotFoundError:
+        raise HTTPException(status_code=404, detail="Figure not found")
+
+
+class StudioUploadImageRequest(BaseModel):
+    image_base64: str
+    filename: str = "custom.png"
+
+
+@app.post("/api/projects/{project_id}/image-studio/items/{figure_id}/upload")
+def api_image_studio_upload(project_id: str, figure_id: str, req: StudioUploadImageRequest) -> dict[str, Any]:
+    if not req.image_base64.strip():
+        raise HTTPException(status_code=400, detail="업로드할 이미지 데이터가 비어 있습니다.")
+    try:
+        return upload_custom_image(
+            project_id=project_id,
+            figure_id=figure_id,
+            image_base64=req.image_base64,
+            original_filename=req.filename,
+        )
+    except FileNotFoundError:
+        raise HTTPException(status_code=404, detail="Figure not found")
+    except Exception as exc:
+        raise HTTPException(status_code=400, detail=f"이미지 업로드 처리 오류: {exc}")
+
+
+@app.post("/api/projects/{project_id}/image-studio/sync")
+def api_image_studio_sync(project_id: str) -> dict[str, Any]:
+    try:
+        return sync_studio_to_pipeline(project_id)
+    except FileNotFoundError:
+        raise HTTPException(status_code=404, detail="Project not found")
+    except Exception as exc:
+        raise HTTPException(status_code=400, detail=f"원고·출판물 결합 동기화 오류: {exc}")

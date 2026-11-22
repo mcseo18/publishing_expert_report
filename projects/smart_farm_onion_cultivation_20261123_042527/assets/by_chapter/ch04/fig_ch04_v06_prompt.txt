@@ -1,0 +1,12 @@
+이미지 번호: 그림 4-6
+이미지 파일명: fig_ch04_v06.png
+단원: 제4장. 정밀 양파 재배를 위한 스마트 토양 물리·화학성 평가 및 작부체계 (ch04)
+결합 절: 생리·분자 메커니즘 및 첨단 모니터링 기술
+시각화 유형: photorealistic_macro
+제목: [그림 4-6] 토양 물리화학성 정밀 분석을 위한 근적외선(NIR) 분광 분석 실험
+
+[문맥 기반 이미지 설명]
+[그림 4-6] 비파괴 토양 물리화학성 분석 기법인 근적외선(NIR) 분광법은 전통적인 크로마토그래피(GC, HPLC)에 비해 신속한 검정 속도와 비파괴적 이점을 제공합니다. 채취된 양파 포장 토양 코어 시료의 광학 스펙트럼을 측정하여 유기물 함량 및 토양 수분을 정량화할 수 있습니다. 수집된 분광 데이터는 현장 센서의 신뢰도를 교정하고 검증하는 기준 데이터로 활용됩니다 [SRC-161].
+
+[나노바나나 생성 프롬프트]
+Photorealistic laboratory macro photography of a research scientist in sterile gloves holding an optical fiber reflection probe over a quartz dish containing sieved agricultural soil from an onion plot. Beside the sample sits a freshly harvested, cleaned Allium cepa onion bulb ready for non-destructive spectral validation. Modern scientific spectrometer chassis, optical cables, and soft laboratory cleanroom illumination highlight the stainless steel and glass textures. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

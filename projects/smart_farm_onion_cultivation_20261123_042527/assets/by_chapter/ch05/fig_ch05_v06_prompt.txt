@@ -1,0 +1,12 @@
+이미지 번호: 그림 5-6
+이미지 파일명: fig_ch05_v06.png
+단원: 제5장. 토양 수분 모니터링 센서 네트워크와 스마트 관개 자동화 (ch05)
+결합 절: 5.3 점적 관개(Drip irrigation) 시스템의 수리학적 설계와 포장 내 관수 균일도(CU) 평가
+시각화 유형: photorealistic_macro
+제목: [그림 5-6] 양파 구 형성기 점적 단추(Emitter)의 정밀 점적 수적 형성
+
+[문맥 기반 이미지 설명]
+[그림 5-6] 비닐 멀칭 내부에서 점적 테이프의 압력 보상형 점적기(Pressure-compensating Emitter)를 통해 물방울이 형성되어 토양으로 스며드는 순간을 포착한 초접사 사진이다. 비대기에 접어든 양파 구의 바로 아래 뿌리 영역으로 수분과 액비가 마찰 손실 없이 균일하게 공급되는 양상을 보여준다 [SRC-118]. 점적 관개 시스템의 안정적인 배관 수리학적 설계가 고품질 구근 비대의 필수 조건임을 명확히 시사한다.
+
+[나노바나나 생성 프롬프트]
+Photorealistic ultra-close macro photograph beneath black mulch film on an agricultural bed. A black polyethylene drip irrigation line with an integrated flat pressure-compensating emitter releases a crystal-clear, glistening water droplet directly onto the crumbly, moist brown soil. In the immediate background, the swelling white-and-copper base of an immature onion bulb (Allium cepa) and healthy adventitious roots are visible. Sharp depth of field, focused glistening water texture. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

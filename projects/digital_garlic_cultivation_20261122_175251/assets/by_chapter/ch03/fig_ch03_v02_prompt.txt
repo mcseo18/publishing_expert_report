@@ -1,0 +1,12 @@
+이미지 번호: 그림 3-2
+이미지 파일명: fig_ch03_v02.png
+단원: 제3장. 마늘 품종별 유전 특성, 생리적 분화 및 디지털 계통 분류 (ch03)
+결합 절: 3.1 마늘 품종의 생태형 분류: 한지형, 난지형(남도, 대서 등)
+시각화 유형: photorealistic_field
+제목: [그림 3-2] 생태형별(한지형·난지형) 생육 초기 포장 적응성 및 지상부 생체량 비교
+
+[문맥 기반 이미지 설명]
+[그림 3-2] 동일한 시험 포장에서 월동 직후 한지형과 난지형 마늘의 초기 지상부 생장 반응을 촬영한 실증 다큐멘터리 사진이다. 난지형 계통인 남도와 대서는 이른 봄부터 엽초 직경이 굵고 엽면적이 넓은 무성한 엽군을 형성하며 빠른 초기 생체량 증가를 보인다 [SRC-103]. 반면 한지형은 저온 적응형 로제트 형태를 유지하며 맹아가 비교적 늦게 출현하지만 저온 내구성이 강한 엽신 큐티클 층을 발달시킨다.
+
+[나노바나나 생성 프롬프트]
+Agricultural research trial field documentary photograph showing parallel raised beds of Allium sativum in early spring. One raised bed features warm-climate garlic plants displaying vigorous, broad, emerald-green arching leaves with thick pseudostems. The adjacent raised bed features cold-climate garlic with compact, upright, deep bluish-green leaves emerging steadily from black polyethylene mulch. Drip irrigation lines visible between rows, fertile dark loam soil, soft morning daylight, realistic ground-level perspective with shallow depth of field. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

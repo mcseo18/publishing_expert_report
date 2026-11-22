@@ -1,0 +1,12 @@
+이미지 번호: 그림 9-2
+이미지 파일명: fig_ch09_v02.png
+단원: 제9장. 농작업 무인 자동화와 RTK-GPS 자율주행 농기계 기술 (ch09)
+결합 절: 9.1 센티미터급 RTK-GNSS 측위 원리와 현장 통신 인프라 구축
+시각화 유형: scientific_anatomy
+제목: [그림 9-2] 기준국-이동국 간 반송파 위상 보정 및 RTK 측위 메커니즘
+
+[문맥 기반 이미지 설명]
+[그림 9-2] 궤도 상의 복수 GNSS 위성으로부터 발신된 반송파 신호가 지상 고정 기준국과 농기계 이동국에 동시 도달하는 기하학적 측위 원리를 시각화한 모식도이다. 알려진 절대 좌표에 위치한 기준국이 위상 측정치를 기반으로 대기 지연 및 위성 오차 성분을 실시간 계산하여 무선 통신망을 통해 트랙터 이동국으로 보정 데이터를 전송한다 [SRC-104]. 이동국은 이 차분 데이터를 통해 잔여 오차를 상쇄함으로써 수 센티미터급의 초고정밀 위치 좌표를 산출한다.
+
+[나노바나나 생성 프롬프트]
+A clean scientific visual illustration on a pure white background demonstrating RTK-GNSS positioning principles for agriculture. Three navigation satellites in the upper field emit distinct translucent cyan and amber carrier-wave propagation cones toward a terrestrial base station tripod antenna and a tractor rover antenna. Visible mathematical wave vectors indicate phase differential correction links and atmospheric ionosphere delay layers, rendered in an elegant, richly shaded academic textbook style with crisp geometry. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

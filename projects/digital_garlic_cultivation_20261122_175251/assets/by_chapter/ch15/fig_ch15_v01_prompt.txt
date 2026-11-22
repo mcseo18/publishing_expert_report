@@ -1,0 +1,12 @@
+이미지 번호: 그림 15-1
+이미지 파일명: fig_ch15_v01.png
+단원: 제15장. 디지털 마늘 재배의 경제성 평가, 탄소 배출량 및 미래 전망 (ch15)
+결합 절: 15.1 관행 재배 대비 디지털 기계화 농업의 투입 노동력 및 비용 편익 분석 (B/C ratio)
+시각화 유형: photorealistic_field
+제목: [그림 15-1] 디지털 정밀 파종기와 관행 수작업 파종의 노동 투입 대비
+
+[문맥 기반 이미지 설명]
+[그림 15-1] 관행 인력 파종 방식과 고성능 다조식 자동 마늘 파종기를 이용한 기계화 파종 현장을 대비하여 보여줍니다. 고도화된 정밀 센서와 메커니즘을 장착한 파종기가 일정한 깊이와 간격으로 마늘 종구를 직립 파종함으로써 투입 노동 시간을 획기적으로 절감합니다 [SRC-106]. 이는 농촌 고령화에 따른 노동력 부족 문제를 해결하고 전체 생산 비용 구조를 개선하는 핵심 요인이 됩니다.
+
+[나노바나나 생성 프롬프트]
+Wide-angle documentary field photograph of a modern precision multi-row garlic planter implement attached to an agricultural tractor in a wide fertile garlic field. The mechanized planting mechanism deposits individual garlic cloves oriented pointed-side up into straight uniform furrows in dark crumbly soil. Freshly planted garlic seed cloves are partially visible in the opened furrows before closing wheels cover them. Warm late autumn afternoon sunlight casts crisp shadows across the parallel raised soil beds, with natural depth of field and authentic agrarian textures. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

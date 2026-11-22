@@ -1,0 +1,12 @@
+이미지 번호: 그림 10-1
+이미지 파일명: fig_ch10_v01.png
+단원: 제10장. 주요 병해충의 역학적 모델링과 종합적 방제(IPM) (ch10)
+결합 절: 단원 개요
+시각화 유형: photorealistic_field
+제목: [그림 10-1] 디지털 마늘 포장의 미기상 관측 스테이션과 병해충 예찰 시스템
+
+[문맥 기반 이미지 설명]
+[그림 10-1] 마늘 재배 포장 내에 설치된 초정밀 미기상 IoT 관측 스테이션이 엽면 습윤 시간, 수관 내부 온도, 국소 상대습도를 실시간으로 수집하는 현장을 보여준다. 단원 개요에서 강조된 바와 같이, 병원균의 감염 위험도를 정량적으로 판별하기 위한 핵심 미기상 데이터가 이 센서 네트워크를 통해 실시간으로 수집된다 [SRC-100]. 규칙적으로 정렬된 푸른 마늘 두둑 사이에서 수집된 시계열 데이터는 이후 역학 예측 모델의 기초 입력값으로 기능한다.
+
+[나노바나나 생성 프롬프트]
+A documentary agricultural photograph of a solar-powered IoT microclimate weather station installed in a garlic (Allium sativum) field during early spring. The stainless steel sensor mast features an ultrasonic anemometer, solar radiation sensor, leaf wetness sensor clip attached to an arching green garlic leaf, and soil moisture probes entering the raised bed. Rows of vibrant green garlic plants with linear strap-shaped leaves extend across the field under soft overcast morning daylight. A shallow depth of field keeps the sophisticated sensing instruments razor-sharp while the background shows neatly mulched garlic ridges stretching toward the horizon. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

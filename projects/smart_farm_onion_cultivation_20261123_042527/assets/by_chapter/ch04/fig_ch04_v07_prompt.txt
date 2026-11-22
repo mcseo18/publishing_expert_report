@@ -1,0 +1,12 @@
+이미지 번호: 그림 4-7
+이미지 파일명: fig_ch04_v07.png
+단원: 제4장. 정밀 양파 재배를 위한 스마트 토양 물리·화학성 평가 및 작부체계 (ch04)
+결합 절: 현장 적용 및 실전 기술: 작부체계 설계
+시각화 유형: scientific_anatomy
+제목: [그림 4-7] 토양 전염성 병원균 및 선충 억제를 위한 양파 중심 윤작 체계 모델
+
+[문맥 기반 이미지 설명]
+[그림 4-7] 토양 내 선충과 전염성 병원균의 밀도를 낮추고 지력을 보전하기 위해 양파와 벼, 콩과작물, 녹비작물을 결합한 과학적 작부체계가 설계됩니다. 벼 재배 시 담수 조건은 호기성 토양 병원균과 선충의 증식을 자연적으로 억제하며, 콩과작물은 근류균을 통해 질소를 고정합니다. 체계적인 윤작 시스템은 연작 장해를 예방하고 토양 미생물 생태계의 다양성을 회복시킵니다 [SRC-27].
+
+[나노바나나 생성 프롬프트]
+Editorial circular scientific illustration on a pure white background illustrating an agronomic crop rotation cycle. Four quadrant sections depict sequential stages: mature Allium cepa onion bulbs with green tubular foliage, flooded paddy rice stalks with water surface, flowering nodulated soybean plants with root rhizobia nodules, and lush green manure cover crop. Finely rendered botanical artwork with natural pigments, showing root-soil interface transitions and clean circular directional flow. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

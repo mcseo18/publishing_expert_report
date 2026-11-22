@@ -1,0 +1,12 @@
+이미지 번호: 그림 10-7
+이미지 파일명: fig_ch10_v07.png
+단원: 제10장. 주요 병해충의 역학적 모델링과 종합적 방제(IPM) (ch10)
+결합 절: 10.3 기상 감응형 병해충 발병 예측 역학 모델 수식화
+시각화 유형: scientific_anatomy
+제목: [그림 10-7] 마늘 엽면 미기상 인자와 곰팡이 감염률(β) 역학 모델의 생물리학적 상호작용
+
+[문맥 기반 이미지 설명]
+[그림 10-7] 마늘 엽면의 온도, 습윤 시간, 상대습도 변화가 병원체 감염률 β(Temp, RH)를 결정하는 생물리학적 상호작용을 나타낸 학술 개념도이다. 본문 10.3절의 역학 수식과 연계하여, 엽면의 미세 수적 내에서 포자가 발아관을 신장하는 임계 환경 조건과 감수성 조직(S)에서 감염 조직(I)으로 전이되는 역학적 침투 과정을 시각화했다 [SRC-100]. 미세 기상 조건이 특정 로지스틱 임계값에 도달했을 때 폭발적으로 일어나는 포자 발아와 기공 침입 단계를 투시적 단면으로 나타낸다.
+
+[나노바나나 생성 프롬프트]
+Scientific American editorial illustration demonstrating the biophysical dynamics between garlic leaf microclimate and fungal infection rate beta on a pure white background. A cross-section of a green garlic leaf blade reveals a microscopic water droplet resting on the waxy cuticle layer under high humidity. Inside the droplet, fungal spores swell, produce germ tubes, and extend toward stomata, driven by calibrated temperature and moisture thresholds. Surrounding thermal and humidity gradients are visualized through elegant translucent color bands ranging from cool blue to active amber, showing the biological phase transition from healthy susceptible leaf tissue to infected host cells with scientific anatomical accuracy. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

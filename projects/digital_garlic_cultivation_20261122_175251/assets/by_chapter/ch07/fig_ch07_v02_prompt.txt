@@ -1,0 +1,12 @@
+이미지 번호: 그림 7-2
+이미지 파일명: fig_ch07_v02.png
+단원: 제7장. 생육 단계별 생리 지표와 윤작·혼작 최적 작부체계 (ch07)
+결합 절: 7.1 마늘의 생육 단계별(BBCH 척도) 발육 기준 및 형태학적 지표
+시각화 유형: photorealistic_macro
+제목: [그림 7-2] 구 비대기 마늘 인편의 횡단면 미세 구조 및 유관속 조직
+
+[문맥 기반 이미지 설명]
+[그림 7-2] 구 비대 초기에 급격한 전분 및 유리당 축적이 일어나는 마늘 인편의 정밀 횡단면 매크로 사진이다. 저장엽(storage scale) 세포 내부의 농밀한 유조직과 수분 및 양분을 분배하는 유관속 다발의 배열이 선명하게 관찰된다 [SRC-109]. 비대기 환경 스트레스와 에틸렌 농도 변화에 반응하여 비대 조직의 치밀도가 형성되는 생리적 현상을 실물 수준으로 증명한다 [SRC-108].
+
+[나노바나나 생성 프롬프트]
+Ultra-sharp macro photography of a freshly cut transverse cross-section of a swelling Allium sativum garlic bulb showing multiple plump developing cloves arranged around the central core. Detailed translucent fleshy storage scale cells glistening with cellular sap, delicate vascular bundles visible within the parenchyma tissue, and surrounding thin papery tunics. Crisp studio lighting, laboratory focus on organic textures, moisture droplets, and crystalline starch-bearing cell layers. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

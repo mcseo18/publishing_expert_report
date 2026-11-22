@@ -1,0 +1,12 @@
+이미지 번호: 그림 15-7
+이미지 파일명: fig_ch15_v07.png
+단원: 제15장. 노지 스마트 팜 데이터 표준화 및 지속가능한 디지털 농업 플랫폼 (ch15)
+결합 절: 15.3 비료·에너지 투입 절감에 따른 전과정 환경영향평가(LCA) 및 저탄소 농업 인증 프로토콜
+시각화 유형: photorealistic_field
+제목: [그림 15-7] 저온 유통 및 에틸렌·습도 복합 환경 제어가 적용된 양파 스마트 저온 저장고
+
+[문맥 기반 이미지 설명]
+[그림 15-7] 수확된 대단위 구 양파를 장기 보관하며 에너지 효율을 극대화하는 스마트 저온 저장고의 내부 전경이다. 저장고 내부에는 미세 온·습도 센서와 에틸렌 농도 감지 장비가 설치되어 양파의 호흡을 억제하고 부패 및 중량 감모를 차단한다 [SRC-108, SRC-109]. 폐기물 발생 억제와 냉매 및 공조 최적화를 통한 에너지 절감은 농산물 유통 단계의 환경 부하를 크게 낮추어 저탄소 인증 기준을 충족한다 [SRC-110, SRC-111].
+
+[나노바나나 생성 프롬프트]
+Realistic documentary photograph inside a large-scale commercial smart cold-storage facility filled with harvested onions. Towering stacks of well-ventilated wooden pallet crates hold tons of golden-brown cured Allium cepa onion bulbs with tight dry papery outer tunics. Overhead, industrial climate-control air ducts with automated dampers and hanging digital environmental sensor pods emit faint monitoring LED indicator lights. Soft cool industrial lighting bathes the clean concrete floor and organized aisles, capturing the atmospheric mist-free chill, structural scale, and pristine storage conditions. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

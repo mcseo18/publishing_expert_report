@@ -1,0 +1,12 @@
+이미지 번호: 그림 14-6
+이미지 파일명: fig_ch14_v06.png
+단원: 제14장. 양파 비파괴 선별 및 유통 디지털 트레이서빌리티 (ch14)
+결합 절: 생리·분자 메커니즘 및 첨단 분석 기술
+시각화 유형: photorealistic_macro
+제목: [그림 14-6] 머신비전 AI 결점 인식 대상인 양파 표피 미세 균열 및 타박 상처
+
+[문맥 기반 이미지 설명]
+[그림 14-6] 수확 및 이송 과정에서 발생할 수 있는 양파 외피 균열과 내부 인편 타박 부위를 초접사로 촬영한 매크로 사진입니다. 건조된 겉껍질 아래로 투영되는 인편 세포의 멍듦과 미세 파열 형태학적 특징을 선명하게 포착합니다. AI 다채널 비전 시스템이 표면의 흙탕물 얼룩과 실제 병징성 상처를 명확히 구분하여 판정하기 위한 학습 데이터의 미세 표면 특징을 보여줍니다.
+
+[나노바나나 생성 프롬프트]
+Ultra-sharp macro photograph of the surface of an Allium cepa bulb exhibiting subtle mechanical damage. The flaky, coppery-brown papery outer skin is partly split, exposing the underlying creamy-white fleshy scale which shows a faint, water-soaked contusion bruise and micro-cracking from physical impact. Raking side lighting accentuates the micro-ridges of the tunic, dry cellular striations, and delicate textural contrast between brittle dry skin and turgid damaged tissue. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

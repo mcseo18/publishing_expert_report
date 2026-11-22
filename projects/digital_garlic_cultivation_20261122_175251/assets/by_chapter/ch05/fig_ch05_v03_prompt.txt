@@ -1,0 +1,12 @@
+이미지 번호: 그림 5-3
+이미지 파일명: fig_ch05_v03.png
+단원: 제5장. 정밀 양분 역학과 스마트 관비(Fertigation) 및 시비 처방 (ch05)
+결합 절: 5.2 마늘 전주기 양분 흡수 곡선과 흡수 패턴의 수치 모델링
+시각화 유형: scientific_anatomy
+제목: [그림 5-3] 분얼기에서 구근 비대기로 전환되는 마늘의 생체 내 양분 재분배 동역학
+
+[문맥 기반 이미지 설명]
+[그림 5-3] 영양생장기 말기에서 구근 비대기로 전환되는 마늘 개체의 양분 전이 과정을 입체적으로 묘사한 과학 해부도입니다. 지상부 엽초에 축적되어 있던 비구조성 탄수화물과 칼륨, 칼슘이 비대해지는 지하부 인편(cloves)으로 집중 전류되는 양분 흡수 전환 패턴을 시각화합니다. 구근 팽창 단계에서 급격히 치솟는 칼륨과 칼슘의 흡수 동역학적 수요 곡선의 생리적 원인을 구체적으로 설명합니다 [SRC-100].
+
+[나노바나나 생성 프롬프트]
+Detailed scientific cutaway illustration of a whole Allium sativum garlic plant during the transition from vegetative leaf sheath development to rapid bulb enlargement, set against a pristine pure white background. The swelling garlic bulb is sliced longitudinally to expose forming cloves wrapped in fibrous sheaths, with dynamic glowing arrows indicating the downward translocation of stored potassium and assimilates from the mature strap-like leaves into the cloves and dense white basal root cluster. Painterly yet highly accurate botanical rendering with rich textures and physiological color gradations. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

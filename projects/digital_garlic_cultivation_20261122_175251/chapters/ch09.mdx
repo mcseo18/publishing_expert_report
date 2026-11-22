@@ -1,0 +1,198 @@
+---
+chapter_id: "ch09"
+title: "제9장. 농작업 무인 자동화와 RTK-GPS 자율주행 농기계 기술"
+audience: "대학 전공 심화, 대학원생, 연구자 및 선도 현장 실무자"
+evidence_packet: "digital_garlic_cultivation_20261122_175251_evidence.json"
+---
+
+# 제9장. 농작업 무인 자동화와 RTK-GPS 자율주행 농기계 기술
+
+## 단원 개요
+본 단원에서는 정밀 농업(Precision Agriculture)의 핵심 기술 중 하나인 RTK-GNSS(Real-Time Kinematic Global Navigation Satellite System)를 기반으로 한 고정밀 위치 제어 기술과 이를 농기계에 접목한 자율주행 시스템의 원리 및 구현 방안을 심층적으로 다룬다. 마늘 경운, 파종, 방제와 같은 주요 농작업에서 요구되는 정밀한 경로 추종 알고리즘부터, 여러 대의 기계가 협력하는 군집(Swarm) 자율주행 시스템의 설계 및 안전 메커니즘까지 포괄적으로 논하며, 최첨단 농업 기술에 대한 학문적 이해도를 제고하는 것을 목표로 한다.
+
+---
+
+## 9.1 센티미터급 RTK-GNSS 측위 원리와 현장 통신 인프라 구축
+
+농업 현장에서 요구되는 '센티미터급' 위치 정확도는 기존의 범용 GPS 시스템으로는 달성하기 어렵다. 이러한 초고정밀 위치 정보 획득을 위해 RTK-GNSS 기술이 활용된다.
+
+RTK-GNSS는 기준국(Base Station)과 이동국(Rover) 간의 위성 신호 차이(Phase Measurement)를 실시간으로 보정하여 오차를 제거하는 기술이다. 기준국은 알려진 고정 좌표에서 수신한 신호의 위상 정보를 바탕으로, 이동국이 수신하는 신호의 오차 성분을 계산하여 보정 데이터(Correction Data)를 전송한다. 이 보정 데이터를 통해 이동국은 위성 신호에 포함된 대기 지연(Atmospheric Delay) 및 기타 잡음으로 인한 오차를 제거하고, 결과적으로 수 십 cm 이하의 매우 정확한 위치를 산출할 수 있다 [SRC-104].
+
+### 현장 통신 인프라 구축의 중요성
+RTK-GNSS의 실시간 성능을 유지하기 위해서는 기준국과 이동국 간의 안정적이고 지연이 적은 통신 환경이 필수적이다. 농업 현장의 지형적 특성(나무, 건물 등)으로 인해 전파 신호가 차단되거나 멀티패스(Multipath) 현상이 발생할 수 있다 [SRC-100]. 따라서, 농장 규모 및 작물 재배 형태에 맞는 최적의 통신 인프라 구축이 요구된다.
+
+1. **통신 방식 선택:** 주로 LTE, 4G/5G, 또는 전용 무선 링크를 사용한다. 5G는 저지연(Low Latency) 특성 덕분에 실시간 데이터 전송에 유리하다.
+2. **기준국 배치 및 분산:** 단일 기준국이 모든 작업 구역을 커버하지 못할 경우, 다중 기준국 시스템을 구축하여 가시선(Line-of-Sight)을 확보하고 통신 안정성을 높인다.
+3. **데이터 처리:** 수집된 RTK 보정 데이터는 전용 서버 또는 엣지 컴퓨팅 장치에서 처리되어 농기계의 제어 장치로 전달된다.
+
+## 9.2 자율주행 트랙터의 조향 제어 및 경로 계획(Path Planning) 알고리즘
+
+RTK-GNSS를 통해 획득된 고정밀 위치 정보는 트랙터의 실제 구동부(조향 장치)를 제어하는 데 사용된다. 자율주행 트랙터의 핵심은 목표 경로를 오차 없이 추종하는 능력에 있다.
+
+### 경로 계획 (Path Planning)
+경로 계획은 농작업의 목적(예: 작물 사이를 일정한 간격으로 통과)을 달성하기 위한 최적의 기하학적 궤적을 생성하는 과정이다. 일반적인 농작업 경로 계획은 다음과 같은 요소를 고려한다:
+1. **작업 영역 정의:** 경작지 전체 경계 및 작물 배치의 벡터 정보 확보.
+2. **경로 최적화:** 불필요한 중복 이동(Overlap)을 최소화하고 작업 효율성(Coverage Rate)을 극대화하는 경로(예: 헤어핀 또는 지그재그 패턴)를 생성한다.
+3. **동적 제약 조건 반영:** 트랙터의 최대 회전 반경, 최대 속도 등의 물리적 제약을 경로에 반영한다.
+
+### 조향 제어 알고리즘 (Steering Control Algorithm)
+생성된 목표 경로(Target Path)를 추종하기 위해 사용되는 것이 조향 제어기이다. 이 제어기는 현재 트랙터의 위치(P<sub>current</sub>)와 목표 경로 상의 다음 지점(P<sub>target</sub>) 사이의 오차를 계산하여, 조향 각도(δ)를 산출한다.
+
+가장 널리 사용되는 알고리즘은 **PID (Proportional-Integral-Derivative) 제어기**와 **순응 제어(Pure Pursuit Control)** 방식이다.
+
+*   **순응 제어:** 차량이 미리 정해진 ‘헤딩 포인트(Lookahead Point)’를 따라가도록 조향 각도를 결정한다. 오차는 주로 현재 위치와 목표 경로상의 미래 지점 사이의 수직 거리로 정의된다.
+    
+<div class="math-block"><span class="math-eq">Steering Angle = f(Cross-Track Error, Lookahead Distance)</span></div>
+
+    여기서, Cross-Track Error는 차량의 현재 위치와 경로에서 벗어난 거리를 의미한다.
+*   **PID 제어:** 주로 추종 오차(Tracking Error)를 최소화하기 위해 사용된다. 오차의 비례(P), 적분(I), 미분(D) 항을 가중치(K<sub>p</sub>, K<sub>i</sub>, K<sub>d</sub>)를 두어 조향 명령을 생성한다.
+
+## 9.3 추대 제거(마늘종 꺾기) 및 중경 제초 자동화 로봇 기술
+
+고정밀 자율주행은 대형 트랙터뿐만 아니라, 특정 작물 관리를 위한 소형 특수 로봇(Agent)에도 적용된다.
+
+### 추대 제거(Tiller Removal) 자동화
+마늘과 같은 작물에서 불필요하게 발생하는 추대(Tiller)를 정밀하게 제거하는 작업은 수작업의 비효율성이 높았던 분야이다. 자율 로봇은 RTK-GNSS를 이용해 목표 작물의 정확한 위치를 식별하고, AI 기반의 컴퓨터 비전(Computer Vision) 기술을 통해 추대와 모체(Mother plant)를 구분한다.
+
+*   **센싱 및 인식:** 고해상도 RGB 카메라 및 3차원 깊이 센서(예: LiDAR 또는 스테레오 카메라)를 사용하여 식물의 3차원 형상 정보를 획득한다.
+*   **작업 실행:** 로봇에 장착된 정밀 액추에이터(Actuator)가 이 인식 정보를 바탕으로 최적의 힘과 각도로 추대를 꺾거나 제거한다. 이 과정은 작업자가 직접 개입하지 않고, 위치 정확도를 바탕으로 수행되는 전형적인 '피킹(Picking)' 작업의 자동화 형태이다 [SRC-103].
+
+### 중경 제초 자동화 로봇
+중경(Middle row) 제초는 화학적 방제의 환경적, 법적 제약 때문에 기계적 또는 비화학적 방제가 중요해지고 있다.
+로봇은 RTK-GNSS 기반으로 작물 줄기 사이의 좁은 영역을 빈틈없이 주행하면서, 녀석(Weed)을 식별한다. 식별된 잡초에 대해서만 레이저 또는 소형 정밀 칼날을 사용하여 물리적으로 제거(Mechanical weeding)하거나, 초소량의 국소 제초제를 분사(Spot Spraying)하여 화학물질 사용량을 획기적으로 줄인다.
+
+## 9.4 자율 군집 농작업 제어 시스템과 노지 필드 안전 메커니즘
+
+단일 기계의 자율주행을 넘어, 여러 대의 농기계(로봇, 트랙터 등)가 하나의 작업 영역에서 협력하는 '군집(Swarm)' 시스템이 연구되고 있다. 이는 작업 효율과 커버리지 면적을 극대화한다.
+
+### 군집 제어 시스템 (Swarm Control System)
+군집 제어는 분산형(Decentralized) 제어 구조가 일반적이다. 중앙 제어기(Central Server)가 전체 작업 계획을 할당하지만, 각 개별 에이전트(Agent)는 주변 에이전트의 상태와 자신의 센서 데이터를 바탕으로 자율적으로 경로를 수정하고 통신한다.
+
+*   **통신 프로토콜:** 에이전트 간의 충돌 회피, 작업 영역 분배(Task Allocation)를 위해 Mesh Network와 같은 통신 프로토콜이 사용된다.
+*   **협력 경로 생성:** 군집은 전체 경작지를 빈틈없이 덮는 그리드(Grid) 패턴을 나누고, 각 에이전트가 담당 구역을 명확히 인지하여 중복 작업을 방지한다.
+
+### 노지 필드 안전 메커니즘 (Field Safety Mechanism)
+자동화 시스템의 가장 중요한 제약 조건은 '안전성'이다. 농업 현장은 예측 불가능한 돌발 변수가 많으므로, 다중화된 안전 메커니즘이 필수적이다.
+
+1.  **인지 기반 충돌 방지:** Lidar, Radar, 비전 센서를 이용하여 비정형적 장애물(낙하물, 사람, 동물)을 실시간으로 탐지하고, 충돌 위험이 감지되면 즉시 조향 및 속도를 제로(Zero)로 낮추는 '비상 정지 시스템(Emergency Stop System)'이 작동한다.
+2.  **RTK 오차 감지 및 폴백(Failover):** RTK 보정 신호가 끊기거나 위치 오차가 허용치(σ<sub>max</sub>)를 초과할 경우, 시스템은 즉시 '폴백 모드'로 전환한다. 이 모드에서는 고정밀 RTK 대신 관성 측정 장치(IMU)나 일반 GPS를 이용한 저정밀 추적 모드로 전환하며, 작업자는 원격 모니터링을 통해 상황을 파악할 때까지 작업 속도를 극도로 낮춘다.
+3.  **원격 감독 및 개입:** 모든 자동화 플랫폼은 인간 운영자가 원격에서 시스템 상태를 모니터링하고, 위급 상황 발생 시 명령을 하달할 수 있는 인터페이스를 갖추고 있어야 한다.
+
+---
+
+## ## 핵심 용어집
+
+| 용어 | 정의 | 기술적 설명 |
+| :--- | :--- | :--- |
+| **RTK-GNSS** | 실시간 운동학(Kinematic) GNSS 측위 기술. | 기준국과 이동국 간의 위상차를 실시간 보정하여 센티미터 수준의 위치 정확도를 제공함 [SRC-104]. |
+| **경로 계획 (Path Planning)** | 목표 작업 영역을 효율적으로 커버하기 위한 최적의 기하학적 궤적을 생성하는 알고리즘. | 중복 이동 최소화, 작업 효율성 극대화, 물리적 제약 조건 반영 등이 핵심임. |
+| **순응 제어 (Pure Pursuit Control)** | 자율주행 차량이 미리 설정된 미래 지점(Lookahead Point)을 따라가도록 조향각을 결정하는 제어 기법. | 비례 제어에 기반하여 경로 추종 오차를 보정함. |
+| **군집 제어 (Swarm Control)** | 다수의 자율 에이전트가 중앙 개입 없이 협력하여 복잡한 임무를 분산 수행하는 시스템. | 분산형 제어(Decentralized Control)를 기반으로 충돌 회피 및 작업 분배가 이루어짐. |
+| **폴백 모드 (Failover Mode)** | 고정밀 센서(RTK)의 신뢰도가 저하되었을 때, 보조 센서(IMU, 일반 GPS)로 전환하여 시스템을 안전하게 유지하는 상태. | 위치 정확도의 저하를 관리하며 비상 상황 시 안전하게 멈추도록 함. |
+
+---
+
+## ## 이해도 점검 연습문제 및 해설
+
+**문제 1.** RTK-GNSS가 기존 범용 GPS 대비 월등한 정밀도를 갖게 되는 핵심 물리적 원리는 무엇이며, 농장 현장에서 이 시스템의 성능을 유지하기 위해 필요한 중요한 현장 인프라는 무엇인가? (단, 출처 키를 명시하시오.)
+
+**정답 및 상세 풀이 1:** RTK-GNSS는 기준국과 이동국 간의 위성 신호 **위상 측정(Phase Measurement)** 차이를 실시간으로 보정하여 신호 오차를 제거함으로써 높은 정밀도를 달성한다 [SRC-104]. 이러한 실시간 성능을 유지하기 위한 중요한 현장 인프라는 **안정적이고 지연이 적은 통신 환경(예: LTE, 5G)**을 구축하는 것이다. 이 통신 환경은 신호 차폐나 멀티패스 현상 같은 현장 문제를 극복하는 데 필수적이다 [SRC-100].
+
+**문제 2.** 자율주행 트랙터가 생성된 목표 경로를 정확히 추종하기 위해 사용되는 '순응 제어' 알고리즘의 작동 원리와, 이 알고리즘이 요구하는 핵심 입력 변수를 설명하시오.
+
+**정답 및 상세 풀이 2:** 순응 제어 알고리즘은 차량이 미리 정의된 **'헤딩 포인트(Lookahead Point)'**를 따라가도록 조향 각도를 결정한다. 작동 원리는 현재 차량의 위치와 목표 경로상의 미래 지점 사이의 오차를 계산하는 것이다. 핵심 입력 변수는 **'경로 추종 오차(Cross-Track Error)'**로, 이는 차량의 현재 위치가 목표 경로 상의 정확한 궤적에서 얼마나 수직적으로 벗어나 있는지를 나타내는 거리이다.
+
+**문제 3.** 자율 군집 농작업 시스템에서 에이전트 간의 작업 효율성을 극대화하고 중복 작업을 방지하기 위해 가장 중요한 제어적 고려사항은 무엇이며, 이를 위한 통신 구조는 어떠해야 하는가?
+
+**정답 및 상세 풀이 3:** 군집 시스템에서 가장 중요한 고려사항은 **작업 영역의 명확한 분배 및 충돌 회피**이다. 이를 위해, 중앙 제어기가 전체 작업 계획을 할당하더라도 각 에이전트는 주변 에이전트의 상태를 파악해야 한다. 이 목적을 달성하기 위해 **Mesh Network와 같은 분산형 통신 프로토콜**이 요구된다. 이 구조를 통해 에이전트들은 서로의 위치와 상태 정보를 교환하며 자율적으로 담당 구역을 설정하게 된다.
+
+---
+
+## ## 오해와 진실: 현장·이론 핵심 오해 교정
+
+**오해 1: RTK-GNSS는 단순히 GPS 신호를 증폭시키는 장치이다.**
+**진실:** RTK-GNSS는 단순 증폭기가 아니다. 이는 **신호의 위상(Phase) 측정**에 기반하여, 기준국에서 보정 데이터를 받아 신호에 내재된 대기 지연, 잡음 등의 **오차 성분을 실시간으로 수학적 모델링을 통해 제거**하는 능동적 보정 기술이다 [SRC-104].
+
+**오해 2: 모든 농업 자동화 시스템은 중앙 서버에서 모든 제어를 수행해야 한다.**
+**진실:** 대규모 군집 작업 시, 중앙 집중식 제어는 통신 지연(Latency)과 단일 실패 지점(Single Point of Failure)의 위험이 크다. 따라서 최신 연구는 **분산형(Decentralized) 제어 구조**를 선호한다. 각 에이전트가 주변 환경과 이웃 에이전트의 정보를 활용하여 자율적으로 결정을 내리도록 설계된다.
+
+**오해 3: 자동화 로봇은 GPS가 확보된 곳에서만 작업이 가능하다.**
+**진실:** 농작업은 지형적 장애물이나 빽빽한 작물 사이에서 발생하기 때문에 GPS 신호가 자주 차단된다. 따라서, 고정밀 RTK가 불가능할 경우를 대비하여 **IMU(관성 측정 장치)와 같은 관성 센서 데이터를 활용하여 작동하는 '폴백(Failover)' 메커니즘**이 필수적으로 내장되어야 한다.
+
+## 참고문헌 및 근거 출처 목록
+
+| 출처 ID | 유형 | 제목 | URL | 라이선스 |
+| :--- | :--- | :--- | :--- | :--- |
+| `SRC-100` | web | 농촌진흥청 | https://www.rda.go.kr/ | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-101` | web | 보도자료 < 새소식 < 정책홍보 < 농촌진흥청 | https://www.rda.go.kr/board/board.do?boardId=farmprmninfo&prgId=day_farmprmninfoEntry | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-102` | web | 한국식품연구원 | https://www.kfri.re.kr/ | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-103` | web | 국립식량과학원 | https://www.nics.go.kr/index.do | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-104` | web | 농림축산식품부 | https://www.mafra.go.kr/home/index.do | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-105` | web | 국민 안심이 기준입니다, 식품의약품안전처 | https://www.mfds.go.kr/index.do | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-106` | web | 한국농촌경제연구원 | https://www.krei.re.kr/krei/index.do | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-107` | web | 저온 유통 - 위키백과, 우리 모두의 백과사전 | https://ko.wikipedia.org/wiki/%EC%BD%9C%EB%93%9C_%EC%B2%B4%EC%9D%B8 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-108` | web | 에틸렌 - 위키백과, 우리 모두의 백과사전 | https://ko.wikipedia.org/wiki/%EC%97%90%ED%8B%B8%EB%A0%8C | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-109` | web | [2021] Inhibition of Ethylene Binding and Biosynthesis Maintains Fruit Quality of ‘Formosa’ Plums during Postharvest Storage (Horticultural Science and Technology) | https://doi.org/10.7235/hort.20210033 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-111` | web | [2010] Cold storage and fruit quality (Postharvest Biology and Technology for Preserving Fruit Quality) | https://doi.org/10.1201/9781439802670-c4 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-110` | web | [1998] Effects of storage temperature and atmosphere on saskatoon (Amelanchier alnifolia Nutt.) fruit quality, respiration and ethylene production (Postharvest Biology and Technology) | https://doi.org/10.1016/s0925-5214(98)00012-x | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-282` | web | [2016] Low Ethylene Technology in Non-Optimal Storage Temperatures (Advances in Postharvest Fruit and Vegetable Technology) | https://doi.org/10.1201/b18489-15 | 학술 서지 메타데이터·초록(Crossref) - 정식 인용 목적(원문 무단 복제 금지) |
+| `SRC-117` | web | [2016] Nondestructive Assessment of Fruit Quality (Advances in Postharvest Fruit and Vegetable Technology) | https://doi.org/10.1201/b18489-10 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-118` | web | [2015] Nondestructive Assessment of Fruit Quality (Contemporary Food Engineering) | https://doi.org/10.1201/b18489-4 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-119` | web | [2016] Metabolomics Tools for Postharvest Quality and Safety of Fresh Produce (Advances in Postharvest Fruit and Vegetable Technology) | https://doi.org/10.1201/b18489-20 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-120` | web | [2021] Effects of postharvest ultraviolet-C treatment on shelf-life and quality of bitter gourd fruit during storage (Food Packaging and Shelf Life) | https://doi.org/10.1016/j.fpsl.2021.100665 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-121` | web | [2020] Evaluation of Postharvest Shelf Life and Quality of Lemon Treated with  Different Coatings during Storage (Food Science and Engineering) | https://doi.org/10.37256/fse.122020463 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-122` | web | [2026] Aloe Vera-Honey Composite Edible Coatings Extend Postharvest Shelf Life and Preserve Quality of Roma Tomatoes Under Tropical Ambient Storage in Rwanda (Journal of Food Science and Horticulture) | https://doi.org/10.69739/jfsh.v1i1.1696 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-123` | web | [2024] Different Postharvest Treatments and Storage Conditions for Shelf-life Enhancement and Quality Retention of Litchi (Journal of Food Chemistry &amp; Nanotechnology) | https://doi.org/10.17756/jfcn.2024-s1-015 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-124` | web | [2019] Understanding Food Loss and Waste—Why Are We Losing and Wasting Food? (Foods) | http://dx.doi.org/10.3390/foods8080297 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-125` | pdf | [2020] Nanotechnologies in Food Science: Applications, Recent Trends, and Future Perspectives (Nano-Micro Letters) | https://doi.org/10.1007/s40820-020-0383-9 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-126` | web | [2020] ZnO Nanostructures in Active Antibacterial Food Packaging: Preparation Methods, Antimicrobial Mechanisms, Safety Issues, Future Prospects, and Challenges (Food Reviews International) | https://doi.org/10.1080/87559129.2020.1737709 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-127` | web | [2019] Value-added chemicals from food supply chain wastes: State-of-the-art review and future prospects (Chemical Engineering Journal) | https://doi.org/10.1016/j.cej.2019.121983 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-263` | web | [2020] Citrus Essential Oils (CEOs) and Their Applications in Food: An Overview (Plants) | http://dx.doi.org/10.3390/plants9030357 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-128` | web | [2024] Advances in strawberry postharvest preservation and packaging: A comprehensive review (Comprehensive Reviews in Food Science and Food Safety) | https://doi.org/10.1111/1541-4337.13417 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-129` | pdf | [2019] Characterization of Fruit Quality Attributes and Cell Wall Metabolism in 1-Methylcyclopropene (1-MCP)-Treated ‘Summer King’ and ‘Green Ball’ Apples During Cold Storage (Frontiers in Plant Science) | https://doi.org/10.3389/fpls.2019.01513 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-130` | web | [2014] Shelf life extension and antioxidant activity of ‘Hayward’ kiwi fruit as a result of prestorage conditioning and 1-methylcyclopropene treatment (Journal of Food Science and Technology) | https://doi.org/10.1007/s13197-014-1300-3 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-131` | web | [2012] Effects of Vibration Stress on the Quality of Packaged Apples during Simulated Transport (Journal of Biosystems Engineering) | https://doi.org/10.5307/jbe.2012.37.1.044 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-264` | web | [2025] Plant–Microbe Interactions for Improving Postharvest Shelf Life and Quality of Fresh Produce Through Protective Mechanisms (Horticulturae) | https://doi.org/10.3390/horticulturae11070732 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-132` | web | [2022] Prediction of Total Soluble Solids and pH of Strawberry Fruits Using RGB, HSV and HSL Colour Spaces and Machine Learning Models (Foods) | https://doi.org/10.3390/foods11142086 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-133` | web | [2017] Nondestructive Estimation of Moisture Content, pH and Soluble Solid Contents in Intact Tomatoes Using Hyperspectral Imaging (Applied Sciences) | https://doi.org/10.3390/app7010109 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-134` | web | [2024] Prediction of Soluble-Solid Content in Citrus Fruit Using Visible–Near-Infrared Hyperspectral Imaging Based on Effective-Wavelength Selection Algorithm (Sensors) | https://doi.org/10.3390/s24051512 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-135` | pdf | [2018] Hyperspectral imaging technique to evaluate the firmness and the sweetness index of tomatoes (Korean Journal of Agricultural Science) | https://doi.org/10.7744/kjoas.20180075 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-265` | web | [2022] Field Application of a Vis/NIR Hyperspectral Imaging System for Nondestructive Evaluation of Physicochemical Properties in ‘Madoka’ Peaches (Plants) | https://doi.org/10.3390/plants11172327 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-136` | web | Technical Platform on the Measurement and Reduction of Food Loss and Waste / Food and Agriculture Organization of the United Nations | https://www.fao.org/platform-food-loss-waste/en/ | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-137` | web | FLW Database / Technical Platform on the Measurement and Reduction of Food Loss and Waste / Food and Agriculture Organization of the United Nations | https://www.fao.org/food-loss-and-food-waste/flw-data/en/ | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-138` | web | Codex / Home | https://www.fao.org/fao-who-codexalimentarius/en/ | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-139` | web | Ask IFAS: Topic - Postharvest and Handling | https://edis.ifas.ufl.edu/topics/postharvest | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-140` | web | ARS Home : USDA ARS | https://www.ars.usda.gov/ | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-141` | web | National Programs : USDA ARS | https://www.ars.usda.gov/research/programs/ | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-142` | web | NFRI / National Agriculture and Food Research Organization | https://www.naro.go.jp/english/laboratory/nfri/index.html | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-143` | web | Ministry of Agriculture, Forestry and Fisheries | https://www.maff.go.jp/e/index.html | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-144` | web | Postharvest - Wikipedia | https://en.wikipedia.org/wiki/Postharvest | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-145` | web | Controlled atmosphere - Wikipedia | https://en.wikipedia.org/wiki/Controlled_atmosphere | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-146` | web | Modified atmosphere - Wikipedia | https://en.wikipedia.org/wiki/Modified_atmosphere | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-147` | web | 1-Methylcyclopropene - Wikipedia | https://en.wikipedia.org/wiki/1-Methylcyclopropene | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-148` | web | Cold chain - Wikipedia | https://en.wikipedia.org/wiki/Cold_chain | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-149` | pdf | [2014] Agricultural uses of plant biostimulants (Plant and Soil) | https://doi.org/10.1007/s11104-014-2131-8 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-150` | web | [2017] Biostimulants in Plant Science: A Global Perspective (Frontiers in Plant Science) | https://doi.org/10.3389/fpls.2016.02049 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-151` | web | [1986] The commercial storage of fruits, vegetables, and florist and nursery stocks (Biodiversity Heritage Library (Smithsonian Institution)) | https://www.biodiversitylibrary.org/item/295012 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-152` | web | [2017] Reducing Postharvest Losses during Storage of Grain Crops to Strengthen Food Security in Developing Countries (Foods) | https://doi.org/10.3390/foods6010008 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-266` | web | [2015] Bioactive Compounds and Antioxidant Activity in Different Types of Berries (International Journal of Molecular Sciences) | http://dx.doi.org/10.3390/ijms161024673 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-153` | web | [2019] The role of hydrogen and fuel cells in the global energy system (Energy & Environmental Science) | https://doi.org/10.1039/c8ee01157e | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-154` | web | [2018] Methanol as a fuel for internal combustion engines (Progress in Energy and Combustion Science) | https://doi.org/10.1016/j.pecs.2018.10.001 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-155` | web | [2017] Overview of Ice Nucleating Particles (Meteorological Monographs) | https://doi.org/10.1175/amsmonographs-d-16-0006.1 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-156` | web | [2021] Liquid Hydrogen: A Review on Liquefaction, Storage, Transportation, and Safety (Energies) | https://doi.org/10.3390/en14185917 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-267` | web | [2022] Hydrogen liquefaction: a review of the fundamental physics, engineering practice and future opportunities (Energy & Environmental Science) | https://doi.org/10.1039/d2ee00099g | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-157` | web | [2013] Advances in Fruit Aroma Volatile Research (Molecules) | https://doi.org/10.3390/molecules18078200 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-158` | web | [2019] Tomato Fruit Development and Metabolism (Frontiers in Plant Science) | https://doi.org/10.3389/fpls.2019.01554 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-159` | web | [2019] Chemical Composition of Mango (Mangifera indica L.) Fruit: Nutritional and Phytochemical Compounds (Frontiers in Plant Science) | https://doi.org/10.3389/fpls.2019.01073 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-160` | web | [2016] Induced resistance to control postharvest decay of fruit and vegetables (Postharvest Biology and Technology) | https://www.sciencedirect.com/science/article/pii/S0925521416301946/pdf | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-268` | pdf | [2020] Primary Metabolism in Fresh Fruits During Storage (Frontiers in Plant Science) | https://doi.org/10.3389/fpls.2020.00080 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-161` | web | [2014] Near-infrared spectroscopy and hyperspectral imaging: non-destructive analysis of biological materials (Chemical Society Reviews) | https://doi.org/10.1039/c4cs00062e | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-162` | web | [2020] Visible-NIR ‘point’ spectroscopy in postharvest fruit and vegetable assessment: The science behind three decades of commercial use (Postharvest Biology and Technology) | https://doi.org/10.1016/j.postharvbio.2020.111246 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-163` | web | [2015] Fruit Quality Evaluation Using Spectroscopy Technology: A Review (Sensors) | http://dx.doi.org/10.3390/s150511889 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-164` | web | [2019] Monitoring strategies for quality control of agricultural products using visible and near-infrared spectroscopy: A review (Trends in Food Science & Technology) | https://www.sciencedirect.com/science/article/abs/pii/S0924224418304825 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-269` | web | [2011] Machine vision system: a tool for quality inspection of food and agricultural products (Journal of Food Science and Technology) | https://doi.org/10.1007/s13197-011-0321-4 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-165` | web | [1995] Biosolids–Yard Trimming Composts Increases Bell Pepper (Capsicum annuum L.) and Cucumber (Cucumis sativus L.) Yields (HortScience) | https://doi.org/10.21273/hortsci.30.4.892 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-166` | web | [1995] Physiology of Lightly Processed Fruits and Vegetables (HortScience) | https://doi.org/10.21273/hortsci.30.1.18 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-167` | web | [2006] Nutritional and medicinal use of Cactus pear (Opuntia spp.) cladodes and fruits (Frontiers in bioscience) | https://doi.org/10.2741/1992 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-168` | web | [2017] Antifungal Microbial Agents for Food Biopreservation—A Review (Microorganisms) | https://doi.org/10.3390/microorganisms5030037 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-270` | web | [2010] Effect of hydroxypropylmethylcellulose and chitosan coatings with and without bergamot essential oil on quality and safety of cold-stored grapes (Postharvest Biology and Technology) | https://doi.org/10.1016/j.postharvbio.2010.11.004 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |

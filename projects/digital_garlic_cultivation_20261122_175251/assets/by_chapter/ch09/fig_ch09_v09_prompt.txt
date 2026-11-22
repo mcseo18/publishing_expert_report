@@ -1,0 +1,12 @@
+이미지 번호: 그림 9-9
+이미지 파일명: fig_ch09_v09.png
+단원: 제9장. 농작업 무인 자동화와 RTK-GPS 자율주행 농기계 기술 (ch09)
+결합 절: 9.4 자율 군집 농작업 제어 시스템과 노지 필드 안전 메커니즘
+시각화 유형: photorealistic_field
+제목: [그림 9-9] 메시 네트워크 통신 기반 대규모 마늘 단지 자율 군집 로봇 작업
+
+[문맥 기반 이미지 설명]
+[그림 9-9] 넓은 면적의 마늘 재배 단지에서 분산형 메시 네트워크(Mesh Network)로 상호 연결된 3대의 자율주행 소형 작업 로봇이 협력 작업을 수행하는 장면이다. 중앙 서버의 전체 작업 할당 아래 각 로봇은 상호 위치와 작업 상태를 실시간 송수신하며 일정 간격을 유지하고 중복 작업을 방지한다. 이와 같은 군집 시스템은 개별 장비의 고장 시에도 전체 작업 중단 없이 유연하게 농작업을 지속할 수 있는 장점을 제공한다.
+
+[나노바나나 생성 프롬프트]
+A wide-angle agricultural field photograph showing a synchronized swarm of three compact autonomous electric farm rovers operating harmoniously across an extensive commercial garlic plantation. The rovers maintain equidistant spacing across parallel raised beds, with omnidirectional antennas and slim sensor masts visible. Uniform parallel rows of emerald-green garlic foliage stretch under a partly cloudy sky during late afternoon golden hour. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

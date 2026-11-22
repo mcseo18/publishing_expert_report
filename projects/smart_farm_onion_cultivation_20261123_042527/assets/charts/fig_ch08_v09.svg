@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" width="800" height="420" style="background:#ffffff;font-family:'Malgun Gothic', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;">
+  <rect x="0" y="0" width="800" height="420" rx="12" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+  <rect x="0" y="0" width="800" height="58" rx="12" fill="#064e3b"/>
+  <rect x="0" y="42" width="800" height="16" fill="#064e3b"/>
+  <text x="22" y="27" font-size="14.5" font-weight="700" fill="#f8fafc">그림 8-9. 제8장. 기상 이변에 따른 생리장해 원인 분석 및 스마트 제어 기술 —</text>
+  <text x="22" y="47" font-size="11" fill="#cbd5e1">스마트 팜 양파 재배 · 8.1 고온·건조 조건 하에서의 칼슘 이동 제한과 엽선괴사 및 중심부 갈변 기작</text>
+  <rect x="85" y="84" width="665" height="260" fill="#f8fafc" stroke="#cbd5e1"/>
+  <line x1="85" y1="214" x2="750" y2="214" stroke="#e2e8f0" stroke-dasharray="4,4"/>
+  <rect x="300" y="84" width="220" height="260" fill="rgba(22,163,74,0.10)"/>
+  <text x="410" y="106" text-anchor="middle" font-size="11.5" font-weight="700" fill="#15803d">최적 관리 구간 (Optimal Zone)</text>
+  <polyline fill="none" stroke="#0284c7" stroke-width="3.2" points="110,310 220,250 350,155 480,125 610,175 720,265"/>
+  <circle cx="110" cy="310" r="5.5" fill="#0284c7" stroke="#ffffff" stroke-width="2"/>
+  <circle cx="220" cy="250" r="5.5" fill="#0284c7" stroke="#ffffff" stroke-width="2"/>
+  <circle cx="350" cy="155" r="5.5" fill="#0284c7" stroke="#ffffff" stroke-width="2"/>
+  <circle cx="480" cy="125" r="5.5" fill="#0284c7" stroke="#ffffff" stroke-width="2"/>
+  <circle cx="610" cy="175" r="5.5" fill="#0284c7" stroke="#ffffff" stroke-width="2"/>
+  <circle cx="720" cy="265" r="5.5" fill="#0284c7" stroke="#ffffff" stroke-width="2"/>
+  <text x="418" y="378" text-anchor="middle" font-size="12" font-weight="700" fill="#334155">환경 · 투입 인자 수준 (부족 → 최적 → 과잉)</text>
+  <text x="26" y="215" text-anchor="middle" font-size="12" font-weight="700" fill="#334155" transform="rotate(-90 26 215)">생육 · 품질 지수</text>
+</svg>

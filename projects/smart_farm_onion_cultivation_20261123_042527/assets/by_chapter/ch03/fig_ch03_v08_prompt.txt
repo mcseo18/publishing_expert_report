@@ -1,0 +1,12 @@
+이미지 번호: 그림 3-8
+이미지 파일명: fig_ch03_v08.png
+단원: 제3장. 양파의 생육 단계별 생리 기작과 인경 비대 메커니즘 (ch03)
+결합 절: 현장 적용 및 실전 기술
+시각화 유형: scientific_anatomy
+제목: [그림 3-8] 1-MCP 처리에 의한 에틸렌 결합 저해 및 인경 목부 조직 보존 기작
+
+[문맥 기반 이미지 설명]
+[그림 3-8] 저장 중 양파의 목부(Neck) 및 인편 세포벽에서 에틸렌(Ethylene) 활성을 억제하는 1-MCP의 작용 기작을 시각화한 과학 분자 해부도입니다. 1-MCP 분자가 세포막의 에틸렌 수용체 단백질을 선점 결합함으로써 펙틴 분해 효소의 유도를 차단하고 세포벽 연화를 방지하는 과정을 보여줍니다 [SRC-129]. 본문에서 언급된 저장 품질 유지 기술의 세포생리학적 근거를 설명합니다.
+
+[나노바나나 생성 프롬프트]
+Scientific botanical and cellular cutaway diagram on a clean white background illustrating an onion neck tissue cross-section. The cellular inset depicts a double-lipid cell membrane with transmembrane ethylene receptor proteins blocked by small 1-MCP chemical ring structures, inhibiting downstream hydrolytic enzymes from breaking down the pectin fibril matrix between onion cell walls. Crisp scientific vector-like editorial painting with vibrant contrasting colors and transparent structural layers. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

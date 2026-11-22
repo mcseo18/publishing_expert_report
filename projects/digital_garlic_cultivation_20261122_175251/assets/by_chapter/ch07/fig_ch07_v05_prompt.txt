@@ -1,0 +1,12 @@
+이미지 번호: 그림 7-5
+이미지 파일명: fig_ch07_v05.png
+단원: 제7장. 생육 단계별 생리 지표와 윤작·혼작 최적 작부체계 (ch07)
+결합 절: 7.2 월동기 내한성 기작과 봄철 생육 재생기 생리 관리
+시각화 유형: photorealistic_field
+제목: [그림 7-5] 이른 봄 생육 재생기 마늘의 신초 돌출 및 근계 활력 회복
+
+[문맥 기반 이미지 설명]
+[그림 7-5] 월동 후 지온 상승에 맞추어 생육 재생기를 맞이한 마늘 포장의 생생한 현장 사진이다. 멀칭 필름 천공부를 뚫고 강건하게 솟아오른 선명한 에메랄드빛 신초와 토양 속으로 새롭게 뻗어 나가는 백색 부정근이 관찰된다 [SRC-111]. 이 시기의 신속한 엽면적 확보와 근계 활력은 후기 구 비대를 위한 필수 전제 조건임을 나타낸다 [SRC-108].
+
+[나노바나나 생성 프롬프트]
+Photorealistic agricultural documentary field shot of young garlic shoots breaking through perforated holes of mulch film in early spring. Radiant fresh emerald-green upright garlic sprouts emerging vibrantly from dark moist soil beds, accompanied by a cutaway view of the root zone showing fresh white adventitious roots actively colonizing rich damp earth under soft warm morning sunlight. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

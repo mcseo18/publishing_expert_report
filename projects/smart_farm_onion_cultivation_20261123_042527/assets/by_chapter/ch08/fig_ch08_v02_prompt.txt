@@ -1,0 +1,12 @@
+이미지 번호: 그림 8-2
+이미지 파일명: fig_ch08_v02.png
+단원: 제8장. 기상 이변에 따른 생리장해 원인 분석 및 스마트 제어 기술 (ch08)
+결합 절: 생리·분자 메커니즘 심층 분석
+시각화 유형: scientific_anatomy
+제목: [그림 8-2] 고온·건조기 양파 관상엽 내 칼슘(Ca²⁺) 전위 차단 및 엽선괴사 메커니즘
+
+[문맥 기반 이미지 설명]
+[그림 8-2] 고온 및 급격한 증산 스트레스 조건에서 양파 관상엽(tubular leaf)을 따라 이동하는 칼슘 이온(Ca²⁺)의 수송 제한 기작을 도해화한 해부학적 일러스트입니다. 도관부를 통한 증산류 불균형으로 잎 끝단에 도달하는 칼슘이 결핍되면서 펙틴 결합이 파괴되고 세포벽 구조가 무너집니다 [SRC-100]. 엽선 부위의 국소적 산화 스트레스와 세포 괴사(Tip-burn)가 심화되어 양파 중심부 갈변으로 전이되는 생리적 경로를 상세히 표현합니다.
+
+[나노바나나 생성 프롬프트]
+Scientific anatomy illustration of an Allium cepa onion plant with hollow tubular green leaf and developing bulb on a pure white background. Longitudinal cutaway of the vascular bundle reveals xylem vessels with bright cyan glowing spheres representing calcium ions moving upward. Near the tip of the tubular leaf, calcium flow attenuates and ceases, depicted alongside a magnified cross-section of parenchymal cells showing degraded middle lamella, ruptured cell walls, and oxidized brown necrotic tissue characteristic of tip-burn disorder, rendered with elegant scientific textbook shading. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

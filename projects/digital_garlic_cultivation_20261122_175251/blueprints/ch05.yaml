@@ -1,0 +1,10 @@
+chapter_id: ch05
+chapter_number: 5
+title: 제5장. 정밀 양분 역학과 스마트 관비(Fertigation) 및 시비 처방
+target_pages: 33
+summary_ko: 생육 단계별 질소, 인산, 칼륨, 칼슘, 유황 등의 흡수 역학 및 양분 결핍·과잉 증상을 규명합니다. 실시간 토양 EC/수분 데이터와 연동된 지능형 자동 관비(Fertigation) 시스템 및 변량 시비(VRA) 기술을 다룹니다.
+sections:
+- 5.1 주요 대량·미량 원소의 생리적 역할 및 체내 이동 기전
+- 5.2 마늘 전주기 양분 흡수 곡선과 흡수 패턴의 수치 모델링
+- 5.3 점적관수 기반 자동 관비 시스템 설계 및 양액 배합 알고리즘
+- 5.4 공간 변량 시비(Variable Rate Application) 처방도 작성 및 현장 적용

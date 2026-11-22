@@ -1,0 +1,138 @@
+---
+chapter_id: "ch01"
+title: "제1장. 작물 생육모형의 이해, 필요성 및 분류 체계"
+audience: "대학 전공 심화, 대학원생, 연구자 및 선도 현장 실무자"
+evidence_packet: "crop_growth_model_20261123_051626_evidence.json"
+---
+
+# 제1장. 작물 생육모형의 이해, 필요성 및 분류 체계
+
+## 1.1 작물 생육모형의 정의 및 농업 시스템에서의 역할
+
+작물 생육모형(Crop Growth Model)은 작물의 성장 과정(생리적 변화), 생산량(수확량), 환경 요인(기후, 토양 조건 등) 간의 복잡하고 역동적인 관계를 수학적으로 표현하고 시뮬레이션하는 도구이다 [SRC-283]. 이는 단순히 작물의 상태를 기록하는 것을 넘어, 특정 환경 조건 하에서 작물이 어떻게 반응하고 최종적으로 얼마나 많은 생산물을 낼지를 예측하는 정량적 프레임워크를 제공한다.
+
+농업 시스템에서 작물 생육모형의 역할은 지극히 중요하다. 이 모형들은 농업 생산 시스템의 효율성을 극대화하기 위한 과학적 기반을 제공한다. 예를 들어, 특정 기상 조건(예: 고온이나 높은 CO<sub>2</sub> 농도)이 작물의 생육에 미치는 영향을 시뮬레이션함으로써, 미래 농업 환경 변화에 대한 적응 전략을 모색할 수 있다 [SRC-287]. 나아가, 이 모형들은 작물 재배 관행, 토양 관리, 시비 전략 등을 최적화하는 데 핵심적인 역할을 한다. 실제 연구에서는 특정 작물의 성장 예측을 위해 SVR_Seq2Seq 모델과 같은 기계 학습 기법이 활용되어 온실 작물의 다단계 성장 예측에 적용되기도 한다 [SRC-285].
+
+최근의 연구 경향을 살펴보면, 이러한 모형들은 단순한 생산량 예측을 넘어, 농업적 의사결정 지원 시스템(DSS)의 핵심 요소로 자리매김하고 있다. 예를 들어, 농업 관측 정보 등을 활용하여 청년 농업인의 영농 진입 단계에 필요한 의사결정을 지원하는 체계 설계 연구가 진행되고 있으며 [SRC-106], 농업 관련 연구 기관인 한국농촌경제연구원은 관련 정보의 발간 및 분석을 통해 정책적 시사점을 도출하고 있다 [SRC-106].
+
+## 1.2 모형링 접근법의 역사적 발전: 경험적 대 물리 기반
+
+작물 생육모형의 발전은 두 가지 근본적인 철학적 접근 방식을 중심으로 전개되어 왔다. 이 두 접근 방식은 모형을 구축하는 철학과 데이터 사용 방식에서 명확한 차이를 보인다.
+
+**1. 경험적 모형 (Empirical Models):**
+경험적 모형은 과거의 관측 데이터와 현장에서 얻은 경험적 관계를 통계적, 함수적 형태로 직접적으로 피팅(fitting)하는 데 중점을 둔다. 즉, 작물의 생리적 메커니즘을 깊이 있게 이해하지 않고, 입력 변수와 출력 변수 사이의 통계적 상관관계를 모델링한다. 이는 비교적 빠르고 구현이 용이하다는 장점이 있으나, 그 설명력(mechanism understanding)이 약하고, 새로운 혹은 극단적인 환경 조건에 대한 외삽(extrapolation) 능력에 한계가 있다.
+
+**2. 물리 기반 모형 (Process-Based Models):**
+물리 기반 모형은 작물 생육을 지배하는 생물학적, 화학적, 물리적 메커니즘(광합성, 증산 작용, 양분 흡수 등)을 기초 과학적 원리(예: 생장 방정식, 물질 수지 방정식)에 근거하여 수학적으로 구현한다. 예를 들어, DSSAT-CERES-Rice와 같은 모델은 식물의 생리적 반응을 기초 과학 원리에 기반하여 모사한다 [SRC-283]. 이러한 모형은 메커니즘의 투명성이 높아, 왜 그러한 결과가 나왔는지에 대한 과학적 해석이 가능하다는 결정적인 강점을 가진다.
+
+**역사적 융합 및 발전:**
+초기에는 두 접근 방식이 분리되어 발전했지만, 현대 농업 과학은 이 둘의 장점을 결합하는 방향으로 나아가고 있다. 예를 들어, 특정 작물의 성장 및 수확량 예측을 위해 SVR과 같은 인공지능 기법을 활용하여 데이터 기반의 예측을 강화하는 방식([SRC-285])과, 물리적 프로세스를 정의하되 일부 매개변수를 현장 데이터로 보정(calibration)하는 하이브리드 접근법([SRC-289])이 활발하게 연구되고 있다.
+
+## 1.3 모형의 분류 기준: 반경험적, 물리 기반, 하이브리드 모형
+
+모형의 구조와 목적에 따라 다양하게 분류될 수 있으나, 그 철학적 기반에 따라 다음과 같이 분류할 수 있다.
+
+| 모형 유형 | 기반 철학 | 특징 및 적용 예시 | 주요 강점 |
+| :--- | :--- | :--- | :--- |
+| **경험적/반경험적 모형** | 통계적 상관관계 | 데이터 피팅에 의존하며, 물리적 근거는 약함. | 개발 및 적용이 빠름. |
+| **물리 기반 모형** | 생물학/물리적 법칙 | 작물의 생장 과정을 메커니즘 단위로 상세히 모사. | 높은 설명력, 새로운 조건에 대한 예측 안정성. |
+| **하이브리드 모형** | 결합형 | 물리적 틀 내에서 데이터 기반 보정(Empirical parameterization)을 수행. | 물리적 해석력과 데이터 기반 예측력의 조화. |
+
+**구체적 모형 사례:**
+1. **물리 기반 모형:** 벼의 생육 및 성장 시뮬레이션에 DSSAT-CERES-Rice 모델이 사용되는 것이 대표적 예시이며 [SRC-283], 봄밀이 CO<sub>2</sub> 및 온도 변화에 반응하는 것을 모사하는 연구([SRC-287])는 물리 기반 모형의 전형이다.
+2. **특수 물리/생리 모형:** 특정 재배 환경에 초점을 맞춘 모형이 존재하는데, 예를 들어, 완두콩과 같은 작물의 성장 및 뿌리 주변 토양 환경에 대한 영향 연구([SRC-286])는 생리 및 토양 상호작용을 물리적으로 다루고 있다. 또한, sweet corn의 성장 및 수확량 예측을 위해 선행 모델이 개발된 사례([SRC-284])도 이 범주에 속한다.
+3. **최적화 및 다목적 모형:** 농업 시스템 전반의 최적화를 목표로 할 때, 토양 개량제 사용량과 작물 윤작(crop rotation)을 결합하여 동적 농장 수준 모형을 개선하려는 시도([SRC-289])는 다목적 최적화 문제를 다루는 발전된 형태의 모형이다.
+
+## 1.4 모형 적용의 목표: 예측, 최적화, 민감도 분석의 기초
+
+작물 생육모형이 궁극적으로 농업 현장에 기여하는 방식은 세 가지 핵심 목표를 중심으로 이루어진다.
+
+**1. 예측 (Prediction):**
+가장 기본적인 기능으로, 주어진 초기 조건과 예상되는 환경 입력 변수(온도, 강수량 등)를 바탕으로 미래의 작물 상태(예: 특정 시점의 생체량, 최종 수확량)를 추정한다. 최신 인공지능 기술을 활용하여 특정 시설 재배 작물의 성장 예측을 수행할 수 있다 [SRC-285].
+
+**2. 최적화 (Optimization):**
+최적화는 농업 시스템의 목표 함수(예: 순이익 극대화, 자원 사용 효율 최대화)를 달성하기 위해 모형의 입력 변수(예: 비료 시비량, 파종 시기, 품종 선택)를 탐색하는 과정이다. 이는 단순히 '좋은 결과'를 도출하는 것을 넘어, '가장 효율적인 방법'을 찾아주는 데 초점이 맞춰진다.
+
+**3. 민감도 분석 (Sensitivity Analysis):**
+민감도 분석은 모형의 결과가 입력 변수의 작은 변화에 얼마나 민감하게 반응하는지를 평가하는 기법이다. 예를 들어, "온도가 2도 상승했을 때, 수확량이 얼마나 감소하는가?"와 같은 질문에 답한다. 이는 시스템의 취약점을 파악하고, 불확실성을 관리하는 데 필수적이다. 토양 개량제 비율 결정([SRC-86])이나 기후 변화 시나리오 분석([SRC-287]) 시 이 분석이 핵심적인 역할을 한다.
+
+---
+## ## 핵심 용어집
+
+| 용어 | 정의 | 관련 개념 |
+| :--- | :--- | :--- |
+| **작물 생육모형** | 작물의 성장, 생산, 환경 반응 간의 관계를 수학적으로 모사하는 시스템. | 예측, 최적화 [SRC-283] |
+| **경험적 모형** | 과거 데이터의 통계적 상관관계를 기반으로 구축하는 모형. | 데이터 기반 접근 [SRC-284] |
+| **물리 기반 모형** | 작물의 생물학적, 물리적 메커니즘을 기초 과학 원리에 기반하여 구축하는 모형. | 메커니즘 기반 [SRC-287] |
+| **하이브리드 모형** | 물리적 틀 위에 경험적 데이터 보정 기법을 결합하여 활용하는 모형. | 최적화 결합 [SRC-289] |
+| **민감도 분석** | 입력 변수(환경 조건 등)의 변화가 모형의 출력 결과에 미치는 영향의 정도를 정량화하는 분석. | 불확실성 관리 [SRC-287] |
+
+## ## 이해도 점검 연습문제 및 해설
+
+**문제 1.** 작물 생육모형의 두 가지 근본적인 접근 방식인 경험적 모형과 물리 기반 모형의 가장 핵심적인 차이점은 무엇이며, 각 방식의 장단점을 간략히 설명하시오.
+
+**정답:** 경험적 모형은 과거 관측 데이터를 통계적으로 피팅하는 방식이므로 구현이 빠르지만, 생리적 설명력이 낮다는 단점이 있다. 반면, 물리 기반 모형은 광합성이나 증산과 같은 생물학적 원리를 직접 코드로 구현하므로 높은 설명력을 가지나, 복잡한 메커니즘 구현에 높은 난이도와 시간이 소요된다.
+
+**문제 2.** 작물 생육모형이 농업 시스템에서 수행하는 세 가지 주요 목표(예측, 최적화, 민감도 분석) 중, '토양 개량제 사용량 결정'과 가장 밀접한 관련이 있는 목표는 무엇이며, 그 이유는 무엇인가?
+
+**정답:** 민감도 분석과 최적화 분석 모두 관련될 수 있으나, '사용량 결정'이라는 의사결정 지원 측면에서 가장 직접적인 것은 **최적화**이다. 최적화는 주어진 목표(예: 최대 수익)를 달성하기 위해 투입 자원(예: 개량제 양)을 가장 효율적으로 조정하는 최적의 지점을 탐색하는 과정이기 때문이다.
+
+**문제 3.** 다음 중 모형의 발전 방향에 대한 설명으로 가장 적절한 것은?
+
+1. 농업 생산량 예측 시 항상 경험적 모형을 우선적으로 사용하여 개발 속도를 높여야 한다.
+2. 물리 기반 모형은 특정 기후 시나리오(예: 고 CO<sub>2</sub>) 하에서 작물의 반응을 깊이 있게 모사하는 데 유리하다.
+3. 모든 작물 모형은 생리적 과정의 세부 사항을 무시하고, 오직 통계적 데이터만을 이용하여 구축되어야 한다.
+4. SVR_Seq2Seq와 같은 인공지능 모델은 물리적 메커니즘을 완전히 배제하고 결과를 산출한다.
+
+**정답:** 2. 물리 기반 모형은 특정 기후 시나리오(예: 고 CO<sub>2</sub>) 하에서 작물의 반응을 깊이 있게 모사하는 데 유리하다.
+
+**상세 풀이:**
+1. (오답) 실제로는 물리적 원리를 포함하는 하이브리드 모형이 가장 높은 신뢰도를 제공한다.
+2. (정답) 물리 기반 모형은 특정 변수(예: 온도, CO<sub>2</sub>)의 변화가 생리적 경로를 따라 어떻게 반응하는지를 계산하므로, 기후 변화 같은 가설 검증에 강력하다 [SRC-287].
+3. (오답) 현대 연구는 경험적 접근과 물리적 접근을 결합하는 추세이며, 생리적 메커니즘을 반영하는 것이 중요하다.
+4. (오답) 최신 SVR 기반 예측 모델(SRC-285)도 데이터 기반이지만, 이는 현상의 '결과'를 예측하는 것이지, 내부 물리적 프로세스를 '설명'하는 것과는 구별된다.
+
+## ## 오해와 진실: 현장·이론 핵심 오해 교정
+
+**오해 1: 작물 생육모형은 단순히 미래의 작황을 '점치는' 예측 도구에 불과하다.**
+**진실:** 모형은 단순히 예측을 넘어, '왜 그러한 결과가 나올지'에 대한 과학적 메커니즘을 해석하고(물리 기반 모형), 특정 관행 변화가 어떤 영향을 미칠지를 시뮬레이션하여 의사결정을 **최적화**하는 도구이다 [SRC-283].
+
+**오해 2: 가장 복잡하고 세부적인 물리 기반 모형이 항상 가장 정확한 결과를 보장한다.**
+**진실:** 모형의 정확도는 '복잡성'뿐만 아니라 '적절한 매개변수 설정(Calibration)'에 달려있다. 아무리 복잡한 물리 모형이라도 현장 데이터를 기반으로 매개변수가 잘못 설정되면, 단순한 경험적 모형보다 더 큰 오차를 보일 수 있으며, DSSAT와 같은 모형도 현장 조건에 맞춘 검증 과정이 필수적이다 [SRC-283, SRC-290].
+
+**오해 3: 인공지능 기반의 예측 모델(SVR 등)은 물리적 메커니즘을 완전히 배제하는 것이다.**
+**진실:** 최근 연구는 이 두 가지 철학을 융합하려는 시도가 주를 이루고 있다. SVR_Seq2Seq 모델과 같은 최신 기계 학습 모델([SRC-285])은 데이터 기반으로 고성능을 보이지만, 가장 진보된 연구들은 물리적 제약 조건(Physical constraints)을 손실 함수(Loss function)에 통합하여, 데이터의 예측력과 물리적 타당성을 동시에 만족시키는 **물리정보학적 모델(Physics-Informed Models)**로 발전하고 있다.
+
+## 참고문헌 및 근거 출처 목록
+
+| 출처 ID | 유형 | 제목 | URL | 라이선스 |
+| :--- | :--- | :--- | :--- | :--- |
+| `SRC-100` | web | 농촌진흥청 | https://www.rda.go.kr/ | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-102` | web | 한국식품연구원 | https://www.kfri.re.kr/ | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-104` | web | 농림축산식품부 | https://www.mafra.go.kr/home/index.do | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-106` | web | 한국농촌경제연구원 | https://www.krei.re.kr/krei/index.do | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-283` | web | [2021] Rice phenology and growth simulation using DSSAT- CERES-Rice crop model under the different temperatures changing with climatic condition (International Journal of Agricultural Sciences and Technology) | https://doi.org/10.51483/ijagst.1.2.2021.1-11 | 학술 서지 메타데이터·초록(Crossref) - 정식 인용 목적(원문 무단 복제 금지) |
+| `SRC-284` | web | [2016] A preliminary model of sweet corn growth and yield (New Zealand Journal of Crop and Horticultural Science) | https://doi.org/10.1080/01140671.2016.1264078 | 학술 서지 메타데이터·초록(Crossref) - 정식 인용 목적(원문 무단 복제 금지) |
+| `SRC-285` | web | [2025] Multi-step prediction of greenhouse crop growth based on the SVR_Seq2Seq model (Smart Agricultural Technology) | https://doi.org/10.1016/j.atech.2025.100986 | 학술 서지 메타데이터·초록(Crossref) - 정식 인용 목적(원문 무단 복제 금지) |
+| `SRC-286` | web | [2022] Effects of residual broken roots on the growth and rhizosphere soil of herbaceous peony (European Journal of Horticultural Science) | https://doi.org/10.17660/ejhs.2022/035 | 학술 서지 메타데이터·초록(Crossref) - 정식 인용 목적(원문 무단 복제 금지) |
+| `SRC-287` | web | [2001] Simulation of spring wheat responses to elevated CO2 and temperature by using CERES-wheat crop model (Agricultural and Food Science) | https://doi.org/10.23986/afsci.5692 | 학술 서지 메타데이터·초록(Crossref) - 정식 인용 목적(원문 무단 복제 금지) |
+| `SRC-288` | web | [2025] Assessment of the Effects of Drying Methods on the  Drying Characteristics, Color, Nutritional and  Medicinal Attributes of Dioscorea opposita Thunb (ES Food &amp; Agroforestry) | https://doi.org/10.30919/faf1652 | 학술 서지 메타데이터·초록(Crossref) - 정식 인용 목적(원문 무단 복제 금지) |
+| `SRC-289` | web | [2024] Improving a dynamic farm level model by coupling empirically estimated pre-crop values with crop rotation optimization (Agricultural and Food Science) | https://doi.org/10.23986/afsci.144747 | 학술 서지 메타데이터·초록(Crossref) - 정식 인용 목적(원문 무단 복제 금지) |
+| `SRC-290` | web | [2013] Comparison of Crop Growth and Evapotranspiration Simulations between Noah Multi Physics Model and CERES-Rice Model (Korean Journal of Agricultural and Forest Meteorology) | https://doi.org/10.5532/kjafm.2013.15.4.282 | 학술 서지 메타데이터·초록(Crossref) - 정식 인용 목적(원문 무단 복제 금지) |
+| `SRC-291` | web | [2013] Cassava Nitrogen Requirements in Thailand and Crop Simulation Model Predictions (Soil Science) | https://doi.org/10.1097/ss.0b013e31829a283f | 학술 서지 메타데이터·초록(Crossref) - 정식 인용 목적(원문 무단 복제 금지) |
+| `SRC-86` | web | [2025] Determination of optimal mixing ratio of organic fertilizer and biochar derived from agricultural waste to increase crop growth and soil carbon sequestration (Korean Journal of Soil Science and Fertilizer) | https://doi.org/10.7745/kjssf.2025.58.1.118 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-292` | web | [2022] Korean Model for Estimating Soil Available Water Content of Soybean Cultivation Area with Integrated Soil, Meteorology, and Crop Data (Korean Journal of Soil Science and Fertilizer) | https://doi.org/10.7745/kjssf.2022.55.4.570 | 학술 서지 메타데이터·초록(Crossref) - 정식 인용 목적(원문 무단 복제 금지) |
+| `SRC-293` | web | [연도 미상] Crop simulation model of the second and the third productivity levels (Modelling water and nutrient dynamics in soil–crop systems) | https://doi.org/10.1007/978-1-4020-4479-3_7 | 학술 서지 메타데이터·초록(Crossref) - 정식 인용 목적(원문 무단 복제 금지) |
+| `SRC-294` | web | [2023] Irrigation in the Earth system (Nature Reviews Earth & Environment) | https://doi.org/10.1038/s43017-023-00438-5 | 학술 논문 오픈액세스(OpenAlex) - 변환적 분석 및 정식 학술 인용 |
+| `SRC-295` | pdf | [2024] Global critical soil moisture thresholds of plant water stress (Nature Communications) | https://doi.org/10.1038/s41467-024-49244-7 | 학술 논문 오픈액세스(OpenAlex) - 변환적 분석 및 정식 학술 인용 |
+| `SRC-296` | web | [2021] Statistical upscaling of ecosystem CO 2 fluxes across the terrestrial tundra and boreal domain: Regional patterns and uncertainties (Global Change Biology) | https://doi.org/10.1111/gcb.15659 | 학술 논문 오픈액세스(OpenAlex) - 변환적 분석 및 정식 학술 인용 |
+| `SRC-297` | web | [2023] Effects of Climate Change and Drought Tolerance on Maize Growth (Plants) | https://doi.org/10.3390/plants12203548 | 학술 논문 오픈액세스(OpenAlex) - 변환적 분석 및 정식 학술 인용 |
+| `SRC-298` | web | [2021] Eco‐evolutionary optimality as a means to improve vegetation and land‐surface models (New Phytologist) | https://doi.org/10.1111/nph.17558 | 학술 논문 오픈액세스(OpenAlex) - 변환적 분석 및 정식 학술 인용 |
+| `SRC-136` | web | Technical Platform on the Measurement and Reduction of Food Loss and Waste / Food and Agriculture Organization of the United Nations | https://www.fao.org/platform-food-loss-waste/en/ | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-140` | web | ARS Home : USDA ARS | https://www.ars.usda.gov/ | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-142` | web | NFRI / National Agriculture and Food Research Organization | https://www.naro.go.jp/english/laboratory/nfri/index.html | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-299` | web | [2012] Impacts of climate change on the future of biodiversity (Ecology Letters) | https://doi.org/10.1111/j.1461-0248.2011.01736.x | 학술 논문 오픈액세스(OpenAlex) - 변환적 분석 및 정식 학술 인용 |
+| `SRC-300` | web | [2023] Earth beyond six of nine planetary boundaries (Science Advances) | https://doi.org/10.1126/sciadv.adh2458 | 학술 논문 오픈액세스(OpenAlex) - 변환적 분석 및 정식 학술 인용 |
+| `SRC-301` | pdf | [2005] Europe-wide reduction in primary productivity caused by the heat and drought in 2003 (Nature) | https://insu.hal.science/insu-00373792 | 학술 논문 오픈액세스(OpenAlex) - 변환적 분석 및 정식 학술 인용 |
+| `SRC-302` | pdf | [2017] More than 75 percent decline over 27 years in total flying insect biomass in protected areas (PLoS ONE) | https://doi.org/10.1371/journal.pone.0185809 | 학술 논문 오픈액세스(OpenAlex) - 변환적 분석 및 정식 학술 인용 |
+| `SRC-303` | web | [2001] FLUXNET: A New Tool to Study the Temporal and Spatial Variability of Ecosystem–Scale Carbon Dioxide, Water Vapor, and Energy Flux Densities (Bulletin of the American Meteorological Society) | https://doi.org/10.1175/1520-0477(2001)082<2415:fantts>2.3.co;2 | 학술 논문 오픈액세스(OpenAlex) - 변환적 분석 및 정식 학술 인용 |

@@ -1,0 +1,12 @@
+이미지 번호: 그림 7-6
+이미지 파일명: fig_ch07_v06.png
+단원: 제7장. 생육 단계별 생리 지표와 윤작·혼작 최적 작부체계 (ch07)
+결합 절: 7.3 마늘 중심 윤작체계(마늘-벼, 마늘-콩)의 물질순환 및 지력 유지
+시각화 유형: scientific_anatomy
+제목: [그림 7-6] 마늘-콩 윤작 체계의 생물학적 질소 고정 및 토양 양분 순환 메커니즘
+
+[문맥 기반 이미지 설명]
+[그림 7-6] 마늘 수확 후 후작으로 배치된 콩의 뿌리혹박테리아에 의한 생물학적 질소 고정과 토양 물질순환 기작을 나타낸 과학 해부도이다. 콩 뿌리의 근류(root nodules)에서 공중질소가 가용성 질소로 전환되는 과정과, 마늘 잔재물의 유기물 분해가 상호작용하여 토양 비옥도를 복원하는 과정을 상세히 도해한다 [SRC-103]. 이는 연작으로 인한 영양소 불균형을 교정하는 핵심 생태적 해법이다.
+
+[나노바나나 생성 프롬프트]
+Scientific botanical illustration on a pure white background showcasing the rhizospheric nitrogen cycling between a harvested garlic bulb root zone and an alternating soybean plant root. Detailed anatomical cross-section of pinkish-red leguminous root nodules colonized by Rhizobium bacteria fixing nitrogen, nutrient diffusion streams depicted flowing through soil pore networks, enriched soil organic matter, and decomposed garlic root fragments. Highly detailed biological textbook visual. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

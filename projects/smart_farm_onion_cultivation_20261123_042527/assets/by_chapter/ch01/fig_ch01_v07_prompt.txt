@@ -1,0 +1,12 @@
+이미지 번호: 그림 1-7
+이미지 파일명: fig_ch01_v07.png
+단원: 제1장. 양파의 기원, 진화와 국내외 산업 생태계 현황 (ch01)
+결합 절: 현장 적용·실전 기술: 글로벌 산업 동향과 국내 산업 구조 진단
+시각화 유형: photorealistic_field
+제목: [그림 1-7] 글로벌 수출입 유통망을 위한 저온 냉장 컨테이너 규격 파렛타이징 선적
+
+[문맥 기반 이미지 설명]
+[그림 1-7] 글로벌 양파 수출입 공급망 현장에서 규격화된 통기성 메시 팔레트에 적재된 양파가 콜드체인 리퍼 컨테이너에 선적되는 광경입니다. 국제 무역 기준에 부합하도록 엄격한 등급 선별과 큐어링(Curing)을 완료한 구들이 온도 0~2℃, 습도 65~70%가 제어되는 선박 냉장 컨테이너에 적치됩니다. 이는 생산 벨트 간 교역 변동성에 대응하여 신선도를 보존하는 필수 물류 공정입니다 [SRC-106, SRC-107].
+
+[나노바나나 생성 프롬프트]
+Photorealistic documentary field photograph at a modern agricultural export logistics hub. Forklifts are loading heavy wooden pallets stacked high with uniform 20kg orange-red ventilated mesh bags filled with firm, cured golden onions into a clean white marine refrigerated reefer shipping container. Natural daylight illuminates the organized rows of pallets and the industrial cold-storage loading dock. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

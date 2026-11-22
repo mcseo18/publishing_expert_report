@@ -1,0 +1,12 @@
+이미지 번호: 그림 2-6
+이미지 파일명: fig_ch02_v06.png
+단원: 제2장. 양파의 식물학적 분류체계와 스마트 팜 맞춤형 품종 특성 (ch02)
+결합 절: 현장 적용·실전 기술
+시각화 유형: photorealistic_field
+제목: [그림 2-6] 스마트 노지 기계화 수확에 최적화된 직립형(Erect) 초형 양파 재배 포장
+
+[문맥 기반 이미지 설명]
+[그림 2-6] 자동화 굴취 및 수거 기계의 원활한 진입을 위해 엽각이 곧고 쓰러짐이 없는 직립형 초형 양파 품종의 노지 재배 현장이다. 포장 전체에서 잎이 늘어지지 않고 수직으로 곧게 뻗어 있어 기계 주행 시 엽초 손상이 최소화되고 수확기 흡입 효율이 극대화된다. [SRC-102]에 제시된 기계화 적합성 평가 지표 중 직립성(Erectness)의 실제 농작업 현장 적용 양상을 명확하게 보여준다.
+
+[나노바나나 생성 프롬프트]
+Crisp photorealistic agricultural documentary photograph capturing an onion field cultivated specifically for mechanized harvesting. Healthy onion plants demonstrate distinct rigidly erect leaf habit, with thick cylindrical blue-green leaves rising almost vertically at sharp angles without lodging. Rows are spaced with mathematical precision on flat raised beds under clear blue sky daylight. In the background, a modern mechanical onion harvester tracks down adjacent alleys. Ground-level low-angle view emphasizing the strong sturdy neck and erect posture of the onion stems, hyper-realistic detail, zero text. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

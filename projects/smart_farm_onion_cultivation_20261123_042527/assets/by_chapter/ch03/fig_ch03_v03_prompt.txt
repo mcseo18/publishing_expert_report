@@ -1,0 +1,12 @@
+이미지 번호: 그림 3-3
+이미지 파일명: fig_ch03_v03.png
+단원: 제3장. 양파의 생육 단계별 생리 기작과 인경 비대 메커니즘 (ch03)
+결합 절: 생리·분자 메커니즘 심층 분석
+시각화 유형: scientific_anatomy
+제목: [그림 3-3] 일장 감응 피토크롬 매개 FT-homolog 인경 비대 유도 신호전달 모델
+
+[문맥 기반 이미지 설명]
+[그림 3-3] 임계 일장 노출 시 양파 엽육세포 내 피토크롬(Phytochrome) 광수용체가 활성화되어 FT-homolog 복합체가 생성되고 체관부를 통해 기저부로 이동하는 분자 신호 전달 경로를 나타낸 과학 일러스트레이션입니다. 잎에서 감응된 광주기 신호가 하향 이동하여 기저부 인편 유두세포(Scale cells)의 분열 및 횡방향 세포 팽창을 촉발하는 세포학적 캐스케이드를 시각화합니다. 본문 3.2절에서 다룬 장일 환경 하 인경 팽창 유전자 발현 과정을 분자 수준에서 입증합니다.
+
+[나노바나나 생성 프롬프트]
+Scientific anatomical cutaway illustration of an onion leaf sheath and bulb tissue junction on a pure white background. The illustration reveals the cellular pathway of photoperiod signaling: microscopic red and far-red light waves entering leaf chloroplasts, activating glowing protein signal messengers traveling downward through the blue and pink phloem vascular strands into the basal bulb scale cells, triggering lateral cell expansion and cell wall loosening. Highly detailed scientific rendering with crisp lighting and soft gradient shading. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

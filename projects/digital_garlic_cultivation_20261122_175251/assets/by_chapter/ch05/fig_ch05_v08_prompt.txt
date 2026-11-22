@@ -1,0 +1,12 @@
+이미지 번호: 그림 5-8
+이미지 파일명: fig_ch05_v08.png
+단원: 제5장. 정밀 양분 역학과 스마트 관비(Fertigation) 및 시비 처방 (ch05)
+결합 절: 5.4 공간 변량 시비(Variable Rate Application, VRA) 처방도 작성 및 현장 적용
+시각화 유형: scientific_anatomy
+제목: [그림 5-8] 다층 공간 데이터 중첩을 통한 마늘 포장 VRA 처방도 생성 프로세스
+
+[문맥 기반 이미지 설명]
+[그림 5-8] GIS 플랫폼에서 토양 화학성 공간 분포와 마늘 작물 생육 지수가 3차원 레이어로 중첩되어 VRA 처방도로 변환되는 과정을 시각화한 과학 도해도입니다. 최하단의 토양 유효인산 및 칼륨 함량 격자 레이어, 중간의 드론 분광 기반 작물 활력도 레이어, 최상단의 구역별 시비량(kg/ha) 처방 블록이 입체적으로 배열되어 있습니다. 단순 토양 결핍 지도를 넘어 작물의 실제 생리적 요구도를 결합하여 처방 정밀도를 극대화하는 알고리즘 구조를 보여줍니다 [SRC-100].
+
+[나노바나나 생성 프롬프트]
+Scientific editorial exploded axonometric visualization of multi-layer geospatial data layers floating in isometric 3D perspective against a pure white background. The bottom transparent terrain layer depicts soil fertility and available nutrient heatmaps with warm orange and cool blue gradients, the middle floating glass-like layer shows detailed garlic crop canopy vegetation index density, and the top analytical layer shows precise polygon management zones with graduated application rates. Rendered with clean geometric precision, subtle glass reflections, and sophisticated scientific aesthetic. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

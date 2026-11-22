@@ -1,0 +1,12 @@
+이미지 번호: 그림 11-3
+이미지 파일명: fig_ch11_v03.png
+단원: 제11장. 컴퓨터 비전 및 딥러닝 기반 디지털 병해충·생리장해 진단 (ch11)
+결합 절: 11.2 객체 탐지(YOLO) 및 이미지 분할을 활용한 병해충 식별
+시각화 유형: photorealistic_macro
+제목: [그림 11-3] 마늘 파총채벌레 가해 흔적 및 엽초 부위 객체 탐지(Object Detection) 시각화
+
+[문맥 기반 이미지 설명]
+[그림 11-3] 마늘 줄기와 잎 엽초 틈새에서 발생하는 파총채벌레(Thrips tabaci)의 섭식 가해 부위를 초근접 매크로 촬영으로 포착한 장면입니다. 은백색 탈색 반점과 미세한 배설물 흔적이 엽맥을 따라 분포하며, 신경망 추론 모델이 특정 이상 영역을 분리하여 포착하는 객체 탐지 기술의 실제 대상을 선명하게 보여줍니다. [SRC-100]의 YOLO 등 실시간 탐지 알고리즘이 현장에서 미세 해충 피해를 신속히 판별하는 메커니즘을 뒷받침합니다.
+
+[나노바나나 생성 프롬프트]
+Extreme macro photography of an upright garlic stem and leaf junction showing insect infestation. Tiny slender onion thrips crawl near longitudinal silver-white feeding scars and minute dark frass specks along the fibrous green cuticle of the Allium sativum sheath. Crisp shallow depth of field, natural optical refraction on translucent plant epidermal cells, sharp focus on pest morphology and chlorotic leaf tissue under soft directional morning light. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

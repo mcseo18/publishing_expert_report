@@ -1,0 +1,12 @@
+이미지 번호: 그림 13-1
+이미지 파일명: fig_ch13_v01.png
+단원: 제13장. 스마트 건조(Curing)와 CA/저온 저장 환경 최적화 제어 (ch13)
+결합 절: 13.1 수확 후 인경의 큐어링(Curing) 생리: 외피 건조 메커니즘과 네크 썩음병균 침입 차단막 형성 (개념 소개 및 이론적 배경)
+시각화 유형: scientific_anatomy
+제목: [그림 13-1] 큐어링 과정 중 양파 인경(Neck) 조직의 수베린화 및 병원균 차단막 형성 메커니즘
+
+[문맥 기반 이미지 설명]
+[그림 13-1] 수확 직후 수분이 풍부한 양파 인경 부위가 온습도 제어를 통해 건조되면서 유세포가 수축하고 세포벽에 수베린(Suberin)과 리그닌이 침착되는 물리화학적 방어막 형성 과정을 보여줍니다. 건조된 외피 세포층은 다공성이 급격히 감소하여 잿빛곰팡이네크썩음병균(Botrytis allii) 균사의 조직 내부 침투를 효과적으로 차단합니다[SRC-107]. 이와 같은 차단막 형성은 장기 저장 중 내부 가식부 인편으로의 2차 감염을 방지하는 결정적인 생리적 장벽 역할을 합니다[SRC-145].
+
+[나노바나나 생성 프롬프트]
+Scientific anatomical cross-section of an onion (Allium cepa) neck tissue during the curing process on a clean pure white background. The upper layer depicts dried, tightly collapsed outer parenchymal cells forming a dense, brown suberized and lignified epidermal protective layer. Directly above this sealed barrier, microscopic fungal hyphae with branching conidiophores are physically halted and unable to penetrate the dense tissue. Beneath the barrier, healthy turgid translucent succulent green and white inner neck cells remain intact and protected from pathogen intrusion, illustrated with elegant scientific textbook shading and clean biological rendering. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

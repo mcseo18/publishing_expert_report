@@ -1,0 +1,12 @@
+이미지 번호: 그림 13-9
+이미지 파일명: fig_ch13_v09.png
+단원: 제13장. 디지털 수확 적기 판별과 마늘 굴취·수집·절단 복합 기계화 (ch13)
+결합 절: 13.3.2 수직 반송 이송 시스템(Vertical Conveying System) 설계
+시각화 유형: scientific_anatomy
+제목: [그림 13-9] 마늘 구 충격 저감형 수직 반송 엘리베이터 및 흙털기 롤러 시스템
+
+[문맥 기반 이미지 설명]
+[그림 13-9] 절단된 마늘 구체를 후방 수집부로 이송하는 수직 로드 체인 컨베이어와 흙털기 스타 롤러의 작동 원리를 나타낸 단면도이다. 구체의 타박 손상을 방지하기 위해 각 바(bar)에 완충 고무 튜브가 피복되어 있으며, 연질 스타 롤러의 편심 회전을 통해 잔류 토사만 선택적으로 탈락시킨다. 자유 낙하 가속도를 제어하여 마늘의 내부 세포 손상을 억제하도록 공학적으로 설계되었다[SRC-107].
+
+[나노바나나 생성 프롬프트]
+A detailed scientific engineering illustration on a pure white background showing a vertical inclined rod-chain elevator and soil-cleaning star-roller system for harvesting garlic. Truncated garlic bulbs travel smoothly upward on cushioned rubber-sleeved flight bars spaced evenly along a conveyor track. Beneath the elevating flight, flexible elastomeric star-shaped rotary tines rotate eccentrically, dislodging dried dirt clumps and clods down through wire grates while keeping the garlic bulbs resting securely without bruising. Smooth shading and technical cutaways highlight the mechanical layout. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

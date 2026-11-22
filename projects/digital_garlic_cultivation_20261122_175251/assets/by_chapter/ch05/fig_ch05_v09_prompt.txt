@@ -1,0 +1,12 @@
+이미지 번호: 그림 5-9
+이미지 파일명: fig_ch05_v09.png
+단원: 제5장. 정밀 양분 역학과 스마트 관비(Fertigation) 및 시비 처방 (ch05)
+결합 절: 오해와 진실: 현장·이론 핵심 오해 교정
+시각화 유형: photorealistic_macro
+제목: [그림 5-9] 토양 포화침출액의 총 EC 측정과 개별 이온 선택성 전극(ISE) 정밀 분석
+
+[문맥 기반 이미지 설명]
+[그림 5-9] 토양 EC 단일 측정의 한계를 극복하기 위해 실험실 벤치에서 개별 양분 이온을 정밀 분리 측정하는 분석 현장 매크로 사진입니다. 마늘 근권 토양 용액 샘플이 담긴 비커에 삽입된 디지털 복합 EC 전극과 함께, 질산태 질소(NO3-) 및 칼륨(K+) 전용 이온 선택성 전극(ISE)들이 나란히 정렬되어 있습니다. 총 전도도 수치가 동일하더라도 실제 유효 질소나 칼륨의 상대적 비율이 결핍 혹은 과잉 상태일 수 있음을 증명하는 과학적 분석 절차입니다 [SRC-100].
+
+[나노바나나 생성 프롬프트]
+High-detail photorealistic macro photography of an agricultural chemistry laboratory workstation. Clear glass beakers filled with pale amber soil pore-water extract and freshly harvested Allium sativum root tip specimens rest on a white laboratory surface. Multiple slender ion-selective electrode sensors and a glass-bulb electrical conductivity probe are suspended in the solution, connected by fine shielded cables to a digital benchtop meter displaying crisp liquid crystal measurements under clean diffused laboratory illumination. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

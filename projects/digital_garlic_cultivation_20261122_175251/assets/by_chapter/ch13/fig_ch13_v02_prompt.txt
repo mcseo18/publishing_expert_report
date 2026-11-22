@@ -1,0 +1,12 @@
+이미지 번호: 그림 13-2
+이미지 파일명: fig_ch13_v02.png
+단원: 제13장. 디지털 수확 적기 판별과 마늘 굴취·수집·절단 복합 기계화 (ch13)
+결합 절: 13.1.1 경엽 황화율을 이용한 비파괴적 수확 시기 예측
+시각화 유형: scientific_anatomy
+제목: [그림 13-2] 드론 분광 데이터 기반 마늘 캐노피 엽록소 붕괴 및 NDVI 반사율 메커니즘
+
+[문맥 기반 이미지 설명]
+[그림 13-2] 마늘 엽조직의 엽록소 파괴와 근적외선 반사율 변화를 구조적으로 도해한 정밀 학술 일러스트레이션이다. 건강한 녹색 엽육세포 내 엽록포체 붕괴 과정과 세포벽 붕괴에 따른 반사 스펙트럼의 변화가 마늘 식물체의 종단면과 함께 묘사된다. 드론 및 광학 센서를 통한 다중분광 밴드 수집 메커니즘은 포장 전체의 정량적 황화율 산출을 가능하게 한다[SRC-101].
+
+[나노바나나 생성 프롬프트]
+Scientific cross-section illustration on a clean pure white background depicting a garlic (Allium sativum) plant canopy transitioning into senescence. At the cellular level, mesophyll cells show degrading chloroplasts and shrinking vacuoles, transitioning in coloration from deep emerald green to translucent amber. Translucent light rays illustrating near-infrared and red light absorption and reflectance bounce off the waxy garlic leaf cuticles. The garlic bulb at the base displays tight cloves encased in multilayered fibrous tunics with fibrous roots radiating into dry soil strata, rendered in richly shaded academic textbook style without any labels or text. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

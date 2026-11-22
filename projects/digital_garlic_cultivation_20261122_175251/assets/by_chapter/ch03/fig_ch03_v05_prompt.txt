@@ -1,0 +1,12 @@
+이미지 번호: 그림 3-5
+이미지 파일명: fig_ch03_v05.png
+단원: 제3장. 마늘 품종별 유전 특성, 생리적 분화 및 디지털 계통 분류 (ch03)
+결합 절: 3.2 저온감응(Vernalization), 휴면(Dormancy) 및 추대(Bolting)의 유전생리
+시각화 유형: photorealistic_field
+제목: [그림 3-5] 마늘 화경(추대) 발달 및 총포 내 주아 형성 양상
+
+[문맥 기반 이미지 설명]
+[그림 3-5] 일장 및 온도 감응에 의해 위경을 뚫고 솟아오른 마늘 화경(마늘종, Scape)의 추대 발달과 선단 총포 내부의 주아(Bulbil) 발생 과정을 근접 촬영한 포장 생태 사진이다. 나선형으로 굽어지며 곧게 신장하는 단단한 녹색 꽃대의 질감과 함께, 총포 피막 내부에서 분화되는 소형 주아들의 미세 구조가 나타난다 [SRC-103]. 이 생식 생장 전환 현상은 품종의 유전적 민감도와 수확 시기 인편 비대에 직접적인 생체 에너지 배분 영향을 미친다.
+
+[나노바나나 생성 프롬프트]
+Field photograph capturing the bolting scape of an Allium sativum plant in a farm setting. A sturdy, cylindrical, waxy green flower stalk loops gracefully as it emerges from the central leaf sheaf, terminating in a pointed, papery spathe bract. The spathe has a small tear revealing miniature teardrop-shaped aerial bulbils clustering inside. Soft natural sunlight filtering through the garlic canopy, deep green linear leaves in background, agricultural authenticity. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

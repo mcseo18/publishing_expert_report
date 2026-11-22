@@ -1,0 +1,12 @@
+이미지 번호: 그림 3-2
+이미지 파일명: fig_ch03_v02.png
+단원: 제3장. 양파의 생육 단계별 생리 기작과 인경 비대 메커니즘 (ch03)
+결합 절: 개념 소개 및 이론적 배경
+시각화 유형: scientific_anatomy
+제목: [그림 3-2] 초기 인경 분화기 엽초 기저부의 동심원상 팽창 해부도
+
+[문맥 기반 이미지 설명]
+[그림 3-2] 생육 초기 양파 엽초(Leaf sheath) 기저부가 원반형 줄기인 기저반(Basal plate)을 중심으로 동심원상으로 중첩되며 비대하는 구조를 나타낸 학술 해부도입니다. 광합성 엽신의 기저부가 다육질의 인편(Fleshy bulb scales)으로 전환되는 해부학적 층위와 중심부 생장점(Shoot apical meristem)의 배열을 정밀하게 묘사합니다. 이는 본문에서 제시된 초기 영양 생장기 인경 분화 메커니즘의 기초 구조적 기반을 설명합니다.
+
+[나노바나나 생성 프롬프트]
+A detailed scientific botanical cross-section illustration of an early-stage developing Allium cepa onion bulb on a pure white background. The illustration displays concentric translucent fleshy scales wrapped around the compressed basal plate disk, with fibrous roots extending below and vibrant cylindrical green tubular foliage extending upward. Richly shaded watercolor and gouache biological painting style, clearly showing the cellular layers of inner leaf sheaths, vascular bundles, and the central apical meristem without any text. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

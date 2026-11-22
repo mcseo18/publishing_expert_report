@@ -1,0 +1,12 @@
+이미지 번호: 그림 15-7
+이미지 파일명: fig_ch15_v07.png
+단원: 제15장. 디지털 마늘 재배의 경제성 평가, 탄소 배출량 및 미래 전망 (ch15)
+결합 절: 15.3 화학비료 절감 및 디젤 대체에 따른 마늘 생애주기 탄소발자국 (LCA) 평가
+시각화 유형: photorealistic_macro
+제목: [그림 15-7] 마늘 재배 토양의 온실가스 플럭스 자동 포집 챔버 측정 현장
+
+[문맥 기반 이미지 설명]
+[그림 15-7] 마늘 생육 포장 표면에 설치된 정밀 온실가스 폐쇄형 자동 챔버의 내부를 상세히 보여주는 매크로 사진입니다. 디지털 센서와 연결된 공기 순환 튜브가 토양 미생물 호흡 및 탈질에 의해 방출되는 미세 가스 농도를 실시간으로 추적합니다 [SRC-105]. 이는 화학비료 시비량 절감에 따른 탄소배출량 감축 실적을 전과정평가(LCA) 방법론에 맞춰 정량화하는 실증 연구 기반입니다.
+
+[나노바나나 생성 프롬프트]
+Detailed macro photograph of a transparent cylindrical gas flux chamber installed flush into the soil surface between rows of emerald green garlic plants. Flexible silicone tubing and micro-thermocouple probes connect to a digital analyzer port at the top of the acrylic dome. Inside the sealed perimeter, damp soil and tiny developing garlic seedlings are visible with subtle water droplets condensed on the interior wall, captured in sharp natural overcast daylight. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

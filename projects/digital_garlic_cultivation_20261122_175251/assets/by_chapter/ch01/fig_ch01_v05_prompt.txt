@@ -1,0 +1,12 @@
+이미지 번호: 그림 1-5
+이미지 파일명: fig_ch01_v05.png
+단원: 제1장. 마늘의 기원·역사 및 디지털 농업 패러다임의 태동 (ch01)
+결합 절: 1.2 마늘의 역사적 재배 변천사와 산업적 위상
+시각화 유형: photorealistic_field
+제목: [그림 1-5] 현대 대규모 상업적 노지 마늘 생산 포장의 생육 균일성
+
+[문맥 기반 이미지 설명]
+[그림 1-5] 기능성 식품 수요 급증과 산업화에 발맞추어 규격화된 현대 상업용 마늘 생산 포장의 전경이다 [SRC-102, SRC-104]. 표준화된 재식 거리와 레이저 레벨링 기반의 두둑 성형을 통해 생육 단계별로 완벽한 균일성을 보이는 마늘 군락을 포착하였다. 노동집약적 전통 농업에서 고효율 대량 생산 체계로 전환된 산업적 위상을 시각적으로 입증한다 [SRC-101].
+
+[나노바나나 생성 프롬프트]
+A high-altitude documentary landscape photograph of a vast commercial garlic production field in peak vegetative stage. Thousands of vibrant blue-green garlic stalks stand upright in perfectly straight, parallel raised beds stretching to the horizon under a clear spring sky. Modern tractor tire tracks run between wide buffer alleys, showcasing extreme crop uniformity, precision weed management, and industrial agronomy at scale. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

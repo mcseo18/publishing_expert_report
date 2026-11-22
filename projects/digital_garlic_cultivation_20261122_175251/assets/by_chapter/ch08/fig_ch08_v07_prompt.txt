@@ -1,0 +1,12 @@
+이미지 번호: 그림 8-7
+이미지 파일명: fig_ch08_v07.png
+단원: 제8장. 종구 조제, 정식 자동화 및 기계화 재배 양식 (ch08)
+결합 절: 8.3.1 생분해성 멀칭 필름 피복 메커니즘
+시각화 유형: photorealistic_field
+제목: [그림 8-7] 생분해성 수지 멀칭 필름 피복 및 흙덮기 배토기 일체형 작업
+
+[문맥 기반 이미지 설명]
+[그림 8-7] 트랙터 부착형 피복기가 표준 두둑 표면에 반투명 생분해성 멀칭 필름을 주름 없이 밀착 피복하는 포장 작업 사진입니다. [SRC-107]에 기술된 지온 유지 및 수분 증발 억제 환경을 형성하기 위해 필름 양쪽 가장자리를 배토 디스크가 흙으로 단단히 눌러 고정합니다. 토양 미생물에 의해 일정 기간 경과 후 자연 분해되는 고분자 필름의 매끄러운 장력 상태와 평탄화된 두둑 상면의 조화로운 형태를 보여줍니다.
+
+[나노바나나 생성 프롬프트]
+Documentary agricultural field photograph showing a tractor implement laying a translucent biodegradable agricultural polymer mulch film over a raised trapezoidal planting bed. Mechanical tensioning rollers smoothing the thin eco-friendly film tightly against the moist black soil surface, while dual concave furrow-covering steel discs throw moist side soil over the film margins to seal edges against wind lift. Early morning golden sunlight illuminating the taut plastic surface, damp soil aggregates, and long straight rows stretching across the open farmland. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

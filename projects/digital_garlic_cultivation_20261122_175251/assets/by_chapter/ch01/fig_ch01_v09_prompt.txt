@@ -1,0 +1,12 @@
+이미지 번호: 그림 1-9
+이미지 파일명: fig_ch01_v09.png
+단원: 제1장. 마늘의 기원·역사 및 디지털 농업 패러다임의 태동 (ch01)
+결합 절: 1.4 노지 스마트팜 패러다임과 마늘 디지털 재배의 개념적 정의
+시각화 유형: scientific_anatomy
+제목: [그림 1-9] 마늘 인편의 세포 미세구조 및 수확 후 호흡·에틸렌 대사 생리 기전
+
+[문맥 기반 이미지 설명]
+[그림 1-9] 수확 후 마늘 인편 조직 내에서 일어나는 세포벽 구조, 알리인(alliin) 축적 포낭, 그리고 호흡 및 에틸렌 감수성 경로를 도해한 학술 세포 해부도이다 [SRC-107, SRC-108, SRC-109]. 액포 내 황 함유 전구물질의 격리 상태와 저온 저장 조건에서 미토콘드리아 호흡 억제 및 가스 분자의 결합 기전을 정밀하게 표현하였다. 이는 수확 후 선도 유지를 위해 디지털 가스·온도 제어가 필요한 분자생리학적 근거를 설명한다 [SRC-110, SRC-111].
+
+[나노바나나 생성 프롬프트]
+A scientific biological cross-section illustration on a clean white background depicting the cellular physiology of a garlic clove (Allium sativum). A segmented slice of storage parenchyma cells shows intact cell walls, vacuolar compartments containing dense granules, and mitochondria. Small molecular representations of ethylene gas and respiratory metabolic arrows interact at the cell membrane surface, rendered in richly shaded, high-end textbook scientific art style with distinct cellular layers. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

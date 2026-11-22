@@ -1,0 +1,12 @@
+이미지 번호: 그림 6-2
+이미지 파일명: fig_ch06_v02.png
+단원: 제6장. 토양수분 포텐셜 해석과 센서 기반 지능형 관수 제어 (ch06)
+결합 절: 6.1 토양수분포텐셜(pF)과 마늘 뿌리의 수분 흡수 한계점
+시각화 유형: photorealistic_macro
+제목: [그림 6-2] 토양 입자 간극 내 마늘 근모의 모세관수 흡수 현미경 미세구조
+
+[문맥 기반 이미지 설명]
+[그림 6-2] 주사전자현미경 및 고배율 매크로 렌즈로 포착한 마늘 근모와 토양 입자 경계면의 수분 흡수 현장 사진이다[SRC-107]. 마늘의 백색 섬유상 뿌리에서 뻗어나온 섬세한 근모가 토양 낟알 구조 사이의 얇은 수막을 둘러싸고 있는 상태를 보여준다. 건조 스트레스 이전의 최적 pF 조건에서 토양 기공 내 수분이 마늘 세포막 내부로 유입되는 경계면을 선명하게 포착하였다.
+
+[나노바나나 생성 프롬프트]
+Ultra-sharp laboratory macro photograph of the rhizosphere of a garlic plant (Allium sativum). A cluster of pristine white fibrous garlic roots with delicate, translucent root hairs wraps tightly around rich dark soil aggregates and quartz mineral grains. Thin, glistening films of capillary water cling to the soil particle crevices under crisp laboratory ring lighting, revealing the exact microscopic interface between root epidermal tissue and moist fertile substrate with shallow depth of field. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

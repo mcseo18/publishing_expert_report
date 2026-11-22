@@ -1,0 +1,12 @@
+이미지 번호: 그림 11-8
+이미지 파일명: fig_ch11_v08.png
+단원: 제11장. 컴퓨터 비전 및 딥러닝 기반 디지털 병해충·생리장해 진단 (ch11)
+결합 절: 11.3 2차 생장(벌마늘), 열개, 스펀지마늘 등 생리장해의 시각적 진단 알고리즘
+시각화 유형: photorealistic_macro
+제목: [그림 11-8] 수분 불균형으로 인한 성숙 마늘 구의 열개(Bulb Cracking) 증상
+
+[문맥 기반 이미지 설명]
+[그림 11-8] 생육 후기 급격한 수분 공급이나 토양 스트레스로 인해 외피가 파열되고 개별 인편이 외부로 노출된 마늘 열개 현상을 관찰한 사진입니다. 외피의 불규칙한 균열 패턴과 노출된 인편 표면의 산화 과정을 선명하게 포착하여 비정형적 생리장해의 특성을 보여줍니다. [SRC-100], [SRC-111]에서 설명한 면적 대비 균열 폭과 형태 변수를 알고리즘이 분석하는 기준을 제공합니다.
+
+[나노바나나 생성 프롬프트]
+Photorealistic macro view of a mature harvested garlic bulb suffering from severe bulb cracking and dehiscence due to moisture fluctuation. The dry purple-striped white outer tunic has ruptured along the vertical meridians, widely exposing plump ivory cloves that are bulging outward with jagged fibrous tearing at the wrapper seams. Rested on dark loamy soil with razor-sharp macro focus and natural outdoor overcast lighting. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

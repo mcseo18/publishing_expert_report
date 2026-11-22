@@ -1,0 +1,12 @@
+이미지 번호: 그림 4-5
+이미지 파일명: fig_ch04_v05.png
+단원: 제4장. 토양 물리·화학성 진단과 디지털 지도를 활용한 입지 최적화 (ch04)
+결합 절: 4.2 토양 화학성 기준치와 산도(pH), 염류(EC)의 디지털 측정 기법
+시각화 유형: photorealistic_macro
+제목: [그림 4-5] 마늘 근권 토양의 산도(pH) 및 전기전도도(EC) 디지털 다중 센서 진단
+
+[문맥 기반 이미지 설명]
+[그림 4-5] 마늘 재배지 이랑의 활성 근권 깊이에 삽입되어 실시간으로 토양 용액의 pH와 염류 집적도(EC)를 진단하는 다채널 디지털 센서의 정밀 접사 사진이다 [SRC-100]. 스테인리스 스틸 전극 핀이 습윤한 토양 입자와 긴밀히 접촉하여 삼투압 스트레스를 유발할 수 있는 이온 농도를 연속 측정한다. 센서 하우징에서 인출된 신호 케이블은 데이터 로거로 연결되어 마늘의 양분 흡수 유효도 데이터를 제공한다.
+
+[나노바나나 생성 프롬프트]
+Close-up macro photograph of a professional digital multi-parameter soil sensor probe inserted into the soil right beside the stem base of a young green garlic plant (Allium sativum). Three polished stainless steel electrode pins are embedded firmly in moist, dark crumbly soil. The rugged industrial probe body has a black polyurethane casing with a reinforced data cable trailing out into the background. Water droplets cling to the glossy stem base and fresh soil crumbs under crisp morning directional sunlight. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

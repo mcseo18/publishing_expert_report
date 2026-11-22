@@ -1,0 +1,12 @@
+이미지 번호: 그림 4-4
+이미지 파일명: fig_ch04_v04.png
+단원: 제4장. 정밀 양파 재배를 위한 스마트 토양 물리·화학성 평가 및 작부체계 (ch04)
+결합 절: 개념 소개 및 이론적 배경
+시각화 유형: scientific_anatomy
+제목: [그림 4-4] 토양 pH 영역별 미량원소 생체 이용률과 양파 뿌리 흡수 메커니즘
+
+[문맥 기반 이미지 설명]
+[그림 4-4] 토양 산도(pH)가 6.0에서 6.8 범위에 안정화될 때 철, 망간, 아연 등 필수 미량원소의 생체 이용률이 최댓값에 도달합니다. 토양 pH가 적정 범위를 벗어나 산성화되거나 알칼리화되면 금속 이온이 불용성 침전물로 변하거나 용탈되어 뿌리의 양분 흡수 통로가 차단됩니다. 정밀 양파 재배에서는 근권 pH 조절을 통해 미량원소의 용해도와 근계 흡수 활성을 최적화해야 합니다 [SRC-14].
+
+[나노바나나 생성 프롬프트]
+Richly shaded scientific botanical illustration on a pure white background displaying the root surface of an Allium cepa onion interacting with soil minerals. Surrounding the root epidermal layer are glowing molecular ions representing iron, manganese, and zinc in an aqueous rhizosphere solution. A subtle gradient background represents soil acidity transitioning from strongly acidic to optimal neutral and alkaline conditions, showing precipitation of mineral complexes versus bioavailable soluble forms, rendered in elegant academic textbook style. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

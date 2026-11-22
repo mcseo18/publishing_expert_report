@@ -1,0 +1,12 @@
+이미지 번호: 그림 1-4
+이미지 파일명: fig_ch01_v04.png
+단원: 제1장. 마늘의 기원·역사 및 디지털 농업 패러다임의 태동 (ch01)
+결합 절: 1.2 마늘의 역사적 재배 변천사와 산업적 위상
+시각화 유형: photorealistic_macro
+제목: [그림 1-4] 수확 후 전통 건조 과정을 거친 재래종 마늘 엮이와 건조 인피 조직
+
+[문맥 기반 이미지 설명]
+[그림 1-4] 고대 문명부터 근대 자급자족 농업에 이르기까지 전승된 전통 마늘의 수확 후 건조(curing) 형태를 기록한 고해상도 사진이다 [SRC-101, SRC-103]. 통풍 건조 과정을 거쳐 바삭하게 마른 짚 모양의 가경(pseudostem)을 엮어 매단 다발과 얇고 반투명한 자주색 줄무늬 외피(tunic)가 잘 드러난다. 이와 같은 전통적 저장 방식은 유기 화합물의 변질을 막고 상업적 교역을 가능하게 했던 역사적 보존 기술의 정수를 나타낸다 [SRC-104].
+
+[나노바나나 생성 프롬프트]
+A museum-quality photographic still life of traditional braided garlic bundles hanging to cure. Whole dried garlic bulbs with intact dried fibrous roots and tightly woven straw-like false stems are clustered together. Macro details reveal layers of papery, parchment-like outer tunics with faint purple striations, slight peeling exposing the smooth clove contours beneath, illuminated by warm natural side light against a dark rustic wooden background. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

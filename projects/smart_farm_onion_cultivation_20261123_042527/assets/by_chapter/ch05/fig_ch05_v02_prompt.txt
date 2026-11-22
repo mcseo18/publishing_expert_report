@@ -1,0 +1,12 @@
+이미지 번호: 그림 5-2
+이미지 파일명: fig_ch05_v02.png
+단원: 제5장. 토양 수분 모니터링 센서 네트워크와 스마트 관개 자동화 (ch05)
+결합 절: 5.1 FDR/TDR 센서 및 텐시오미터(Tensiometer)의 원리, 보정 계수 및 설치 프로토콜
+시각화 유형: scientific_anatomy
+제목: [그림 5-2] 토양 매트릭스 수분 장력 계측을 위한 텐시오미터 다공성 세라믹 컵 미세구조 단면도
+
+[문맥 기반 이미지 설명]
+[그림 5-2] 텐시오미터의 하단 다공성 세라믹 컵과 주변 토양 수분 매트릭스 사이의 동수역학적 상호작용을 정밀하게 시각화한 해부도이다. 양파의 미세 뿌리털 주위에서 토양 수분이 흡수될 때 발생하는 음압(수분 장력)이 세라믹 미세 기공을 통해 튜브 내부의 탈기수 컬럼으로 전달되는 물리적 메커니즘을 묘사한다 [SRC-118]. 단순한 포화도를 넘어 작물 생리에 직결되는 수분 포텐셜의 거동을 명확하게 파악할 수 있다.
+
+[나노바나나 생성 프롬프트]
+Scientific anatomical cutaway illustration on a pure white background showing the lower portion of a tensiometer inserted into sandy loam soil beside onion root hairs (Allium cepa). The porous white ceramic cup is shown in micro-detail with tiny water menisci inside microscopic pores connecting to the water-filled clear tube column. Blue water molecule flow pathways illustrate capillary suction and negative hydraulic pressure developing around the fine fibrous root hairs of the onion plant. Richly shaded, highly detailed scientific editorial style with realistic volumetric textures. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

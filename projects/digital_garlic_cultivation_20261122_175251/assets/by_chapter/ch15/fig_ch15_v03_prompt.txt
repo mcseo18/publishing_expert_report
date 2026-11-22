@@ -1,0 +1,12 @@
+이미지 번호: 그림 15-3
+이미지 파일명: fig_ch15_v03.png
+단원: 제15장. 디지털 마늘 재배의 경제성 평가, 탄소 배출량 및 미래 전망 (ch15)
+결합 절: 15.1 관행 재배 대비 디지털 기계화 농업의 투입 노동력 및 비용 편익 분석 (B/C ratio)
+시각화 유형: photorealistic_macro
+제목: [그림 15-3] 디지털 선별기를 거친 균일 규격 마늘 구근의 품질 평가
+
+[문맥 기반 이미지 설명]
+[그림 15-3] 광학 비전 센서 기반의 자동 선별 라인을 거쳐 직경과 무게별로 정밀 분할된 마늘 구근들의 외관 특성을 초근접 촬영한 모습입니다. 균일한 크기와 병해충 피해가 없는 건전한 인편 구성은 농가 수취 가격을 극대화하여 조수입(Benefit)을 크게 신장시킵니다 [SRC-104]. 기계화된 수확 후 처리 공정이 노동력 절감뿐 아니라 최종 상품 가치 향상에 미치는 기여를 입증합니다.
+
+[나노바나나 생성 프롬프트]
+Ultra-sharp macro laboratory photograph of freshly harvested and graded mature garlic bulbs resting side-by-side on a stainless steel inspection surface. The garlic bulbs display perfectly intact off-white papery outer tunics with faint purple striping, plump clove contours, and cleanly trimmed fibrous basal root plates. Soft studio lighting highlights the natural organic texture, crystalline drying bulb scales, and pristine disease-free quality of the premium sized specimens. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

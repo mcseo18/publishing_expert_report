@@ -1,0 +1,190 @@
+---
+chapter_id: "ch14"
+title: "제14장. 스마트 건조(Curing), CA 저온저장 및 유통 품질 제어"
+audience: "대학 전공 심화, 대학원생, 연구자 및 선도 현장 실무자"
+evidence_packet: "digital_garlic_cultivation_20261122_175251_evidence.json"
+---
+
+# 제14장. 스마트 건조(Curing), CA 저온저장 및 유통 품질 제어
+
+## 단원 개요
+
+본 장에서는 수확 후 작물의 품질 유지 및 부패 방지를 위한 첨단 저장 및 건조 기술에 대해 심층적으로 다룬다. 구체적으로 열풍 및 제습형 스마트 건조(Curing) 챔버의 정밀한 온습도 제어 메커니즘을 분석하고, 에틸렌(Ethylene) 농도 및 기체 환경을 제어하는 CA(Controlled Atmosphere) 저온저장 기술의 원리를 탐구한다. 또한, 장기 저장 중 맹아 억제 기작, 호흡열 관리, 부패균 억제 센싱 기술을 다루며, 최신 RFID/IoT 기반의 콜드체인 추적 시스템을 통해 유통 단계별 품질 등급화 및 품질 제어를 실현하는 스마트 유통 프로세스를 고찰한다. 이 지식은 식품 및 원예 분야의 심화 학습, 대학원 연구, 그리고 선도 현장 실무에 필수적인 기반을 제공한다.
+
+---
+
+## 14.1 수확 후 수분 증발 메커니즘과 차압식 스마트 예건(Curing) 시스템
+
+수확 후 작물의 품질 저하는 초기 단계부터 시작되는 생리적 노화와 환경적 스트레스의 복합적인 결과이다. 특히 농산물은 수분을 함유하고 있으므로, 적절한 건조 과정은 품질 안정화에 결정적인 역할을 한다.
+
+### 1.1 수분 증발의 동역학적 이해
+작물에서 수분이 증발하는 과정은 기본적으로 농산물 내부와 외부 환경 간의 수분 분압 차(Vapor Pressure Deficit, VPD)에 의해 구동된다. 수분 증발 속도는 작물의 기공 개폐 정도, 표면의 수분 장력, 그리고 주변 공기의 습도 및 온도에 민감하게 반응한다. 스마트 건조 시스템은 이러한 동역학적 관계를 모델링하고, 이를 바탕으로 최적의 환경을 조성하여 수분 손실 속도를 제어한다 [SRC-100].
+
+### 1.2 차압식 스마트 예건(Curing) 시스템의 원리
+예건(Curing) 과정은 주로 특정 작물(예: 구근 채소, 과일 등)에서 조직의 치유, 당분 이동, 그리고 숙성 과정을 유도하는 과정으로 사용된다. 스마트 건조 시스템에서 '차압식' 접근은 단순한 환경 조절을 넘어, 건조 챔버 내부와 외부 간의 정밀한 압력 차이를 활용하여 공기 흐름과 수분 이동을 극대화하는 데 중점을 둔다.
+
+이 시스템의 핵심은 온습도 제어의 정밀화이다. 열풍을 이용한 건조는 증발 잠열을 제거하면서도, 과도한 온도 상승으로 인한 영양소 손실이나 조직 손상을 방지하기 위해 정밀한 온도 프로파일링이 요구된다. 습도 제어는 제습기나 냉각 시스템을 통해 이루어지며, 작물이 특정 수준 이하로 수분을 잃었을 때 발생할 수 있는 조직의 급격한 스트레스를 완화하는 것이 목표이다 [SRC-100].
+
+---
+
+## 14.2 장기 저장을 위한 온도, 상대습도 및 기체 농도(O<sub>2</sub>, CO<sub>2</sub>) 최적 조건
+
+작물을 장기간 보존하기 위한 저온저장 및 CA 저장 기술은 작물의 대사 활동을 억제하여 품질 저하 속도를 늦추는 데 초점을 맞춘다.
+
+### 2.1 저온 저장이 미치는 생리적 영향
+저온은 작물의 호흡 속도(Respiration Rate)를 늦추는 가장 효과적인 방법 중 하나이다. 일반적으로 온도 하강에 따른 호흡 속도 감소는 Q<sub>10</sub> 계수를 통해 정량화되지만, 이는 작물의 종류 및 대사 경로에 따라 달라진다 [SRC-111]. 적정 저온 환경은 작물의 생리적 활동을 최소화시켜 부패 및 품질 저하를 지연시킨다 [SRC-111].
+
+### 2.2 CA 저장 조건의 정밀 제어
+CA 저장(Controlled Atmosphere Storage)은 온도 조절과 더불어 대기 성분, 특히 산소(O<sub>2</sub>)와 이산화탄소(CO<sub>2</sub>)의 농도를 인위적으로 조절하는 기술이다.
+
+*   **O<sub>2</sub> 제어:** 산소 농도를 낮춤으로써 호흡률을 현저히 감소시키고, 산소에 민감한 부패균의 활성화를 억제한다. 그러나 너무 낮은 O<sub>2</sub> 농도는 일부 작물의 생리적 기능에 악영향을 미칠 수 있다.
+*   **CO<sub>2</sub> 제어:** CO<sub>2</sub>를 일정 농도(보통 1%~5%)로 유지하면, 저온 환경 하에서 작물의 호흡을 더욱 효과적으로 억제하며, 에틸렌의 작용을 조절하는 데 기여한다 [SRC-110].
+
+**최적 조건:** 장기 보존을 위한 최적의 조건은 작물의 종류에 따라 다르지만, 일반적인 저온 저장 조건은 낮은 온도와 비교적 높은 상대습도(RH)를 유지하는 것이 핵심이다 [SRC-107].
+
+---
+
+## 14.3 저장 중 맹아 억제 기작, 호흡열 분석 및 부패균 억제 센싱
+
+저장 중 발생하는 잠재적 품질 저하 요인을 실시간으로 감지하고 대응하는 것이 스마트 저장 시스템의 핵심 역할이다.
+
+### 3.1 맹아 억제 기작 (Sprout Inhibition Mechanism)
+작물이 저장 기간 동안 맹아(Sprouting)를 시작하는 것은 생장 단계로의 복귀 신호이다. 이를 억제하는 기작은 주로 저온 및 특정 가스 환경 조성에 의해 유도된다. 낮은 온도 자체는 휴면을 유도하지만, CA 환경에서 특정 가스 농도를 정밀하게 제어함으로써 맹아 유도 호르몬의 활성을 억제하는 것이 중요하다 [SRC-109].
+
+### 3.2 호흡열 분석 (Respiration Heat Analysis)
+저장 중 발생하는 호흡열은 작물의 대사 활동 수준을 직접적으로 반영하는 지표이다. 열화상 센서나 정밀 온도 센서를 통해 지속적인 호흡열을 모니터링하면, 작물의 스트레스 상태나 대사 활성도를 간접적으로 파악할 수 있다. 호흡열의 급격한 증가는 부패의 초기 징후일 수 있으므로, 이를 감지하는 것은 품질 관리의 조기 경보 시스템 역할을 수행한다.
+
+### 3.3 부패균 억제 센싱 (Pathogen Suppression Sensing)
+저장 환경에서 미생물학적 오염은 치명적이다. 고급 스마트 시스템은 단순히 온습도 측정 외에도 가스 크로마토그래피(GC) 기반의 휘발성 유기화합물(VOCs) 분석 또는 특정 미생물 성장 억제 센서 등을 활용하여 부패균의 활동성 증가를 사전에 감지할 수 있다. 특히 에틸렌의 조절(예: C<sub>2</sub>H<sub>4</sub> 농도 조절)은 숙성 및 부패 속도를 제어하는 핵심 요소로 작용한다 [SRC-108, SRC-109].
+
+---
+
+## 14.4 RFID/IoT 기반 콜드체인 추적 및 유통 단계별 품질 등급화
+
+최신 스마트 유통 시스템은 물리적 환경 제어를 넘어 데이터 기반의 투명성을 제공한다.
+
+### 4.1 콜드체인 모니터링의 지능화
+콜드체인(Cold Chain)은 산지에서 최종 소비자에 이르기까지 일정한 저온을 유지하며 식료품을 유통하는 전 과정을 의미한다 [SRC-107]. 기존의 수동적인 온도 기록 방식을 넘어, RFID(Radio-Frequency Identification) 태그와 IoT(Internet of Things) 센서가 통합된 시스템은 실시간으로 온도, 습도, 충격, 가스 농도 등의 다차원 데이터를 수집한다. 이 데이터는 중앙 서버로 전송되어 원격 모니터링 및 이상 징후 즉각 대응을 가능하게 한다.
+
+### 4.2 유통 단계별 품질 등급화 (Grading)
+IoT 센서가 수집한 환경 데이터는 해당 농산물이 통과한 모든 유통 단계의 '이력(Traceability)'으로 기록된다. 이 이력 데이터를 기반으로 품질 등급을 동적으로 부여할 수 있다. 예를 들어, 특정 구간에서 허용치 이상의 온도 이탈(Temperature Excursion)이 발생했다면, 해당 로트(Lot)는 자동적으로 품질 등급이 하향 조정되는 것이 가능하다. 이는 소비자와 유통업체 모두에게 신뢰성을 제공하며, 식품안전 및 품질 관리에 있어 선도적인 방법론으로 인정받고 있다 [SRC-105].
+
+---
+
+## ## 핵심 용어집
+
+| 용어 | 정의 | 관련 메커니즘 |
+| :--- | :--- | :--- |
+| 스마트 건조 (Curing) | 열풍 및 제습 기술을 사용하여 농산물의 수분을 정밀하게 증발 및 조절하는 과정. | 온습도 제어, 수분 증발 동역학 (VPD) |
+| CA 저장 (Controlled Atmosphere) | 저온 상태에서 O<sub>2</sub>와 CO<sub>2</sub>의 농도를 조절하여 호흡과 대사를 억제하는 장기 저장 기술. | 호흡 억제, 부패 지연 |
+| VPD (Vapor Pressure Deficit) | 작물 내부와 외부 공기 간의 수분 분압 차이로, 수분 증발 속도를 결정하는 핵심 인자. | 스마트 건조의 수분 이동 제어 |
+| 콜드체인 (Cold Chain) | 산지부터 소비지까지 일정한 저온 상태를 유지하며 물류를 운송하는 전 과정. | IoT 기반 실시간 모니터링 |
+| 맹아 억제 | 저장 중 작물이 휴면 상태에서 벗어나 어린싹을 틔우는 생리 현상을 인위적으로 방지하는 것. | 온도 및 기체 농도 최적화 |
+| RFID/IoT | 무선 식별 기술과 사물인터넷 기술을 활용하여 유통 과정의 데이터를 실시간으로 수집하고 추적하는 시스템. | 투명성 확보, 동적 품질 등급화 |
+
+---
+
+## ## 이해도 점검 연습문제 및 해설
+
+**문제 1문항:** 스마트 건조(Curing) 시스템에서 '차압식' 접근 방식이 강조되는 주된 이유는 무엇이며, 이 방식이 기존의 단순 건조 방식과 구별되는 핵심적인 장점은 무엇인가?
+
+**정답 및 상세 풀이:** 차압식 접근 방식은 건조 챔버 내부와 외부 간의 압력 차이를 정밀하게 제어하여 공기 흐름 및 수분 이동 메커니즘을 극대화하기 위함이다 [SRC-100]. 이는 단순히 열을 가해 수분을 증발시키는 것(단순 건조)을 넘어, 능동적으로 수분 증발 동역학을 제어함으로써 작물 조직에 가해지는 스트레스를 최소화하면서 효율적인 수분 제거를 가능하게 하는 장점이 있다.
+
+**문제 2문항:** 장기 저장 시 CA 저장 기술에서 O<sub>2</sub> 농도 감소와 CO<sub>2</sub> 농도 유지가 작물의 생리적 활동에 미치는 상호작용적 영향과 목표는 무엇인가?
+
+**정답 및 상세 풀이:** 낮은 O<sub>2</sub> 농도는 작물의 세포 호흡(Respiration) 속도를 현저히 감소시켜 에너지 소모를 줄이고 부패를 지연시킨다. 동시에 적절한 CO<sub>2</sub> 농도(보통 1~5%)를 유지하는 것은 이 저온/저산소 환경 하에서 호흡을 더욱 효과적으로 억제하며, 에틸렌과 같은 생장 조절 호르몬의 작용을 조절하는 역할을 한다 [SRC-110]. 목표는 대사 활동을 최소화하여 품질 저하를 막는 것이다.
+
+**문제 3문항:** RFID/IoT 기반 콜드체인 시스템이 단순히 온도 기록 이상의 가치를 갖는다고 할 때, 이 시스템이 유통 단계별 품질 등급화에 기여하는 구체적인 방법론을 설명하시오.
+
+**정답 및 상세 풀이:** 이 시스템은 RFID 및 IoT 센서를 통해 온습도, 충격, 가스 농도 등 다차원적인 환경 데이터를 유통의 모든 순간에 걸쳐 실시간으로 수집하고 기록한다 [SRC-107]. 이 '완벽한 이력(Traceability)' 데이터 셋을 기반으로, 설정된 허용 범위(Tolerance Limit)를 벗어나는 환경 이탈(Temperature Excursion 등)이 발생했는지 여부를 분석할 수 있다. 이 분석 결과에 따라 해당 농산물 로트에 대해 자동으로 품질 등급(Grade)을 부여하거나 하향 조정하여, 투명하고 과학적인 품질 관리를 실현한다 [SRC-105].
+
+---
+
+## ## 오해와 진실: 현장·이론 핵심 오해 교정
+
+**오해 1: 저온 저장이 곧 모든 부패를 완벽하게 막는다.**
+**진실:** 저온 저장은 호흡 속도와 미생물 증식을 늦추는 데 매우 효과적이지만, 절대적인 보존책은 아니다 [SRC-111]. 온도 외에도 습도, O<sub>2</sub>/CO<sub>2</sub> 농도, 그리고 병원성 미생물의 종류에 따라 부패 속도는 달라진다. 특히, 저온 환경에서 대사 경로가 변경되어 오히려 특정 대사산물이 축적될 수도 있으므로, 다변수 제어가 필수적이다.
+
+**오해 2: CA 저장은 단순히 산소를 제거하여 작물을 보존하는 것이다.**
+**진실:** CA 저장은 단순한 산소 제거(Anoxia)가 아니다. O<sub>2</sub> 농도를 낮추는 동시에, CO<sub>2</sub> 농도를 미세하게 제어하는 것이 핵심이다 [SRC-110]. CO<sub>2</sub>는 억제제 역할과 동시에 작물의 스트레스 반응을 조절하여 품질 저하를 '제어(Controlled)'하는 역할을 수행하며, 이는 생리학적 안정성을 유지하는 데 결정적이다.
+
+**오해 3: RFID/IoT 추적은 물류 비용만 증가시키는 기술이다.**
+**진실:** 초기 투자 비용은 높을 수 있으나, 이는 잠재적 손실 비용을 획기적으로 감소시키는 '예방적 투자'이다. 실시간 데이터 기반의 콜드체인 모니터링은 품질 이탈 발생 시 즉각적인 조치가 가능하게 하여, 전체 수확량 대비 폐기율(Waste Rate)을 최소화한다. 이는 곧 최종적인 품질 관리 효율성(Quality Management Efficiency) 극대화로 이어진다 [SRC-107].
+
+## 참고문헌 및 근거 출처 목록
+
+| 출처 ID | 유형 | 제목 | URL | 라이선스 |
+| :--- | :--- | :--- | :--- | :--- |
+| `SRC-100` | web | 농촌진흥청 | https://www.rda.go.kr/ | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-101` | web | 보도자료 < 새소식 < 정책홍보 < 농촌진흥청 | https://www.rda.go.kr/board/board.do?boardId=farmprmninfo&prgId=day_farmprmninfoEntry | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-102` | web | 한국식품연구원 | https://www.kfri.re.kr/ | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-103` | web | 국립식량과학원 | https://www.nics.go.kr/index.do | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-104` | web | 농림축산식품부 | https://www.mafra.go.kr/home/index.do | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-105` | web | 국민 안심이 기준입니다, 식품의약품안전처 | https://www.mfds.go.kr/index.do | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-106` | web | 한국농촌경제연구원 | https://www.krei.re.kr/krei/index.do | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-107` | web | 저온 유통 - 위키백과, 우리 모두의 백과사전 | https://ko.wikipedia.org/wiki/%EC%BD%9C%EB%93%9C_%EC%B2%B4%EC%9D%B8 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-108` | web | 에틸렌 - 위키백과, 우리 모두의 백과사전 | https://ko.wikipedia.org/wiki/%EC%97%90%ED%8B%B8%EB%A0%8C | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-109` | web | [2021] Inhibition of Ethylene Binding and Biosynthesis Maintains Fruit Quality of ‘Formosa’ Plums during Postharvest Storage (Horticultural Science and Technology) | https://doi.org/10.7235/hort.20210033 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-111` | web | [2010] Cold storage and fruit quality (Postharvest Biology and Technology for Preserving Fruit Quality) | https://doi.org/10.1201/9781439802670-c4 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-110` | web | [1998] Effects of storage temperature and atmosphere on saskatoon (Amelanchier alnifolia Nutt.) fruit quality, respiration and ethylene production (Postharvest Biology and Technology) | https://doi.org/10.1016/s0925-5214(98)00012-x | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-282` | web | [2016] Low Ethylene Technology in Non-Optimal Storage Temperatures (Advances in Postharvest Fruit and Vegetable Technology) | https://doi.org/10.1201/b18489-15 | 학술 서지 메타데이터·초록(Crossref) - 정식 인용 목적(원문 무단 복제 금지) |
+| `SRC-117` | web | [2016] Nondestructive Assessment of Fruit Quality (Advances in Postharvest Fruit and Vegetable Technology) | https://doi.org/10.1201/b18489-10 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-118` | web | [2015] Nondestructive Assessment of Fruit Quality (Contemporary Food Engineering) | https://doi.org/10.1201/b18489-4 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-119` | web | [2016] Metabolomics Tools for Postharvest Quality and Safety of Fresh Produce (Advances in Postharvest Fruit and Vegetable Technology) | https://doi.org/10.1201/b18489-20 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-120` | web | [2021] Effects of postharvest ultraviolet-C treatment on shelf-life and quality of bitter gourd fruit during storage (Food Packaging and Shelf Life) | https://doi.org/10.1016/j.fpsl.2021.100665 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-121` | web | [2020] Evaluation of Postharvest Shelf Life and Quality of Lemon Treated with  Different Coatings during Storage (Food Science and Engineering) | https://doi.org/10.37256/fse.122020463 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-122` | web | [2026] Aloe Vera-Honey Composite Edible Coatings Extend Postharvest Shelf Life and Preserve Quality of Roma Tomatoes Under Tropical Ambient Storage in Rwanda (Journal of Food Science and Horticulture) | https://doi.org/10.69739/jfsh.v1i1.1696 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-123` | web | [2024] Different Postharvest Treatments and Storage Conditions for Shelf-life Enhancement and Quality Retention of Litchi (Journal of Food Chemistry &amp; Nanotechnology) | https://doi.org/10.17756/jfcn.2024-s1-015 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-124` | web | [2019] Understanding Food Loss and Waste—Why Are We Losing and Wasting Food? (Foods) | http://dx.doi.org/10.3390/foods8080297 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-125` | pdf | [2020] Nanotechnologies in Food Science: Applications, Recent Trends, and Future Perspectives (Nano-Micro Letters) | https://doi.org/10.1007/s40820-020-0383-9 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-126` | web | [2020] ZnO Nanostructures in Active Antibacterial Food Packaging: Preparation Methods, Antimicrobial Mechanisms, Safety Issues, Future Prospects, and Challenges (Food Reviews International) | https://doi.org/10.1080/87559129.2020.1737709 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-127` | web | [2019] Value-added chemicals from food supply chain wastes: State-of-the-art review and future prospects (Chemical Engineering Journal) | https://doi.org/10.1016/j.cej.2019.121983 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-263` | web | [2020] Citrus Essential Oils (CEOs) and Their Applications in Food: An Overview (Plants) | http://dx.doi.org/10.3390/plants9030357 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-128` | web | [2024] Advances in strawberry postharvest preservation and packaging: A comprehensive review (Comprehensive Reviews in Food Science and Food Safety) | https://doi.org/10.1111/1541-4337.13417 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-129` | pdf | [2019] Characterization of Fruit Quality Attributes and Cell Wall Metabolism in 1-Methylcyclopropene (1-MCP)-Treated ‘Summer King’ and ‘Green Ball’ Apples During Cold Storage (Frontiers in Plant Science) | https://doi.org/10.3389/fpls.2019.01513 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-130` | web | [2014] Shelf life extension and antioxidant activity of ‘Hayward’ kiwi fruit as a result of prestorage conditioning and 1-methylcyclopropene treatment (Journal of Food Science and Technology) | https://doi.org/10.1007/s13197-014-1300-3 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-131` | web | [2012] Effects of Vibration Stress on the Quality of Packaged Apples during Simulated Transport (Journal of Biosystems Engineering) | https://doi.org/10.5307/jbe.2012.37.1.044 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-264` | web | [2025] Plant–Microbe Interactions for Improving Postharvest Shelf Life and Quality of Fresh Produce Through Protective Mechanisms (Horticulturae) | https://doi.org/10.3390/horticulturae11070732 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-132` | web | [2022] Prediction of Total Soluble Solids and pH of Strawberry Fruits Using RGB, HSV and HSL Colour Spaces and Machine Learning Models (Foods) | https://doi.org/10.3390/foods11142086 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-133` | web | [2017] Nondestructive Estimation of Moisture Content, pH and Soluble Solid Contents in Intact Tomatoes Using Hyperspectral Imaging (Applied Sciences) | https://doi.org/10.3390/app7010109 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-134` | web | [2024] Prediction of Soluble-Solid Content in Citrus Fruit Using Visible–Near-Infrared Hyperspectral Imaging Based on Effective-Wavelength Selection Algorithm (Sensors) | https://doi.org/10.3390/s24051512 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-135` | pdf | [2018] Hyperspectral imaging technique to evaluate the firmness and the sweetness index of tomatoes (Korean Journal of Agricultural Science) | https://doi.org/10.7744/kjoas.20180075 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-265` | web | [2022] Field Application of a Vis/NIR Hyperspectral Imaging System for Nondestructive Evaluation of Physicochemical Properties in ‘Madoka’ Peaches (Plants) | https://doi.org/10.3390/plants11172327 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-136` | web | Technical Platform on the Measurement and Reduction of Food Loss and Waste / Food and Agriculture Organization of the United Nations | https://www.fao.org/platform-food-loss-waste/en/ | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-137` | web | FLW Database / Technical Platform on the Measurement and Reduction of Food Loss and Waste / Food and Agriculture Organization of the United Nations | https://www.fao.org/food-loss-and-food-waste/flw-data/en/ | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-138` | web | Codex / Home | https://www.fao.org/fao-who-codexalimentarius/en/ | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-139` | web | Ask IFAS: Topic - Postharvest and Handling | https://edis.ifas.ufl.edu/topics/postharvest | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-140` | web | ARS Home : USDA ARS | https://www.ars.usda.gov/ | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-141` | web | National Programs : USDA ARS | https://www.ars.usda.gov/research/programs/ | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-142` | web | NFRI / National Agriculture and Food Research Organization | https://www.naro.go.jp/english/laboratory/nfri/index.html | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-143` | web | Ministry of Agriculture, Forestry and Fisheries | https://www.maff.go.jp/e/index.html | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-144` | web | Postharvest - Wikipedia | https://en.wikipedia.org/wiki/Postharvest | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-145` | web | Controlled atmosphere - Wikipedia | https://en.wikipedia.org/wiki/Controlled_atmosphere | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-146` | web | Modified atmosphere - Wikipedia | https://en.wikipedia.org/wiki/Modified_atmosphere | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-147` | web | 1-Methylcyclopropene - Wikipedia | https://en.wikipedia.org/wiki/1-Methylcyclopropene | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-148` | web | Cold chain - Wikipedia | https://en.wikipedia.org/wiki/Cold_chain | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-149` | pdf | [2014] Agricultural uses of plant biostimulants (Plant and Soil) | https://doi.org/10.1007/s11104-014-2131-8 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-150` | web | [2017] Biostimulants in Plant Science: A Global Perspective (Frontiers in Plant Science) | https://doi.org/10.3389/fpls.2016.02049 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-151` | web | [1986] The commercial storage of fruits, vegetables, and florist and nursery stocks (Biodiversity Heritage Library (Smithsonian Institution)) | https://www.biodiversitylibrary.org/item/295012 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-152` | web | [2017] Reducing Postharvest Losses during Storage of Grain Crops to Strengthen Food Security in Developing Countries (Foods) | https://doi.org/10.3390/foods6010008 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-266` | web | [2015] Bioactive Compounds and Antioxidant Activity in Different Types of Berries (International Journal of Molecular Sciences) | http://dx.doi.org/10.3390/ijms161024673 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-153` | web | [2019] The role of hydrogen and fuel cells in the global energy system (Energy & Environmental Science) | https://doi.org/10.1039/c8ee01157e | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-154` | web | [2018] Methanol as a fuel for internal combustion engines (Progress in Energy and Combustion Science) | https://doi.org/10.1016/j.pecs.2018.10.001 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-155` | web | [2017] Overview of Ice Nucleating Particles (Meteorological Monographs) | https://doi.org/10.1175/amsmonographs-d-16-0006.1 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-156` | web | [2021] Liquid Hydrogen: A Review on Liquefaction, Storage, Transportation, and Safety (Energies) | https://doi.org/10.3390/en14185917 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-267` | web | [2022] Hydrogen liquefaction: a review of the fundamental physics, engineering practice and future opportunities (Energy & Environmental Science) | https://doi.org/10.1039/d2ee00099g | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-157` | web | [2013] Advances in Fruit Aroma Volatile Research (Molecules) | https://doi.org/10.3390/molecules18078200 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-158` | web | [2019] Tomato Fruit Development and Metabolism (Frontiers in Plant Science) | https://doi.org/10.3389/fpls.2019.01554 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-159` | web | [2019] Chemical Composition of Mango (Mangifera indica L.) Fruit: Nutritional and Phytochemical Compounds (Frontiers in Plant Science) | https://doi.org/10.3389/fpls.2019.01073 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-160` | web | [2016] Induced resistance to control postharvest decay of fruit and vegetables (Postharvest Biology and Technology) | https://www.sciencedirect.com/science/article/pii/S0925521416301946/pdf | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-268` | pdf | [2020] Primary Metabolism in Fresh Fruits During Storage (Frontiers in Plant Science) | https://doi.org/10.3389/fpls.2020.00080 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-161` | web | [2014] Near-infrared spectroscopy and hyperspectral imaging: non-destructive analysis of biological materials (Chemical Society Reviews) | https://doi.org/10.1039/c4cs00062e | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-162` | web | [2020] Visible-NIR ‘point’ spectroscopy in postharvest fruit and vegetable assessment: The science behind three decades of commercial use (Postharvest Biology and Technology) | https://doi.org/10.1016/j.postharvbio.2020.111246 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-163` | web | [2015] Fruit Quality Evaluation Using Spectroscopy Technology: A Review (Sensors) | http://dx.doi.org/10.3390/s150511889 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-164` | web | [2019] Monitoring strategies for quality control of agricultural products using visible and near-infrared spectroscopy: A review (Trends in Food Science & Technology) | https://www.sciencedirect.com/science/article/abs/pii/S0924224418304825 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-269` | web | [2011] Machine vision system: a tool for quality inspection of food and agricultural products (Journal of Food Science and Technology) | https://doi.org/10.1007/s13197-011-0321-4 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-165` | web | [1995] Biosolids–Yard Trimming Composts Increases Bell Pepper (Capsicum annuum L.) and Cucumber (Cucumis sativus L.) Yields (HortScience) | https://doi.org/10.21273/hortsci.30.4.892 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-166` | web | [1995] Physiology of Lightly Processed Fruits and Vegetables (HortScience) | https://doi.org/10.21273/hortsci.30.1.18 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-167` | web | [2006] Nutritional and medicinal use of Cactus pear (Opuntia spp.) cladodes and fruits (Frontiers in bioscience) | https://doi.org/10.2741/1992 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-168` | web | [2017] Antifungal Microbial Agents for Food Biopreservation—A Review (Microorganisms) | https://doi.org/10.3390/microorganisms5030037 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-270` | web | [2010] Effect of hydroxypropylmethylcellulose and chitosan coatings with and without bergamot essential oil on quality and safety of cold-stored grapes (Postharvest Biology and Technology) | https://doi.org/10.1016/j.postharvbio.2010.11.004 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |

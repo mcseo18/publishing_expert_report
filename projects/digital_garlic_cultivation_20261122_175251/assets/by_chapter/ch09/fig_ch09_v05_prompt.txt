@@ -1,0 +1,12 @@
+이미지 번호: 그림 9-5
+이미지 파일명: fig_ch09_v05.png
+단원: 제9장. 농작업 무인 자동화와 RTK-GPS 자율주행 농기계 기술 (ch09)
+결합 절: 9.2 자율주행 트랙터의 조향 제어 및 경로 계획(Path Planning) 알고리즘
+시각화 유형: scientific_anatomy
+제목: [그림 9-5] 순응 제어(Pure Pursuit) 및 횡방향 경로 추종 기하학 모델
+
+[문맥 기반 이미지 설명]
+[그림 9-5] 자율주행 트랙터의 목표 경로 추종을 위한 순응 제어(Pure Pursuit) 알고리즘의 기하학적 벡터 구성을 도식화한 학술 일러스트레이션이다. 마늘 두둑 사이의 목표 궤적선(Target Path)과 차량의 현재 위치(Pcurrent) 사이의 수직 이격인 횡방향 오차(Cross-Track Error) 및 전방 주시 거리(Lookahead Distance)를 기반으로 전륜 조향각(δ)이 산출되는 원리를 보여준다. 이러한 정밀 조향 제어는 좁은 이랑 사이에서 마늘 인경의 기계적 손상을 완벽히 방지한다.
+
+[나노바나나 생성 프롬프트]
+A refined scientific vector-geometry illustration on a pristine white background depicting vehicle kinematic Pure Pursuit steering algorithms over an agricultural grid. A stylized top-down tractor chassis shows front-wheel steering deflection, a curved pursuit arc terminating at a forward lookahead reference coordinate, and orthogonal cross-track deviation vectors relative to a straight green crop centerline. Clear geometric lines, circular trajectory curves, and angle arcs rendered in high-end technical textbook style. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

@@ -1,0 +1,12 @@
+이미지 번호: 그림 9-3
+이미지 파일명: fig_ch09_v03.png
+단원: 제9장. 농작업 무인 자동화와 RTK-GPS 자율주행 농기계 기술 (ch09)
+결합 절: 9.1 센티미터급 RTK-GNSS 측위 원리와 현장 통신 인프라 구축
+시각화 유형: photorealistic_macro
+제목: [그림 9-3] 농업용 트랙터 캐빈 루프에 장착된 초정밀 RTK 수신기와 5G 텔레매틱스 모듈
+
+[문맥 기반 이미지 설명]
+[그림 9-3] 자율주행 농기계의 상단 루프에 견고하게 체결된 고정밀 RTK-GNSS 이중 주파수 패치 안테나와 셀룰러 텔레매틱스 통신 유닛의 매크로 클로즈업이다. 열악한 노지 환경의 진동, 분진, 강우를 견디도록 IP67 등급의 방수·방진 하우징으로 밀폐되어 있으며, 후면에는 차분 보정 신호를 수신하기 위한 저지연 무선 링크 케이블이 연결되어 있다 [SRC-100]. 수집된 위상 데이터는 트랙터 내부 ECU(전자 제어 장치)로 즉각 전송되어 센티미터급 조향 기준점을 형성한다.
+
+[나노바나나 생성 프롬프트]
+A detailed commercial macro photograph of an agricultural RTK-GNSS smart antenna module and cellular communication dome securely mounted on the painted metal roof bracket of a tractor. High-resolution texture of the white weatherproof composite radome casing, brass RF connectors, heavy-duty insulated cabling, and status indicator LEDs glowing softly under natural diffuse overcast daylight, with blurred green garlic field ridges visible in the soft background. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

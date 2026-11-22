@@ -1,0 +1,12 @@
+이미지 번호: 그림 7-8
+이미지 파일명: fig_ch07_v08.png
+단원: 제7장. 디지털 트윈과 양파 생육·수율 시뮬레이션 모델링 (ch07)
+결합 절: 현장 적용·실전 기술
+시각화 유형: scientific_anatomy
+제목: [그림 7-8] 엽면적지수(LAI) 및 질소 상태에 따른 정규식생지수(NDVI) 모델 동화 비교
+
+[문맥 기반 이미지 설명]
+[그림 7-8] 질소 영양 상태 및 엽면적지수(LAI) 차이에 따른 양파 개체의 캐노피 발달 양상을 단계별로 대조한 과학 일러스트레이션입니다. 최적 질소 조건에서 짙은 녹색의 풍성한 관상엽과 두꺼운 가경을 형성한 개체와, 결핍으로 왜소해진 개체의 엽초 및 엽면적 차이가 순수 흰색 배경 위에서 정밀하게 비교됩니다. 모델은 이러한 원격 식생 지수를 실시간 입력 변수로 활용하여 과대·과소 추정된 생장률을 보정합니다 [SRC-134].
+
+[나노바나나 생성 프롬프트]
+A scientific botanical anatomy comparison on a stark white background presenting two mature Allium cepa onion plants side by side. The left plant demonstrates optimal nitrogen status with thick upright dark emerald green tubular leaves, robust leaf area index, wide pseudostem neck, and a healthy developing bulb. The right plant displays nutrient stress with paler yellow green thinner foliage, reduced leaf blades, and a smaller underdeveloped bulb. Detailed botanical cross sectional highlights of the vascular bundles and leaf sheath thickness in high detail painterly textbook style. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

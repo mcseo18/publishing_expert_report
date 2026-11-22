@@ -1,0 +1,12 @@
+이미지 번호: 그림 3-7
+이미지 파일명: fig_ch03_v07.png
+단원: 제3장. 양파의 생육 단계별 생리 기작과 인경 비대 메커니즘 (ch03)
+결합 절: 현장 적용 및 실전 기술
+시각화 유형: photorealistic_field
+제목: [그림 3-7] 저온 콜드체인 저장고 내 큐어링 완료 양파의 대량 팔레트 보관
+
+[문맥 기반 이미지 설명]
+[그림 3-7] 수확 후 건조(Curing)를 마친 고품질 양파들이 환기형 대형 목재 팔레트 상자에 적재되어 정밀 온습도 제어 콜드체인 저장고에 입고된 현장 사진입니다. 영하 1도에서 영상 0도 사이의 안정적인 저온과 저습 환경을 유지함으로써 인경의 호흡을 억제하고 맹아 및 부패를 차단합니다 [SRC-107]. 현장 적용 기술 3항에서 논의된 장기 저장성 확보를 위한 물리적 환경 제어 시스템의 핵심 설비를 보여줍니다.
+
+[나노바나나 생성 프롬프트]
+Photorealistic interior documentary view of a commercial climate-controlled onion cold storage warehouse. Massive ventilated wooden bulk crates stacked four tiers high are filled with thousands of perfectly cured, globe-shaped golden dry onions with glossy copper skins. Modern galvanized ventilation ducts and automated ceiling air circulation blowers are visible in the background under industrial warehouse LED illumination, with a cool crisp atmosphere. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

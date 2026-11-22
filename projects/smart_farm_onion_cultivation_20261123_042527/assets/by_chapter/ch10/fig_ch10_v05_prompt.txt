@@ -1,0 +1,12 @@
+이미지 번호: 그림 10-5
+이미지 파일명: fig_ch10_v05.png
+단원: 제10장. 해충·잡초의 스마트 모니터링 및 AI 종합 방제(IPM) (ch10)
+결합 절: 생리·분자 메커니즘 및 모니터링 기술
+시각화 유형: photorealistic_field
+제목: [그림 10-5] 유효 적산일도(GDD) 기반 지중 해충 발생 예측 기상 측정 관측점
+
+[문맥 기반 이미지 설명]
+[그림 10-5] 양파 재배지 이랑 지표면에 밀착 설치되어 유효 적산일도(GDD) 산출을 전담하는 마이크로 기상 스테이션의 현장 사진입니다. 토양 깊이별 온도 감지선과 지상 15cm 복사열 센서가 고자리파리 성충의 우화기 및 산란 적기를 정밀 역학 모델에 연계합니다. 기후 데이터의 실시간 축적은 관행적 정기 살포를 탈피하여 해충 생애주기 맞춤형 방제 적기를 산정하는 데 필수적인 과학적 토대를 제공합니다 [SRC-100].
+
+[나노바나나 생성 프롬프트]
+A realistic close-up field photograph taken at ground level in an onion patch. Between vigorous upright onion plants growing through black agricultural film, a compact stainless steel micro-weather station stands firmly anchored. Slender black sensor cables extend into the cultivated soil bed, measuring localized ground heat, while a small white radiation shield sits just above the leaf canopy level under clear natural daylight, with soft background blur showing the repeating rows of onions. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

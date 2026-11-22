@@ -1,0 +1,12 @@
+이미지 번호: 그림 15-8
+이미지 파일명: fig_ch15_v08.png
+단원: 제15장. 디지털 마늘 재배의 경제성 평가, 탄소 배출량 및 미래 전망 (ch15)
+결합 절: 15.3 화학비료 절감 및 디젤 대체에 따른 마늘 생애주기 탄소발자국 (LCA) 평가
+시각화 유형: photorealistic_field
+제목: [그림 15-8] 태양광 연계 배터리 구동 친환경 스마트 농기계 충전 및 농작업
+
+[문맥 기반 이미지 설명]
+[그림 15-8] 마늘 주산지 포장 인근에 마련된 이동형 태양광 충전 스테이션과 충전 중인 전기 구동 소형 다목적 농기계의 전경입니다. 화석연료인 디젤을 재생에너지 전력으로 대체함으로써 트랙터 및 관리기 운행 단계의 직접 탄소 배출량을 제로화합니다 [SRC-105]. 생애주기 전반에서 화석연료 연소 배출을 획기적으로 차단하는 탄소 중립형 스마트 마늘 영농 단지의 미래상을 반영합니다.
+
+[나노바나나 생성 프롬프트]
+A realistic documentary field photograph depicting an off-grid solar-powered charging station beside an expansive garlic field. High-efficiency photovoltaic panels sit mounted on a trailer adjacent to a heavy-duty battery storage inverter unit. A charging cable connects directly to a compact electric utility farm vehicle equipped with precision weeding attachments. In the background, expansive neat rows of upright green garlic plants flourish under bright blue sky and sunlit field landscape. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

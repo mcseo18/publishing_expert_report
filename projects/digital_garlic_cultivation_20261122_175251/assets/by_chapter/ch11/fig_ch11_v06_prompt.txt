@@ -1,0 +1,12 @@
+이미지 번호: 그림 11-6
+이미지 파일명: fig_ch11_v06.png
+단원: 제11장. 컴퓨터 비전 및 딥러닝 기반 디지털 병해충·생리장해 진단 (ch11)
+결합 절: 11.3 2차 생장(벌마늘), 열개, 스펀지마늘 등 생리장해의 시각적 진단 알고리즘
+시각화 유형: photorealistic_macro
+제목: [그림 11-6] 마늘 2차 생장(벌마늘)의 인편 내부 엽신 돌출 구조 단면
+
+[문맥 기반 이미지 설명]
+[그림 11-6] 영양 과다 또는 기상 이상으로 인해 발생하는 마늘 2차 생장(벌마늘) 증상을 인편 종단면 절단을 통해 관찰한 매크로 사진입니다. 정상적인 휴면 인편 내부에서 새로운 영양 잎이 비정상적으로 자라나 외피를 뚫고 솟아나오는 구조적 결함을 상세히 드러냅니다. [SRC-100], [SRC-108]에 제시된 생리장해의 형태 계수(Shape Factor)와 내부 구조 패턴 인식 알고리즘의 대상 특징을 제시합니다.
+
+[나노바나나 생성 프롬프트]
+Photorealistic botanical macro photograph of a dissected abnormal garlic bulb exhibiting secondary growth (witch's broom or split bulb). The outer papery skin has split open as internal individual cloves sprout miniature bright green shoot leaflets pushing upward through the clove apex. A longitudinal cross-section reveals elongated inner vegetative meristems instead of tight dormant cloves, displayed on a dark slate laboratory bench under crisp studio side lighting. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

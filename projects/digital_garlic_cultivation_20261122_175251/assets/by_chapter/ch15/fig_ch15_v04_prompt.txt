@@ -1,0 +1,12 @@
+이미지 번호: 그림 15-4
+이미지 파일명: fig_ch15_v04.png
+단원: 제15장. 디지털 마늘 재배의 경제성 평가, 탄소 배출량 및 미래 전망 (ch15)
+결합 절: 15.2 스마트 농기계 및 IoT 장비 투자의 손익분기점 (BEP) 산출 모델
+시각화 유형: photorealistic_field
+제목: [그림 15-4] 자율주행 전동 트랙터 및 마늘 포장 정밀 작업 현장
+
+[문맥 기반 이미지 설명]
+[그림 15-4] RTK-GPS 안테나와 라이다 센서를 탑재한 소형 전동 자율주행 트랙터가 마늘 포장 두둑 사이를 무인 주행하며 정밀 방제 작업을 수행하는 전경입니다. 고가의 초기 장비 구입비(CAPEX)에도 불구하고 무인 자동화에 따른 연간 인건비 절감과 연료비 감축은 손익분기점(BEP) 도달 시기를 단축시킵니다 [SRC-106]. 장기적인 운영 비용(OPEX)의 최소화를 통해 농가의 투자 회수 기간을 앞당기는 핵심 장비의 운용 모습을 보여줍니다.
+
+[나노바나나 생성 프롬프트]
+A documentary-style field photograph of a compact electric autonomous agricultural tractor navigating accurately between raised beds of vigorous green garlic plants in spring. The autonomous tractor features roof-mounted RTK-GNSS receiver domes, optical cameras, and spinning LiDAR sensors, with no operator inside the open ergonomic chassis. Wide lush green strap-like leaves of Allium sativum line the neat rows on plastic-mulched soil beds under clear morning sunlight, with crisp soil details and realistic agricultural background. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

@@ -1,0 +1,12 @@
+이미지 번호: 그림 14-10
+이미지 파일명: fig_ch14_v10.png
+단원: 제14장. 양파 비파괴 선별 및 유통 디지털 트레이서빌리티 (ch14)
+결합 절: 오해와 진실: 현장·이론 핵심 오해 교정
+시각화 유형: photorealistic_field
+제목: [그림 14-10] 다중 온습도 모니터링 센서가 장착된 양파 대규모 저온 저장고 적재 현장
+
+[문맥 기반 이미지 설명]
+[그림 14-10] 단순 냉장 보관을 넘어 정밀 콜드체인 관리가 이루어지는 대형 양파 저온저장고의 실제 내부 현장 사진입니다. 통풍성이 확보된 목재 벌크 빈에 가득 담긴 양파들 사이사이에 센서 프로브가 깊숙이 삽입되어 내부 온도와 상대습도를 지속적으로 계측합니다 [SRC-107, SRC-148]. 센서 데이터의 정확성 검증과 균일한 냉기 순환을 통해 내부 부패율을 억제하고 데이터 신뢰성을 확보하는 현장 프로세스를 증명합니다.
+
+[나노바나나 생성 프롬프트]
+Documentary photograph inside a commercial onion cold storage facility. Massive stacks of heavy slatted wooden bulk containers are filled to the brim with cured yellow onions under a uniform cold storage temperature. A technical staff member in cold-weather jacket inspects a wireless sensor probe inserted deep into the onion pile, measuring internal temperature and humidity. Overhead industrial refrigeration evaporator fans circulate cool misty air beneath high insulated panel walls, captured with realistic commercial camera lighting and sharp focal depth. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

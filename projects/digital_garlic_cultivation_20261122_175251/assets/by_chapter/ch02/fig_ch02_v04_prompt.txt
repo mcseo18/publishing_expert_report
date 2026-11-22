@@ -1,0 +1,12 @@
+이미지 번호: 그림 2-4
+이미지 파일명: fig_ch02_v04.png
+단원: 제2장. 국내외 마늘 산업 현황, 주산단지 생태환경 및 스마트 벨트 (ch02)
+결합 절: 2.2 국내 한지형 및 난지형 마늘 주산단지의 지리·기후적 특성
+시각화 유형: photorealistic_macro
+제목: [그림 2-4] 한지형 주산지 월동기 마늘 뿌리권 토양 프로파일
+
+[문맥 기반 이미지 설명]
+[그림 2-4] 한지형 마늘 주산지의 저온기 동안 근계가 발달하는 토양 단면의 물리적 구조를 근접 촬영한 사진이다. 지표면의 미세 결빙층 아래로 유기물이 풍부한 양토층에서 마늘의 부정근이 굵고 길게 뻗어 토양 입단 구조와 강하게 밀착되어 있다. 낮은 지온 조건에서도 동해를 극복하고 양수분을 흡수할 수 있는 근계의 활력과 모세관 공극 구조를 입체적으로 보여준다.
+
+[나노바나나 생성 프롬프트]
+Ultra-sharp macro photograph of a vertical soil profile cut directly beside an overwintering cold-type garlic plant. The dark brown aggregate loam soil shows natural crumbles, pores, and gravel inclusions, with thick, fleshy white adventitious garlic roots penetrating deeply downward through the stratum. A thin, crystalline frost crust glimmers at the very top ground line around the base of the emergent green shoot, highlighting the root architecture's resilience in cold, damp mineral soil under crisp directional lab-style illumination. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

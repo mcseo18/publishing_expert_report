@@ -1,0 +1,12 @@
+이미지 번호: 그림 11-4
+이미지 파일명: fig_ch11_v04.png
+단원: 제11장. 컴퓨터 비전 및 딥러닝 기반 디지털 병해충·생리장해 진단 (ch11)
+결합 절: 11.2 객체 탐지(YOLO) 및 이미지 분할을 활용한 병해충 식별
+시각화 유형: scientific_anatomy
+제목: [그림 11-4] 마늘 자주빛무늬병(흑반병) 병반의 인스턴스 픽셀 분할(Segmentation) 분석
+
+[문맥 기반 이미지 설명]
+[그림 11-4] 마늘 잎 표면에 형성된 자주빛무늬병(Alternaria porri) 병반의 형태와 괴사 면적을 픽셀 단위로 정밀하게 분리하는 시맨틱 및 인스턴스 분할 원리를 도해합니다. 단순 바운딩 박스를 넘어 불규칙한 타원형 병반 가장자리의 동심원상 윤곽과 괴사 중심부를 정확한 경계선으로 추출함으로써 질병 심각도를 정량화합니다. [SRC-100]에서 논의된 컴퓨터 비전 기반 병해 진단 정량화 알고리즘의 핵심 과정을 묘사합니다.
+
+[나노바나나 생성 프롬프트]
+Scientific cross-section and surface morphology illustration on a clean white background depicting a garlic leaf affected by purple blotch. The central elliptical lesion displays concentric dark purple rings fading into yellow chlorotic margins. Surrounding the lesion, translucent colored contour boundaries delineate the exact damaged necrotic zone versus the healthy green photosynthetic tissue, illustrating precise pixel-level image segmentation in an elegant editorial scientific textbook style. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

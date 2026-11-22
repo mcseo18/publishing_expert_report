@@ -1,0 +1,12 @@
+이미지 번호: 그림 14-3
+이미지 파일명: fig_ch14_v03.png
+단원: 제14장. 스마트 건조(Curing), CA 저온저장 및 유통 품질 제어 (ch14)
+결합 절: 14.1 수확 후 수분 증발 메커니즘과 차압식 스마트 예건(Curing) 시스템
+시각화 유형: photorealistic_macro
+제목: [그림 14-3] 최적 예건 처리된 마늘 외피 및 기부(Basal Plate) 접사
+
+[문맥 기반 이미지 설명]
+[그림 14-3] 차압식 스마트 예건 과정을 거쳐 완벽하게 건조 및 경화된 마늘 구경의 외부 표면을 초근접 촬영한 매크로 사진이다. 외피는 얇은 종이 질감의 여러 겹 건조 피막으로 응축되어 병원균 침입을 물리적으로 차단하고 있다 [SRC-100]. 줄기 절단부는 수축 밀봉되었으며, 뿌리가 절제된 바닥면(기부)은 건조 목질화되어 장기 보관 중 수분 손실을 억제한다.
+
+[나노바나나 생성 프롬프트]
+Ultra-sharp photorealistic macro photograph of a perfectly cured garlic bulb resting on a rustic slate laboratory surface. Extreme close-up showing the delicate, translucent papery white and pale violet striated outer scales, completely sealed tightly shrunken dry neck where the stalk was cut, and clean trimmed dry fibrous basal root plate. Crisp natural studio light catching microscopic fibers and natural ridges of the desiccated protective tunic. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

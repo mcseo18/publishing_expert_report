@@ -1,0 +1,181 @@
+---
+chapter_id: "ch03"
+title: "제3장. 마늘 품종별 유전 특성, 생리적 분화 및 디지털 계통 분류"
+audience: "대학 전공 심화, 대학원생, 연구자 및 선도 현장 실무자"
+evidence_packet: "digital_garlic_cultivation_20261122_175251_evidence.json"
+---
+
+# 제3장. 마늘 품종별 유전 특성, 생리적 분화 및 디지털 계통 분류
+
+**단원 요약:** 본 장에서는 마늘 품종의 근본적인 유전생리적 차이를 심도 있게 분석한다. 특히, 한지형과 난지형 품종 간의 저온 요구도 차이, 인편 분화 특성, 그리고 추대(Bolting) 양상을 정량적인 방법론을 통해 규명한다. 나아가, 분자 마커 분석과 형태학적 이미지 기반 딥러닝 기술을 접목하여 품종을 디지털 방식으로 분류하는 첨단 계통 분류 기술을 제시한다. 이러한 연구 결과는 고도화된 맞춤형 디지털 재배 시스템 구축의 핵심 기반을 제공한다.
+
+**대상 독자:** 대학 전공 심화 과정 학습자, 대학원생, 연구원 및 선도 현장 실무자
+
+***
+
+## 3.1 마늘 품종의 생태형 분류: 한지형, 난지형(남도, 대서 등)
+
+마늘(Allium sativum)은 재배 지역 및 기후 조건에 따라 뚜렷하게 구분되는 생태형을 나타낸다. 이 분류는 단순히 지리적 구분을 넘어, 품종이 보유한 고유의 유전적 특성과 환경 적응 능력을 반영한다 (SRC-103). 주요 생태형은 지리적, 생리적 특성에 따라 한지형과 난지형으로 구분된다.
+
+**한지형 마늘:** 주로 내륙 및 중부 지방에서 재배되며, 특정 환경 요인(예: 저온 조건)에 대한 반응 특성이 뚜렷하다. 이들은 품종 고유의 생리적 특성이 특정 계절적 환경 변화에 민감하게 반응하는 경향을 보인다.
+
+**난지형 마늘:** 남부 지역에서 주로 재배되며, 해양성 기후나 상대적으로 온화한 기후대에 적응해 왔다. 난지형 내에서도 지리적 특성에 따라 '남도형'과 '대서(大西)형' 등으로 세분화될 수 있으며, 이는 미묘한 재배 환경에 대한 반응의 차이를 시사한다 (SRC-103).
+
+이러한 생태형의 구분은 품종별 적정 재배지 선정, 생육 주기 예측, 그리고 수확 시기 결정에 필수적인 기초 자료를 제공한다.
+
+## 3.2 저온감응(Vernalization), 휴면(Dormancy) 및 추대(Bolting)의 유전생리
+
+마늘의 생장 주기 조절은 외부 환경 신호, 특히 온도 변화에 의해 정교하게 제어된다. 이 과정에는 저온감응, 휴면, 그리고 추대라는 세 가지 핵심 생리적 현상이 관여한다.
+
+### 3.2.1 저온감응(Vernalization)
+저온감응(Vernalization)은 특정 식물이 개화나 생육 단계로 진입하기 위해 일정 기간 동안 저온(냉각)에 노출되어야 하는 생리적 현상이다 (SRC-107). 마늘의 경우, 휴면기 탈출이나 생육 주기 전환에 저온이 결정적인 역할을 할 수 있다. 저온에 대한 품종별 민감도 차이는 품종 간의 재배 적합성을 결정짓는 중요한 유전적 특성이다.
+
+### 3.2.2 휴면(Dormancy) 및 추대(Bolting)
+**휴면(Dormancy)**은 환경 스트레스나 계절적 요인에 의해 생식 생장이나 영양 생장이 일시적으로 정지되는 상태를 의미한다. 마늘 종구의 휴면 특성은 저장성과 초기 생육 시기에 직접적인 영향을 미친다.
+
+**추대(Bolting)**는 마늘에서 생식 기관(꽃대)이 비정상적으로 조기에 발달하는 현상이다. 품종에 따라 추대에 대한 민감도와 발생 시기가 다르며, 이는 수확 시기 예측 및 저장 관리에 치명적인 영향을 미친다.
+
+이러한 유전생리적 특성들은 온도 변화라는 환경 인자에 대한 유전자의 반응으로 발현되며, 이를 정량적으로 분석하는 것이 품종 개량 및 재배 환경 최적화의 핵심이다.
+
+## 3.3 유전자 분석 및 디지털 이미지 표현형 기반 품종 판별 기술
+
+전통적인 형태학적 관찰만으로는 품종 간의 미묘한 유전적 차이를 명확히 구별하기 어렵다. 따라서, 현대 재배 과학에서는 분자 수준의 분석과 첨단 디지털 기술을 융합하여 품종을 식별한다.
+
+### 3.3.1 분자 마커 분석 (Molecular Marker Analysis)
+분자 마커(Molecular markers)를 활용한 유전적 분석은 품종 간의 고유한 DNA 염기서열 차이를 탐지한다. 이 기술은 표현형(Phenotype) 관찰이 어렵거나 시간이 오래 걸리는 형질(예: 내부적인 내병성, 미세한 생리 반응)을 간접적으로 파악할 수 있게 한다.
+
+### 3.3.2 디지털 이미지 표현형 (Digital Image Phenotyping)
+최근에는 형태학적 특징을 고도화된 디지털 이미지 처리 기술과 결합하는 연구가 활발하다. 마늘의 잎 구조, 종구의 외형, 생육 단계별 모습 등을 고해상도 카메라로 촬영하고, 딥러닝(Deep Learning) 알고리즘을 적용하여 객관적인 정량적 데이터로 추출한다.
+
+**딥러닝 기반 계통 분류:** 이미지에서 추출된 특징 벡터(Feature Vector)를 딥러닝 모델(예: CNN)에 입력하면, 모델은 훈련된 데이터셋을 기반으로 품종을 높은 정확도로 분류한다. 이는 인간의 주관적 판단을 배제하고, 데이터 기반의 객관적인 품종 판별을 가능하게 하여 맞춤형 디지털 재배 기반을 구축하는 핵심 동력이다 (SRC-103).
+
+## 3.4 무병종구(바이러스 프리) 생산 체계 및 조직배양 대량 증식
+
+품질 우수성과 병해충 저항성을 동시에 확보하는 것은 현대 마늘 재배의 주요 과제이다. 바이러스 감염은 종구의 품질을 심각하게 저하시키는 주요 원인이다.
+
+**무병종구 생산:** 병원체 감염 위험을 원천적으로 차단하는 '무병종구(Virus-free seed bulb)' 생산 체계가 필수적이다. 이는 주로 체내 감염이 용이한 바이러스를 정화하거나 제거하는 과정을 포함한다.
+
+**조직배양을 통한 대량 증식:** 조직배양(Tissue Culture) 기술은 소량의 건강한 조직으로부터 무병 상태의 식물체를 대량으로 증식시킬 수 있는 가장 효율적인 방법 중 하나이다 (SRC-103).
+1. **무병 상태 확립:** 감염되지 않은 모체를 확보한다.
+2. **조직 분주 및 배양:** 캘러스(callus)나 분열 조직을 배지 내에서 증식시킨다.
+3. **재분화 및 활착:** 배양된 조직을 완전한 개체로 재분화시켜 유묘(seedling)를 얻는다.
+
+이러한 체계는 고품질의 표준화된 종구를 대량으로 공급함으로써, 농가에 안정적인 재배 기반을 제공하는 데 기여한다.
+
+***
+
+## ## 핵심 용어집 (표)
+
+| 용어 | 정의 | 관련 기술/현상 |
+| :--- | :--- | :--- |
+| **생태형** | 특정 지역의 기후 및 환경에 적응하여 발달한 품종의 생물학적 분류군. (한지형, 난지형) | 품종 분류, 환경 적응성 |
+| **저온감응** | 생육 주기 전환이나 발아 등에 필요한 일정 기간의 저온 노출 필요성. | Vernalization, 온도 조절 |
+| **휴면** | 외부 자극에 반응하여 생육 활동이 일시적으로 정지되는 현상. | Dormancy, 저장성 |
+| **추대 (Bolting)** | 마늘 등에서 꽃대가 비정상적으로 조기 발달하는 현상. | 생리적 분화, 수확 시기 변동 |
+| **분자 마커** | DNA 염기서열의 특정 차이를 이용하여 품종을 유전적으로 구별하는 표지. | 유전 분석, 품종 식별 |
+| **디지털 표현형** | 형태학적 특성(모양, 크기 등)을 디지털 이미지 처리로 정량화한 데이터. | 딥러닝, 자동화 분석 |
+| **조직배양** | 식물의 특정 조직을 인공 배지에서 배양하여 무병 상태의 식물을 대량 생산하는 기술. | 대량 증식, 무병종구 생산 |
+
+***
+
+## ## 이해도 점검 연습문제 및 해설
+
+**문제 1.** 마늘 품종을 구분하는 생태형 분류에서 한지형과 난지형의 구분이 갖는 생리적 중요성은 무엇이며, 이 구분이 재배 관리에 어떤 시사점을 주는가?
+**정답:** 한지형과 난지형의 구분은 각 품종이 특정 온도 조건(예: 저온 요구도)에 대한 유전적 반응이 다르다는 것을 반영한다. 난지형은 상대적으로 온화한 기후에 적응된 특성을 가질 수 있으며, 이는 해당 품종의 적정 재배지 선정과 생육 주기 예측에 결정적인 정보를 제공한다 (SRC-103).
+
+**문제 2.** 저온감응(Vernalization), 휴면(Dormancy), 추대(Bolting) 현상 중, 품종의 수확 시기 예측에 가장 직접적인 영향을 미치는 현상은 무엇이며, 그 이유는 무엇인가?
+**정답:** 추대는 마늘에서 생식 기관(꽃대)이 조기에 발달하는 현상으로, 이는 종구의 영양적 가치(화급)를 상실시키고 수확 시기를 급격히 변화시키므로 예측에 가장 치명적이다. 저온감응은 이 추대 또는 생육 주기 전환의 선행 조건이 될 수 있다.
+
+**문제 3.** 첨단 품종 판별 기술인 '디지털 이미지 표현형'과 '분자 마커 분석'을 결합하는 것이 전통적인 형태학적 관찰보다 우월한 점은 무엇인가?
+**정답:** 디지털 이미지 표현형은 고해상도 이미지로부터 객관적이고 정량적인 데이터를 추출하며, 딥러닝을 통해 자동화된 판별이 가능하다. 분자 마커 분석은 외부 표현형으로는 관찰하기 어려운 유전적 특성이나 내부적인 병해충 저항성 같은 형질을 간접적으로 파악할 수 있게 하여, 인간의 주관성을 배제하고 데이터 기반의 정확도를 극대화한다 (SRC-103).
+
+***
+
+## ## 오해와 진실: 현장·이론 핵심 오해 교정
+
+**오해 1: 모든 품종의 저온 요구도는 동일하다.**
+**진실:** 마늘 품종은 한지형과 난지형처럼 품종마다 저온에 대한 감응성(저온 요구도)이 현저히 다르다 (SRC-103). 특정 품종이 낮은 온도에서 휴면을 유지하거나 생리적 전환을 일으키는지 여부는 품종 고유의 유전적 특성(Vernalization 민감도)에 의해 결정되므로, 일률적으로 적용해서는 안 된다.
+
+**오해 2: 조직배양 기술은 어떤 경우에도 외부 환경 요인(저온, 온도)의 영향을 받지 않는다.**
+**진실:** 조직배양은 무병 종구의 대량 증식을 위한 배양 단계이지만, 배양 배지의 온도 제어, 광주기, 심지어 숙성 시의 저온 처리 등 외부 환경 조건이 배양 성공률과 최종 식물의 품질에 매우 큰 영향을 미친다. 저온과 같은 환경 신호는 생리적 분화 과정을 촉진하거나 저해할 수 있다 (SRC-103).
+
+**오해 3: 디지털 분류 기술은 품종의 생리학적 원인을 파악하는 데 직접적으로 기여한다.**
+**진실:** 디지털 이미지와 딥러닝은 주로 품종의 **표현형(Phenotype)**을 **식별(Identification)**하는 데 탁월하다 (SRC-103). 이는 품종의 외형적 특징을 빠르고 정확하게 분류하는 데 강점이 있지만, "왜" 그러한 특징을 가지게 되었는지에 대한 **유전적 메커니즘(Genotype)**을 직접 증명하는 것은 분자 마커 분석과 같은 유전학적 도구의 영역이다.
+
+## 참고문헌 및 근거 출처 목록
+
+| 출처 ID | 유형 | 제목 | URL | 라이선스 |
+| :--- | :--- | :--- | :--- | :--- |
+| `SRC-100` | web | 농촌진흥청 | https://www.rda.go.kr/ | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-101` | web | 보도자료 < 새소식 < 정책홍보 < 농촌진흥청 | https://www.rda.go.kr/board/board.do?boardId=farmprmninfo&prgId=day_farmprmninfoEntry | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-102` | web | 한국식품연구원 | https://www.kfri.re.kr/ | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-103` | web | 국립식량과학원 | https://www.nics.go.kr/index.do | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-104` | web | 농림축산식품부 | https://www.mafra.go.kr/home/index.do | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-105` | web | 국민 안심이 기준입니다, 식품의약품안전처 | https://www.mfds.go.kr/index.do | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-106` | web | 한국농촌경제연구원 | https://www.krei.re.kr/krei/index.do | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-107` | web | 저온 유통 - 위키백과, 우리 모두의 백과사전 | https://ko.wikipedia.org/wiki/%EC%BD%9C%EB%93%9C_%EC%B2%B4%EC%9D%B8 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-108` | web | 에틸렌 - 위키백과, 우리 모두의 백과사전 | https://ko.wikipedia.org/wiki/%EC%97%90%ED%8B%B8%EB%A0%8C | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-109` | web | [2021] Inhibition of Ethylene Binding and Biosynthesis Maintains Fruit Quality of ‘Formosa’ Plums during Postharvest Storage (Horticultural Science and Technology) | https://doi.org/10.7235/hort.20210033 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-111` | web | [2010] Cold storage and fruit quality (Postharvest Biology and Technology for Preserving Fruit Quality) | https://doi.org/10.1201/9781439802670-c4 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-110` | web | [1998] Effects of storage temperature and atmosphere on saskatoon (Amelanchier alnifolia Nutt.) fruit quality, respiration and ethylene production (Postharvest Biology and Technology) | https://doi.org/10.1016/s0925-5214(98)00012-x | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-282` | web | [2016] Low Ethylene Technology in Non-Optimal Storage Temperatures (Advances in Postharvest Fruit and Vegetable Technology) | https://doi.org/10.1201/b18489-15 | 학술 서지 메타데이터·초록(Crossref) - 정식 인용 목적(원문 무단 복제 금지) |
+| `SRC-117` | web | [2016] Nondestructive Assessment of Fruit Quality (Advances in Postharvest Fruit and Vegetable Technology) | https://doi.org/10.1201/b18489-10 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-118` | web | [2015] Nondestructive Assessment of Fruit Quality (Contemporary Food Engineering) | https://doi.org/10.1201/b18489-4 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-119` | web | [2016] Metabolomics Tools for Postharvest Quality and Safety of Fresh Produce (Advances in Postharvest Fruit and Vegetable Technology) | https://doi.org/10.1201/b18489-20 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-120` | web | [2021] Effects of postharvest ultraviolet-C treatment on shelf-life and quality of bitter gourd fruit during storage (Food Packaging and Shelf Life) | https://doi.org/10.1016/j.fpsl.2021.100665 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-121` | web | [2020] Evaluation of Postharvest Shelf Life and Quality of Lemon Treated with  Different Coatings during Storage (Food Science and Engineering) | https://doi.org/10.37256/fse.122020463 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-122` | web | [2026] Aloe Vera-Honey Composite Edible Coatings Extend Postharvest Shelf Life and Preserve Quality of Roma Tomatoes Under Tropical Ambient Storage in Rwanda (Journal of Food Science and Horticulture) | https://doi.org/10.69739/jfsh.v1i1.1696 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-123` | web | [2024] Different Postharvest Treatments and Storage Conditions for Shelf-life Enhancement and Quality Retention of Litchi (Journal of Food Chemistry &amp; Nanotechnology) | https://doi.org/10.17756/jfcn.2024-s1-015 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-124` | web | [2019] Understanding Food Loss and Waste—Why Are We Losing and Wasting Food? (Foods) | http://dx.doi.org/10.3390/foods8080297 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-125` | pdf | [2020] Nanotechnologies in Food Science: Applications, Recent Trends, and Future Perspectives (Nano-Micro Letters) | https://doi.org/10.1007/s40820-020-0383-9 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-126` | web | [2020] ZnO Nanostructures in Active Antibacterial Food Packaging: Preparation Methods, Antimicrobial Mechanisms, Safety Issues, Future Prospects, and Challenges (Food Reviews International) | https://doi.org/10.1080/87559129.2020.1737709 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-127` | web | [2019] Value-added chemicals from food supply chain wastes: State-of-the-art review and future prospects (Chemical Engineering Journal) | https://doi.org/10.1016/j.cej.2019.121983 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-263` | web | [2020] Citrus Essential Oils (CEOs) and Their Applications in Food: An Overview (Plants) | http://dx.doi.org/10.3390/plants9030357 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-128` | web | [2024] Advances in strawberry postharvest preservation and packaging: A comprehensive review (Comprehensive Reviews in Food Science and Food Safety) | https://doi.org/10.1111/1541-4337.13417 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-129` | pdf | [2019] Characterization of Fruit Quality Attributes and Cell Wall Metabolism in 1-Methylcyclopropene (1-MCP)-Treated ‘Summer King’ and ‘Green Ball’ Apples During Cold Storage (Frontiers in Plant Science) | https://doi.org/10.3389/fpls.2019.01513 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-130` | web | [2014] Shelf life extension and antioxidant activity of ‘Hayward’ kiwi fruit as a result of prestorage conditioning and 1-methylcyclopropene treatment (Journal of Food Science and Technology) | https://doi.org/10.1007/s13197-014-1300-3 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-131` | web | [2012] Effects of Vibration Stress on the Quality of Packaged Apples during Simulated Transport (Journal of Biosystems Engineering) | https://doi.org/10.5307/jbe.2012.37.1.044 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-264` | web | [2025] Plant–Microbe Interactions for Improving Postharvest Shelf Life and Quality of Fresh Produce Through Protective Mechanisms (Horticulturae) | https://doi.org/10.3390/horticulturae11070732 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-132` | web | [2022] Prediction of Total Soluble Solids and pH of Strawberry Fruits Using RGB, HSV and HSL Colour Spaces and Machine Learning Models (Foods) | https://doi.org/10.3390/foods11142086 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-133` | web | [2017] Nondestructive Estimation of Moisture Content, pH and Soluble Solid Contents in Intact Tomatoes Using Hyperspectral Imaging (Applied Sciences) | https://doi.org/10.3390/app7010109 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-134` | web | [2024] Prediction of Soluble-Solid Content in Citrus Fruit Using Visible–Near-Infrared Hyperspectral Imaging Based on Effective-Wavelength Selection Algorithm (Sensors) | https://doi.org/10.3390/s24051512 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-135` | pdf | [2018] Hyperspectral imaging technique to evaluate the firmness and the sweetness index of tomatoes (Korean Journal of Agricultural Science) | https://doi.org/10.7744/kjoas.20180075 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-265` | web | [2022] Field Application of a Vis/NIR Hyperspectral Imaging System for Nondestructive Evaluation of Physicochemical Properties in ‘Madoka’ Peaches (Plants) | https://doi.org/10.3390/plants11172327 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-136` | web | Technical Platform on the Measurement and Reduction of Food Loss and Waste / Food and Agriculture Organization of the United Nations | https://www.fao.org/platform-food-loss-waste/en/ | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-137` | web | FLW Database / Technical Platform on the Measurement and Reduction of Food Loss and Waste / Food and Agriculture Organization of the United Nations | https://www.fao.org/food-loss-and-food-waste/flw-data/en/ | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-138` | web | Codex / Home | https://www.fao.org/fao-who-codexalimentarius/en/ | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-139` | web | Ask IFAS: Topic - Postharvest and Handling | https://edis.ifas.ufl.edu/topics/postharvest | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-140` | web | ARS Home : USDA ARS | https://www.ars.usda.gov/ | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-141` | web | National Programs : USDA ARS | https://www.ars.usda.gov/research/programs/ | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-142` | web | NFRI / National Agriculture and Food Research Organization | https://www.naro.go.jp/english/laboratory/nfri/index.html | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-143` | web | Ministry of Agriculture, Forestry and Fisheries | https://www.maff.go.jp/e/index.html | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-144` | web | Postharvest - Wikipedia | https://en.wikipedia.org/wiki/Postharvest | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-145` | web | Controlled atmosphere - Wikipedia | https://en.wikipedia.org/wiki/Controlled_atmosphere | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-146` | web | Modified atmosphere - Wikipedia | https://en.wikipedia.org/wiki/Modified_atmosphere | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-147` | web | 1-Methylcyclopropene - Wikipedia | https://en.wikipedia.org/wiki/1-Methylcyclopropene | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-148` | web | Cold chain - Wikipedia | https://en.wikipedia.org/wiki/Cold_chain | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-149` | pdf | [2014] Agricultural uses of plant biostimulants (Plant and Soil) | https://doi.org/10.1007/s11104-014-2131-8 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-150` | web | [2017] Biostimulants in Plant Science: A Global Perspective (Frontiers in Plant Science) | https://doi.org/10.3389/fpls.2016.02049 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-151` | web | [1986] The commercial storage of fruits, vegetables, and florist and nursery stocks (Biodiversity Heritage Library (Smithsonian Institution)) | https://www.biodiversitylibrary.org/item/295012 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-152` | web | [2017] Reducing Postharvest Losses during Storage of Grain Crops to Strengthen Food Security in Developing Countries (Foods) | https://doi.org/10.3390/foods6010008 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-266` | web | [2015] Bioactive Compounds and Antioxidant Activity in Different Types of Berries (International Journal of Molecular Sciences) | http://dx.doi.org/10.3390/ijms161024673 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-153` | web | [2019] The role of hydrogen and fuel cells in the global energy system (Energy & Environmental Science) | https://doi.org/10.1039/c8ee01157e | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-154` | web | [2018] Methanol as a fuel for internal combustion engines (Progress in Energy and Combustion Science) | https://doi.org/10.1016/j.pecs.2018.10.001 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-155` | web | [2017] Overview of Ice Nucleating Particles (Meteorological Monographs) | https://doi.org/10.1175/amsmonographs-d-16-0006.1 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-156` | web | [2021] Liquid Hydrogen: A Review on Liquefaction, Storage, Transportation, and Safety (Energies) | https://doi.org/10.3390/en14185917 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-267` | web | [2022] Hydrogen liquefaction: a review of the fundamental physics, engineering practice and future opportunities (Energy & Environmental Science) | https://doi.org/10.1039/d2ee00099g | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-157` | web | [2013] Advances in Fruit Aroma Volatile Research (Molecules) | https://doi.org/10.3390/molecules18078200 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-158` | web | [2019] Tomato Fruit Development and Metabolism (Frontiers in Plant Science) | https://doi.org/10.3389/fpls.2019.01554 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-159` | web | [2019] Chemical Composition of Mango (Mangifera indica L.) Fruit: Nutritional and Phytochemical Compounds (Frontiers in Plant Science) | https://doi.org/10.3389/fpls.2019.01073 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-160` | web | [2016] Induced resistance to control postharvest decay of fruit and vegetables (Postharvest Biology and Technology) | https://www.sciencedirect.com/science/article/pii/S0925521416301946/pdf | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-268` | pdf | [2020] Primary Metabolism in Fresh Fruits During Storage (Frontiers in Plant Science) | https://doi.org/10.3389/fpls.2020.00080 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-161` | web | [2014] Near-infrared spectroscopy and hyperspectral imaging: non-destructive analysis of biological materials (Chemical Society Reviews) | https://doi.org/10.1039/c4cs00062e | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-162` | web | [2020] Visible-NIR ‘point’ spectroscopy in postharvest fruit and vegetable assessment: The science behind three decades of commercial use (Postharvest Biology and Technology) | https://doi.org/10.1016/j.postharvbio.2020.111246 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-163` | web | [2015] Fruit Quality Evaluation Using Spectroscopy Technology: A Review (Sensors) | http://dx.doi.org/10.3390/s150511889 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-164` | web | [2019] Monitoring strategies for quality control of agricultural products using visible and near-infrared spectroscopy: A review (Trends in Food Science & Technology) | https://www.sciencedirect.com/science/article/abs/pii/S0924224418304825 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-269` | web | [2011] Machine vision system: a tool for quality inspection of food and agricultural products (Journal of Food Science and Technology) | https://doi.org/10.1007/s13197-011-0321-4 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-165` | web | [1995] Biosolids–Yard Trimming Composts Increases Bell Pepper (Capsicum annuum L.) and Cucumber (Cucumis sativus L.) Yields (HortScience) | https://doi.org/10.21273/hortsci.30.4.892 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-166` | web | [1995] Physiology of Lightly Processed Fruits and Vegetables (HortScience) | https://doi.org/10.21273/hortsci.30.1.18 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-167` | web | [2006] Nutritional and medicinal use of Cactus pear (Opuntia spp.) cladodes and fruits (Frontiers in bioscience) | https://doi.org/10.2741/1992 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-168` | web | [2017] Antifungal Microbial Agents for Food Biopreservation—A Review (Microorganisms) | https://doi.org/10.3390/microorganisms5030037 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| `SRC-270` | web | [2010] Effect of hydroxypropylmethylcellulose and chitosan coatings with and without bergamot essential oil on quality and safety of cold-stored grapes (Postharvest Biology and Technology) | https://doi.org/10.1016/j.postharvbio.2010.11.004 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |

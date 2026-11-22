@@ -1,0 +1,12 @@
+이미지 번호: 그림 14-5
+이미지 파일명: fig_ch14_v05.png
+단원: 제14장. 양파 비파괴 선별 및 유통 디지털 트레이서빌리티 (ch14)
+결합 절: 생리·분자 메커니즘 및 첨단 분석 기술
+시각화 유형: photorealistic_field
+제목: [그림 14-5] 다채널 머신비전 카메라 및 확산 조명 기반 양파 외관 등급 선별 라인
+
+[문맥 기반 이미지 설명]
+[그림 14-5] 다채널 영상 선별기 챔버 내부에서 초고속 카메라와 돔형 LED 확산 조명이 양파 구의 360도 전방위 외관을 스캐닝하는 실제 장비 현장 사진입니다. 회전 롤러 위를 주행하는 황색 양파의 구경, 구형도, 외피 착색 균일도를 실시간으로 감지합니다. 인공지능 알고리즘이 표면의 결점과 물리적 손상을 인식하여 사전 정의된 규격에 맞춰 고속 분류하는 과정을 생생하게 보여줍니다.
+
+[나노바나나 생성 프롬프트]
+Photographic view inside a modern automated onion optical sorting machine. Multiple high-resolution industrial digital cameras and curved LED diffuse lighting panels are mounted around a conveyor carrying harvested yellow onions on spinning rollers. Crisp directional lighting reveals the paper-thin copper skins, stem necks, and basal plates of the onions as they rotate. Industrial environment with brushed aluminum, sensor wires, optical lens elements, and clean hygienic food-processing machinery. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

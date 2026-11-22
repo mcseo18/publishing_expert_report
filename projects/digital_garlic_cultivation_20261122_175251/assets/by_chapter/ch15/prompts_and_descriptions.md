@@ -1,0 +1,167 @@
+# 제15장. 디지털 마늘 재배의 경제성 평가, 탄소 배출량 및 미래 전망 — 문맥 기반 시각화 기획서 (이미지 번호 · 설명 · 프롬프트)
+
+- **단원 ID**: `ch15`
+- **총 시각화 수**: **10종** (Google Gemini Nano Banana 전량 제작)
+- **생성 시각**: `2026-11-22T09:15:32+00:00`
+
+---
+
+## [그림 15-1] 디지털 정밀 파종기와 관행 수작업 파종의 노동 투입 대비
+
+- **이미지 번호 / 파일명**: `그림 15-1` / `fig_ch15_v01.png`
+- **문서 결합 절(Section)**: 15.1 관행 재배 대비 디지털 기계화 농업의 투입 노동력 및 비용 편익 분석 (B/C ratio)
+- **시각화 유형**: `photorealistic_field`
+
+### 문맥 기반 상세 설명 (줄글)
+[그림 15-1] 관행 인력 파종 방식과 고성능 다조식 자동 마늘 파종기를 이용한 기계화 파종 현장을 대비하여 보여줍니다. 고도화된 정밀 센서와 메커니즘을 장착한 파종기가 일정한 깊이와 간격으로 마늘 종구를 직립 파종함으로써 투입 노동 시간을 획기적으로 절감합니다 [SRC-106]. 이는 농촌 고령화에 따른 노동력 부족 문제를 해결하고 전체 생산 비용 구조를 개선하는 핵심 요인이 됩니다.
+
+### 나노바나나 생성 프롬프트 (Pure English · Zero-Text)
+```text
+Wide-angle documentary field photograph of a modern precision multi-row garlic planter implement attached to an agricultural tractor in a wide fertile garlic field. The mechanized planting mechanism deposits individual garlic cloves oriented pointed-side up into straight uniform furrows in dark crumbly soil. Freshly planted garlic seed cloves are partially visible in the opened furrows before closing wheels cover them. Warm late autumn afternoon sunlight casts crisp shadows across the parallel raised soil beds, with natural depth of field and authentic agrarian textures. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.
+```
+
+---
+
+## [그림 15-2] 정밀 기계화 마늘 수확 메커니즘 및 구근 손상 방지 해부도
+
+- **이미지 번호 / 파일명**: `그림 15-2` / `fig_ch15_v02.png`
+- **문서 결합 절(Section)**: 15.1 관행 재배 대비 디지털 기계화 농업의 투입 노동력 및 비용 편익 분석 (B/C ratio)
+- **시각화 유형**: `scientific_anatomy`
+
+### 문맥 기반 상세 설명 (줄글)
+[그림 15-2] 자주식 마늘 수확기가 흙을 진동 굴취하고 인발 벨트를 통해 줄기를 잡아 올려 마늘 구근의 물리적 손상을 최소화하는 이송 메커니즘을 상세히 도해합니다. 정밀 센서가 토양 심도와 구근 위치를 감지하여 굴취날 깊이를 능동적으로 제어함으로써 상품화율을 극대화합니다 [SRC-101]. 수작업 수확 대비 상처 발생률을 낮추고 작업 속도를 높여 비용 편익비(B/C ratio)를 크게 향상시키는 기술적 기반을 보여줍니다.
+
+### 나노바나나 생성 프롬프트 (Pure English · Zero-Text)
+```text
+Richly detailed scientific cutaway illustration on a pure white background showing the mechanical digging and lifting mechanism of an automated garlic harvester. A hardened steel vibrating spade blade undercuts the soil beneath a mature Allium sativum bulb without damaging the basal plate or root fibrous network. Dual rubberized gripper belts gently clamp the erect green-yellow garlic pseudostem and pull the plant upward. Detailed cross-sections show clean soil separation from the multi-cloved bulb and pristine paper-like tunic layers intact, shaded in an elegant scientific textbook aesthetic. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.
+```
+
+---
+
+## [그림 15-3] 디지털 선별기를 거친 균일 규격 마늘 구근의 품질 평가
+
+- **이미지 번호 / 파일명**: `그림 15-3` / `fig_ch15_v03.png`
+- **문서 결합 절(Section)**: 15.1 관행 재배 대비 디지털 기계화 농업의 투입 노동력 및 비용 편익 분석 (B/C ratio)
+- **시각화 유형**: `photorealistic_macro`
+
+### 문맥 기반 상세 설명 (줄글)
+[그림 15-3] 광학 비전 센서 기반의 자동 선별 라인을 거쳐 직경과 무게별로 정밀 분할된 마늘 구근들의 외관 특성을 초근접 촬영한 모습입니다. 균일한 크기와 병해충 피해가 없는 건전한 인편 구성은 농가 수취 가격을 극대화하여 조수입(Benefit)을 크게 신장시킵니다 [SRC-104]. 기계화된 수확 후 처리 공정이 노동력 절감뿐 아니라 최종 상품 가치 향상에 미치는 기여를 입증합니다.
+
+### 나노바나나 생성 프롬프트 (Pure English · Zero-Text)
+```text
+Ultra-sharp macro laboratory photograph of freshly harvested and graded mature garlic bulbs resting side-by-side on a stainless steel inspection surface. The garlic bulbs display perfectly intact off-white papery outer tunics with faint purple striping, plump clove contours, and cleanly trimmed fibrous basal root plates. Soft studio lighting highlights the natural organic texture, crystalline drying bulb scales, and pristine disease-free quality of the premium sized specimens. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.
+```
+
+---
+
+## [그림 15-4] 자율주행 전동 트랙터 및 마늘 포장 정밀 작업 현장
+
+- **이미지 번호 / 파일명**: `그림 15-4` / `fig_ch15_v04.png`
+- **문서 결합 절(Section)**: 15.2 스마트 농기계 및 IoT 장비 투자의 손익분기점 (BEP) 산출 모델
+- **시각화 유형**: `photorealistic_field`
+
+### 문맥 기반 상세 설명 (줄글)
+[그림 15-4] RTK-GPS 안테나와 라이다 센서를 탑재한 소형 전동 자율주행 트랙터가 마늘 포장 두둑 사이를 무인 주행하며 정밀 방제 작업을 수행하는 전경입니다. 고가의 초기 장비 구입비(CAPEX)에도 불구하고 무인 자동화에 따른 연간 인건비 절감과 연료비 감축은 손익분기점(BEP) 도달 시기를 단축시킵니다 [SRC-106]. 장기적인 운영 비용(OPEX)의 최소화를 통해 농가의 투자 회수 기간을 앞당기는 핵심 장비의 운용 모습을 보여줍니다.
+
+### 나노바나나 생성 프롬프트 (Pure English · Zero-Text)
+```text
+A documentary-style field photograph of a compact electric autonomous agricultural tractor navigating accurately between raised beds of vigorous green garlic plants in spring. The autonomous tractor features roof-mounted RTK-GNSS receiver domes, optical cameras, and spinning LiDAR sensors, with no operator inside the open ergonomic chassis. Wide lush green strap-like leaves of Allium sativum line the neat rows on plastic-mulched soil beds under clear morning sunlight, with crisp soil details and realistic agricultural background. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.
+```
+
+---
+
+## [그림 15-5] 마늘 근권 환경 정밀 모니터링 다중 센서 프로브 시스템
+
+- **이미지 번호 / 파일명**: `그림 15-5` / `fig_ch15_v05.png`
+- **문서 결합 절(Section)**: 15.2 스마트 농기계 및 IoT 장비 투자의 손익분기점 (BEP) 산출 모델
+- **시각화 유형**: `photorealistic_macro`
+
+### 문맥 기반 상세 설명 (줄글)
+[그림 15-5] 마늘 뿌리 인근의 토양 수분, 지온, 전기전도도(EC)를 실시간 측정하는 스마트 토양 프로브의 매설 단면을 초근접 포착한 장면입니다. 이와 같은 IoT 계측 장비는 과잉 관수와 비료 낭비를 방지하여 자원 투입 비용을 억제하고 수확량을 안정화함으로써 연간 순이익 증분을 창출합니다 [SRC-107]. 자본 회수 기간 산출 모델에서 변동비용 절감과 직결되는 정밀 센싱 하드웨어의 작동 환경을 나타냅니다.
+
+### 나노바나나 생성 프롬프트 (Pure English · Zero-Text)
+```text
+Close-up macro photograph of a soil profile cross-section exposing a multi-parameter stainless steel sensor probe buried adjacent to the developing bulb and fibrous root cluster of a growing garlic plant. The dark loamy soil particles cling to the sensor needles and the dense pale white adventitious roots of the garlic bulb. An industrial-grade data cable extends upward through the soil profile toward a micro-logger, illuminated by sharp natural laboratory lighting showcasing damp soil granules and root architecture. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.
+```
+
+---
+
+## [그림 15-6] 정밀 점적 관수시비 시스템의 토양 질소 동태 및 아산화질소(N2O) 억제 기전
+
+- **이미지 번호 / 파일명**: `그림 15-6` / `fig_ch15_v06.png`
+- **문서 결합 절(Section)**: 15.3 화학비료 절감 및 디젤 대체에 따른 마늘 생애주기 탄소발자국 (LCA) 평가
+- **시각화 유형**: `scientific_anatomy`
+
+### 문맥 기반 상세 설명 (줄글)
+[그림 15-6] 마늘 재배 두둑 내부의 점적 튜브를 통한 처방 관수시비와 전통적 표면 살포 방식 간의 토양 내 질산태 및 암모늄태 질소 이동 양상을 대조한 과학 도해입니다. 마늘 근권에 정밀하게 투입된 양분은 작물 흡수율을 극대화하고 혐기 조건에서의 탈질 작용 및 아산화질소(N2O) 배출을 억제합니다 [SRC-103]. 이는 비료 제조 및 사용 단계에서 발생하는 생애주기 탄소발자국(LCA)을 대폭 저감하는 결정적 생화학적 메커니즘입니다.
+
+### 나노바나나 생성 프롬프트 (Pure English · Zero-Text)
+```text
+A scientific anatomical cross-section illustration on a clean pure white background depicting a garlic plant bulb and root system inside a raised soil bed with an embedded drip irrigation emitter. Transparent flow streams of dissolved ammonium and nitrate ions move precisely toward the active fibrous root tips. Shaded molecular structures indicate minimized gaseous nitrous oxide escaping from the soil surface compared to high loss zones, rendered with delicate biological texturing, cross-sectional soil stratification, and clear botanical accuracy of Allium sativum. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.
+```
+
+---
+
+## [그림 15-7] 마늘 재배 토양의 온실가스 플럭스 자동 포집 챔버 측정 현장
+
+- **이미지 번호 / 파일명**: `그림 15-7` / `fig_ch15_v07.png`
+- **문서 결합 절(Section)**: 15.3 화학비료 절감 및 디젤 대체에 따른 마늘 생애주기 탄소발자국 (LCA) 평가
+- **시각화 유형**: `photorealistic_macro`
+
+### 문맥 기반 상세 설명 (줄글)
+[그림 15-7] 마늘 생육 포장 표면에 설치된 정밀 온실가스 폐쇄형 자동 챔버의 내부를 상세히 보여주는 매크로 사진입니다. 디지털 센서와 연결된 공기 순환 튜브가 토양 미생물 호흡 및 탈질에 의해 방출되는 미세 가스 농도를 실시간으로 추적합니다 [SRC-105]. 이는 화학비료 시비량 절감에 따른 탄소배출량 감축 실적을 전과정평가(LCA) 방법론에 맞춰 정량화하는 실증 연구 기반입니다.
+
+### 나노바나나 생성 프롬프트 (Pure English · Zero-Text)
+```text
+Detailed macro photograph of a transparent cylindrical gas flux chamber installed flush into the soil surface between rows of emerald green garlic plants. Flexible silicone tubing and micro-thermocouple probes connect to a digital analyzer port at the top of the acrylic dome. Inside the sealed perimeter, damp soil and tiny developing garlic seedlings are visible with subtle water droplets condensed on the interior wall, captured in sharp natural overcast daylight. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.
+```
+
+---
+
+## [그림 15-8] 태양광 연계 배터리 구동 친환경 스마트 농기계 충전 및 농작업
+
+- **이미지 번호 / 파일명**: `그림 15-8` / `fig_ch15_v08.png`
+- **문서 결합 절(Section)**: 15.3 화학비료 절감 및 디젤 대체에 따른 마늘 생애주기 탄소발자국 (LCA) 평가
+- **시각화 유형**: `photorealistic_field`
+
+### 문맥 기반 상세 설명 (줄글)
+[그림 15-8] 마늘 주산지 포장 인근에 마련된 이동형 태양광 충전 스테이션과 충전 중인 전기 구동 소형 다목적 농기계의 전경입니다. 화석연료인 디젤을 재생에너지 전력으로 대체함으로써 트랙터 및 관리기 운행 단계의 직접 탄소 배출량을 제로화합니다 [SRC-105]. 생애주기 전반에서 화석연료 연소 배출을 획기적으로 차단하는 탄소 중립형 스마트 마늘 영농 단지의 미래상을 반영합니다.
+
+### 나노바나나 생성 프롬프트 (Pure English · Zero-Text)
+```text
+A realistic documentary field photograph depicting an off-grid solar-powered charging station beside an expansive garlic field. High-efficiency photovoltaic panels sit mounted on a trailer adjacent to a heavy-duty battery storage inverter unit. A charging cable connects directly to a compact electric utility farm vehicle equipped with precision weeding attachments. In the background, expansive neat rows of upright green garlic plants flourish under bright blue sky and sunlit field landscape. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.
+```
+
+---
+
+## [그림 15-9] 마늘 생육 디지털 트윈 가상 복제 모델 및 근저 구근 비대 시뮬레이션
+
+- **이미지 번호 / 파일명**: `그림 15-9` / `fig_ch15_v09.png`
+- **문서 결합 절(Section)**: 15.4 생성형 AI와 디지털 트윈 기반의 차세대 무인 자동화 농장 비전
+- **시각화 유형**: `scientific_anatomy`
+
+### 문맥 기반 상세 설명 (줄글)
+[그림 15-9] 실제 포장의 마늘 개체군과 이를 1:1로 가상 공간에 복제한 3차원 디지털 트윈의 생리생태 시뮬레이션 구조를 과학적으로 해부한 도해입니다. 지상부 엽면적 지수와 엽록소 함량, 지하부 인편 분화 및 구근 비대 속도가 기상 데이터와 연계되어 정밀 연산됩니다 [SRC-111]. 가상 환경에서의 다중 환경 스트레스 시뮬레이션을 통해 최적의 물과 양분 투입 시나리오를 사전에 검증하는 디지털 농장의 핵심 구성을 보여줍니다.
+
+### 나노바나나 생성 프롬프트 (Pure English · Zero-Text)
+```text
+A high-end scientific cutaway illustration on a pure white background comparing a real physical garlic plant with its translucent holographic 3D wireframe digital twin duplicate. The physical half shows botanical reality: dark green linear foliage, segmented pseudostem, and an expanding underground garlic bulb with roots in dark soil. The mirrored digital twin half renders the plant in geometric mesh polygon lines with glowing volumetric nodes indicating leaf temperature, stomatal conductance, and bulb biomass accumulation, rendered with elegant textbook precision. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.
+```
+
+---
+
+## [그림 15-10] 생성형 AI 자율 예찰 로봇의 마늘 개체별 미세 병징 탐색 및 처방
+
+- **이미지 번호 / 파일명**: `그림 15-10` / `fig_ch15_v10.png`
+- **문서 결합 절(Section)**: 15.4 생성형 AI와 디지털 트윈 기반의 차세대 무인 자동화 농장 비전
+- **시각화 유형**: `photorealistic_field`
+
+### 문맥 기반 상세 설명 (줄글)
+[그림 15-10] 마늘 밭 고랑을 따라 자율 주행하는 첨단 4륜 예찰 로봇이 다파장 다중분광 카메라와 로봇 암을 이용해 마늘 잎의 미세 병징을 정밀 탐색하는 현장입니다. 생성형 AI 모델은 수집된 실시간 영상과 마이크로 기후 데이터를 종합 추론하여 국소 맞춤형 생물학적 방제 프로토콜을 즉각 생성합니다 [SRC-108]. 인간의 직관적 판단을 넘어선 실시간 의사결정으로 무인 자율영농을 실현하는 차세대 디지털 마늘 재배의 실현 장면입니다.
+
+### 나노바나나 생성 프롬프트 (Pure English · Zero-Text)
+```text
+Photorealistic field photograph of an autonomous four-wheeled field scouting agricultural robot straddling a row of healthy garlic plants in a vast agricultural field. The robot features an articulated robotic arm holding a multi-spectral sensing head positioned precisely over an individual garlic leaf, scanning with a focused harmless visible LED strobe. The surrounding field features neat uniform rows of Allium sativum with vivid green foliage and soil ridges under late afternoon golden hour lighting. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.
+```
+
+---

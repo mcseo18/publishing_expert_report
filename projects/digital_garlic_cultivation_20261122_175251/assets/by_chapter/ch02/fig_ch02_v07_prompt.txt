@@ -1,0 +1,12 @@
+이미지 번호: 그림 2-7
+이미지 파일명: fig_ch02_v07.png
+단원: 제2장. 국내외 마늘 산업 현황, 주산단지 생태환경 및 스마트 벨트 (ch02)
+결합 절: 2.3 주산지 미기상 데이터 플랫폼 구축 및 지형학적 공간 분석
+시각화 유형: scientific_anatomy
+제목: [그림 2-7] 마늘 주산지 지형학적 GIS 공간 분석 및 미기후 스트레스 구역 모델
+
+[문맥 기반 이미지 설명]
+[그림 2-7] 지리정보시스템(GIS)을 활용하여 구릉성 마늘 주산단지의 표고, 경사향, 냉기 침강 및 배수성을 분석한 3차원 지형 블록 다이어그램이다. 지형의 기복에 따라 형성되는 미기상 구역과 배수 불량 및 서리 정체 스트레스 위험 지대가 다채로운 히트맵 색상 층으로 정밀하게 렌더링되어 있다. 단일 필지 수준에서 최적 생육 적지와 환경 스트레스 취약지를 식별하는 과학적 공간 분석 기법을 시각화한다.
+
+[나노바나나 생성 프롬프트]
+Three-dimensional isometric scientific terrain block illustration on an isolated pure white background depicting an undulating agricultural garlic basin. The 3D geological cutaway features contour lines, slope gradients, and semi-transparent thematic heat-map layers draped over terraced garlic fields, indicating cold-air pooling in valley bottoms with blue gradients and optimal solar radiation on south-facing ridges with warm amber hues. Small stylised 3D weather node markers are positioned across the digital elevation model, showcasing advanced agronomic spatial modeling. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

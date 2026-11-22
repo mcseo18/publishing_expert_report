@@ -1,0 +1,12 @@
+이미지 번호: 그림 1-10
+이미지 파일명: fig_ch01_v10.png
+단원: 제1장. 양파의 기원, 진화와 국내외 산업 생태계 현황 (ch01)
+결합 절: 오해와 진실: 현장·이론 핵심 오해 교정
+시각화 유형: scientific_anatomy
+제목: [그림 1-10] 초분광 반사 스펙트럼의 환경 잡음 보정(Dark/White Calibration) 및 당도 지수 모델링
+
+[문맥 기반 이미지 설명]
+[그림 1-10] 초분광 영상 분석 시 환경 조도 및 기기 잡음을 제거하기 위한 암전류(Dark current) 및 표준 백색판(White reference) 보정 프로세스를 도식화한 기술 다이어그램입니다. 양파 표면 곡률과 광원 불균일성으로 발생하는 스펙트럼 왜곡을 교정하여 순수 평균 반사 스펙트럼(Mean spectra)을 도출합니다. 이러한 보정 단계가 선행되어야 비파괴 당도 지수(SI) 측정의 신뢰성과 재현성이 확보됩니다 [SRC-135].
+
+[나노바나나 생성 프롬프트]
+Scientific laboratory procedural illustration on a pure white background demonstrating hyperspectral calibration for onion quality analysis. Depicts an intact Allium cepa bulb alongside a 99% diffuse PTFE white reference calibration tile and a light-sealed dark reference chamber. Graphic rendering of corrected smooth continuous mean spectral reflectance curves between 900nm and 1700nm showing distinct sucrose and moisture absorption peaks, with clean scientific aesthetic, high precision rendering, and clean volumetric lighting. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

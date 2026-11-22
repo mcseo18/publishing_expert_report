@@ -485,13 +485,15 @@ def build_chapter_visual_specs(
     chapter: dict[str, Any],
     per_chapter_count: int = 10,
 ) -> list[dict[str, Any]]:
-    """단원 1개당 최소 10개 이상의 시각화 명세(실사진/과학도해 + 정량 SVG + 줄글 해설)를 구성한다."""
+    """단원 1개당 사용자 지정 개수(0~25개)의 시각화 명세(실사진/과학도해 + 정량 SVG + 줄글 해설)를 구성한다."""
     cid = chapter.get("chapter_id", "ch01")
     ch_num = int(chapter.get("chapter_number") or 1)
     ch_title = chapter.get("title", f"제{ch_num}장")
     secs = chapter.get("sections") or [f"{ch_num}.1 개요", f"{ch_num}.2 원리", f"{ch_num}.3 응용", f"{ch_num}.4 현장관리"]
     field_scene, diagram_scene, macro_scene = _resolve_english_visual_scenes(topic_ko, topic_en, chapter)
-    count = max(10, int(per_chapter_count))
+    count = max(0, min(25, int(per_chapter_count)))
+    if count == 0:
+        return []
 
     specs: list[dict[str, Any]] = []
     for idx in range(count):

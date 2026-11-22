@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" width="800" height="420" style="background:#ffffff;font-family:'Malgun Gothic', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;">
+  <rect x="0" y="0" width="800" height="420" rx="12" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+  <rect x="0" y="0" width="800" height="58" rx="12" fill="#312e81"/>
+  <rect x="0" y="42" width="800" height="16" fill="#312e81"/>
+  <text x="22" y="27" font-size="14.5" font-weight="700" fill="#f8fafc">그림 12-8. 제12장. 자율주행 기반 정식·포장관리 및 지능형 수확 로봇 — 현장</text>
+  <text x="22" y="47" font-size="11" fill="#cbd5e1">스마트 팜 양파 재배 · 12.4 수확 동시 포장 내 등급 판별 및 인경 크기·중량 맵핑을 위한 온보드 컴퓨터 비전</text>
+  <rect x="40" y="88" width="345" height="135" rx="10" fill="#dcfce7" stroke="#166534" stroke-width="1.5"/>
+  <text x="58" y="122" font-size="14" font-weight="700" fill="#166534">정상 · 최적 상태</text>
+  <text text-anchor="start" font-size="11.8" font-weight="600" fill="#1e293b"><tspan x="58" y="150.0">12.1 RTK-GNSS 및 슬램(SLAM)</tspan><tspan x="58" y="166.0">기반 노지 자율주행 플랫폼의 포장 주행선</tspan></text>
+  <text x="58" y="202" font-size="11" fill="#475569">정량 계측 → 임계 판정 → 현장 처방</text>
+  <rect x="415" y="88" width="345" height="135" rx="10" fill="#dbeafe" stroke="#1e40af" stroke-width="1.5"/>
+  <text x="433" y="122" font-size="14" font-weight="700" fill="#1e40af">예방적 디지털 모니터링</text>
+  <text text-anchor="start" font-size="11.8" font-weight="600" fill="#1e293b"><tspan x="433" y="150.0">12.2 고속 전자동 양파 정식기의 묘</tspan><tspan x="433" y="166.0">취출-천공-복토 메커니즘과 정식 심도 일정화</tspan></text>
+  <text x="433" y="202" font-size="11" fill="#475569">정량 계측 → 임계 판정 → 현장 처방</text>
+  <rect x="40" y="245" width="345" height="135" rx="10" fill="#fef9c3" stroke="#854d0e" stroke-width="1.5"/>
+  <text x="58" y="279" font-size="14" font-weight="700" fill="#854d0e">주의 · 임계치 접근</text>
+  <text text-anchor="start" font-size="11.8" font-weight="600" fill="#1e293b"><tspan x="58" y="307.0">12.3 줄기 절단 및 굴취 수집 일관</tspan><tspan x="58" y="323.0">수확기의 동역학 해석과 외피 충격 최소화</tspan></text>
+  <text x="58" y="359" font-size="11" fill="#475569">정량 계측 → 임계 판정 → 현장 처방</text>
+  <rect x="415" y="245" width="345" height="135" rx="10" fill="#fee2e2" stroke="#991b1b" stroke-width="1.5"/>
+  <text x="433" y="279" font-size="14" font-weight="700" fill="#991b1b">즉각 교정 · 방제 조치</text>
+  <text text-anchor="start" font-size="11.8" font-weight="600" fill="#1e293b"><tspan x="433" y="307.0">12.4 수확 동시 포장 내 등급 판별 및</tspan><tspan x="433" y="323.0">인경 크기·중량 맵핑을 위한 온보드 컴퓨터</tspan></text>
+  <text x="433" y="359" font-size="11" fill="#475569">정량 계측 → 임계 판정 → 현장 처방</text>
+</svg>

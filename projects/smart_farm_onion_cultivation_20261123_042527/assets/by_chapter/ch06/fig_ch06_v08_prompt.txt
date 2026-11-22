@@ -1,0 +1,12 @@
+이미지 번호: 그림 6-8
+이미지 파일명: fig_ch06_v08.png
+단원: 제6장. 정밀 관비(Fertigation) 시스템과 실시간 양분 모니터링 (ch06)
+결합 절: 6.4. 스마트 관비 믹서의 제어 로직과 비료 용해도/침전 방지 기술
+시각화 유형: photorealistic_field
+제목: [그림 6-8] 비례 주입 펌프와 벤투리 인젝터가 탑재된 스마트 관비 제어 시스템 스테이션
+
+[문맥 기반 이미지 설명]
+[그림 6-8] 스마트 팜 관비 기계실에 구축된 지능형 관비 혼합 제어 스테이션의 전경입니다. A제(질산칼슘 등 칼슘계 비료)와 B제(인산 및 황산염계 비료), 산(Acid) 조절제 저장 탱크가 스테인리스 배관 및 벤투리(Venturi) 비례 주입 펌프 매니폴드와 정교하게 결합되어 있습니다. 실시간 EC 및 pH 전극 센서가 메인 관수 파이프라인에 직결되어 침전 한계를 회피하도록 정밀 계량하는 하드웨어 구성을 가감 없이 보여줍니다.
+
+[나노바나나 생성 프롬프트]
+Crisp documentary photograph inside a modern agricultural smart fertigation control room. High-grade stainless steel and PVC piping network mounted against a pristine wall, featuring dual proportional dosing pumps, clear flow meters, and industrial-grade glass electrode EC and pH sensors fitted in-line. In the foreground, large semi-translucent chemical stock tanks containing pale blue and clear concentrated liquid fertilizers are neatly plumbed with suction tubes, illuminated by clean commercial utility lighting. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

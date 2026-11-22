@@ -1,0 +1,12 @@
+이미지 번호: 그림 12-10
+이미지 파일명: fig_ch12_v10.png
+단원: 제12장. 분광 센싱·드론 예찰 및 마늘 작물생육모형(Crop Growth Model) (ch12)
+결합 절: 12.4 수확량 예측을 위한 생육모형-원격탐사 데이터 동화(Data Assimilation)
+시각화 유형: photorealistic_field
+제목: [그림 12-10] 예측 수확량과 실측 구근 품질을 대조 검증하는 마늘 수확기 현장 작업
+
+[문맥 기반 이미지 설명]
+[그림 12-10] 원격탐사-생육모형 동화 기술로 예측된 최종 수확량 맵과 실제 수확량을 대조 검증하기 위해 마늘 수확이 한창인 포장의 실사 사진입니다. 트랙터 부착형 굴취기가 흙을 털어내며 들어 올린 규격화된 마늘들이 가지런히 정렬되어 있으며, 농업 연구원이 수거용 트레이에 담긴 마늘의 구경(Bulb Diameter)과 총 무게를 전자 저울로 실측하고 있습니다 [SRC-105, SRC-107]. 햇볕 아래 건조되는 건강한 마늘 줄기와 구근의 풍성한 수확 풍경이 드러납니다.
+
+[나노바나나 생성 프롬프트]
+Documentary agricultural field photograph of garlic harvesting validation at a digital research farm. A tractor-mounted root digger unearths uniform mature garlic bulbs along clean cultivation furrows, leaving them gently resting on dry soil beds for curing. An agronomist with digital calipers measures bulb diameters beside a weighing scale and sampling crates. Natural afternoon sunlight highlights the warm earthly soil tones and the silvery-white, plump garlic bulbs with trimmed green stalks. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

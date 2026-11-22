@@ -1,0 +1,12 @@
+이미지 번호: 그림 15-6
+이미지 파일명: fig_ch15_v06.png
+단원: 제15장. 노지 스마트 팜 데이터 표준화 및 지속가능한 디지털 농업 플랫폼 (ch15)
+결합 절: 15.3 비료·에너지 투입 절감에 따른 전과정 환경영향평가(LCA) 및 저탄소 농업 인증 프로토콜
+시각화 유형: scientific_anatomy
+제목: [그림 15-6] 스마트 양파 생산-저장 전과정 평가(LCA) 물질 수지 및 탄소 배출 저감 경로
+
+[문맥 기반 이미지 설명]
+[그림 15-6] 종자 준비, 정밀 점적 관수·시비, 트랙터 연료 소비, 수확 및 저온 저장에 이르는 양파 전주기 물질 수지와 탄소 배출량의 감축 기작을 도식화한 과학적 일러스트레이션이다. 정밀 스마트 팜 기술을 통한 화학비료 절감과 저온 유통 에너지 최적화가 이산화탄소 환산량을 어떻게 줄이는지 단계별로 명시한다 [SRC-107, SRC-111]. 환경 발자국 저감 효과는 저탄소 농업 인증 프로토콜의 표준 지표로 활용된다 [SRC-101].
+
+[나노바나나 생성 프롬프트]
+Scientific anatomical flow illustration on an immaculate white background tracing the life-cycle assessment (LCA) mass balance of Allium cepa onion cultivation. Sequentially arranged from left to right: coated onion seeds, an automated drip fertigation emitter delivering precise micro-doses of nitrogen near the bulb, an efficient low-emission tractor during field lifting, curing beds, and a cold storage refrigeration chamber. Translucent volumetric balance vectors and atmospheric gas flow markers indicate carbon dioxide and nitrous oxide emissions being reduced through precision dosing. Elegant textbook illustration style with realistic textures, soft drop shadows, and clean technical aesthetics. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

@@ -1,0 +1,25 @@
+chapter_id: ch04
+chapter_number: 4
+title: 제4장. 기후 및 물리적 환경 요인 통합과 파라미터 보정
+target_pages: 25
+summary_ko: 이 장은 다양한 기후 및 토양 데이터를 모형에 통합하는 방법을 다루며, 모형의 예측 정확도를 높이기 위한 파라미터 보정(Calibration) 및 민감도 분석 기법을 심도 있게 소개합니다. 이를 통해 모형의 강건성(Robustness)을
+  확보합니다.
+sections:
+- 4.1 기후 데이터(온도, 강수, 일조량)의 모형 입력 및 처리
+- 4.2 비생물적 환경 요인(토양 특성, 미기후)의 모형 통합
+- 4.3 파라미터 최적화 및 모형 보정(Calibration & Validation) 기법
+- 4.4 민감도 분석(Sensitivity Analysis)을 통한 모형 불확실성 평가
+tables: []
+visuals: []
+keywords_ko:
+- 파라미터 보정
+- 민감도 분석
+- 기후 영향
+- 데이터 통합
+keywords_en:
+- Parameter Calibration
+- Sensitivity Analysis
+- Climate Impact
+- Data Integration
+evidence_packet: crop_growth_model_20261123_051626_evidence.json
+assigned_sources: []

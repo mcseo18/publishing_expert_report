@@ -1,0 +1,12 @@
+이미지 번호: 그림 2-2
+이미지 파일명: fig_ch02_v02.png
+단원: 제2장. 체계적 문헌고찰 방법론 및 모델 분류 기준 (Materials & Methods: Literature Scope & Classification) (ch02)
+결합 절: 2.3 수리적 구조에 따른 모델 분류: 1차 반응속도론 vs. 비선형 미생물 효소 반응론
+시각화 유형: photorealistic_macro
+제목: [그림 2-2] 미세 토양 공극 내 미생물 효소 반응 및 유기물 기질 분해 미세환경
+
+[문맥 기반 이미지 설명]
+[그림 2-2] 비선형 미생물 효소 반응론의 메커니즘을 규명하기 위해 토양 미세골재 공극 내 미생물 군집과 기질 간의 상호작용을 초고해상도 매크로 시각으로 포착한 장면입니다. 세균 및 방선균 세포 표면에서 분비된 세포외 효소가 고분자 유기 탄소 및 다공성 바이오차 입자 표면의 유기 복합체와 결합하여 촉매 분해를 일으키는 미세 영역을 선명하게 보여줍니다. 이는 단순 1차 반응속도론의 한계를 극복하고 기질 농도와 효소 포화 동역학을 반영하는 비선형 모델링의 현장 생화학적 실체를 뒷받침합니다.
+
+[나노바나나 생성 프롬프트]
+Ultra-sharp photorealistic macro photograph of a microscopic soil aggregate pore in agricultural soil, illuminated with delicate natural scientific laboratory lighting. Clusters of indigenous soil bacteria and fine branching fungal hyphae colonize water-film-coated micro-surfaces around a porous black biochar particle and decaying plant organic matter. Tiny glistening droplets of microbial extracellular enzyme exudates interact with organic polymers clinging to mineral clay crystal surfaces. Realistic optical depth-of-field with razor-sharp microstructural textures of soil crumb porosity, organic detritus, and mineral grain boundaries, rich earth tones, high-magnification research photography, no text, no labels. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

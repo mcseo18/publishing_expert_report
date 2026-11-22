@@ -1,0 +1,12 @@
+이미지 번호: 그림 2-2
+이미지 파일명: fig_ch02_v02.png
+단원: 제2장. 국내외 마늘 산업 현황, 주산단지 생태환경 및 스마트 벨트 (ch02)
+결합 절: 2.1 글로벌 마늘 수급 동향과 주요 수출입국의 생산 체계
+시각화 유형: photorealistic_field
+제목: [그림 2-2] 대규모 마늘 주산지 수확 후 건조 및 콜드체인 집하 현장
+
+[문맥 기반 이미지 설명]
+[그림 2-2] 주요 생산국 및 대규모 마늘 주산지에서 수확된 마늘을 통풍 건조하고 저온 유통 체계로 진입시키기 위한 선별·집하 현장을 보여준다. 자연 통풍과 인공 송풍을 결합한 큐어링(Curing) 단계 후 규격화된 플라스틱 파렛트 상자에 적재되어 신속히 저온 저장고로 이송되는 과정이다[SRC-107, SRC-111]. 산지 단계에서의 균일한 초기 처리가 글로벌 수출입 및 장기 저장 내구성에 미치는 중요성을 시각화한다.
+
+[나노바나나 생성 프롬프트]
+Documentary agricultural photograph of an open-air modern packing and curing facility adjacent to a harvested garlic field. Rows of heavy-duty ventilated pallet crates filled with freshly cured whole Allium sativum garlic bulbs with trimmed dried stems and roots are stacked neatly. Workers in field attire inspect the bulbs under bright natural morning sunlight, with large high-efficiency air circulation fans visible along the open shed eaves, and a refrigerated transport truck parked at the loading dock. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

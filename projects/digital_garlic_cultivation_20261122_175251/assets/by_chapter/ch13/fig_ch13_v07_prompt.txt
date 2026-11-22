@@ -1,0 +1,12 @@
+이미지 번호: 그림 13-7
+이미지 파일명: fig_ch13_v07.png
+단원: 제13장. 디지털 수확 적기 판별과 마늘 굴취·수집·절단 복합 기계화 (ch13)
+결합 절: 13.3.1 주행 연동형 줄기 자동 절단기(Stalk Cutter)의 작동 원리
+시각화 유형: scientific_anatomy
+제목: [그림 13-7] 주행 연동형 줄기 자동 절단 장치와 클램핑 기구의 기구학적 구조
+
+[문맥 기반 이미지 설명]
+[그림 13-7] 굴취 후 수직으로 세워져 이송되는 마늘 식물체의 경엽 줄기를 일정한 높이로 절단하는 기구학적 메커니즘 도해이다. 고무 벨트 클램프가 줄기 상부를 파지하여 인양하는 동시에 대향 회전식 원판 톱날이 구체 상단 3~5cm 지점을 정밀하게 전단하는 동작을 나타낸다. 주행 속도와 완벽히 동기화되어 구체의 절단 손상을 차단하고 잔여 줄기 길이를 균일하게 유지한다[SRC-106].
+
+[나노바나나 생성 프롬프트]
+Scientific mechanical cutaway illustration on a crisp white background showing a dual-disc rotary stalk cutter integrated with vertical gripping belts. A single intact garlic plant is clamped upright between two grooved rubber timing belts by its fibrous false stem; directly below the grip and precisely 3 centimeters above the garlic bulb shoulder, twin counter-rotating circular steel cutting blades contact the stalk. Clean mechanical trajectories, structural gears, rotational vectors, and exploded cross-sections of the cutting assembly are rendered in precise editorial textbook art style. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

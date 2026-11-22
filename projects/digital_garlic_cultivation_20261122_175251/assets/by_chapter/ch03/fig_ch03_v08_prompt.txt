@@ -1,0 +1,12 @@
+이미지 번호: 그림 3-8
+이미지 파일명: fig_ch03_v08.png
+단원: 제3장. 마늘 품종별 유전 특성, 생리적 분화 및 디지털 계통 분류 (ch03)
+결합 절: 3.3 유전자 분석 및 디지털 이미지 표현형 기반 품종 판별 기술
+시각화 유형: scientific_anatomy
+제목: [그림 3-8] 딥러닝 합성곱 신경망(CNN) 특징 맵 기반 마늘 품종 형태학적 분류 모델
+
+[문맥 기반 이미지 설명]
+[그림 3-8] 마늘 구 및 낱개 인편의 디지털 사진으로부터 딥러닝 특징 벡터를 추출하여 품종을 분류하는 컴퓨터 비전 처리 과정을 도식화한 과학적 메커니즘 일러스트레이션이다. 원본 마늘 윤곽선 위에 합성곱 필터링을 통해 에지 검출, 곡률 메쉬망, 3차원 체적 포인트 클라우드가 단계적으로 오버레이되며 고차원 특징 공간으로 사상된다 [SRC-103]. 순수 화이트 배경 위에서 정밀한 음영과 와이어프레임 기하학 그래픽을 적용하여 품종 간 미세 형태 편차를 식별하는 과정을 표현했다.
+
+[나노바나나 생성 프롬프트]
+Scientific computational vision illustration on a pure white background showing multi-stage feature extraction from an Allium sativum bulb. An anatomically realistic painted garlic bulb transitions into a polygonal wireframe 3D surface mesh, overlaid with geometric curvature vectors and gradient density point clouds representing convolutional feature maps. Subtle technological aesthetic with translucent cyan and amber gradient volumetric mesh lines wrapping around organic garlic surfaces, painterly scientific style without any flat vector clipart. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

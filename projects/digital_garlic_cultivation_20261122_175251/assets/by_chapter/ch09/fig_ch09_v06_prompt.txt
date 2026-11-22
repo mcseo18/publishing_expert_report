@@ -1,0 +1,12 @@
+이미지 번호: 그림 9-6
+이미지 파일명: fig_ch09_v06.png
+단원: 제9장. 농작업 무인 자동화와 RTK-GPS 자율주행 농기계 기술 (ch09)
+결합 절: 9.2 자율주행 트랙터의 조향 제어 및 경로 계획(Path Planning) 알고리즘
+시각화 유형: photorealistic_macro
+제목: [그림 9-6] 트랙터 전륜 전동-유압 조향 액추에이터와 휠 각도 센서의 미세 구동
+
+[문맥 기반 이미지 설명]
+[그림 9-6] 자율주행 트랙터의 전륜 조향 축에 장착된 전동-유압 비례 제어 밸브 및 휠 각도 센서(Wheel Angle Sensor)의 실제 작동부 매크로 사진이다. 실시간 조향 알고리즘이 연산한 목표 조향각에 맞추어 유압 실린더가 수 밀리미터 단위로 미세 신장하며 차륜 각도를 즉각 교정한다. 흙먼지와 수분이 가득한 마늘 고랑 주행 환경에서도 지속적인 정밀 추종 성능을 유지할 수 있도록 설계된 기계 장치부이다.
+
+[나노바나나 생성 프롬프트]
+A razor-sharp mechanical macro photograph of an electro-hydraulic steering valve assembly and rotary wheel angle potentiometer mounted on the heavy front steering knuckle of a farm tractor. Metallic cylinder rod reflecting light, hydraulic high-pressure hoses with brass crimps, grease fitting detail, positioned right above the damp soil of a furrow between green garlic beds, natural daylight highlighting metal textures and durable industrial sensors. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

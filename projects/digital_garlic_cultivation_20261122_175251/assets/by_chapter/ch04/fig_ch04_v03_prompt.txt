@@ -1,0 +1,12 @@
+이미지 번호: 그림 4-3
+이미지 파일명: fig_ch04_v03.png
+단원: 제4장. 토양 물리·화학성 진단과 디지털 지도를 활용한 입지 최적화 (ch04)
+결합 절: 4.1 마늘 근계 발달을 위한 최적 토양 물리성 지표와 개량 기술
+시각화 유형: photorealistic_field
+제목: [그림 4-3] 마늘 파종 전 심토 파쇄기를 활용한 심경 및 다짐층 완화 작업
+
+[문맥 기반 이미지 설명]
+[그림 4-3] 마늘 파종을 앞두고 트랙터 후방에 장착된 심토 파쇄기(subsoiler)가 경반층을 파쇄하며 토양의 물리성을 개량하는 현장 기록 사진이다 [SRC-100]. 깊은 토층까지 침투한 강철 생크가 다져진 심토를 들어 올려 균열을 유도함으로써 공극률을 획기적으로 향상시킨다. 이는 마늘 구근 비대와 뿌리의 심층 신장을 원활히 하여 습해 및 한해 저항성을 증대시키는 필수적인 토양 개량 공정이다.
+
+[나노바나나 생성 프롬프트]
+Agricultural field photograph of a heavy-duty tractor operating in an open farm field prepared for garlic planting during early autumn golden hour. The rear three-point hitch is equipped with curved steel subsoiler shanks deeply penetrating the furrowed brown earth, fracturing and lifting the compacted subsurface soil layer without inverting topsoil. Raised soil berms, fresh crumbly clods, and dusty evening light create atmospheric depth and raw mechanical clarity. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

@@ -1,0 +1,12 @@
+이미지 번호: 그림 3-3
+이미지 파일명: fig_ch03_v03.png
+단원: 제3장. 마늘 품종별 유전 특성, 생리적 분화 및 디지털 계통 분류 (ch03)
+결합 절: 3.2 저온감응(Vernalization), 휴면(Dormancy) 및 추대(Bolting)의 유전생리
+시각화 유형: scientific_anatomy
+제목: [그림 3-3] 저온감응(Vernalization)에 따른 마늘 생장점 분열조직 활성화 해부도
+
+[문맥 기반 이미지 설명]
+[그림 3-3] 마늘 인편 내부의 생장점(Shoot Apical Meristem)이 저온감응 처리에 의해 휴면 상태에서 영양생장 및 인편 분화 단계로 전이되는 세포학적 해부 과정을 보여주는 과학 일러스트레이션이다. 좌측의 미감응 휴면 인편은 기저판 부근의 정단분열조직이 납작하고 비활성화된 상태를 유지하지만, 우측의 저온 감응 완료 인편은 분열조직의 원추형 융기와 유관속속 형성, 인편 원기(clove primordium) 분화가 뚜렷하다 [SRC-107]. 세포핵의 분열 활성과 전도 조직의 수분 공급 경로가 세밀한 음영 기법으로 표현되어 있다.
+
+[나노바나나 생성 프롬프트]
+Scientific anatomical cutaway illustration of a single garlic clove (Allium sativum) showing vernalization-induced meristem activation on a pure white background. Left side depicts a dormant clove longitudinal section with an inactive, flattened shoot apical meristem embedded above the basal root plate. Right side depicts a low-temperature treated vernalized clove with an active, domed apical meristem showing initiated leaf primordia, vascular strand connections, and developing axillary clove primordia. Rich scientific cross-hatching, watercolor shading, botanical accuracy, hyper-clean editorial scientific presentation. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

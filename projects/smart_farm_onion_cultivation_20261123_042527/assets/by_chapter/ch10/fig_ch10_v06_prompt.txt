@@ -1,0 +1,12 @@
+이미지 번호: 그림 10-6
+이미지 파일명: fig_ch10_v06.png
+단원: 제10장. 해충·잡초의 스마트 모니터링 및 AI 종합 방제(IPM) (ch10)
+결합 절: 생리·분자 메커니즘 및 모니터링 기술
+시각화 유형: photorealistic_field
+제목: [그림 10-6] 딥러닝 비전 센서 기반 지능형 마이크로 타깃 제초 로봇의 선별 분사 장면
+
+[문맥 기반 이미지 설명]
+[그림 10-6] 양파 포장 고랑 사이를 자율 주행하는 스마트 제초 로봇 하부의 정밀 광학 모듈과 초미세 액추에이터 분사 작동 모습입니다. RGB 및 다중분광 딥러닝 카메라가 원통형 양파 잎과 광엽 잡초를 실시간으로 분류하고, 잡초 생장점에만 마이크로 방울을 국소 타깃 분사합니다. 전면 살포 대비 약제 투입량을 획기적으로 절감하여 토양 잔류를 방지하고 농가 환경 지속성을 증진합니다 [SRC-102].
+
+[나노바나나 생성 프롬프트]
+An agricultural documentary field photograph showing the underside of an autonomous weeding robot straddling an onion bed. Underneath the robot chassis, high-resolution optical cameras and bright LED ring lights illuminate the soil surface, distinguishing upright cylindrical onion shoots from small invasive broadleaf weeds. A precision micro-solenoid nozzle emits a targeted micro-droplet spray hitting only the weed leaf, while leaving adjacent onion plants untouched on the clean field bed. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

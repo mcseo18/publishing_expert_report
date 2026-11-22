@@ -1,0 +1,12 @@
+이미지 번호: 그림 3-1
+이미지 파일명: fig_ch03_v01.png
+단원: 제3장. 마늘 품종별 유전 특성, 생리적 분화 및 디지털 계통 분류 (ch03)
+결합 절: 3.1 마늘 품종의 생태형 분류: 한지형, 난지형(남도, 대서 등)
+시각화 유형: photorealistic_macro
+제목: [그림 3-1] 한지형 및 난지형 마늘 구의 형태학적 횡단면 비교
+
+[문맥 기반 이미지 설명]
+[그림 3-1] 중부 내륙형 한지형 품종과 남부 해안형 난지형(남도 및 대서) 품종의 인편 배열 구조를 교차 비교한 형태학적 매크로 사진이다. 한지형 마늘은 단단한 외피 속에 6~8개의 균일하고 굵은 인편이 방사형으로 치밀하게 배열된 반면, 난지형 마늘은 10~12개 이상의 다인편 구조로 외피가 얇고 중심축 주위로 복층 배열되는 구조적 차이를 나타낸다 [SRC-103]. 이러한 횡단면 절편의 유전생리적 차이는 각 생태형의 저장성과 인편 분화 메커니즘을 명확하게 입증한다.
+
+[나노바나나 생성 프롬프트]
+Ultra-sharp macro photography showing side-by-side transverse cross-sections and whole bulbs of cold-climate and warm-climate garlic bulbs (Allium sativum). On the left, a cold-climate garlic bulb sliced horizontally reveals six large, thick, symmetrical ivory cloves with subtle reddish-purple papery tunic layers tightly enveloping them. On the right, a warm-climate garlic bulb cross-section displays ten to twelve smaller, asymmetric cloves arranged in a double-ring pattern around the central stem with papery white skins. Clean dark slate background, crisp botanical textures, moist freshly sliced clove flesh, natural directional studio lighting, high depth of field. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

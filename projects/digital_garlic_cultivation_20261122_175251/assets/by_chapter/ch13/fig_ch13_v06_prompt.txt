@@ -1,0 +1,12 @@
+이미지 번호: 그림 13-6
+이미지 파일명: fig_ch13_v06.png
+단원: 제13장. 디지털 수확 적기 판별과 마늘 굴취·수집·절단 복합 기계화 (ch13)
+결합 절: 13.2.2 진동 메커니즘 제어 및 손상률 저감 공학
+시각화 유형: photorealistic_macro
+제목: [그림 13-6] 굴취날 표면의 내마모 합금 코팅층 및 마찰 마모 미세 구조
+
+[문맥 기반 이미지 설명]
+[그림 13-6] 토양 입자와의 고속 마찰에 저항하도록 텅스텐 카바이드 육성 용접 처리된 굴취날 절삭인(Cutting edge)의 매크로 사진이다. 반복적인 토양 전단 하중과 연마 마모 조건에서도 날끝의 기하학적 형상이 유지된 상태를 보여준다. 적절한 감쇠비 설정과 내마모성 코팅의 결합은 충격 에너지를 소산시켜 블레이드의 피로 파괴를 방지한다[SRC-105].
+
+[나노바나나 생성 프롬프트]
+Ultra-sharp macro metallographic photograph of the cutting edge of a high-strength tungsten-carbide clad steel digger blade used in agricultural excavation. Fine microscopic friction grooves run parallel along the polished bevel from abrasive silica soil contact, yet the hardened metallurgical edge remains razor-sharp without micro-chipping or fracture. Reflected oblique directional illumination reveals iridescent heat-treated metal grain patterns, subtle soil dusting along the recessed channel, and high structural durability. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

@@ -1,0 +1,12 @@
+이미지 번호: 그림 6-3
+이미지 파일명: fig_ch06_v03.png
+단원: 제6장. 정밀 관비(Fertigation) 시스템과 실시간 양분 모니터링 (ch06)
+결합 절: 6.2. 생육 시기별 실시간 정밀 관비 처방 모델: 기비-추비 비율 분할 및 시비 농도(EC) 제어
+시각화 유형: photorealistic_field
+제목: [그림 6-3] 정밀 관비 점적 라인이 배치된 양파 스마트 온실의 영양생장기 두둑 전경
+
+[문맥 기반 이미지 설명]
+[그림 6-3] 점적관비 시스템이 설치된 스마트 팜 온실 내 양파 재배 두둑의 생육 중기 전경입니다. 균일한 간격으로 천공된 흑색 생분해 멀칭 필름 위로 짙은 녹색의 직립 원통형 양파 잎들이 곧게 뻗어 있으며, 듀얼 점적 테이프를 통해 정밀하게 조절된 전기전도도(EC) 배합액이 균일하게 점적되고 있습니다. 기비 의존도를 낮추고 엽 생육 상태에 따라 추비 비율을 동적으로 배분하는 관비 분할 처방의 현장 운용 환경을 충실히 반영합니다.
+
+[나노바나나 생성 프롬프트]
+Photorealistic documentary field photograph of an advanced greenhouse smart farm with raised planting beds dedicated to Allium cepa onion cultivation. Rows of vigorous, erect tubular hollow green onion foliage emerge through perforated dark agricultural mulch beneath bright, diffused morning sunlight. Twin black polyethylene drip irrigation lines run parallel along the bed surface, emitting fine, precise drops of fertigation solution directly at the base of each onion plant. Wide-angle shot capturing deep agricultural perspective, clean gravel pathways, and distant automated greenhouse ventilation frames. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

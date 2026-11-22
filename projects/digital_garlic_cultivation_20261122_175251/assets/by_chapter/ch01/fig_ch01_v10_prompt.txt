@@ -1,0 +1,12 @@
+이미지 번호: 그림 1-10
+이미지 파일명: fig_ch01_v10.png
+단원: 제1장. 마늘의 기원·역사 및 디지털 농업 패러다임의 태동 (ch01)
+결합 절: 1.4 노지 스마트팜 패러다임과 마늘 디지털 재배의 개념적 정의
+시각화 유형: photorealistic_macro
+제목: [그림 1-10] 마늘 스마트 저온저장고 내부의 온습도·가스 정밀 모니터링 환경
+
+[문맥 기반 이미지 설명]
+[그림 1-10] 수확 후 마늘의 품질 균일성과 장기 저장을 위해 저온 및 에틸렌 농도를 원격 관리하는 스마트 저온 저장고 실물이다 [SRC-107, SRC-111]. 대형 목재 팔레트 상자에 가득 찬 건조 마늘 구근들 사이로 디지털 온습도 및 에틸렌 검출 센서가 설치되어 저온 유통(콜드체인) 시스템과 연동된다. 디지털 기술이 단순 노지 재배를 넘어 유통·저장 단계의 생리적 품질 유지까지 확장되는 양상을 입증한다 [SRC-109, SRC-110].
+
+[나노바나나 생성 프롬프트]
+A photorealistic macro and mid-shot photograph inside an industrial smart cold storage facility for cured garlic bulbs. Large slotted wooden bulk bins are stacked high, filled with uniform cured garlic heads showing clean papery husks. Mounted directly on the side of a crate is a sleek digital air quality sensor device measuring ambient temperature and gas concentrations, surrounded by fine cold air convection haze under cool-toned LED facility lighting. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

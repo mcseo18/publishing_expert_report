@@ -1,0 +1,12 @@
+이미지 번호: 그림 1-5
+이미지 파일명: fig_ch01_v05.png
+단원: 제1장. 양파의 기원, 진화와 국내외 산업 생태계 현황 (ch01)
+결합 절: 생리·분자 메커니즘: 수확 후 품질 관리와 작물 특성 분석
+시각화 유형: photorealistic_macro
+제목: [그림 1-5] 알로에 베라-천연 복합 코팅이 도포된 양파 외피 큐티클층의 미세 구조
+
+[문맥 기반 이미지 설명]
+[그림 1-5] 수확 후 저장 수명(Postharvest Shelf Life) 연장을 위해 알로에 베라-허니 복합 천연 가식성 코팅제를 도포한 양파 외피 표면의 초점 심도 매크로 사진입니다. 천연 피막은 외피 인편의 미세 균열을 균일하게 피복하여 수분 증산을 차단하고 외인성 가스 교환 속도를 완만하게 조절합니다. 이러한 생체 적합성 코팅 처리는 저장 중 건조 감량과 곰팡이 포자 침입을 효과적으로 방어합니다 [SRC-122].
+
+[나노바나나 생성 프롬프트]
+Photorealistic ultra-close macro photograph of the glossy, copper-golden papery tunic of an Allium cepa bulb treated with an ultra-thin edible natural composite film. Subtle micro-droplets and a continuous smooth translucent glaze reflect soft ring-light illumination across the delicate cellular ridges of the onion skin. The textured golden surface exhibits intact microscopic cuticle layers and fine dry fibrous veins in razor-sharp focus. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

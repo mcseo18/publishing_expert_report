@@ -1,0 +1,12 @@
+이미지 번호: 그림 12-9
+이미지 파일명: fig_ch12_v09.png
+단원: 제12장. 자율주행 기반 정식·포장관리 및 지능형 수확 로봇 (ch12)
+결합 절: 12.4 수확 동시 포장 내 등급 판별 및 인경 크기·중량 맵핑을 위한 온보드 컴퓨터 비전 (현장 적용·실전 기술)
+시각화 유형: photorealistic_field
+제목: [그림 12-9] 수확기 온보드 비전 챔버의 다중 스펙트럼 및 3D 스테레오 선별 검사 장치
+
+[문맥 기반 이미지 설명]
+[그림 12-9] 수확기 배출 컨베이어 상단에 장착된 온보드 컴퓨터 비전 검사 챔버의 내부 가동 모습을 보여주는 현장 사진입니다. 고휘도 LED 돔 조명 아래에서 3D 스테레오 비전 카메라와 하이퍼스펙트럴 라인 스캔 센서가 빠르게 통과하는 양파를 촬영합니다 [SRC-135]. 인경의 외경 및 결함 데이터가 실시간으로 엣지 컴퓨팅 보드에 전송되어 등급 판별과 중량 산출이 즉각 이루어집니다.
+
+[나노바나나 생성 프롬프트]
+A realistic close-up field photograph inside the sorting tunnel of a smart onion harvesting machine. A series of freshly harvested round golden onion bulbs pass smoothly along a black conveyor belt beneath a curved diffuse white LED illumination hood. Overhead, a dual-lens 3D stereo vision camera and a compact hyperspectral sensor lens are mounted securely on vibration-isolated aluminum frame brackets. High-speed shutter freezing motion, vibrant technical ambiance, clean industrial design within an active farm vehicle. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

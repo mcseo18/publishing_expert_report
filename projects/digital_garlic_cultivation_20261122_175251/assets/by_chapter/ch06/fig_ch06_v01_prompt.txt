@@ -1,0 +1,12 @@
+이미지 번호: 그림 6-1
+이미지 파일명: fig_ch06_v01.png
+단원: 제6장. 토양수분 포텐셜 해석과 센서 기반 지능형 관수 제어 (ch06)
+결합 절: 6.1 토양수분포텐셜(pF)과 마늘 뿌리의 수분 흡수 한계점
+시각화 유형: scientific_anatomy
+제목: [그림 6-1] 마늘 근권 토양수분포텐셜 메커니즘 및 수분 이동 모식도
+
+[문맥 기반 이미지 설명]
+[그림 6-1] 마늘(Allium sativum) 잔뿌리와 근모 표면에서 일어나는 토양수분포텐셜(Ψw)의 구성 요소(매트릭 포텐셜, 삼투 포텐셜, 중력 포텐셜)와 수분 흡수 역학을 규명한 학술 단면도이다[SRC-107]. 토양 입자 간 미세 공극에 형성된 모세관 수분 막과 근모 세포벽 사이의 수분 포텐셜 경사를 시각화하였다. 마늘 뿌리가 수분을 원활히 흡수할 수 있는 적정 장력 범위와 pF 2.5 이상의 수분 스트레스 한계점을 정밀하게 나타낸다.
+
+[나노바나나 생성 프롬프트]
+Academic scientific cross-section illustration on a clean pure white background depicting the rhizosphere of a garlic plant (Allium sativum). Detailed fine fibrous garlic roots and micro root hairs penetrate dark brown soil aggregates. Clear blue capillary water films and concave water menisci bridge between mineral sand, silt, and organic matter particles. Shaded gradients represent water potential transitions from soil moisture pores into the root epidermal cells and xylem vessels, richly rendered in editorial botanical style with subtle directional blue flow paths. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

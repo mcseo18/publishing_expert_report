@@ -1,0 +1,24 @@
+chapter_id: ch01
+chapter_number: 1
+title: 제1장. 작물 생육모형의 이해, 필요성 및 분류 체계
+target_pages: 25
+summary_ko: 본 장에서는 작물 생육모형의 기본 개념과 농업 생산 시스템에서 가지는 중요성을 정의하며, 모형의 목적에 따른 분류 기준을 제시합니다. 특히, 현상 기반의 경험적 모형과 근본 원리를 따르는 물리 기반 모형의 철학적 차이를 심도 있게 다룹니다.
+sections:
+- 1.1 작물 생육모형의 정의 및 농업 시스템에서의 역할
+- '1.2 모형링 접근법의 역사적 발전: 경험적 대 물리 기반'
+- '1.3 모형의 분류 기준: 반경험적, 물리 기반, 하이브리드 모형'
+- '1.4 모형 적용의 목표: 예측, 최적화, 민감도 분석의 기초'
+tables: []
+visuals: []
+keywords_ko:
+- 작물 모형
+- 모형링
+- 물리 기반 모형
+- 경험적 모형
+keywords_en:
+- Crop Model
+- Modeling
+- Process-Based Model
+- Empirical Model
+evidence_packet: crop_growth_model_20261123_051626_evidence.json
+assigned_sources: []

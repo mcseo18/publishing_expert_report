@@ -1,0 +1,12 @@
+이미지 번호: 그림 2-8
+이미지 파일명: fig_ch02_v08.png
+단원: 제2장. 국내외 마늘 산업 현황, 주산단지 생태환경 및 스마트 벨트 (ch02)
+결합 절: 2.3 주산지 미기상 데이터 플랫폼 구축 및 지형학적 공간 분석
+시각화 유형: photorealistic_macro
+제목: [그림 2-8] 마늘 근권 토양 매트릭스 센서 및 수분·EC 측정 프로브
+
+[문맥 기반 이미지 설명]
+[그림 2-8] 마늘 구 비대기 근권의 수분 장력, 전기전도도(EC), 지온을 실시간 측정하기 위해 매설된 다중 센서 프로브의 접사 사진이다. 비닐 멀칭 아래 촉촉한 근권 토양과 마늘 구 기부에서 뻗어 나온 수많은 백색 뿌리 사이에 정밀 스테인리스 센서 핀이 위치하고 있다. 정밀 관수 및 시비 처방을 가능케 하는 토양 물리·화학 데이터 수집 원리를 근접 시각화한다.
+
+[나노바나나 생성 프롬프트]
+Extreme macro close-up photograph of a multi-parameter soil moisture, electrical conductivity, and temperature sensor embedded in the root zone of a developing garlic bulb. The stainless steel prongs of the rugged agricultural sensor are partially buried in damp, crumbly brown soil matrix right beside the bulb base and radiating white adventitious roots of Allium sativum. Delicate water droplets cling to the root hairs, illuminated by a warm clinical macro ring-light. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

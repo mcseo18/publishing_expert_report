@@ -1,0 +1,12 @@
+이미지 번호: 그림 2-10
+이미지 파일명: fig_ch02_v10.png
+단원: 제2장. 국내외 마늘 산업 현황, 주산단지 생태환경 및 스마트 벨트 (ch02)
+결합 절: 오해와 진실: 현장·이론 핵심 오해 교정
+시각화 유형: scientific_anatomy
+제목: [그림 2-10] 마늘 인편 분열조직의 에틸렌 결합 억제 및 휴면 유지 생리 기작
+
+[문맥 기반 이미지 설명]
+[그림 2-10] 마늘의 단순 저온 저장을 넘어 에틸렌 가스 및 생리 활성 조절 물질이 인편 내부 분열조직의 휴면과 노화 억제에 작용하는 분자·세포학적 메커니즘을 묘사한 일러스트레이션이다[SRC-108, SRC-110]. 마늘 인편의 종단면에서 생장점 부위의 세포벽과 수용체 단백질을 확대하여, 에틸렌 수용체와의 결합 차단이 세포 신장과 맹아 출현을 억제하는 과정을 상세히 보여준다. 저온 유통과 결합된 저장 분위기 정밀 제어의 과학적 타당성을 설명한다[SRC-109].
+
+[나노바나나 생성 프롬프트]
+Highly detailed scientific cross-sectional illustration on a pure white background showing the longitudinal cut of a single garlic clove (Allium sativum) with a cellular-level zoom into the basal meristem and embryonic sprout. The clove tissue reveals crisp translucent storage parenchyma cells surrounding the inner green sprout shoot. An inset visual portrays cell membrane receptor sites where ethylene gas molecules and gaseous inhibitors interact, visually explaining dormancy preservation, metabolic slowdown, and sprout emergence suppression with luminous, painterly scientific rendering. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

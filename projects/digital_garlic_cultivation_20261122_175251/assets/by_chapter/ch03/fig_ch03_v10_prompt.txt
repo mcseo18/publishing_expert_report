@@ -1,0 +1,12 @@
+이미지 번호: 그림 3-10
+이미지 파일명: fig_ch03_v10.png
+단원: 제3장. 마늘 품종별 유전 특성, 생리적 분화 및 디지털 계통 분류 (ch03)
+결합 절: 3.4 무병종구(바이러스 프리) 생산 체계 및 조직배양 대량 증식
+시각화 유형: photorealistic_field
+제목: [그림 3-10] 기내 배양 배지에서 증식 중인 무병 소구(Micro-bulb) 및 건전 유묘 대량 증식 체계
+
+[문맥 기반 이미지 설명]
+[그림 3-10] 조직배양 클린룸 선반 위의 무균 배양 용기 내에서 배양 중인 무병 마늘 유묘와 기내 소구(Micro-bulb) 비대 양상을 보여주는 식물공장형 바이오 연구실 사진이다. 투명 아가 배지 위에 정식된 다수의 마늘 소식물체들이 진한 녹색 잎을 뻗으며 기저부에 작은 구슬 모양의 구를 형성하고 있다 [SRC-103]. 환경 조절 챔버의 정밀한 광주기와 온도 제어를 통해 바이러스 프리 종구의 대량 증식과 포장 순화 단계로의 안전한 이행을 보장한다.
+
+[나노바나나 생성 프롬프트]
+Controlled-environment tissue culture laboratory photograph showing rows of transparent glass culture vessels on tiered metal shelving illuminated by specialized broad-spectrum LED growth lights. Inside each sterile glass jar, several micropropagated Allium sativum plantlets grow vigorously in clear synthetic agar medium, exhibiting vibrant emerald-green leaves and developing miniature round white-and-purple micro-bulbs at their bases. Cool, immaculate scientific phytotron atmosphere, rows vanishing in perspective with shallow depth of field. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

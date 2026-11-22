@@ -59,6 +59,10 @@ class PlatformConfig:
         return self.collected_data_root / "raw" / "docs"
 
     @property
+    def raw_captures_dir(self) -> Path:
+        return self.collected_data_root / "raw" / "captures"
+
+    @property
     def parsed_dir(self) -> Path:
         return self.collected_data_root / "parsed"
 
@@ -115,6 +119,14 @@ class PlatformConfig:
     def smc_incremental_graph_path(self) -> Path:
         return self.smc_graphrag_root / "output" / "graph_platform_incremental.json"
 
+    @property
+    def smc_unified_rag_dir(self) -> Path:
+        return self.smc_graphrag_root / "unified_rag"
+
+    @property
+    def smc_unified_rag_db_path(self) -> Path:
+        return self.smc_unified_rag_dir / "unified_rag_corpus.sqlite"
+
     # 워크스페이스 하위 경로 (프로젝트별 격리 폴더 구조: projects/<project_slug>/)
     @property
     def schemas_dir(self) -> Path:
@@ -163,6 +175,7 @@ class PlatformConfig:
         for path in (
             self.raw_web_dir,
             self.raw_docs_dir,
+            self.raw_captures_dir,
             self.parsed_dir,
             self.evidence_dir,
             self.index_dir,
@@ -170,6 +183,7 @@ class PlatformConfig:
             self.exports_dir,
             self.logs_dir,
             self.lightrag_working_dir,
+            self.smc_unified_rag_dir,
             self.reports_dir,
             self.projects_dir,
             self.active_project_dir,

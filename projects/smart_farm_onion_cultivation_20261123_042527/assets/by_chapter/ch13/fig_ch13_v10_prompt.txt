@@ -1,0 +1,12 @@
+이미지 번호: 그림 13-10
+이미지 파일명: fig_ch13_v10.png
+단원: 제13장. 스마트 건조(Curing)와 CA/저온 저장 환경 최적화 제어 (ch13)
+결합 절: 13.4 저장 중 생체중량 감모, 부패, 조기 맹아 발생 모니터링을 위한 IoT 가스·온습도 센서망 (관련 법규 및 정책 지침)
+시각화 유형: scientific_anatomy
+제목: [그림 13-10] 양파 저장 중 3대 품질 손실(중량 감모, 부패균 증식, 조기 맹아) 생리 메커니즘
+
+[문맥 기반 이미지 설명]
+[그림 13-10] 저장 기간 중 부적절한 환경 제어로 인해 발생하는 세 가지 주요 손실 형태를 하나의 양파 종단면 다이어그램에 비교하여 보여주는 과학 해부도입니다. 좌측은 과도한 증산으로 인한 외피 인편의 수축 및 스펀지화(중량 감모), 상단 인경부는 네크 썩음병균 감염에 의한 수침상 부패 조직, 중심부는 기저판에서 신장되어 나오는 조기 녹색 맹아(Germination)를 대비합니다. 센서망을 통한 조기 이상 감지의 중요성을 생리학적으로 설명합니다[SRC-102, SRC-107].
+
+[나노바나나 생성 프롬프트]
+Scientific anatomical cross-section diagram of an onion bulb illustrating three primary storage deterioration pathways on a pure white background. The left section shows cellular dehydration with shriveled, hollowed, spongy outer scales. The top neck region illustrates soft-rot bacterial breakdown with discolored brown sunken water-soaked tissue. The central core shows premature apical dormancy break with an elongating internal green shoot pushing up from the basal plate. Rendered in clean textbook cutaway style with meticulous scientific shading. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

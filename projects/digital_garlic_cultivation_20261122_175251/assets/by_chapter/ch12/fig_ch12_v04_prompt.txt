@@ -1,0 +1,12 @@
+이미지 번호: 그림 12-4
+이미지 파일명: fig_ch12_v04.png
+단원: 제12장. 분광 센싱·드론 예찰 및 마늘 작물생육모형(Crop Growth Model) (ch12)
+결합 절: 12.2 분광 데이터를 활용한 엽면적지수(LAI) 및 지상부 생체중 추정
+시각화 유형: scientific_anatomy
+제목: [그림 12-4] 마늘 생육 단계별 엽면적지수(LAI) 측정 기하 구조와 캐노피 수직 투영 면적
+
+[문맥 기반 이미지 설명]
+[그림 12-4] 단위 토양 면적당 마늘 잎의 총 표면적을 산출하는 엽면적지수(LAI)의 공간 기하학적 구조를 순수 흰색 배경 위에 과학적으로 설명한 해부도입니다. 초기 분얼기부터 구근 비대기까지 마늘의 선형 잎이 전개되는 각도와 상호 차폐(Canopy Interception) 구조를 3차원 투영 큐브와 결합하여 보여줍니다 [SRC-105]. NDVI가 잎의 밀생에 따라 포화되는 구간에서 레드엣지 기반 광흡수 경로가 어떻게 LAI의 비선형 역모델링에 기여하는지 시각화합니다 [SRC-106].
+
+[나노바나나 생성 프롬프트]
+Editorial scientific illustration on a pure white background demonstrating Leaf Area Index geometry for an Allium sativum plant stand. Multiple upright and arching strap-shaped garlic leaves emerge from pseudo-stems within a defined one-square-meter metric grid footprint. Stratified optical layers illustrate sunlight attenuation through upper and lower canopy layers. Finely rendered botanical anatomy showing the progressive expansion of individual blade areas and their spatial interception angles without any text or labels. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

@@ -1,0 +1,24 @@
+chapter_id: ch02
+chapter_number: 2
+title: 제2장. 광합성, 에너지 동역학 및 생체량 변화 모델링
+target_pages: 25
+summary_ko: 이 장은 작물 생장 과정의 핵심인 에너지 변환 과정을 수학적으로 정량화하는 방법을 다룹니다. 광합성률을 결정하는 환경 변수(광량, 온도)의 영향을 분석하고, 이를 생체량 증가로 연결하는 동역학적 방정식을 심층적으로 학습합니다.
+sections:
+- 2.1 에너지 흐름과 생체량 축적의 기본 원리
+- "2.2 광합성 메커니즘의 정량화: 빛 이용 효율 및 $\text{CO}_2$ 동화"
+- 2.3 생육 단계별 생체량(Biomass) 및 수확량 예측 모델
+- 2.4 에너지 동역학적 제약 조건과 성장 속도 결정
+tables: []
+visuals: []
+keywords_ko:
+- 광합성
+- 에너지 동역학
+- 생체량 모델링
+- 광 이용 효율
+keywords_en:
+- Photosynthesis
+- Energy Dynamics
+- Biomass Modeling
+- Light Use Efficiency
+evidence_packet: crop_growth_model_20261123_051626_evidence.json
+assigned_sources: []

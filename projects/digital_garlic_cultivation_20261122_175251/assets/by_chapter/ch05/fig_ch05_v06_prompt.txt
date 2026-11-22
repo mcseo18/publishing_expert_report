@@ -1,0 +1,12 @@
+이미지 번호: 그림 5-6
+이미지 파일명: fig_ch05_v06.png
+단원: 제5장. 정밀 양분 역학과 스마트 관비(Fertigation) 및 시비 처방 (ch05)
+결합 절: 5.3 점적관수 기반 자동 관비 시스템 설계 및 양액 배합 알고리즘
+시각화 유형: scientific_anatomy
+제목: [그림 5-6] 점적 드립 이미터에서 마늘 근권으로 형성되는 양분·수분 습윤 구(Wetted Bulb)
+
+[문맥 기반 이미지 설명]
+[그림 5-6] 지중 점적관수 테이프의 압력 보상형 드립 이미터(emitter)에서 방출된 양액이 마늘 뿌리 둘레에 형성하는 토양 습윤 영역의 단면도입니다. 토양 공극을 따라 수평 및 수직으로 침투하며 형성되는 전형적인 양분 습윤 구(wetted bulb)와 마늘의 천근성 수염뿌리계가 접촉하여 양분을 흡수하는 상호작용을 묘사합니다. 이는 토양 pH와 염류 집적에 따른 불용화를 방지하고 필요한 위치에 정밀하게 이온을 전달하는 관비 시스템의 공간적 공급 원리를 나타냅니다 [SRC-100].
+
+[나노바나나 생성 프롬프트]
+Scientific cross-sectional cutaway illustration of a subterranean drip irrigation emitter delivering nutrient-loaded water into agricultural soil directly beneath an Allium sativum garlic bulb, on a clean pure white background. The detailed soil cross-section illustrates the hemispherical wetting pattern of moisture and dissolved nutrient ions dispersing through porous soil aggregates around the dense white fibrous root network. Richly rendered earth textures, precise water distribution gradients, and realistic anatomical botanical details. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

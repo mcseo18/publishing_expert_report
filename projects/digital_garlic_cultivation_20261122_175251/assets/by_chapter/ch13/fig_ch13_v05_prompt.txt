@@ -1,0 +1,12 @@
+이미지 번호: 그림 13-5
+이미지 파일명: fig_ch13_v05.png
+단원: 제13장. 디지털 수확 적기 판별과 마늘 굴취·수집·절단 복합 기계화 (ch13)
+결합 절: 13.2.2 진동 메커니즘 제어 및 손상률 저감 공학
+시각화 유형: photorealistic_field
+제목: [그림 13-5] 진동 감쇠 기구부가 장착된 마늘 콤바인 굴취 어셈블리
+
+[문맥 기반 이미지 설명]
+[그림 13-5] 자주식 마늘 콤바인 하부에 설치된 왕복 진동 굴취 블레이드와 유압 감쇠 댐퍼 어셈블리의 현장 클로즈업 사진이다. 크랭크샤프트에 의해 주기적으로 진동하는 경화 합금강 블레이드가 토양을 분쇄하며 마늘 구를 들어 올리는 순간을 포착하였다. 진동 주파수 튜닝과 감쇠 장치는 피로 하중을 분산시켜 블레이드의 마모와 마늘 외피 타박 손상을 방지한다[SRC-104, SRC-105].
+
+[나노바나나 생성 프롬프트]
+A photorealistic field close-up photograph of the front undercarriage of a heavy-duty mechanized garlic harvester operating in a farm bed. A wide, reciprocating hardened steel digger share blade, lightly caked in moist clay loam, oscillates horizontally beneath the garlic root layer. Heavy-duty hydraulic damping cylinders, polished steel linkages, and vibration-absorbing rubber mounts connect the blade to the combine frame. Freshly unearthed garlic bulbs with dirt-coated roots are lifted gently upward along the vibrating slatted guide fingers under bright natural daylight. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

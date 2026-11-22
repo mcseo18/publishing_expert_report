@@ -1,0 +1,12 @@
+이미지 번호: 그림 15-10
+이미지 파일명: fig_ch15_v10.png
+단원: 제15장. 디지털 마늘 재배의 경제성 평가, 탄소 배출량 및 미래 전망 (ch15)
+결합 절: 15.4 생성형 AI와 디지털 트윈 기반의 차세대 무인 자동화 농장 비전
+시각화 유형: photorealistic_field
+제목: [그림 15-10] 생성형 AI 자율 예찰 로봇의 마늘 개체별 미세 병징 탐색 및 처방
+
+[문맥 기반 이미지 설명]
+[그림 15-10] 마늘 밭 고랑을 따라 자율 주행하는 첨단 4륜 예찰 로봇이 다파장 다중분광 카메라와 로봇 암을 이용해 마늘 잎의 미세 병징을 정밀 탐색하는 현장입니다. 생성형 AI 모델은 수집된 실시간 영상과 마이크로 기후 데이터를 종합 추론하여 국소 맞춤형 생물학적 방제 프로토콜을 즉각 생성합니다 [SRC-108]. 인간의 직관적 판단을 넘어선 실시간 의사결정으로 무인 자율영농을 실현하는 차세대 디지털 마늘 재배의 실현 장면입니다.
+
+[나노바나나 생성 프롬프트]
+Photorealistic field photograph of an autonomous four-wheeled field scouting agricultural robot straddling a row of healthy garlic plants in a vast agricultural field. The robot features an articulated robotic arm holding a multi-spectral sensing head positioned precisely over an individual garlic leaf, scanning with a focused harmless visible LED strobe. The surrounding field features neat uniform rows of Allium sativum with vivid green foliage and soil ridges under late afternoon golden hour lighting. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

@@ -1,0 +1,12 @@
+이미지 번호: 그림 1-2
+이미지 파일명: fig_ch01_v02.png
+단원: 제1장. 마늘의 기원·역사 및 디지털 농업 패러다임의 태동 (ch01)
+결합 절: 1.1 Allium속의 식물학적 기원 및 지리적 전파 경로
+시각화 유형: scientific_anatomy
+제목: [그림 1-2] 야생 Allium속 원종 및 재배종 마늘의 식물학적 구근·화기 해부도
+
+[문맥 기반 이미지 설명]
+[그림 1-2] Allium속 식물의 진화적 조상으로 추정되는 중앙아시아 야생 원종과 현대 재배 마늘의 형태학적 특성을 비교한 식물 해부도이다 [SRC-103]. 다편성 복합 구근(composite bulb) 내부의 인편(clove) 배열, 기저부 기저판(basal plate), 그리고 산형화서(umbel) 내 총포와 주아(bulbil)의 발달 구조를 정밀하게 묘사한다. 건조 지대와 혹한의 환경 적응 과정에서 형성된 다층 인편 구조와 보호성 인엽(tunic)의 해부학적 적응 메커니즘을 드러낸다 [SRC-102, SRC-104].
+
+[나노바나나 생성 프롬프트]
+A detailed scientific botanical illustration on a pure white background showing the anatomical cross-section of a mature garlic bulb (Allium sativum) and its floral umbel. The segmented compound bulb displays individual cloves wrapped in papery storage tunics radiating from the thick basal plate with fibrous roots. A vertical section reveals the central sprout and vascular tissue inside a single clove. Beside the bulb, an elongated scape terminates in a spathe with tiny purple-white sterile flowers and developing bulbils, rendered in classical watercolor scientific editorial style with intricate shading. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

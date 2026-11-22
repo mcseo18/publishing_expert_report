@@ -1,0 +1,12 @@
+이미지 번호: 그림 12-3
+이미지 파일명: fig_ch12_v03.png
+단원: 제12장. 분광 센싱·드론 예찰 및 마늘 작물생육모형(Crop Growth Model) (ch12)
+결합 절: 12.1 드론 다중분광·열적외선 센싱과 식생지수(NDVI, NDRE) 연산
+시각화 유형: photorealistic_macro
+제목: [그림 12-3] 열적외선 복사 온도차에 따른 마늘 기공 개폐와 증산 냉각 표면 미세 구조
+
+[문맥 기반 이미지 설명]
+[그림 12-3] 마늘 잎 표피의 기공 개폐 상태와 증발산(Transpiration)에 의한 기화열 냉각 과정을 정밀하게 보여주는 매크로 사진입니다. 충분한 관수로 기공이 활짝 열려 미세 수증기 입자가 배출되는 건강한 잎 표면은 기온보다 2~3°C 낮게 유지되어 수분 스트레스가 없음을 나타냅니다 [SRC-102]. 반면 수분 결핍으로 기공이 닫힌 잎 표피는 표면 온도가 상승하는 증산 냉각 차이를 미시적 질감으로 입증합니다 [SRC-117].
+
+[나노바나나 생성 프롬프트]
+Ultra-sharp macro scientific photography of the waxy epidermal surface of a living garlic leaf showing elliptical stomatal complexes. Fully open stomatal pores emit microscopic vapor droplets in high-humidity microclimate, revealing subtle cuticle micro-ridges and glandular structures. The lighting casts gentle specular highlights on the natural glaucous blue-green epicuticular wax layer, illustrating active evaporative cooling and leaf turgor in crisp scientific detail. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

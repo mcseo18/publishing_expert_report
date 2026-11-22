@@ -1,0 +1,12 @@
+이미지 번호: 그림 13-4
+이미지 파일명: fig_ch13_v04.png
+단원: 제13장. 스마트 건조(Curing)와 CA/저온 저장 환경 최적화 제어 (ch13)
+결합 절: 13.2 에너지 고효율 스마트 건조 챔버의 복합 열원(열펌프, 외기 도입) 자동 제어 알고리즘 (생리·분자 메커니즘)
+시각화 유형: photorealistic_field
+제목: [그림 13-4] 대용량 스마트 양파 큐어링 챔버의 하이브리드 열펌프 및 송풍 덕트 시스템
+
+[문맥 기반 이미지 설명]
+[그림 13-4] 수확된 양파 수십 톤이 목재 벌크 팔레트 상자에 적재되어 정밀하게 건조되고 있는 대형 스마트 큐어링 챔버 내부 전경입니다. 천장과 바닥의 송풍 덕트를 통해 열펌프에서 공급되는 제습 온풍과 외부 신선 공기가 균일하게 유입되어 상자 사이의 인경 부위를 통과합니다[SRC-102]. 정밀 온습도 센서 프로브가 상자 곳곳에 배치되어 과열 없이 균일한 건조 환경을 실시간으로 유지합니다[SRC-105].
+
+[나노바나나 생성 프롬프트]
+Wide-angle documentary photograph inside an industrial smart curing chamber filled with massive stacks of slotted wooden pallet crates brimming with harvested yellow onions. Galvanized overhead ventilation ducts and floor plenum grates distribute conditioned warm airflow between the crate rows. Heavy-duty industrial heat pump dehumidifier units and intake louvers are visible on the far insulated wall, with status indicator lights glowing softly under cool commercial warehouse illumination. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

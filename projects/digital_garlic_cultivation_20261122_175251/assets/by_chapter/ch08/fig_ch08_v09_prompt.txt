@@ -1,0 +1,12 @@
+이미지 번호: 그림 8-9
+이미지 파일명: fig_ch08_v09.png
+단원: 제8장. 종구 조제, 정식 자동화 및 기계화 재배 양식 (ch08)
+결합 절: 8.4.1 표준화된 두둑 조성
+시각화 유형: scientific_anatomy
+제목: [그림 8-9] 기계화 마늘 재배 전용 표준 사다리꼴 두둑 단면 규격 및 토양 공극 분포
+
+[문맥 기반 이미지 설명]
+[그림 8-9] 마늘 기계 정식기 및 수확기 트레드 폭에 최적화된 표준 두둑(Bed)의 3차원 사다리꼴 단면 구조를 나타낸 과학 일러스트레이션입니다. 두둑 윗면 폭(crown width), 바닥 폭, 두둑 높이(20~25cm), 배수로(furrow) 폭의 비례 관계와 토양 전단 응력 분산 상태를 명확히 표현했습니다. [SRC-106]의 표준 기계화 지침에 맞춘 8조식 파종 열 배치 간격과 내부 배수층 및 뿌리 활착층의 굵은 공극률 차이가 정밀한 지층 투시 단면으로 나타납니다.
+
+[나노바나나 생성 프롬프트]
+Three-dimensional scientific cross-sectional cutaway illustration of a standardized trapezoidal raised field bed designed for mechanized garlic farming, presented on a pure white background. The raised soil profile shows exact geometric proportions including flat crown bed width, sloping shoulder angle, drainage furrow depth, and distinct structural soil horizons ranging from aerated crumbly topsoil to compacted tractor wheel tracks in furrows. Eight distinct planting points indicated across the bed crown with cutaway roots penetrating deeply, depicted in clean academic agricultural engineering textbook style with earthy hues and soil texture details. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

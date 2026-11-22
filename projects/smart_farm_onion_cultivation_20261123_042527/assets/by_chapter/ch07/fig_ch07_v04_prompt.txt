@@ -1,0 +1,12 @@
+이미지 번호: 그림 7-4
+이미지 파일명: fig_ch07_v04.png
+단원: 제7장. 디지털 트윈과 양파 생육·수율 시뮬레이션 모델링 (ch07)
+결합 절: 생리·분자 메커니즘
+시각화 유형: scientific_anatomy
+제목: [그림 7-4] 광합성 유효 방사(PAR) 흡수 및 구근 건물 분배(θ_opt) 메커니즘
+
+[문맥 기반 이미지 설명]
+[그림 7-4] 광이용효율(RUE)에 의해 양파 엽육세포에서 고정된 탄수화물이 인경 비대기 동안 구근으로 전이되는 생리 메커니즘을 보여주는 과학 일러스트레이션입니다. 관상엽 표면으로 입사된 광선이 엽록체에서 광합성산물을 생성하고, 체관을 통해 가경부를 거쳐 엽초 기저부의 다육질 비대 인편으로 집중 분배되는 흐름을 투시하여 표현했습니다. 이 분배율 매개변수는 생육 시뮬레이션에서 최종 구경 크기를 결정하는 핵심 기작입니다.
+
+[나노바나나 생성 프롬프트]
+A detailed scientific editorial illustration on a clean pure white background depicting the physiological biomass allocation inside an Allium cepa onion plant. A semi transparent cross section of the tubular green leaf showing chloroplast containing palisade tissue absorbing incoming sunlight rays. Translucent arrows trace the downward translocation of synthesized sucrose and carbohydrates passing through vascular bundles in the pseudostem into the concentric swelling bulb scales at the base. Painterly realistic scientific rendering with clear separation of photosynthetic leaf tissue, sheath bases, and bulb storage cells. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

@@ -1,0 +1,12 @@
+이미지 번호: 그림 6-4
+이미지 파일명: fig_ch06_v04.png
+단원: 제6장. 토양수분 포텐셜 해석과 센서 기반 지능형 관수 제어 (ch06)
+결합 절: 6.2 월동기, 해빙기, 구 비대기별 정량적 토양 수분 임계치
+시각화 유형: scientific_anatomy
+제목: [그림 6-4] 마늘 생육 단계별(월동기·해빙기·구비대기) 근계 발달과 토양수분 임계치
+
+[문맥 기반 이미지 설명]
+[그림 6-4] 마늘의 3대 핵심 생육기인 월동기, 해빙기, 구 비대기에 따른 지하부 근계 발달과 최적 토양수분포텐셜(pF) 임계치를 비교 분석한 학술 일러스트레이션이다[SRC-107]. 해빙기 초기 뿌리 신장과 구 비대기 지하 15~30cm에 집중되는 조밀한 근계와 급격히 팽창하는 마늘 구의 형태학적 변화를 단계별로 정밀하게 묘사하였다. 각 생육 시기별로 설정된 pF 1.5~1.8 등 정량적 수분 관리 대역을 지하 토양 단면과 함께 직관적으로 제시한다.
+
+[나노바나나 생성 프롬프트]
+Detailed scientific botanical illustration on a pure white background showing the comparative three growth stages of a garlic plant (Allium sativum): overwintering dormancy, spring green-up, and rapid bulb enlargement. A vertical soil depth cross-section from zero to fifty centimeters shows the progressive rooting depth and lateral root hair expansion. The developing garlic bulb swells from a slender clove into a segmented, robust multi-clove head wrapped in protective tunics, surrounded by stratified soil horizons with soft blue moisture gradients. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

@@ -1,0 +1,12 @@
+이미지 번호: 그림 7-7
+이미지 파일명: fig_ch07_v07.png
+단원: 제7장. 생육 단계별 생리 지표와 윤작·혼작 최적 작부체계 (ch07)
+결합 절: 7.3 마늘 중심 윤작체계(마늘-벼, 마늘-콩)의 물질순환 및 지력 유지
+시각화 유형: photorealistic_field
+제목: [그림 7-7] 마늘-벼 윤작 포장의 담수 토양 환원 및 지력 갱신 전경
+
+[문맥 기반 이미지 설명]
+[그림 7-7] 마늘 수확 직후 담수 상태로 전환되어 벼가 이앙된 마늘-벼 윤작 현장의 광각 풍경이다. 담수 조건은 마늘 연작 과정에서 집적된 토양 전염성 병원균과 선충의 밀도를 획기적으로 억제하며, 토양 유기물의 환원 분해를 촉진한다 [SRC-104]. 마늘 재배지와 벼 식재지가 맞물려 순환하는 토지 이용의 전형을 시각적으로 입증한다.
+
+[나노바나나 생성 프롬프트]
+Photorealistic panoramic field photograph of an agricultural rotation landscape showing a harvested garlic field partitioned alongside freshly flooded, mirrored rice paddy fields where young bright-green rice seedlings are neatly transplanted. Distant view of agricultural levees, irrigation channels, dynamic cloud reflections on the water surface, showcasing sustainable rotational farming under clear daytime sky. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

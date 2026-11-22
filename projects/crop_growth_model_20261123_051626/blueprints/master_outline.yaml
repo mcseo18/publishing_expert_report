@@ -1,0 +1,188 @@
+book_metadata:
+  title_ko: 작물 생육모형
+  title_en: crop growth model
+  target_audience: 대학 전공 심화, 대학원생, 연구자 및 선도 현장 실무자
+  book_summary_ko: 본 교재는 작물 생육모형의 기초 이론부터 최첨단 응용 단계까지 체계적으로 다루는 심화 연구 교재입니다. 경험적 접근과 물리 기반 접근을 아우르며, 광합성, 물 수지, 질소 동태 등 핵심 생리 과정을 정량적으로 모델링하는
+    방법을 제시합니다. 나아가 파라미터 보정, 공간 모델링, DSS 연동을 통해 연구자와 현장 실무자가 복잡한 농업 환경 문제를 해결할 수 있는 역량을 배양하는 것을 목표로 합니다.
+  target_pages: 100
+  target_total_pages: 100
+  chapter_count: 4
+  engine_used: Antigravity · Gemini API
+  generated_at: '2026-11-22T20:24:19+00:00'
+domain_keywords:
+- domain: 핵심 이론
+  keywords_ko:
+  - 작물 생육모형
+  - 농업 시뮬레이션
+  - 모형링
+  - 물리 기반 모형
+  keywords_en:
+  - Crop Growth Model
+  - Agricultural Simulation
+  - Modeling
+  - Process-Based Model
+- domain: 생리학적 과정
+  keywords_ko:
+  - 광합성
+  - 물 수지
+  - 질소 동태
+  - 에너지 동역학
+  keywords_en:
+  - Photosynthesis
+  - Water Balance
+  - Nitrogen Dynamics
+  - Energy Dynamics
+- domain: 모형 개선 및 분석
+  keywords_ko:
+  - 파라미터 보정
+  - 민감도 분석
+  - 앙상블 시뮬레이션
+  - 반경험적 모형
+  keywords_en:
+  - Parameter Calibration
+  - Sensitivity Analysis
+  - Ensemble Simulation
+  - Semi-Empirical Model
+- domain: 응용 및 시스템
+  keywords_ko:
+  - 공간 모델링
+  - DSS
+  - 기후 영향
+  - 작물 모형
+  keywords_en:
+  - Spatial Modeling
+  - Decision Support System
+  - Climate Impact
+  - Crop Model
+search_queries_ko:
+- 작물 모형
+- 작물 생육모형
+- Crop Growth Model
+- 농업 시뮬레이션
+- 광합성
+- 물 수지
+- 질소 동태
+- 기후 영향
+search_queries_en:
+- crop model
+- Crop Growth Model
+- Agricultural Simulation
+- Phenology
+- Photosynthesis
+- Water Use Efficiency
+- Nitrogen Dynamics
+- Climate Impact
+parts:
+- part_number: 1
+  title: 제1부. 작물 생육모형의 개념적 토대와 분류
+  summary_ko: ''
+  pages: 25
+  chapters:
+  - chapter_id: ch01
+    chapter_number: 1
+    title: 제1장. 작물 생육모형의 이해, 필요성 및 분류 체계
+    target_pages: 25
+    summary_ko: 본 장에서는 작물 생육모형의 기본 개념과 농업 생산 시스템에서 가지는 중요성을 정의하며, 모형의 목적에 따른 분류 기준을 제시합니다. 특히, 현상 기반의 경험적 모형과 근본 원리를 따르는 물리 기반 모형의 철학적 차이를 심도
+      있게 다룹니다.
+    sections:
+    - 1.1 작물 생육모형의 정의 및 농업 시스템에서의 역할
+    - '1.2 모형링 접근법의 역사적 발전: 경험적 대 물리 기반'
+    - '1.3 모형의 분류 기준: 반경험적, 물리 기반, 하이브리드 모형'
+    - '1.4 모형 적용의 목표: 예측, 최적화, 민감도 분석의 기초'
+    tables: []
+    visuals: []
+    keywords_ko:
+    - 작물 모형
+    - 모형링
+    - 물리 기반 모형
+    - 경험적 모형
+    keywords_en:
+    - Crop Model
+    - Modeling
+    - Process-Based Model
+    - Empirical Model
+    evidence_packet: crop_growth_model_20261123_051626_evidence.json
+    assigned_sources: []
+- part_number: 2
+  title: 제2부. 작물 생리학 기반의 동역학적 과정 모델링
+  summary_ko: ''
+  pages: 50
+  chapters:
+  - chapter_id: ch02
+    chapter_number: 2
+    title: 제2장. 광합성, 에너지 동역학 및 생체량 변화 모델링
+    target_pages: 25
+    summary_ko: 이 장은 작물 생장 과정의 핵심인 에너지 변환 과정을 수학적으로 정량화하는 방법을 다룹니다. 광합성률을 결정하는 환경 변수(광량, 온도)의 영향을 분석하고, 이를 생체량 증가로 연결하는 동역학적 방정식을 심층적으로 학습합니다.
+    sections:
+    - 2.1 에너지 흐름과 생체량 축적의 기본 원리
+    - "2.2 광합성 메커니즘의 정량화: 빛 이용 효율 및 $\text{CO}_2$ 동화"
+    - 2.3 생육 단계별 생체량(Biomass) 및 수확량 예측 모델
+    - 2.4 에너지 동역학적 제약 조건과 성장 속도 결정
+    tables: []
+    visuals: []
+    keywords_ko:
+    - 광합성
+    - 에너지 동역학
+    - 생체량 모델링
+    - 광 이용 효율
+    keywords_en:
+    - Photosynthesis
+    - Energy Dynamics
+    - Biomass Modeling
+    - Light Use Efficiency
+    evidence_packet: crop_growth_model_20261123_051626_evidence.json
+    assigned_sources: []
+  - chapter_id: ch03
+    chapter_number: 3
+    title: 제3장. 물 수지 및 질소 동태 모델링
+    target_pages: 25
+    summary_ko: 작물의 생장에 필수적인 물과 주요 영양소인 질소의 거동을 물리적으로 모델링하는 방법을 학습합니다. 토양-작물-대기 시스템 간의 복잡한 수분 이동과 질소 순환 과정을 정량적 방정식으로 표현합니다.
+    sections:
+    - 3.1 작물 및 토양의 물 수지(Water Balance) 모델링 원리
+    - 3.2 증발산(Evapotranspiration) 계산 및 작물 수분 스트레스 반응
+    - 3.3 질소(N)의 흡수, 이동, 분해(Mineralization) 과정 모델링
+    - 3.4 양분 이용 효율(Nutrient Use Efficiency)과 질소 동태의 상호작용
+    tables: []
+    visuals: []
+    keywords_ko:
+    - 물 수지
+    - 질소 동태
+    - 증발산
+    - 양분 흡수
+    keywords_en:
+    - Water Balance
+    - Nitrogen Dynamics
+    - Evapotranspiration
+    - Nutrient Uptake
+    evidence_packet: crop_growth_model_20261123_051626_evidence.json
+    assigned_sources: []
+- part_number: 3
+  title: 제3부. 환경 변수 통합 및 모형의 정밀화
+  summary_ko: ''
+  pages: 25
+  chapters:
+  - chapter_id: ch04
+    chapter_number: 4
+    title: 제4장. 기후 및 물리적 환경 요인 통합과 파라미터 보정
+    target_pages: 25
+    summary_ko: 이 장은 다양한 기후 및 토양 데이터를 모형에 통합하는 방법을 다루며, 모형의 예측 정확도를 높이기 위한 파라미터 보정(Calibration) 및 민감도 분석 기법을 심도 있게 소개합니다. 이를 통해 모형의 강건성(Robustness)을
+      확보합니다.
+    sections:
+    - 4.1 기후 데이터(온도, 강수, 일조량)의 모형 입력 및 처리
+    - 4.2 비생물적 환경 요인(토양 특성, 미기후)의 모형 통합
+    - 4.3 파라미터 최적화 및 모형 보정(Calibration & Validation) 기법
+    - 4.4 민감도 분석(Sensitivity Analysis)을 통한 모형 불확실성 평가
+    tables: []
+    visuals: []
+    keywords_ko:
+    - 파라미터 보정
+    - 민감도 분석
+    - 기후 영향
+    - 데이터 통합
+    keywords_en:
+    - Parameter Calibration
+    - Sensitivity Analysis
+    - Climate Impact
+    - Data Integration
+    evidence_packet: crop_growth_model_20261123_051626_evidence.json
+    assigned_sources: []

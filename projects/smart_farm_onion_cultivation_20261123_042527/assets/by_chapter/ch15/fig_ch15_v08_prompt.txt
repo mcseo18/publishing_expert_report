@@ -1,0 +1,12 @@
+이미지 번호: 그림 15-8
+이미지 파일명: fig_ch15_v08.png
+단원: 제15장. 노지 스마트 팜 데이터 표준화 및 지속가능한 디지털 농업 플랫폼 (ch15)
+결합 절: 15.3 비료·에너지 투입 절감에 따른 전과정 환경영향평가(LCA) 및 저탄소 농업 인증 프로토콜
+시각화 유형: photorealistic_macro
+제목: [그림 15-8] 수확 후 건조(큐어링) 과정에서 형성되는 양파 목부(Neck) 보호 조직과 외피
+
+[문맥 기반 이미지 설명]
+[그림 15-8] 저온 저장 전 수확된 양파의 목부가 완전히 건조되어 밀봉되는 큐어링 과정을 극단적으로 확대한 매크로 사진이다. 외피가 황갈색의 종이처럼 얇은 다층 섬유질 보호막으로 변화하면서 수분 손실을 억제하고 병원균 침입을 물리적으로 차단한다 [SRC-108]. 적절한 환경 제어를 통한 건조는 부패율과 에틸렌 반응에 의한 연화를 억제하여 저장 중 폐기물 발생을 최소화하는 핵심 기작이다 [SRC-109, SRC-110].
+
+[나노바나나 생성 프롬프트]
+Extreme macro scientific photograph of the drying neck and outer scale layers of a harvested golden Allium cepa onion during field curing. The thick neck tissue is tightly pinched and desiccated into a protective fibrous seal, surrounded by papery, golden-amber tunic layers showing fine cellular striations and brittle, micro-crinkled dry textures. Warm directional sunlight reveals microscopic dehydration ridges, fiber density, and the deep copper sheen of the dry epidermal skin, set against a softly blurred background of dry straw mulch. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.

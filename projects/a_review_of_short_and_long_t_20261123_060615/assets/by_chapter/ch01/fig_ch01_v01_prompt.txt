@@ -1,0 +1,12 @@
+이미지 번호: 그림 1-1
+이미지 파일명: fig_ch01_v01.png
+단원: 제1장. 국문·영문 초록 및 서론: 토양 유기물 분해 모델링의 학술적 배경과 패러다임 전환 (ch01)
+결합 절: 1.3 고전적 부식화 개념에서 미생물 연속체(Microbial Continuum) 패러다임으로의 전환
+시각화 유형: scientific_anatomy
+제목: [그림 1-1] 토양 미생물 연속체(Microbial Continuum) 모델과 광물 연관 유기탄소(MAOC) 결합 메커니즘
+
+[문맥 기반 이미지 설명]
+[그림 1-1] 고전적 부식화 개념을 대체하는 미생물 연속체 패러다임을 반영하여 토양 입자 표면에서 일어나는 유기탄소 안정화 과정을 시각화한 학술 단면도입니다. 식물 잔재물 기원의 입자성 유기탄소(POC)가 박테리아 및 균사체에 의해 효소적으로 분해되고, 미생물 사체(necromass)와 세포외 분비물이 점토 광물 표면에 화학적으로 결합하여 광물 연관 유기탄소(MAOC) 복합체를 형성하는 미세 기작을 묘사합니다 [SRC-05, SRC-222]. 미세 공극 내 다공성 바이오차 표면과 영양소 상호작용을 함께 표현하여 토양 유기탄소의 장기 보존 경로를 명확히 제시합니다 [SRC-225, SRC-226].
+
+[나노바나나 생성 프롬프트]
+Scientific anatomical cross-section of a microscopic soil aggregate on a clean pure white background, illustrating the microbial continuum concept. On one side, decomposing plant root fragments representing particulate organic carbon (POC) are entangled in golden fungal hyphae and bacterial colonies. Fine organic fragments and microbial necromass, rich in amino sugars and cell wall debris, migrate through watery micro-pores toward planar sheet-like aluminosilicate clay minerals. The microscopic clay mineral surfaces are coated with nanoscale organo-mineral complexes depicting mineral-associated organic carbon (MAOC). Interspersed within the mineral matrix is a dark porous fragment of biochar showing honeycombed carbon walls. Shaded scientific editorial illustration style with crisp biological textures, natural earthy tones, and translucent hydration films, rendered without any text or labels. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

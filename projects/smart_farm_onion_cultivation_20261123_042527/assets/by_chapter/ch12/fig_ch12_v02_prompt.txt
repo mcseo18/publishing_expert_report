@@ -1,0 +1,12 @@
+이미지 번호: 그림 12-2
+이미지 파일명: fig_ch12_v02.png
+단원: 제12장. 자율주행 기반 정식·포장관리 및 지능형 수확 로봇 (ch12)
+결합 절: 12.1 RTK-GNSS 및 SLAM 기반 노지 자율주행 플랫폼의 포장 주행선 추종 제어 알고리즘 (개념 소개·이론적 배경)
+시각화 유형: scientific_anatomy
+제목: [그림 12-2] RTK-GNSS 기준국 보정과 SLAM 센서 융합 기반 조향 피드백 제어 기구
+
+[문맥 기반 이미지 설명]
+[그림 12-2] RTK-GNSS 기준국과 이동국 간 위상차 보정 신호 및 SLAM 라이다 포인트 클라우드가 결합되는 공간 기하학적 제어 구조를 도식화한 과학 일러스트레이션입니다. 주행 기준 경로와 실제 농기계 궤적 간의 횡방향 편차와 헤딩 오차가 산출되어 유압 조향 액추에이터의 수정 각도로 전달됩니다. 이 피드백 루프는 두둑 간격을 cm 단위로 유지하여 초기 정식선 오차를 원천 차단합니다 [SRC-100].
+
+[나노바나나 생성 프롬프트]
+A detailed scientific vector illustration on a pure white background demonstrating the kinematic feedback control loop of an autonomous agricultural robot. A stationary RTK base station tower transmits radio frequency correction waves to a field rover robot chassis. Green and blue coordinate vectors illustrate lateral offset and heading angle error relative to a predetermined field way-line. 3D LiDAR point cloud clusters represent field ground contours and bedding ridges in soft gradient colors. Clean technical styling, highly accurate robotic geometry, elegant line art and soft shading, no words, no alphabets. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" width="800" height="420" style="background:#ffffff;font-family:'Malgun Gothic', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;">
+  <rect x="0" y="0" width="800" height="420" rx="12" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+  <rect x="0" y="0" width="800" height="58" rx="12" fill="#0f172a"/>
+  <rect x="0" y="42" width="800" height="16" fill="#0f172a"/>
+  <text x="22" y="27" font-size="14.5" font-weight="700" fill="#f8fafc">그림 12-3. 제12장. 자율주행 기반 정식·포장관리 및 지능형 수확 로봇 — 근접</text>
+  <text x="22" y="47" font-size="11" fill="#cbd5e1">스마트 팜 양파 재배 · 12.3 줄기 절단 및 굴취 수집 일관 수확기의 동역학 해석과 외피 충격 최소화 완충 설계</text>
+  <defs><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 1 L 10 5 L 0 9 z" fill="#334155"/></marker></defs>
+  <rect x="34" y="128" width="164" height="158" rx="10" fill="#e0f2fe" stroke="#334155" stroke-width="1.4"/>
+  <text x="116" y="162" text-anchor="middle" font-size="11" font-weight="700" fill="#475569">STEP 1</text>
+  <text text-anchor="middle" font-size="12" font-weight="700" fill="#0f172a"><tspan x="116" y="206.0">12.1</tspan><tspan x="116" y="224.0">RTK-GNSS 및</tspan><tspan x="116" y="242.0">슬램(SLAM) 기반</tspan></text>
+  <line x1="198" y1="208" x2="222" y2="208" stroke="#334155" stroke-width="2" marker-end="url(#ar)"/>
+  <rect x="222" y="128" width="164" height="158" rx="10" fill="#dcfce7" stroke="#334155" stroke-width="1.4"/>
+  <text x="304" y="162" text-anchor="middle" font-size="11" font-weight="700" fill="#475569">STEP 2</text>
+  <text text-anchor="middle" font-size="12" font-weight="700" fill="#0f172a"><tspan x="304" y="206.0">12.2 고속 전자동</tspan><tspan x="304" y="224.0">양파 정식기의 묘</tspan><tspan x="304" y="242.0">취출-천공-복토</tspan></text>
+  <line x1="386" y1="208" x2="410" y2="208" stroke="#334155" stroke-width="2" marker-end="url(#ar)"/>
+  <rect x="410" y="128" width="164" height="158" rx="10" fill="#fef3c7" stroke="#334155" stroke-width="1.4"/>
+  <text x="492" y="162" text-anchor="middle" font-size="11" font-weight="700" fill="#475569">STEP 3</text>
+  <text text-anchor="middle" font-size="12" font-weight="700" fill="#0f172a"><tspan x="492" y="206.0">12.3 줄기 절단</tspan><tspan x="492" y="224.0">및 굴취 수집 일관</tspan><tspan x="492" y="242.0">수확기의 동역학</tspan></text>
+  <line x1="574" y1="208" x2="598" y2="208" stroke="#334155" stroke-width="2" marker-end="url(#ar)"/>
+  <rect x="598" y="128" width="164" height="158" rx="10" fill="#f3e8ff" stroke="#334155" stroke-width="1.4"/>
+  <text x="680" y="162" text-anchor="middle" font-size="11" font-weight="700" fill="#475569">STEP 4</text>
+  <text text-anchor="middle" font-size="12" font-weight="700" fill="#0f172a"><tspan x="680" y="206.0">12.4 수확 동시</tspan><tspan x="680" y="224.0">포장 내 등급 판별</tspan><tspan x="680" y="242.0">및 인경 크기·중량</tspan></text>
+  <text x="400" y="348" text-anchor="middle" font-size="11" fill="#64748b">실사진/도해 생성 프롬프트 준비됨 (fal.ai 또는 나노바나나 API 키 활성화 시 실사 PNG 자동 대체)</text>
+</svg>

@@ -1,0 +1,12 @@
+이미지 번호: 그림 10-3
+이미지 파일명: fig_ch10_v03.png
+단원: 제10장. 해충·잡초의 스마트 모니터링 및 AI 종합 방제(IPM) (ch10)
+결합 절: 생리·분자 메커니즘 및 모니터링 기술
+시각화 유형: scientific_anatomy
+제목: [그림 10-3] 파총채벌레의 큐티클 비후 및 해독 대사 효소 저항성 메커니즘 단면도
+
+[문맥 기반 이미지 설명]
+[그림 10-3] 파총채벌레 체벽 큐티클층의 구조적 비후와 중장 세포 내 대사 효소 작용을 도해한 정밀 과학 일러스트레이션입니다. 외골격 지질층의 물리적 침투 저해 기작과 함께 사이토크롬 P450 모노옥시게나아제 및 에스테라아제가 살충제 분자를 분해 무력화하는 생화학적 반응 경로를 상세히 표현합니다. 이와 같은 생리·분자적 저항성 기작의 규명은 교차 저항성을 회피하고 방제 효율을 극대화하는 스마트 약제 교호 살포 전략의 이론적 근거가 됩니다 [SRC-104].
+
+[나노바나나 생성 프롬프트]
+A detailed scientific anatomy illustration on a clean pure white background depicting the cellular and physiological resistance mechanisms of an onion thrips. The upper section illustrates a layered micro-cross-section of the insect cuticle showing a thickened wax epicuticle and dense chitin matrix repelling chemical insecticide droplets. The lower section displays an enlarged view of the midgut epithelial cell showing spherical cytochrome P450 monooxygenase enzymes and carboxylesterases breaking down pesticide molecules into neutral metabolites, rendered in a realistic, richly shaded textbook style. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

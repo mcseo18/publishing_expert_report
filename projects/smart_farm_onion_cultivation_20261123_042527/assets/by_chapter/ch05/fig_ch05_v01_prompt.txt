@@ -1,0 +1,12 @@
+이미지 번호: 그림 5-1
+이미지 파일명: fig_ch05_v01.png
+단원: 제5장. 토양 수분 모니터링 센서 네트워크와 스마트 관개 자동화 (ch05)
+결합 절: 5.1 FDR/TDR 센서 및 텐시오미터(Tensiometer)의 원리, 보정 계수 및 설치 프로토콜
+시각화 유형: photorealistic_field
+제목: [그림 5-1] 양파 주근군 분포대 내 다심도 토양 수분 모니터링 센서 매설 현장
+
+[문맥 기반 이미지 설명]
+[그림 5-1] 양파 이랑의 흑색 비닐 멀칭을 천공하고 주근군(Root Zone) 깊이에 맞추어 TDR 스테인리스 프로브와 FDR 센서를 단계별로 설치하는 현장 모습을 보여준다. 토양 내 수분 함량(θv)을 정밀하게 계측하기 위해 토양 입자와 센서 탐침 사이에 미세 공극이 발생하지 않도록 밀착 매설하는 과정이 상세히 나타난다 [SRC-118]. 실시간 데이터 전송을 위한 방수형 로거 케이블이 두둑 측면을 따라 가지런히 배선되어 현장 관측의 신뢰성을 보장한다.
+
+[나노바나나 생성 프롬프트]
+A realistic field documentary photograph of an agricultural onion field with raised beds covered in black plastic mulch. An agronomist installs multi-depth soil moisture sensors directly into the active root zone beside young green onion plants (Allium cepa) with slender tubular leaves. Stainless steel TDR waveguide rods and cylindrical FDR sensor bodies are inserted vertically into the rich brown soil profile. Heavy-duty black communication cables emerge from the sensor heads, leading to a weatherproof data logger mounted on a metal pole nearby. Soft natural morning sunlight, sharp focus on soil texture and plant bases. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

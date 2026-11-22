@@ -1012,7 +1012,7 @@ def commit_research_items(
             tier_dir = collected_root / TIER_DIRS[tier_key]
             tier_dir.mkdir(parents=True, exist_ok=True)
             try:
-                res = ingest_paper_record(paper=p, packet_id=packet_id, topic=topic_ko, download_oa_pdf=False, cfg=cfg)
+                res = ingest_paper_record(paper=p, packet_id=packet_id, topic=topic_ko, download_oa_pdf=True, capture_webpage=True, auto_unify_rag=True, cfg=cfg)
                 if res.get("status") == "OK" and res.get("source_id"):
                     sid = res["source_id"]
                     saved = _copy_source_files_to_tier(tier_dir=tier_dir, source_id=sid, parsed_path=res.get("parsed_path"))

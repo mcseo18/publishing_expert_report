@@ -1,0 +1,167 @@
+# 제3장. 마늘 품종별 유전 특성, 생리적 분화 및 디지털 계통 분류 — 문맥 기반 시각화 기획서 (이미지 번호 · 설명 · 프롬프트)
+
+- **단원 ID**: `ch03`
+- **총 시각화 수**: **10종** (Google Gemini Nano Banana 전량 제작)
+- **생성 시각**: `2026-11-22T09:04:42+00:00`
+
+---
+
+## [그림 3-1] 한지형 및 난지형 마늘 구의 형태학적 횡단면 비교
+
+- **이미지 번호 / 파일명**: `그림 3-1` / `fig_ch03_v01.png`
+- **문서 결합 절(Section)**: 3.1 마늘 품종의 생태형 분류: 한지형, 난지형(남도, 대서 등)
+- **시각화 유형**: `photorealistic_macro`
+
+### 문맥 기반 상세 설명 (줄글)
+[그림 3-1] 중부 내륙형 한지형 품종과 남부 해안형 난지형(남도 및 대서) 품종의 인편 배열 구조를 교차 비교한 형태학적 매크로 사진이다. 한지형 마늘은 단단한 외피 속에 6~8개의 균일하고 굵은 인편이 방사형으로 치밀하게 배열된 반면, 난지형 마늘은 10~12개 이상의 다인편 구조로 외피가 얇고 중심축 주위로 복층 배열되는 구조적 차이를 나타낸다 [SRC-103]. 이러한 횡단면 절편의 유전생리적 차이는 각 생태형의 저장성과 인편 분화 메커니즘을 명확하게 입증한다.
+
+### 나노바나나 생성 프롬프트 (Pure English · Zero-Text)
+```text
+Ultra-sharp macro photography showing side-by-side transverse cross-sections and whole bulbs of cold-climate and warm-climate garlic bulbs (Allium sativum). On the left, a cold-climate garlic bulb sliced horizontally reveals six large, thick, symmetrical ivory cloves with subtle reddish-purple papery tunic layers tightly enveloping them. On the right, a warm-climate garlic bulb cross-section displays ten to twelve smaller, asymmetric cloves arranged in a double-ring pattern around the central stem with papery white skins. Clean dark slate background, crisp botanical textures, moist freshly sliced clove flesh, natural directional studio lighting, high depth of field. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.
+```
+
+---
+
+## [그림 3-2] 생태형별(한지형·난지형) 생육 초기 포장 적응성 및 지상부 생체량 비교
+
+- **이미지 번호 / 파일명**: `그림 3-2` / `fig_ch03_v02.png`
+- **문서 결합 절(Section)**: 3.1 마늘 품종의 생태형 분류: 한지형, 난지형(남도, 대서 등)
+- **시각화 유형**: `photorealistic_field`
+
+### 문맥 기반 상세 설명 (줄글)
+[그림 3-2] 동일한 시험 포장에서 월동 직후 한지형과 난지형 마늘의 초기 지상부 생장 반응을 촬영한 실증 다큐멘터리 사진이다. 난지형 계통인 남도와 대서는 이른 봄부터 엽초 직경이 굵고 엽면적이 넓은 무성한 엽군을 형성하며 빠른 초기 생체량 증가를 보인다 [SRC-103]. 반면 한지형은 저온 적응형 로제트 형태를 유지하며 맹아가 비교적 늦게 출현하지만 저온 내구성이 강한 엽신 큐티클 층을 발달시킨다.
+
+### 나노바나나 생성 프롬프트 (Pure English · Zero-Text)
+```text
+Agricultural research trial field documentary photograph showing parallel raised beds of Allium sativum in early spring. One raised bed features warm-climate garlic plants displaying vigorous, broad, emerald-green arching leaves with thick pseudostems. The adjacent raised bed features cold-climate garlic with compact, upright, deep bluish-green leaves emerging steadily from black polyethylene mulch. Drip irrigation lines visible between rows, fertile dark loam soil, soft morning daylight, realistic ground-level perspective with shallow depth of field. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.
+```
+
+---
+
+## [그림 3-3] 저온감응(Vernalization)에 따른 마늘 생장점 분열조직 활성화 해부도
+
+- **이미지 번호 / 파일명**: `그림 3-3` / `fig_ch03_v03.png`
+- **문서 결합 절(Section)**: 3.2 저온감응(Vernalization), 휴면(Dormancy) 및 추대(Bolting)의 유전생리
+- **시각화 유형**: `scientific_anatomy`
+
+### 문맥 기반 상세 설명 (줄글)
+[그림 3-3] 마늘 인편 내부의 생장점(Shoot Apical Meristem)이 저온감응 처리에 의해 휴면 상태에서 영양생장 및 인편 분화 단계로 전이되는 세포학적 해부 과정을 보여주는 과학 일러스트레이션이다. 좌측의 미감응 휴면 인편은 기저판 부근의 정단분열조직이 납작하고 비활성화된 상태를 유지하지만, 우측의 저온 감응 완료 인편은 분열조직의 원추형 융기와 유관속속 형성, 인편 원기(clove primordium) 분화가 뚜렷하다 [SRC-107]. 세포핵의 분열 활성과 전도 조직의 수분 공급 경로가 세밀한 음영 기법으로 표현되어 있다.
+
+### 나노바나나 생성 프롬프트 (Pure English · Zero-Text)
+```text
+Scientific anatomical cutaway illustration of a single garlic clove (Allium sativum) showing vernalization-induced meristem activation on a pure white background. Left side depicts a dormant clove longitudinal section with an inactive, flattened shoot apical meristem embedded above the basal root plate. Right side depicts a low-temperature treated vernalized clove with an active, domed apical meristem showing initiated leaf primordia, vascular strand connections, and developing axillary clove primordia. Rich scientific cross-hatching, watercolor shading, botanical accuracy, hyper-clean editorial scientific presentation. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.
+```
+
+---
+
+## [그림 3-4] 종구 저장 중 저온 감응 및 휴면 타파 유도 과정의 기저판 미세구조
+
+- **이미지 번호 / 파일명**: `그림 3-4` / `fig_ch03_v04.png`
+- **문서 결합 절(Section)**: 3.2 저온감응(Vernalization), 휴면(Dormancy) 및 추대(Bolting)의 유전생리
+- **시각화 유형**: `photorealistic_macro`
+
+### 문맥 기반 상세 설명 (줄글)
+[그림 3-4] 인공 저온 저장고 환경에서 일정 기간 저온(4℃)에 노출되어 휴면이 타파되는 마늘 종구의 기저판(Basal plate) 및 발근대를 초점 합성 매크로로 촬영한 사진이다. 기저판 원형 테두리 주변으로 미세한 뿌리 원기(Root primordia) 돌기들이 투명하고 팽압이 오른 상태로 돌출되기 시작하는 생리적 변화를 관찰할 수 있다 [SRC-107]. 종구 외피의 건조층과 내부 활성화된 생체 조직 간의 수분 재분배 양상이 선명하게 드러난다.
+
+### 나노바나나 생성 프롬프트 (Pure English · Zero-Text)
+```text
+Laboratory macro photograph focusing on the flat basal plate of a vernalized garlic clove undergoing dormancy breaking under controlled 4-degree Celsius chilling. Ring of tiny, swollen, translucent ivory root primordia nodules emerging around the woody disc boundary. Turgid internal tissue exposed where the dry papery protective tunic slightly separates. High-precision scientific lighting, extreme micro-level sharpness, subtle condensation droplets, shallow depth of field highlighting the basal meristem zone. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.
+```
+
+---
+
+## [그림 3-5] 마늘 화경(추대) 발달 및 총포 내 주아 형성 양상
+
+- **이미지 번호 / 파일명**: `그림 3-5` / `fig_ch03_v05.png`
+- **문서 결합 절(Section)**: 3.2 저온감응(Vernalization), 휴면(Dormancy) 및 추대(Bolting)의 유전생리
+- **시각화 유형**: `photorealistic_field`
+
+### 문맥 기반 상세 설명 (줄글)
+[그림 3-5] 일장 및 온도 감응에 의해 위경을 뚫고 솟아오른 마늘 화경(마늘종, Scape)의 추대 발달과 선단 총포 내부의 주아(Bulbil) 발생 과정을 근접 촬영한 포장 생태 사진이다. 나선형으로 굽어지며 곧게 신장하는 단단한 녹색 꽃대의 질감과 함께, 총포 피막 내부에서 분화되는 소형 주아들의 미세 구조가 나타난다 [SRC-103]. 이 생식 생장 전환 현상은 품종의 유전적 민감도와 수확 시기 인편 비대에 직접적인 생체 에너지 배분 영향을 미친다.
+
+### 나노바나나 생성 프롬프트 (Pure English · Zero-Text)
+```text
+Field photograph capturing the bolting scape of an Allium sativum plant in a farm setting. A sturdy, cylindrical, waxy green flower stalk loops gracefully as it emerges from the central leaf sheaf, terminating in a pointed, papery spathe bract. The spathe has a small tear revealing miniature teardrop-shaped aerial bulbils clustering inside. Soft natural sunlight filtering through the garlic canopy, deep green linear leaves in background, agricultural authenticity. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.
+```
+
+---
+
+## [그림 3-6] 분자 마커(SSR/SNP) 기반 마늘 유전체 다형성 밴드 분석도
+
+- **이미지 번호 / 파일명**: `그림 3-6` / `fig_ch03_v06.png`
+- **문서 결합 절(Section)**: 3.3 유전자 분석 및 디지털 이미지 표현형 기반 품종 판별 기술
+- **시각화 유형**: `scientific_anatomy`
+
+### 문맥 기반 상세 설명 (줄글)
+[그림 3-6] 한지형(단양, 서산) 및 난지형(남도, 대서) 품종 간의 유전적 다형성을 탐지하기 위한 아가로스 겔 전기영동 밴드 패턴 분석을 시각화한 학술 도해이다. 특정 유전자좌(Locus)에서 증폭된 SSR(단순반복서열) 마커의 크기 차이로 인해 각 품종별 고유한 분자 지문(DNA fingerprinting)이 형성된다 [SRC-103]. 이는 단순 외형 표현형으로 구별하기 어려운 근연 계통 간의 정확한 유전적 분열 계통수를 확립하는 기초가 된다.
+
+### 나노바나나 생성 프롬프트 (Pure English · Zero-Text)
+```text
+Scientific laboratory rendering of a horizontal DNA electrophoresis gel illumination showing polymorphic molecular marker bands for garlic cultivar discrimination. Distinct glowing ultraviolet bands aligned in vertical lanes representing cold-climate versus warm-climate Allium sativum genotypes, clearly separated by base-pair ladder markers on the side. Crisp scientific aesthetic, clean blue-and-dark gradient transilluminator view, completely unadorned by words or text, displaying molecular genetics methodology. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.
+```
+
+---
+
+## [그림 3-7] 고해상도 디지털 이미지 기반 마늘 인편 형태 특성 3차원 계측 시스템
+
+- **이미지 번호 / 파일명**: `그림 3-7` / `fig_ch03_v07.png`
+- **문서 결합 절(Section)**: 3.3 유전자 분석 및 디지털 이미지 표현형 기반 품종 판별 기술
+- **시각화 유형**: `photorealistic_macro`
+
+### 문맥 기반 상세 설명 (줄글)
+[그림 3-7] 디지털 이미지 표현형 분석을 위해 특수 제작된 회전 턴테이블 위에서 조명 조건이 통제된 상태로 마늘 인편의 3차원 기하학적 특성을 획득하는 광학 챔버 내부를 촬영한 매크로 사진이다. 고해상도 산업용 카메라 렌즈가 인편의 장축, 단축 곡률반경, 기저판 부착 각도, 표피 반사도를 다각도에서 동시 캡처하고 있다 [SRC-103]. 인위적 오차를 배제한 표준화된 원시 이미지 수집은 후속 딥러닝 형질 분류 알고리즘의 핵심 입력 데이터가 된다.
+
+### 나노바나나 생성 프롬프트 (Pure English · Zero-Text)
+```text
+Macro laboratory photograph inside a calibrated digital phenotyping imaging lightbox. A pristine single unpeeled garlic clove rests vertically on a motorized matte black turntable, illuminated by ring diffuse white LED lights. High-precision optical camera lenses and sensor arrays positioned at orthogonal angles focus sharply on the clove's contour curvature, basal plate boundary, and tunic surface reflectance. Ultra-clean laboratory setup, pristine optical reflection, scientific precision. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.
+```
+
+---
+
+## [그림 3-8] 딥러닝 합성곱 신경망(CNN) 특징 맵 기반 마늘 품종 형태학적 분류 모델
+
+- **이미지 번호 / 파일명**: `그림 3-8` / `fig_ch03_v08.png`
+- **문서 결합 절(Section)**: 3.3 유전자 분석 및 디지털 이미지 표현형 기반 품종 판별 기술
+- **시각화 유형**: `scientific_anatomy`
+
+### 문맥 기반 상세 설명 (줄글)
+[그림 3-8] 마늘 구 및 낱개 인편의 디지털 사진으로부터 딥러닝 특징 벡터를 추출하여 품종을 분류하는 컴퓨터 비전 처리 과정을 도식화한 과학적 메커니즘 일러스트레이션이다. 원본 마늘 윤곽선 위에 합성곱 필터링을 통해 에지 검출, 곡률 메쉬망, 3차원 체적 포인트 클라우드가 단계적으로 오버레이되며 고차원 특징 공간으로 사상된다 [SRC-103]. 순수 화이트 배경 위에서 정밀한 음영과 와이어프레임 기하학 그래픽을 적용하여 품종 간 미세 형태 편차를 식별하는 과정을 표현했다.
+
+### 나노바나나 생성 프롬프트 (Pure English · Zero-Text)
+```text
+Scientific computational vision illustration on a pure white background showing multi-stage feature extraction from an Allium sativum bulb. An anatomically realistic painted garlic bulb transitions into a polygonal wireframe 3D surface mesh, overlaid with geometric curvature vectors and gradient density point clouds representing convolutional feature maps. Subtle technological aesthetic with translucent cyan and amber gradient volumetric mesh lines wrapping around organic garlic surfaces, painterly scientific style without any flat vector clipart. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.
+```
+
+---
+
+## [그림 3-9] 무병종구 생산을 위한 마늘 생장점(생장원기) 미세 적출 미세현미경 관찰
+
+- **이미지 번호 / 파일명**: `그림 3-9` / `fig_ch03_v09.png`
+- **문서 결합 절(Section)**: 3.4 무병종구(바이러스 프리) 생산 체계 및 조직배양 대량 증식
+- **시각화 유형**: `photorealistic_macro`
+
+### 문맥 기반 상세 설명 (줄글)
+[그림 3-9] 실체현미경 하에서 미세 메스와 핀셋을 사용하여 마늘 인편 내부의 0.2~0.3mm 크기 생장점 분열조직(Shoot Apical Meristem)만을 정밀하게 절제하는 조직배양 초기 단계를 포착한 연구실 접사 사진이다. 바이러스 이행 속도보다 세포 분열 속도가 빠른 엽원기 1~2매를 포함한 투명한 돔 형태의 분열조직 덩어리가 극도로 정밀하게 분리되고 있다 [SRC-103]. 이 무균 미세 수술 기법은 OYDV 및 LYSV 등 종구 전염성 바이러스를 완전히 배제한 무병 모본 확립의 결정적 과정이다.
+
+### 나노바나나 생성 프롬프트 (Pure English · Zero-Text)
+```text
+Laboratory stereomicroscope macro photograph showing microsurgical excision of a garlic shoot apical meristem. Under high-magnification optical field, tiny precision surgical micro-scalpel and ultra-fine micro-tweezers isolate a glistening, translucent 0.2-millimeter meristematic dome with two minute leaf primordia from the inner core of an Allium sativum clove. Circular microscopic light field illumination, extreme micro-sharpness, sterile stainless-steel instruments reflecting soft cool laboratory light. Professional studio macro specimen photography on pure seamless white background (#FFFFFF), soft even studio lighting, true-to-life color and razor-sharp macro focus, clean neutral millimeter scale bar without extraneous text, strictly NO watermark, aspect ratio 4:3.
+```
+
+---
+
+## [그림 3-10] 기내 배양 배지에서 증식 중인 무병 소구(Micro-bulb) 및 건전 유묘 대량 증식 체계
+
+- **이미지 번호 / 파일명**: `그림 3-10` / `fig_ch03_v10.png`
+- **문서 결합 절(Section)**: 3.4 무병종구(바이러스 프리) 생산 체계 및 조직배양 대량 증식
+- **시각화 유형**: `photorealistic_field`
+
+### 문맥 기반 상세 설명 (줄글)
+[그림 3-10] 조직배양 클린룸 선반 위의 무균 배양 용기 내에서 배양 중인 무병 마늘 유묘와 기내 소구(Micro-bulb) 비대 양상을 보여주는 식물공장형 바이오 연구실 사진이다. 투명 아가 배지 위에 정식된 다수의 마늘 소식물체들이 진한 녹색 잎을 뻗으며 기저부에 작은 구슬 모양의 구를 형성하고 있다 [SRC-103]. 환경 조절 챔버의 정밀한 광주기와 온도 제어를 통해 바이러스 프리 종구의 대량 증식과 포장 순화 단계로의 안전한 이행을 보장한다.
+
+### 나노바나나 생성 프롬프트 (Pure English · Zero-Text)
+```text
+Controlled-environment tissue culture laboratory photograph showing rows of transparent glass culture vessels on tiered metal shelving illuminated by specialized broad-spectrum LED growth lights. Inside each sterile glass jar, several micropropagated Allium sativum plantlets grow vigorously in clear synthetic agar medium, exhibiting vibrant emerald-green leaves and developing miniature round white-and-purple micro-bulbs at their bases. Cool, immaculate scientific phytotron atmosphere, rows vanishing in perspective with shallow depth of field. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.
+```
+
+---

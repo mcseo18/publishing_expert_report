@@ -1,0 +1,12 @@
+이미지 번호: 그림 6-5
+이미지 파일명: fig_ch06_v05.png
+단원: 제6장. 토양수분 포텐셜 해석과 센서 기반 지능형 관수 제어 (ch06)
+결합 절: 6.2 월동기, 해빙기, 구 비대기별 정량적 토양 수분 임계치
+시각화 유형: photorealistic_field
+제목: [그림 6-5] 구 비대기 마늘의 점적관수 직후 근권 수분 형성 양상
+
+[문맥 기반 이미지 설명]
+[그림 6-5] 5월 구 비대기 절정의 마늘 포장에서 정밀 점적관수가 실행된 직후의 포장 단면을 관찰한 고해상도 현장 사진이다[SRC-107]. 지하부에서 둥글게 비대해진 마늘 구와 빽빽한 섬유상 뿌리층 주변으로 점적 단추(emitter)에서 방출된 수분이 균일하게 침투하고 있다. 적정 수분 장력 유지를 통해 세포 팽압과 당류 축적이 극대화되는 마늘 생육 최적기의 포장 상태를 생생하게 입증한다.
+
+[나노바나나 생성 프롬프트]
+Agricultural research station field photograph showing the bulb enlargement stage of garlic (Allium sativum) in late spring. A carefully dug shallow soil pit exposes several plump, mature garlic bulbs with purple-tinged white papery skins and dense white roots anchored in moist, crumbly loam. A black polyethylene drip irrigation lateral line with precise dripping water droplets runs along the row, creating a gentle wetted bulb zone in the soil under warm natural afternoon sunlight. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

@@ -1,0 +1,12 @@
+이미지 번호: 그림 7-1
+이미지 파일명: fig_ch07_v01.png
+단원: 제7장. 생육 단계별 생리 지표와 윤작·혼작 최적 작부체계 (ch07)
+결합 절: 7.1 마늘의 생육 단계별(BBCH 척도) 발육 기준 및 형태학적 지표
+시각화 유형: scientific_anatomy
+제목: [그림 7-1] BBCH 표준 척도에 따른 마늘 생육 단계별 형태학적 발달 구조
+
+[문맥 기반 이미지 설명]
+[그림 7-1] 국제 표준 BBCH 척도에 기반한 마늘(Allium sativum)의 주요 발육 단계를 연속적인 생체 해부도로 제시한 그림이다. 파종 후 맹아 출현(BBCH 09)부터 영양생장기 신초 신장, 그리고 인편 분화 및 구 비대기(BBCH 45-49)에 이르는 생리적 전환 과정을 정밀하게 보여준다 [SRC-100]. 각 단계별 저장엽의 당류 축적 및 유관속 다발의 비대 양상이 명확히 묘사되어 작기 관리의 기준점을 제공한다 [SRC-109].
+
+[나노바나나 생성 프롬프트]
+Scientific anatomical progression illustration of Allium sativum garlic plants depicting sequential BBCH developmental stages from left to right on a pure white background. The sequence showcases an emerging sprouted clove with adventitious roots, advancing into a vigorous multi-leaf vegetative stalk with fibrous basal root system, culminating in a swelling garlic bulb showing a longitudinal cross-section with individual developing cloves, protective sheath tunics, and basal plate. Painterly scientific botanical rendering with precise cellular textures and accurate biological colors. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

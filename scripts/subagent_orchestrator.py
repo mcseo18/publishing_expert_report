@@ -776,10 +776,14 @@ def create_project(
     target_audience: str = "대학 전공 심화, 연구자 및 선도 실무자",
     target_pages: int = 500,
     chapter_count: int = 15,
+    primary_output_type: str = "textbook",
+    output_profile: dict[str, Any] | None = None,
     options: dict[str, Any] | None = None,
     project_id_override: str | None = None,
     cfg: PlatformConfig | None = None,
 ) -> dict[str, Any]:
+    from output_type_profiles import get_output_type_spec, resolve_output_profile
+
     cfg = cfg or get_config()
     if project_id_override:
         pid = re.sub(r"[^a-zA-Z0-9_\-]", "_", project_id_override).strip("_").lower() or _slugify(topic_en or topic_ko)
@@ -799,15 +803,18 @@ def create_project(
     kw_ko = [k.strip() for k in (keywords_ko or []) if k.strip()] or [topic_ko.strip()]
     kw_en = [k.strip() for k in (keywords_en or []) if k.strip()] or ([topic_en.strip()] if topic_en.strip() else [topic_ko.strip()])
 
+    resolved_profile = resolve_output_profile(primary_output_type, output_profile)
+    type_spec = get_output_type_spec(primary_output_type)
+
     opts = {
         "use_gemini_outline": True,
         "use_fal_ai": False,
         "fal_model": "fal-ai/nano-banana",
         "use_nano_banana": True,
-        "visuals_per_chapter": 10,
-        "enable_naver_blog": True,
-        "enable_myths": True,
-        "enable_linked_quiz": True,
+        "visuals_per_chapter": int(resolved_profile.get("visuals_per_chapter", 6)),
+        "enable_naver_blog": bool(resolved_profile.get("include_naver_hashtags", True)),
+        "enable_myths": bool(resolved_profile.get("include_myths", True)),
+        "enable_linked_quiz": bool(resolved_profile.get("include_exercises", True)),
         "download_oa_pdf": True,
         "gemma_model": cfg.ollama_fast_model,
         "kg_model": cfg.ollama_fast_model,
@@ -815,7 +822,7 @@ def create_project(
         "use_claude_blueprint": False,
         "domestic_agency_urls": [],
         "international_agency_urls": [],
-        "trim_formats": ["shinkuk", "b5", "a4"],
+        "trim_formats": type_spec.get("trim_formats", ["shinkuk", "b5", "a4"]),
         "papers_per_query": 5,
         "draft_chapter_limit": 0,  # 0 = 전체 단원 순차 집필
         **(options or {}),
@@ -823,16 +830,18 @@ def create_project(
 
     now = utc_now_iso()
     state = {
-        "workflow_version": 2,
+        "workflow_version": 3,
         "project_id": pid,
         "is_reference_book": False,
+        "primary_output_type": resolved_profile["primary_output_type"],
+        "output_profile": resolved_profile,
         "topic_ko": topic_ko.strip(),
         "topic_en": topic_en.strip() or topic_ko.strip(),
         "keywords_ko": kw_ko,
         "keywords_en": kw_en,
         "domain_keywords": [],
-        "target_audience": target_audience.strip(),
-        "target_pages": max(50, int(target_pages)),
+        "target_audience": (target_audience or resolved_profile.get("target_audience", "")).strip(),
+        "target_pages": max(10, int(target_pages)),
         "chapter_count": max(3, min(24, int(chapter_count))),
         "outline_approved": False,
         "outline_revisions": [],
@@ -1091,16 +1100,20 @@ def _generate_outline_proposal(
             prev_lines.append(f"[{pt.get('title','')}] " + " / ".join(c.get("title", "") for c in pt.get("chapters", [])))
         prev_summary_txt = "\n[기존 목차 초안]\n" + "\n".join(prev_lines)
 
+    from output_type_profiles import build_outline_instruction_for_type
+
+    role_inst, type_guide = build_outline_instruction_for_type(state)
     sys_prompt = (
-        "당신은 500페이지 대학 전공 심화·연구자·현장 실무자용 표준 전문 교재를 기획하는 수석 교육과정 설계자입니다. "
-        "반드시 순수 JSON 객체만 출력하며, 5개 부(Part) 내외로 체계적으로 그룹화하고 각 단원의 상세 요약(summary_ko)과 "
-        "핵심 영역별 한국어/영문 검색 키워드(domain_keywords)를 빠짐없이 제시하십시오."
+        f"{role_inst} "
+        "반드시 순수 JSON 객체만 출력하며, 선택한 1차 산출물 유형의 구조에 맞게 부(Part)/단원(Chapter)을 체계적으로 설계하고 "
+        "각 단원의 상세 요약(summary_ko)과 핵심 영역별 한국어/영문 검색 키워드(domain_keywords)를 빠짐없이 제시하십시오."
     )
     user_prompt = (
-        f"교재 주제(국문): {state['topic_ko']}\n"
-        f"교재 주제(영문): {state.get('topic_en', '')}\n"
+        f"{type_guide}\n\n"
+        f"주제(국문): {state['topic_ko']}\n"
+        f"주제(영문): {state.get('topic_en', '')}\n"
         f"초기 입력 키워드: {', '.join(state.get('keywords_ko', []))}\n"
-        f"목표 분량: {t_pages}쪽 · 정확히 {n_ch}개 단원 (단원당 약 {per_ch}쪽, 4~5개 부로 체계적 그룹화)\n"
+        f"목표 분량: {t_pages}쪽 · 정확히 {n_ch}개 단원/섹션 (단원당 약 {per_ch}쪽)\n"
         f"대상 독자: {state.get('target_audience', '')}\n"
         + (f"\n[초기 탐색 참고 문헌·RAG 현황]\n{initial_context}\n" if initial_context else "")
         + prev_summary_txt
@@ -1279,6 +1292,12 @@ def _generate_outline_proposal(
         "domain_keywords": dom_kws,
         "parts": parts_out,
     }
+    otype_eff = state.get("primary_output_type") or (state.get("output_profile") or {}).get("primary_output_type") or "textbook"
+    if otype_eff == "paper":
+        from output_type_profiles import enforce_paper_outline_structure
+
+        outline = enforce_paper_outline_structure(outline, state)
+        state["chapter_count"] = 5
     return outline, engine_used
 
 
@@ -1756,52 +1775,138 @@ def _run_stage4_manuscript_draft(state: dict[str, Any], cfg: PlatformConfig) -> 
         _update_stage(state, sid, cfg, progress=pct, current_action=f"[{idx}/{total_n}] {cid} ({ch['title'][:32]}) 집필 중...")
         append_event(pid, "domain-drafter", sid, f"단원 집필 시작 [{cid}] {ch['title']} (모델: {gemma_model})", cfg=cfg)
 
-        secs = ch.get("sections") or [f"{idx}.1 개요", f"{idx}.2 핵심 원리", f"{idx}.3 현장 적용"]
-        sys_prompt = (
-            "당신은 전문 분야 대학교재 수석 저자입니다.\n"
-            f"1. 모든 사실·수치 문장 끝에 제공된 출처 키({', '.join(valid_ids[:15]) if valid_ids else '근거'})만 부착하십시오.\n"
-            "2. 원소기호·화학식·첨자는 LaTeX($...$) 대신 일반 유니코드/HTML(예: CO₂, NH₄⁺, θ<sub>opt</sub>)로 작성하십시오.\n"
-            "3. 본문 절(##), ## 핵심 용어집 (표), ## 이해도 점검 연습문제 및 해설 (문제 3문항과 각 문제 직하단 정답·상세 풀이 1:1 연결), "
-            "## 오해와 진실: 현장·이론 핵심 오해 교정 (오해 3개 이상)을 모두 작성하십시오."
+        from agro_framework import (
+            build_context_aware_sections,
+            format_triples_for_prompt,
+            query_kg_triples_for_chapter,
         )
-        user_prompt = (
-            f"단원 제목: {ch['title']}\n단원 요약: {ch.get('summary_ko', '')}\n필수 절: {', '.join(secs)}\n"
-            f"대상 독자: {state['target_audience']}\n\n[검증 근거 패킷]\n{digest}\n\n"
-            "위 근거를 바탕으로 풍부하고 학술적인 한국어 단원 원고를 작성하세요."
+        from output_type_profiles import (
+            build_draft_instruction_for_type,
+            format_paper_consolidated_references,
+            infer_paper_section_role,
+            resolve_output_profile,
         )
+
+        otype = state.get("primary_output_type") or (state.get("output_profile") or {}).get("primary_output_type") or "textbook"
+        is_paper = (otype == "paper")
+        chapter_role = infer_paper_section_role(ch, idx, total_n) if is_paper else None
+        secs = (
+            build_context_aware_sections(idx, ch["title"], ch.get("sections"))
+            if otype == "textbook"
+            else (ch.get("sections") or [f"{idx}.1 도입 및 배경", f"{idx}.2 핵심 내용", f"{idx}.3 적용 및 정리"])
+        )
+
         is_fallback = False
-        try:
-            draft_body = client.draft_text(
-                system_prompt=sys_prompt,
-                user_prompt=user_prompt,
-                model=gemma_model,
-                think=False,
-                num_predict=4096,
-                timeout=240,
+        if is_paper and chapter_role == "references":
+            # 논문·리뷰 규칙: 문서 마지막(ch05)에 전체 본문(ch01~ch04) 인용 출처만 중복 없이 단 1회 통합 수록
+            cited_in_paper: list[str] = []
+            seen_cites: set[str] = set()
+            for prev_mdx in sorted(ch_dir.glob("*.mdx")):
+                if prev_mdx.name == out_mdx.name:
+                    continue
+                try:
+                    prev_txt = prev_mdx.read_text(encoding="utf-8")
+                    for m_sid in re.findall(r"SRC-\d+", prev_txt):
+                        if m_sid not in seen_cites:
+                            seen_cites.add(m_sid)
+                            cited_in_paper.append(m_sid)
+                except Exception:
+                    pass
+            prof_paper = resolve_output_profile("paper", state.get("output_profile"))
+            draft_body = format_paper_consolidated_references(
+                sources=sources,
+                cited_ids=cited_in_paper,
+                citation_style=str(prof_paper.get("citation_style") or "APA 7th / 한국농학계 표준"),
+                title=ch["title"],
             )
-        except Exception as exc:
-            append_event(pid, "domain-drafter", sid, f"[{cid}] Ollama 폴백 템플릿 적용(⚠ 품질 확인 필요 — 이 단원은 다시 집필해야 합니다): {exc}", level="WARN", cfg=cfg)
-            is_fallback = True
-            c_tag = f"[{valid_ids[0]}]" if valid_ids else ""
-            draft_body = (
-                f"# {ch['title']}\n\n> **단원 요약:** {ch.get('summary_ko') or state['topic_ko']}\n\n"
-                + "\n\n".join(f"## {sec}\n\n본 절에서는 {ch['title']}의 핵심 원리와 정량 기준을 다룬다 {c_tag}." for sec in secs)
-                + f"\n\n## 이해도 점검 연습문제 및 해설\n\n### 문제 1\n\n{ch['title']}의 핵심 관리 원칙으로 옳은 것은?\n① 1차 근거 기반 정량 관리 {c_tag}\n② 임의 추정\n\n"
-                f"#### ▶ 문제 1 정답 및 상세 풀이\n\n**정답: ①** — 실측 데이터와 근거 패킷에 기반한 정량 관리가 필수적이다 {c_tag}.\n\n"
-                f"## 오해와 진실: 현장·이론 핵심 오해 교정\n\n### 오해 {idx}-1. 단일 지표만으로 충분하다\n"
-                f"- **오해 (Myth):** 단일 지표만 보면 전체 생육을 판단할 수 있다.\n"
-                f"- **진실 (Fact):** 기상·토양·작물 생리 지표를 통합 해석해야 한다 {c_tag}.\n"
-                f"- **현장 교정 포인트:** 다중 센서 및 정량 기준표를 병행 적용한다 {c_tag}.\n"
+            append_event(
+                pid,
+                "citation-auditor",
+                sid,
+                f"[{cid}] 논문·리뷰 단일 통합 참고문헌 자동 편찬 완료 (본문 인용 {len(cited_in_paper)}건 기준)",
+                cfg=cfg,
             )
+        else:
+            kg_triples = query_kg_triples_for_chapter(
+                chapter_title=ch["title"],
+                chapter_text=ch.get("summary_ko", "") + " " + " ".join(secs),
+                project_source_ids=set(valid_ids),
+                limit=16 if (is_paper and chapter_role == "results_discussion") else 12,
+                cfg=cfg,
+            )
+            kg_block = format_triples_for_prompt(kg_triples)
+            sys_prompt = build_draft_instruction_for_type(state, valid_ids, chapter_role=chapter_role)
+            extra_paper_directive = ""
+            if is_paper and chapter_role == "results_discussion":
+                extra_paper_directive = (
+                    "\n[학회 투고급 결과 및 고찰 필수 지시] "
+                    "모든 세부 절(3.1 ~ 3.K)마다 ① 정량 실증 수치·비교표, ② 생리·분자·물리화학적 기작 해석, "
+                    "③ 국내외 선행연구 비교 및 불일치 원인 규명, ④ 경계조건·민감도·트레이드오프·교란변수 분석, "
+                    "⑤ 학술적 기여 및 현장·정책 함의를 깊이 있게 서술하고, 마지막 절에서 ⑥ 방법론적 한계와 향후 연구 과제를 완결하십시오. "
+                    "초록·핵심 내용 요약·참고문헌 목록은 절대 중복 작성하지 마십시오."
+                )
+            elif is_paper:
+                extra_paper_directive = (
+                    "\n[논문·리뷰 단일성 지시] 이 섹션의 지정 역할에만 엄격히 집중하고, "
+                    "다른 섹션의 내용(초록·핵심 요약·참고문헌 목록)을 절대 중복 생성하지 마십시오."
+                )
+            user_prompt = (
+                f"단원 제목: {ch['title']}\n단원 요약: {ch.get('summary_ko', '')}\n필수 절: {', '.join(secs)}\n"
+                f"대상 독자: {state['target_audience']}\n\n"
+                + (f"{kg_block}\n\n" if kg_block else "")
+                + f"[검증 근거 패킷]\n{digest}\n\n"
+                "위 근거와 지식그래프 트리플을 바탕으로 풍부하고 학술적인 한국어 원고를 작성하세요."
+                + extra_paper_directive
+            )
+            pred_tokens = 8192 if (is_paper and chapter_role == "results_discussion") else 4096
+            req_timeout = 360 if (is_paper and chapter_role == "results_discussion") else 240
+            try:
+                draft_body = client.draft_text(
+                    system_prompt=sys_prompt,
+                    user_prompt=user_prompt,
+                    model=gemma_model,
+                    think=False,
+                    num_predict=pred_tokens,
+                    timeout=req_timeout,
+                )
+            except Exception as exc:
+                append_event(pid, "domain-drafter", sid, f"[{cid}] Ollama 폴백 템플릿 적용(⚠ 품질 확인 필요 — 이 단원은 다시 집필해야 합니다): {exc}", level="WARN", cfg=cfg)
+                is_fallback = True
+                c_tag = f"[{valid_ids[0]}]" if valid_ids else ""
+                if is_paper:
+                    draft_body = (
+                        f"# {ch['title']}\n\n"
+                        + "\n\n".join(
+                            f"## {sec}\n\n본 절에서는 {state['topic_ko']}에 관한 정량 근거와 기작 분석을 정리한다 {c_tag}."
+                            for sec in secs
+                        )
+                        + "\n"
+                    )
+                else:
+                    draft_body = (
+                        f"# {ch['title']}\n\n> **단원 요약:** {ch.get('summary_ko') or state['topic_ko']}\n\n"
+                        + "\n\n".join(f"## {sec}\n\n본 절에서는 {ch['title']}의 핵심 원리와 정량 기준을 다룬다 {c_tag}." for sec in secs)
+                        + f"\n\n## 이해도 점검 연습문제 및 해설\n\n### 문제 1\n\n{ch['title']}의 핵심 관리 원칙으로 옳은 것은?\n① 1차 근거 기반 정량 관리 {c_tag}\n② 임의 추정\n\n"
+                        f"#### ▶ 문제 1 정답 및 상세 풀이\n\n**정답: ①** — 실측 데이터와 근거 패킷에 기반한 정량 관리가 필수적이다 {c_tag}.\n\n"
+                        f"## 오해와 진실: 현장·이론 핵심 오해 교정\n\n### 오해 {idx}-1. 단일 지표만으로 충분하다\n"
+                        f"- **오해 (Myth):** 단일 지표만 보면 전체 생육을 판단할 수 있다.\n"
+                        f"- **진실 (Fact):** 기상·토양·작물 생리 지표를 통합 해석해야 한다 {c_tag}.\n"
+                        f"- **현장 교정 포인트:** 다중 센서 및 정량 기준표를 병행 적용한다 {c_tag}.\n"
+                    )
 
-        ref_lines = ["", "## 참고문헌 및 근거 출처 목록", "", "| 출처 ID | 유형 | 제목 | URL | 라이선스 |", "| :--- | :--- | :--- | :--- | :--- |"]
-        for s in sources:
-            ref_lines.append(f"| `{s.get('source_id','')}` | {s.get('source_type','web')} | {str(s.get('title','')).replace('|','/')} | {s.get('url','')} | {s.get('license_note','')} |")
+        # 논문·리뷰 모드는 ch05에서만 참고문헌을 단 1회 통합 수록하므로 ch01~ch04에 단원별 참고문헌 표를 부착하지 않는다.
+        ref_block = ""
+        if not is_paper:
+            ref_lines = ["", "## 참고문헌 및 근거 출처 목록", "", "| 출처 ID | 유형 | 제목 | URL | 라이선스 |", "| :--- | :--- | :--- | :--- | :--- |"]
+            for s in sources:
+                ref_lines.append(f"| `{s.get('source_id','')}` | {s.get('source_type','web')} | {str(s.get('title','')).replace('|','/')} | {s.get('url','')} | {s.get('license_note','')} |")
+            ref_block = "\n" + "\n".join(ref_lines)
 
-        fm = f'---\nchapter_id: "{cid}"\ntitle: "{ch["title"]}"\naudience: "{state["target_audience"]}"\nevidence_packet: "{state["packet_id"]}.json"\n---\n\n'
+        fm_role = f'chapter_role: "{chapter_role}"\n' if chapter_role else ""
+        fm = f'---\nchapter_id: "{cid}"\n{fm_role}title: "{ch["title"]}"\naudience: "{state["target_audience"]}"\nevidence_packet: "{state["packet_id"]}.json"\n---\n\n'
         if not draft_body.lstrip().startswith("# "):
             draft_body = f"# {ch['title']}\n\n" + draft_body
-        full_mdx, _ = _clean_single_chapter(fm + draft_body.strip() + "\n" + "\n".join(ref_lines) + "\n")
+        full_mdx, _ = _clean_single_chapter(fm + draft_body.strip() + ref_block + "\n")
         out_mdx.write_text(full_mdx, encoding="utf-8")
 
         completed_chs.add(cid)
@@ -1815,9 +1920,24 @@ def _run_stage4_manuscript_draft(state: dict[str, Any], cfg: PlatformConfig) -> 
         save_project_state(state, cfg)
         append_event(pid, "domain-drafter", sid, f"체크포인트 저장 [{cid}] 완료 ({len(full_mdx):,}자, 누적 {len(completed_chs)}/{total_n}장)", cfg=cfg)
 
-    # 전수 인용·수식 감사
+    # 전수 인용·수식 감사 (+ 미등록 인용키 자동 보정 게이트)
     _update_stage(state, sid, cfg, progress=92, current_action="전 단원 인용 무결성·원문 복사율 감사 실행 중...")
     audit = verify_target(ch_dir, cfg=cfg)
+    if any(e.get("type") == "MISSING_SOURCE_ID" for e in audit.get("critical_errors", [])):
+        try:
+            from agro_framework import auto_repair_chapter_citations
+
+            rep_res = auto_repair_chapter_citations(pid, cfg=cfg)
+            append_event(
+                pid,
+                "citation-auditor",
+                sid,
+                f"인용 자동 보정 게이트 실행: {rep_res.get('repaired_files', 0)}개 단원 · {rep_res.get('replaced_tags', 0)}건 보정 완료",
+                cfg=cfg,
+            )
+            audit = verify_target(ch_dir, cfg=cfg)
+        except Exception as exc:
+            append_event(pid, "citation-auditor", sid, f"인용 자동 보정 경고: {exc}", level="WARN", cfg=cfg)
     audit_path = rep_dir / "audit_latest.json"
     audit_path.write_text(json.dumps(audit, ensure_ascii=False, indent=2), encoding="utf-8")
     crit = len(audit.get("critical_errors", []))
@@ -1860,7 +1980,20 @@ def _run_stage5_visuals_generate(state: dict[str, Any], cfg: PlatformConfig) -> 
     pid = state["project_id"]
     sid = "stage5_visuals_generate"
     opts = state.get("options", {})
-    per_ch = max(10, int(opts.get("visuals_per_chapter") or 10))
+    raw_per_ch = opts.get("visuals_per_chapter")
+    per_ch = max(0, min(25, int(10 if raw_per_ch is None else raw_per_ch)))
+    if per_ch == 0:
+        _update_stage(
+            state,
+            sid,
+            cfg,
+            status="DONE",
+            progress=100,
+            finished_at=utc_now_iso(),
+            current_action="시각화 개수 0개 설정 — 텍스트 전용 완료 (필요 시 [🖼️ 이미지 스튜디오]에서 개별·분할 추가 가능)",
+            metrics={"total_visuals": 0, "per_chapter": 0, "ai_images": 0, "svg_charts": 0},
+        )
+        return
     use_fal = bool(opts.get("use_fal_ai", False))
     fal_model = opts.get("fal_model") or "fal-ai/nano-banana-pro"
     use_nb = bool(opts.get("use_nano_banana", True))

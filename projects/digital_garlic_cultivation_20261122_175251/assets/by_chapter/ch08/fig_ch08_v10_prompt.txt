@@ -1,0 +1,12 @@
+이미지 번호: 그림 8-10
+이미지 파일명: fig_ch08_v10.png
+단원: 제8장. 종구 조제, 정식 자동화 및 기계화 재배 양식 (ch08)
+결합 절: 8.4.2 기계화 전용 재배 양식 설계 기준
+시각화 유형: photorealistic_field
+제목: [그림 8-10] 마늘 디지털 기계화 포장의 표준 구획 레이아웃 및 트랙터 선회 반경
+
+[문맥 기반 이미지 설명]
+[그림 8-10] 자동화 농기계의 작업 효율을 극대화하기 위해 구획화된 대규모 마늘 표준 재배 포장의 조감 뷰 항공 사진입니다. 두둑의 직선 작업 구간과 양단부의 헤드랜드(Headland) 선회 공간이 정밀하게 계산되어 트랙터와 복합 파종기의 최소 회전 반경을 충족합니다. 균일한 간격으로 멀칭 피복된 긴 두둑들이 완벽한 평행을 이루며 펼쳐져 있고, 기계화 작업 경로의 연속성과 토양 다짐 최소화 설계가 현장감 있게 조망됩니다.
+
+[나노바나나 생성 프롬프트]
+High-altitude aerial documentary photograph of a large-scale commercial garlic field mapped for autonomous agricultural machinery. Vast expanse of laser-leveled raised beds covered in uniform white and silver biodegradable mulch film running in perfectly straight, parallel rows across the rural landscape. Broad dirt headlands at field edges displaying sweeping smooth tractor turning radii tracks, clear irrigation drainage ditches flanking the perimeter, crisp midday lighting casting sharp geometric lines and textures across the field plots. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

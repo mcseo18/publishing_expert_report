@@ -1,0 +1,12 @@
+이미지 번호: 그림 11-2
+이미지 파일명: fig_ch11_v02.png
+단원: 제11장. 컴퓨터 비전 및 딥러닝 기반 디지털 병해충·생리장해 진단 (ch11)
+결합 절: 11.1 마늘 병징 영상 데이터베이스 구축 및 데이터 증강(Augmentation)
+시각화 유형: scientific_anatomy
+제목: [그림 11-2] 마늘 잎마름병 병반 영상의 데이터 증강(Augmentation) 파이프라인
+
+[문맥 기반 이미지 설명]
+[그림 11-2] 마늘 잎마름병(Stemphylium solani) 초기 병반이 형성된 단일 마늘 잎 원본 영상이 딥러닝 학습용 증강 데이터셋으로 변환되는 과정을 시각화한 과학 해부도입니다. 무작위 기하학적 회전, 배율 스케일링, 조도 밝기 변조, 가우시안 노이즈 주입 등의 다채로운 변형 과정을 통해 모델의 과적합을 방지하고 강건성을 확보합니다. [SRC-100]에서 강조한 데이터 증강 기법의 학술적 원리와 모델 일반화 기전을 명확히 설명합니다.
+
+[나노바나나 생성 프롬프트]
+A scientific botanical illustration on a pure white background demonstrating computer vision data augmentation transformations of a single diseased garlic leaf. The central garlic leaf (Allium sativum) with an oval tan leaf blight lesion with yellow halo branches into surrounding modified variants: 45-degree geometric rotation, horizontal mirror reflection, underexposed dark lighting, overexposed bright sunlight simulation, motion blur, and subtle pixel noise. Rendered in hyper-detailed photorealistic scientific art style with clean studio lighting and crisp fibrous leaf veins. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

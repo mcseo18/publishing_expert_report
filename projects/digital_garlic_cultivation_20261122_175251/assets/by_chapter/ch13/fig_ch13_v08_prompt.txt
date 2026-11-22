@@ -1,0 +1,12 @@
+이미지 번호: 그림 13-8
+이미지 파일명: fig_ch13_v08.png
+단원: 제13장. 디지털 수확 적기 판별과 마늘 굴취·수집·절단 복합 기계화 (ch13)
+결합 절: 13.3.1 주행 연동형 줄기 자동 절단기(Stalk Cutter)의 작동 원리
+시각화 유형: photorealistic_field
+제목: [그림 13-8] 콤바인 내부 자동 줄기 절단 공정의 실시간 가동 모습
+
+[문맥 기반 이미지 설명]
+[그림 13-8] 포장에서 주행 중인 자주식 콤바인 내부에서 연속적으로 마늘 줄기가 절단 배출되는 현장 동작 사진이다. 반송 벨트에 고정되어 진입한 마늘 줄기가 회전 절단날에 의해 순간적으로 분리되고, 절단된 부산물은 측면 배출 슈트로 날아가며 절단된 구체는 하부 컨베이어로 낙하한다. 물리적 충격을 최소화하면서 구체 손상률을 혁신적으로 낮춘 기계화 공정을 증명한다[SRC-106, SRC-107].
+
+[나노바나나 생성 프롬프트]
+High-speed field photograph inside the processing chamber of an active garlic combine harvester operating in sunlight. Vertical clamping belts hold garlic pseudostems tightly as spinning circular cutting discs slice through the fibrous stalks, causing green-yellow leaf remnants to eject sideways through an open chute. Clean, undamaged garlic bulbs with short trimmed stems drop gently onto a rubber-coated intermediate conveying bed, frozen crisply in mid-motion with slight airborne soil dust illuminated by backlighting. Photorealistic documentary field photograph, natural daylight, authentic Korean agricultural and environmental setting, accurate biological and technical morphology, high detail, strictly NO text, NO letters, NO numbers, NO logos, NO watermark, aspect ratio 4:3.

@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>1차 산출물 선택 및 초기 구성 · 참참살이 영농 AI 출판도우미</title>
+<style>
+:root {
+  --bg: #05130f;
+  --surface: #0a1f18;
+  --card: #0f291e;
+  --card2: #143629;
+  --emerald: #063b2c;
+  --accent: #34d399;
+  --gold: #eab308;
+  --gold-soft: #fef08a;
+  --border: #1e4234;
+  --text: #f1f5f9;
+  --muted: #94a3b8;
+  --radius: 14px;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: 'KoPubWorldDotum', 'Pretendard', 'Malgun Gothic', -apple-system, sans-serif;
+  background: radial-gradient(circle at top right, rgba(6, 59, 44, 0.42), transparent 55%), var(--bg);
+  color: var(--text);
+  line-height: 1.58;
+  font-size: 14px;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+button {
+  cursor: pointer; font-family: inherit;
+  border: 1px solid var(--border); background: var(--card2); color: var(--text);
+  border-radius: 9px; padding: 9px 16px; font-size: 13.5px; font-weight: 700; transition: all .15s;
+}
+button:hover { border-color: var(--accent); background: #1a4736; }
+.btn-primary { background: linear-gradient(135deg, #063b2c, #047857); border-color: #10b981; color: #fff; }
+.btn-primary:hover { background: linear-gradient(135deg, #047857, #059669); }
+.btn-gold { background: linear-gradient(135deg, #b45309, #ca8a04); border-color: #eab308; color: #fff; }
+.btn-gold:hover { background: linear-gradient(135deg, #92400e, #a16207); }
+input, select, textarea {
+  background: #071913; color: var(--text); border: 1px solid var(--border);
+  border-radius: 9px; padding: 9px 12px; font-family: inherit; font-size: 13.5px; width: 100%;
+}
+input:focus, select:focus, textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 2px rgba(52,211,153,.2); }
+input[type="checkbox"] { width: auto; accent-color: var(--accent); transform: scale(1.2); cursor: pointer; }
+
+.header {
+  position: sticky; top: 0; z-index: 40;
+  background: rgba(6, 26, 20, 0.96); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border); border-top: 3px solid var(--gold);
+  padding: 13px 26px; display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap;
+}
+.brand { display: flex; align-items: center; gap: 12px; }
+.brand-logo {
+  width: 40px; height: 40px; border-radius: 10px;
+  background: linear-gradient(135deg, #063b2c, #10b981); border: 1.5px solid var(--gold);
+  display: flex; align-items: center; justify-content: center; font-size: 20px;
+}
+.brand-title { font-size: 17px; font-weight: 800; color: #fff; }
+.brand-sub { font-size: 12px; color: var(--muted); }
+
+.wrap { max-width: 1280px; margin: 0 auto; padding: 26px 22px 80px; }
+
+.step-bar {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 22px;
+}
+@media (max-width: 780px) { .step-bar { grid-template-columns: 1fr; } }
+.step-item {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+  padding: 12px 15px; display: flex; align-items: center; gap: 11px;
+}
+.step-item.active { border-color: var(--gold); background: linear-gradient(135deg, #0c261d, #133629); }
+.step-num {
+  width: 30px; height: 30px; border-radius: 999px; background: var(--card2); border: 1px solid var(--gold);
+  display: flex; align-items: center; justify-content: center; font-weight: 800; color: var(--gold-soft); flex-shrink: 0;
+}
+
+.section-card {
+  background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 22px; margin-bottom: 20px;
+}
+.sec-title { font-size: 18px; font-weight: 800; margin: 0 0 6px; color: var(--gold-soft); }
+.muted { color: var(--muted); font-size: 12.5px; }
+
+/* 6대 1차 산출물 카드 그리드 */
+.type-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 14px;
+}
+@media (max-width: 960px) { .type-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 640px) { .type-grid { grid-template-columns: 1fr; } }
+.type-card {
+  background: var(--surface); border: 2px solid var(--border); border-radius: 14px;
+  padding: 16px; cursor: pointer; transition: all .18s; display: flex; flex-direction: column; gap: 8px; position: relative;
+}
+.type-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+.type-card.selected {
+  border-color: var(--gold);
+  background: linear-gradient(145deg, #0d2e22, #163d2d);
+  box-shadow: 0 8px 26px rgba(234, 179, 8, 0.18);
+}
+.type-card .check-pill {
+  position: absolute; top: 12px; right: 12px;
+  padding: 2px 9px; border-radius: 999px; font-size: 11px; font-weight: 800;
+  background: rgba(234,179,8,.2); color: var(--gold-soft); border: 1px solid var(--gold); display: none;
+}
+.type-card.selected .check-pill { display: inline-block; }
+.type-head { display: flex; align-items: center; gap: 10px; }
+.type-icon { font-size: 28px; }
+.type-name { font-size: 17px; font-weight: 800; color: #fff; }
+.type-sub { font-size: 12px; color: var(--accent); font-weight: 600; }
+.type-desc { font-size: 12.5px; color: #cbd5e1; line-height: 1.55; flex: 1; }
+.type-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 4px; }
+.tag {
+  font-size: 11px; padding: 2px 8px; border-radius: 999px;
+  background: rgba(52,211,153,.12); border: 1px solid rgba(52,211,153,.32); color: #a7f3d0; font-weight: 600;
+}
+
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+@media (max-width: 860px) { .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; } }
+
+.label { display: block; font-size: 12.5px; color: #cbd5e1; margin-bottom: 5px; font-weight: 700; }
+.flex { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.check-box-card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+  padding: 10px 13px; display: flex; align-items: center; gap: 9px; cursor: pointer;
+}
+.check-box-card:hover { border-color: var(--accent); }
+.summary-banner {
+  background: linear-gradient(135deg, #063b2c, #0f291e); border: 1.5px solid var(--gold);
+  border-radius: 14px; padding: 18px 22px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+}
+.toast {
+  position: fixed; bottom: 22px; right: 22px; z-index: 200;
+  background: #0d2b22; border: 1.5px solid var(--gold); color: #fff;
+  padding: 12px 18px; border-radius: 10px; font-size: 13.5px; font-weight: 700; display: none;
+  box-shadow: 0 12px 32px rgba(0,0,0,.5);
+}
+.toast.show { display: block; }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="brand">
+    <div class="brand-logo">🌾</div>
+    <div>
+      <div class="brand-title">참참살이 영농 AI 출판도우미 · 1차 산출물 초기 구성 스튜디오</div>
+      <div class="brand-sub" id="setupModeSubtitle">먼저 만들고 싶은 1차 산출물(교과서·웹 출판·강의 교재·보고서·논문·이야기 책)을 선택하고 맞춤 특성을 설정하세요.</div>
+    </div>
+  </div>
+  <div class="flex">
+    <a href="/"><button>← 통합 대시보드로 돌아가기</button></a>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="step-bar">
+    <div class="step-item active">
+      <div class="step-num">1</div>
+      <div><strong>1차 산출물 유형 선택</strong><div class="muted">교과서 · 웹 출판 · 강의 교재 · 보고서 · 논문 · 이야기 책</div></div>
+    </div>
+    <div class="step-item active">
+      <div class="step-num">2</div>
+      <div><strong>산출물 맞춤 특성 설정</strong><div class="muted">문체 · 구조 · 분량 · 판형 · 시각화 개수(0~25)</div></div>
+    </div>
+    <div class="step-item active">
+      <div class="step-num">3</div>
+      <div><strong>주제·키워드 확정 &amp; 시작</strong><div class="muted">17개 스페셜티 선택 또는 직접 입력 후 자동 시작</div></div>
+    </div>
+  </div>
+
+  <!-- STEP 1: 1차 산출물 6대 유형 선택 -->
+  <section class="section-card">
+    <h2 class="sec-title">1단계. 생성할 1차 산출물의 종류를 선택하세요</h2>
+    <div class="muted">선택한 1차 산출물에 따라 <strong>1단계 목차 구조, 4단계 AI 집필 문체·필수 구성, 5단계 시각화 비율, 6단계 출판 판형</strong>이 모두 자동으로 최적화됩니다.</div>
+    <div class="type-grid" id="outputTypeGrid">불러오는 중...</div>
+  </section>
+
+  <!-- STEP 2: 선택된 1차 산출물 전용 특성 세밀 설정 -->
+  <section class="section-card" id="step2Card">
+    <div class="flex" style="justify-content:space-between;margin-bottom:12px">
+      <div>
+        <h2 class="sec-title" id="step2Title">2단계. [📘 교과서] 맞춤형 특성 설정</h2>
+        <div class="muted" id="step2Sub">선택한 산출물에 최적화된 기본값이 자동 채워졌습니다. 원하는 대로 자유롭게 조정하세요.</div>
+      </div>
+      <button onclick="resetCurrentTypeDefaults()">↺ 이 유형 기본값 복원</button>
+    </div>
+
+    <!-- 논문·리뷰 전용 학회 투고 표준 5대 구성 안내 배너 -->
+    <div id="paperStandardBanner" style="display:none;margin-bottom:14px;padding:13px 16px;border-radius:11px;background:linear-gradient(135deg,#07291f,#123728);border:1.5px solid var(--gold)">
+      <div style="font-size:13.5px;font-weight:800;color:var(--gold-soft);margin-bottom:5px">📄 학술 논문 · 리뷰(Review) 표준 규칙 자동 적용 (.agents/rules/academic-paper-review-standard.md)</div>
+      <div style="font-size:12.5px;color:#e2e8f0;line-height:1.65">
+        <strong>① 1. 초록 (전체 1개만)</strong> →
+        <strong>② 2. 재료 및 방법 (2.1~2.M 세부 절 구분)</strong> →
+        <strong>③ 3. 결과 및 고찰 (3.1~3.K 세부 절 · 전체 분량의 ~70% 집중 · 학회 투고급 6단계 심층 논리: 정량 발견→생리·분자 기작→국내외 비교·불일치 원인 규명→경계조건·트레이드오프→학술·현장 함의→한계·향후과제)</strong> →
+        <strong>④ 4. 핵심 내용 요약 (전체 1개만)</strong> →
+        <strong>⑤ 5. 참고문헌 (문서 말미 단 1회 통합 수록)</strong>
+      </div>
+    </div>
+
+    <div class="grid-4">
+      <div>
+        <label class="label" id="lblChapters">단원(장) 수</label>
+        <input id="fChapters" type="number" min="3" max="24" value="14" oninput="updateSummaryBanner()" />
+      </div>
+      <div>
+        <label class="label">목표 분량 (쪽)</label>
+        <input id="fPages" type="number" min="10" max="1500" value="450" oninput="updateSummaryBanner()" />
+      </div>
+      <div>
+        <label class="label">단원당 시각화 개수 (0~25)</label>
+        <input id="fVisPerCh" type="number" min="0" max="25" value="8" oninput="updateSummaryBanner()" />
+      </div>
+      <div>
+        <label class="label">주 출력 판형 / 포맷</label>
+        <select id="fTrim" onchange="updateSummaryBanner()">
+          <option value="b5">B5 대학교재 (182 × 257 mm)</option>
+          <option value="shinkuk">신국판 단행본 (152 × 225 mm)</option>
+          <option value="a4">A4 보고서·논문·강의판 (210 × 297 mm)</option>
+          <option value="web_html">반응형 웹 / 네이버 블로그 HTML</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="grid-2" style="margin-top:14px">
+      <div>
+        <label class="label">문체 및 서술 어조 (AI 집필 톤앤매너)</label>
+        <input id="fTone" placeholder="예: 학술적이고 체계적인 대학교재 문체" />
+      </div>
+      <div>
+        <label class="label">대상 독자 (Target Audience)</label>
+        <input id="fAudience" placeholder="예: 대학 전공 심화, 연구자 및 선도 실무자" />
+      </div>
+    </div>
+
+    <!-- 유형별 동적 전용 특성 영역 -->
+    <div style="margin-top:16px;padding-top:16px;border-top:1px solid var(--border)">
+      <div class="label" style="color:var(--gold-soft);margin-bottom:10px" id="customFieldsHeader">✨ 이 1차 산출물 전용 세부 특성</div>
+      <div id="customFieldsHost" class="grid-2"></div>
+    </div>
+  </section>
+
+  <!-- STEP 3: 주제 · 스페셜티 · 키워드 · AI 엔진 -->
+  <section class="section-card" id="step3Card">
+    <h2 class="sec-title">3단계. 주제 · 핵심 키워드 및 AI 실행 옵션</h2>
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px 14px;margin-bottom:14px">
+      <label class="label">🧬 17개 스페셜티 농업 분야 빠른 선택 (선택 사항 — 클릭 시 주제와 키워드 자동 입력)</label>
+      <select id="fSpecialty" onchange="applySpecialty(this.value)">
+        <option value="">-- 직접 입력하거나 아래 17개 전문 분야 중 선택 --</option>
+      </select>
+    </div>
+
+    <div class="grid-2">
+      <div>
+        <label class="label">주제 / 제목 (국문) *</label>
+        <input id="fTopicKo" placeholder="예: 스마트 벼 재배와 저탄소 물관리, 겨울밀 생육모형 정책 보고서" oninput="updateSummaryBanner()" />
+      </div>
+      <div>
+        <label class="label">주제 / 제목 (영문 · 국제 논문/리서치용)</label>
+        <input id="fTopicEn" placeholder="예: Smart Rice Cultivation and Low-Carbon Water Management" />
+      </div>
+    </div>
+
+    <div class="grid-2" style="margin-top:12px">
+      <div>
+        <label class="label">핵심 키워드 (국문, 쉼표 구분)</label>
+        <input id="fKwKo" placeholder="예: 적산온도(GDD), 정밀시비, 드론 NDVI, 수확후 저장" />
+      </div>
+      <div>
+        <label class="label">핵심 키워드 (영문, 쉼표 구분)</label>
+        <input id="fKwEn" placeholder="예: growing degree days, precision nitrogen, UAV NDVI" />
+      </div>
+    </div>
+
+    <div class="flex" style="margin-top:14px;gap:14px">
+      <label class="check-box-card"><input type="checkbox" id="fUseGemini" checked /> <span><strong>1단계 Gemini API 목차 설계</strong> (실패 시 로컬 Gemma 4)</span></label>
+      <label class="check-box-card"><input type="checkbox" id="fUseFal" /> <span><strong>5단계 fal.ai 이미지 AI 사용</strong> (체크 해제 시 이미지 스튜디오 분할/무료 병행)</span></label>
+      <label class="check-box-card"><input type="checkbox" id="fAutoStart" checked /> <span><strong>생성 즉시 1단계 목차 초안 작성 시작</strong></span></label>
+    </div>
+  </section>
+
+  <!-- 최종 요약 & 실행 바 -->
+  <div class="summary-banner">
+    <div>
+      <div style="font-size:12px;color:var(--accent);font-weight:800">선택된 1차 산출물 구성 요약</div>
+      <div id="finalSummaryText" style="font-size:15.5px;font-weight:800;color:#fff;margin-top:3px">📘 교과서 · 14장 · 450쪽 · 단원당 시각화 8종 (총 112종)</div>
+      <div class="muted" id="finalSummarySub">생성 후 통합 대시보드로 이동하여 이 1차 산출물 기준에 맞춰 1~6단계 및 딥 리서치를 진행합니다.</div>
+    </div>
+    <div class="flex">
+      <a href="/"><button>취소</button></a>
+      <button class="btn-gold" id="btnSubmitSetup" style="padding:12px 24px;font-size:15px" onclick="submitSetupProject()">🚀 이 1차 산출물로 프로젝트 시작하기</button>
+    </div>
+  </div>
+</main>
+
+<div class="toast" id="toastBox"></div>
+
+<script>
+let OUTPUT_TYPES = {};
+let SPECIALTIES = [];
+let SELECTED_TYPE = "textbook";
+let EDIT_PID = "";
+
+function toast(msg, ms = 3600) {
+  const el = document.getElementById("toastBox");
+  el.textContent = msg;
+  el.classList.add("show");
+  clearTimeout(window._t);
+  window._t = setTimeout(() => el.classList.remove("show"), ms);
+}
+function esc(s) {
+  return String(s ?? "").replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;" }[c]));
+}
+
+async function api(url, opts = {}) {
+  const res = await fetch(url, { headers: { "Content-Type": "application/json", ...(opts.headers || {}) }, ...opts });
+  const text = await res.text();
+  let data = {};
+  try { data = text ? JSON.parse(text) : {}; } catch { data = { raw: text }; }
+  if (!res.ok) throw new Error(data.detail || `HTTP ${res.status}`);
+  return data;
+}
+
+async function initSetupPage() {
+  const params = new URLSearchParams(location.search);
+  const initType = params.get("type") || "";
+  EDIT_PID = params.get("edit") || "";
+
+  try {
+    const [typesRes, catRes] = await Promise.all([
+      api("/api/output-types"),
+      api("/api/framework/catalog"),
+    ]);
+    OUTPUT_TYPES = typesRes.output_types || {};
+    SPECIALTIES = catRes.specialty_curricula || [];
+
+    const spSel = document.getElementById("fSpecialty");
+    spSel.innerHTML = `<option value="">-- 직접 입력하거나 아래 ${SPECIALTIES.length}개 전문 분야 중 선택 --</option>` +
+      SPECIALTIES.map(s => `<option value="${esc(s.id)}">${esc(s.topic_ko)} (${esc(s.topic_en)})</option>`).join("");
+
+    if (initType && OUTPUT_TYPES[initType]) SELECTED_TYPE = initType;
+
+    renderTypeCards();
+
+    if (EDIT_PID) {
+      await loadExistingProjectForEdit(EDIT_PID);
+    } else {
+      selectOutputType(SELECTED_TYPE);
+    }
+  } catch (e) {
+    toast("❌ 초기 데이터 로드 오류: " + e.message, 5000);
+  }
+}
+
+async function loadExistingProjectForEdit(pid) {
+  try {
+    const res = await api(`/api/projects/${encodeURIComponent(pid)}`);
+    const proj = res.project;
+    if (!proj) return;
+    document.getElementById("setupModeSubtitle").textContent = `기존 프로젝트 《${proj.topic_ko}》의 1차 산출물 유형 및 특성을 수정합니다.`;
+    document.getElementById("btnSubmitSetup").textContent = "💾 1차 산출물 특성 저장 후 대시보드로 이동";
+    document.getElementById("step3Card").style.display = "none";
+
+    const otype = proj.primary_output_type || (proj.output_profile && proj.output_profile.primary_output_type) || "textbook";
+    selectOutputType(otype, proj.output_profile || {});
+    document.getElementById("fChapters").value = proj.chapter_count || 12;
+    document.getElementById("fPages").value = proj.target_pages || 300;
+    const vis = (proj.options || {}).visuals_per_chapter;
+    if (vis !== undefined && vis !== null) document.getElementById("fVisPerCh").value = vis;
+    if (proj.target_audience) document.getElementById("fAudience").value = proj.target_audience;
+    document.getElementById("fTopicKo").value = proj.topic_ko || "";
+    updateSummaryBanner();
+  } catch (e) {
+    toast("❌ 프로젝트 불러오기 실패: " + e.message);
+  }
+}
+
+function renderTypeCards() {
+  const host = document.getElementById("outputTypeGrid");
+  const order = ["textbook", "web_publish", "lecture", "report", "paper", "storybook"];
+  host.innerHTML = order.map(id => {
+    const t = OUTPUT_TYPES[id];
+    if (!t) return "";
+    const d = t.defaults || {};
+    return `
+      <div class="type-card ${SELECTED_TYPE === id ? "selected" : ""}" data-otype="${id}" onclick="selectOutputType('${id}')">
+        <span class="check-pill">✓ 선택됨</span>
+        <div class="type-head">
+          <div class="type-icon">${esc(t.icon)}</div>
+          <div>
+            <div class="type-name">${esc(t.name_ko)}</div>
+            <div class="type-sub">${esc(t.subtitle_ko)}</div>
+          </div>
+        </div>
+        <div class="type-desc">${esc(t.description_ko)}</div>
+        <div class="type-tags">
+          <span class="tag">${d.chapter_count}${esc(d.unit_label || "장")}</span>
+          <span class="tag">약 ${d.target_pages}쪽</span>
+          <span class="tag">시각화 장당 ${d.visuals_per_chapter}종</span>
+          <span class="tag">${t.recommended_trim === "web_html" ? "웹/블로그 HTML" : t.recommended_trim.toUpperCase()}</span>
+        </div>
+      </div>`;
+  }).join("");
+}
+
+function selectOutputType(typeId, existingProfile = null) {
+  if (!OUTPUT_TYPES[typeId]) return;
+  SELECTED_TYPE = typeId;
+  document.querySelectorAll(".type-card").forEach(el => el.classList.toggle("selected", el.dataset.otype === typeId));
+
+  const spec = OUTPUT_TYPES[typeId];
+  const d = spec.defaults || {};
+  const prof = existingProfile || {};
+
+  document.getElementById("step2Title").textContent = `2단계. [${spec.icon} ${spec.name_ko}] 맞춤형 특성 설정`;
+  document.getElementById("step2Sub").textContent = spec.description_ko;
+  document.getElementById("lblChapters").textContent = `${d.unit_label || "단원"} 수`;
+  document.getElementById("customFieldsHeader").textContent = `✨ ${spec.icon} ${spec.name_ko} 전용 세부 특성`;
+
+  const chInput = document.getElementById("fChapters");
+  const isPaper = (typeId === "paper");
+  const paperBanner = document.getElementById("paperStandardBanner");
+  if (paperBanner) paperBanner.style.display = isPaper ? "block" : "none";
+  chInput.readOnly = isPaper;
+  chInput.style.opacity = isPaper ? "0.78" : "1";
+  chInput.value = isPaper ? 5 : (prof.chapter_count ?? d.chapter_count ?? 12);
+  document.getElementById("fPages").value = prof.target_pages ?? d.target_pages ?? 300;
+  document.getElementById("fVisPerCh").value = prof.visuals_per_chapter ?? d.visuals_per_chapter ?? 6;
+  document.getElementById("fTrim").value = prof.recommended_trim ?? spec.recommended_trim ?? "b5";
+  document.getElementById("fTone").value = prof.tone ?? d.tone ?? "";
+  document.getElementById("fAudience").value = prof.target_audience ?? d.target_audience ?? "";
+
+  renderCustomFields(spec, prof);
+  updateSummaryBanner();
+}
+
+function resetCurrentTypeDefaults() {
+  selectOutputType(SELECTED_TYPE, null);
+  toast("↺ 선택한 1차 산출물의 권장 기본값으로 복원했습니다.");
+}
+
+function renderCustomFields(spec, prof = {}) {
+  const host = document.getElementById("customFieldsHost");
+  const fields = spec.custom_fields || [];
+  host.innerHTML = fields.map(f => {
+    const val = prof[f.key] !== undefined ? prof[f.key] : f.default;
+    if (f.type === "checkbox") {
+      return `
+        <label class="check-box-card">
+          <input type="checkbox" class="cf-input" data-cfkey="${esc(f.key)}" data-cftype="checkbox" ${val ? "checked" : ""} />
+          <span><strong>${esc(f.label)}</strong></span>
+        </label>`;
+    }
+    if (f.type === "select") {
+      return `
+        <div>
+          <label class="label">${esc(f.label)}</label>
+          <select class="cf-input" data-cfkey="${esc(f.key)}" data-cftype="select">
+            ${(f.options || []).map(o => `<option value="${esc(o)}" ${val === o ? "selected" : ""}>${esc(o)}</option>`).join("")}
+          </select>
+        </div>`;
+    }
+    return `
+      <div>
+        <label class="label">${esc(f.label)}</label>
+        <input class="cf-input" data-cfkey="${esc(f.key)}" data-cftype="text" value="${esc(val || "")}" />
+      </div>`;
+  }).join("");
+}
+
+function collectOutputProfile() {
+  const spec = OUTPUT_TYPES[SELECTED_TYPE] || {};
+  const profile = {
+    primary_output_type: SELECTED_TYPE,
+    output_type_name_ko: spec.name_ko || SELECTED_TYPE,
+    output_type_icon: spec.icon || "📘",
+    recommended_trim: document.getElementById("fTrim").value,
+    tone: document.getElementById("fTone").value.trim(),
+    target_audience: document.getElementById("fAudience").value.trim(),
+    chapter_count: parseInt(document.getElementById("fChapters").value, 10) || 12,
+    target_pages: parseInt(document.getElementById("fPages").value, 10) || 300,
+    visuals_per_chapter: Math.max(0, Math.min(25, parseInt(document.getElementById("fVisPerCh").value, 10) || 0)),
+  };
+  document.querySelectorAll(".cf-input").forEach(el => {
+    const k = el.dataset.cfkey;
+    const t = el.dataset.cftype;
+    if (t === "checkbox") profile[k] = !!el.checked;
+    else profile[k] = el.value;
+  });
+  return profile;
+}
+
+function applySpecialty(specId) {
+  const item = SPECIALTIES.find(x => x.id === specId);
+  if (!item) return;
+  const oSpec = OUTPUT_TYPES[SELECTED_TYPE] || {};
+  const suffixMap = {
+    textbook: "",
+    web_publish: " 실전 가이드 시리즈",
+    lecture: " 현장 강의 교재",
+    report: " 기술·정책 연구보고서",
+    paper: " 체계적 문헌고찰 논문",
+    storybook: " 사계절 영농 이야기",
+  };
+  document.getElementById("fTopicKo").value = item.topic_ko + (suffixMap[SELECTED_TYPE] || "");
+  document.getElementById("fTopicEn").value = item.topic_en;
+  document.getElementById("fKwKo").value = (item.keywords_ko || []).join(", ");
+  updateSummaryBanner();
+  toast(`🧬 '${item.topic_ko}' 주제를 [${oSpec.name_ko}] 형식으로 적용했습니다.`);
+}
+
+function updateSummaryBanner() {
+  const spec = OUTPUT_TYPES[SELECTED_TYPE];
+  if (!spec) return;
+  const ch = parseInt(document.getElementById("fChapters").value, 10) || 12;
+  const pg = parseInt(document.getElementById("fPages").value, 10) || 300;
+  const vis = Math.max(0, Math.min(25, parseInt(document.getElementById("fVisPerCh").value, 10) || 0));
+  const trim = document.getElementById("fTrim").value;
+  const topic = document.getElementById("fTopicKo").value.trim();
+  const trimLabel = { b5: "B5 교재", shinkuk: "신국판", a4: "A4", web_html: "웹·블로그 HTML" }[trim] || trim;
+  document.getElementById("finalSummaryText").textContent =
+    `${spec.icon} ${spec.name_ko}${topic ? ` · 《${topic}》` : ""} — ${ch}${spec.defaults?.unit_label || "장"} · ${pg}쪽 · ${trimLabel} · 시각화 장당 ${vis}종 (총 ${ch * vis}종)`;
+}
+
+async function submitSetupProject() {
+  const btn = document.getElementById("btnSubmitSetup");
+  const profile = collectOutputProfile();
+
+  if (EDIT_PID) {
+    btn.disabled = true;
+    try {
+      await api(`/api/projects/${encodeURIComponent(EDIT_PID)}/output-profile`, {
+        method: "PATCH",
+        body: JSON.stringify({
+          primary_output_type: SELECTED_TYPE,
+          output_profile: profile,
+          target_pages: profile.target_pages,
+          chapter_count: profile.chapter_count,
+          target_audience: profile.target_audience,
+          visuals_per_chapter: profile.visuals_per_chapter,
+        }),
+      });
+      toast("✅ 1차 산출물 특성을 저장했습니다! 대시보드로 이동합니다...");
+      setTimeout(() => { location.href = `/?project=${encodeURIComponent(EDIT_PID)}`; }, 600);
+    } catch (e) {
+      toast("❌ " + e.message, 5000);
+      btn.disabled = false;
+    }
+    return;
+  }
+
+  const topic_ko = document.getElementById("fTopicKo").value.trim();
+  if (!topic_ko) {
+    document.getElementById("fTopicKo").focus();
+    return toast("⚠️ 3단계의 주제 / 제목(국문)을 입력해 주세요.");
+  }
+
+  btn.disabled = true;
+  btn.textContent = "⏳ 1차 산출물 프로젝트 생성 중...";
+  try {
+    const res = await api("/api/projects", {
+      method: "POST",
+      body: JSON.stringify({
+        topic_ko,
+        topic_en: document.getElementById("fTopicEn").value.trim(),
+        primary_output_type: SELECTED_TYPE,
+        output_profile: profile,
+        target_audience: profile.target_audience,
+        target_pages: profile.target_pages,
+        chapter_count: profile.chapter_count,
+        visuals_per_chapter: profile.visuals_per_chapter,
+        keywords_ko: document.getElementById("fKwKo").value.split(",").map(x => x.trim()).filter(Boolean),
+        keywords_en: document.getElementById("fKwEn").value.split(",").map(x => x.trim()).filter(Boolean),
+        use_gemini_outline: document.getElementById("fUseGemini").checked,
+        use_fal_ai: document.getElementById("fUseFal").checked,
+        enable_naver_blog: profile.include_naver_hashtags !== false,
+        enable_myths: profile.include_myths !== false,
+        enable_linked_quiz: profile.include_exercises !== false,
+        auto_start: document.getElementById("fAutoStart").checked,
+      }),
+    });
+    const pid = res.project?.project_id || "";
+    toast(`✅ [${profile.output_type_icon} ${profile.output_type_name_ko}] 《${topic_ko}》 생성 완료! 대시보드로 이동합니다...`);
+    setTimeout(() => { location.href = pid ? `/?project=${encodeURIComponent(pid)}` : "/"; }, 650);
+  } catch (e) {
+    toast("❌ " + e.message, 5000);
+    btn.disabled = false;
+    btn.textContent = "🚀 이 1차 산출물로 프로젝트 시작하기";
+  }
+}
+
+initSetupPage();
+</script>
+</body>
+</html>

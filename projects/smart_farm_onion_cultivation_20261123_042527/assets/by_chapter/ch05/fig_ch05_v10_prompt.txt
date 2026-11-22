@@ -1,0 +1,12 @@
+이미지 번호: 그림 5-10
+이미지 파일명: fig_ch05_v10.png
+단원: 제5장. 토양 수분 모니터링 센서 네트워크와 스마트 관개 자동화 (ch05)
+결합 절: 오해와 진실: 현장·이론 핵심 오해 교정
+시각화 유형: scientific_anatomy
+제목: [그림 5-10] 토성별 체적 수분 함량(TDR)과 수분 장력(텐시오미터)의 생리적 유효 수분 비교
+
+[문맥 기반 이미지 설명]
+[그림 5-10] 사양토(Sandy loam)와 식양토(Clay loam)에서 동일한 체적 수분 함량(20%)일지라도 작물이 겪는 수분 장력과 생리적 스트레스가 완전히 다름을 증명하는 비교 해부도이다. 점토 입자의 강한 흡착력으로 인해 식양토 내 양파 뿌리는 수분을 흡수하기 어려워 위조점에 도달하는 반면, 사양토에서는 원활한 흡수가 일어나는 기작을 미세 토양 공극 수준에서 대조한다 [SRC-118]. TDR 수분 함량 수치에만 의존할 때 발생하는 관개 실패 오해를 교정하는 핵심 시각 자료이다.
+
+[나노바나나 생성 프롬프트]
+Dual-panel comparative scientific anatomical illustration on a pure white background. The left panel shows an onion root system (Allium cepa) in sandy loam soil with large pores where water easily detaches into root hairs. The right panel shows the identical onion root in dense silty clay soil holding the same total water percentage, but bound tightly in micro-pores under extreme negative suction pressure, causing the onion root tip to show stress shrinkage. Rich, clear scientific rendering. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

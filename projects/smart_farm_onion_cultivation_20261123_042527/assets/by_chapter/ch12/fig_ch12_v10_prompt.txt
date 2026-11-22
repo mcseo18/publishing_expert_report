@@ -1,0 +1,12 @@
+이미지 번호: 그림 12-10
+이미지 파일명: fig_ch12_v10.png
+단원: 제12장. 자율주행 기반 정식·포장관리 및 지능형 수확 로봇 (ch12)
+결합 절: 12.4 수확 동시 포장 내 등급 판별 및 인경 크기·중량 맵핑을 위한 온보드 컴퓨터 비전 (현장 적용·실전 기술)
+시각화 유형: scientific_anatomy
+제목: [그림 12-10] 하이퍼스펙트럴 반사 스펙트럼과 3D 점군 기반 양파 인경 품질·중량 매핑
+
+[문맥 기반 이미지 설명]
+[그림 12-10] 온보드 비전 시스템이 수집하는 양파 인경의 3D 체적 점군(Point Cloud) 모델과 하이퍼스펙트럴 파장별 반사율 곡선을 통합 분석한 과학 인포그래픽형 일러스트레이션입니다. 단축 및 장축 지름 측정을 통해 단일 인경의 중량을 정밀 추정하고, 근적외선 영역(NIR) 스펙트럼 편차를 감지하여 내부 부패 및 미세 결함을 판정합니다 [SRC-135]. 축적된 개체별 품질 데이터는 포장 내 위치 좌표와 결합되어 수확량 맵을 생성합니다 [SRC-107, SRC-137].
+
+[나노바나나 생성 프롬프트]
+A scientific analytical 3D visualization on a pure white background showing the digital phenotyping of an Allium cepa bulb. In the center, a 3D polygonal wireframe and rainbow-colored point cloud mesh envelope an onion bulb, depicting transverse diameter and geometric volume estimation. Alongside, glowing spectral reflectance curves sweep across visible and near-infrared wavelength bands, highlighting absorption dips corresponding to internal water and soluble solids. Clean scientific rendering, floating optical scanning rays, elegant color gradients, no text, no alphabets. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

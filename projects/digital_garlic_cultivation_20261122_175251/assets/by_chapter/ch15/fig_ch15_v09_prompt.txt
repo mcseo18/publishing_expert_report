@@ -1,0 +1,12 @@
+이미지 번호: 그림 15-9
+이미지 파일명: fig_ch15_v09.png
+단원: 제15장. 디지털 마늘 재배의 경제성 평가, 탄소 배출량 및 미래 전망 (ch15)
+결합 절: 15.4 생성형 AI와 디지털 트윈 기반의 차세대 무인 자동화 농장 비전
+시각화 유형: scientific_anatomy
+제목: [그림 15-9] 마늘 생육 디지털 트윈 가상 복제 모델 및 근저 구근 비대 시뮬레이션
+
+[문맥 기반 이미지 설명]
+[그림 15-9] 실제 포장의 마늘 개체군과 이를 1:1로 가상 공간에 복제한 3차원 디지털 트윈의 생리생태 시뮬레이션 구조를 과학적으로 해부한 도해입니다. 지상부 엽면적 지수와 엽록소 함량, 지하부 인편 분화 및 구근 비대 속도가 기상 데이터와 연계되어 정밀 연산됩니다 [SRC-111]. 가상 환경에서의 다중 환경 스트레스 시뮬레이션을 통해 최적의 물과 양분 투입 시나리오를 사전에 검증하는 디지털 농장의 핵심 구성을 보여줍니다.
+
+[나노바나나 생성 프롬프트]
+A high-end scientific cutaway illustration on a pure white background comparing a real physical garlic plant with its translucent holographic 3D wireframe digital twin duplicate. The physical half shows botanical reality: dark green linear foliage, segmented pseudostem, and an expanding underground garlic bulb with roots in dark soil. The mirrored digital twin half renders the plant in geometric mesh polygon lines with glowing volumetric nodes indicating leaf temperature, stomatal conductance, and bulb biomass accumulation, rendered with elegant textbook precision. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

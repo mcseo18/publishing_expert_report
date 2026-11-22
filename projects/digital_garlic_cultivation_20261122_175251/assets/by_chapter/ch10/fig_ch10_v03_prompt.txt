@@ -1,0 +1,12 @@
+이미지 번호: 그림 10-3
+이미지 파일명: fig_ch10_v03.png
+단원: 제10장. 주요 병해충의 역학적 모델링과 종합적 방제(IPM) (ch10)
+결합 절: 10.1 곰팡이성 및 세균성 병해(흑색경화균핵병, 잎마름병, 무름병)의 병리학
+시각화 유형: scientific_anatomy
+제목: [그림 10-3] 마늘 잎마름병 병원균의 엽육 침입 및 괴사 병반 형성 메커니즘
+
+[문맥 기반 이미지 설명]
+[그림 10-3] 마늘 잎마름병균(Stemphylium vesicarium) 분생포자가 마늘 잎의 기공과 각피층을 뚫고 엽육 세포 내부로 침입하는 세포생물학적 감염 과정을 묘사한 학술 단면도이다. 본문 10.1절에 기술된 바와 같이, 발아한 균사는 기공을 통해 직접 침입하거나 독소를 분비하여 숙주의 세포벽을 붕괴시키고 엽맥을 따라 타원형의 자갈색 괴사 반점을 형성한다 [SRC-100]. 감염 부위 주변에서는 엽록체가 파괴되어 광합성 기능이 급격히 저하되는 양상이 입체적으로 표현되어 있다.
+
+[나노바나나 생성 프롬프트]
+Scientific American style botanical cross-section illustration showing the infection process of leaf blight fungus (Stemphylium vesicarium) on a garlic (Allium sativum) leaf blade against a pure white background. In the upper layer, multi-celled pigmented conidia germinate on the waxy cuticle, sending germ tubes and appressoria through stomatal openings. In the transverse section of the garlic leaf, intercellular hyphae branch through the palisade and spongy mesophyll cells, releasing cellular degradation enzymes that cause chloroplast breakdown and cellular collapse. Surrounding tissue exhibits characteristic oval, purple-brown necrotic lesions with yellow chlorotic halos, rendered in rich, shaded, painterly scientific realism. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.

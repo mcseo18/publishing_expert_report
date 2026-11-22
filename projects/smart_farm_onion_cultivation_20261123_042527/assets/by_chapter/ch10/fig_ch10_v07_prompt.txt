@@ -1,0 +1,12 @@
+이미지 번호: 그림 10-7
+이미지 파일명: fig_ch10_v07.png
+단원: 제10장. 해충·잡초의 스마트 모니터링 및 AI 종합 방제(IPM) (ch10)
+결합 절: 생리·분자 메커니즘 및 모니터링 기술
+시각화 유형: scientific_anatomy
+제목: [그림 10-7] 양파 잎과 근권에서의 천적 곤충 및 유용 미생물 복합 방제 메커니즘
+
+[문맥 기반 이미지 설명]
+[그림 10-7] 양파의 지상부 엽면과 지하부 근권에서 전개되는 생물학적 종합 방제(IPM) 상호작용을 나타낸 종합 해부도입니다. 엽액 틈새에서는 천적 곤충인 미끌애꽃노린재(Orius strigicollis)가 총채벌레 약충을 포식하고, 뿌리 표면 근반부에서는 바실러스(Bacillus) 계통 유용 미생물이 균근을 형성하여 토양 병원균과 해충의 침입을 방어합니다. 천적과 미생물 제제를 연계한 디지털 관리 프로토콜은 화학 살충제 의존도를 획기적으로 낮추는 생태적 대안입니다 [SRC-102].
+
+[나노바나나 생성 프롬프트]
+A detailed scientific textbook illustration on a pure white background displaying the dual biological control mechanisms on an onion plant. The upper portion shows an enlarged cross-section of an onion leaf sheath where a beneficial predatory pirate bug captures a tiny thrips nymph with its rostrum. The lower portion illustrates the subterranean onion root tips coated with glowing colonies of beneficial Bacillus bacteria forming a protective biofilm against soil pathogens and mite penetration, rendered in realistic editorial scientific style. Clean educational university textbook editorial scientific illustration on pure white background (#FFFFFF), consistent textbook palette (primary green #3A7D44, accent orange #E07A2E, soil brown #8B5E3C, water blue #3B82C4, academic navy #1D3557), richly shaded publication-grade clarity, strictly NO childish clipart. ABSOLUTE ZERO-TEXT REQUIREMENT: strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO question marks, NO watermarks anywhere in the image, aspect ratio 16:9.
