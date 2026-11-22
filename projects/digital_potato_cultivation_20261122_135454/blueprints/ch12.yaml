@@ -1,0 +1,10 @@
+chapter_id: ch12
+chapter_number: 12
+title: 제12장. 통합 디지털 관리 시스템 구축 및 운영
+target_pages: 41
+summary_ko: ''
+sections:
+- 12.1 농업 빅데이터 플랫폼 구조 설계
+- 12.2 IoT, AI, 클라우드를 활용한 통합 모니터링
+- 12.3 의사결정 지원 시스템(DSS)의 작동 원리
+- 12.4 데이터 보안 및 농업 데이터 표준화

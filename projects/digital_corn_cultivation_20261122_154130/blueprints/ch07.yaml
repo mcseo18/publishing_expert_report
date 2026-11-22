@@ -1,0 +1,16 @@
+chapter_id: ch07
+chapter_number: 7
+title: 제7장. 물관리의 원리와 디지털 현장 관리
+target_pages: 40
+summary_ko: 디지털 옥수수 재배에서 물관리의 과학적 메커니즘, 정량 측정 지표 및 디지털 정밀 관리 전략을 다룹니다.
+sections:
+- 7.1 기초 원리 및 개념
+- 7.2 정량 측정·모델링
+- 7.3 국내외 기준 비교
+- 7.4 디지털 현장 적용
+keywords_ko:
+- 물관리
+keywords_en:
+- Water Management
+evidence_packet: digital_corn_cultivation_20261122_154130_evidence.json
+assigned_sources: []

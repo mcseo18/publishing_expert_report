@@ -1,0 +1,16 @@
+chapter_id: ch10
+chapter_number: 10
+title: 제10장. 병해충 및 잡초 발생 및 방제의 원리와 디지털 현장 관리
+target_pages: 40
+summary_ko: 디지털 옥수수 재배에서 병해충 및 잡초 발생 및 방제의 과학적 메커니즘, 정량 측정 지표 및 디지털 정밀 관리 전략을 다룹니다.
+sections:
+- 10.1 기초 원리 및 개념
+- 10.2 정량 측정·모델링
+- 10.3 국내외 기준 비교
+- 10.4 디지털 현장 적용
+keywords_ko:
+- 병해충 및 잡초 발생 및 방제
+keywords_en:
+- Pests and Weeds (Occurrence and Control)
+evidence_packet: digital_corn_cultivation_20261122_154130_evidence.json
+assigned_sources: []

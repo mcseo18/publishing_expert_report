@@ -1,0 +1,10 @@
+chapter_id: ch01
+chapter_number: 1
+title: 제1장. 감자 작물의 기초 생리학 및 디지털 모니터링
+target_pages: 41
+summary_ko: ''
+sections:
+- 1.1 감자 생육 단계 및 생리적 특성
+- 1.2 디지털 센서 및 데이터 획득 기술
+- 1.3 식물 생장 모델링 기초
+- 1.4 생장 단계 척도(Growth Stage Scale)의 정량화

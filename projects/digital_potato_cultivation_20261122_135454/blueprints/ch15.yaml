@@ -1,0 +1,10 @@
+chapter_id: ch15
+chapter_number: 15
+title: 제15장. 양분 재분배·전류의 원리와 디지털 현장 관리
+target_pages: 41
+summary_ko: ''
+sections:
+- 15.1 내부 양분 이동의 동역학적 모델링
+- 15.2 뿌리-줄기 간 양분 공급 최적화 전략
+- 15.3 수액 흐름(Sap Flow) 모니터링과 데이터 해석
+- 15.4 미량원소의 재분배 및 결핍 예측

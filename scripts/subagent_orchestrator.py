@@ -206,7 +206,25 @@ def save_project_state(state: dict[str, Any], cfg: PlatformConfig | None = None)
     payload = json.dumps(state, ensure_ascii=False, indent=2)
     with _LOCK:
         tmp.write_text(payload, encoding="utf-8")
-        os.replace(tmp, sp)
+        # Windows에서 백신·동기화 프로그램이 state.json을 잠시 잡고 있으면 os.replace가
+        # [WinError 5] 액세스 거부로 실패할 수 있으므로 잠시 기다렸다가 최대 5회 재시도한다.
+        last_exc: Exception | None = None
+        for attempt in range(5):
+            try:
+                os.replace(tmp, sp)
+                return
+            except PermissionError as exc:
+                last_exc = exc
+                time.sleep(0.3 * (attempt + 1))
+        # 마지막 수단: 원자적 교체 대신 직접 덮어쓰기
+        try:
+            sp.write_text(payload, encoding="utf-8")
+            try:
+                tmp.unlink()
+            except OSError:
+                pass
+        except Exception:
+            raise last_exc if last_exc else RuntimeError("state.json 저장 실패")
 
 
 def _migrate_to_v2_if_needed(state: dict[str, Any], cfg: PlatformConfig) -> dict[str, Any]:
@@ -285,6 +303,7 @@ def _migrate_to_v2_if_needed(state: dict[str, Any], cfg: PlatformConfig) -> dict
     state.setdefault("reports", {})
     state.setdefault("domain_keywords", [])
     opts = dict(state.get("options") or {})
+    opts.setdefault("use_gemini_outline", True)
     opts.setdefault("use_openai_outline", True)
     opts.setdefault("openai_model", "gpt-4o-mini")
     opts.setdefault("use_fal_ai", False)
@@ -352,14 +371,27 @@ def ensure_seed_soil_project(cfg: PlatformConfig | None = None) -> dict[str, Any
     }
 
 
-def list_projects(cfg: PlatformConfig | None = None) -> list[dict[str, Any]]:
-    """현재 활성 관리 중인 프로젝트 목록만 반환한다 (자동 시드 재주입 없음)."""
+def set_project_hidden(project_id: str, hidden: bool, cfg: PlatformConfig | None = None) -> dict[str, Any]:
+    """교재를 지우지 않고 대시보드 목록에서만 숨기거나 다시 보이게 한다."""
+    cfg = cfg or get_config()
+    state = load_project_state(project_id, cfg)
+    if not state:
+        raise FileNotFoundError(project_id)
+    state["hidden_from_list"] = bool(hidden)
+    save_project_state(state, cfg)
+    return {"status": "OK", "project_id": project_id, "hidden": bool(hidden)}
+
+
+def list_projects(cfg: PlatformConfig | None = None, include_hidden: bool = False) -> list[dict[str, Any]]:
+    """현재 활성 관리 중인 프로젝트 목록만 반환한다 (자동 시드 재주입 없음). 숨긴 교재는 기본 제외."""
     cfg = cfg or get_config()
     out = []
     for d in sorted(_runs_root(cfg).iterdir()):
         if not d.is_dir():
             continue
         st = load_project_state(d.name, cfg)
+        if st and st.get("hidden_from_list") and not include_hidden:
+            continue
         if st:
             done_cnt = sum(1 for s in st.get("stages", []) if s.get("status") == "DONE")
             out.append(
@@ -376,6 +408,7 @@ def list_projects(cfg: PlatformConfig | None = None) -> list[dict[str, Any]]:
                     "outline_approved": bool(st.get("outline_approved", False)),
                     "is_reference_book": bool(st.get("is_reference_book", False)),
                     "updated_at": st.get("updated_at", ""),
+                    "hidden": bool(st.get("hidden_from_list", False)),
                 }
             )
     return sorted(out, key=lambda x: x["updated_at"], reverse=True)
@@ -452,6 +485,7 @@ def create_project(
     kw_en = [k.strip() for k in (keywords_en or []) if k.strip()] or ([topic_en.strip()] if topic_en.strip() else [topic_ko.strip()])
 
     opts = {
+        "use_gemini_outline": True,
         "use_openai_outline": True,
         "openai_model": "gpt-4o-mini",
         "use_fal_ai": False,
@@ -588,6 +622,7 @@ def update_project_options(project_id: str, updates: dict[str, Any], cfg: Platfo
         raise FileNotFoundError(f"Project not found: {project_id}")
     opts = dict(st.get("options") or {})
     allowed_keys = {
+        "use_gemini_outline",
         "use_openai_outline",
         "openai_model",
         "use_fal_ai",
@@ -710,17 +745,59 @@ def _call_openai_outline_json(
     return json.loads(content)
 
 
+GEMINI_OUTLINE_CHAIN = [
+    "gemini-3.8-flash",
+    "gemini-3-flash-preview",
+    "gemini-3.1-flash-lite",
+    "gemini-2.5-flash-lite",
+]
+
+
+def _call_gemini_outline_json(
+    *,
+    prompt: str,
+    system_prompt: str,
+    api_key: str,
+    model_chain: list[str] | None = None,
+) -> tuple[dict[str, Any], str]:
+    """Gemini API로 목차 JSON을 생성한다. 모델 목록을 차례로 시도하고 (결과, 사용 모델)을 돌려준다."""
+    from google import genai
+    from google.genai import types
+
+    client = genai.Client(api_key=api_key)
+    last_err = ""
+    for mdl in model_chain or GEMINI_OUTLINE_CHAIN:
+        try:
+            resp = client.models.generate_content(
+                model=mdl,
+                contents=prompt,
+                config=types.GenerateContentConfig(
+                    system_instruction=system_prompt,
+                    response_mime_type="application/json",
+                    temperature=0.4,
+                ),
+            )
+            txt = (resp.text or "").strip()
+            txt = re.sub(r"^```(?:json)?\s*|\s*```$", "", txt, flags=re.S).strip()
+            return json.loads(txt), mdl
+        except Exception as exc:
+            last_err = f"{mdl}: {str(exc)[:160]}"
+    raise RuntimeError(f"Gemini 모델 모두 실패 ({last_err})")
+
+
 def _generate_outline_proposal(
     state: dict[str, Any],
     cfg: PlatformConfig,
     feedback_prompt: str = "",
     initial_context: str = "",
 ) -> tuple[dict[str, Any], str]:
-    """OpenAI API(설정 시 우선) 또는 로컬 Ollama Gemma 4로 목차·요약·핵심 영역별 키워드를 생성한다."""
+    """목차·요약·핵심 영역별 키워드를 생성한다. 엔진 순서: Gemini API → OpenAI API → 로컬 Ollama Gemma 4."""
     n_ch = int(state.get("chapter_count") or 15)
     t_pages = int(state.get("target_pages") or 500)
     per_ch = max(15, round(t_pages / max(1, n_ch)))
     opts = state.get("options") or {}
+    use_gemini = bool(opts.get("use_gemini_outline", True))
+    gemini_key = resolve_api_key("GEMINI_API_KEY", None, cfg) if use_gemini else ""
     use_openai = bool(opts.get("use_openai_outline", True))
     openai_key = resolve_api_key("OPENAI_API_KEY", None, cfg) if use_openai else ""
     openai_model = opts.get("openai_model") or "gpt-4o-mini"
@@ -776,7 +853,16 @@ def _generate_outline_proposal(
     raw: dict[str, Any] | None = None
     engine_used = "fallback"
 
-    if openai_key:
+    if gemini_key:
+        try:
+            raw, gmodel = _call_gemini_outline_json(prompt=user_prompt, system_prompt=sys_prompt, api_key=gemini_key)
+            engine_used = f"Gemini ({gmodel})"
+        except Exception as exc:
+            raw = None
+            nxt = "OpenAI" if openai_key else "로컬 Gemma 4"
+            append_event(state["project_id"], "outline-architect", "stage1_topic_outline", f"Gemini API 호출 실패 → {nxt} 폴백: {exc}", level="WARN", cfg=cfg)
+
+    if raw is None and openai_key:
         try:
             raw = _call_openai_outline_json(prompt=user_prompt, system_prompt=sys_prompt, model=openai_model, api_key=openai_key)
             engine_used = f"OpenAI ({openai_model})"
@@ -1244,12 +1330,14 @@ def _run_stage2_source_collect(state: dict[str, Any], cfg: PlatformConfig) -> No
         _update_stage(state, sid, cfg, progress=min(92, max(8, pct)), current_action=action)
         append_event(pid, "web-scout", sid, msg, level=level, cfg=cfg)
 
+    eff_kw_ko = list(dict.fromkeys([*(state.get("search_queries_ko") or []), *(state.get("keywords_ko") or [])]))
+    eff_kw_en = list(dict.fromkeys([*(state.get("search_queries_en") or []), *(state.get("keywords_en") or [])]))
     res = collect_project_sources(
         project_id=pid,
         topic_ko=state["topic_ko"],
         topic_en=state.get("topic_en", ""),
-        keywords_ko=state.get("keywords_ko", []),
-        keywords_en=state.get("keywords_en", []),
+        keywords_ko=eff_kw_ko,
+        keywords_en=eff_kw_en,
         packet_id=state["packet_id"],
         papers_per_query=limit,
         domestic_agency_urls=opts.get("domestic_agency_urls") or [],
@@ -1408,6 +1496,7 @@ def _run_stage4_manuscript_draft(state: dict[str, Any], cfg: PlatformConfig) -> 
             f"대상 독자: {state['target_audience']}\n\n[검증 근거 패킷]\n{digest}\n\n"
             "위 근거를 바탕으로 풍부하고 학술적인 한국어 단원 원고를 작성하세요."
         )
+        is_fallback = False
         try:
             draft_body = client.draft_text(
                 system_prompt=sys_prompt,
@@ -1418,7 +1507,8 @@ def _run_stage4_manuscript_draft(state: dict[str, Any], cfg: PlatformConfig) -> 
                 timeout=240,
             )
         except Exception as exc:
-            append_event(pid, "domain-drafter", sid, f"[{cid}] Ollama 폴백 템플릿 적용: {exc}", level="WARN", cfg=cfg)
+            append_event(pid, "domain-drafter", sid, f"[{cid}] Ollama 폴백 템플릿 적용(⚠ 품질 확인 필요 — 이 단원은 다시 집필해야 합니다): {exc}", level="WARN", cfg=cfg)
+            is_fallback = True
             c_tag = f"[{valid_ids[0]}]" if valid_ids else ""
             draft_body = (
                 f"# {ch['title']}\n\n> **단원 요약:** {ch.get('summary_ko') or state['topic_ko']}\n\n"
@@ -1443,6 +1533,12 @@ def _run_stage4_manuscript_draft(state: dict[str, Any], cfg: PlatformConfig) -> 
 
         completed_chs.add(cid)
         state["checkpoint"]["completed_chapters"] = sorted(completed_chs)
+        fb_set = set(state["checkpoint"].get("fallback_chapters") or [])
+        if is_fallback:
+            fb_set.add(cid)
+        else:
+            fb_set.discard(cid)
+        state["checkpoint"]["fallback_chapters"] = sorted(fb_set)
         save_project_state(state, cfg)
         append_event(pid, "domain-drafter", sid, f"체크포인트 저장 [{cid}] 완료 ({len(full_mdx):,}자, 누적 {len(completed_chs)}/{total_n}장)", cfg=cfg)
 
@@ -1468,6 +1564,9 @@ def _run_stage4_manuscript_draft(state: dict[str, Any], cfg: PlatformConfig) -> 
             if ok_cr and cr_txt:
                 (rep_dir / "claude_audit_review.md").write_text(cr_txt, encoding="utf-8")
 
+    _fb_list = sorted(set(state.get("checkpoint", {}).get("fallback_chapters") or []))
+    if _fb_list:
+        append_event(pid, "domain-drafter", sid, f"⚠ AI 집필 실패로 틀 원고가 들어간 단원: {', '.join(_fb_list)} — 원고 품질 점검표에서 확인 후 해당 단원을 다시 집필하세요.", level="WARN", cfg=cfg)
     _update_stage(
         state,
         sid,
@@ -1475,8 +1574,9 @@ def _run_stage4_manuscript_draft(state: dict[str, Any], cfg: PlatformConfig) -> 
         status="DONE",
         progress=100,
         finished_at=utc_now_iso(),
-        current_action=f"{len(completed_chs)}개 단원 집필·정제 및 감사({audit['status']}, 치명오류 {crit}건) 완료",
-        metrics={"completed_chapters": len(completed_chs), "total_chapters": total_n, "audit_status": audit["status"], "critical_errors": crit, "warnings": warns},
+        current_action=f"{len(completed_chs)}개 단원 집필·정제 및 감사({audit['status']}, 치명오류 {crit}건) 완료"
+        + (f" · ⚠ 틀 원고 {len(_fb_list)}개 단원({', '.join(_fb_list[:5])}) 재집필 필요" if _fb_list else ""),
+        metrics={"completed_chapters": len(completed_chs), "total_chapters": total_n, "audit_status": audit["status"], "critical_errors": crit, "warnings": warns, "fallback_chapters": len(_fb_list)},
         artifacts=[str(audit_path)] + [str(ch_dir / f"{c}.mdx") for c in sorted(completed_chs)[:5]],
     )
 
@@ -1782,17 +1882,156 @@ def start_pipeline_async(
     if not stage_ids:
         return {"status": "ALREADY_DONE", "project_id": project_id}
 
+    # 완료된 단계를 다시 실행하면 덮어쓰기 전에 자동 백업
+    done_targets = [s["stage_id"] for s in state["stages"] if s["stage_id"] in stage_ids and s["status"] == "DONE"]
+    snapshot = None
+    if done_targets:
+        try:
+            snapshot = create_stage_snapshot(project_id, done_targets, cfg=cfg)
+        except Exception as exc:
+            append_event(project_id, "orchestrator", done_targets[0], f"자동 백업 실패(실행은 계속): {exc}", level="WARN", cfg=cfg)
+
     th = threading.Thread(target=_worker_loop, args=(project_id, stage_ids, cfg), daemon=True)
     _ACTIVE_THREADS[project_id] = th
     th.start()
-    return {"status": "STARTED", "project_id": project_id, "queued_stages": stage_ids}
+    return {"status": "STARTED", "project_id": project_id, "queued_stages": stage_ids, "snapshot": snapshot}
 
 
 def stop_pipeline(project_id: str, cfg: PlatformConfig | None = None) -> dict[str, Any]:
+    th = _ACTIVE_THREADS.get(project_id)
+    if not (th and th.is_alive()):
+        return {"status": "NOT_RUNNING", "project_id": project_id}
     ev = _STOP_FLAGS.get(project_id)
     if ev:
         ev.set()
     return {"status": "STOP_REQUESTED", "project_id": project_id}
+
+
+# ============================================================
+# F3: 재실행 전 자동 백업(스냅샷) · 되돌리기
+# ============================================================
+# 단계별로 다시 만들어지는 폴더 (작업 폴더 기준). 3단계 지식그래프는 Append-Only라 상태만 백업한다.
+STAGE_SNAPSHOT_DIRS: dict[str, list[str]] = {
+    "stage1_topic_outline": ["blueprints"],
+    "stage2_source_collect": ["collected", "reports"],
+    "stage3_kg_build": ["reports"],
+    "stage4_manuscript_draft": ["chapters", "reports"],
+    "stage5_visuals_generate": ["assets"],
+    "stage6_publish_report": ["exports", "reports"],
+}
+SNAPSHOT_KEEP = 3  # 프로젝트당 최근 백업 보관 개수 (용량 절약)
+
+
+def _snapshots_root(state: dict[str, Any]) -> Path:
+    return Path(state["workspace_dir"]) / "_snapshots"
+
+
+def create_stage_snapshot(project_id: str, stage_ids: list[str], reason: str = "", cfg: PlatformConfig | None = None, prune: bool = True) -> dict[str, Any] | None:
+    """재실행 직전 해당 단계 산출물 폴더와 state.json을 _snapshots/<시각>_<단계>/ 에 복사해 둔다."""
+    cfg = cfg or get_config()
+    state = load_project_state(project_id, cfg)
+    if not state:
+        return None
+    ws = Path(state["workspace_dir"])
+    ts = datetime.now().strftime("%Y%m%d_%H%M%S")
+    label = "+".join(s.split("_")[0] for s in stage_ids) or "manual"
+    snap_dir = _snapshots_root(state) / f"{ts}_{label}"
+    n = 2
+    while snap_dir.exists():
+        snap_dir = _snapshots_root(state) / f"{ts}_{label}_{n}"
+        n += 1
+    snap_dir.mkdir(parents=True)
+    copied: list[str] = []
+    for sid in stage_ids:
+        for sub in STAGE_SNAPSHOT_DIRS.get(sid, []):
+            src = ws / sub
+            dst = snap_dir / sub
+            if src.is_dir() and not dst.exists():
+                shutil.copytree(src, dst)
+                copied.append(sub)
+    (snap_dir / "state.json").write_text(json.dumps(state, ensure_ascii=False, indent=2), encoding="utf-8")
+    meta = {
+        "snapshot_id": snap_dir.name,
+        "created_at": utc_now_iso(),
+        "stage_ids": stage_ids,
+        "folders": copied,
+        "reason": reason or "재실행 전 자동 백업",
+    }
+    (snap_dir / "snapshot_meta.json").write_text(json.dumps(meta, ensure_ascii=False, indent=2), encoding="utf-8")
+    append_event(project_id, "orchestrator", stage_ids[0] if stage_ids else "snapshot", f"💾 재실행 전 자동 백업 완료: {snap_dir.name} ({', '.join(copied) or '상태만'})", cfg=cfg)
+    if prune:
+        _prune_snapshots(state)
+    return meta
+
+
+def _prune_snapshots(state: dict[str, Any]) -> None:
+    """오래된 자동 백업을 지워 최근 SNAPSHOT_KEEP 개만 남긴다 (용량 절약)."""
+    root = _snapshots_root(state)
+    if not root.is_dir():
+        return
+    snaps = sorted([d for d in root.iterdir() if d.is_dir()], key=lambda d: d.name)
+    for old in snaps[:-SNAPSHOT_KEEP]:
+        shutil.rmtree(old, ignore_errors=True)
+
+
+def list_stage_snapshots(project_id: str, cfg: PlatformConfig | None = None) -> list[dict[str, Any]]:
+    cfg = cfg or get_config()
+    state = load_project_state(project_id, cfg)
+    if not state:
+        raise FileNotFoundError(project_id)
+    root = _snapshots_root(state)
+    out: list[dict[str, Any]] = []
+    if root.is_dir():
+        for d in sorted(root.iterdir(), key=lambda d: d.name, reverse=True):
+            mp = d / "snapshot_meta.json"
+            if d.is_dir() and mp.is_file():
+                try:
+                    out.append(json.loads(mp.read_text(encoding="utf-8")))
+                except Exception:
+                    continue
+    return out
+
+
+def restore_stage_snapshot(project_id: str, snapshot_id: str, cfg: PlatformConfig | None = None) -> dict[str, Any]:
+    """백업 시점으로 되돌린다. 현재 상태도 먼저 백업하므로 되돌리기 자체도 다시 되돌릴 수 있다."""
+    cfg = cfg or get_config()
+    t_existing = _ACTIVE_THREADS.get(project_id)
+    if t_existing and t_existing.is_alive():
+        raise ValueError("작업이 실행 중일 때는 되돌릴 수 없습니다. 먼저 중단하세요.")
+    state = load_project_state(project_id, cfg)
+    if not state:
+        raise FileNotFoundError(project_id)
+    snap_dir = _snapshots_root(state) / Path(snapshot_id).name
+    meta_p = snap_dir / "snapshot_meta.json"
+    if not meta_p.is_file():
+        raise ValueError("백업을 찾을 수 없습니다.")
+    meta = json.loads(meta_p.read_text(encoding="utf-8"))
+    ws = Path(state["workspace_dir"])
+    stage_ids = meta.get("stage_ids") or []
+    # 현재 상태를 먼저 백업 (되돌리기 취소 가능)
+    create_stage_snapshot(project_id, stage_ids, reason=f"되돌리기({snapshot_id}) 직전 상태", cfg=cfg, prune=False)
+    for sub in meta.get("folders") or []:
+        src = snap_dir / sub
+        dst = ws / sub
+        if not src.is_dir():
+            continue
+        if dst.exists():
+            shutil.rmtree(dst)
+        shutil.copytree(src, dst)
+    old_state = json.loads((snap_dir / "state.json").read_text(encoding="utf-8"))
+    old_stages = {s["stage_id"]: s for s in old_state.get("stages", [])}
+    for i, s in enumerate(state.get("stages", [])):
+        if s["stage_id"] in stage_ids and s["stage_id"] in old_stages:
+            state["stages"][i] = old_stages[s["stage_id"]]
+    for key in ("checkpoint", "outputs", "bound_visuals_by_chapter", "blueprint_preview"):
+        if key in old_state:
+            state[key] = old_state[key]
+    all_done = all(s["status"] == "DONE" for s in state["stages"])
+    state["overall_status"] = "DONE" if all_done else "PAUSED"
+    save_project_state(state, cfg)
+    append_event(project_id, "orchestrator", stage_ids[0] if stage_ids else "snapshot", f"↩ 백업 {snapshot_id} 시점으로 되돌렸습니다.", cfg=cfg)
+    _prune_snapshots(state)
+    return {"status": "RESTORED", "snapshot": meta, "project": state}
 
 
 def main() -> int:

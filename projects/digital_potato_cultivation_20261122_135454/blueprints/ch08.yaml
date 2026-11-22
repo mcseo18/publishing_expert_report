@@ -1,0 +1,10 @@
+chapter_id: ch08
+chapter_number: 8
+title: 제8장. 시비량 산정 및 작물 수량 결정 모델링
+target_pages: 41
+summary_ko: ''
+sections:
+- 8.1 작물 수량 구성요소(Yield Components) 분석
+- 8.2 질소영양지수(N-Nutrient Index) 기반 시비량 산정
+- 8.3 작물 생육 모델(Crop Growth Model) 적용
+- 8.4 수량 예측 및 최적 시비 전략 설계

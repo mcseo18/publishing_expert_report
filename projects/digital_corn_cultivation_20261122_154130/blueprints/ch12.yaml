@@ -1,0 +1,16 @@
+chapter_id: ch12
+chapter_number: 12
+title: 제12장. 농기계 활용의 원리와 디지털 현장 관리
+target_pages: 40
+summary_ko: 디지털 옥수수 재배에서 농기계 활용의 과학적 메커니즘, 정량 측정 지표 및 디지털 정밀 관리 전략을 다룹니다.
+sections:
+- 12.1 기초 원리 및 개념
+- 12.2 정량 측정·모델링
+- 12.3 국내외 기준 비교
+- 12.4 디지털 현장 적용
+keywords_ko:
+- 농기계 활용
+keywords_en:
+- and Use of Agricultural Machinery
+evidence_packet: digital_corn_cultivation_20261122_154130_evidence.json
+assigned_sources: []

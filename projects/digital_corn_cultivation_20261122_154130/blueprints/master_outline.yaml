@@ -1,0 +1,317 @@
+book_metadata:
+  title_ko: 디지털 옥수수 재배
+  title_en: Digital Corn Cultivation
+  target_audience: 대학 전공 심화, 대학원생, 연구자 및 선도 현장 실무자
+  book_summary_ko: 《디지털 옥수수 재배》 600p 전문 대학교재 및 현장 실무 지침서
+  target_pages: 600
+  target_total_pages: 600
+  chapter_count: 15
+  engine_used: fallback
+  generated_at: '2026-11-22T06:42:36+00:00'
+domain_keywords:
+- domain: 제1부. 디지털 옥수수 재배 핵심 영역 1
+  keywords_ko:
+  - 옥수수 일반/역사/용도
+  - 품종
+  - 파종
+  keywords_en:
+  - 'Corn: General Information/History/Uses'
+  - Varieties
+  - Sowing
+- domain: 제2부. 디지털 옥수수 재배 핵심 영역 2
+  keywords_ko:
+  - 생육관리
+  - 생리 및 생리장애
+  - 토양관리
+  keywords_en:
+  - Growth Management
+  - Physiology and Physiological Disorders
+  - Soil Management
+- domain: 제3부. 디지털 옥수수 재배 핵심 영역 3
+  keywords_ko:
+  - 물관리
+  - 양분관리
+  - 양분 및 생육모델
+  keywords_en:
+  - Water Management
+  - Nutrient Management
+  - Nutrient and Growth Modeling
+- domain: 제4부. 디지털 옥수수 재배 핵심 영역 4
+  keywords_ko:
+  - 병해충 및 잡초 발생 및 방제
+  - 수확
+  - 농기계 활용
+  keywords_en:
+  - Pests and Weeds (Occurrence and Control)
+  - Harvesting
+  - and Use of Agricultural Machinery
+- domain: 제5부. 디지털 옥수수 재배 핵심 영역 5
+  keywords_ko:
+  - 옥수수 일반/역사/용도
+  - 품종
+  - 파종
+  keywords_en:
+  - 'Corn: General Information/History/Uses'
+  - Varieties
+  - Sowing
+parts:
+- part_number: 1
+  title: 제1부. 디지털 옥수수 재배 핵심 영역 1
+  pages: 120
+  chapters:
+  - chapter_id: ch01
+    chapter_number: 1
+    title: 제1장. 옥수수 일반/역사/용도의 원리와 디지털 현장 관리
+    target_pages: 40
+    summary_ko: 디지털 옥수수 재배에서 옥수수 일반/역사/용도의 과학적 메커니즘, 정량 측정 지표 및 디지털 정밀 관리 전략을 다룹니다.
+    sections:
+    - 1.1 기초 원리 및 개념
+    - 1.2 정량 측정·모델링
+    - 1.3 국내외 기준 비교
+    - 1.4 디지털 현장 적용
+    keywords_ko:
+    - 옥수수 일반/역사/용도
+    keywords_en:
+    - 'Corn: General Information/History/Uses'
+    evidence_packet: digital_corn_cultivation_20261122_154130_evidence.json
+    assigned_sources: []
+  - chapter_id: ch02
+    chapter_number: 2
+    title: 제2장. 품종의 원리와 디지털 현장 관리
+    target_pages: 40
+    summary_ko: 디지털 옥수수 재배에서 품종의 과학적 메커니즘, 정량 측정 지표 및 디지털 정밀 관리 전략을 다룹니다.
+    sections:
+    - 2.1 기초 원리 및 개념
+    - 2.2 정량 측정·모델링
+    - 2.3 국내외 기준 비교
+    - 2.4 디지털 현장 적용
+    keywords_ko:
+    - 품종
+    keywords_en:
+    - Varieties
+    evidence_packet: digital_corn_cultivation_20261122_154130_evidence.json
+    assigned_sources: []
+  - chapter_id: ch03
+    chapter_number: 3
+    title: 제3장. 파종의 원리와 디지털 현장 관리
+    target_pages: 40
+    summary_ko: 디지털 옥수수 재배에서 파종의 과학적 메커니즘, 정량 측정 지표 및 디지털 정밀 관리 전략을 다룹니다.
+    sections:
+    - 3.1 기초 원리 및 개념
+    - 3.2 정량 측정·모델링
+    - 3.3 국내외 기준 비교
+    - 3.4 디지털 현장 적용
+    keywords_ko:
+    - 파종
+    keywords_en:
+    - Sowing
+    evidence_packet: digital_corn_cultivation_20261122_154130_evidence.json
+    assigned_sources: []
+- part_number: 2
+  title: 제2부. 디지털 옥수수 재배 핵심 영역 2
+  pages: 120
+  chapters:
+  - chapter_id: ch04
+    chapter_number: 4
+    title: 제4장. 생육관리의 원리와 디지털 현장 관리
+    target_pages: 40
+    summary_ko: 디지털 옥수수 재배에서 생육관리의 과학적 메커니즘, 정량 측정 지표 및 디지털 정밀 관리 전략을 다룹니다.
+    sections:
+    - 4.1 기초 원리 및 개념
+    - 4.2 정량 측정·모델링
+    - 4.3 국내외 기준 비교
+    - 4.4 디지털 현장 적용
+    keywords_ko:
+    - 생육관리
+    keywords_en:
+    - Growth Management
+    evidence_packet: digital_corn_cultivation_20261122_154130_evidence.json
+    assigned_sources: []
+  - chapter_id: ch05
+    chapter_number: 5
+    title: 제5장. 생리 및 생리장애의 원리와 디지털 현장 관리
+    target_pages: 40
+    summary_ko: 디지털 옥수수 재배에서 생리 및 생리장애의 과학적 메커니즘, 정량 측정 지표 및 디지털 정밀 관리 전략을 다룹니다.
+    sections:
+    - 5.1 기초 원리 및 개념
+    - 5.2 정량 측정·모델링
+    - 5.3 국내외 기준 비교
+    - 5.4 디지털 현장 적용
+    keywords_ko:
+    - 생리 및 생리장애
+    keywords_en:
+    - Physiology and Physiological Disorders
+    evidence_packet: digital_corn_cultivation_20261122_154130_evidence.json
+    assigned_sources: []
+  - chapter_id: ch06
+    chapter_number: 6
+    title: 제6장. 토양관리의 원리와 디지털 현장 관리
+    target_pages: 40
+    summary_ko: 디지털 옥수수 재배에서 토양관리의 과학적 메커니즘, 정량 측정 지표 및 디지털 정밀 관리 전략을 다룹니다.
+    sections:
+    - 6.1 기초 원리 및 개념
+    - 6.2 정량 측정·모델링
+    - 6.3 국내외 기준 비교
+    - 6.4 디지털 현장 적용
+    keywords_ko:
+    - 토양관리
+    keywords_en:
+    - Soil Management
+    evidence_packet: digital_corn_cultivation_20261122_154130_evidence.json
+    assigned_sources: []
+- part_number: 3
+  title: 제3부. 디지털 옥수수 재배 핵심 영역 3
+  pages: 120
+  chapters:
+  - chapter_id: ch07
+    chapter_number: 7
+    title: 제7장. 물관리의 원리와 디지털 현장 관리
+    target_pages: 40
+    summary_ko: 디지털 옥수수 재배에서 물관리의 과학적 메커니즘, 정량 측정 지표 및 디지털 정밀 관리 전략을 다룹니다.
+    sections:
+    - 7.1 기초 원리 및 개념
+    - 7.2 정량 측정·모델링
+    - 7.3 국내외 기준 비교
+    - 7.4 디지털 현장 적용
+    keywords_ko:
+    - 물관리
+    keywords_en:
+    - Water Management
+    evidence_packet: digital_corn_cultivation_20261122_154130_evidence.json
+    assigned_sources: []
+  - chapter_id: ch08
+    chapter_number: 8
+    title: 제8장. 양분관리의 원리와 디지털 현장 관리
+    target_pages: 40
+    summary_ko: 디지털 옥수수 재배에서 양분관리의 과학적 메커니즘, 정량 측정 지표 및 디지털 정밀 관리 전략을 다룹니다.
+    sections:
+    - 8.1 기초 원리 및 개념
+    - 8.2 정량 측정·모델링
+    - 8.3 국내외 기준 비교
+    - 8.4 디지털 현장 적용
+    keywords_ko:
+    - 양분관리
+    keywords_en:
+    - Nutrient Management
+    evidence_packet: digital_corn_cultivation_20261122_154130_evidence.json
+    assigned_sources: []
+  - chapter_id: ch09
+    chapter_number: 9
+    title: 제9장. 양분 및 생육모델의 원리와 디지털 현장 관리
+    target_pages: 40
+    summary_ko: 디지털 옥수수 재배에서 양분 및 생육모델의 과학적 메커니즘, 정량 측정 지표 및 디지털 정밀 관리 전략을 다룹니다.
+    sections:
+    - 9.1 기초 원리 및 개념
+    - 9.2 정량 측정·모델링
+    - 9.3 국내외 기준 비교
+    - 9.4 디지털 현장 적용
+    keywords_ko:
+    - 양분 및 생육모델
+    keywords_en:
+    - Nutrient and Growth Modeling
+    evidence_packet: digital_corn_cultivation_20261122_154130_evidence.json
+    assigned_sources: []
+- part_number: 4
+  title: 제4부. 디지털 옥수수 재배 핵심 영역 4
+  pages: 120
+  chapters:
+  - chapter_id: ch10
+    chapter_number: 10
+    title: 제10장. 병해충 및 잡초 발생 및 방제의 원리와 디지털 현장 관리
+    target_pages: 40
+    summary_ko: 디지털 옥수수 재배에서 병해충 및 잡초 발생 및 방제의 과학적 메커니즘, 정량 측정 지표 및 디지털 정밀 관리 전략을 다룹니다.
+    sections:
+    - 10.1 기초 원리 및 개념
+    - 10.2 정량 측정·모델링
+    - 10.3 국내외 기준 비교
+    - 10.4 디지털 현장 적용
+    keywords_ko:
+    - 병해충 및 잡초 발생 및 방제
+    keywords_en:
+    - Pests and Weeds (Occurrence and Control)
+    evidence_packet: digital_corn_cultivation_20261122_154130_evidence.json
+    assigned_sources: []
+  - chapter_id: ch11
+    chapter_number: 11
+    title: 제11장. 수확의 원리와 디지털 현장 관리
+    target_pages: 40
+    summary_ko: 디지털 옥수수 재배에서 수확의 과학적 메커니즘, 정량 측정 지표 및 디지털 정밀 관리 전략을 다룹니다.
+    sections:
+    - 11.1 기초 원리 및 개념
+    - 11.2 정량 측정·모델링
+    - 11.3 국내외 기준 비교
+    - 11.4 디지털 현장 적용
+    keywords_ko:
+    - 수확
+    keywords_en:
+    - Harvesting
+    evidence_packet: digital_corn_cultivation_20261122_154130_evidence.json
+    assigned_sources: []
+  - chapter_id: ch12
+    chapter_number: 12
+    title: 제12장. 농기계 활용의 원리와 디지털 현장 관리
+    target_pages: 40
+    summary_ko: 디지털 옥수수 재배에서 농기계 활용의 과학적 메커니즘, 정량 측정 지표 및 디지털 정밀 관리 전략을 다룹니다.
+    sections:
+    - 12.1 기초 원리 및 개념
+    - 12.2 정량 측정·모델링
+    - 12.3 국내외 기준 비교
+    - 12.4 디지털 현장 적용
+    keywords_ko:
+    - 농기계 활용
+    keywords_en:
+    - and Use of Agricultural Machinery
+    evidence_packet: digital_corn_cultivation_20261122_154130_evidence.json
+    assigned_sources: []
+- part_number: 5
+  title: 제5부. 디지털 옥수수 재배 핵심 영역 5
+  pages: 120
+  chapters:
+  - chapter_id: ch13
+    chapter_number: 13
+    title: 제13장. 옥수수 일반/역사/용도의 원리와 디지털 현장 관리
+    target_pages: 40
+    summary_ko: 디지털 옥수수 재배에서 옥수수 일반/역사/용도의 과학적 메커니즘, 정량 측정 지표 및 디지털 정밀 관리 전략을 다룹니다.
+    sections:
+    - 13.1 기초 원리 및 개념
+    - 13.2 정량 측정·모델링
+    - 13.3 국내외 기준 비교
+    - 13.4 디지털 현장 적용
+    keywords_ko:
+    - 옥수수 일반/역사/용도
+    keywords_en:
+    - 'Corn: General Information/History/Uses'
+    evidence_packet: digital_corn_cultivation_20261122_154130_evidence.json
+    assigned_sources: []
+  - chapter_id: ch14
+    chapter_number: 14
+    title: 제14장. 품종의 원리와 디지털 현장 관리
+    target_pages: 40
+    summary_ko: 디지털 옥수수 재배에서 품종의 과학적 메커니즘, 정량 측정 지표 및 디지털 정밀 관리 전략을 다룹니다.
+    sections:
+    - 14.1 기초 원리 및 개념
+    - 14.2 정량 측정·모델링
+    - 14.3 국내외 기준 비교
+    - 14.4 디지털 현장 적용
+    keywords_ko:
+    - 품종
+    keywords_en:
+    - Varieties
+    evidence_packet: digital_corn_cultivation_20261122_154130_evidence.json
+    assigned_sources: []
+  - chapter_id: ch15
+    chapter_number: 15
+    title: 제15장. 파종의 원리와 디지털 현장 관리
+    target_pages: 40
+    summary_ko: 디지털 옥수수 재배에서 파종의 과학적 메커니즘, 정량 측정 지표 및 디지털 정밀 관리 전략을 다룹니다.
+    sections:
+    - 15.1 기초 원리 및 개념
+    - 15.2 정량 측정·모델링
+    - 15.3 국내외 기준 비교
+    - 15.4 디지털 현장 적용
+    keywords_ko:
+    - 파종
+    keywords_en:
+    - Sowing
+    evidence_packet: digital_corn_cultivation_20261122_154130_evidence.json
+    assigned_sources: []

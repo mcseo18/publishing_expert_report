@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" width="800" height="420" style="background:#ffffff;font-family:'Malgun Gothic', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;">
+  <rect x="0" y="0" width="800" height="420" rx="12" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+  <rect x="0" y="0" width="800" height="58" rx="12" fill="#0f172a"/>
+  <rect x="0" y="42" width="800" height="16" fill="#0f172a"/>
+  <text x="22" y="27" font-size="14.5" font-weight="700" fill="#f8fafc">그림 2-10. 제2장. 종자(씨감자)의 유전적 특성 및 전처리 기술 — 단원 핵심</text>
+  <text x="22" y="47" font-size="11" fill="#cbd5e1">디지털 감자 재배 · 2.2 씨감자 품질 평가 및 등급 분류</text>
+  <defs><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 1 L 10 5 L 0 9 z" fill="#334155"/></marker></defs>
+  <rect x="34" y="128" width="164" height="158" rx="10" fill="#e0f2fe" stroke="#334155" stroke-width="1.4"/>
+  <text x="116" y="162" text-anchor="middle" font-size="11" font-weight="700" fill="#475569">STEP 1</text>
+  <text text-anchor="middle" font-size="12" font-weight="700" fill="#0f172a"><tspan x="116" y="206.0">2.1 씨감자의</tspan><tspan x="116" y="224.0">유전적 다양성 및</tspan><tspan x="116" y="242.0">품종 선택</tspan></text>
+  <line x1="198" y1="208" x2="222" y2="208" stroke="#334155" stroke-width="2" marker-end="url(#ar)"/>
+  <rect x="222" y="128" width="164" height="158" rx="10" fill="#dcfce7" stroke="#334155" stroke-width="1.4"/>
+  <text x="304" y="162" text-anchor="middle" font-size="11" font-weight="700" fill="#475569">STEP 2</text>
+  <text text-anchor="middle" font-size="12" font-weight="700" fill="#0f172a"><tspan x="304" y="215.0">2.2 씨감자 품질</tspan><tspan x="304" y="233.0">평가 및 등급 분류</tspan></text>
+  <line x1="386" y1="208" x2="410" y2="208" stroke="#334155" stroke-width="2" marker-end="url(#ar)"/>
+  <rect x="410" y="128" width="164" height="158" rx="10" fill="#fef3c7" stroke="#334155" stroke-width="1.4"/>
+  <text x="492" y="162" text-anchor="middle" font-size="11" font-weight="700" fill="#475569">STEP 3</text>
+  <text text-anchor="middle" font-size="12" font-weight="700" fill="#0f172a"><tspan x="492" y="215.0">2.3 휴면 타파 및</tspan><tspan x="492" y="233.0">산광싹틔우기 메커니즘</tspan></text>
+  <line x1="574" y1="208" x2="598" y2="208" stroke="#334155" stroke-width="2" marker-end="url(#ar)"/>
+  <rect x="598" y="128" width="164" height="158" rx="10" fill="#f3e8ff" stroke="#334155" stroke-width="1.4"/>
+  <text x="680" y="162" text-anchor="middle" font-size="11" font-weight="700" fill="#475569">STEP 4</text>
+  <text text-anchor="middle" font-size="12" font-weight="700" fill="#0f172a"><tspan x="680" y="215.0">2.4 씨감자 소독</tspan><tspan x="680" y="233.0">및 저온 처리 기술</tspan></text>
+</svg>

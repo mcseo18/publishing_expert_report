@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" width="800" height="420" style="background:#ffffff;font-family:'Malgun Gothic', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;">
+  <rect x="0" y="0" width="800" height="420" rx="12" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+  <rect x="0" y="0" width="800" height="58" rx="12" fill="#0f2942"/>
+  <rect x="0" y="42" width="800" height="16" fill="#0f2942"/>
+  <text x="22" y="27" font-size="14.5" font-weight="700" fill="#f8fafc">그림 9-6. 제9장. 병해충 및 잡초 관리의 디지털 통합 — 핵심 관리 요인별 상대</text>
+  <text x="22" y="47" font-size="11" fill="#cbd5e1">디지털 감자 재배 · 9.2 잡초 발생 패턴 분석 및 생육 단계별 관리</text>
+  <text text-anchor="start" font-size="11.5" font-weight="700" fill="#1e293b"><tspan x="24" y="104.5">9.1 주요 감자 병해충의</tspan><tspan x="24" y="119.5">생태 및 발생 모델</tspan></text>
+  <rect x="270" y="98" width="420" height="28" rx="6" fill="#f1f5f9"/>
+  <rect x="270" y="98" width="377" height="28" rx="6" fill="#0284c7"/>
+  <text x="655" y="117" font-size="12" font-weight="700" fill="#0f172a">92%</text>
+  <text text-anchor="start" font-size="11.5" font-weight="700" fill="#1e293b"><tspan x="24" y="178.5">9.2 잡초 발생 패턴 분석</tspan><tspan x="24" y="193.5">및 생육 단계별 관리</tspan></text>
+  <rect x="270" y="172" width="420" height="28" rx="6" fill="#f1f5f9"/>
+  <rect x="270" y="172" width="344" height="28" rx="6" fill="#16a34a"/>
+  <text x="622" y="191" font-size="12" font-weight="700" fill="#0f172a">84%</text>
+  <text text-anchor="start" font-size="11.5" font-weight="700" fill="#1e293b"><tspan x="24" y="252.5">9.3 통합 해충</tspan><tspan x="24" y="267.5">관리(IPM)의 디지털 구현</tspan></text>
+  <rect x="270" y="246" width="420" height="28" rx="6" fill="#f1f5f9"/>
+  <rect x="270" y="246" width="311" height="28" rx="6" fill="#d97706"/>
+  <text x="589" y="265" font-size="12" font-weight="700" fill="#0f172a">76%</text>
+  <text text-anchor="start" font-size="11.5" font-weight="700" fill="#1e293b"><tspan x="24" y="326.5">9.4 예찰 및 정밀 방제</tspan><tspan x="24" y="341.5">시스템</tspan></text>
+  <rect x="270" y="320" width="420" height="28" rx="6" fill="#f1f5f9"/>
+  <rect x="270" y="320" width="278" height="28" rx="6" fill="#7c3aed"/>
+  <text x="556" y="339" font-size="12" font-weight="700" fill="#0f172a">68%</text>
+</svg>

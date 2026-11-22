@@ -17,9 +17,16 @@ data/parsed/
 data/evidence/
 data/index/
 data/kg_store/
+# 위 폴더들은 E:/C: 드라이브로 연결된 바로가기(심볼릭 링크)라 슬래시 없는 형태도 제외
+data/raw
+data/parsed
+data/evidence
+data/index
+data/kg_store
 
 # Heavy generated binaries, backups & scratch exports
 _backup_20261121_before_claude/
+_backup_*/
 ch*_textbook.pdf
 *.docx
 !Eco-Browser*.docx

@@ -345,6 +345,117 @@ table.tbl tr:hover td { background: rgba(56,189,248,.05); }
 .mt12 { margin-top: 12px; }
 .mb8 { margin-bottom: 8px; }
 .label { display: block; font-size: 12px; color: var(--muted); margin-bottom: 4px; font-weight: 600; }
+
+/* ====== 대화형 교재 계획서 챗봇 스튜디오 (좌: 대화창 / 우: 출력창) ====== */
+.plan-split {
+  display: grid;
+  grid-template-columns: minmax(360px, 43%) minmax(440px, 57%);
+  gap: 16px;
+  align-items: start;
+}
+@media (max-width: 1080px) { .plan-split { grid-template-columns: 1fr; } }
+.chat-panel {
+  display: flex;
+  flex-direction: column;
+  height: 740px;
+}
+.chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  background: #09101f;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.msg-bubble {
+  max-width: 92%;
+  padding: 10px 13px;
+  border-radius: 12px;
+  font-size: 13px;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.msg-user {
+  align-self: flex-end;
+  background: linear-gradient(135deg, #1d4ed8, #2563eb);
+  color: #fff;
+  border-bottom-right-radius: 3px;
+}
+.msg-bot {
+  align-self: flex-start;
+  background: #16223a;
+  border: 1px solid rgba(56,189,248,.32);
+  color: var(--text);
+  border-bottom-left-radius: 3px;
+}
+.msg-meta {
+  font-size: 11px;
+  color: var(--muted);
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.quick-chip {
+  background: rgba(56,189,248,.10);
+  border: 1px solid rgba(56,189,248,.32);
+  color: #bae6fd;
+  padding: 4px 9px;
+  border-radius: 999px;
+  font-size: 11.5px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.quick-chip:hover { background: rgba(56,189,248,.22); border-color: var(--accent); }
+.plan-out-panel {
+  display: flex;
+  flex-direction: column;
+  height: 740px;
+}
+.plan-out-scroll {
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+.vis-type-A { background: rgba(34,197,94,.16); color: #86efac; border-color: rgba(34,197,94,.45); }
+.vis-type-B { background: rgba(168,85,247,.16); color: #d8b4fe; border-color: rgba(168,85,247,.45); }
+.vis-type-C { background: rgba(56,189,248,.16); color: #7dd3fc; border-color: rgba(56,189,248,.45); }
+.vis-type-D { background: rgba(245,158,11,.18); color: #fcd34d; border-color: rgba(245,158,11,.45); }
+
+/* ====== 2026-11-22 사용성 개선 ====== */
+.notice-stack { display: flex; flex-direction: column; gap: 6px; margin-top: 8px; }
+.notice { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap;
+  border-radius: 9px; padding: 8px 12px; font-size: 13px; font-weight: 600; }
+.notice .muted { font-weight: 500; }
+.notice-conn { background: #7f1d1d; border: 1px solid #ef4444; color: #fff; }
+.notice-warn { background: rgba(245,158,11,.14); border: 1px solid rgba(245,158,11,.55); color: #fde68a; }
+.notice-next { background: rgba(37,99,235,.16); border: 1px solid rgba(56,189,248,.55); color: #e0f2fe; }
+.notice-next strong { color: #fff; }
+.notice button { padding: 4px 11px; font-size: 12px; }
+.topbar.compact .stepper, .topbar.compact .brand-sub, .topbar.compact .progress-head .muted, .topbar.compact .brand-logo { display: none; }
+.topbar.compact { padding-top: 7px; padding-bottom: 6px; }
+.topbar.compact .progress-shell { padding: 6px 12px; margin-top: 6px; }
+.topbar.compact .progress-head { margin-bottom: 4px; }
+.topbar.compact .progress-track { margin-bottom: 0; }
+.topbar.compact .notice-stack { margin-top: 5px; }
+.topbar.compact .notice-warn { display: none; }
+.notice-warn { padding: 5px 12px; font-size: 12.5px; }
+.btn-ghost { background: transparent; }
+.q-good { background: rgba(34,197,94,.16); color: #86efac; border-color: rgba(34,197,94,.4); }
+.q-weak { background: rgba(245,158,11,.18); color: #fcd34d; border-color: rgba(245,158,11,.45); }
+.q-bad { background: rgba(239,68,68,.2); color: #fecaca; border-color: rgba(239,68,68,.55); }
+.pages-bar { height: 8px; background: #1e293b; border-radius: 99px; overflow: hidden; margin-top: 6px; }
+.pages-bar > div { height: 100%; background: linear-gradient(90deg, #2563eb, #22c55e); }
+.ch-editor { width: 100%; min-height: 420px; font-family: ui-monospace, Consolas, monospace; font-size: 12.5px; line-height: 1.6; }
+.time-hint { font-size: 12px; color: #bae6fd; }
+.help-list { padding-left: 20px; line-height: 1.8; font-size: 13.5px; }
+.help-list li { margin-bottom: 4px; }
+tr.row-bad td { background: rgba(239,68,68,.06); }
 </style>
 </head>
 <body>
@@ -355,15 +466,16 @@ table.tbl tr:hover td { background: rgba(56,189,248,.05); }
     <div class="brand">
       <div class="brand-logo">교</div>
       <div>
-        <div class="brand-title">전문 교재 제작 통합 플랫폼 <span class="badge b-run">단일 HTML · 6단계</span></div>
+        <div class="brand-title">전문 교재 제작 플랫폼</div>
         <div class="brand-sub" id="activeProjMeta">프로젝트 불러오는 중...</div>
       </div>
     </div>
     <div class="proj-controls">
       <select id="projectSelect" class="proj-select" onchange="selectProject(this.value)"></select>
-      <button class="btn-primary" onclick="openNewModal()">+ 새 교재 만들기</button>
-      <button class="btn-green" id="btnRunAll" onclick="runPipeline('all')">▶ 이어하기 / 진행</button>
-      <button class="btn-amber" id="btnStop" onclick="stopCurrentPipeline()">⏹ 중단(저장)</button>
+      <button onclick="openNewModal()">+ 새 교재</button>
+      <button class="btn-green" id="btnRunAll" onclick="onMainRunClick()" title="완료되지 않은 단계를 순서대로 이어서 실행합니다">▶ 이어하기</button>
+      <button class="btn-amber" id="btnStop" onclick="stopCurrentPipeline()" disabled title="실행 중일 때만 누를 수 있습니다. 현재 단원·그림까지 저장한 뒤 멈춥니다.">⏹ 중단</button>
+      <button class="btn-sm" onclick="document.getElementById('helpModal').classList.add('open')" title="사용 안내">❓ 도움말</button>
     </div>
   </div>
 
@@ -382,18 +494,164 @@ table.tbl tr:hover td { background: rgba(56,189,248,.05); }
     </div>
     <div class="stepper" id="topStepper"></div>
   </div>
+  <!-- 알림 띠: 서버 연결 끊김 / 다음 할 일 / AI 엔진 경고 -->
+  <div class="notice-stack" id="noticeStack"></div>
 </header>
 
-<!-- ==================== 5개 통합 탭 (URL 변경 없음) ==================== -->
+<!-- ==================== 6개 통합 탭 (URL 변경 없음) ==================== -->
 <nav class="nav-tabs">
-  <button class="nav-tab active" data-tab="workflow" onclick="switchMainTab('workflow')">📋 6단계 교재 제작 워크플로</button>
-  <button class="nav-tab" data-tab="covertoc" onclick="switchMainTab('covertoc')">🎨 표지 · 목차 페이지 제작</button>
-  <button class="nav-tab" data-tab="library" onclick="switchMainTab('library')">📚 자료실 · 학술/웹 수집</button>
-  <button class="nav-tab" data-tab="explorer" onclick="switchMainTab('explorer')">🔎 데이터 탐색 · API · NotebookLM</button>
-  <button class="nav-tab" data-tab="settings" onclick="switchMainTab('settings')">⚙️ AI 엔진 · API 키 · 프로젝트 관리</button>
+  <button class="nav-tab active" data-tab="workflow" onclick="switchMainTab('workflow')" title="1~6단계 교재 제작 진행 상황">📋 제작 진행</button>
+  <button class="nav-tab" data-tab="planchat" onclick="switchMainTab('planchat')" title="AI와 대화하며 교재 계획서(목차·표·그림·검색어)를 설계">💬 계획서 만들기</button>
+  <button class="nav-tab" data-tab="covertoc" onclick="switchMainTab('covertoc')" title="표지·머리말·전체 목차 페이지 만들기">🎨 표지·목차</button>
+  <button class="nav-tab" data-tab="library" onclick="switchMainTab('library')" title="논문 검색, 웹페이지·BibTeX 수집">📚 자료실</button>
+  <button class="nav-tab" data-tab="explorer" onclick="switchMainTab('explorer')" title="기상 DB, 공공데이터, 통계청, NotebookLM 자료 가져오기">🔎 데이터 찾기</button>
+  <button class="nav-tab" data-tab="settings" onclick="switchMainTab('settings')" title="API 키, AI 엔진, 백업·되돌리기, 프로젝트 관리">⚙️ 설정</button>
 </nav>
 
 <main class="container">
+
+  <!-- ======================================================== -->
+  <!-- TAB 0: 대화형 교재 계획서 작성 챗봇 & 실시간 출력 스튜디오     -->
+  <!-- ======================================================== -->
+  <section id="tab-planchat" class="tab-view">
+    <!-- 상단 주제어·핵심 키워드·AI 엔진 설정 바 -->
+    <div class="card" style="background:#131f38;border-color:rgba(56,189,248,.45)">
+      <div class="card-head" style="margin-bottom:10px">
+        <div>
+          <h3 class="card-title">💬 교재 계획서 만들기 <span class="muted" style="font-weight:500">AI와 대화하며 목차를 설계합니다</span></h3>
+          <div class="muted">주제어·핵심 키워드를 입력하고 챗봇과 대화하며 <strong>부 · 장 · 단원 · 절 · 핵심내용 요약 · 표 · A/B/C/D 시각화 구성 · 검색 쿼리</strong>를 실시간 설계해 프로젝트 및 검색에 즉시 반영합니다.</div>
+        </div>
+        <div class="flex" id="pcActionBtns" style="display:none">
+          <button class="btn-green" onclick="applyPlanToProjectAndSearch(false)">✅ 계획서 반영 + 검색 동기화</button>
+          <button class="btn-primary" onclick="runPlanLiveSearch()">🔎 계획서 쿼리로 즉시 검색</button>
+          <button class="btn-amber" onclick="applyPlanToProjectAndSearch(true)">🚀 반영 후 2단계 자동 수집</button>
+          <button onclick="createNewProjectFromChatPlan()">➕ 이 계획서로 새 교재 생성</button>
+        </div>
+        <div class="muted" id="pcActionHint">계획서가 만들어지면 여기에 [프로젝트에 반영]·[새 교재 생성] 버튼이 나타납니다.</div>
+      </div>
+
+      <div class="grid-4">
+        <div>
+          <label class="label">교재 주제어 (국문)</label>
+          <input id="pcTopicKo" placeholder="예: 디지털 감자 재배, 스마트 온실 수경재배" />
+        </div>
+        <div>
+          <label class="label">교재 주제어 (영문)</label>
+          <input id="pcTopicEn" placeholder="예: Digital Potato Cultivation" />
+        </div>
+        <div>
+          <label class="label">핵심 키워드 (국문, 쉼표 구분)</label>
+          <input id="pcKwKo" placeholder="예: 씨감자, 괴경 비대, 드론 NDVI, 역병 예찰, 저장 관리" />
+        </div>
+        <div>
+          <label class="label">핵심 키워드 (영문, 쉼표 구분)</label>
+          <input id="pcKwEn" placeholder="예: seed potato, tuber bulking, UAV NDVI, late blight" />
+        </div>
+      </div>
+
+      <div class="flex mt8" style="justify-content:space-between">
+        <div class="flex">
+          <label class="label" style="margin:0">AI 엔진:</label>
+          <select id="pcEngine" style="width:270px">
+            <option value="antigravity_gemini" selected>Gemini 빠른 모드 (기본·권장)</option>
+            <option value="gemini_pro">Gemini 정밀 모드 (느리지만 꼼꼼함)</option>
+            <option value="openai">OpenAI (ChatGPT)</option>
+            <option value="ollama_gemma">내 컴퓨터 AI (Gemma · 인터넷 없이)</option>
+          </select>
+          <label class="label" style="margin:0">장 수:</label>
+          <input id="pcChapters" type="number" min="3" max="24" value="12" style="width:72px" />
+          <label class="label" style="margin:0">목표 쪽수:</label>
+          <input id="pcPages" type="number" min="60" max="1500" value="400" style="width:84px" />
+        </div>
+        <div class="flex">
+          <label class="flex"><input type="checkbox" id="pcIncTables" checked /> 표(Table) 구성 포함</label>
+          <label class="flex"><input type="checkbox" id="pcIncVisuals" checked /> 시각화(A/B/C/D) 구성 포함</label>
+          <button class="btn-sm" onclick="resetPlanChat()">🗑️ 대화 초기화</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 좌측: 챗봇 대화창 / 우측: 실시간 계획서 출력창 -->
+    <div class="plan-split">
+      <!-- 좌측 챗봇 대화창 -->
+      <div class="card chat-panel" style="margin-bottom:0">
+        <div class="card-head" style="margin-bottom:8px">
+          <h3 class="card-title">🤖 계획서 설계 챗봇 대화창</h3>
+          <span class="badge b-done" id="pcEngineBadge">AI 대기중</span>
+        </div>
+
+        <!-- 빠른 지시 칩 -->
+        <div class="flex mb8" style="gap:5px">
+          <button class="quick-chip" onclick="quickPlanPrompt('입력한 주제어와 핵심 키워드를 바탕으로 부·장·절·핵심내용 요약·각 장별 표 2종·A/B/C/D 시각화 4종 및 국내외 학술 검색 쿼리가 모두 포함된 전체 교재 계획서 초안을 작성해줘.')">✨ 전체 계획서 초안 생성</button>
+          <button class="quick-chip" onclick="quickPlanPrompt('각 장의 표(Table) 구성을 더 구체적인 비교·기준표 2종으로 보강하고, A(현장실사)·B(표본접사)·C(개념도해)·D(정량Python차트) 4유형 시각화 계획을 균형 있게 추가해줘.')">📊 표 · A/B/C/D 시각화 보강</button>
+          <button class="quick-chip" onclick="quickPlanPrompt('국내 농촌진흥청·학회지 및 국제 SCI/OpenAlex 논문 검색에 바로 쓸 수 있도록 국문·영문 검색 쿼리와 단원별 핵심 키워드를 학술적으로 정교화해줘.')">🔎 검색 쿼리 정교화</button>
+          <button class="quick-chip" onclick="quickPlanPrompt('현장 진단·오해 교정·실증 사례 중심 단원을 강화하고 각 절의 구성이 원리→정량기준→현장적용 흐름이 되도록 다듬어줘.')">🧭 현장 적용·사례 강화</button>
+        </div>
+
+        <div id="pcChatMessages" class="chat-messages">
+          <div class="msg-bubble msg-bot">
+            <div class="msg-meta"><strong>계획서 도우미</strong></div>
+            안녕하세요! 상단에 <strong>교재 주제어와 핵심 키워드</strong>를 입력하신 뒤, 아래 입력창에 원하시는 구성 방향을 말씀해 주세요.<br><br>
+            • 부(Part) · 장(Chapter) · 절(Section) 체계 설계<br>
+            • 각 단원별 <strong>핵심내용 요약</strong> · <strong>표(Table) 설계</strong> · <strong>A/B/C/D 시각화 구성</strong><br>
+            • 작성된 키워드·검색 쿼리를 <strong>2단계 수집 · 자료실 · 심층조사 검색</strong>에 원클릭 반영!
+          </div>
+        </div>
+
+        <div class="mt8">
+          <textarea id="pcChatInput" rows="3" placeholder="예: '디지털 감자 재배'를 4부 12장으로 구성하고, 3부에 드론 영상·토양센서 기반 정밀 시비·관개 장을 넣어줘. 각 장에 표 2개와 A/B/C/D 시각화 4종, 검색 쿼리도 만들어줘. (Ctrl+Enter 전송)" onkeydown="if(event.ctrlKey && event.key==='Enter'){ event.preventDefault(); sendPlanChat(); }"></textarea>
+          <div class="flex mt8" style="justify-content:space-between">
+            <span class="muted" id="pcSendHint">Ctrl+Enter로 빠른 전송 · 기존 계획서를 유지하며 반복 수정 가능</span>
+            <button class="btn-primary" id="pcSendBtn" onclick="sendPlanChat()">📨 챗봇에게 계획서 작성/수정 요청</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 우측 실시간 계획서 출력창 -->
+      <div class="card plan-out-panel" style="margin-bottom:0">
+        <div class="card-head" style="margin-bottom:8px">
+          <div class="flex">
+            <h3 class="card-title">📋 실시간 계획서 출력창</h3>
+            <span class="badge b-run" id="pcPlanStatsBadge">0부 0장 · 표 0 · 시각화 0</span>
+          </div>
+          <div class="flex">
+            <button class="btn-sm subtab active" data-pcsub="cards" onclick="switchPlanOutSub('cards')">📑 구조화 카드</button>
+            <button class="btn-sm subtab" data-pcsub="md" onclick="switchPlanOutSub('md')">📝 마크다운 원문</button>
+            <button class="btn-sm subtab" data-pcsub="search" onclick="switchPlanOutSub('search')">🔎 검색 반영·결과</button>
+          </div>
+        </div>
+
+        <!-- 출력 서브뷰 1: 구조화 카드 -->
+        <div id="pcOut-cards" class="plan-out-scroll">
+          <div class="muted" style="padding:20px;text-align:center">왼쪽 챗봇에서 계획서를 생성하면 부·장·절·핵심 요약·표·시각화 구성이 이곳에 실시간 출력됩니다.</div>
+        </div>
+
+        <!-- 출력 서브뷰 2: 마크다운 전문 -->
+        <div id="pcOut-md" class="plan-out-scroll" style="display:none">
+          <div class="flex mb8" style="justify-content:flex-end">
+            <button class="btn-sm" onclick="copyPlanMarkdown()">📋 마크다운 복사</button>
+            <a id="pcMdDownloadLink" class="badge b-done" href="#" target="_blank" style="display:none">⬇ book_plan_studio.md 열기</a>
+          </div>
+          <div id="pcMdRendered" class="md-box" style="max-height:none"></div>
+        </div>
+
+        <!-- 출력 서브뷰 3: 검색 반영 & 즉시 학술/RAG 검색 결과 -->
+        <div id="pcOut-search" class="plan-out-scroll" style="display:none">
+          <div class="card" style="background:var(--surface);padding:12px;margin-bottom:10px">
+            <div class="flex" style="justify-content:space-between;margin-bottom:6px">
+              <strong style="font-size:13px">🔎 계획서에서 추출된 검색 쿼리 (체크한 쿼리로 즉시 검색)</strong>
+              <div class="flex">
+                <button class="btn-primary btn-sm" onclick="runPlanLiveSearch()">🔎 선택 쿼리 통합 검색</button>
+                <button class="btn-sm" onclick="sendPlanQueriesToLibrary()">📚 자료실 검색창으로 보내기</button>
+              </div>
+            </div>
+            <div id="pcSearchQueryChips" class="muted">계획서를 생성하면 국·영문 검색 쿼리가 자동으로 표시됩니다.</div>
+          </div>
+          <div id="pcSearchResultsBox" class="muted" style="padding:12px">[🔎 선택 쿼리 통합 검색]을 누르면 로컬 지식그래프(C:\SMC_GRAPHRAG) + 국내 학회지 + 국제 SCI/OA 문헌을 즉시 검색하여 프로젝트에 적재할 수 있습니다.</div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- ======================================================== -->
   <!-- TAB 1: 6단계 교재 제작 워크플로                              -->
@@ -637,7 +895,7 @@ table.tbl tr:hover td { background: rgba(56,189,248,.05); }
         <div style="border-top:1px solid var(--border);padding-top:12px;margin-top:12px;">
           <div class="grid-2">
             <div>
-              <label class="label">1단계 목차 설계 모델 (OpenAI)</label>
+              <label class="label">1단계 목차 설계 OpenAI 모델 (Gemini 실패 시 2순위)</label>
               <select id="optOpenaiModel">
                 <option value="gpt-4o-mini">gpt-4o-mini (빠름·권장)</option>
                 <option value="gpt-4o">gpt-4o (고정밀)</option>
@@ -665,7 +923,8 @@ table.tbl tr:hover td { background: rgba(56,189,248,.05); }
             </div>
           </div>
           <div class="flex mt12">
-            <label class="flex"><input type="checkbox" id="optUseOpenai" /> 1단계 OpenAI API 사용</label>
+            <label class="flex"><input type="checkbox" id="optUseGemini" /> 1단계 Gemini API 사용 (1순위)</label>
+            <label class="flex"><input type="checkbox" id="optUseOpenai" /> 1단계 OpenAI API 사용 (2순위)</label>
             <label class="flex"><input type="checkbox" id="optUseFal" /> 5단계 fal.ai API 사용</label>
             <label class="flex"><input type="checkbox" id="optUseNanoBanana" /> 5단계 나노바나나(Gemini) 폴백</label>
             <label class="flex"><input type="checkbox" id="optUseClaude" /> 4단계 Claude Code 정밀 감사</label>
@@ -677,6 +936,18 @@ table.tbl tr:hover td { background: rgba(56,189,248,.05); }
       </div>
     </div>
 
+    <!-- F3: 재실행 전 자동 백업 · 되돌리기 -->
+    <div class="card" id="snapshotCard">
+      <div class="card-head">
+        <div>
+          <h3 class="card-title">↩ 백업 · 되돌리기</h3>
+          <div class="muted">완료된 단계를 다시 실행하면 실행 직전 결과가 자동으로 백업됩니다(프로젝트당 최근 3개 보관). 결과가 마음에 들지 않으면 여기서 이전 상태로 되돌리세요. 되돌리기 직전 상태도 다시 백업되므로 안심하고 눌러도 됩니다.</div>
+        </div>
+        <button class="btn-sm" onclick="loadSnapshots()">새로고침</button>
+      </div>
+      <div id="snapshotList" class="muted">백업 목록을 불러오는 중...</div>
+    </div>
+
     <!-- 프로젝트 관리 (삭제 / 초기화) -->
     <div class="card">
       <div class="card-head">
@@ -684,10 +955,13 @@ table.tbl tr:hover td { background: rgba(56,189,248,.05); }
           <h3 class="card-title">🗂️ 프로젝트 관리 (활성 교재 목록)</h3>
           <div class="muted">삭제 시 원본 파일은 안전을 위해 E:\SMC_Report_Platform_Data\_archived_projects 로 아카이브 이동됩니다.</div>
         </div>
-        <button class="btn-red btn-sm" onclick="resetExceptCurrent()">현재 선택 프로젝트 외 모두 초기화</button>
+        <div class="flex">
+          <label class="flex" title="목록에서 숨긴 교재도 이 표에 함께 보여 줍니다"><input type="checkbox" id="showHiddenProj" onchange="renderProjManageTable()" /> 숨긴 교재도 보기</label>
+          <button class="btn-red btn-sm" onclick="resetExceptCurrent()">현재 선택 프로젝트 외 모두 초기화</button>
+        </div>
       </div>
       <table class="tbl">
-        <thead><tr><th>프로젝트 ID</th><th>교재 제목</th><th>분량/단원</th><th>진행 상태</th><th>작업</th></tr></thead>
+        <thead><tr><th>교재 제목</th><th>분량/단원</th><th>진행 상태</th><th>마지막 작업</th><th>작업</th></tr></thead>
         <tbody id="projManageBody"></tbody>
       </table>
     </div>
@@ -772,7 +1046,7 @@ table.tbl tr:hover td { background: rgba(56,189,248,.05); }
 <div class="modal-bg" id="newProjModal">
   <div class="modal">
     <div class="card-head">
-      <h3 class="card-title">📘 새 전문 교재 프로젝트 생성 (1단계 OpenAI 목차 제안 자동 시작)</h3>
+      <h3 class="card-title">📘 새 전문 교재 프로젝트 생성 (1단계 Gemini 목차 제안 자동 시작)</h3>
       <button class="btn-sm" onclick="closeNewModal()">닫기</button>
     </div>
     <div class="grid-2">
@@ -786,7 +1060,8 @@ table.tbl tr:hover td { background: rgba(56,189,248,.05); }
     <label class="label mt8">핵심 키워드 (영문, 쉼표 구분)</label>
     <input id="npKwEn" placeholder="예: winter wheat, precision agriculture, UAV NDVI, nitrogen management" />
     <div class="flex mt12">
-      <label class="flex"><input type="checkbox" id="npUseOpenai" checked /> 1단계 OpenAI API 목차·요약·키워드 설계</label>
+      <label class="flex"><input type="checkbox" id="npUseGemini" checked /> 1단계 Gemini API로 목차·요약·키워드 설계 (1순위)</label>
+      <label class="flex"><input type="checkbox" id="npUseOpenai" checked /> Gemini 실패 시 OpenAI API 사용 (2순위)</label>
       <label class="flex"><input type="checkbox" id="npUseFal" /> 5단계 fal.ai API 시각화 사용</label>
       <label class="flex"><input type="checkbox" id="npAutoStart" checked /> 생성 즉시 1단계 초안 작성</label>
     </div>
@@ -798,6 +1073,25 @@ table.tbl tr:hover td { background: rgba(56,189,248,.05); }
 </div>
 
 <div class="toast" id="toastBox"></div>
+
+<!-- 사용 안내 (처음 쓰는 분을 위한 단계 설명) -->
+<div class="modal-bg" id="helpModal">
+  <div class="modal">
+    <div class="card-head">
+      <h3 class="card-title">❓ 이렇게 사용하세요</h3>
+      <button class="btn-sm" onclick="document.getElementById('helpModal').classList.remove('open')">닫기</button>
+    </div>
+    <ol class="help-list">
+      <li><strong>새 교재 만들기</strong>: 주제와 키워드를 넣으면 1단계(목차 초안)가 자동으로 시작됩니다.</li>
+      <li><strong>1단계 목차 확정</strong>: 목차를 읽고 고친 뒤 초록색 [목차 확정] 버튼을 누르면 2~6단계가 이어서 진행됩니다.</li>
+      <li><strong>기다리기</strong>: 진행 중에는 상단 진도 바가 움직입니다. 끝나면 소리와 알림으로 알려 드립니다.</li>
+      <li><strong>4단계 원고 확인</strong>: 품질 점검표에서 '틀 원고'·'약함' 단원을 확인하고, 원고를 열어 직접 고칠 수 있습니다.</li>
+      <li><strong>5단계 그림 확인</strong>: 마음에 들지 않는 그림은 [이 그림만 다시 만들기]로 한 장씩 바꿀 수 있습니다.</li>
+      <li><strong>6단계 출판물 받기</strong>: [전체 산출물 zip 받기] 또는 [출판 폴더 열기]로 PDF·Word·블로그 파일을 받습니다.</li>
+    </ol>
+    <div class="muted mt8">• 완료된 단계를 다시 실행하면 직전 결과가 자동 백업되며, ⚙️ 설정 탭의 [백업 · 되돌리기]에서 복원할 수 있습니다.<br>• 화면 위에 빨간 띠가 보이면 서버가 꺼진 것입니다. 폴더의 <code>교재플랫폼_시작.bat</code>을 다시 실행하세요.</div>
+  </div>
+</div>
 
 <script>
 // ============================================================
@@ -820,8 +1114,8 @@ let POLL_TIMER = null;
 const STATUS_META = {
   DONE: { label: "완료", cls: "b-done", pill: "done", icon: "✅" },
   RUNNING: { label: "진행중", cls: "b-run", pill: "running", icon: "⚙️" },
-  WAITING_REVIEW: { label: "검토대기", cls: "b-rev", pill: "review", icon: "📝" },
-  INTERRUPTED: { label: "중단됨(저장)", cls: "b-int", pill: "interrupted", icon: "⏸️" },
+  WAITING_REVIEW: { label: "확인 필요", cls: "b-rev", pill: "review", icon: "📝" },
+  INTERRUPTED: { label: "멈춤(저장됨)", cls: "b-int", pill: "interrupted", icon: "⏸️" },
   PAUSED: { label: "대기(이어하기)", cls: "b-wait", pill: "", icon: "⏯️" },
   ERROR: { label: "오류", cls: "b-err", pill: "error", icon: "⚠️" },
   PENDING: { label: "대기", cls: "b-wait", pill: "", icon: "⏳" },
@@ -829,9 +1123,9 @@ const STATUS_META = {
 };
 
 const API_KEY_LABELS = [
-  { key: "OPENAI_API_KEY", title: "OpenAI API 키 (1단계 목차·요약·키워드 설계)", ph: "sk-..." },
+  { key: "OPENAI_API_KEY", title: "OpenAI API 키 (1단계 목차 설계 2순위)", ph: "sk-..." },
   { key: "FAL_KEY", title: "fal.ai API 키 (5단계 실사·인포그래픽 시각화)", ph: "fal key..." },
-  { key: "GEMINI_API_KEY", title: "Google Gemini API 키 (5단계 나노바나나 이미지)", ph: "AIza..." },
+  { key: "GEMINI_API_KEY", title: "Google Gemini API 키 (1단계 목차 설계 1순위 · 계획서 만들기 · 5단계 나노바나나 이미지)", ph: "AIza..." },
   { key: "KMA_HUB_KEY", title: "기상청 API 허브 키 (ASOS 종관기상)", ph: "authKey..." },
   { key: "OPENWEATHER_API_KEY", title: "OpenWeatherMap API 키 (실시간 기상·예보)", ph: "appid..." },
   { key: "DATA_GO_KR_API_KEY", title: "공공데이터포털 서비스키 (data.go.kr)", ph: "Decoding 키 권장" },
@@ -851,10 +1145,18 @@ function esc(s) {
 }
 
 async function api(url, opts = {}) {
-  const res = await fetch(url, {
-    headers: { "Content-Type": "application/json", ...(opts.headers || {}) },
-    ...opts,
-  });
+  let res;
+  try {
+    res = await fetch(url, {
+      headers: { "Content-Type": "application/json", ...(opts.headers || {}) },
+      ...opts,
+    });
+  } catch (netErr) {
+    // 서버가 꺼졌거나 응답이 없을 때 (H4)
+    if (typeof setServerDown === "function") setServerDown(true);
+    throw new Error("서버에 연결할 수 없습니다. 교재플랫폼_시작.bat을 실행했는지 확인하세요.");
+  }
+  if (typeof setServerDown === "function" && SERVER_DOWN) setServerDown(false);
   const text = await res.text();
   let data = {};
   try { data = text ? JSON.parse(text) : {}; } catch { data = { raw: text }; }
@@ -901,6 +1203,7 @@ function renderMd(md) {
 function switchMainTab(tabId) {
   document.querySelectorAll(".nav-tab").forEach(b => b.classList.toggle("active", b.dataset.tab === tabId));
   document.querySelectorAll(".tab-view").forEach(v => v.classList.toggle("active", v.id === "tab-" + tabId));
+  if (tabId === "planchat") loadPlanChatTab();
   if (tabId === "covertoc") loadCoverTocTab();
   if (tabId === "explorer") loadExplorerMeta();
   if (tabId === "settings") loadSettingsTab();
@@ -916,10 +1219,45 @@ function switchSubTab(subId) {
 // ============================================================
 // 초기화 & 프로젝트 로드
 // ============================================================
+let SERVER_DOWN = false;
+let LAST_STAGE_SIG = "";
+let LAST_OVERALL = "";
+let STAGE1_DIRTY = false;
+let OPEN_CHAPTER = null;
+let CHAPTER_EDITING = false;
+let POLL_COUNT = 0;
+let DISMISSED_WARN = {};
+try { DISMISSED_WARN = JSON.parse(sessionStorage.getItem("dismissedWarn") || "{}"); } catch (e) { DISMISSED_WARN = {}; }
+
 async function init() {
-  await loadProjectsList();
+  try {
+    await loadProjectsList();
+  } catch (e) {
+    console.error(e);
+    setServerDown(true);
+  }
   if (location.hash === "#explorer") switchMainTab("explorer");
   startPolling();
+  // 스크롤하면 상단 영역을 접는다(D1). 접히면 화면 높이가 바뀌어 스크롤 위치가 다시 기준선을 넘나들며
+  // 화면이 떨리는 문제가 있어, 접기/펴기 기준을 크게 벌리고(히스테리시스) 짧은 화면에서는 접지 않는다.
+  let compactTick = false;
+  window.addEventListener("scroll", () => {
+    if (compactTick) return;
+    compactTick = true;
+    requestAnimationFrame(() => {
+      compactTick = false;
+      const bar = document.querySelector(".topbar");
+      const y = window.scrollY;
+      const isCompact = bar.classList.contains("compact");
+      const room = document.documentElement.scrollHeight - window.innerHeight;
+      if (!isCompact && y > 260 && room > 600) bar.classList.add("compact");
+      else if (isCompact && y < 8) bar.classList.remove("compact");
+    });
+  }, { passive: true });
+  // 1단계 목차 편집기에서 입력하면 '편집 중'으로 표시 → 자동 새로고침이 입력 내용을 지우지 않음 (H1)
+  document.addEventListener("input", ev => {
+    if (ev.target.closest && ev.target.closest("#stage1OutlineEditor")) STAGE1_DIRTY = true;
+  });
 }
 
 async function loadProjectsList(preferPid = "") {
@@ -927,15 +1265,16 @@ async function loadProjectsList(preferPid = "") {
   PROJECTS = data.projects || [];
   const sel = document.getElementById("projectSelect");
   if (!PROJECTS.length) {
-    sel.innerHTML = '<option value="">(프로젝트 없음 — 새 교재를 생성하세요)</option>';
+    sel.innerHTML = '<option value="">(프로젝트 없음 — 새 교재를 만드세요)</option>';
     CURRENT_PID = "";
     CURRENT_STATE = null;
     renderTopProgress();
     renderStageDetail();
+    renderNotices();
     return;
   }
   sel.innerHTML = PROJECTS.map(p =>
-    `<option value="${esc(p.project_id)}">《${esc(p.topic_ko)}》 (${p.done_stages}/${p.total_stages}단계 · ${p.target_pages}p)</option>`
+    `<option value="${esc(p.project_id)}">《${esc(p.topic_ko)}》 ${p.done_stages}/${p.total_stages}단계 · ${p.target_pages}쪽${p.overall_status === "RUNNING" ? " · 진행 중" : ""}</option>`
   ).join("");
   const nextPid = preferPid && PROJECTS.some(p => p.project_id === preferPid)
     ? preferPid
@@ -946,32 +1285,82 @@ async function loadProjectsList(preferPid = "") {
 
 async function selectProject(pid, autoFocusStage = false) {
   if (!pid) return;
+  if (pid !== CURRENT_PID) { STAGE1_DIRTY = false; OPEN_CHAPTER = null; CHAPTER_EDITING = false; }
   CURRENT_PID = pid;
   STAGE_REPORTS = {};
   VISUALS_CACHE = null;
   CHAPTERS_CACHE = null;
   KG_PREVIEW_CACHE = null;
+  LAST_STAGE_SIG = "";
   await refreshCurrentProject(autoFocusStage);
+  if (document.getElementById("tab-planchat")?.classList.contains("active")) {
+    await loadPlanChatTab();
+  }
+  if (document.getElementById("tab-settings")?.classList.contains("active")) {
+    loadSnapshots();
+  }
 }
 
-async function refreshCurrentProject(autoFocusStage = false) {
+function stageSignature(st) {
+  return (st?.stages || []).map(s => s.stage_id + ":" + s.status).join("|") + "#" + (st?.overall_status || "");
+}
+
+// 사용자가 화면에서 무언가를 입력·편집 중인지 (그렇다면 자동 새로고침으로 화면을 다시 그리지 않음)
+function isUserEditingStage() {
+  if (CHAPTER_EDITING || STAGE1_DIRTY) return true;
+  const a = document.activeElement;
+  return !!(a && a.closest && a.closest("#stageDetailHost") && ["INPUT", "TEXTAREA", "SELECT"].includes(a.tagName));
+}
+
+async function refreshCurrentProject(autoFocusStage = false, fromPoll = false) {
   if (!CURRENT_PID) return;
   try {
-    const res = await api(`/api/projects/${encodeURIComponent(CURRENT_PID)}?limit_events=100`);
+    const res = await api(`/api/projects/${encodeURIComponent(CURRENT_PID)}?limit_events=150`);
+    const prevOverall = CURRENT_STATE?.overall_status;
     CURRENT_STATE = res.project;
     CURRENT_EVENTS = res.events || [];
     if (autoFocusStage && CURRENT_STATE?.stages) {
-      const active = CURRENT_STATE.stages.find(s => ["RUNNING", "WAITING_REVIEW", "INTERRUPTED"].includes(s.status))
+      const active = CURRENT_STATE.stages.find(s => ["RUNNING", "WAITING_REVIEW", "INTERRUPTED", "ERROR"].includes(s.status))
         || CURRENT_STATE.stages.find(s => s.status !== "DONE")
         || CURRENT_STATE.stages[CURRENT_STATE.stages.length - 1];
       if (active) SELECTED_STAGE = active.stage_id;
     }
     renderTopProgress();
     renderLiveLogs();
-    await loadStageSideData(SELECTED_STAGE);
-    renderStageDetail();
-    renderLibraryTab();
-    renderProjManageTable();
+    renderNotices();
+    if (prevOverall === "RUNNING" && CURRENT_STATE.overall_status !== "RUNNING") notifyRunFinished(CURRENT_STATE);
+
+    const sig = stageSignature(CURRENT_STATE);
+    const sigChanged = sig !== LAST_STAGE_SIG;
+    LAST_STAGE_SIG = sig;
+
+    if (!fromPoll) {
+      await loadStageSideData(SELECTED_STAGE);
+      renderStageDetail();
+      renderLibraryTab();
+      renderProjManageTable();
+      return;
+    }
+    // ── 자동 새로고침(폴링) 경로 (H1) ──
+    // 단계 상태가 바뀌었거나, 보고 있는 단계가 실행 중이면 가끔(약 10초마다) 목록을 다시 받아 옴.
+    // 단, 사용자가 입력·편집 중이면 화면은 다시 그리지 않고 머리글(진행률 문구)만 갱신한다.
+    const selStage = (CURRENT_STATE.stages || []).find(s => s.stage_id === SELECTED_STAGE);
+    const needSide = sigChanged || (selStage && selStage.status === "RUNNING" && POLL_COUNT % 4 === 0);
+    if (isUserEditingStage()) {
+      updateStageHeaderLive();
+      return;
+    }
+    if (needSide) {
+      await loadStageSideData(SELECTED_STAGE);
+      if (isUserEditingStage()) { updateStageHeaderLive(); return; }
+      const y = window.scrollY;
+      renderStageDetail();
+      window.scrollTo(0, y);
+      if (OPEN_CHAPTER && SELECTED_STAGE === "stage4_manuscript_draft") openChapterPreview(OPEN_CHAPTER, true);
+    } else {
+      updateStageHeaderLive();
+    }
+    if (sigChanged) { renderLibraryTab(); renderProjManageTable(); }
   } catch (e) {
     console.error(e);
   }
@@ -980,11 +1369,159 @@ async function refreshCurrentProject(autoFocusStage = false) {
 function startPolling() {
   clearInterval(POLL_TIMER);
   POLL_TIMER = setInterval(async () => {
-    if (!CURRENT_PID || !CURRENT_STATE) return;
+    POLL_COUNT++;
+    // 서버 연결 확인 (약 15초마다, 끊긴 상태면 매번)
+    if (SERVER_DOWN || POLL_COUNT % 6 === 0) {
+      try {
+        const r = await fetch("/api/health", { cache: "no-store" });
+        if (r.ok && SERVER_DOWN) {
+          setServerDown(false);
+          toast("✅ 서버에 다시 연결되었습니다.");
+          if (!CURRENT_STATE) await loadProjectsList(); else await refreshCurrentProject(false);
+        } else if (!r.ok) {
+          setServerDown(true);
+        }
+      } catch (e) { setServerDown(true); }
+    }
+    if (SERVER_DOWN || !CURRENT_PID || !CURRENT_STATE) return;
     if (CURRENT_STATE.overall_status === "RUNNING") {
-      await refreshCurrentProject(false);
+      await refreshCurrentProject(false, true);
     }
   }, 2600);
+}
+
+function setServerDown(down) {
+  if (SERVER_DOWN === down) return;
+  SERVER_DOWN = down;
+  renderNotices();
+}
+
+// ============================================================
+// 알림 띠: 서버 끊김(H4) · 다음 할 일(D4) · AI 엔진 경고(H3)
+// ============================================================
+function nextActionInfo(st) {
+  if (!st) return { text: "아직 교재가 없습니다. <strong>[+ 새 교재]</strong>를 눌러 주제를 입력하세요.", btn: "＋ 새 교재 만들기", act: "openNewModal()" };
+  const stages = st.stages || [];
+  const running = stages.find(s => s.status === "RUNNING");
+  if (st.overall_status === "RUNNING" || running) {
+    const s = running || stages.find(x => x.stage_id === st.active_stage_id) || {};
+    return { text: `<strong>${esc(s.order || "")}단계 진행 중</strong> — 기다리시면 됩니다. 끝나면 소리와 알림으로 알려 드립니다. ${etaText(s)}`, btn: "진행 화면 보기", act: `selectStage('${s.stage_id || SELECTED_STAGE}');switchMainTab('workflow')` };
+  }
+  const s1 = stages.find(s => s.stage_id === "stage1_topic_outline");
+  if (s1 && (s1.status === "WAITING_REVIEW" || (!st.outline_approved && s1.status === "DONE"))) {
+    return { text: "<strong>지금 할 일:</strong> 1단계 목차를 읽고 필요하면 고친 뒤 <strong>[목차 확정]</strong>을 누르세요. 그러면 2~6단계가 이어서 진행됩니다.", btn: "1단계 목차 확인하기", act: "selectStage('stage1_topic_outline');switchMainTab('workflow')" };
+  }
+  const err = stages.find(s => s.status === "ERROR");
+  if (err) return { text: `<strong>${err.order}단계에서 오류가 났습니다.</strong> 오류 내용을 확인한 뒤 [이어하기]를 누르면 멈춘 곳부터 다시 시작합니다.`, btn: "오류 확인", act: `selectStage('${err.stage_id}');switchMainTab('workflow')` };
+  if (st.overall_status === "INTERRUPTED" || stages.some(s => s.status === "INTERRUPTED")) {
+    return { text: "<strong>작업이 중간에 멈춰 있습니다.</strong> [이어하기]를 누르면 저장된 지점부터 계속합니다.", btn: "▶ 이어하기", act: "runPipeline('all')" };
+  }
+  const fb = (st.checkpoint || {}).fallback_chapters || [];
+  if (stages.every(s => s.status === "DONE")) {
+    if (fb.length) return { text: `<strong>모든 단계가 끝났지만</strong> 틀 원고 ${fb.length}개 단원이 남아 있습니다. 품질 점검표에서 확인하세요.`, btn: "원고 품질 점검표", act: "selectStage('stage4_manuscript_draft');switchMainTab('workflow')" };
+    return { text: "<strong>🎉 교재가 완성되었습니다.</strong> 6단계에서 PDF·Word·블로그 파일을 내려받으세요.", btn: "출판물 받기", act: "selectStage('stage6_publish_report');switchMainTab('workflow')" };
+  }
+  const nxt = stages.find(s => s.status !== "DONE");
+  if (nxt) return { text: `<strong>다음 단계:</strong> ${esc(nxt.order)}단계 「${esc(nxt.short_title || nxt.title)}」. [이어하기]를 누르면 시작합니다.`, btn: "▶ 이어하기", act: "runPipeline('all')" };
+  return null;
+}
+
+// 로그 속 영어·기술 오류를 쉬운 한국어로 바꿔 보여 줌
+function explainEngineWarning(msg) {
+  const m = String(msg || "");
+  if (/Gemini/i.test(m) && /실패|오류|429|quota|limit/i.test(m)) return { key: "gemini", text: "Gemini API로 목차를 만들지 못해 다음 순서의 AI(OpenAI 또는 내 컴퓨터 Gemma)로 대신 만들었습니다. 설정 탭에서 Gemini API 키와 사용량 한도를 확인하세요." };
+  if (/429|Too Many Requests/i.test(m)) return { key: "openai429", text: "OpenAI 사용량 한도를 넘었습니다(429 오류). 이번에는 내 컴퓨터 AI(Gemma)로 대신 만들었습니다. OpenAI 결제·한도를 확인하거나 잠시 후 다시 시도하세요." };
+  if (/JSON extraction failed|structured JSON/i.test(m)) return { key: "gemmajson", text: "내 컴퓨터 AI(Gemma)가 목차를 정해진 형식으로 만들지 못해 여러 번 재시도했습니다. 목차가 이상하면 1단계에서 [AI 재요청]을 눌러 보세요." };
+  if (/폴백 템플릿/.test(m)) return { key: "draftfallback", text: "AI 집필이 실패한 단원에 '틀 원고'(같은 문장이 반복되는 임시 원고)가 들어갔습니다. 4단계 품질 점검표에서 확인 후 다시 집필해야 합니다." };
+  if (/WinError 5|액세스가 거부/.test(m)) return { key: "winerr5", text: "진행 기록 파일을 저장하지 못했습니다(다른 프로그램이 파일을 사용 중). 이제 자동으로 다시 시도하지만, 반복되면 백신·OneDrive 동기화 예외에 E:\\SMC_Report_Platform_Data 폴더를 추가하세요." };
+  if (/Ollama|ollama/.test(m) && /실패|오류|refused|timed? ?out/i.test(m)) return { key: "ollama", text: "내 컴퓨터 AI(Ollama)가 응답하지 않았습니다. Ollama 프로그램이 켜져 있는지 확인하세요." };
+  return null;
+}
+
+function renderNotices() {
+  const host = document.getElementById("noticeStack");
+  if (!host) return;
+  const out = [];
+  if (SERVER_DOWN) {
+    out.push(`<div class="notice notice-conn"><span>🔌 서버와 연결이 끊겼습니다. 폴더의 <code>교재플랫폼_시작.bat</code>을 다시 실행하세요. 연결되면 자동으로 다시 불러옵니다.</span><button class="btn-sm" onclick="location.reload()">새로고침</button></div>`);
+  }
+  const na = SERVER_DOWN ? null : nextActionInfo(CURRENT_STATE);
+  if (na) out.push(`<div class="notice notice-next"><span>👉 ${na.text}</span>${na.btn ? `<button class="btn-primary btn-sm" onclick="${na.act}">${na.btn}</button>` : ""}</div>`);
+  if (CURRENT_STATE && !SERVER_DOWN) {
+    const seen = new Set();
+    const recent = (CURRENT_EVENTS || []).filter(ev => ev.level === "WARN" || ev.level === "ERROR").slice(-40);
+    for (const ev of recent.reverse()) {
+      const w = explainEngineWarning(ev.message);
+      if (!w || seen.has(w.key)) continue;
+      const dkey = CURRENT_PID + ":" + w.key;
+      if (DISMISSED_WARN[dkey]) continue;
+      seen.add(w.key);
+      out.push(`<div class="notice notice-warn"><span>⚠ ${esc(w.text)} <span class="muted">(${esc(ev.local_time || "")} 기록)</span></span><button class="btn-sm" onclick="dismissWarn('${dkey}')">확인했어요</button></div>`);
+      if (seen.size >= 2) break;
+    }
+  }
+  host.innerHTML = out.join("");
+}
+
+function dismissWarn(key) {
+  DISMISSED_WARN[key] = 1;
+  try { sessionStorage.setItem("dismissedWarn", JSON.stringify(DISMISSED_WARN)); } catch (e) {}
+  renderNotices();
+}
+
+// ============================================================
+// F5: 소요 시간 · 예상 남은 시간 · 완료 알림
+// ============================================================
+function fmtDuration(sec) {
+  sec = Math.max(0, Math.round(sec));
+  if (sec < 60) return `${sec}초`;
+  const m = Math.round(sec / 60);
+  if (m < 60) return `${m}분`;
+  return `${Math.floor(m / 60)}시간 ${m % 60}분`;
+}
+function stageDurationSec(s) {
+  if (!s || !s.started_at || !s.finished_at) return 0;
+  const d = (new Date(s.finished_at) - new Date(s.started_at)) / 1000;
+  return d > 0 ? d : 0;
+}
+function etaText(s) {
+  if (!s) return "";
+  if (s.status === "RUNNING" && s.started_at) {
+    const el = (Date.now() - new Date(s.started_at)) / 1000;
+    const p = Number(s.progress) || 0;
+    if (p >= 10 && p < 100 && el > 20) return `<span class="time-hint">⏱ ${fmtDuration(el)} 경과 · 남은 시간 약 ${fmtDuration(el / p * (100 - p))}</span>`;
+    return `<span class="time-hint">⏱ ${fmtDuration(el)} 경과</span>`;
+  }
+  const d = stageDurationSec(s);
+  return d ? `<span class="time-hint">⏱ 지난 실행 ${fmtDuration(d)} 걸림</span>` : "";
+}
+
+let AUDIO_CTX = null;
+function beep() {
+  try {
+    AUDIO_CTX = AUDIO_CTX || new (window.AudioContext || window.webkitAudioContext)();
+    [0, 0.22].forEach((t, i) => {
+      const o = AUDIO_CTX.createOscillator(), g = AUDIO_CTX.createGain();
+      o.frequency.value = i ? 1046 : 784; g.gain.value = 0.08;
+      o.connect(g); g.connect(AUDIO_CTX.destination);
+      o.start(AUDIO_CTX.currentTime + t); o.stop(AUDIO_CTX.currentTime + t + 0.18);
+    });
+  } catch (e) {}
+}
+function askNotifyPermission() {
+  try { if ("Notification" in window && Notification.permission === "default") Notification.requestPermission(); } catch (e) {}
+}
+function notifyRunFinished(st) {
+  const sm = STATUS_META[st.overall_status] || STATUS_META.IDLE;
+  const msg = st.overall_status === "ERROR" ? "오류로 멈췄습니다. 화면에서 오류 내용을 확인하세요."
+    : st.overall_status === "WAITING_REVIEW" ? "1단계 목차 초안이 준비되었습니다. 확인 후 확정해 주세요."
+    : st.overall_status === "INTERRUPTED" ? "요청하신 대로 중단했습니다. [이어하기]로 계속할 수 있습니다."
+    : "작업이 끝났습니다.";
+  toast(`${sm.icon} 《${st.topic_ko}》 ${msg}`, 6000);
+  beep();
+  try {
+    if ("Notification" in window && Notification.permission === "granted") new Notification(`교재 제작: ${st.topic_ko}`, { body: msg });
+  } catch (e) {}
 }
 
 // ============================================================
@@ -1005,42 +1542,53 @@ function renderTopProgress() {
   const bannerEl = document.getElementById("currentActionBanner");
   const ckEl = document.getElementById("checkpointHint");
   const stepper = document.getElementById("topStepper");
+  const btnRun = document.getElementById("btnRunAll");
+  const btnStop = document.getElementById("btnStop");
 
   if (!st) {
-    metaEl.textContent = "활성 프로젝트가 없습니다. [+ 새 교재 만들기]로 시작하세요.";
+    metaEl.textContent = "활성 교재가 없습니다. [+ 새 교재]로 시작하세요.";
     sumEl.textContent = "전체 진행률 0%";
     fillEl.style.width = "0%";
     stepper.innerHTML = "";
+    btnRun.disabled = true;
+    btnStop.disabled = true;
     return;
   }
   const pct = calcOverallPct(st);
   const doneCnt = (st.stages || []).filter(s => s.status === "DONE").length;
   const sm = STATUS_META[st.overall_status] || STATUS_META.IDLE;
-  metaEl.textContent = `《${st.topic_ko}》 · 목표 ${st.target_pages}p (${st.chapter_count}장) · 프로젝트 ID: ${st.project_id}`;
-  sumEl.textContent = `전체 진행률 ${pct}% (${doneCnt}/${st.stages.length}단계 완료)`;
+  metaEl.textContent = `《${st.topic_ko}》 · 목표 ${st.target_pages}쪽 · ${st.chapter_count}개 장`;
+  metaEl.title = `프로젝트 ID: ${st.project_id}`;
+  sumEl.textContent = `전체 ${pct}% (${doneCnt}/${st.stages.length}단계 완료)`;
   badgeEl.className = "badge " + sm.cls;
   badgeEl.textContent = `${sm.icon} ${sm.label}`;
   fillEl.style.width = pct + "%";
 
   const ck = st.checkpoint || {};
   const ckParts = [];
-  if ((ck.completed_chapters || []).length) ckParts.push(`집필 체크포인트 ${(ck.completed_chapters||[]).length}장`);
-  if ((ck.completed_visuals || []).length) ckParts.push(`시각화 체크포인트 ${(ck.completed_visuals||[]).length}종`);
-  ckEl.textContent = ckParts.length ? `💾 자동저장: ${ckParts.join(" · ")}` : "";
+  if ((ck.completed_chapters || []).length) ckParts.push(`원고 ${(ck.completed_chapters||[]).length}개 장`);
+  if ((ck.completed_visuals || []).length) ckParts.push(`그림 ${(ck.completed_visuals||[]).length}장`);
+  ckEl.textContent = ckParts.length ? `💾 자동 저장됨: ${ckParts.join(" · ")}` : "";
 
   const activeSt = (st.stages || []).find(s => s.stage_id === (st.active_stage_id || SELECTED_STAGE));
   bannerEl.textContent = activeSt ? `[${activeSt.order}단계] ${activeSt.current_action || activeSt.title}` : "";
 
-  const btnRun = document.getElementById("btnRunAll");
-  btnRun.disabled = st.overall_status === "RUNNING";
-  btnRun.textContent = st.overall_status === "INTERRUPTED" ? "▶ 중단 지점 이어하기" :
-    (st.overall_status === "WAITING_REVIEW" ? "📝 1단계 검토 대기중" : "▶ 이어하기 / 진행");
+  // H5: 실행 중일 때만 [중단] 활성, 상황에 맞는 [이어하기] 문구
+  const isRunning = st.overall_status === "RUNNING";
+  const allDone = (st.stages || []).every(s => s.status === "DONE");
+  btnStop.disabled = !isRunning;
+  btnRun.disabled = isRunning || allDone;
+  btnRun.textContent = isRunning ? "⚙️ 진행 중..." :
+    allDone ? "✅ 전체 완료" :
+    st.overall_status === "INTERRUPTED" ? "▶ 멈춘 곳부터 이어하기" :
+    st.overall_status === "WAITING_REVIEW" ? "📝 1단계 목차 확인" : "▶ 이어하기";
+  btnRun.title = allDone ? "모든 단계가 끝났습니다. 다시 만들려면 각 단계 화면의 [다시 실행]을 누르세요." : "완료되지 않은 단계를 순서대로 이어서 실행합니다";
 
   stepper.innerHTML = (st.stages || []).map(s => {
     const m = STATUS_META[s.status] || STATUS_META.PENDING;
     const isSel = s.stage_id === SELECTED_STAGE;
     return `
-      <div class="step-pill ${m.pill} ${isSel ? "active" : ""}" onclick="selectStage('${s.stage_id}')">
+      <div class="step-pill ${m.pill} ${isSel ? "active" : ""}" onclick="selectStage('${s.stage_id}')" title="${esc(s.title)}">
         <div class="step-top">
           <span>${s.order}단계</span>
           <span class="badge ${m.cls}" style="padding:1px 6px;font-size:10px">${m.icon} ${m.label}</span>
@@ -1053,9 +1601,26 @@ function renderTopProgress() {
   }).join("");
 }
 
+function onMainRunClick() {
+  const st = CURRENT_STATE;
+  if (st && st.overall_status === "WAITING_REVIEW") {
+    selectStage("stage1_topic_outline");
+    switchMainTab("workflow");
+    toast("📝 목차를 확인하고 아래 초록색 [목차 확정] 버튼을 눌러 주세요.", 4500);
+    return;
+  }
+  runPipeline("all");
+}
+
 async function selectStage(stageId) {
+  if (stageId !== SELECTED_STAGE) { OPEN_CHAPTER = null; CHAPTER_EDITING = false; }
+  if (stageId !== "stage1_topic_outline" && STAGE1_DIRTY) {
+    if (!confirm("1단계 목차에서 고친 내용이 아직 저장되지 않았습니다.\n저장하지 않고 다른 단계로 이동할까요?")) return;
+    STAGE1_DIRTY = false;
+  }
   SELECTED_STAGE = stageId;
   renderTopProgress();
+  renderNotices();
   await loadStageSideData(stageId);
   renderStageDetail();
 }
@@ -1085,15 +1650,30 @@ async function loadStageSideData(stageId) {
 // ============================================================
 // 단계별 상세 뷰 (1~6단계)
 // ============================================================
+function stageHeaderStatusHtml(s) {
+  const m = STATUS_META[s.status] || STATUS_META.PENDING;
+  return `<span class="badge ${m.cls}">${m.icon} ${s.order}단계 · ${m.label} (${s.status==='DONE'?100:(s.progress||0)}%)</span> ${etaText(s)}`;
+}
+
+// 폴링 중에는 단계 머리글(상태·진행률·현재 작업 문구)만 바꿔 줌 → 입력 중인 내용 보존 (H1)
+function updateStageHeaderLive() {
+  const s = (CURRENT_STATE?.stages || []).find(x => x.stage_id === SELECTED_STAGE);
+  if (!s) return;
+  const a = document.getElementById("stageLiveStatus");
+  const b = document.getElementById("stageLiveAction");
+  if (a) a.innerHTML = stageHeaderStatusHtml(s);
+  if (b) b.textContent = s.current_action || s.description || "";
+}
+
 function renderStageDetail() {
   const host = document.getElementById("stageDetailHost");
   if (!CURRENT_STATE) {
-    host.innerHTML = `<div class="card"><h3>프로젝트를 선택하거나 [+ 새 교재 만들기]를 눌러 시작하세요.</h3></div>`;
+    host.innerHTML = `<div class="card"><h3>교재를 선택하거나 [+ 새 교재]를 눌러 시작하세요.</h3></div>`;
     return;
   }
   const st = CURRENT_STATE;
   const s = (st.stages || []).find(x => x.stage_id === SELECTED_STAGE) || st.stages[0];
-  const m = STATUS_META[s.status] || STATUS_META.PENDING;
+  if (s.stage_id === "stage1_topic_outline") STAGE1_DIRTY = false;
 
   let bodyHtml = "";
   if (s.stage_id === "stage1_topic_outline") bodyHtml = renderStage1Body(st, s);
@@ -1103,27 +1683,27 @@ function renderStageDetail() {
   else if (s.stage_id === "stage5_visuals_generate") bodyHtml = renderStage5Body(st, s);
   else if (s.stage_id === "stage6_publish_report") bodyHtml = renderStage6Body(st, s);
 
+  const isRunning = st.overall_status === "RUNNING";
+  const runLabel = s.status === "DONE" ? "↻ 이 단계 다시 실행" : (s.status === "INTERRUPTED" || s.status === "ERROR" ? "▶ 이 단계 이어서 실행" : "▶ 이 단계 실행");
   host.innerHTML = `
     <div class="card">
       <div class="card-head">
         <div>
-          <div class="flex">
-            <span class="badge ${m.cls}">${m.icon} ${s.order}단계 · ${m.label} (${s.status==='DONE'?100:(s.progress||0)}%)</span>
-            <span class="muted">${esc(s.tier)}</span>
-          </div>
-          <h2 class="card-title mt8" style="font-size:19px">${esc(s.order)}. ${esc(s.title)}</h2>
-          <div class="muted">${esc(s.current_action || s.description)}</div>
+          <div class="flex" id="stageLiveStatus">${stageHeaderStatusHtml(s)}</div>
+          <h2 class="card-title mt8" style="font-size:19px" title="${esc(s.tier)}">${esc(s.order)}. ${esc(s.title)}</h2>
+          <div class="muted" id="stageLiveAction">${esc(s.current_action || s.description)}</div>
         </div>
         <div class="flex">
-          <button class="btn-primary" onclick="runSingleStage('${s.stage_id}')">▶ 이 단계 실행 / 재실행</button>
+          ${s.status === "DONE" ? `<button class="btn-sm" onclick="switchMainTab('settings');setTimeout(()=>document.getElementById('snapshotCard').scrollIntoView({behavior:'smooth'}),200)" title="이전 실행 결과로 되돌리기">↩ 백업·되돌리기</button>` : ""}
+          <button class="${s.status === "DONE" ? "" : "btn-primary"}" ${isRunning ? "disabled title='다른 작업이 진행 중입니다'" : ""} onclick="runSingleStage('${s.stage_id}')">${runLabel}</button>
         </div>
       </div>
-      ${s.error ? `<div class="card" style="border-color:var(--red);background:rgba(239,68,68,.08);margin-bottom:12px;"><strong>오류:</strong> ${esc(s.error)}</div>` : ""}
+      ${s.error ? `<div class="card" style="border-color:var(--red);background:rgba(239,68,68,.08);margin-bottom:12px;"><strong>오류:</strong> ${esc(s.error)}<div class="muted mt8">[이 단계 이어서 실행]을 누르면 저장된 지점부터 다시 시도합니다. 같은 오류가 반복되면 아래 실행 기록을 확인하세요.</div></div>` : ""}
       ${bodyHtml}
     </div>`;
 }
 
-// --- 1단계: OpenAI 목차/요약/영역별 키워드 제안 · 재요청 · 직접 편집 · 확정 ---
+// --- 1단계: Gemini(1순위)·OpenAI(2순위) 목차/요약/영역별 키워드 제안 · 재요청 · 직접 편집 · 확정 ---
 function renderStage1Body(st) {
   const bp = st.blueprint_preview;
   const opts = st.options || {};
@@ -1138,7 +1718,7 @@ function renderStage1Body(st) {
         ${(d.keywords_ko||[]).map(k=>`<span class="chip">${esc(k)}</span>`).join("")}
         ${(d.keywords_en||[]).map(k=>`<span class="chip" style="background:rgba(168,85,247,.12);border-color:rgba(168,85,247,.3);color:#e9d5ff">${esc(k)}</span>`).join("")}
       </div>`).join("")
-    : `<div class="muted">아직 영역별 키워드가 생성되지 않았습니다. [▶ 이 단계 실행]을 눌러 OpenAI API로 목차·요약·키워드를 제안받으세요.</div>`;
+    : `<div class="muted">아직 영역별 키워드가 생성되지 않았습니다. [▶ 이 단계 실행]을 눌러 Gemini API로 목차·요약·키워드를 제안받으세요.</div>`;
 
   const editorHtml = parts.length ? parts.map((pt, pi) => `
     <div class="part-box" data-part-idx="${pi}">
@@ -1163,7 +1743,7 @@ function renderStage1Body(st) {
         </div>
       `).join("")}
     </div>
-  `).join("") : `<div class="muted">목차 초안이 아직 없습니다. 상단 [▶ 이 단계 실행] 버튼을 누르면 초기 검색 + OpenAI API로 목차·요약·키워드를 제시합니다.</div>`;
+  `).join("") : `<div class="muted">목차 초안이 아직 없습니다. 상단 [▶ 이 단계 실행] 버튼을 누르면 초기 검색 + Gemini API로 목차·요약·키워드를 제시합니다.</div>`;
 
   return `
     <div class="card" style="background:var(--surface)">
@@ -1184,13 +1764,14 @@ function renderStage1Body(st) {
       <h3 class="card-title mb8">✏️ 목차·요약·키워드 검토 및 AI 재요청</h3>
       <div class="flex">
         <input id="stage1Feedback" placeholder="예: 3부에 드론 영상 기반 질소 시비 처방 단원을 추가하고, 수확 후 품질 평가 단원을 2개 장으로 세분화해줘" style="flex:1" />
-        <label class="flex"><input type="checkbox" id="stage1UseOpenai" ${opts.use_openai_outline!==false ? "checked" : ""} /> OpenAI API</label>
+        <label class="flex" title="Gemini가 1순위이고, Gemini가 실패하면 OpenAI, 그다음 내 컴퓨터 AI(Gemma) 순서로 만듭니다"><input type="checkbox" id="stage1UseOpenai" ${opts.use_openai_outline!==false ? "checked" : ""} /> Gemini 실패 시 OpenAI 사용</label>
         <button class="btn-amber" onclick="reviseStage1()">🔄 AI 재요청 반영</button>
       </div>
       <div class="flex mt12" style="justify-content:space-between">
         <div class="flex">
           <button onclick="saveStage1EditsOnly()">💾 직접 수정 내용 저장</button>
           <button onclick="addNewPart()">+ 새 부(Part) 추가</button>
+          <button class="btn-primary" onclick="switchMainTab('planchat')">💬 계획서 도우미로 자세히 설계</button>
         </div>
         <button class="btn-green" onclick="approveStage1AndContinue()">✅ 목차·키워드 최종 확정 → 2단계 자료 수집 시작</button>
       </div>
@@ -1211,7 +1792,7 @@ function renderStage2Body(st) {
       <div class="kpi"><div class="kpi-val">${bd.international_agencies || 0}</div><div class="kpi-lbl">03_해외 기관·대학</div></div>
       <div class="kpi"><div class="kpi-val">${bd.international_journals || 0}</div><div class="kpi-lbl">04_국제 SCI·OA 저널</div></div>
     </div>
-    <div class="muted mb8">저장 폴더: <code>${esc(st.collected_dir || "")}</code></div>
+    <div class="flex mb8"><button class="btn-sm" onclick="openProjectFolder('collected')" title="${esc(st.collected_dir || "")}">📂 수집 자료 폴더 열기</button></div>
     <div class="card" style="background:var(--surface)">
       <div class="card-head">
         <h3 class="card-title">📄 2단계 자료 수집 현황 보고서 (02_collection_report.md)</h3>
@@ -1229,11 +1810,11 @@ function renderStage3Body(st) {
   const nodes = (kg.top_nodes || []).slice(0, 15);
   return `
     <div class="grid-3 mb8">
-      <div class="kpi"><div class="kpi-val">${kg.total_nodes || 0}</div><div class="kpi-lbl">누적 지식 노드 (증분 그래프)</div></div>
-      <div class="kpi"><div class="kpi-val">${kg.total_edges || 0}</div><div class="kpi-lbl">누적 지식 관계 (Triples)</div></div>
-      <div class="kpi"><div class="kpi-val">${kg.project_source_count || 0}</div><div class="kpi-lbl">프로젝트 반영 근거 자료</div></div>
+      <div class="kpi"><div class="kpi-val">${kg.total_nodes || 0}</div><div class="kpi-lbl">지식그래프 용어 수 (전체 누적)</div></div>
+      <div class="kpi"><div class="kpi-val">${kg.total_edges || 0}</div><div class="kpi-lbl">용어 사이 관계 수 (전체 누적)</div></div>
+      <div class="kpi"><div class="kpi-val">${kg.project_source_count || 0}</div><div class="kpi-lbl">이 교재에 쓰인 근거 자료</div></div>
     </div>
-    <div class="muted mb8">통합 저장소: <code>${esc(kg.graph_path || "C:\\SMC_GRAPHRAG\\output\\graph_platform_incremental.json")}</code> (기존 graph.json 무훼손)</div>
+    <div class="muted mb8" title="${esc(kg.graph_path || "")}">지식그래프는 기존 자료를 지우지 않고 계속 덧붙여 저장됩니다. 아래는 이 교재에서 자주 나온 용어입니다.</div>
     <div class="mb8">${nodes.map(n => `<span class="chip">${esc(n.id)} <small style="opacity:.7">(${esc(n.type||"CONCEPT")})</small></span>`).join("")}</div>
     <div class="card" style="background:var(--surface)">
       <h3 class="card-title mb8">📄 3단계 지식그래프 구축 보고서 (03_kg_report.md)</h3>
@@ -1242,31 +1823,54 @@ function renderStage3Body(st) {
   `;
 }
 
-// --- 4단계: 교재 집필 체크포인트 + 원고 열람 ---
+// --- 4단계: 교재 집필 + 원고 품질 점검표(F1) + 원고 열람·직접 수정(F4) ---
+function qualityBadge(c) {
+  if (!c.exists) return `<span class="badge b-wait">⏳ 대기</span>`;
+  const cls = c.quality === "틀 원고" ? "q-bad" : (c.quality === "약함" ? "q-weak" : "q-good");
+  const icon = c.quality === "틀 원고" ? "⛔" : (c.quality === "약함" ? "⚠" : "✅");
+  return `<span class="badge ${cls}" title="${esc((c.quality_notes || []).join(" / ") || "분량·인용 기준 충족")}">${icon} ${esc(c.quality)}</span>`;
+}
+
 function renderStage4Body(st) {
-  const data = CHAPTERS_CACHE || { chapters: [], audit: null };
+  const data = CHAPTERS_CACHE || { chapters: [], audit: null, summary: null };
   const chs = data.chapters || [];
   const audit = data.audit;
+  const sm = data.summary || {};
   const doneCnt = chs.filter(c => c.exists).length;
+  const estPages = Math.round(sm.est_pages_total || 0);
+  const tgtPages = sm.target_pages_total || st.target_pages || 0;
+  const pagePct = tgtPages ? Math.min(100, Math.round(estPages / tgtPages * 100)) : 0;
+  const auditLabel = audit ? (audit.status === "PASS" ? "✅ 통과" : (audit.status === "FAIL" ? "⛔ 불합격" : esc(audit.status))) : "대기";
   return `
-    <div class="grid-3 mb8">
-      <div class="kpi"><div class="kpi-val">${doneCnt} / ${chs.length || st.chapter_count}</div><div class="kpi-lbl">단원별 체크포인트 집필 현황</div></div>
-      <div class="kpi"><div class="kpi-val">${audit ? audit.status : "대기"}</div><div class="kpi-lbl">인용·원문복사율 감사 결과</div></div>
-      <div class="kpi"><div class="kpi-val">${audit ? (audit.critical_errors || []).length : 0}건</div><div class="kpi-lbl">치명 오류 (0건 기준)</div></div>
+    <div class="grid-4 mb8">
+      <div class="kpi"><div class="kpi-val">${doneCnt} / ${chs.length || st.chapter_count}</div><div class="kpi-lbl">집필된 단원</div></div>
+      <div class="kpi" title="출판된 교재 PDF가 있으면 실제 쪽수, 없으면 본문 1쪽 ≈ ${(sm.chars_per_page || 1100).toLocaleString()}자로 추정">
+        <div class="kpi-val">${estPages.toLocaleString()}<span style="font-size:14px;color:var(--muted)"> / ${Number(tgtPages).toLocaleString()}쪽</span></div>
+        <div class="kpi-lbl">${sm.pages_from_pdf ? "PDF 쪽수" : "예상 쪽수"} / 목표 (${pagePct}%)</div>
+        <div class="pages-bar"><div style="width:${pagePct}%"></div></div>
+      </div>
+      <div class="kpi"><div class="kpi-val" style="${sm.fallback_count ? "color:#fca5a5" : ""}">${sm.fallback_count || 0}개</div><div class="kpi-lbl">⛔ 틀 원고 (다시 집필 필요)</div></div>
+      <div class="kpi"><div class="kpi-val" style="font-size:17px">${auditLabel}</div><div class="kpi-lbl">인용·표절 검사 (치명 오류 ${audit ? (audit.critical_errors || []).length : 0}건)</div></div>
     </div>
+    ${sm.fallback_count ? `<div class="notice notice-warn mb8"><span>⛔ '틀 원고'는 AI 집필이 실패해 같은 문장이 반복되는 임시 원고입니다. 해당 단원을 열어 직접 고치거나, 설정에서 Ollama가 켜져 있는지 확인한 뒤 다시 집필하세요.</span></div>` : ""}
     <div class="grid-2">
       <div class="card" style="background:var(--surface);margin-bottom:0">
-        <h3 class="card-title mb8">📑 단원 목록 (중단 시 완료 단원 다음부터 자동 이어하기)</h3>
-        <div style="max-height:420px;overflow:auto;">
+        <div class="card-head" style="margin-bottom:8px">
+          <h3 class="card-title">📑 원고 품질 점검표</h3>
+          <button class="btn-sm" onclick="openProjectFolder('chapters')">📂 원고 폴더 열기</button>
+        </div>
+        <div class="muted mb8">단원을 누르면 오른쪽에 원고가 열립니다. 품질 배지에 마우스를 올리면 이유가 보입니다.</div>
+        <div style="max-height:460px;overflow:auto;">
           <table class="tbl">
-            <thead><tr><th>단원</th><th>제목</th><th>분량</th><th>상태</th></tr></thead>
+            <thead><tr><th>단원</th><th>제목</th><th title="예상 쪽수 / 목표 쪽수">쪽수</th><th title="[SRC-NN] 인용 표시 개수">인용</th><th>품질</th></tr></thead>
             <tbody>
               ${chs.map(c => `
-                <tr style="cursor:pointer" onclick="openChapterPreview('${esc(c.chapter_id)}')">
+                <tr style="cursor:pointer" class="${c.quality === "틀 원고" ? "row-bad" : ""}" onclick="openChapterPreview('${esc(c.chapter_id)}')">
                   <td><strong>${esc(c.chapter_id)}</strong></td>
                   <td>${esc(c.title)}</td>
-                  <td>${c.char_count ? c.char_count.toLocaleString()+"자" : "-"}</td>
-                  <td><span class="badge ${c.exists?'b-done':'b-wait'}">${c.exists?'✅ 완료':'⏳ 대기'}</span></td>
+                  <td title="${esc(c.pages_source || "")}">${c.exists ? `${c.est_pages} / ${esc(c.target_pages)}` : "-"}</td>
+                  <td>${c.exists ? c.citation_count : "-"}</td>
+                  <td>${qualityBadge(c)}</td>
                 </tr>
               `).join("")}
             </tbody>
@@ -1274,8 +1878,11 @@ function renderStage4Body(st) {
         </div>
       </div>
       <div class="card" style="background:var(--surface);margin-bottom:0">
-        <h3 class="card-title mb8" id="chViewerTitle">📖 단원 원고 미리보기 (왼쪽 단원을 클릭하세요)</h3>
-        <div id="chViewerBody" class="md-box" style="max-height:420px;">왼쪽 목록에서 집필 완료된 단원을 클릭하면 [SRC-NN] 인용 원고 전문을 확인할 수 있습니다.</div>
+        <div class="card-head" style="margin-bottom:8px">
+          <h3 class="card-title" id="chViewerTitle">📖 원고 미리보기</h3>
+          <div class="flex" id="chViewerBtns"></div>
+        </div>
+        <div id="chViewerBody" class="md-box" style="max-height:460px;">왼쪽 표에서 단원을 누르면 원고 전문이 여기에 열립니다.</div>
       </div>
     </div>
   `;
@@ -1305,16 +1912,17 @@ function renderStage5Body(st) {
   return `
     <div class="card" style="background:#131f38;border-color:rgba(168,85,247,.4)">
       <div class="card-head" style="margin-bottom:8px">
-        <h3 class="card-title">🎨 시각화 생성 엔진 설정 (단원당 10개 이상 · 실사/인포그래픽 + 정량 SVG + PNG 변환)</h3>
+        <h3 class="card-title">🎨 그림 만들기 설정 <span class="muted" style="font-weight:500">단원당 10장 이상 · 사진형 그림은 AI, 도표는 자동 생성</span></h3>
         <div class="flex">
-          <button class="btn-green btn-sm" onclick="saveStage5VisualOptions()">설정 저장 후 5단계 실행</button>
-          <button class="btn-primary btn-sm" onclick="runSingleStage('stage6_publish_report')">🔗 시각화 → 문서(PDF·DOCX·HTML) 즉시 결합 출판</button>
+          <button class="btn-sm" onclick="saveStage5VisualOptions()" title="설정만 저장합니다. 그림은 만들지 않습니다.">💾 설정만 저장</button>
+          <button class="btn-sm" onclick="runSingleStage('stage5_visuals_generate')">🎨 5단계 그림 만들기 실행</button>
+          <button class="btn-sm" onclick="runSingleStage('stage6_publish_report')" title="지금 있는 그림을 넣어 PDF·Word·블로그 파일을 다시 만듭니다">🔗 그림을 넣어 출판물 다시 만들기(6단계)</button>
         </div>
       </div>
       <div class="grid-4">
         <label class="flex" style="background:var(--surface);padding:9px 12px;border-radius:8px;border:1px solid var(--border)">
           <input type="checkbox" id="s5UseFal" ${opts.use_fal_ai ? "checked" : ""} />
-          <span><strong>fal.ai API 사용</strong><br><small class="muted">실사진·인포그래픽 생성</small></span>
+          <span><strong>fal.ai 이미지 AI 사용</strong><br><small class="muted">유료 · 사진형 그림 생성</small></span>
         </label>
         <div>
           <label class="label">fal.ai 모델 선택</label>
@@ -1326,14 +1934,14 @@ function renderStage5Body(st) {
         </div>
         <label class="flex" style="background:var(--surface);padding:9px 12px;border-radius:8px;border:1px solid var(--border)">
           <input type="checkbox" id="s5UseNb" ${opts.use_nano_banana!==false ? "checked" : ""} />
-          <span><strong>나노바나나(Gemini)</strong><br><small class="muted">실사·인포그래픽 생성</small></span>
+          <span><strong>나노바나나(구글 Gemini)</strong><br><small class="muted">유료 · 사진형 그림 생성</small></span>
         </label>
         <div>
           <label class="label">단원당 시각화 개수 (≥10)</label>
           <input type="number" id="s5PerCh" min="10" max="25" value="${Math.max(10, opts.visuals_per_chapter || 10)}" />
         </div>
       </div>
-      <div class="muted mt8">※ 모든 시각화는 <strong>단원별 별도 폴더(로컬 + E 드라이브)</strong>에 SVG·PNG 이중 저장되며, 6단계 출판 시 <strong>PDF·Word DOCX·네이버 블로그 HTML 본문에 줄글 해설과 함께 자동 결합</strong>됩니다.</div>
+      <div class="muted mt8">※ 그림은 단원별 폴더(C 드라이브 + E 드라이브 백업)에 저장되고, 6단계 출판 때 PDF·Word·블로그 본문에 설명과 함께 들어갑니다. 그림을 바꾼 뒤에는 6단계를 다시 실행해야 출판물에 반영됩니다.</div>
     </div>
 
     <div class="grid-4 mb8">
@@ -1348,9 +1956,9 @@ function renderStage5Body(st) {
 
     <div class="card" style="background:var(--surface);padding:12px 14px;margin-bottom:12px">
       <div class="flex" style="justify-content:space-between">
-        <div>
-          <div style="font-size:12.5px"><strong>📂 단원별 별도 시각화 저장소 (로컬):</strong> <code>${esc(localDir || "5단계 실행 시 자동 생성")}</code></div>
-          <div style="font-size:12.5px;margin-top:3px"><strong>💾 E 드라이브 별도 시각화 백업:</strong> <code>${esc(eDir || "5단계 실행 시 자동 미러링")}</code></div>
+        <div class="flex">
+          <button class="btn-sm" onclick="openProjectFolder('assets')" title="${esc(localDir)}">📂 그림 폴더 열기</button>
+          <button class="btn-sm" onclick="openProjectFolder('e_visuals')" title="${esc(eDir)}">💾 E 드라이브 백업 폴더 열기</button>
         </div>
         <div class="flex">
           <span class="label" style="margin:0">단원 필터:</span>
@@ -1376,13 +1984,20 @@ function renderStage5Body(st) {
               </div>
             </div>
             ${it.target_section ? `<div class="muted" style="font-size:11.5px">📍 문서 결합 절: <strong>${esc(it.target_section)}</strong></div>` : ""}
-            <img src="${esc(it.png_url || it.rel_url || it.web_url)}?v=${encodeURIComponent((vis.plan && vis.plan.generated_at) || "")}" alt="${esc(it.title_ko)}" loading="lazy" />
+            <img id="visImg_${esc(it.figure_id)}" src="${esc(it.png_url || it.rel_url || it.web_url)}?v=${encodeURIComponent(it.regenerated_at || (vis.plan && vis.plan.generated_at) || "")}" alt="${esc(it.title_ko)}" loading="lazy" />
             <div class="vis-desc">${esc(it.narrative_ko)}</div>
             ${it.prompt ? `
               <details style="font-size:11.5px;background:#0a1120;border:1px solid var(--border);border-radius:6px;padding:6px 9px;">
-                <summary style="cursor:pointer;color:var(--accent);font-weight:700">📝 문맥 기반 이미지 프롬프트 보기</summary>
-                <div style="margin-top:6px;color:#cbd5e1;white-space:pre-wrap;line-height:1.45">${esc(it.prompt)}</div>
+                <summary style="cursor:pointer;color:var(--accent);font-weight:700">📝 그림 지시문(프롬프트) 보기·고치기</summary>
+                <textarea id="regenPrompt_${esc(it.figure_id)}" rows="5" style="margin-top:6px;font-size:11.5px">${esc(it.prompt)}</textarea>
+                <div class="muted mt8">영어 지시문을 고친 뒤 아래 [이 그림만 다시 만들기]를 누르면 고친 내용으로 만듭니다.</div>
               </details>
+            ` : ""}
+            ${String(it.is_ai_image).toLowerCase() === "true" ? `
+              <div class="flex">
+                <button class="btn-sm" id="regenBtn_${esc(it.figure_id)}" onclick="regenerateVisual('${esc(it.figure_id)}')" title="유료 이미지 AI를 1회 호출합니다. 기존 그림은 assets/_replaced 폴더에 보관됩니다.">🔄 이 그림만 다시 만들기</button>
+                ${it.regenerated_at ? `<span class="badge b-run">다시 만듦 ${esc(it.regenerated_at.slice(4,8).replace(/(..)(..)/,"$1/$2"))}</span>` : ""}
+              </div>
             ` : ""}
             <div class="flex" style="justify-content:space-between;font-size:11.5px">
               <span class="muted">단원: <code>${esc(it.chapter_id)}</code> · 파일: <code>${esc(it.filename)}</code></span>
@@ -1423,13 +2038,17 @@ function renderStage6Body(st) {
 
     <div class="card" style="background:var(--surface)">
       <div class="card-head" style="margin-bottom:8px">
-        <h3 class="card-title">📦 단원별 출판 산출물 (시각화 자동 결합 완료 · PDF · Word DOCX · 네이버 블로그 HTML)</h3>
-        <span class="badge b-done">총 ${chIds.length}개 단원 출판됨</span>
+        <h3 class="card-title">📦 단원별 출판물 <span class="muted" style="font-weight:500">PDF · Word · 웹페이지 · 네이버 블로그</span></h3>
+        <div class="flex">
+          <span class="badge b-done">${chIds.length}개 단원 출판됨</span>
+          ${chIds.length ? `<a class="badge b-run" style="padding:7px 12px;font-size:12.5px" href="/api/projects/${encodeURIComponent(st.project_id)}/exports.zip" download>⬇ 전체 산출물 zip 받기</a>` : ""}
+          <button class="btn-sm" onclick="openProjectFolder('exports')">📂 출판 폴더 열기</button>
+        </div>
       </div>
       ${chIds.length ? `
         <div style="max-height:420px;overflow:auto;">
           <table class="tbl">
-            <thead><tr><th>단원</th><th>결합된 시각화</th><th>교재 PDF</th><th>보고서 DOCX</th><th>인터랙티브 HTML</th><th>네이버 블로그 HTML</th></tr></thead>
+            <thead><tr><th>단원</th><th>들어간 그림</th><th>교재 PDF</th><th>Word 파일</th><th>웹페이지</th><th>네이버 블로그용</th></tr></thead>
             <tbody>
               ${chIds.map(cid => {
                 const vc = Number(boundMap[cid] || 0);
@@ -1567,6 +2186,7 @@ function addNewPart() {
   bp.parts.push({ part_number: n, title: `제${n}부. 신규 영역`, pages: 30, chapters: [{ chapter_id: `ch${String((bp.book_metadata.chapter_count||0)+1).padStart(2,"0")}`, title: "신규 단원", target_pages: 30, summary_ko: "", sections: ["개요", "원리", "적용"] }] });
   CURRENT_STATE.blueprint_preview = bp;
   renderStageDetail();
+  STAGE1_DIRTY = true;
 }
 
 function addChapterToPart(pi) {
@@ -1574,6 +2194,7 @@ function addChapterToPart(pi) {
   bp.parts[pi].chapters.push({ chapter_id: "ch_new", title: "신규 단원 제목", target_pages: 30, summary_ko: "", sections: ["개요", "핵심 원리", "현장 적용"] });
   CURRENT_STATE.blueprint_preview = bp;
   renderStageDetail();
+  STAGE1_DIRTY = true;
 }
 
 function removeChapterFromPart(pi, ci) {
@@ -1581,6 +2202,7 @@ function removeChapterFromPart(pi, ci) {
   bp.parts[pi].chapters.splice(ci, 1);
   CURRENT_STATE.blueprint_preview = bp;
   renderStageDetail();
+  STAGE1_DIRTY = true;
 }
 
 async function saveStage1EditsOnly() {
@@ -1629,43 +2251,171 @@ async function approveStage1AndContinue() {
 // ============================================================
 // 파이프라인 실행 / 중단 / 단원 원고 / 5단계 옵션
 // ============================================================
+// H5: 서버 응답 코드를 쉬운 한국어 안내로
+function runResultMessage(res, label = "") {
+  const st = res && res.status;
+  if (st === "STARTED") {
+    const n = (res.queued_stages || []).length;
+    return `▶ ${label || (n > 1 ? `${n}개 단계를 순서대로` : "작업을")} 시작했습니다.${res.snapshot ? " (기존 결과는 자동 백업됨)" : ""} 끝나면 알려 드릴게요.`;
+  }
+  if (st === "ALREADY_RUNNING") return "⚙️ 이미 작업이 진행 중입니다. 끝날 때까지 기다려 주세요.";
+  if (st === "ALREADY_DONE") return "✅ 모든 단계가 이미 끝났습니다. 다시 만들려면 해당 단계 화면에서 [다시 실행]을 누르세요.";
+  return `처리됨 (${st || "알 수 없음"})`;
+}
+
 async function runPipeline(mode = "all") {
   if (!CURRENT_PID) return;
+  askNotifyPermission();
   try {
     const res = await api(`/api/projects/${CURRENT_PID}/run`, { method: "POST", body: JSON.stringify({ mode }) });
-    toast(`▶ 파이프라인 시작 (${res.status})`);
+    toast(runResultMessage(res), 4500);
     await refreshCurrentProject(false);
   } catch (e) { toast("❌ " + e.message); }
 }
 
+// H2: 완료된 단계를 다시 실행할 때는 무엇이 바뀌는지·시간·비용을 알려 주고 확인받는다
+function estimateAiImages(st) {
+  const items = (VISUALS_CACHE && VISUALS_CACHE.plan && (VISUALS_CACHE.plan.visuals || VISUALS_CACHE.plan.items)) || [];
+  const ai = items.filter(x => String(x.is_ai_image).toLowerCase() === "true").length;
+  if (ai) return ai;
+  const per = Math.max(10, (st.options || {}).visuals_per_chapter || 10);
+  return Math.round((st.chapter_count || 10) * per * 0.4);
+}
+
 async function runSingleStage(stageId) {
-  if (!CURRENT_PID) return;
+  if (!CURRENT_PID || !CURRENT_STATE) return;
+  const st = CURRENT_STATE;
+  const s = (st.stages || []).find(x => x.stage_id === stageId) || {};
+  if (st.overall_status === "RUNNING") return toast("⚙️ 다른 작업이 진행 중입니다. 끝난 뒤 다시 눌러 주세요.");
+  const lines = [];
+  if (s.status === "DONE") {
+    lines.push(`${s.order}단계 「${s.title}」는 이미 완료되었습니다.`);
+    lines.push("다시 실행하면 이 단계의 결과 파일이 새로 만들어집니다.");
+    lines.push("");
+    lines.push("• 실행 직전 현재 결과를 자동으로 백업합니다 (⚙️ 설정 > 백업·되돌리기에서 복원 가능).");
+  }
+  const o = st.options || {};
+  if (stageId === "stage5_visuals_generate" && (o.use_nano_banana !== false || o.use_fal_ai)) {
+    if (!lines.length) lines.push(`5단계 그림 만들기를 시작합니다.`);
+    lines.push(`• 유료 이미지 AI(${o.use_fal_ai ? "fal.ai" : ""}${o.use_fal_ai && o.use_nano_banana !== false ? "·" : ""}${o.use_nano_banana !== false ? "나노바나나" : ""})를 최대 약 ${estimateAiImages(st)}회 호출할 수 있어 비용이 발생합니다. 이미 만든 그림은 체크포인트로 재사용될 수 있습니다.`);
+  }
+  if (stageId === "stage1_topic_outline" && s.status === "DONE") lines.push("• 확정한 목차가 새 AI 초안으로 바뀔 수 있습니다.");
+  if (stageId === "stage6_publish_report") lines.push("• PDF·Word·블로그 파일을 지금 원고·그림으로 다시 만듭니다.");
+  const d = stageDurationSec(s);
+  if (d) lines.push(`• 지난번에는 약 ${fmtDuration(d)} 걸렸습니다.`);
+  if (lines.length && (s.status === "DONE" || stageId === "stage5_visuals_generate")) {
+    if (!confirm(lines.join("\n") + "\n\n계속할까요?")) return;
+  }
+  askNotifyPermission();
   try {
     const res = await api(`/api/projects/${CURRENT_PID}/run`, { method: "POST", body: JSON.stringify({ mode: "single", stage_id: stageId }) });
-    toast(`▶ ${stageId} 실행 시작 (${res.status})`);
+    toast(runResultMessage(res, `${s.order || ""}단계를`), 4500);
     await refreshCurrentProject(false);
   } catch (e) { toast("❌ " + e.message); }
 }
 
 async function stopCurrentPipeline() {
   if (!CURRENT_PID) return;
+  if (!CURRENT_STATE || CURRENT_STATE.overall_status !== "RUNNING") return toast("지금 실행 중인 작업이 없습니다.");
   try {
-    await api(`/api/projects/${CURRENT_PID}/stop`, { method: "POST" });
-    toast("⏹ 중단 요청 완료 — 현재 작업 체크포인트를 저장한 뒤 안전하게 멈춥니다.");
+    const res = await api(`/api/projects/${CURRENT_PID}/stop`, { method: "POST" });
+    if (res.status === "NOT_RUNNING") {
+      toast("지금 실행 중인 작업이 없습니다. (서버를 다시 켠 뒤라면 상태 표시만 남아 있을 수 있습니다 — [이어하기]를 누르세요.)", 6000);
+      await refreshCurrentProject(false);
+    } else {
+      toast("⏹ 중단 요청을 보냈습니다. 지금 만들고 있는 단원·그림까지 저장한 뒤 멈춥니다.", 5000);
+    }
   } catch (e) { toast("❌ " + e.message); }
 }
 
-async function openChapterPreview(cid) {
+// --- 4단계 원고 미리보기 · 직접 수정(F4) ---
+let CHAPTER_RAW = "";
+async function openChapterPreview(cid, keepEditing = false) {
+  if (CHAPTER_EDITING && !keepEditing && OPEN_CHAPTER && OPEN_CHAPTER !== cid) {
+    if (!confirm("수정 중인 원고가 저장되지 않았습니다. 저장하지 않고 다른 단원을 열까요?")) return;
+    CHAPTER_EDITING = false;
+  }
+  if (keepEditing && CHAPTER_EDITING) return;
+  OPEN_CHAPTER = cid;
+  const titleEl = document.getElementById("chViewerTitle");
+  const bodyEl = document.getElementById("chViewerBody");
+  const btnEl = document.getElementById("chViewerBtns");
+  if (!titleEl || !bodyEl) return;
   try {
     const res = await api(`/api/projects/${CURRENT_PID}/chapters/${encodeURIComponent(cid)}`);
-    document.getElementById("chViewerTitle").textContent = `📖 ${cid} 원고 미리보기`;
-    document.getElementById("chViewerBody").innerHTML = renderMd(res.content);
+    CHAPTER_RAW = res.content || "";
+    titleEl.textContent = `📖 ${cid} 원고`;
+    bodyEl.innerHTML = renderMd(CHAPTER_RAW);
+    if (btnEl) btnEl.innerHTML = `
+      <button class="btn-sm" onclick="startChapterEdit()">✏️ 직접 고치기</button>
+      <button class="btn-sm" onclick="showChapterHistory('${esc(cid)}')">🕘 이전 버전</button>`;
   } catch (e) {
-    document.getElementById("chViewerTitle").textContent = `📖 ${cid}`;
-    document.getElementById("chViewerBody").innerHTML = `<span class="muted">${esc(e.message)}</span>`;
+    titleEl.textContent = `📖 ${cid}`;
+    bodyEl.innerHTML = `<span class="muted">${esc(e.message)}</span>`;
+    if (btnEl) btnEl.innerHTML = "";
   }
 }
 
+function startChapterEdit() {
+  if (!OPEN_CHAPTER) return;
+  CHAPTER_EDITING = true;
+  document.getElementById("chViewerTitle").textContent = `✏️ ${OPEN_CHAPTER} 원고 고치기`;
+  document.getElementById("chViewerBody").innerHTML = `
+    <div class="muted mb8">마크다운 형식입니다. <code>## 제목</code>은 절 제목, <code>**굵게**</code>, 인용 표시 <code>[SRC-01]</code>은 그대로 두세요. 저장하면 고치기 전 원고는 자동 보관됩니다.</div>
+    <textarea id="chEditArea" class="ch-editor">${esc(CHAPTER_RAW)}</textarea>`;
+  document.getElementById("chViewerBtns").innerHTML = `
+    <button class="btn-green btn-sm" onclick="saveChapterEdit()">💾 저장</button>
+    <button class="btn-sm" onclick="cancelChapterEdit()">취소</button>`;
+}
+
+function cancelChapterEdit() {
+  const cur = document.getElementById("chEditArea")?.value;
+  if (cur !== undefined && cur !== CHAPTER_RAW && !confirm("고친 내용을 버릴까요?")) return;
+  CHAPTER_EDITING = false;
+  openChapterPreview(OPEN_CHAPTER);
+}
+
+async function saveChapterEdit() {
+  const txt = document.getElementById("chEditArea")?.value || "";
+  if (!txt.trim()) return toast("빈 원고는 저장할 수 없습니다.");
+  try {
+    const res = await api(`/api/projects/${CURRENT_PID}/chapters/${encodeURIComponent(OPEN_CHAPTER)}`, { method: "PUT", body: JSON.stringify({ content: txt }) });
+    CHAPTER_EDITING = false;
+    toast(`✅ ${res.chapter_id} 원고를 저장했습니다 (이전 원고는 ${res.backup}로 보관). 출판물에 반영하려면 6단계를 다시 실행하세요.`, 6000);
+    CHAPTERS_CACHE = await api(`/api/projects/${CURRENT_PID}/chapters`);
+    const keep = OPEN_CHAPTER;
+    renderStageDetail();
+    openChapterPreview(keep);
+  } catch (e) { toast("❌ " + e.message); }
+}
+
+async function showChapterHistory(cid) {
+  try {
+    const res = await api(`/api/projects/${CURRENT_PID}/chapters/${encodeURIComponent(cid)}/history`);
+    const h = res.history || [];
+    document.getElementById("chViewerTitle").textContent = `🕘 ${cid} 이전 버전`;
+    document.getElementById("chViewerBody").innerHTML = h.length ? `
+      <div class="muted mb8">직접 고치기 전에 자동 보관된 원고입니다. [이 버전으로 되돌리기]를 누르면 지금 원고도 보관한 뒤 되돌립니다.</div>
+      <table class="tbl"><thead><tr><th>보관 시각</th><th>크기</th><th></th></tr></thead><tbody>
+      ${h.map(x => `<tr><td>${esc(x.saved_at.replace(/^(\d{4})(\d{2})(\d{2})_(\d{2})(\d{2})(\d{2})$/, "$1-$2-$3 $4:$5"))}</td><td>${Math.round(x.chars / 1024)}KB</td>
+        <td><button class="btn-sm" onclick="restoreChapterVersion('${esc(cid)}','${esc(x.name)}')">이 버전으로 되돌리기</button></td></tr>`).join("")}
+      </tbody></table>` : `<span class="muted">아직 보관된 이전 버전이 없습니다. [직접 고치기]로 저장하면 그 전 원고가 여기에 보관됩니다.</span>`;
+    document.getElementById("chViewerBtns").innerHTML = `<button class="btn-sm" onclick="openChapterPreview('${esc(cid)}')">← 원고로 돌아가기</button>`;
+  } catch (e) { toast("❌ " + e.message); }
+}
+
+async function restoreChapterVersion(cid, name) {
+  if (!confirm(`${cid} 원고를 ${name} 버전으로 되돌릴까요?\n(지금 원고도 자동 보관됩니다)`)) return;
+  try {
+    await api(`/api/projects/${CURRENT_PID}/chapters/${encodeURIComponent(cid)}/history/${encodeURIComponent(name)}/restore`, { method: "POST" });
+    toast("✅ 되돌렸습니다.");
+    CHAPTERS_CACHE = await api(`/api/projects/${CURRENT_PID}/chapters`);
+    renderStageDetail();
+    openChapterPreview(cid);
+  } catch (e) { toast("❌ " + e.message); }
+}
+
+// --- 5단계: 설정 저장(실행과 분리) · 그림 한 장 다시 만들기(F2) ---
 async function saveStage5VisualOptions() {
   const payload = {
     use_fal_ai: document.getElementById("s5UseFal").checked,
@@ -1674,10 +2424,70 @@ async function saveStage5VisualOptions() {
     visuals_per_chapter: Math.max(10, parseInt(document.getElementById("s5PerCh").value, 10) || 10),
   };
   try {
-    await api(`/api/projects/${CURRENT_PID}/options`, { method: "PATCH", body: JSON.stringify(payload) });
-    toast("✅ 시각화 옵션 저장 완료 — 5단계 시각화를 시작합니다.");
-    await runSingleStage("stage5_visuals_generate");
+    const res = await api(`/api/projects/${CURRENT_PID}/options`, { method: "PATCH", body: JSON.stringify(payload) });
+    if (res.project) CURRENT_STATE = res.project;
+    toast("✅ 그림 설정을 저장했습니다. 그림을 만들려면 [5단계 그림 만들기 실행]을 누르세요.", 4500);
   } catch (e) { toast("❌ " + e.message); }
+}
+
+async function regenerateVisual(fid) {
+  const ta = document.getElementById("regenPrompt_" + fid);
+  const prompt = ta ? ta.value.trim() : "";
+  if (!confirm(`이 그림(${fid})만 다시 만들까요?\n\n• 유료 이미지 AI를 1회 호출합니다.\n• 기존 그림은 assets/_replaced 폴더에 보관됩니다.\n• PDF·Word·블로그에 반영하려면 나중에 6단계를 다시 실행하세요.`)) return;
+  const btn = document.getElementById("regenBtn_" + fid);
+  if (btn) { btn.disabled = true; btn.textContent = "⏳ 만드는 중... (30초~1분)"; }
+  try {
+    const res = await api(`/api/projects/${CURRENT_PID}/visuals/regenerate`, { method: "POST", body: JSON.stringify({ figure_id: fid, prompt: prompt || null }) });
+    const img = document.getElementById("visImg_" + fid);
+    if (img) img.src = res.png_url;
+    toast(`✅ 새 그림을 만들었습니다 (${res.engine}). ${res.note}`, 6000);
+    VISUALS_CACHE = await api(`/api/projects/${CURRENT_PID}/visuals`);
+  } catch (e) {
+    toast("❌ " + e.message, 6000);
+  } finally {
+    if (btn) { btn.disabled = false; btn.textContent = "🔄 이 그림만 다시 만들기"; }
+  }
+}
+
+// --- F7: 탐색기로 폴더 열기 ---
+async function openProjectFolder(target) {
+  if (!CURRENT_PID) return;
+  try {
+    const res = await api(`/api/projects/${CURRENT_PID}/open-folder`, { method: "POST", body: JSON.stringify({ target }) });
+    toast(`📂 폴더를 열었습니다: ${res.path}`);
+  } catch (e) { toast("❌ " + e.message, 6000); }
+}
+
+// --- F3: 백업 목록 · 되돌리기 ---
+async function loadSnapshots() {
+  const box = document.getElementById("snapshotList");
+  if (!box) return;
+  if (!CURRENT_PID) { box.innerHTML = '<span class="muted">교재를 먼저 선택하세요.</span>'; return; }
+  try {
+    const res = await api(`/api/projects/${CURRENT_PID}/snapshots`);
+    const snaps = res.snapshots || [];
+    const stageName = id => { const s = (CURRENT_STATE?.stages || []).find(x => x.stage_id === id); return s ? `${s.order}단계 ${s.short_title || ""}` : id; };
+    box.innerHTML = snaps.length ? `
+      <table class="tbl"><thead><tr><th>백업 시각</th><th>대상 단계</th><th>백업된 폴더</th><th>사유</th><th></th></tr></thead><tbody>
+      ${snaps.map(x => `<tr>
+        <td>${esc(String(x.snapshot_id).replace(/^(\d{4})(\d{2})(\d{2})_(\d{2})(\d{2})(\d{2}).*$/, "$1-$2-$3 $4:$5"))}</td>
+        <td>${(x.stage_ids || []).map(stageName).map(esc).join(", ")}</td>
+        <td>${esc((x.folders || []).join(", ") || "진행 상태만")}</td>
+        <td class="muted">${esc(x.reason || "")}</td>
+        <td><button class="btn-sm" onclick="restoreSnapshot('${esc(x.snapshot_id)}')">↩ 이 시점으로 되돌리기</button></td></tr>`).join("")}
+      </tbody></table>` : '<span class="muted">아직 백업이 없습니다. 완료된 단계를 [다시 실행]하면 그 직전에 자동으로 백업됩니다.</span>';
+  } catch (e) { box.innerHTML = `<span style="color:#fca5a5">${esc(e.message)}</span>`; }
+}
+
+async function restoreSnapshot(sid) {
+  if (!confirm(`백업 ${sid} 시점으로 되돌릴까요?\n\n• 해당 단계의 원고·그림·출판물 폴더가 백업 당시 상태로 바뀝니다.\n• 지금 상태도 먼저 백업하므로 다시 되돌릴 수 있습니다.`)) return;
+  try {
+    await api(`/api/projects/${CURRENT_PID}/snapshots/${encodeURIComponent(sid)}/restore`, { method: "POST" });
+    toast("↩ 되돌렸습니다.", 4000);
+    STAGE_REPORTS = {}; VISUALS_CACHE = null; CHAPTERS_CACHE = null;
+    await refreshCurrentProject(false);
+    loadSnapshots();
+  } catch (e) { toast("❌ " + e.message, 6000); }
 }
 
 function renderLiveLogs() {
@@ -2017,6 +2827,7 @@ async function runPromptSynth() {
 // TAB 4: API 키 · AI 엔진 · 프로젝트 관리
 // ============================================================
 async function loadSettingsTab() {
+  loadSnapshots();
   await Promise.all([loadApiKeysPanel(), refreshEngineStatus()]);
   if (CURRENT_STATE) {
     const o = CURRENT_STATE.options || {};
@@ -2025,6 +2836,7 @@ async function loadSettingsTab() {
     document.getElementById("optFalModel").value = o.fal_model || "fal-ai/nano-banana";
     document.getElementById("optVisPerCh").value = Math.max(10, o.visuals_per_chapter || 10);
     document.getElementById("optUseOpenai").checked = o.use_openai_outline !== false;
+    document.getElementById("optUseGemini").checked = o.use_gemini_outline !== false;
     document.getElementById("optUseFal").checked = !!o.use_fal_ai;
     document.getElementById("optUseNanoBanana").checked = o.use_nano_banana !== false;
     document.getElementById("optUseClaude").checked = !!o.use_claude_review;
@@ -2072,7 +2884,7 @@ async function refreshEngineStatus() {
       <div class="flex">
         <span class="badge ${st.openai_configured?'b-done':'b-wait'}">OpenAI API: ${st.openai_configured?'연결 가능':'키 미등록(Gemma폴백)'}</span>
         <span class="badge ${st.fal_configured?'b-done':'b-wait'}">fal.ai API: ${st.fal_configured?'연결 가능':'키 미등록'}</span>
-        <span class="badge ${st.gemini_configured?'b-done':'b-wait'}">나노바나나: ${st.gemini_configured?'연결 가능':'키 미등록'}</span>
+        <span class="badge ${st.gemini_configured?'b-done':'b-wait'}">Gemini(목차 1순위·나노바나나): ${st.gemini_configured?'연결 가능':'키 미등록'}</span>
         <span class="badge ${ol.online?'b-done':'b-err'}">Ollama: ${ol.online?'ONLINE ('+(ol.models||[]).length+'모델)':'OFFLINE'}</span>
         <span class="badge ${cl.installed?'b-done':'b-wait'}">Claude Code: ${cl.installed?esc(cl.version||'설치됨'):'미설치'}</span>
         <span class="badge b-run">로컬 RAG: ${(rag.nodes||0).toLocaleString()}노드</span>
@@ -2090,6 +2902,7 @@ async function saveCurrentProjectOptions() {
         gemma_model: document.getElementById("optGemmaModel").value,
         fal_model: document.getElementById("optFalModel").value,
         visuals_per_chapter: Math.max(10, parseInt(document.getElementById("optVisPerCh").value, 10) || 10),
+        use_gemini_outline: document.getElementById("optUseGemini").checked,
         use_openai_outline: document.getElementById("optUseOpenai").checked,
         use_fal_ai: document.getElementById("optUseFal").checked,
         use_nano_banana: document.getElementById("optUseNanoBanana").checked,
@@ -2101,25 +2914,50 @@ async function saveCurrentProjectOptions() {
   } catch (e) { toast("❌ " + e.message); }
 }
 
-function renderProjManageTable() {
+let ALL_PROJECTS = [];
+async function renderProjManageTable() {
   const tb = document.getElementById("projManageBody");
   if (!tb) return;
-  tb.innerHTML = PROJECTS.map(p => `
+  const showHidden = document.getElementById("showHiddenProj")?.checked;
+  if (showHidden) {
+    try { ALL_PROJECTS = (await api("/api/projects?include_hidden=true")).projects || []; } catch (e) { ALL_PROJECTS = PROJECTS; }
+  }
+  const rows = showHidden ? ALL_PROJECTS : PROJECTS;
+  // 같은 제목이 여러 개면 표시해 정리를 돕는다
+  const cnt = {};
+  rows.forEach(p => { cnt[p.topic_ko] = (cnt[p.topic_ko] || 0) + 1; });
+  tb.innerHTML = rows.map(p => {
+    const m = STATUS_META[p.overall_status] || STATUS_META.IDLE;
+    const upd = p.updated_at ? new Date(p.updated_at).toLocaleString("ko-KR", { month: "numeric", day: "numeric", hour: "2-digit", minute: "2-digit" }) : "-";
+    return `
     <tr>
-      <td><code>${esc(p.project_id)}</code></td>
-      <td><strong>《${esc(p.topic_ko)}》</strong></td>
-      <td>${p.target_pages}p / ${p.chapter_count}장</td>
-      <td><span class="badge ${(STATUS_META[p.overall_status]||STATUS_META.IDLE).cls}">${p.done_stages}/${p.total_stages}단계 · ${esc(p.overall_status)}</span></td>
+      <td title="프로젝트 ID: ${esc(p.project_id)}"><strong>《${esc(p.topic_ko)}》</strong>${cnt[p.topic_ko] > 1 ? ' <span class="badge b-rev" title="같은 제목의 교재가 여러 개 있습니다. 쓰지 않는 것은 삭제(보관)하세요.">제목 중복</span>' : ""}${p.project_id === CURRENT_PID ? ' <span class="badge b-run">선택됨</span>' : ""}${p.hidden ? ' <span class="badge b-wait">목록에서 숨김</span>' : ""}</td>
+      <td>${p.target_pages}쪽 / ${p.chapter_count}개 장</td>
+      <td><span class="badge ${m.cls}">${m.icon} ${p.done_stages}/${p.total_stages}단계 · ${esc(m.label)}</span></td>
+      <td class="muted">${esc(upd)}</td>
       <td>
-        <button class="btn-sm" onclick="selectProject('${esc(p.project_id)}', true);switchMainTab('workflow')">열기</button>
-        <button class="btn-sm btn-red" onclick="deleteProj('${esc(p.project_id)}')">삭제</button>
+        ${p.hidden
+          ? `<button class="btn-sm" onclick="setProjectHidden('${esc(p.project_id)}', false)">다시 보이기</button>`
+          : `<button class="btn-sm" onclick="selectProject('${esc(p.project_id)}', true);document.getElementById('projectSelect').value='${esc(p.project_id)}';switchMainTab('workflow')">열기</button>
+        <button class="btn-sm" onclick="setProjectHidden('${esc(p.project_id)}', true)" title="지우지 않고 위쪽 교재 선택 목록에서만 뺍니다">목록에서 숨기기</button>`}
+        <button class="btn-sm btn-red" onclick="deleteProj('${esc(p.project_id)}')">삭제(보관)</button>
       </td>
-    </tr>
-  `).join("") || `<tr><td colspan="5" class="muted">활성 프로젝트가 없습니다.</td></tr>`;
+    </tr>`;
+  }).join("") || `<tr><td colspan="5" class="muted">교재가 없습니다.</td></tr>`;
+}
+
+async function setProjectHidden(pid, hidden) {
+  try {
+    await api(`/api/projects/${encodeURIComponent(pid)}/visibility`, { method: "POST", body: JSON.stringify({ hidden }) });
+    toast(hidden ? "목록에서 숨겼습니다. [숨긴 교재도 보기]를 켜면 다시 보이게 할 수 있습니다." : "다시 목록에 보이게 했습니다.", 4500);
+    await loadProjectsList(hidden && pid === CURRENT_PID ? "" : CURRENT_PID);
+    renderProjManageTable();
+  } catch (e) { toast("❌ " + e.message); }
 }
 
 async function deleteProj(pid) {
-  if (!confirm(`프로젝트 [${pid}]를 관리 목록에서 삭제(아카이브)할까요?`)) return;
+  const p = PROJECTS.find(x => x.project_id === pid) || {};
+  if (!confirm(`《${p.topic_ko || pid}》를 목록에서 지울까요?\n\n파일은 지워지지 않고 E:\\SMC_Report_Platform_Data\\_archived_projects 로 옮겨 보관됩니다.`)) return;
   try {
     await api(`/api/projects/${encodeURIComponent(pid)}`, { method: "DELETE" });
     toast(`✅ ${pid} 삭제 완료`);
@@ -2155,6 +2993,7 @@ async function submitNewProject() {
         chapter_count: parseInt(document.getElementById("npChapters").value, 10) || 15,
         keywords_ko: document.getElementById("npKwKo").value.split(",").map(x=>x.trim()).filter(Boolean),
         keywords_en: document.getElementById("npKwEn").value.split(",").map(x=>x.trim()).filter(Boolean),
+        use_gemini_outline: document.getElementById("npUseGemini").checked,
         use_openai_outline: document.getElementById("npUseOpenai").checked,
         use_fal_ai: document.getElementById("npUseFal").checked,
         auto_start: document.getElementById("npAutoStart").checked,
@@ -2164,6 +3003,386 @@ async function submitNewProject() {
     toast(`✅ 《${topic_ko}》 생성 완료! 1단계 목차·키워드 제안이 시작됩니다.`);
     await loadProjectsList(res.project.project_id);
     switchMainTab("workflow");
+  } catch (e) { toast("❌ " + e.message); }
+}
+
+// ============================================================
+// TAB 0: 대화형 교재 계획서 작성 챗봇 스튜디오 (Antigravity · Gemini)
+// ============================================================
+let PLAN_CHAT_STATE = { history: [], plan: null, plan_markdown: "", search_papers: [] };
+
+function switchPlanOutSub(subKey) {
+  document.querySelectorAll("[data-pcsub]").forEach(b => b.classList.toggle("active", b.dataset.pcsub === subKey));
+  ["cards", "md", "search"].forEach(k => {
+    const el = document.getElementById("pcOut-" + k);
+    if (el) el.style.display = (k === subKey ? "block" : "none");
+  });
+}
+
+function quickPlanPrompt(text) {
+  const inp = document.getElementById("pcChatInput");
+  if (!inp) return;
+  inp.value = text;
+  sendPlanChat();
+}
+
+async function loadPlanChatTab() {
+  if (!CURRENT_PID) return;
+  try {
+    const res = await api(`/api/projects/${encodeURIComponent(CURRENT_PID)}/plan-chat`);
+    PLAN_CHAT_STATE.history = res.history || [];
+    PLAN_CHAT_STATE.plan = res.plan || null;
+    PLAN_CHAT_STATE.plan_markdown = res.plan_markdown || "";
+
+    document.getElementById("pcTopicKo").value = (res.plan && res.plan.book_title_ko) || res.topic_ko || "";
+    document.getElementById("pcTopicEn").value = (res.plan && res.plan.book_title_en) || res.topic_en || "";
+    document.getElementById("pcKwKo").value = (res.keywords_ko || []).join(", ");
+    document.getElementById("pcKwEn").value = (res.keywords_en || []).join(", ");
+    document.getElementById("pcChapters").value = res.chapter_count || 12;
+    document.getElementById("pcPages").value = res.target_pages || 400;
+
+    renderPlanChatMessages();
+    renderPlanOutputAll();
+  } catch (e) {
+    toast("계획서 챗봇 불러오기 오류: " + e.message);
+  }
+}
+
+function renderPlanChatMessages() {
+  const box = document.getElementById("pcChatMessages");
+  if (!box) return;
+  const hist = PLAN_CHAT_STATE.history || [];
+  if (!hist.length) {
+    box.innerHTML = `
+      <div class="msg-bubble msg-bot">
+        <div class="msg-meta"><strong>계획서 도우미</strong></div>
+        상단의 <strong>교재 주제어 · 핵심 키워드</strong>를 확인하거나 수정한 뒤, 원하는 구성(장·단원·절·핵심 요약·표·A/B/C/D 시각화·검색 쿼리)을 입력해 주세요.<br>
+        위의 빠른 실행 칩(<strong>✨ 전체 계획서 초안 생성</strong> 등)을 클릭하면 즉시 시작할 수 있습니다.
+      </div>`;
+    return;
+  }
+  box.innerHTML = hist.map(m => {
+    const isUser = m.role === "user";
+    const ts = (m.timestamp || "").slice(11, 19);
+    const st = m.stats || null;
+    const statsHtml = st
+      ? `<span class="badge b-done">${st.parts}부 ${st.chapters}장 · 절 ${st.sections} · 표 ${st.tables} · 시각화 ${st.visuals} · 쿼리 ${st.queries}</span>`
+      : "";
+    return `
+      <div class="msg-bubble ${isUser ? "msg-user" : "msg-bot"}">
+        <div class="msg-meta" style="${isUser ? "color:rgba(255,255,255,.78)" : ""}">
+          <strong>${isUser ? "👤 사용자" : ("🤖 " + esc(m.engine_used || "계획서 도우미"))}</strong>
+          <span>${esc(ts)}</span>
+          ${statsHtml}
+        </div>
+        <div>${esc(m.content || "")}</div>
+      </div>`;
+  }).join("");
+  box.scrollTop = box.scrollHeight;
+}
+
+function renderPlanOutputAll() {
+  const plan = PLAN_CHAT_STATE.plan;
+  const parts = (plan && plan.parts) || [];
+  const allChs = parts.flatMap(pt => pt.chapters || []);
+  const totSec = allChs.reduce((a, c) => a + ((c.sections || []).length), 0);
+  const totTbl = allChs.reduce((a, c) => a + ((c.tables || []).length), 0);
+  const totVis = allChs.reduce((a, c) => a + ((c.visuals || []).length), 0);
+
+  const badge = document.getElementById("pcPlanStatsBadge");
+  if (badge) badge.textContent = `${parts.length}부 ${allChs.length}장 ${totSec}절 · 표 ${totTbl} · 시각화 ${totVis}`;
+
+  const engBadge = document.getElementById("pcEngineBadge");
+  if (engBadge && plan && plan.engine_used) engBadge.textContent = plan.engine_used;
+
+  // D2: 계획서가 생긴 뒤에만 반영·생성 버튼 표시
+  const actBtns = document.getElementById("pcActionBtns");
+  const actHint = document.getElementById("pcActionHint");
+  if (actBtns) actBtns.style.display = parts.length ? "flex" : "none";
+  if (actHint) actHint.style.display = parts.length ? "none" : "block";
+
+  // 1) 구조화 카드 뷰
+  const cardHost = document.getElementById("pcOut-cards");
+  if (!parts.length) {
+    cardHost.innerHTML = `<div class="muted" style="padding:24px;text-align:center">아직 작성된 계획서가 없습니다. 왼쪽 챗봇에서 주제어와 키워드로 계획서를 생성해 주세요.</div>`;
+  } else {
+    const domKws = plan.domain_keywords || [];
+    const sqKo = plan.search_queries_ko || [];
+    const sqEn = plan.search_queries_en || [];
+    cardHost.innerHTML = `
+      <div class="card" style="background:var(--surface);padding:12px;margin-bottom:10px">
+        <div class="flex" style="justify-content:space-between">
+          <strong style="font-size:15px;color:#e0f2fe">《${esc(plan.book_title_ko || "")}》 <small class="muted">${esc(plan.book_title_en || "")}</small></strong>
+          <span class="badge b-run">목표 ${plan.target_pages || 400}p</span>
+        </div>
+        <div style="font-size:12.5px;color:#cbd5e1;margin-top:6px">${esc(plan.book_summary_ko || "")}</div>
+        ${domKws.length ? `
+          <div class="mt8" style="border-top:1px solid var(--border);padding-top:8px">
+            <div class="label">영역별 핵심 키워드</div>
+            ${domKws.map(d => `<div style="margin-bottom:4px"><strong style="font-size:12px">${esc(d.domain)}:</strong> ${(d.keywords_ko||[]).map(k=>`<span class="chip">${esc(k)}</span>`).join("")} ${(d.keywords_en||[]).map(k=>`<span class="chip" style="background:rgba(168,85,247,.12);border-color:rgba(168,85,247,.35);color:#e9d5ff">${esc(k)}</span>`).join("")}</div>`).join("")}
+          </div>` : ""}
+      </div>
+      ${parts.map(pt => `
+        <div class="part-box">
+          <div style="font-weight:800;font-size:14px;color:#7dd3fc">${esc(pt.title)}</div>
+          ${pt.summary_ko ? `<div class="muted" style="margin-top:2px">${esc(pt.summary_ko)}</div>` : ""}
+          ${(pt.chapters || []).map(ch => `
+            <div class="ch-row">
+              <div class="flex" style="justify-content:space-between">
+                <div><span class="badge b-run">${esc(ch.chapter_id)}</span> <strong style="font-size:13.5px">${esc(ch.title)}</strong></div>
+                <span class="muted">약 ${ch.target_pages || 30}p · 절 ${(ch.sections||[]).length} · 표 ${(ch.tables||[]).length} · 시각화 ${(ch.visuals||[]).length}</span>
+              </div>
+              ${ch.summary_ko ? `<div style="font-size:12.5px;color:#cbd5e1;margin-top:5px">${esc(ch.summary_ko)}</div>` : ""}
+              ${(ch.sections || []).length ? `
+                <div class="mt8"><strong style="font-size:11.5px;color:var(--muted)">절 구성:</strong>
+                  ${(ch.sections||[]).map(s => `<span class="chip" style="font-size:11.5px">${esc(s)}</span>`).join("")}
+                </div>` : ""}
+              ${(ch.tables || []).length ? `
+                <div class="mt8" style="background:#0a1222;border:1px solid #22304b;border-radius:7px;padding:7px 9px">
+                  <strong style="font-size:11.5px;color:#93c5fd">📊 표(Table) 구성 (${ch.tables.length}종)</strong>
+                  ${ch.tables.map(tb => `
+                    <div style="font-size:12px;margin-top:4px">
+                      <span class="badge b-wait">${esc(tb.table_id)}</span> <strong>${esc(tb.title)}</strong>
+                      <span class="muted"> — 열: ${(tb.columns||[]).map(esc).join(" | ")}${tb.purpose ? " · " + esc(tb.purpose) : ""}</span>
+                    </div>`).join("")}
+                </div>` : ""}
+              ${(ch.visuals || []).length ? `
+                <div class="mt8" style="background:#0a1222;border:1px solid #22304b;border-radius:7px;padding:7px 9px">
+                  <strong style="font-size:11.5px;color:#c4b5fd">🖼️ 시각화 구성 (${ch.visuals.length}종 · weed_control A/B/C/D 표준)</strong>
+                  ${ch.visuals.map(vs => `
+                    <div style="font-size:12px;margin-top:4px">
+                      <span class="badge vis-type-${esc(vs.type || 'C')}">유형 ${esc(vs.type || 'C')} (${esc(vs.aspect_ratio || '16:9')})</span>
+                      <strong>${esc(vs.fig_id)} ${esc(vs.title)}</strong>
+                      <span class="muted"> [${esc(vs.method || 'nano_banana_pro')}] ${esc(vs.description || "")}</span>
+                    </div>`).join("")}
+                </div>` : ""}
+            </div>`).join("")}
+        </div>`).join("")}`;
+  }
+
+  // 2) 마크다운 전문 뷰
+  const mdEl = document.getElementById("pcMdRendered");
+  if (mdEl) mdEl.innerHTML = renderMd(PLAN_CHAT_STATE.plan_markdown || "");
+  const dl = document.getElementById("pcMdDownloadLink");
+  if (dl && CURRENT_PID && parts.length) {
+    dl.href = `/project-files/${encodeURIComponent(CURRENT_PID)}/blueprints/book_plan_studio.md`;
+    dl.style.display = "inline-flex";
+  }
+
+  // 3) 검색 쿼리 체크리스트
+  const qBox = document.getElementById("pcSearchQueryChips");
+  if (qBox && plan) {
+    const sqKo = plan.search_queries_ko || [];
+    const sqEn = plan.search_queries_en || [];
+    if (!sqKo.length && !sqEn.length) {
+      qBox.innerHTML = `<span class="muted">추출된 검색 쿼리가 아직 없습니다.</span>`;
+    } else {
+      qBox.innerHTML = `
+        <div style="margin-bottom:6px"><strong style="font-size:12px">국문 검색 쿼리:</strong>
+          ${sqKo.map(q => `<label class="chip" style="cursor:pointer"><input type="checkbox" class="pc-q-ko" value="${esc(q)}" checked style="margin-right:4px" />${esc(q)}</label>`).join("")}
+        </div>
+        <div><strong style="font-size:12px">영문 SCI/OA 검색 쿼리:</strong>
+          ${sqEn.map(q => `<label class="chip" style="cursor:pointer;background:rgba(168,85,247,.14);border-color:rgba(168,85,247,.35);color:#e9d5ff"><input type="checkbox" class="pc-q-en" value="${esc(q)}" checked style="margin-right:4px" />${esc(q)}</label>`).join("")}
+        </div>`;
+    }
+  }
+}
+
+async function sendPlanChat() {
+  if (!CURRENT_PID) return toast("먼저 상단에서 프로젝트를 선택하거나 새 교재를 생성하세요.");
+  const inp = document.getElementById("pcChatInput");
+  const msg = (inp.value || "").trim();
+  if (!msg) return toast("챗봇에게 전달할 계획서 요청 내용을 입력하세요.");
+
+  const btn = document.getElementById("pcSendBtn");
+  const engBadge = document.getElementById("pcEngineBadge");
+  btn.disabled = true;
+  btn.textContent = "⏳ AI가 계획서를 만드는 중...";
+  engBadge.textContent = "⚙️ 생성 중...";
+  toast("🤖 AI가 장·절·요약·표·그림 계획서를 작성 중입니다... (1~2분)", 4500);
+
+  try {
+    const res = await api(`/api/projects/${encodeURIComponent(CURRENT_PID)}/plan-chat/send`, {
+      method: "POST",
+      body: JSON.stringify({
+        message: msg,
+        topic_ko: document.getElementById("pcTopicKo").value.trim(),
+        topic_en: document.getElementById("pcTopicEn").value.trim(),
+        keywords_ko: document.getElementById("pcKwKo").value.split(",").map(x => x.trim()).filter(Boolean),
+        keywords_en: document.getElementById("pcKwEn").value.split(",").map(x => x.trim()).filter(Boolean),
+        chapter_count: parseInt(document.getElementById("pcChapters").value, 10) || 12,
+        target_pages: parseInt(document.getElementById("pcPages").value, 10) || 400,
+        engine: document.getElementById("pcEngine").value,
+        include_tables: document.getElementById("pcIncTables").checked,
+        include_visuals: document.getElementById("pcIncVisuals").checked,
+      }),
+    });
+    inp.value = "";
+    PLAN_CHAT_STATE.history = res.history || [];
+    PLAN_CHAT_STATE.plan = res.plan || null;
+    PLAN_CHAT_STATE.plan_markdown = res.plan_markdown || "";
+    if (res.plan) {
+      if (res.plan.book_title_ko) document.getElementById("pcTopicKo").value = res.plan.book_title_ko;
+      if (res.plan.book_title_en) document.getElementById("pcTopicEn").value = res.plan.book_title_en;
+      if ((res.plan.search_queries_ko || []).length) document.getElementById("pcKwKo").value = res.plan.search_queries_ko.join(", ");
+      if ((res.plan.search_queries_en || []).length) document.getElementById("pcKwEn").value = res.plan.search_queries_en.join(", ");
+    }
+    renderPlanChatMessages();
+    renderPlanOutputAll();
+    toast(`✅ 계획서 생성 완료 (${res.engine_used})`);
+  } catch (e) {
+    toast("❌ " + e.message, 5000);
+  } finally {
+    btn.disabled = false;
+    btn.textContent = "📨 챗봇에게 계획서 작성/수정 요청";
+  }
+}
+
+async function applyPlanToProjectAndSearch(autoStartStage2 = false) {
+  if (!CURRENT_PID) return;
+  if (!PLAN_CHAT_STATE.plan || !(PLAN_CHAT_STATE.plan.parts || []).length) {
+    return toast("먼저 챗봇으로 계획서를 생성해 주세요.");
+  }
+  toast(autoStartStage2 ? "🚀 계획서 반영 후 2단계 자동 자료 수집을 시작합니다..." : "✅ 계획서·검색 키워드를 프로젝트에 반영 중...");
+  try {
+    const res = await api(`/api/projects/${encodeURIComponent(CURRENT_PID)}/plan-chat/apply`, {
+      method: "POST",
+      body: JSON.stringify({
+        plan: PLAN_CHAT_STATE.plan,
+        approve_stage1: true,
+        auto_start_stage2: autoStartStage2,
+      }),
+    });
+    // 자료실 학술 검색창 & 심층 조사 검색창에도 계획서 쿼리 자동 채움
+    const topQuery = (res.search_queries_en || [])[0] || (res.search_queries_ko || [])[0] || "";
+    const sqEl = document.getElementById("scholarQuery");
+    const cqEl = document.getElementById("chatQueryInput");
+    if (sqEl && topQuery) sqEl.value = topQuery;
+    if (cqEl && (res.search_queries_ko || []).length) cqEl.value = res.search_queries_ko.slice(0, 3).join(", ") + " 관련 최신 연구·공식 기준 조사해줘";
+
+    await refreshCurrentProject(false);
+    toast(autoStartStage2 ? "🚀 계획서 확정 완료! 2단계 검색·수집이 시작되었습니다." : `✅ 청사진·검색 쿼리(국문 ${(res.search_queries_ko||[]).length} · 영문 ${(res.search_queries_en||[]).length}) 반영 완료!`, 4500);
+    if (autoStartStage2) {
+      SELECTED_STAGE = "stage2_source_collect";
+      switchMainTab("workflow");
+      renderTopProgress();
+      renderStageDetail();
+    }
+  } catch (e) {
+    toast("❌ " + e.message);
+  }
+}
+
+async function runPlanLiveSearch() {
+  if (!CURRENT_PID) return;
+  switchPlanOutSub("search");
+  const qKo = [...document.querySelectorAll(".pc-q-ko:checked")].map(x => x.value);
+  const qEn = [...document.querySelectorAll(".pc-q-en:checked")].map(x => x.value);
+  const resBox = document.getElementById("pcSearchResultsBox");
+  resBox.innerHTML = "🔎 계획서 검색 쿼리로 로컬 지식그래프(C:\\SMC_GRAPHRAG) + 국내외 학술 문헌을 통합 검색 중...";
+  try {
+    const res = await api(`/api/projects/${encodeURIComponent(CURRENT_PID)}/plan-chat/search`, {
+      method: "POST",
+      body: JSON.stringify({ queries_ko: qKo, queries_en: qEn, limit_per_query: 4 }),
+    });
+    PLAN_CHAT_STATE.search_papers = res.papers || [];
+    const rag = res.rag_summary || {};
+    resBox.innerHTML = `
+      <div class="card" style="background:#0d182d;padding:10px 12px;margin-bottom:10px;border-color:rgba(34,197,94,.4)">
+        <div class="flex" style="justify-content:space-between">
+          <strong>🧠 로컬 지식그래프 선조회 (Graph-First)</strong>
+          <span class="badge b-done">재활용률 ${rag.reuse_ratio_percent ?? 0}%</span>
+        </div>
+        <div class="muted mt8">기존 축적 키워드: ${(rag.matched_terms||[]).map(esc).join(", ") || "없음"}</div>
+        <div class="muted">웹·학술 신규 수집 권장 결손어: ${(rag.missing_terms||[]).map(esc).join(", ") || "없음"}</div>
+      </div>
+      <div class="flex mb8" style="justify-content:space-between">
+        <strong>🎓 계획서 쿼리 기반 발굴 문헌 (${PLAN_CHAT_STATE.search_papers.length}건)</strong>
+        <button class="btn-green btn-sm" onclick="ingestAllCheckedPlanPapers()">📥 체크 문헌 프로젝트 근거 적재</button>
+      </div>
+      ${PLAN_CHAT_STATE.search_papers.length ? PLAN_CHAT_STATE.search_papers.map((p, idx) => `
+        <div class="ch-row" style="margin-top:6px">
+          <label class="flex" style="align-items:flex-start">
+            <input type="checkbox" class="pc-paper-cb" value="${idx}" checked style="margin-top:3px" />
+            <div style="flex:1">
+              <div><span class="badge b-run">${esc(p.search_channel || p.provider || "학술")}</span> <span class="badge b-wait">${esc(p.year || "-")}</span> <strong>${esc(p.title || "")}</strong></div>
+              <div class="muted" style="margin-top:2px">매칭 쿼리: <code>${esc(p.matched_query || "")}</code> · ${esc(p.journal || "")} ${p.url ? `· <a href="${esc(p.url)}" target="_blank">원문↗</a>` : ""}</div>
+            </div>
+          </label>
+        </div>`).join("") : `<div class="muted">검색 결과가 없습니다. 영문/국문 검색 쿼리를 조정해 보세요.</div>`}`;
+    toast(`✅ 계획서 검색 완료: 문헌 ${PLAN_CHAT_STATE.search_papers.length}건 발굴`);
+  } catch (e) {
+    resBox.innerHTML = `<span style="color:#fca5a5">검색 오류: ${esc(e.message)}</span>`;
+  }
+}
+
+async function ingestAllCheckedPlanPapers() {
+  if (!CURRENT_PID) return;
+  const idxs = [...document.querySelectorAll(".pc-paper-cb:checked")].map(x => parseInt(x.value, 10));
+  if (!idxs.length) return toast("적재할 문헌을 1건 이상 체크해 주세요.");
+  toast(`📥 선택한 ${idxs.length}건의 문헌을 프로젝트 근거 패킷에 적재 중...`);
+  let ok = 0;
+  for (const idx of idxs) {
+    const paper = PLAN_CHAT_STATE.search_papers[idx];
+    if (!paper) continue;
+    try {
+      await api("/api/collect/scholar/ingest", {
+        method: "POST",
+        body: JSON.stringify({ project_id: CURRENT_PID, paper, download_pdf: false }),
+      });
+      ok++;
+    } catch (e) {}
+  }
+  await refreshCurrentProject(false);
+  toast(`✅ ${ok}/${idxs.length}건의 문헌을 현재 프로젝트 자료실·근거 패킷에 적재했습니다!`);
+}
+
+function sendPlanQueriesToLibrary() {
+  const plan = PLAN_CHAT_STATE.plan || {};
+  const q = (plan.search_queries_en || [])[0] || (plan.search_queries_ko || [])[0] || document.getElementById("pcTopicKo").value.trim();
+  const sqEl = document.getElementById("scholarQuery");
+  if (sqEl && q) sqEl.value = q;
+  switchMainTab("library");
+  if (q) searchScholar();
+}
+
+async function createNewProjectFromChatPlan() {
+  if (!PLAN_CHAT_STATE.plan || !(PLAN_CHAT_STATE.plan.parts || []).length) {
+    return toast("먼저 챗봇으로 계획서를 생성해 주세요.");
+  }
+  const title = PLAN_CHAT_STATE.plan.book_title_ko || "신규 전문 교재";
+  if (!confirm(`현재 챗봇 계획서 《${title}》으로 새 교재 프로젝트를 생성하고 청사진·검색 쿼리를 반영할까요?`)) return;
+  try {
+    const res = await api("/api/plan-chat/create-project", {
+      method: "POST",
+      body: JSON.stringify({ plan: PLAN_CHAT_STATE.plan, auto_start_stage2: false }),
+    });
+    toast(`✅ 새 교재 프로젝트 《${title}》 생성 및 계획서 반영 완료!`);
+    await loadProjectsList(res.project.project_id);
+    switchMainTab("planchat");
+  } catch (e) {
+    toast("❌ " + e.message);
+  }
+}
+
+function copyPlanMarkdown() {
+  if (!PLAN_CHAT_STATE.plan_markdown) return toast("복사할 계획서 마크다운이 없습니다.");
+  navigator.clipboard.writeText(PLAN_CHAT_STATE.plan_markdown).then(
+    () => toast("📋 계획서 마크다운 전문을 클립보드에 복사했습니다!"),
+    () => toast("복사에 실패했습니다.")
+  );
+}
+
+async function resetPlanChat() {
+  if (!CURRENT_PID) return;
+  if (!confirm("현재 프로젝트의 계획서 챗봇 대화 이력을 초기화할까요?")) return;
+  try {
+    await api(`/api/projects/${encodeURIComponent(CURRENT_PID)}/plan-chat/reset`, {
+      method: "POST",
+      body: JSON.stringify({ keep_plan: false }),
+    });
+    await loadPlanChatTab();
+    toast("🗑️ 계획서 챗봇 대화를 초기화했습니다.");
   } catch (e) { toast("❌ " + e.message); }
 }
 

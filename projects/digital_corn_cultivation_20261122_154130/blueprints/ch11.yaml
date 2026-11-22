@@ -1,0 +1,16 @@
+chapter_id: ch11
+chapter_number: 11
+title: 제11장. 수확의 원리와 디지털 현장 관리
+target_pages: 40
+summary_ko: 디지털 옥수수 재배에서 수확의 과학적 메커니즘, 정량 측정 지표 및 디지털 정밀 관리 전략을 다룹니다.
+sections:
+- 11.1 기초 원리 및 개념
+- 11.2 정량 측정·모델링
+- 11.3 국내외 기준 비교
+- 11.4 디지털 현장 적용
+keywords_ko:
+- 수확
+keywords_en:
+- Harvesting
+evidence_packet: digital_corn_cultivation_20261122_154130_evidence.json
+assigned_sources: []
