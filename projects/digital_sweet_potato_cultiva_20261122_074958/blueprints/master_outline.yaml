@@ -1,0 +1,437 @@
+book_metadata:
+  title_ko: 디지털 고구마 재배
+  title_en: Digital Sweet Potato Cultivation
+  target_audience: 대학 전공 심화, 대학원생, 연구자 및 선도 현장 실무자
+  book_summary_ko: 《디지털 고구마 재배》 595p 전문 대학교재 및 현장 실무 지침서
+  target_pages: 595
+  target_total_pages: 595
+  chapter_count: 17
+  engine_used: Ollama (gemma4:latest)
+  generated_at: '2026-11-21T22:50:34+00:00'
+domain_keywords:
+- domain: 농업 시스템
+  keywords_ko:
+  - 정밀농업
+  - 디지털 트윈
+  - 농업 빅데이터
+  keywords_en:
+  - Precision Agriculture
+  - Digital Twin
+  - Agricultural Big Data
+- domain: 작물 생리
+  keywords_ko:
+  - 광이용효율
+  - 동화산물 분배
+  - 수량 구성요소
+  keywords_en:
+  - Light Use Efficiency
+  - Assimilate Partitioning
+  - Yield Components
+- domain: 토양 환경
+  keywords_ko:
+  - 토양 물리화학성
+  - 양분 재분배
+  - 탄소 격리
+  keywords_en:
+  - Soil Physico-chemical
+  - Nutrient Redistribution
+  - Carbon Sequestration
+- domain: 예측 및 관리
+  keywords_ko:
+  - 병해 발생 예측
+  - AI 예측
+  - 통합 병해충 관리
+  keywords_en:
+  - Disease Prediction
+  - AI Forecasting
+  - IPM
+- domain: 데이터 및 모델링
+  keywords_ko:
+  - 원격탐사
+  - 자료동화
+  - 생육모형
+  keywords_en:
+  - Remote Sensing
+  - Data Assimilation
+  - Growth Modeling
+parts:
+- part_number: 1
+  title: 제1부. 디지털 농업의 기초 및 작물 생리 이해
+  pages: 70
+  chapters:
+  - chapter_id: ch01
+    chapter_number: 1
+    title: 제1장. 디지털 농업 시스템의 이해와 고구마 생장 특성
+    target_pages: 35
+    summary_ko: 본 장에서는 디지털 농업의 기본 개념을 소개하고, 고구마의 생리적 특성 및 생육 단계별 반응을 심층적으로 분석합니다. 작물 생육모형을 통해 환경 변화가 수량 구성요소에 미치는 영향을 정량적으로 이해합니다.
+    sections:
+    - 1.1 정밀농업의 패러다임 전환
+    - 1.2 고구마의 생육단계 및 환경 반응 특성
+    - 1.3 작물 생육모형의 기본 원리
+    - 1.4 데이터 기반 농업 의사결정 프레임워크
+    keywords_ko:
+    - 정밀농업
+    - 생육단계 척도
+    - 작물 생육모형
+    - 디지털 트윈
+    keywords_en:
+    - Precision Agriculture
+    - Growth Stage Scale
+    - Crop Growth Model
+    - Digital Twin
+    evidence_packet: digital_sweet_potato_cultiva_20261122_074958_evidence.json
+    assigned_sources: []
+  - chapter_id: ch02
+    chapter_number: 2
+    title: 제2장. 토양 환경 및 비생물적 스트레스 모델링
+    target_pages: 35
+    summary_ko: 토양의 물리화학적 특성과 양분 역학을 이해하고, 가뭄이나 염분과 같은 비생물적 스트레스가 고구마 생장에 미치는 영향을 모델링합니다. 토양 건강성 관점에서 탄소 격리 가능성을 평가합니다.
+    sections:
+    - 2.1 토양 물리화학적 특성 분석
+    - 2.2 양분 재분배 및 이동 메커니즘
+    - 2.3 비생물적 스트레스 요인(가뭄, 염해 등) 정량화
+    - 2.4 토양 유기물 및 탄소 격리 메커니즘
+    keywords_ko:
+    - 토양 물리화학성
+    - 양분 재분배·전류
+    - 비생물적 스트레스
+    - 탄소 격리
+    keywords_en:
+    - Soil Physico-chemical Properties
+    - Nutrient Redistribution
+    - Abiotic Stress
+    - Carbon Sequestration
+    evidence_packet: digital_sweet_potato_cultiva_20261122_074958_evidence.json
+    assigned_sources: []
+- part_number: 2
+  title: 제2부. 작물 생리 및 영양 관리를 위한 정량적 접근
+  pages: 35
+  chapters:
+  - chapter_id: ch03
+    chapter_number: 3
+    title: 제3장. 광합성 및 동화산물 분배 최적화
+    target_pages: 35
+    summary_ko: 광합성 효율과 동화산물의 분배 패턴을 생리적으로 분석하며, 질소 결핍에 따른 임계점을 정량적으로 정의합니다. 이를 통해 작물 내부의 자원 배분을 최적화하는 방안을 제시합니다.
+    sections:
+    - 3.1 광이용효율(LUE)의 이해와 최적화
+    - 3.2 동화산물 분배 계수 및 수량 구성요소 분석
+    - 3.3 질소 영양 및 임계 질소 희석곡선
+    - 3.4 양분 재분배를 고려한 생장 조절
+    keywords_ko:
+    - 광이용효율
+    - 동화산물 분배 계수
+    - 임계 질소 희석곡선
+    - 수량 구성요소
+    keywords_en:
+    - Light Use Efficiency
+    - Assimilate Partitioning Coefficient
+    - Critical Nitrogen Dilution Curve
+    - Yield Components
+    evidence_packet: digital_sweet_potato_cultiva_20261122_074958_evidence.json
+    assigned_sources: []
+- part_number: 3
+  title: 제4장. 시비 전략 및 영양소 관리 모델링
+  pages: 35
+  chapters:
+  - chapter_id: ch04
+    chapter_number: 4
+    title: 제4장. 시비량 산정 모델 및 질소 관리
+    target_pages: 35
+    summary_ko: 토양 특성과 작물 반응을 통합하여 최적의 시비량을 산정하는 모델을 학습합니다. 질소영양지수 등을 활용하여 영양소 부족을 최소화하고 생육 효율을 극대화합니다.
+    sections:
+    - 4.1 토양 분석 기반 시비량 산정 모델 개발
+    - 4.2 질소영양지수(NUI)를 활용한 영양 관리
+    - 4.3 작물 생장 단계별 맞춤형 영양 공급
+    - 4.4 화학적/생물학적 영양소 이용 효율 증대 방안
+    keywords_ko:
+    - 시비량 산정 모델
+    - 질소영양지수
+    - 양분 재분배
+    - 맞춤형 시비
+    keywords_en:
+    - Fertilizer Application Model
+    - Nitrogen Use Efficiency
+    - Nutrient Management
+    - Site-Specific Fertilization
+    evidence_packet: digital_sweet_potato_cultiva_20261122_074958_evidence.json
+    assigned_sources: []
+- part_number: 4
+  title: 제5장. 유전적 개선과 형질 특성 분석
+  pages: 35
+  chapters:
+  - chapter_id: ch05
+    chapter_number: 5
+    title: 제5장. 고구마의 유전적 다양성 및 형질 지도
+    target_pages: 35
+    summary_ko: 고구마의 유전적 잠재력을 파악하고, 유전자 편집과 같은 첨단 기술을 통해 원하는 농업적 형질을 도입하는 방법을 다룹니다. 이는 환경 적응성과 생산성 향상에 필수적입니다.
+    sections:
+    - 5.1 고구마 품종의 유전적 다양성 평가
+    - 5.2 유전체 정보 기반 형질 지도(QTL) 분석
+    - 5.3 유전자 편집 기술(CRISPR)의 농업 적용
+    - 5.4 고성능 품종 개발을 위한 유전체 선발
+    keywords_ko:
+    - 유전적 다양성
+    - 형질 지도
+    - 유전자 편집
+    - 유전체 선발
+    keywords_en:
+    - Genetic Diversity
+    - Trait Mapping
+    - Gene Editing
+    - Genomic Selection
+    evidence_packet: digital_sweet_potato_cultiva_20261122_074958_evidence.json
+    assigned_sources: []
+- part_number: 5
+  title: 제3부. 디지털 기술 기반의 환경 모니터링 및 예측
+  pages: 35
+  chapters:
+  - chapter_id: ch06
+    chapter_number: 6
+    title: 제6장. 원격탐사 및 식생 모니터링 기술
+    target_pages: 35
+    summary_ko: 위성 및 드론 데이터를 활용하여 작물의 생육 상태를 비접촉 방식으로 모니터링하는 기술을 학습합니다. 식생지수와 엽면적지수를 통해 작물의 건강 상태를 정량적으로 진단합니다.
+    sections:
+    - 6.1 원격탐사 시스템(SAR, Optic)의 원리
+    - 6.2 식생지수(NDVI 등) 및 엽면적지수(LAI) 산출
+    - 6.3 시계열 데이터 분석을 통한 생장 추적
+    - 6.4 데이터 수집 및 전처리 파이프라인 구축
+    keywords_ko:
+    - 원격탐사
+    - 식생지수
+    - 엽면적지수
+    - 자료동화
+    keywords_en:
+    - Remote Sensing
+    - Vegetation Index
+    - Leaf Area Index
+    - Data Assimilation
+    evidence_packet: digital_sweet_potato_cultiva_20261122_074958_evidence.json
+    assigned_sources: []
+- part_number: 6
+  title: 제7장. 정밀 관개 및 환경 제어 시스템
+  pages: 35
+  chapters:
+  - chapter_id: ch07
+    chapter_number: 7
+    title: 7.1 작물 증산 및 수분 요구량 예측
+    target_pages: 35
+    summary_ko: 작물의 증산 특성과 토양 수분 상태를 결합하여 최적의 관개 시점과 양을 결정합니다. 이는 물 사용 효율을 극대화하는 핵심 기술입니다.
+    sections:
+    - 7.1.1 증발산량 및 토양 수분 모델링
+    - 7.1.2 관개 시점 및 양 최적화
+    - 7.1.3 관개 시스템의 에너지 효율 분석
+    - 7.1.4 통합 수분 관리(Irrigation Scheduling)
+    keywords_ko:
+    - 관개·수분관리
+    - 증발산량
+    - 토양 수분 모델링
+    - 물 발자국
+    keywords_en:
+    - Irrigation and Water Management
+    - Evapotranspiration
+    - Soil Moisture Modeling
+    - Water Footprint
+    evidence_packet: digital_sweet_potato_cultiva_20261122_074958_evidence.json
+    assigned_sources: []
+- part_number: 7
+  title: 제8장. 병해충 발생 예측 및 통합 관리
+  pages: 35
+  chapters:
+  - chapter_id: ch08
+    chapter_number: 8
+    title: 8.1 병해 발생 예측 모델의 구성 요소
+    target_pages: 35
+    summary_ko: 기후 및 환경 데이터를 기반으로 특정 병해충의 발생 확률을 예측하는 모델을 학습합니다. 이를 통해 선제적인 통합 병해충 관리(IPM) 계획을 수립할 수 있습니다.
+    sections:
+    - 8.1.1 기후-생물학적 상호작용 모델
+    - 8.1.2 병해 발생 역학 모델링
+    - 8.1.3 현장 데이터(온도, 습도)의 실시간 입력
+    - 8.1.4 통합 병해충 관리(IPM) 전략 수립
+    keywords_ko:
+    - 병해 발생 예측 모델
+    - 통합 병해충 관리·예찰
+    - 기후-생물학적 모델링
+    - 예찰
+    keywords_en:
+    - Disease Outbreak Prediction Model
+    - Integrated Pest Management
+    - Climatic-Biological Modeling
+    - Scouting
+    evidence_packet: digital_sweet_potato_cultiva_20261122_074958_evidence.json
+    assigned_sources: []
+- part_number: 8
+  title: 제9장. AI 및 데이터 기반 예측 시스템 구축
+  pages: 35
+  chapters:
+  - chapter_id: ch09
+    chapter_number: 9
+    title: 9.1 농업 빅데이터 파이프라인 설계
+    target_pages: 35
+    summary_ko: 다양한 농업 데이터를 통합하고 정제하는 빅데이터 파이프라인을 구축하는 방법을 설명합니다. 특히 AI와 딥러닝을 활용하여 수량 및 질병 발생을 정확하게 예측합니다.
+    sections:
+    - 9.1.1 데이터 수집(센서, RS) 및 전처리
+    - 9.1.2 데이터 저장 및 관리 아키텍처
+    - 9.1.3 딥러닝 기반 예측 모델 학습
+    - 9.1.4 AI를 활용한 수량 및 병해 예측
+    keywords_ko:
+    - 농업 빅데이터 파이프라인
+    - AI 수량·병해 예측
+    - 데이터 동화
+    - 딥러닝
+    keywords_en:
+    - Agricultural Big Data Pipeline
+    - AI Yield/Disease Prediction
+    - Data Assimilation
+    - Deep Learning
+    evidence_packet: digital_sweet_potato_cultiva_20261122_074958_evidence.json
+    assigned_sources: []
+- part_number: 9
+  title: 제10장. 디지털 트윈 및 최적화 시뮬레이션
+  pages: 35
+  chapters:
+  - chapter_id: ch10
+    chapter_number: 10
+    title: 10.1 작물 생장 모형과 디지털 트윈의 결합
+    target_pages: 35
+    summary_ko: 실제 농장 환경을 가상 공간에 복제하는 디지털 트윈을 구축하고, 여기에 생육 모형을 결합합니다. 이를 통해 다양한 환경 변화에 대한 최적의 농업 전략을 미리 시뮬레이션합니다.
+    sections:
+    - 10.1.1 물리 기반 모델과 데이터 기반 모델의 융합
+    - 10.1.2 실시간 환경 변화 반영 메커니즘
+    - 10.1.3 의사결정 지원 시스템(DSS) 구현
+    - 10.1.4 시나리오 기반 최적화 시뮬레이션
+    keywords_ko:
+    - 디지털 트윈
+    - 작물 생육모형
+    - 최적화 시뮬레이션
+    - 의사결정 지원
+    keywords_en:
+    - Digital Twin
+    - Crop Growth Model
+    - Optimization Simulation
+    - Decision Support System
+    evidence_packet: digital_sweet_potato_cultiva_20261122_074958_evidence.json
+    assigned_sources: []
+- part_number: 10
+  title: 제3부. 디지털 고구마 재배 핵심 영역 3
+  pages: 35
+  chapters:
+  - chapter_id: ch11
+    chapter_number: 11
+    title: 제11장. 토양 물리화학성의 원리와 디지털 현장 관리
+    target_pages: 35
+    summary_ko: 디지털 고구마 재배에서 토양 물리화학성의 과학적 메커니즘, 정량 측정 지표 및 디지털 정밀 관리 전략을 다룹니다.
+    sections:
+    - 11.1 기초 원리 및 개념
+    - 11.2 정량 측정·모델링
+    - 11.3 국내외 기준 비교
+    - 11.4 디지털 현장 적용
+    keywords_ko:
+    - 토양 물리화학성
+    keywords_en:
+    - Soil Physicochemical Properties
+    evidence_packet: digital_sweet_potato_cultiva_20261122_074958_evidence.json
+    assigned_sources: []
+- part_number: 11
+  title: 제4부. 디지털 고구마 재배 핵심 영역 4
+  pages: 105
+  chapters:
+  - chapter_id: ch12
+    chapter_number: 12
+    title: 제12장. 토양 유기물·탄소 격리의 원리와 디지털 현장 관리
+    target_pages: 35
+    summary_ko: 디지털 고구마 재배에서 토양 유기물·탄소 격리의 과학적 메커니즘, 정량 측정 지표 및 디지털 정밀 관리 전략을 다룹니다.
+    sections:
+    - 12.1 기초 원리 및 개념
+    - 12.2 정량 측정·모델링
+    - 12.3 국내외 기준 비교
+    - 12.4 디지털 현장 적용
+    keywords_ko:
+    - 토양 유기물·탄소 격리
+    keywords_en:
+    - Soil Organic Matter / Carbon Sequestration
+    evidence_packet: digital_sweet_potato_cultiva_20261122_074958_evidence.json
+    assigned_sources: []
+  - chapter_id: ch13
+    chapter_number: 13
+    title: 제13장. 유전적 다양성·형질 지도의 원리와 디지털 현장 관리
+    target_pages: 35
+    summary_ko: 디지털 고구마 재배에서 유전적 다양성·형질 지도의 과학적 메커니즘, 정량 측정 지표 및 디지털 정밀 관리 전략을 다룹니다.
+    sections:
+    - 13.1 기초 원리 및 개념
+    - 13.2 정량 측정·모델링
+    - 13.3 국내외 기준 비교
+    - 13.4 디지털 현장 적용
+    keywords_ko:
+    - 유전적 다양성·형질 지도
+    keywords_en:
+    - Genetic Diversity / Trait Mapping
+    evidence_packet: digital_sweet_potato_cultiva_20261122_074958_evidence.json
+    assigned_sources: []
+  - chapter_id: ch14
+    chapter_number: 14
+    title: 제14장. 유전자 편집의 원리와 디지털 현장 관리
+    target_pages: 35
+    summary_ko: 디지털 고구마 재배에서 유전자 편집의 과학적 메커니즘, 정량 측정 지표 및 디지털 정밀 관리 전략을 다룹니다.
+    sections:
+    - 14.1 기초 원리 및 개념
+    - 14.2 정량 측정·모델링
+    - 14.3 국내외 기준 비교
+    - 14.4 디지털 현장 적용
+    keywords_ko:
+    - 유전자 편집
+    keywords_en:
+    - Genome Editing
+    evidence_packet: digital_sweet_potato_cultiva_20261122_074958_evidence.json
+    assigned_sources: []
+- part_number: 12
+  title: 제5부. 디지털 고구마 재배 핵심 영역 5
+  pages: 105
+  chapters:
+  - chapter_id: ch15
+    chapter_number: 15
+    title: 제15장. 병해 발생 예측 모델의 원리와 디지털 현장 관리
+    target_pages: 35
+    summary_ko: 디지털 고구마 재배에서 병해 발생 예측 모델의 과학적 메커니즘, 정량 측정 지표 및 디지털 정밀 관리 전략을 다룹니다.
+    sections:
+    - 15.1 기초 원리 및 개념
+    - 15.2 정량 측정·모델링
+    - 15.3 국내외 기준 비교
+    - 15.4 디지털 현장 적용
+    keywords_ko:
+    - 병해 발생 예측 모델
+    keywords_en:
+    - Disease Forecasting Model
+    evidence_packet: digital_sweet_potato_cultiva_20261122_074958_evidence.json
+    assigned_sources: []
+  - chapter_id: ch16
+    chapter_number: 16
+    title: 제16장. 통합 병해충 관리·예찰의 원리와 디지털 현장 관리
+    target_pages: 35
+    summary_ko: 디지털 고구마 재배에서 통합 병해충 관리·예찰의 과학적 메커니즘, 정량 측정 지표 및 디지털 정밀 관리 전략을 다룹니다.
+    sections:
+    - 16.1 기초 원리 및 개념
+    - 16.2 정량 측정·모델링
+    - 16.3 국내외 기준 비교
+    - 16.4 디지털 현장 적용
+    keywords_ko:
+    - 통합 병해충 관리·예찰
+    keywords_en:
+    - IPM / Scouting System
+    evidence_packet: digital_sweet_potato_cultiva_20261122_074958_evidence.json
+    assigned_sources: []
+  - chapter_id: ch17
+    chapter_number: 17
+    title: 제17장. 작물 생육모형의 원리와 디지털 현장 관리
+    target_pages: 35
+    summary_ko: 디지털 고구마 재배에서 작물 생육모형의 과학적 메커니즘, 정량 측정 지표 및 디지털 정밀 관리 전략을 다룹니다.
+    sections:
+    - 17.1 기초 원리 및 개념
+    - 17.2 정량 측정·모델링
+    - 17.3 국내외 기준 비교
+    - 17.4 디지털 현장 적용
+    keywords_ko:
+    - 작물 생육모형
+    keywords_en:
+    - Crop Growth Model
+    evidence_packet: digital_sweet_potato_cultiva_20261122_074958_evidence.json
+    assigned_sources: []

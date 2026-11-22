@@ -1,0 +1,22 @@
+chapter_id: ch07
+chapter_number: 7
+title: 7.1 작물 증산 및 수분 요구량 예측
+target_pages: 35
+summary_ko: 작물의 증산 특성과 토양 수분 상태를 결합하여 최적의 관개 시점과 양을 결정합니다. 이는 물 사용 효율을 극대화하는 핵심 기술입니다.
+sections:
+- 7.1.1 증발산량 및 토양 수분 모델링
+- 7.1.2 관개 시점 및 양 최적화
+- 7.1.3 관개 시스템의 에너지 효율 분석
+- 7.1.4 통합 수분 관리(Irrigation Scheduling)
+keywords_ko:
+- 관개·수분관리
+- 증발산량
+- 토양 수분 모델링
+- 물 발자국
+keywords_en:
+- Irrigation and Water Management
+- Evapotranspiration
+- Soil Moisture Modeling
+- Water Footprint
+evidence_packet: digital_sweet_potato_cultiva_20261122_074958_evidence.json
+assigned_sources: []

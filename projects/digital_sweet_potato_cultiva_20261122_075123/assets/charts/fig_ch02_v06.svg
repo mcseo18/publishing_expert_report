@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" width="800" height="420" style="background:#ffffff;font-family:'Malgun Gothic', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;">
+  <rect x="0" y="0" width="800" height="420" rx="12" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+  <rect x="0" y="0" width="800" height="58" rx="12" fill="#0f2942"/>
+  <rect x="0" y="42" width="800" height="16" fill="#0f2942"/>
+  <text x="22" y="27" font-size="15" font-weight="700" fill="#f8fafc">그림 2-6. 제2장. 적산온도의 원리와 디지털 현장 관리 — 핵심 관리 요인별 상대 기여도 비교 차트 </text>
+  <text x="22" y="47" font-size="11" fill="#cbd5e1">디지털 고구마 재배 · 2.2 정량 측정·모델링</text>
+  <text x="24" y="112" font-size="12.5" font-weight="700" fill="#1e293b">2.1 기초 원리 및 개념</text>
+  <rect x="250" y="96" width="440" height="28" rx="6" fill="#f1f5f9"/>
+  <rect x="250" y="96" width="395" height="28" rx="6" fill="#0284c7"/>
+  <text x="653" y="115" font-size="12" font-weight="700" fill="#0f172a">92%</text>
+  <text x="24" y="182" font-size="12.5" font-weight="700" fill="#1e293b">2.2 정량 측정·모델링</text>
+  <rect x="250" y="166" width="440" height="28" rx="6" fill="#f1f5f9"/>
+  <rect x="250" y="166" width="361" height="28" rx="6" fill="#16a34a"/>
+  <text x="619" y="185" font-size="12" font-weight="700" fill="#0f172a">84%</text>
+  <text x="24" y="252" font-size="12.5" font-weight="700" fill="#1e293b">2.3 국내외 기준 비교</text>
+  <rect x="250" y="236" width="440" height="28" rx="6" fill="#f1f5f9"/>
+  <rect x="250" y="236" width="326" height="28" rx="6" fill="#d97706"/>
+  <text x="584" y="255" font-size="12" font-weight="700" fill="#0f172a">76%</text>
+  <text x="24" y="322" font-size="12.5" font-weight="700" fill="#1e293b">2.4 디지털 현장 적용</text>
+  <rect x="250" y="306" width="440" height="28" rx="6" fill="#f1f5f9"/>
+  <rect x="250" y="306" width="292" height="28" rx="6" fill="#7c3aed"/>
+  <text x="550" y="325" font-size="12" font-weight="700" fill="#0f172a">68%</text>
+</svg>

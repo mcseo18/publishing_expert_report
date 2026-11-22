@@ -1,0 +1,22 @@
+chapter_id: ch01
+chapter_number: 1
+title: 제1장. 디지털 농업 시스템의 이해와 고구마 생장 특성
+target_pages: 35
+summary_ko: 본 장에서는 디지털 농업의 기본 개념을 소개하고, 고구마의 생리적 특성 및 생육 단계별 반응을 심층적으로 분석합니다. 작물 생육모형을 통해 환경 변화가 수량 구성요소에 미치는 영향을 정량적으로 이해합니다.
+sections:
+- 1.1 정밀농업의 패러다임 전환
+- 1.2 고구마의 생육단계 및 환경 반응 특성
+- 1.3 작물 생육모형의 기본 원리
+- 1.4 데이터 기반 농업 의사결정 프레임워크
+keywords_ko:
+- 정밀농업
+- 생육단계 척도
+- 작물 생육모형
+- 디지털 트윈
+keywords_en:
+- Precision Agriculture
+- Growth Stage Scale
+- Crop Growth Model
+- Digital Twin
+evidence_packet: digital_sweet_potato_cultiva_20261122_074958_evidence.json
+assigned_sources: []

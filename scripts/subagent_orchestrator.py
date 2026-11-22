@@ -1537,6 +1537,8 @@ def _run_stage5_visuals_generate(state: dict[str, Any], cfg: PlatformConfig) -> 
         cfg=cfg,
     )
     state["checkpoint"]["completed_visuals"] = res["completed_visual_ids"]
+    state["local_visuals_dir"] = res.get("local_visuals_dir", "")
+    state["e_visuals_dir"] = res.get("e_visuals_dir", "")
     save_project_state(state, cfg)
 
     if res["status"] == "INTERRUPTED":
@@ -1557,13 +1559,15 @@ def _run_stage5_visuals_generate(state: dict[str, Any], cfg: PlatformConfig) -> 
         status="DONE",
         progress=100,
         finished_at=utc_now_iso(),
-        current_action=f"시각화 총 {res['total_generated']}종 제작 완료 (단원당 {per_ch}개 · 실사/AI {res['ai_images_count']} + SVG {res['svg_charts_count']})",
+        current_action=f"시각화 총 {res['total_generated']}종 별도 저장 완료 (단원당 {per_ch}개 · PNG 변환 {res.get('png_rasterized_count',0)}종 · E:\\ 미러링)",
         metrics={
             "total_visuals": res["total_generated"],
             "per_chapter": per_ch,
             "ai_images": res["ai_images_count"],
             "svg_charts": res["svg_charts_count"],
+            "png_rasterized": res.get("png_rasterized_count", 0),
             "fal_ai": use_fal,
+            "e_visuals_dir": res.get("e_visuals_dir", ""),
         },
         artifacts=[res["manifest_path"], res["guide_path"]],
     )
@@ -1578,20 +1582,26 @@ def _run_stage6_publish_report(state: dict[str, Any], cfg: PlatformConfig) -> No
         build_interactive_web,
         build_textbook,
     )
+    from figure_registry import load_chapter_visuals
 
     pid = state["project_id"]
     sid = "stage6_publish_report"
-    _update_stage(state, sid, cfg, status="RUNNING", progress=15, started_at=utc_now_iso(), current_action="교재·교과서·보고서·네이버 블로그 HTML 출판 및 E:\\ 미러링 중...", error="")
+    _update_stage(state, sid, cfg, status="RUNNING", progress=10, started_at=utc_now_iso(), current_action="단원별 시각화 자료 로드 및 문서 결합 출판 준비 중...", error="")
 
-    ch_dir = Path(state["workspace_dir"]) / "chapters"
-    exp_root = Path(state["workspace_dir"]) / "exports"
+    ws_path = Path(state["workspace_dir"])
+    ch_dir = ws_path / "chapters"
+    exp_root = ws_path / "exports"
     exp_root.mkdir(parents=True, exist_ok=True)
     e_proj_exp = cfg.project_e_exports_dir(pid)
     e_proj_exp.mkdir(parents=True, exist_ok=True)
     sources_map = _load_all_sources_map(cfg)
+    visuals_map = load_chapter_visuals(project_ws=ws_path)
+    total_vis_loaded = sum(len(v) for v in visuals_map.values())
+    append_event(pid, "book-publisher", sid, f"시각화 자산 {total_vis_loaded}종({len(visuals_map)}개 단원) 로드 완료 → PDF·DOCX·네이버 HTML 결합 시작", cfg=cfg)
 
     built_files: list[str] = []
     outputs_map: dict[str, str] = {}
+    bound_visuals_by_ch: dict[str, int] = {}
     ch_files = sorted(ch_dir.glob("*.mdx"))
     pub_done: set[str] = set(state.setdefault("checkpoint", {}).get("published_chapters") or [])
 
@@ -1601,13 +1611,15 @@ def _run_stage6_publish_report(state: dict[str, Any], cfg: PlatformConfig) -> No
             return
         cid = p.stem
         meta, body = _parse_frontmatter(p.read_text(encoding="utf-8"))
+        meta["book_title"] = state.get("topic_ko", "")
         out_dir = exp_root / cid
         out_dir.mkdir(parents=True, exist_ok=True)
+        n_vis = len(visuals_map.get(cid, []))
 
-        build_textbook(cid, meta, body, out_dir)
-        build_curriculum(cid, meta, body, out_dir)
-        build_executive_report(cid, meta, body, out_dir)
-        r_wb = build_interactive_web(cid, meta, body, sources_map, out_dir)
+        build_textbook(cid, meta, body, out_dir, visuals_map=visuals_map)
+        build_curriculum(cid, meta, body, out_dir, visuals_map=visuals_map)
+        build_executive_report(cid, meta, body, out_dir, visuals_map=visuals_map)
+        r_wb = build_interactive_web(cid, meta, body, sources_map, out_dir, visuals_map=visuals_map)
 
         e_ch = e_proj_exp / cid
         e_ch.mkdir(parents=True, exist_ok=True)
@@ -1620,10 +1632,12 @@ def _run_stage6_publish_report(state: dict[str, Any], cfg: PlatformConfig) -> No
         outputs_map[f"{cid}_report_docx"] = f"/project-files/{pid}/exports/{cid}/{cid}_report.docx"
         outputs_map[f"{cid}_naver_web"] = f"/project-files/{pid}/exports/{cid}/{cid}_interactive.html"
         outputs_map[f"{cid}_naver_pure"] = f"/project-files/{pid}/exports/{cid}/{cid}_naver_blog.html"
+        bound_visuals_by_ch[cid] = n_vis
         pub_done.add(cid)
         state["checkpoint"]["published_chapters"] = sorted(pub_done)
-        _update_stage(state, sid, cfg, progress=20 + int((idx / max(1, len(ch_files))) * 68), current_action=f"{cid} 4종 멀티포맷 + 네이버 블로그 HTML 출판 완료")
-        append_event(pid, "book-publisher", sid, f"{cid} 출판 완료 (해시태그 20개 소단원 {r_wb.get('subsections_with_20_hashtags')}곳)", cfg=cfg)
+        state["bound_visuals_by_chapter"] = bound_visuals_by_ch
+        _update_stage(state, sid, cfg, progress=18 + int((idx / max(1, len(ch_files))) * 70), current_action=f"{cid} 출판 완료 (시각화 {n_vis}종 PDF·DOCX·HTML 결합)")
+        append_event(pid, "book-publisher", sid, f"{cid} 출판 완료 (시각화 {n_vis}종 결합 · 해시태그 20개 소단원 {r_wb.get('subsections_with_20_hashtags')}곳)", cfg=cfg)
 
     state["outputs"] = outputs_map
     # 표지(Cover) · 머리말 · 전체 목차(TOC) 페이지 자동 생성 및 산출물 연결

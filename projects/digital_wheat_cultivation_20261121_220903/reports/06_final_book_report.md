@@ -1,13 +1,13 @@
 # 6단계 교재 생성 완료 종합 보고서 — 《디지털 밀 재배》
 
-- **완료 시각**: `2026-11-21T22:14:12+00:00`
+- **완료 시각**: `2026-11-22T03:18:21+00:00`
 - **교재 제목**: 《디지털 밀 재배》 (Digital Wheat Cultivation)
 - **목표 분량 / 단원 수**: 531p / 16개 단원
 - **집필 완료 원고**: **16개 단원 · 총 271,394자**
 - **근거 수집 자료**: **53건** (`E:\SMC_Report_Platform_Data\projects\digital_wheat_cultivation_20261121_220903\collected`)
-- **시각화 자료**: 총 **10종** (AI 실사진/인포그래픽 0종 · Vector SVG 10종, 단원당 목표 10개+)
+- **시각화 자료**: 총 **160종** (AI 실사진/인포그래픽 64종 · Vector SVG 96종, 단원당 목표 10개+)
 - **인용 무결성 감사**: `PASS` (치명오류 0건 · 경고 0건)
-- **출판 산출물 파일 수**: **144개** (`E:\SMC_Report_Platform_Data\projects\digital_wheat_cultivation_20261121_220903\exports` 미러링 완료)
+- **출판 산출물 파일 수**: **148개** (`E:\SMC_Report_Platform_Data\projects\digital_wheat_cultivation_20261121_220903\exports` 미러링 완료)
 
 ## 단원별 작성 및 출판 요약
 

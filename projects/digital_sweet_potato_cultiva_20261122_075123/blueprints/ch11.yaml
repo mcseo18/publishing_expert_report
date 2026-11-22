@@ -1,0 +1,16 @@
+chapter_id: ch11
+chapter_number: 11
+title: 제11장. 토양 물리화학성의 원리와 디지털 현장 관리
+target_pages: 35
+summary_ko: 디지털 고구마 재배에서 토양 물리화학성의 과학적 메커니즘, 정량 측정 지표 및 디지털 정밀 관리 전략을 다룹니다.
+sections:
+- 11.1 기초 원리 및 개념
+- 11.2 정량 측정·모델링
+- 11.3 국내외 기준 비교
+- 11.4 디지털 현장 적용
+keywords_ko:
+- 토양 물리화학성
+keywords_en:
+- Soil Physicochemical Properties
+evidence_packet: digital_sweet_potato_cultiva_20261122_075123_evidence.json
+assigned_sources: []

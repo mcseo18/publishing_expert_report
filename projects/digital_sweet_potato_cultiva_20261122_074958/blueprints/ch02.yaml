@@ -1,0 +1,22 @@
+chapter_id: ch02
+chapter_number: 2
+title: 제2장. 토양 환경 및 비생물적 스트레스 모델링
+target_pages: 35
+summary_ko: 토양의 물리화학적 특성과 양분 역학을 이해하고, 가뭄이나 염분과 같은 비생물적 스트레스가 고구마 생장에 미치는 영향을 모델링합니다. 토양 건강성 관점에서 탄소 격리 가능성을 평가합니다.
+sections:
+- 2.1 토양 물리화학적 특성 분석
+- 2.2 양분 재분배 및 이동 메커니즘
+- 2.3 비생물적 스트레스 요인(가뭄, 염해 등) 정량화
+- 2.4 토양 유기물 및 탄소 격리 메커니즘
+keywords_ko:
+- 토양 물리화학성
+- 양분 재분배·전류
+- 비생물적 스트레스
+- 탄소 격리
+keywords_en:
+- Soil Physico-chemical Properties
+- Nutrient Redistribution
+- Abiotic Stress
+- Carbon Sequestration
+evidence_packet: digital_sweet_potato_cultiva_20261122_074958_evidence.json
+assigned_sources: []

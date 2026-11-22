@@ -1,0 +1,16 @@
+chapter_id: ch13
+chapter_number: 13
+title: 제13장. 유전적 다양성·형질 지도의 원리와 디지털 현장 관리
+target_pages: 35
+summary_ko: 디지털 고구마 재배에서 유전적 다양성·형질 지도의 과학적 메커니즘, 정량 측정 지표 및 디지털 정밀 관리 전략을 다룹니다.
+sections:
+- 13.1 기초 원리 및 개념
+- 13.2 정량 측정·모델링
+- 13.3 국내외 기준 비교
+- 13.4 디지털 현장 적용
+keywords_ko:
+- 유전적 다양성·형질 지도
+keywords_en:
+- Genetic Diversity / Trait Mapping
+evidence_packet: digital_sweet_potato_cultiva_20261122_074958_evidence.json
+assigned_sources: []

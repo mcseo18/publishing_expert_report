@@ -1,0 +1,22 @@
+chapter_id: ch09
+chapter_number: 9
+title: 9.1 농업 빅데이터 파이프라인 설계
+target_pages: 35
+summary_ko: 다양한 농업 데이터를 통합하고 정제하는 빅데이터 파이프라인을 구축하는 방법을 설명합니다. 특히 AI와 딥러닝을 활용하여 수량 및 질병 발생을 정확하게 예측합니다.
+sections:
+- 9.1.1 데이터 수집(센서, RS) 및 전처리
+- 9.1.2 데이터 저장 및 관리 아키텍처
+- 9.1.3 딥러닝 기반 예측 모델 학습
+- 9.1.4 AI를 활용한 수량 및 병해 예측
+keywords_ko:
+- 농업 빅데이터 파이프라인
+- AI 수량·병해 예측
+- 데이터 동화
+- 딥러닝
+keywords_en:
+- Agricultural Big Data Pipeline
+- AI Yield/Disease Prediction
+- Data Assimilation
+- Deep Learning
+evidence_packet: digital_sweet_potato_cultiva_20261122_074958_evidence.json
+assigned_sources: []

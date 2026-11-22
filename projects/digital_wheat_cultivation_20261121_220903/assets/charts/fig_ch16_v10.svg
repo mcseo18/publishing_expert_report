@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" width="800" height="420" style="background:#ffffff;font-family:'Malgun Gothic', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;">
+  <rect x="0" y="0" width="800" height="420" rx="12" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+  <rect x="0" y="0" width="800" height="58" rx="12" fill="#0f172a"/>
+  <rect x="0" y="42" width="800" height="16" fill="#0f172a"/>
+  <text x="22" y="27" font-size="14.5" font-weight="700" fill="#f8fafc">그림 16-10. 제16장. 첨단 농업의 미래와 밀 산업의 융합적 발전 방향 — 단원</text>
+  <text x="22" y="47" font-size="11" fill="#cbd5e1">디지털 밀 재배 · 16.2 식물-미생물 상호작용의 활용</text>
+  <defs><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 1 L 10 5 L 0 9 z" fill="#334155"/></marker></defs>
+  <rect x="34" y="128" width="164" height="158" rx="10" fill="#e0f2fe" stroke="#334155" stroke-width="1.4"/>
+  <text x="116" y="162" text-anchor="middle" font-size="11" font-weight="700" fill="#475569">STEP 1</text>
+  <text text-anchor="middle" font-size="12" font-weight="700" fill="#0f172a"><tspan x="116" y="206.0">16.1 유전자 편집</tspan><tspan x="116" y="224.0">기술과 밀 품종</tspan><tspan x="116" y="242.0">개량의 미래</tspan></text>
+  <line x1="198" y1="208" x2="222" y2="208" stroke="#334155" stroke-width="2" marker-end="url(#ar)"/>
+  <rect x="222" y="128" width="164" height="158" rx="10" fill="#dcfce7" stroke="#334155" stroke-width="1.4"/>
+  <text x="304" y="162" text-anchor="middle" font-size="11" font-weight="700" fill="#475569">STEP 2</text>
+  <text text-anchor="middle" font-size="12" font-weight="700" fill="#0f172a"><tspan x="304" y="215.0">16.2 식물-미생물</tspan><tspan x="304" y="233.0">상호작용의 활용</tspan></text>
+  <line x1="386" y1="208" x2="410" y2="208" stroke="#334155" stroke-width="2" marker-end="url(#ar)"/>
+  <rect x="410" y="128" width="164" height="158" rx="10" fill="#fef3c7" stroke="#334155" stroke-width="1.4"/>
+  <text x="492" y="162" text-anchor="middle" font-size="11" font-weight="700" fill="#475569">STEP 3</text>
+  <text text-anchor="middle" font-size="12" font-weight="700" fill="#0f172a"><tspan x="492" y="206.0">16.3 스마트</tspan><tspan x="492" y="224.0">팩토리와 연계된 밀</tspan><tspan x="492" y="242.0">산업의 자동화 로드맵</tspan></text>
+  <line x1="574" y1="208" x2="598" y2="208" stroke="#334155" stroke-width="2" marker-end="url(#ar)"/>
+  <rect x="598" y="128" width="164" height="158" rx="10" fill="#f3e8ff" stroke="#334155" stroke-width="1.4"/>
+  <text x="680" y="162" text-anchor="middle" font-size="11" font-weight="700" fill="#475569">STEP 4</text>
+  <text text-anchor="middle" font-size="12" font-weight="700" fill="#0f172a"><tspan x="680" y="206.0">16.4 연구 개발</tspan><tspan x="680" y="224.0">동향 및 미래 농업</tspan><tspan x="680" y="242.0">시스템에 대한 비판적</tspan></text>
+</svg>

@@ -267,10 +267,11 @@ def build_textbook(
     visuals_map: dict[str, list[dict[str, Any]]] | None = None,
 ) -> dict[str, str]:
     title = meta.get("title", ch_id)
+    book_title = str(meta.get("book_title") or "전문 교재")
     qmd_content = (
         "---\n"
         f'title: "{title}"\n'
-        'subtitle: "《토양 유기물학》 전문 교재판"\n'
+        f'subtitle: "《{book_title}》 전문 교재판"\n'
         'lang: ko\n'
         "format:\n"
         "  pdf:\n"
@@ -289,7 +290,7 @@ def build_textbook(
     if visuals_map:
         body_html = inject_figures_into_chapter_html(ch_id, body_html, visuals_map, theme="print")
     full_html = f"""<!DOCTYPE html>
-<html lang="ko"><head><meta charset="UTF-8"><style>{_print_css("#1d4ed8", "토양 유기물학 전문 교재")}{figure_css("print")}</style></head>
+<html lang="ko"><head><meta charset="UTF-8"><style>{_print_css("#1d4ed8", f"{book_title} 전문 교재")}{figure_css("print")}</style></head>
 <body>
   <div class="cover-banner">
     <div class="kicker">PROFESSIONAL TEXTBOOK · 전문 교재판</div>
@@ -369,8 +370,9 @@ def build_curriculum(
     body_html = body_html.replace("<blockquote>\n<p><strong>탐구 활동", '<div class="activity-box"><p><strong>탐구 활동')
     body_html = re.sub(r"(<div class=\"activity-box\">[\s\S]*?)</blockquote>", r"\1</div>", body_html)
 
+    book_title = str(meta.get("book_title") or "전문 교재")
     full_html = f"""<!DOCTYPE html>
-<html lang="ko"><head><meta charset="UTF-8"><style>{_print_css("#047857", "토양 유기물학 교과서 단원본")}{figure_css("print")}</style></head>
+<html lang="ko"><head><meta charset="UTF-8"><style>{_print_css("#047857", f"{book_title} 교과서 단원본")}{figure_css("print")}</style></head>
 <body>
   <div class="cover-banner">
     <div class="kicker">CURRICULUM TEXTBOOK · 교과서 단원본</div>
@@ -458,20 +460,25 @@ def _build_report_docx(
                     cell._tc.get_or_add_tcPr().append(shading)
 
     vis_list = list(ch_visuals or [])
-    vis_idx = 0
+    body_sec_indices = [idx for idx, (h, _) in enumerate(sections) if "참고문헌" not in h] or list(range(len(sections)))
+    vis_by_sec: dict[int, list[dict[str, Any]]] = {}
+    if vis_list and body_sec_indices:
+        for v_i, v_item in enumerate(vis_list):
+            target_pos = body_sec_indices[min(len(body_sec_indices) - 1, (v_i * len(body_sec_indices)) // max(1, len(vis_list)))]
+            vis_by_sec.setdefault(target_pos, []).append(v_item)
+
     for sec_i, (heading, content) in enumerate(sections):
         h = doc.add_heading(heading, level=1)
         for run in h.runs:
             run.font.name = "Malgun Gothic"
             run._element.rPr.rFonts.set(qn("w:eastAsia"), "Malgun Gothic")
 
-        if vis_idx < len(vis_list) and sec_i in (0, 1):
-            img_str = vis_list[vis_idx].get("docx_image_path", "")
+        for v_item in vis_by_sec.get(sec_i, []):
+            img_str = v_item.get("docx_image_path", "")
             if img_str and Path(img_str).is_file():
                 p_img = doc.add_paragraph()
                 p_img.alignment = WD_ALIGN_PARAGRAPH.CENTER
                 p_img.add_run().add_picture(img_str, width=Inches(5.5))
-                v_item = vis_list[vis_idx]
                 fig_no = v_item.get("fig_no", "")
                 title_ko = v_item.get("title_ko") or v_item.get("caption_ko", "")
                 hdr = f"[{fig_no}] {title_ko}" if fig_no else title_ko
@@ -480,7 +487,6 @@ def _build_report_docx(
                 if v_item.get("description_ko"):
                     p_desc = doc.add_paragraph()
                     add_rich_runs_to_docx_paragraph(p_desc, v_item["description_ko"], font_size=9.0, color_rgb=(51, 65, 85))
-            vis_idx += 1
 
         clean_c = _clean_mdx_artifacts(content)
         lines = clean_c.splitlines()
@@ -682,7 +688,16 @@ def build_interactive_web(
         f'<div style="margin-bottom:28px;">{preamble_html_pure}</div>'
     ]
     total_hashtags_generated = 0
-    vis_cursor = 0
+    # 본문 소단원(참고문헌·연습문제 제외)에 단원 시각화 전체(10종+)를 균등 분산 배정
+    body_web_secs = [
+        idx for idx, (h, _) in enumerate(sections, 1)
+        if not any(sk in h for sk in ("참고문헌", "연습문제", "형성평가"))
+    ] or list(range(1, len(sections) + 1))
+    web_vis_by_sec: dict[int, list[dict[str, Any]]] = {}
+    if ch_visuals and body_web_secs:
+        for v_i, v_item in enumerate(ch_visuals):
+            target_s = body_web_secs[min(len(body_web_secs) - 1, (v_i * len(body_web_secs)) // max(1, len(ch_visuals)))]
+            web_vis_by_sec.setdefault(target_s, []).append(v_item)
 
     for sec_idx, (heading, content) in enumerate(sections, 1):
         heading_counter += 1
@@ -695,11 +710,11 @@ def build_interactive_web(
         sec_html = apply_naver_inline_styles(sec_html)
         sec_html = _transform_quiz_details(sec_html)
 
-        # 1번째, 2번째 본문 소단원에 나노바나나 도해 / 래스터화 SVG 차트 삽입 (네이버 에디터 <img> 호환)
-        fig_html = ""
-        if vis_cursor < len(ch_visuals) and sec_idx in (1, 2) and "참고문헌" not in plain_h2:
-            fig_html = render_naver_figure_html(ch_visuals[vis_cursor])
-            vis_cursor += 1
+        # 배정된 모든 시각화(PNG <img> + 줄글 해설)를 소단원 본문 첫 문단 직후 삽입
+        sec_vis_items = web_vis_by_sec.get(sec_idx, [])
+        if sec_vis_items and "참고문헌" not in plain_h2:
+            fig_chunks = [render_naver_figure_html(v) for v in sec_vis_items]
+            fig_html = "\n".join(c for c in fig_chunks if c)
             if fig_html:
                 first_p_end = re.search(r"</p>", sec_html)
                 if first_p_end:

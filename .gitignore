@@ -36,6 +36,8 @@ projects/*/exports/front_matter/*
 projects/*/blueprints/_backups/
 projects/*/reports/*.json
 projects/*/assets/figures/*.png
+projects/*/assets/charts_png/
+projects/*/assets/by_chapter/
 
 # Node / Dashboard
 dashboard/node_modules/

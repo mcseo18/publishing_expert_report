@@ -1281,16 +1281,35 @@ function renderStage4Body(st) {
   `;
 }
 
-// --- 5단계: 시각화 (단원당 10개+, fal.ai API 체크박스, 줄글 해설) ---
+// --- 5단계: 시각화 (단원당 10개+, 별도 폴더 저장, fal.ai API 체크박스, 문서 결합 상태) ---
+let VIS_FILTER_CH = "ALL";
+function setVisChapterFilter(val) {
+  VIS_FILTER_CH = val;
+  renderStageDetail();
+}
+
 function renderStage5Body(st) {
   const opts = st.options || {};
-  const vis = VISUALS_CACHE || { plan: { visuals: [] }, text_guide: "" };
-  const items = (vis.plan && (vis.plan.visuals || vis.plan.items)) || [];
+  const vis = VISUALS_CACHE || { plan: { visuals: [] }, text_guide: "", bound_visuals_by_chapter: {} };
+  const allItems = (vis.plan && (vis.plan.visuals || vis.plan.items)) || [];
+  const chaptersAvail = [...new Set(allItems.map(x => x.chapter_id).filter(Boolean))].sort();
+  if (VIS_FILTER_CH !== "ALL" && !chaptersAvail.includes(VIS_FILTER_CH)) VIS_FILTER_CH = "ALL";
+  const items = VIS_FILTER_CH === "ALL" ? allItems : allItems.filter(x => x.chapter_id === VIS_FILTER_CH);
+  const boundMap = vis.bound_visuals_by_chapter || st.bound_visuals_by_chapter || {};
+  const boundChCount = Object.values(boundMap).filter(n => Number(n) > 0).length;
+  const boundTotalImgs = Object.values(boundMap).reduce((a, b) => a + (Number(b) || 0), 0);
+  const pngCnt = (vis.plan && vis.plan.png_rasterized_count) || allItems.filter(x => x.docx_image_path || x.png_url).length;
+  const localDir = vis.local_visuals_dir || st.local_visuals_dir || "";
+  const eDir = vis.e_visuals_dir || st.e_visuals_dir || "";
+
   return `
     <div class="card" style="background:#131f38;border-color:rgba(168,85,247,.4)">
       <div class="card-head" style="margin-bottom:8px">
-        <h3 class="card-title">🎨 시각화 생성 엔진 설정 (단원당 10개 이상 · 실사/인포그래픽 + 정량 SVG)</h3>
-        <button class="btn-green btn-sm" onclick="saveStage5VisualOptions()">설정 저장 후 5단계 실행</button>
+        <h3 class="card-title">🎨 시각화 생성 엔진 설정 (단원당 10개 이상 · 실사/인포그래픽 + 정량 SVG + PNG 변환)</h3>
+        <div class="flex">
+          <button class="btn-green btn-sm" onclick="saveStage5VisualOptions()">설정 저장 후 5단계 실행</button>
+          <button class="btn-primary btn-sm" onclick="runSingleStage('stage6_publish_report')">🔗 시각화 → 문서(PDF·DOCX·HTML) 즉시 결합 출판</button>
+        </div>
       </div>
       <div class="grid-4">
         <label class="flex" style="background:var(--surface);padding:9px 12px;border-radius:8px;border:1px solid var(--border)">
@@ -1314,49 +1333,113 @@ function renderStage5Body(st) {
           <input type="number" id="s5PerCh" min="10" max="25" value="${Math.max(10, opts.visuals_per_chapter || 10)}" />
         </div>
       </div>
-      <div class="muted mt8">※ 표 형식 대신 각 그림 직하단에 학술 줄글 해설(visuals_text_guide.md)이 자동 생성되며, 이미지 1건마다 체크포인트가 저장됩니다.</div>
+      <div class="muted mt8">※ 모든 시각화는 <strong>단원별 별도 폴더(로컬 + E 드라이브)</strong>에 SVG·PNG 이중 저장되며, 6단계 출판 시 <strong>PDF·Word DOCX·네이버 블로그 HTML 본문에 줄글 해설과 함께 자동 결합</strong>됩니다.</div>
     </div>
 
-    <div class="grid-3 mb8">
-      <div class="kpi"><div class="kpi-val">${items.length}종</div><div class="kpi-lbl">총 생성 완료 시각화</div></div>
-      <div class="kpi"><div class="kpi-val">${(vis.plan && vis.plan.ai_images_count) || 0}종</div><div class="kpi-lbl">실사 · 인포그래픽 (fal.ai/나노바나나)</div></div>
-      <div class="kpi"><div class="kpi-val">${(vis.plan && vis.plan.svg_charts_count) || 0}종</div><div class="kpi-lbl">정량 도해 · 다이어그램 (SVG)</div></div>
+    <div class="grid-4 mb8">
+      <div class="kpi"><div class="kpi-val">${allItems.length}종</div><div class="kpi-lbl">총 생성 시각화 (${chaptersAvail.length}개 단원)</div></div>
+      <div class="kpi"><div class="kpi-val">${pngCnt}종</div><div class="kpi-lbl">DOCX·네이버HTML용 PNG 변환</div></div>
+      <div class="kpi"><div class="kpi-val">${boundTotalImgs}종</div><div class="kpi-lbl">문서 결합 완료 (${boundChCount}개 단원)</div></div>
+      <div class="kpi">
+        <div class="kpi-val" style="font-size:15px">${boundTotalImgs > 0 ? "✅ 결합됨" : "⏳ 6단계 결합 필요"}</div>
+        <div class="kpi-lbl">PDF · DOCX · 네이버 HTML 결합 상태</div>
+      </div>
+    </div>
+
+    <div class="card" style="background:var(--surface);padding:12px 14px;margin-bottom:12px">
+      <div class="flex" style="justify-content:space-between">
+        <div>
+          <div style="font-size:12.5px"><strong>📂 단원별 별도 시각화 저장소 (로컬):</strong> <code>${esc(localDir || "5단계 실행 시 자동 생성")}</code></div>
+          <div style="font-size:12.5px;margin-top:3px"><strong>💾 E 드라이브 별도 시각화 백업:</strong> <code>${esc(eDir || "5단계 실행 시 자동 미러링")}</code></div>
+        </div>
+        <div class="flex">
+          <span class="label" style="margin:0">단원 필터:</span>
+          <select style="width:150px" onchange="setVisChapterFilter(this.value)">
+            <option value="ALL" ${VIS_FILTER_CH==="ALL"?"selected":""}>전체 단원 (${allItems.length}종)</option>
+            ${chaptersAvail.map(c => `<option value="${esc(c)}" ${VIS_FILTER_CH===c?"selected":""}>${esc(c)} (${allItems.filter(x=>x.chapter_id===c).length}종)</option>`).join("")}
+          </select>
+        </div>
+      </div>
     </div>
 
     ${items.length ? `
       <div class="grid-2">
-        ${items.slice(0, 30).map(it => `
+        ${items.slice(0, 40).map(it => {
+          const isBound = Number(boundMap[it.chapter_id] || 0) > 0;
+          return `
           <div class="vis-card">
             <div class="flex" style="justify-content:space-between">
               <strong style="font-size:13px">${esc(it.title_ko)}</strong>
-              <span class="badge b-run">${esc(it.engine)}</span>
+              <div class="flex">
+                <span class="badge ${isBound?'b-done':'b-wait'}">${isBound?'🔗 문서결합됨':'미결합'}</span>
+                <span class="badge b-run">${esc(it.engine)}</span>
+              </div>
             </div>
-            <img src="${esc(it.rel_url || it.web_url)}" alt="${esc(it.title_ko)}" loading="lazy" />
+            <img src="${esc(it.png_url || it.rel_url || it.web_url)}" alt="${esc(it.title_ko)}" loading="lazy" />
             <div class="vis-desc">${esc(it.narrative_ko)}</div>
-          </div>
-        `).join("")}
+            <div class="flex" style="justify-content:space-between;font-size:11.5px">
+              <span class="muted">단원: <code>${esc(it.chapter_id)}</code> · 파일: <code>${esc(it.filename)}</code></span>
+              <div class="flex">
+                <a class="badge b-wait" href="${esc(it.rel_url || it.web_url)}" target="_blank">⬇ 원본(${esc((it.filename||"").split(".").pop().toUpperCase())})</a>
+                ${it.png_url ? `<a class="badge b-done" href="${esc(it.png_url)}" target="_blank">⬇ PNG</a>` : ""}
+              </div>
+            </div>
+          </div>`;
+        }).join("")}
       </div>
+      ${items.length > 40 ? `<div class="muted mt8">※ 화면 표시 최대 40건 제한 중 — 상단 [단원 필터]에서 ch01~ch16 개별 단원을 선택하면 해당 단원의 전체 시각화를 모두 확인할 수 있습니다.</div>` : ""}
     ` : `<div class="muted">아직 생성된 시각화가 없습니다. 위 설정을 확인하고 [설정 저장 후 5단계 실행]을 눌러 단원당 10종 이상의 시각화를 제작하세요.</div>`}
   `;
 }
 
-// --- 6단계: 최종 출판 다운로드 + 표지/목차 바로가기 + 06_final_book_report.md ---
+// --- 6단계: 최종 출판 다운로드 (표지·목차 + 단원별 시각화 결합 표) + 06_final_book_report.md ---
 function renderStage6Body(st) {
   const outputs = st.outputs || {};
-  const outKeys = Object.keys(outputs);
+  const boundMap = st.bound_visuals_by_chapter || {};
   const rep = STAGE_REPORTS.stage6;
+  const coverKeys = Object.keys(outputs).filter(k => k.startsWith("00_cover_toc_"));
+  const chIds = [...new Set(Object.keys(outputs).filter(k => /^ch\d+_/.test(k)).map(k => k.split("_")[0]))].sort();
+
   return `
     <div class="card" style="background:var(--surface)">
       <div class="card-head" style="margin-bottom:8px">
-        <h3 class="card-title">📦 출판 산출물 다운로드 (표지·목차 · PDF · Word DOCX · 네이버 블로그 HTML)</h3>
+        <h3 class="card-title">🎨 표지 · 머리말 · 전체 목차 파일</h3>
         <button class="btn-primary btn-sm" onclick="switchMainTab('covertoc')">🎨 표지 · 목차 디자인/미리보기</button>
       </div>
-      ${outKeys.length ? `
+      ${coverKeys.length ? `
         <div class="flex">
-          ${outKeys.map(k => `<a class="badge b-done" style="padding:7px 12px;font-size:12.5px" href="${esc(outputs[k])}" target="_blank">⬇ ${esc(k)}</a>`).join("")}
+          ${coverKeys.map(k => `<a class="badge b-done" style="padding:7px 12px;font-size:12.5px" href="${esc(outputs[k])}" target="_blank">⬇ ${esc(k.replace("00_cover_toc_","표지·목차 ").toUpperCase())}</a>`).join("")}
         </div>
-      ` : `<div class="muted">6단계 출판을 실행하면 표지·목차·교재 PDF·보고서 DOCX·네이버 블로그 HTML 파일이 생성됩니다.</div>`}
+      ` : `<div class="muted">상단 [🎨 표지 · 목차 디자인/미리보기] 또는 6단계 실행으로 표지·목차를 생성할 수 있습니다.</div>`}
     </div>
+
+    <div class="card" style="background:var(--surface)">
+      <div class="card-head" style="margin-bottom:8px">
+        <h3 class="card-title">📦 단원별 출판 산출물 (시각화 자동 결합 완료 · PDF · Word DOCX · 네이버 블로그 HTML)</h3>
+        <span class="badge b-done">총 ${chIds.length}개 단원 출판됨</span>
+      </div>
+      ${chIds.length ? `
+        <div style="max-height:420px;overflow:auto;">
+          <table class="tbl">
+            <thead><tr><th>단원</th><th>결합된 시각화</th><th>교재 PDF</th><th>보고서 DOCX</th><th>인터랙티브 HTML</th><th>네이버 블로그 HTML</th></tr></thead>
+            <tbody>
+              ${chIds.map(cid => {
+                const vc = Number(boundMap[cid] || 0);
+                return `<tr>
+                  <td><strong>${esc(cid)}</strong></td>
+                  <td><span class="badge ${vc>0?'b-done':'b-wait'}">${vc>0 ? `🔗 ${vc}종 결합됨` : '0종'}</span></td>
+                  <td>${outputs[cid+"_textbook_pdf"] ? `<a class="badge b-run" href="${esc(outputs[cid+"_textbook_pdf"])}" target="_blank">📕 PDF</a>` : "-"}</td>
+                  <td>${outputs[cid+"_report_docx"] ? `<a class="badge b-run" href="${esc(outputs[cid+"_report_docx"])}" target="_blank">📘 DOCX</a>` : "-"}</td>
+                  <td>${outputs[cid+"_naver_web"] ? `<a class="badge b-done" href="${esc(outputs[cid+"_naver_web"])}" target="_blank">🌐 웹페이지</a>` : "-"}</td>
+                  <td>${outputs[cid+"_naver_pure"] ? `<a class="badge b-done" href="${esc(outputs[cid+"_naver_pure"])}" target="_blank">🟢 네이버HTML</a>` : "-"}</td>
+                </tr>`;
+              }).join("")}
+            </tbody>
+          </table>
+        </div>
+      ` : `<div class="muted">6단계 출판을 실행하면 각 단원의 시각화(10종+)가 결합된 교재 PDF·보고서 DOCX·네이버 블로그 HTML 파일이 생성됩니다.</div>`}
+    </div>
+
     <div class="card" style="background:var(--surface)">
       <h3 class="card-title mb8">📄 6단계 교재 생성 완료 종합 보고서 (06_final_book_report.md)</h3>
       <div class="md-box">${rep && rep.exists ? renderMd(rep.content) : '<span class="muted">6단계 완료 시 교재 생성 완료 종합 보고서가 자동 생성됩니다.</span>'}</div>

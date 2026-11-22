@@ -1,0 +1,22 @@
+chapter_id: ch06
+chapter_number: 6
+title: 제6장. 원격탐사 및 식생 모니터링 기술
+target_pages: 35
+summary_ko: 위성 및 드론 데이터를 활용하여 작물의 생육 상태를 비접촉 방식으로 모니터링하는 기술을 학습합니다. 식생지수와 엽면적지수를 통해 작물의 건강 상태를 정량적으로 진단합니다.
+sections:
+- 6.1 원격탐사 시스템(SAR, Optic)의 원리
+- 6.2 식생지수(NDVI 등) 및 엽면적지수(LAI) 산출
+- 6.3 시계열 데이터 분석을 통한 생장 추적
+- 6.4 데이터 수집 및 전처리 파이프라인 구축
+keywords_ko:
+- 원격탐사
+- 식생지수
+- 엽면적지수
+- 자료동화
+keywords_en:
+- Remote Sensing
+- Vegetation Index
+- Leaf Area Index
+- Data Assimilation
+evidence_packet: digital_sweet_potato_cultiva_20261122_074958_evidence.json
+assigned_sources: []

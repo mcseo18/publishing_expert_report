@@ -1,0 +1,22 @@
+chapter_id: ch04
+chapter_number: 4
+title: 제4장. 시비량 산정 모델 및 질소 관리
+target_pages: 35
+summary_ko: 토양 특성과 작물 반응을 통합하여 최적의 시비량을 산정하는 모델을 학습합니다. 질소영양지수 등을 활용하여 영양소 부족을 최소화하고 생육 효율을 극대화합니다.
+sections:
+- 4.1 토양 분석 기반 시비량 산정 모델 개발
+- 4.2 질소영양지수(NUI)를 활용한 영양 관리
+- 4.3 작물 생장 단계별 맞춤형 영양 공급
+- 4.4 화학적/생물학적 영양소 이용 효율 증대 방안
+keywords_ko:
+- 시비량 산정 모델
+- 질소영양지수
+- 양분 재분배
+- 맞춤형 시비
+keywords_en:
+- Fertilizer Application Model
+- Nitrogen Use Efficiency
+- Nutrient Management
+- Site-Specific Fertilization
+evidence_packet: digital_sweet_potato_cultiva_20261122_074958_evidence.json
+assigned_sources: []

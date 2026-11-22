@@ -1,0 +1,22 @@
+chapter_id: ch10
+chapter_number: 10
+title: 10.1 작물 생장 모형과 디지털 트윈의 결합
+target_pages: 35
+summary_ko: 실제 농장 환경을 가상 공간에 복제하는 디지털 트윈을 구축하고, 여기에 생육 모형을 결합합니다. 이를 통해 다양한 환경 변화에 대한 최적의 농업 전략을 미리 시뮬레이션합니다.
+sections:
+- 10.1.1 물리 기반 모델과 데이터 기반 모델의 융합
+- 10.1.2 실시간 환경 변화 반영 메커니즘
+- 10.1.3 의사결정 지원 시스템(DSS) 구현
+- 10.1.4 시나리오 기반 최적화 시뮬레이션
+keywords_ko:
+- 디지털 트윈
+- 작물 생육모형
+- 최적화 시뮬레이션
+- 의사결정 지원
+keywords_en:
+- Digital Twin
+- Crop Growth Model
+- Optimization Simulation
+- Decision Support System
+evidence_packet: digital_sweet_potato_cultiva_20261122_074958_evidence.json
+assigned_sources: []

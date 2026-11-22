@@ -205,11 +205,58 @@ FIGURE_NARRATIVE_DESCRIPTIONS: dict[str, dict[str, str]] = {
 }
 
 
-def load_chapter_visuals(cfg: PlatformConfig | None = None) -> dict[str, list[dict[str, Any]]]:
-    """단원 ID(ch01~ch16)별 시각화 자산 목록을 반환한다 (나노바나나 도해 우선 → SVG 차트)."""
+def load_chapter_visuals(
+    cfg: PlatformConfig | None = None,
+    *,
+    project_ws: Path | None = None,
+) -> dict[str, list[dict[str, Any]]]:
+    """단원 ID(ch01~chNN)별 시각화 자산 목록을 반환한다 (신규 visuals_plan.json 우선 → 레거시 매니페스트 호환)."""
     cfg = cfg or get_config()
-    assets_dir = cfg.assets_dir
+    assets_dir = (Path(project_ws) / "assets") if project_ws else cfg.assets_dir
     by_ch: dict[str, list[dict[str, Any]]] = {}
+
+    # 1순위: 신규 6단계 visual_studio.py가 생성한 프로젝트별 visuals_plan.json
+    vp_manifest = assets_dir / "visuals_plan.json"
+    if vp_manifest.is_file():
+        try:
+            data = json.loads(vp_manifest.read_text(encoding="utf-8"))
+            for item in data.get("visuals", []):
+                fp = Path(item.get("path", ""))
+                if not fp.is_file():
+                    sub = "figures" if str(item.get("filename", "")).endswith(".png") else "charts"
+                    fp = assets_dir / sub / item.get("filename", "")
+                if not fp.is_file():
+                    continue
+                cid = item.get("chapter_id", "ch01")
+                fid = item.get("figure_id", fp.stem)
+                is_svg = fp.suffix.lower() == ".svg"
+                docx_img = item.get("docx_image_path", "")
+                if not docx_img or not Path(docx_img).is_file():
+                    cand_png = assets_dir / "charts_png" / f"{fp.stem}.png"
+                    docx_img = str(cand_png) if cand_png.is_file() else (str(fp) if not is_svg else "")
+                raw_title = item.get("title_ko", "")
+                m_no = re.match(r"^\[(그림[^\]]+)\]\s*(.*)$", raw_title)
+                fig_no = m_no.group(1) if m_no else ""
+                title_clean = m_no.group(2) if m_no else raw_title
+                by_ch.setdefault(cid, []).append(
+                    {
+                        "kind": "svg_chart" if is_svg else "nano_banana",
+                        "figure_id": fid,
+                        "chapter_id": cid,
+                        "filename": fp.name,
+                        "file_path": str(fp),
+                        "docx_image_path": docx_img,
+                        "fig_no": fig_no,
+                        "title_ko": title_clean,
+                        "description_ko": item.get("narrative_ko", ""),
+                        "caption_ko": raw_title,
+                        "engine": item.get("engine", ""),
+                    }
+                )
+            if by_ch:
+                return by_ch
+        except Exception:
+            pass
 
     nb_manifest = assets_dir / "nano_banana_manifest.json"
     if nb_manifest.is_file():
@@ -326,27 +373,35 @@ def inject_figures_into_chapter_html(
     *,
     theme: str = "print",
 ) -> str:
-    """렌더링된 단원 HTML의 적절한 절 위치(1번째·2번째 H2 직후 문단 뒤)에 도해·차트를 자동 삽입한다."""
+    """렌더링된 단원 HTML의 본문 H2 절(참고문헌·연습문제 제외) 전체에 단원의 모든 시각화(10종+)를 균등 분산 삽입한다."""
     items = visuals_map.get(ch_id, [])
     if not items:
         return rendered_html
 
     fig_htmls = [render_visual_figure_html(v, theme=theme) for v in items]
 
-    # H2 위치 탐색 (<h2 ...>...</h2>)
-    h2_matches = list(re.finditer(r"<h2\b[^>]*>.*?</h2>", rendered_html, flags=re.S))
-    if not h2_matches:
+    # H2 위치 탐색 (<h2 ...>...</h2>), 참고문헌/연습문제/형성평가 헤딩은 가급적 제외
+    all_h2 = list(re.finditer(r"<h2\b[^>]*>(.*?)</h2>", rendered_html, flags=re.S))
+    if not all_h2:
         return rendered_html + "\n" + "\n".join(fig_htmls)
+    body_h2 = [
+        m for m in all_h2
+        if not any(sk in re.sub(r"<[^>]+>", "", m.group(1)) for sk in ("참고문헌", "연습문제", "형성평가"))
+    ] or all_h2
 
-    # 삽입 위치 계산 (뒤쪽 인덱스부터 삽입해야 문자열 오프셋이 밀리지 않음)
-    insertions: list[tuple[int, str]] = []
+    # 모든 시각화를 본문 H2 절들에 고르게 배분 (예: 10종 / 5개 절 = 절당 2종)
+    buckets: dict[int, list[str]] = {}
+    n_sec = len(body_h2)
     for idx, fhtml in enumerate(fig_htmls):
-        # 첫 번째 그림은 첫 번째 본문 H2 직후 첫 문단 뒤, 두 번째 그림은 두 번째 H2 직후 첫 문단 뒤
-        target_h2_idx = min(idx, len(h2_matches) - 1)
-        after_h2 = h2_matches[target_h2_idx].end()
+        sec_idx = min(n_sec - 1, (idx * n_sec) // max(1, len(fig_htmls)))
+        buckets.setdefault(sec_idx, []).append(fhtml)
+
+    insertions: list[tuple[int, str]] = []
+    for sec_idx, f_list in buckets.items():
+        after_h2 = body_h2[sec_idx].end()
         next_p = re.search(r"</p>", rendered_html[after_h2:])
         pos = after_h2 + next_p.end() if next_p else after_h2
-        insertions.append((pos, f"\n{fhtml}\n"))
+        insertions.append((pos, "\n" + "\n".join(f_list) + "\n"))
 
     out = rendered_html
     for pos, chunk in sorted(insertions, key=lambda x: x[0], reverse=True):

@@ -1,0 +1,353 @@
+book_metadata:
+  title_ko: 디지털 고구마 재배
+  title_en: Digital Sweet Potato Cultivation
+  target_audience: 대학 전공 심화, 대학원생, 연구자 및 선도 현장 실무자
+  book_summary_ko: 《디지털 고구마 재배》 595p 전문 대학교재 및 현장 실무 지침서
+  target_pages: 595
+  target_total_pages: 595
+  chapter_count: 17
+  engine_used: fallback
+  generated_at: '2026-11-21T23:05:57+00:00'
+domain_keywords:
+- domain: 제1부. 디지털 고구마 재배 핵심 영역 1
+  keywords_ko:
+  - 생육단계 척도
+  - 적산온도
+  - 광이용효율
+  - 동화산물 분배 계수
+  keywords_en:
+  - Growth Stage Scale (Zadoks/BBCH)
+  - Growing Degree Days (GDD)
+  - Radiation Use Efficiency (RUE)
+  - Partitioning Coefficient
+- domain: 제2부. 디지털 고구마 재배 핵심 영역 2
+  keywords_ko:
+  - 양분 재분배·전류
+  - 수량 구성요소
+  - 비생물적 스트레스
+  keywords_en:
+  - Remobilization / Translocation
+  - Yield Components
+  - Abiotic Stress
+- domain: 제3부. 디지털 고구마 재배 핵심 영역 3
+  keywords_ko:
+  - 임계 질소 희석곡선
+  - 질소영양지수
+  - 시비량 산정 모델
+  - 토양 물리화학성
+  keywords_en:
+  - Critical N Dilution Curve
+  - Nitrogen Nutrition Index (NNI)
+  - Fertilizer Recommendation Model
+  - Soil Physicochemical Properties
+- domain: 제4부. 디지털 고구마 재배 핵심 영역 4
+  keywords_ko:
+  - 토양 유기물·탄소 격리
+  - 유전적 다양성·형질 지도
+  - 유전자 편집
+  keywords_en:
+  - Soil Organic Matter / Carbon Sequestration
+  - Genetic Diversity / Trait Mapping
+  - Genome Editing
+- domain: 제5부. 디지털 고구마 재배 핵심 영역 5
+  keywords_ko:
+  - 병해 발생 예측 모델
+  - 통합 병해충 관리·예찰
+  - 작물 생육모형
+  keywords_en:
+  - Disease Forecasting Model
+  - IPM / Scouting System
+  - Crop Growth Model
+parts:
+- part_number: 1
+  title: 제1부. 디지털 고구마 재배 핵심 영역 1
+  pages: 140
+  chapters:
+  - chapter_id: ch01
+    chapter_number: 1
+    title: 제1장. 생육단계 척도의 원리와 디지털 현장 관리
+    target_pages: 35
+    summary_ko: 디지털 고구마 재배에서 생육단계 척도의 과학적 메커니즘, 정량 측정 지표 및 디지털 정밀 관리 전략을 다룹니다.
+    sections:
+    - 1.1 기초 원리 및 개념
+    - 1.2 정량 측정·모델링
+    - 1.3 국내외 기준 비교
+    - 1.4 디지털 현장 적용
+    keywords_ko:
+    - 생육단계 척도
+    keywords_en:
+    - Growth Stage Scale (Zadoks/BBCH)
+    evidence_packet: digital_sweet_potato_cultiva_20261122_075123_evidence.json
+    assigned_sources: []
+  - chapter_id: ch02
+    chapter_number: 2
+    title: 제2장. 적산온도의 원리와 디지털 현장 관리
+    target_pages: 35
+    summary_ko: 디지털 고구마 재배에서 적산온도의 과학적 메커니즘, 정량 측정 지표 및 디지털 정밀 관리 전략을 다룹니다.
+    sections:
+    - 2.1 기초 원리 및 개념
+    - 2.2 정량 측정·모델링
+    - 2.3 국내외 기준 비교
+    - 2.4 디지털 현장 적용
+    keywords_ko:
+    - 적산온도
+    keywords_en:
+    - Growing Degree Days (GDD)
+    evidence_packet: digital_sweet_potato_cultiva_20261122_075123_evidence.json
+    assigned_sources: []
+  - chapter_id: ch03
+    chapter_number: 3
+    title: 제3장. 광이용효율의 원리와 디지털 현장 관리
+    target_pages: 35
+    summary_ko: 디지털 고구마 재배에서 광이용효율의 과학적 메커니즘, 정량 측정 지표 및 디지털 정밀 관리 전략을 다룹니다.
+    sections:
+    - 3.1 기초 원리 및 개념
+    - 3.2 정량 측정·모델링
+    - 3.3 국내외 기준 비교
+    - 3.4 디지털 현장 적용
+    keywords_ko:
+    - 광이용효율
+    keywords_en:
+    - Radiation Use Efficiency (RUE)
+    evidence_packet: digital_sweet_potato_cultiva_20261122_075123_evidence.json
+    assigned_sources: []
+  - chapter_id: ch04
+    chapter_number: 4
+    title: 제4장. 동화산물 분배 계수의 원리와 디지털 현장 관리
+    target_pages: 35
+    summary_ko: 디지털 고구마 재배에서 동화산물 분배 계수의 과학적 메커니즘, 정량 측정 지표 및 디지털 정밀 관리 전략을 다룹니다.
+    sections:
+    - 4.1 기초 원리 및 개념
+    - 4.2 정량 측정·모델링
+    - 4.3 국내외 기준 비교
+    - 4.4 디지털 현장 적용
+    keywords_ko:
+    - 동화산물 분배 계수
+    keywords_en:
+    - Partitioning Coefficient
+    evidence_packet: digital_sweet_potato_cultiva_20261122_075123_evidence.json
+    assigned_sources: []
+- part_number: 2
+  title: 제2부. 디지털 고구마 재배 핵심 영역 2
+  pages: 105
+  chapters:
+  - chapter_id: ch05
+    chapter_number: 5
+    title: 제5장. 양분 재분배·전류의 원리와 디지털 현장 관리
+    target_pages: 35
+    summary_ko: 디지털 고구마 재배에서 양분 재분배·전류의 과학적 메커니즘, 정량 측정 지표 및 디지털 정밀 관리 전략을 다룹니다.
+    sections:
+    - 5.1 기초 원리 및 개념
+    - 5.2 정량 측정·모델링
+    - 5.3 국내외 기준 비교
+    - 5.4 디지털 현장 적용
+    keywords_ko:
+    - 양분 재분배·전류
+    keywords_en:
+    - Remobilization / Translocation
+    evidence_packet: digital_sweet_potato_cultiva_20261122_075123_evidence.json
+    assigned_sources: []
+  - chapter_id: ch06
+    chapter_number: 6
+    title: 제6장. 수량 구성요소의 원리와 디지털 현장 관리
+    target_pages: 35
+    summary_ko: 디지털 고구마 재배에서 수량 구성요소의 과학적 메커니즘, 정량 측정 지표 및 디지털 정밀 관리 전략을 다룹니다.
+    sections:
+    - 6.1 기초 원리 및 개념
+    - 6.2 정량 측정·모델링
+    - 6.3 국내외 기준 비교
+    - 6.4 디지털 현장 적용
+    keywords_ko:
+    - 수량 구성요소
+    keywords_en:
+    - Yield Components
+    evidence_packet: digital_sweet_potato_cultiva_20261122_075123_evidence.json
+    assigned_sources: []
+  - chapter_id: ch07
+    chapter_number: 7
+    title: 제7장. 비생물적 스트레스의 원리와 디지털 현장 관리
+    target_pages: 35
+    summary_ko: 디지털 고구마 재배에서 비생물적 스트레스의 과학적 메커니즘, 정량 측정 지표 및 디지털 정밀 관리 전략을 다룹니다.
+    sections:
+    - 7.1 기초 원리 및 개념
+    - 7.2 정량 측정·모델링
+    - 7.3 국내외 기준 비교
+    - 7.4 디지털 현장 적용
+    keywords_ko:
+    - 비생물적 스트레스
+    keywords_en:
+    - Abiotic Stress
+    evidence_packet: digital_sweet_potato_cultiva_20261122_075123_evidence.json
+    assigned_sources: []
+- part_number: 3
+  title: 제3부. 디지털 고구마 재배 핵심 영역 3
+  pages: 140
+  chapters:
+  - chapter_id: ch08
+    chapter_number: 8
+    title: 제8장. 임계 질소 희석곡선의 원리와 디지털 현장 관리
+    target_pages: 35
+    summary_ko: 디지털 고구마 재배에서 임계 질소 희석곡선의 과학적 메커니즘, 정량 측정 지표 및 디지털 정밀 관리 전략을 다룹니다.
+    sections:
+    - 8.1 기초 원리 및 개념
+    - 8.2 정량 측정·모델링
+    - 8.3 국내외 기준 비교
+    - 8.4 디지털 현장 적용
+    keywords_ko:
+    - 임계 질소 희석곡선
+    keywords_en:
+    - Critical N Dilution Curve
+    evidence_packet: digital_sweet_potato_cultiva_20261122_075123_evidence.json
+    assigned_sources: []
+  - chapter_id: ch09
+    chapter_number: 9
+    title: 제9장. 질소영양지수의 원리와 디지털 현장 관리
+    target_pages: 35
+    summary_ko: 디지털 고구마 재배에서 질소영양지수의 과학적 메커니즘, 정량 측정 지표 및 디지털 정밀 관리 전략을 다룹니다.
+    sections:
+    - 9.1 기초 원리 및 개념
+    - 9.2 정량 측정·모델링
+    - 9.3 국내외 기준 비교
+    - 9.4 디지털 현장 적용
+    keywords_ko:
+    - 질소영양지수
+    keywords_en:
+    - Nitrogen Nutrition Index (NNI)
+    evidence_packet: digital_sweet_potato_cultiva_20261122_075123_evidence.json
+    assigned_sources: []
+  - chapter_id: ch10
+    chapter_number: 10
+    title: 제10장. 시비량 산정 모델의 원리와 디지털 현장 관리
+    target_pages: 35
+    summary_ko: 디지털 고구마 재배에서 시비량 산정 모델의 과학적 메커니즘, 정량 측정 지표 및 디지털 정밀 관리 전략을 다룹니다.
+    sections:
+    - 10.1 기초 원리 및 개념
+    - 10.2 정량 측정·모델링
+    - 10.3 국내외 기준 비교
+    - 10.4 디지털 현장 적용
+    keywords_ko:
+    - 시비량 산정 모델
+    keywords_en:
+    - Fertilizer Recommendation Model
+    evidence_packet: digital_sweet_potato_cultiva_20261122_075123_evidence.json
+    assigned_sources: []
+  - chapter_id: ch11
+    chapter_number: 11
+    title: 제11장. 토양 물리화학성의 원리와 디지털 현장 관리
+    target_pages: 35
+    summary_ko: 디지털 고구마 재배에서 토양 물리화학성의 과학적 메커니즘, 정량 측정 지표 및 디지털 정밀 관리 전략을 다룹니다.
+    sections:
+    - 11.1 기초 원리 및 개념
+    - 11.2 정량 측정·모델링
+    - 11.3 국내외 기준 비교
+    - 11.4 디지털 현장 적용
+    keywords_ko:
+    - 토양 물리화학성
+    keywords_en:
+    - Soil Physicochemical Properties
+    evidence_packet: digital_sweet_potato_cultiva_20261122_075123_evidence.json
+    assigned_sources: []
+- part_number: 4
+  title: 제4부. 디지털 고구마 재배 핵심 영역 4
+  pages: 105
+  chapters:
+  - chapter_id: ch12
+    chapter_number: 12
+    title: 제12장. 토양 유기물·탄소 격리의 원리와 디지털 현장 관리
+    target_pages: 35
+    summary_ko: 디지털 고구마 재배에서 토양 유기물·탄소 격리의 과학적 메커니즘, 정량 측정 지표 및 디지털 정밀 관리 전략을 다룹니다.
+    sections:
+    - 12.1 기초 원리 및 개념
+    - 12.2 정량 측정·모델링
+    - 12.3 국내외 기준 비교
+    - 12.4 디지털 현장 적용
+    keywords_ko:
+    - 토양 유기물·탄소 격리
+    keywords_en:
+    - Soil Organic Matter / Carbon Sequestration
+    evidence_packet: digital_sweet_potato_cultiva_20261122_075123_evidence.json
+    assigned_sources: []
+  - chapter_id: ch13
+    chapter_number: 13
+    title: 제13장. 유전적 다양성·형질 지도의 원리와 디지털 현장 관리
+    target_pages: 35
+    summary_ko: 디지털 고구마 재배에서 유전적 다양성·형질 지도의 과학적 메커니즘, 정량 측정 지표 및 디지털 정밀 관리 전략을 다룹니다.
+    sections:
+    - 13.1 기초 원리 및 개념
+    - 13.2 정량 측정·모델링
+    - 13.3 국내외 기준 비교
+    - 13.4 디지털 현장 적용
+    keywords_ko:
+    - 유전적 다양성·형질 지도
+    keywords_en:
+    - Genetic Diversity / Trait Mapping
+    evidence_packet: digital_sweet_potato_cultiva_20261122_075123_evidence.json
+    assigned_sources: []
+  - chapter_id: ch14
+    chapter_number: 14
+    title: 제14장. 유전자 편집의 원리와 디지털 현장 관리
+    target_pages: 35
+    summary_ko: 디지털 고구마 재배에서 유전자 편집의 과학적 메커니즘, 정량 측정 지표 및 디지털 정밀 관리 전략을 다룹니다.
+    sections:
+    - 14.1 기초 원리 및 개념
+    - 14.2 정량 측정·모델링
+    - 14.3 국내외 기준 비교
+    - 14.4 디지털 현장 적용
+    keywords_ko:
+    - 유전자 편집
+    keywords_en:
+    - Genome Editing
+    evidence_packet: digital_sweet_potato_cultiva_20261122_075123_evidence.json
+    assigned_sources: []
+- part_number: 5
+  title: 제5부. 디지털 고구마 재배 핵심 영역 5
+  pages: 105
+  chapters:
+  - chapter_id: ch15
+    chapter_number: 15
+    title: 제15장. 병해 발생 예측 모델의 원리와 디지털 현장 관리
+    target_pages: 35
+    summary_ko: 디지털 고구마 재배에서 병해 발생 예측 모델의 과학적 메커니즘, 정량 측정 지표 및 디지털 정밀 관리 전략을 다룹니다.
+    sections:
+    - 15.1 기초 원리 및 개념
+    - 15.2 정량 측정·모델링
+    - 15.3 국내외 기준 비교
+    - 15.4 디지털 현장 적용
+    keywords_ko:
+    - 병해 발생 예측 모델
+    keywords_en:
+    - Disease Forecasting Model
+    evidence_packet: digital_sweet_potato_cultiva_20261122_075123_evidence.json
+    assigned_sources: []
+  - chapter_id: ch16
+    chapter_number: 16
+    title: 제16장. 통합 병해충 관리·예찰의 원리와 디지털 현장 관리
+    target_pages: 35
+    summary_ko: 디지털 고구마 재배에서 통합 병해충 관리·예찰의 과학적 메커니즘, 정량 측정 지표 및 디지털 정밀 관리 전략을 다룹니다.
+    sections:
+    - 16.1 기초 원리 및 개념
+    - 16.2 정량 측정·모델링
+    - 16.3 국내외 기준 비교
+    - 16.4 디지털 현장 적용
+    keywords_ko:
+    - 통합 병해충 관리·예찰
+    keywords_en:
+    - IPM / Scouting System
+    evidence_packet: digital_sweet_potato_cultiva_20261122_075123_evidence.json
+    assigned_sources: []
+  - chapter_id: ch17
+    chapter_number: 17
+    title: 제17장. 작물 생육모형의 원리와 디지털 현장 관리
+    target_pages: 35
+    summary_ko: 디지털 고구마 재배에서 작물 생육모형의 과학적 메커니즘, 정량 측정 지표 및 디지털 정밀 관리 전략을 다룹니다.
+    sections:
+    - 17.1 기초 원리 및 개념
+    - 17.2 정량 측정·모델링
+    - 17.3 국내외 기준 비교
+    - 17.4 디지털 현장 적용
+    keywords_ko:
+    - 작물 생육모형
+    keywords_en:
+    - Crop Growth Model
+    evidence_packet: digital_sweet_potato_cultiva_20261122_075123_evidence.json
+    assigned_sources: []

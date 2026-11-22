@@ -1,0 +1,22 @@
+chapter_id: ch03
+chapter_number: 3
+title: 제3장. 광합성 및 동화산물 분배 최적화
+target_pages: 35
+summary_ko: 광합성 효율과 동화산물의 분배 패턴을 생리적으로 분석하며, 질소 결핍에 따른 임계점을 정량적으로 정의합니다. 이를 통해 작물 내부의 자원 배분을 최적화하는 방안을 제시합니다.
+sections:
+- 3.1 광이용효율(LUE)의 이해와 최적화
+- 3.2 동화산물 분배 계수 및 수량 구성요소 분석
+- 3.3 질소 영양 및 임계 질소 희석곡선
+- 3.4 양분 재분배를 고려한 생장 조절
+keywords_ko:
+- 광이용효율
+- 동화산물 분배 계수
+- 임계 질소 희석곡선
+- 수량 구성요소
+keywords_en:
+- Light Use Efficiency
+- Assimilate Partitioning Coefficient
+- Critical Nitrogen Dilution Curve
+- Yield Components
+evidence_packet: digital_sweet_potato_cultiva_20261122_074958_evidence.json
+assigned_sources: []

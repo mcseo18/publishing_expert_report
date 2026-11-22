@@ -597,15 +597,24 @@ def api_get_chapter(project_id: str, chapter_id: str) -> dict[str, Any]:
 
 @app.get("/api/projects/{project_id}/visuals")
 def api_get_visuals(project_id: str) -> dict[str, Any]:
-    st = load_project_state(project_id)
+    cfg = get_config()
+    st = load_project_state(project_id, cfg)
     if not st:
         raise HTTPException(status_code=404, detail="Project not found")
     assets_dir = Path(st["workspace_dir"]) / "assets"
     plan_p = assets_dir / "visuals_plan.json"
     guide_p = assets_dir / "visuals_text_guide.md"
-    plan = json.loads(plan_p.read_text(encoding="utf-8")) if plan_p.is_file() else {"items": [], "total_generated": 0}
+    plan = json.loads(plan_p.read_text(encoding="utf-8")) if plan_p.is_file() else {"visuals": [], "total_generated": 0}
     guide = guide_p.read_text(encoding="utf-8") if guide_p.is_file() else ""
-    return {"plan": plan, "text_guide": guide}
+    e_vis_dir = str(cfg.e_projects_dir / project_id / "visuals")
+    local_vis_dir = str(assets_dir / "by_chapter")
+    return {
+        "plan": plan,
+        "text_guide": guide,
+        "local_visuals_dir": plan.get("local_visuals_dir") or local_vis_dir,
+        "e_visuals_dir": plan.get("e_visuals_dir") or e_vis_dir,
+        "bound_visuals_by_chapter": st.get("bound_visuals_by_chapter") or {},
+    }
 
 
 @app.get("/api/projects/{project_id}/cover-toc")

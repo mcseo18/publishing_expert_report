@@ -1,0 +1,22 @@
+chapter_id: ch05
+chapter_number: 5
+title: 제5장. 고구마의 유전적 다양성 및 형질 지도
+target_pages: 35
+summary_ko: 고구마의 유전적 잠재력을 파악하고, 유전자 편집과 같은 첨단 기술을 통해 원하는 농업적 형질을 도입하는 방법을 다룹니다. 이는 환경 적응성과 생산성 향상에 필수적입니다.
+sections:
+- 5.1 고구마 품종의 유전적 다양성 평가
+- 5.2 유전체 정보 기반 형질 지도(QTL) 분석
+- 5.3 유전자 편집 기술(CRISPR)의 농업 적용
+- 5.4 고성능 품종 개발을 위한 유전체 선발
+keywords_ko:
+- 유전적 다양성
+- 형질 지도
+- 유전자 편집
+- 유전체 선발
+keywords_en:
+- Genetic Diversity
+- Trait Mapping
+- Gene Editing
+- Genomic Selection
+evidence_packet: digital_sweet_potato_cultiva_20261122_074958_evidence.json
+assigned_sources: []

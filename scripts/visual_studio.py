@@ -16,6 +16,7 @@ from __future__ import annotations
 import base64
 import html
 import json
+import re
 from pathlib import Path
 from typing import Any, Callable
 
@@ -27,35 +28,61 @@ from data_connectors import resolve_api_key
 
 FONT = "'Malgun Gothic', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif"
 
-# 단원당 기본 10종 시각화 아키타입 (실사진/인포그래픽 4종 + 정량/구조 SVG 6종)
+ZERO_TEXT_RULE = (
+    "STRICT REQUIREMENT: Pure visual photography or text-free scientific illustration ONLY. "
+    "Absolutely ZERO text, ZERO words, ZERO letters, ZERO numbers, ZERO Korean Hangul, ZERO English labels, "
+    "ZERO titles, ZERO captions, ZERO logos, ZERO tablet/monitor screens, ZERO signboards, ZERO watermarks anywhere in the image."
+)
+
+# 단원 주제(한국어 키워드) -> 순수 영문 과학 시각 장면 매핑 (이미지 생성 프롬프트에 한글 유입 원천 차단)
+TOPIC_SCENE_MAP: list[tuple[tuple[str, ...], str, str]] = [
+    (("기초 생물학", "품종군", "생육 주기"), "golden winter wheat stalks with visible tillers, flag leaves, and ripening spikes in an agricultural research plot at golden hour", "botanical anatomical cross-section of a mature wheat plant showing fibrous root system, crown, tillers, hollow culm, leaf sheath, and spikelet structure on pure white background"),
+    (("품종 선택", "유전", "종자"), "diverse wheat spikes and plump amber wheat kernels arranged cleanly on an agronomy seed inspection tray under soft studio daylight", "clean scientific illustration comparing diverse wheat spike morphologies and kernel endosperm-germ cross-sections on pure white background"),
+    (("토양", "파종"), "precision seed drill planting winter wheat in dark fertile loam soil furrows at an experimental farm under clear morning sky", "clean soil profile cross-section illustration showing dark topsoil crumbs, germinating wheat seeds at uniform depth, emerging coleoptile, and seminal roots on pure white background"),
+    (("월동", "초기 생육", "동해"), "young green winter wheat seedlings emerging across frost-dusted dark agricultural field ridges in crisp winter sunlight", "clean botanical illustration of winter wheat seedling crown depth below soil surface with protective snow cover and root cold acclimation on pure white background"),
+    (("분얼", "분화기", "생육 중기"), "lush green winter wheat canopy in vigorous tillering and stem elongation stage across neat experimental field plots", "clean botanical illustration showing sequential wheat vegetative growth from main shoot to primary tillers and developing apical spike primordium on pure white background"),
+    (("양분 분배", "생육모형", "질소"), "healthy deep-green winter wheat canopy with golden ripening heads in a precision nitrogen fertilization trial field under clear daylight", "clean Nature-style botanical cross-section illustration of a wheat plant showing glowing blue and amber nutrient transport pathways moving from soil roots through stems and leaves up into developing wheat grains on pure white background"),
+    (("병해충", "잡초", "녹병"), "close-up agronomic field inspection of healthy green wheat leaves alongside early rust pustules in a crop pathology test plot", "clean scientific botanical illustration contrasting a healthy wheat leaf cross-section with fungal spore penetration through stomata on pure white background"),
+    (("환경 스트레스", "가뭄", "고온", "관개"), "modern linear-move precision sprinkler irrigation watering a sunlit wheat field under dry summer sky with fine water mist", "clean scientific plant-soil-atmosphere illustration showing wheat root water uptake, stomatal closure under heat wave, and drip moisture distribution on pure white background"),
+    (("수확", "건조", "저장"), "modern combine harvester harvesting ripe golden winter wheat field under clear blue afternoon sky with clean grain flow", "clean cutaway engineering illustration of a grain drying silo showing warm airflow circulation through stored golden wheat kernels on pure white background"),
+    (("품질 분석", "단백질", "글루텐", "비파괴"), "clean grain quality laboratory workbench with golden wheat kernels in glass sample dishes and optical near-infrared grain analyzer", "clean microscopic cross-section illustration of a single wheat kernel showing bran layers, aleurone, starchy endosperm cells, and golden embryo on pure white background"),
+    (("글로벌", "세계 밀", "유통", "공급망"), "aerial panoramic view of vast golden wheat farmland and modern coastal grain export silos under bright daylight", "clean isometric editorial illustration of a wheat supply chain flowing from farmland harvest to grain silos, freight transport, and milling facility on pure white background"),
+    (("가공 기초", "제분", "전분"), "clean artisanal and industrial roller milling scene showing golden wheat grain transforming into fine silky white and whole-wheat flour", "clean microscopic molecular illustration showing starch granules embedded inside an elastic gluten protein network matrix on pure white background"),
+    (("제빵", "면류", "반죽", "용도별"), "freshly baked golden crusty artisan bread loaves, silky fresh wheat noodles, and raw wheat ears on a clean wooden culinary studio table", "clean scientific culinary illustration comparing wheat dough viscoelastic gluten networks for bread fermentation and noodle sheeting on pure white background"),
+    (("디지털 트윈", "인공지능", "원격 탐사", "드론"), "agricultural quadcopter multispectral drone flying low above a lush green winter wheat field during precision crop monitoring at sunrise", "clean isometric scientific illustration showing satellite orbit, agricultural drone, soil moisture probes, and sunlit wheat field connected by glowing light rays on pure white background"),
+    (("저탄소", "탄소 발자국", "지속 가능"), "regenerative no-till winter wheat growing vibrantly through golden cover crop residue mulch in rich dark carbon-rich soil", "clean ecosystem cross-section illustration showing atmospheric carbon entering green wheat foliage, flowing down through deep roots into dark stable soil organic matter on pure white background"),
+    (("미래 전망", "유전자 편집", "미생물"), "modern glass research greenhouse with neatly arranged experimental wheat plants under soft controlled LED lighting and misting", "clean microscopic rhizosphere illustration showing beneficial golden soil bacteria and white mycorrhizal fungal hyphae colonizing a wheat root tip on pure white background"),
+]
+
+# 단원당 기본 10종 시각화 아키타입 (실사진/과학도해 4종 + 정량/구조 한글 SVG 6종)
 CHAPTER_VISUAL_TEMPLATES: list[dict[str, str]] = [
     {
         "slot": "v01",
         "kind": "photo_ai",
         "style": "photorealistic",
         "role_ko": "현장 실사진: 핵심 작물·재배 환경 전경",
-        "prompt_tmpl": "Ultra-realistic documentary agricultural photograph of {topic_en} focusing on {chapter_en}, crisp natural daylight, field research station quality, accurate botanical morphology, shallow depth of field, NO text or watermarks.",
+        "prompt_tmpl": "Ultra-realistic documentary agricultural photograph of {field_scene}, crisp natural daylight, field research station quality, accurate botanical morphology, shallow depth of field. {zero_text}",
     },
     {
         "slot": "v02",
         "kind": "infographic_ai",
-        "style": "scientific_infographic",
-        "role_ko": "과학 단면도·구조 인포그래픽",
-        "prompt_tmpl": "Publication-grade Nature journal scientific cross-section infographic illustration explaining {chapter_en} in {topic_en}, clean pure white background, anatomically and physically accurate, crisp vector-like shading, NO text labels or letters.",
+        "style": "scientific_illustration",
+        "role_ko": "과학 단면도·생리 구조 도해",
+        "prompt_tmpl": "Publication-grade Nature journal scientific botanical illustration: {diagram_scene}, anatomically and physically accurate, crisp editorial shading, clean pure white background. {zero_text}",
     },
     {
         "slot": "v03",
         "kind": "photo_ai",
         "style": "photorealistic_macro",
-        "role_ko": "근접 실사진: 생리·품질·증상 정밀 관찰",
-        "prompt_tmpl": "High-resolution macro scientific photography illustrating {section_1} for {topic_en}, laboratory and field diagnostic clarity, true-to-life color and texture, NO text or annotations.",
+        "role_ko": "근접 실사진: 생리·품질·구조 정밀 관찰",
+        "prompt_tmpl": "High-resolution macro scientific photography closely capturing {macro_scene}, true-to-life botanical color, crisp natural texture, laboratory diagnostic clarity. {zero_text}",
     },
     {
         "slot": "v04",
         "kind": "infographic_ai",
-        "style": "system_infographic",
-        "role_ko": "디지털·스마트 현장 시스템 인포그래픽",
-        "prompt_tmpl": "Modern clean editorial agricultural engineering infographic on white background depicting smart sensor, drone, and precision management workflow for {chapter_en} ({topic_en}), realistic isometric style, NO text.",
+        "style": "system_illustration",
+        "role_ko": "디지털·스마트 현장 시스템 도해",
+        "prompt_tmpl": "Clean modern editorial isometric illustration on pure white background showing precision agriculture sensors, weather station, and field crop canopy related to {field_scene}, realistic architectural clarity. {zero_text}",
     },
     {
         "slot": "v05",
@@ -100,6 +127,90 @@ CHAPTER_VISUAL_TEMPLATES: list[dict[str, str]] = [
         "prompt_tmpl": "",
     },
 ]
+
+
+def _resolve_english_visual_scenes(topic_en: str, chapter: dict[str, Any]) -> tuple[str, str, str]:
+    """한글 단원 제목/절을 순수 영문 시각 장면으로 변환한다 (한글 글자 유입 0% 보장)."""
+    blob = " ".join([
+        str(chapter.get("title", "")),
+        str(chapter.get("summary_ko", "")),
+        " ".join(chapter.get("sections") or []),
+    ])
+    for keys, field_s, diag_s in TOPIC_SCENE_MAP:
+        if any(k in blob for k in keys):
+            macro_s = f"close-up botanical details of {field_s}"
+            return field_s, diag_s, macro_s
+    kws_en = [re.sub(r"[^A-Za-z0-9 ,\-]", "", str(k)).strip() for k in (chapter.get("keywords_en") or []) if str(k).strip()]
+    base_en = re.sub(r"[^A-Za-z0-9 ,\-]", "", topic_en or "").strip() or "precision winter wheat agriculture"
+    extra = f" emphasizing {', '.join(kws_en[:3])}" if kws_en else ""
+    field_s = f"{base_en}{extra} in a sunlit experimental agricultural field"
+    diag_s = f"clean botanical cross-section diagram of {base_en}{extra} on pure white background"
+    macro_s = f"macro close-up of healthy crop foliage, grain heads, and dark soil structure in {base_en}"
+    return field_s, diag_s, macro_s
+
+
+def _clean_svg_label(text: str) -> str:
+    """SVG 박스 내부 라벨에서 과도한 영문 괄호 부연설명을 정리해 한글 가독성을 높인다."""
+    s = re.sub(r"\s+", " ", str(text or "")).strip()
+    # 긴 영문 괄호 (예: (Critical N Dilution Curve)) 제거, 짧은 약어 (예: (NNI), (N·P·K·S))는 유지
+    s = re.sub(r"\s*\([A-Za-z][A-Za-z0-9\s\-/,·]{7,}\)", "", s)
+    return s.strip()
+
+
+def _wrap_svg_lines(text: str, max_chars: int = 13, max_lines: int = 3) -> list[str]:
+    """단어·공백 경계를 엄격히 지켜 줄바꿈한다 (단어나 영문 약어 중간 잘림 방지)."""
+    s = _clean_svg_label(text)
+    if not s:
+        return [""]
+    words = s.split(" ")
+    lines: list[str] = []
+    cur = ""
+    for w in words:
+        if not cur:
+            cur = w
+        elif len(cur) + 1 + len(w) <= max_chars:
+            cur = cur + " " + w
+        else:
+            lines.append(cur)
+            cur = w
+            if len(lines) >= max_lines:
+                break
+    if cur and len(lines) < max_lines:
+        lines.append(cur)
+    # 혹시 단일 어절 자체가 max_chars보다 훨씬 길면 구분자(·, /) 기준으로 깔끔히 줄임
+    out: list[str] = []
+    for ln in lines[:max_lines]:
+        if len(ln) > max_chars + 3:
+            cut = ln[: max_chars + 1]
+            for sep in (" ", "·", "/", ","):
+                if sep in cut and cut.rfind(sep) >= max_chars // 2:
+                    cut = cut[: cut.rfind(sep)]
+                    break
+            ln = cut.rstrip(" (·,/") + "…"
+        # 닫히지 않은 괄호 제거
+        if ln.count("(") > ln.count(")"):
+            ln = re.sub(r"\([^)]*$", "", ln).strip()
+        out.append(ln)
+    return out or [s[:max_chars]]
+
+
+def _svg_multiline_text(
+    x: float,
+    y_center: float,
+    lines: list[str],
+    *,
+    font_size: float = 12,
+    line_height: float = 17,
+    fill: str = "#0f172a",
+    weight: str = "700",
+    anchor: str = "middle",
+) -> str:
+    n = len(lines)
+    y0 = y_center - ((n - 1) * line_height) / 2.0
+    tspans = []
+    for i, ln in enumerate(lines):
+        tspans.append(f'<tspan x="{x}" y="{y0 + i * line_height:.1f}">{html.escape(ln)}</tspan>')
+    return f'<text text-anchor="{anchor}" font-size="{font_size}" font-weight="{weight}" fill="{fill}">{"".join(tspans)}</text>'
 
 
 def _generate_with_fal_ai(
@@ -166,25 +277,27 @@ def _generate_with_nano_banana(
 
 
 def _svg_canvas(title: str, subtitle: str, body: str, accent: str = "#0f172a") -> str:
+    t_clean = _wrap_svg_lines(title, max_chars=48, max_lines=1)[0]
+    s_clean = _wrap_svg_lines(subtitle, max_chars=74, max_lines=1)[0]
     return (
         f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" width="800" height="420" '
         f'style="background:#ffffff;font-family:{FONT};">\n'
         f'  <rect x="0" y="0" width="800" height="420" rx="12" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>\n'
         f'  <rect x="0" y="0" width="800" height="58" rx="12" fill="{accent}"/>\n'
         f'  <rect x="0" y="42" width="800" height="16" fill="{accent}"/>\n'
-        f'  <text x="22" y="27" font-size="15" font-weight="700" fill="#f8fafc">{html.escape(title[:58])}</text>\n'
-        f'  <text x="22" y="47" font-size="11" fill="#cbd5e1">{html.escape(subtitle[:88])}</text>\n'
+        f'  <text x="22" y="27" font-size="14.5" font-weight="700" fill="#f8fafc">{html.escape(t_clean)}</text>\n'
+        f'  <text x="22" y="47" font-size="11" fill="#cbd5e1">{html.escape(s_clean)}</text>\n'
         f'  {body}\n'
         f'</svg>'
     )
 
 
 def _render_vector_svg(spec: dict[str, Any], sections: list[str]) -> str:
-    """단원 내용에 맞춘 출판급 한글 벡터 SVG 도해·차트를 생성한다."""
+    """단원 내용에 맞춘 출판급 한글 벡터 SVG 도해·차트를 생성한다 (단어 경계 줄바꿈으로 글자 잘림·오탈자 0%)."""
     style = spec.get("style", "flowchart")
     title = spec["title_ko"]
     sub = spec["subtitle_ko"]
-    sec_labels = [s[:24] for s in (sections[:4] or ["1. 기초 원리", "2. 환경 제어", "3. 정밀 분석", "4. 현장 적용"])]
+    sec_labels = [_clean_svg_label(s) for s in (sections[:4] or ["1. 기초 원리", "2. 환경 제어", "3. 정밀 분석", "4. 현장 적용"])]
     while len(sec_labels) < 4:
         sec_labels.append(f"단계 {len(sec_labels)+1}")
 
@@ -193,12 +306,13 @@ def _render_vector_svg(spec: dict[str, Any], sections: list[str]) -> str:
         colors = ["#0284c7", "#16a34a", "#d97706", "#7c3aed"]
         parts = []
         for i, (lbl, v, col) in enumerate(zip(sec_labels, vals, colors)):
-            y = 92 + i * 70
-            w = int((v / 100.0) * 430)
-            parts.append(f'<text x="24" y="{y+20}" font-size="12.5" font-weight="700" fill="#1e293b">{html.escape(lbl)}</text>')
-            parts.append(f'<rect x="250" y="{y+4}" width="440" height="28" rx="6" fill="#f1f5f9"/>')
-            parts.append(f'<rect x="250" y="{y+4}" width="{w}" height="28" rx="6" fill="{col}"/>')
-            parts.append(f'<text x="{258+w}" y="{y+23}" font-size="12" font-weight="700" fill="#0f172a">{v}%</text>')
+            y = 92 + i * 74
+            w = int((v / 100.0) * 410)
+            lines = _wrap_svg_lines(lbl, max_chars=16, max_lines=2)
+            parts.append(_svg_multiline_text(24, y + 20, lines, font_size=11.5, line_height=15, fill="#1e293b", weight="700", anchor="start"))
+            parts.append(f'<rect x="270" y="{y+6}" width="420" height="28" rx="6" fill="#f1f5f9"/>')
+            parts.append(f'<rect x="270" y="{y+6}" width="{w}" height="28" rx="6" fill="{col}"/>')
+            parts.append(f'<text x="{278+w}" y="{y+25}" font-size="12" font-weight="700" fill="#0f172a">{v}%</text>')
         return _svg_canvas(title, sub, "\n  ".join(parts), "#0f2942")
 
     if style == "response_curve":
@@ -213,35 +327,37 @@ def _render_vector_svg(spec: dict[str, Any], sections: list[str]) -> str:
         ]
         for x, y in pts:
             parts.append(f'<circle cx="{x}" cy="{y}" r="5.5" fill="#0284c7" stroke="#ffffff" stroke-width="2"/>')
-        parts.append('<text x="418" y="378" text-anchor="middle" font-size="12" font-weight="700" fill="#334155">환경 · 투입 인자 수준 (저 → 최적 → 과잉)</text>')
+        parts.append('<text x="418" y="378" text-anchor="middle" font-size="12" font-weight="700" fill="#334155">환경 · 투입 인자 수준 (부족 → 최적 → 과잉)</text>')
         parts.append('<text x="26" y="215" text-anchor="middle" font-size="12" font-weight="700" fill="#334155" transform="rotate(-90 26 215)">생육 · 품질 지수</text>')
         return _svg_canvas(title, sub, "\n  ".join(parts), "#064e3b")
 
     if style == "diagnostic_matrix":
         cells = [
-            (40, 88, "#dcfce7", "#166534", "정상·최적 상태", sec_labels[0]),
+            (40, 88, "#dcfce7", "#166534", "정상 · 최적 상태", sec_labels[0]),
             (415, 88, "#dbeafe", "#1e40af", "예방적 디지털 모니터링", sec_labels[1]),
-            (40, 245, "#fef9c3", "#854d0e", "주의·임계치 접근", sec_labels[2]),
-            (415, 245, "#fee2e2", "#991b1b", "즉각 교정·방제 조치", sec_labels[3]),
+            (40, 245, "#fef9c3", "#854d0e", "주의 · 임계치 접근", sec_labels[2]),
+            (415, 245, "#fee2e2", "#991b1b", "즉각 교정 · 방제 조치", sec_labels[3]),
         ]
         parts = []
         for x, y, bg, fg, head, desc in cells:
             parts.append(f'<rect x="{x}" y="{y}" width="345" height="135" rx="10" fill="{bg}" stroke="{fg}" stroke-width="1.5"/>')
-            parts.append(f'<text x="{x+18}" y="{y+36}" font-size="14" font-weight="700" fill="{fg}">{html.escape(head)}</text>')
-            parts.append(f'<text x="{x+18}" y="{y+70}" font-size="12" fill="#1e293b">{html.escape(desc)}</text>')
-            parts.append(f'<text x="{x+18}" y="{y+102}" font-size="11" fill="#475569">정량 계측 → 임계 판정 → 현장 처방</text>')
+            parts.append(f'<text x="{x+18}" y="{y+34}" font-size="14" font-weight="700" fill="{fg}">{html.escape(head)}</text>')
+            d_lines = _wrap_svg_lines(desc, max_chars=24, max_lines=2)
+            parts.append(_svg_multiline_text(x + 18, y + 70, d_lines, font_size=11.8, line_height=16, fill="#1e293b", weight="600", anchor="start"))
+            parts.append(f'<text x="{x+18}" y="{y+114}" font-size="11" fill="#475569">정량 계측 → 임계 판정 → 현장 처방</text>')
         return _svg_canvas(title, sub, "\n  ".join(parts), "#312e81")
 
     if style == "stage_timeline":
-        parts = ['<line x1="70" y1="215" x2="730" y2="215" stroke="#0284c7" stroke-width="4"/>']
+        parts = ['<line x1="70" y1="228" x2="730" y2="228" stroke="#0284c7" stroke-width="4"/>']
         colors = ["#0284c7", "#0d9488", "#16a34a", "#7c3aed"]
         for i, (lbl, col) in enumerate(zip(sec_labels, colors)):
             cx = 115 + i * 190
-            parts.append(f'<circle cx="{cx}" cy="215" r="22" fill="{col}" stroke="#ffffff" stroke-width="3"/>')
-            parts.append(f'<text x="{cx}" y="220" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">S{i+1}</text>')
-            parts.append(f'<rect x="{cx-82}" y="102" width="164" height="74" rx="8" fill="#f8fafc" stroke="{col}" stroke-width="1.5"/>')
-            parts.append(f'<text x="{cx}" y="144" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0f172a">{html.escape(lbl[:16])}</text>')
-            parts.append(f'<text x="{cx}" y="275" text-anchor="middle" font-size="11" fill="#475569">핵심 지표 계측·검증</text>')
+            parts.append(f'<circle cx="{cx}" cy="228" r="22" fill="{col}" stroke="#ffffff" stroke-width="3"/>')
+            parts.append(f'<text x="{cx}" y="233" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">S{i+1}</text>')
+            parts.append(f'<rect x="{cx-84}" y="96" width="168" height="86" rx="8" fill="#f8fafc" stroke="{col}" stroke-width="1.5"/>')
+            t_lines = _wrap_svg_lines(lbl, max_chars=12, max_lines=3)
+            parts.append(_svg_multiline_text(cx, 139, t_lines, font_size=11.5, line_height=16, fill="#0f172a", weight="700", anchor="middle"))
+            parts.append(f'<text x="{cx}" y="286" text-anchor="middle" font-size="11" fill="#475569">핵심 지표 계측 · 검증</text>')
         return _svg_canvas(title, sub, "\n  ".join(parts), "#1e293b")
 
     # flowchart / concept_map / ai_blueprint_card
@@ -252,16 +368,16 @@ def _render_vector_svg(spec: dict[str, Any], sections: list[str]) -> str:
     bgs = ["#e0f2fe", "#dcfce7", "#fef3c7", "#f3e8ff"]
     for i, (lbl, bg) in enumerate(zip(sec_labels, bgs)):
         x = 34 + i * 188
-        parts.append(f'<rect x="{x}" y="135" width="164" height="145" rx="10" fill="{bg}" stroke="#334155" stroke-width="1.4"/>')
-        parts.append(f'<text x="{x+82}" y="172" text-anchor="middle" font-size="11" font-weight="700" fill="#475569">STEP {i+1}</text>')
-        parts.append(f'<text x="{x+82}" y="210" text-anchor="middle" font-size="12.5" font-weight="700" fill="#0f172a">{html.escape(lbl[:14])}</text>')
-        parts.append(f'<text x="{x+82}" y="242" text-anchor="middle" font-size="10.5" fill="#334155">{html.escape(lbl[14:28] or "데이터 연동")}</text>')
+        parts.append(f'<rect x="{x}" y="128" width="164" height="158" rx="10" fill="{bg}" stroke="#334155" stroke-width="1.4"/>')
+        parts.append(f'<text x="{x+82}" y="162" text-anchor="middle" font-size="11" font-weight="700" fill="#475569">STEP {i+1}</text>')
+        b_lines = _wrap_svg_lines(lbl, max_chars=11, max_lines=3)
+        parts.append(_svg_multiline_text(x + 82, 224, b_lines, font_size=12, line_height=18, fill="#0f172a", weight="700", anchor="middle"))
         if i < 3:
             parts.append(f'<line x1="{x+164}" y1="208" x2="{x+188}" y2="208" stroke="#334155" stroke-width="2" marker-end="url(#ar)"/>')
     if spec.get("prompt"):
         parts.append(
-            f'<text x="400" y="345" text-anchor="middle" font-size="11" fill="#64748b">'
-            f'실사진/인포그래픽 생성 프롬프트 준비됨 (fal.ai 또는 나노바나나 API 키 활성화 시 실사 PNG 자동 대체)</text>'
+            f'<text x="400" y="348" text-anchor="middle" font-size="11" fill="#64748b">'
+            f'실사진/도해 생성 프롬프트 준비됨 (fal.ai 또는 나노바나나 API 키 활성화 시 실사 PNG 자동 대체)</text>'
         )
     return _svg_canvas(title, sub, "\n  ".join(parts), "#0f172a")
 
@@ -273,12 +389,12 @@ def build_chapter_visual_specs(
     chapter: dict[str, Any],
     per_chapter_count: int = 10,
 ) -> list[dict[str, Any]]:
-    """단원 1개당 최소 10개 이상의 시각화 명세(실사진/인포그래픽 + 정량 SVG + 줄글 해설)를 구성한다."""
+    """단원 1개당 최소 10개 이상의 시각화 명세(실사진/과학도해 + 정량 SVG + 줄글 해설)를 구성한다."""
     cid = chapter.get("chapter_id", "ch01")
     ch_num = int(chapter.get("chapter_number") or 1)
     ch_title = chapter.get("title", f"제{ch_num}장")
     secs = chapter.get("sections") or [f"{ch_num}.1 개요", f"{ch_num}.2 원리", f"{ch_num}.3 응용", f"{ch_num}.4 현장관리"]
-    sec1 = secs[0] if secs else ch_title
+    field_scene, diagram_scene, macro_scene = _resolve_english_visual_scenes(topic_en, chapter)
     count = max(10, int(per_chapter_count))
 
     specs: list[dict[str, Any]] = []
@@ -291,16 +407,17 @@ def build_chapter_visual_specs(
         title_ko = f"그림 {ch_num}-{v_num}. {ch_title} — {tmpl['role_ko']} ({sec_ref})"
         prompt = (
             tmpl["prompt_tmpl"].format(
-                topic_en=topic_en or topic_ko,
-                chapter_en=ch_title,
-                section_1=sec1,
+                field_scene=field_scene,
+                diagram_scene=diagram_scene,
+                macro_scene=macro_scene,
+                zero_text=ZERO_TEXT_RULE,
             )
             if is_ai
             else ""
         )
         narrative_ko = (
             f"[그림 {ch_num}-{v_num}] {title_ko}은(는) 《{topic_ko}》 {ch_title}의 핵심 학습 요소인 '{sec_ref}'을 "
-            f"{'사실적인 현장 실사진 및 고해상도 과학 인포그래픽' if is_ai else '정량적 벡터 차트 및 구조 다이어그램'}으로 시각화한 자료이다. "
+            f"{'사실적인 현장 실사진 및 고해상도 과학 도해' if is_ai else '정량적 벡터 차트 및 구조 다이어그램'}으로 시각화한 자료이다. "
             f"독자는 이 도해를 통해 주요 환경·생리·관리 변수 간의 인과관계를 직관적으로 파악하고 현장 의사결정 기준과 직접 연결할 수 있다."
         )
         specs.append(
@@ -322,6 +439,46 @@ def build_chapter_visual_specs(
     return specs
 
 
+def _rasterize_svgs_batch(
+    svg_targets: list[tuple[Path, Path]],
+    *,
+    force: bool = False,
+) -> dict[str, str]:
+    """생성된 SVG 차트들을 Playwright 단일 브라우저 세션으로 고해상도 PNG로 일괄 래스터화한다 (DOCX/네이버 블로그 삽입용)."""
+    if not svg_targets:
+        return {}
+    out_map: dict[str, str] = {}
+    try:
+        from playwright.sync_api import sync_playwright
+
+        with sync_playwright() as p:
+            browser = p.chromium.launch(headless=True)
+            page = browser.new_page(viewport={"width": 960, "height": 540}, device_scale_factor=2)
+            for svg_p, png_p in svg_targets:
+                if not svg_p.is_file():
+                    continue
+                if (
+                    not force
+                    and png_p.is_file()
+                    and png_p.stat().st_size > 1500
+                    and png_p.stat().st_mtime >= svg_p.stat().st_mtime
+                ):
+                    out_map[str(svg_p)] = str(png_p)
+                    continue
+                png_p.parent.mkdir(parents=True, exist_ok=True)
+                svg_markup = svg_p.read_text(encoding="utf-8", errors="ignore")
+                page.set_content(
+                    f'<!DOCTYPE html><html><body style="margin:0;background:#ffffff;display:inline-block;">{svg_markup}</body></html>'
+                )
+                page.locator("svg").first.screenshot(path=str(png_p))
+                if png_p.is_file():
+                    out_map[str(svg_p)] = str(png_p)
+            browser.close()
+    except Exception:
+        pass
+    return out_map
+
+
 def generate_project_visuals(
     *,
     project_id: str,
@@ -337,13 +494,19 @@ def generate_project_visuals(
     should_stop: Callable[[], bool] | None = None,
     cfg: PlatformConfig | None = None,
 ) -> dict[str, Any]:
-    """프로젝트 단원별 10개 이상 시각화 자료를 체크포인트 기반으로 생성한다."""
+    """프로젝트 단원별 10개 이상 시각화 자료를 체크포인트 기반으로 생성하고 별도 폴더(로컬+E:\\)에 체계 저장한다."""
+    import shutil
+
     cfg = cfg or get_config()
     proj_ws = cfg.project_dir(project_id)
     fig_dir = proj_ws / "assets" / "figures"
     chart_dir = proj_ws / "assets" / "charts"
-    fig_dir.mkdir(parents=True, exist_ok=True)
-    chart_dir.mkdir(parents=True, exist_ok=True)
+    png_dir = proj_ws / "assets" / "charts_png"
+    by_ch_dir = proj_ws / "assets" / "by_chapter"
+    e_vis_root = cfg.e_projects_dir / project_id / "visuals"
+    e_by_ch_dir = e_vis_root / "by_chapter"
+    for d in (fig_dir, chart_dir, png_dir, by_ch_dir, e_vis_root, e_by_ch_dir):
+        d.mkdir(parents=True, exist_ok=True)
 
     fal_key = resolve_api_key("FAL_KEY", None, cfg) if use_fal_ai else ""
     gemini_key = resolve_api_key("GEMINI_API_KEY", None, cfg) if use_nano_banana else ""
@@ -459,33 +622,76 @@ def generate_project_visuals(
         if on_item_done:
             on_item_done(rec, idx, total)
 
-    # 매니페스트 및 줄글 텍스트 해설 가이드(표 금지 규칙 준수!) 저장
+    # SVG → 고해상도 PNG 일괄 래스터화 (DOCX·네이버 블로그 <img> 완벽 삽입용)
+    svg_batch: list[tuple[Path, Path]] = []
+    for r in records:
+        p = Path(r["path"])
+        if p.suffix.lower() == ".svg":
+            svg_batch.append((p, png_dir / f"{p.stem}.png"))
+    raster_map = _rasterize_svgs_batch(svg_batch)
+
+    # 단원별 분리 폴더(로컬 assets/by_chapter/<chNN>/ + E:\SMC_Report_Platform_Data\projects\<pid>\visuals\by_chapter\<chNN>\) 저장
+    by_ch_summary: dict[str, int] = {}
+    for r in records:
+        cid = r.get("chapter_id", "ch01")
+        by_ch_summary[cid] = by_ch_summary.get(cid, 0) + 1
+        src_p = Path(r["path"])
+        loc_ch = by_ch_dir / cid
+        e_ch = e_by_ch_dir / cid
+        loc_ch.mkdir(parents=True, exist_ok=True)
+        e_ch.mkdir(parents=True, exist_ok=True)
+
+        if src_p.is_file():
+            shutil.copy2(src_p, loc_ch / src_p.name)
+            shutil.copy2(src_p, e_ch / src_p.name)
+
+        if src_p.suffix.lower() == ".png":
+            r["docx_image_path"] = str(src_p)
+            r["png_url"] = r["rel_url"]
+        else:
+            png_str = raster_map.get(str(src_p), "")
+            if png_str and Path(png_str).is_file():
+                png_p = Path(png_str)
+                shutil.copy2(png_p, loc_ch / png_p.name)
+                shutil.copy2(png_p, e_ch / png_p.name)
+                r["docx_image_path"] = str(png_p)
+                r["png_url"] = f"/project-files/{project_id}/assets/charts_png/{png_p.name}"
+            else:
+                r["docx_image_path"] = ""
+                r["png_url"] = ""
+
+        r["chapter_dir_local"] = str(loc_ch)
+        r["chapter_dir_e"] = str(e_ch)
+
+    # 매니페스트 및 줄글 텍스트 해설 가이드(표 금지 규칙 준수!) 저장 + E:\ 별도 저장소 미러링
+    manifest_payload = {
+        "project_id": project_id,
+        "generated_at": utc_now_iso(),
+        "per_chapter_target": max(10, int(per_chapter_count)),
+        "use_fal_ai": use_fal_ai,
+        "fal_model": fal_model,
+        "use_nano_banana": use_nano_banana,
+        "total_generated": len(records),
+        "ai_images_count": ai_generated_cnt,
+        "svg_charts_count": svg_generated_cnt,
+        "png_rasterized_count": sum(1 for r in records if r.get("docx_image_path")),
+        "local_visuals_dir": str(by_ch_dir),
+        "e_visuals_dir": str(e_vis_root),
+        "by_chapter_counts": by_ch_summary,
+        "stopped_early": stopped_early,
+        "visuals": records,
+    }
     manifest_path = proj_ws / "assets" / "visuals_plan.json"
-    manifest_path.write_text(
-        json.dumps(
-            {
-                "project_id": project_id,
-                "generated_at": utc_now_iso(),
-                "per_chapter_target": max(10, int(per_chapter_count)),
-                "use_fal_ai": use_fal_ai,
-                "fal_model": fal_model,
-                "use_nano_banana": use_nano_banana,
-                "total_generated": len(records),
-                "ai_images_count": ai_generated_cnt,
-                "svg_charts_count": svg_generated_cnt,
-                "stopped_early": stopped_early,
-                "visuals": records,
-            },
-            ensure_ascii=False,
-            indent=2,
-        ),
-        encoding="utf-8",
-    )
+    manifest_text = json.dumps(manifest_payload, ensure_ascii=False, indent=2)
+    manifest_path.write_text(manifest_text, encoding="utf-8")
+    (e_vis_root / "visuals_plan.json").write_text(manifest_text, encoding="utf-8")
 
     guide_lines = [
         f"# 《{topic_ko}》 시각화 자료 줄글 해설 가이드",
         "",
         f"본 문서는 각 단원당 {max(10, int(per_chapter_count))}개 이상 제작된 실사진·인포그래픽 및 정량 차트의 상세 내용을 표 형식이 아닌 자연스러운 줄글로 설명합니다.",
+        f"- 로컬 단원별 저장소: `{by_ch_dir}`",
+        f"- E 드라이브 별도 저장소: `{e_vis_root}`",
         "",
     ]
     for r in records:
@@ -493,8 +699,22 @@ def generate_project_visuals(
         guide_lines.append("")
         guide_lines.append(r["narrative_ko"])
         guide_lines.append("")
+    guide_text = "\n".join(guide_lines)
     guide_path = proj_ws / "assets" / "visuals_text_guide.md"
-    guide_path.write_text("\n".join(guide_lines), encoding="utf-8")
+    guide_path.write_text(guide_text, encoding="utf-8")
+    (e_vis_root / "visuals_text_guide.md").write_text(guide_text, encoding="utf-8")
+
+    # E:\visuals\INDEX.md 별도 인덱스 작성
+    idx_lines = [
+        f"# 《{topic_ko}》 시각화 자료 별도 저장소 인덱스",
+        "",
+        f"- **총 시각화 자료**: {len(records)}종 (AI/실사 {ai_generated_cnt}종 · SVG {svg_generated_cnt}종 · DOCX/블로그용 PNG {manifest_payload['png_rasterized_count']}종)",
+        f"- **단원별 저장 폴더**: `{e_by_ch_dir}`",
+        "",
+    ]
+    for cid, cnt in sorted(by_ch_summary.items()):
+        idx_lines.append(f"- `{cid}`: {cnt}종 (`by_chapter/{cid}/`)")
+    (e_vis_root / "INDEX.md").write_text("\n".join(idx_lines) + "\n", encoding="utf-8")
 
     return {
         "status": "INTERRUPTED" if stopped_early else "DONE",
@@ -502,6 +722,10 @@ def generate_project_visuals(
         "total_generated": len(records),
         "ai_images_count": ai_generated_cnt,
         "svg_charts_count": svg_generated_cnt,
+        "png_rasterized_count": manifest_payload["png_rasterized_count"],
+        "local_visuals_dir": str(by_ch_dir),
+        "e_visuals_dir": str(e_vis_root),
+        "by_chapter_counts": by_ch_summary,
         "completed_visual_ids": sorted(done_set),
         "manifest_path": str(manifest_path),
         "guide_path": str(guide_path),
