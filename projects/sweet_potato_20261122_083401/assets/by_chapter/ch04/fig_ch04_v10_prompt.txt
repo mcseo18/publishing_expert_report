@@ -1,0 +1,12 @@
+이미지 번호: 그림 4-10
+이미지 파일명: fig_ch04_v10.png
+단원: 제4장. 덩굴 생장 조절 및 생육 최적화 기법 (ch04)
+결합 절: 4.4 병해충 예방적 생육 관리 (예방적 방제 전략)
+시각화 유형: photorealistic_macro
+제목: [그림 4-10] 고구마 잎 뒷면의 유익 천적 곤충 및 근권 유익 미생물 군집
+
+[문맥 기반 이미지 설명]
+[그림 4-10] 화학 살포를 배제한 예방적 방제 환경에서 고구마 잎 이면을 순찰하는 천적 포식성 응애(Phytoseiid mite)와 진딧물 포식 유충의 실제 생태 매크로 사진이다. 잎의 미세 엽맥 사이에서 해충 개체군을 초기 억제하는 생물학적 방제 요소가 선명하게 관찰된다. 본문 4.4절에서 강조된 생태계 균형 기반의 병해충 예방 전략과 작물 자체의 내재적 면역력 유지 현장을 생생하게 보여준다.
+
+[나노바나나 생성 프롬프트]
+High-magnification documentary macro photograph of the underside of a healthy green sweet potato leaf showing microscopic stomata and prominent raised veins. An active, amber-colored predatory mite (phytoseiid mite) is captured in crystal-clear focus as it hunts across the leaf lamina near tiny microscopic leaf hairs. Ultra-crisp insect anatomy, natural botanical textures, sharp focal depth, and soft scientific field lighting that emphasizes ecological biological control. Publication-grade realism only — strictly NO cartoon, NO childish clipart, NO flat vector doodles. ABSOLUTE ZERO-TEXT REQUIREMENT: Strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO titles, NO arrows with text, NO captions, NO signboards, NO logos, NO screens, NO watermarks anywhere in the image.

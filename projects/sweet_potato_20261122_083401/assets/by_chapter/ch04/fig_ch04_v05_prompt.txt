@@ -1,0 +1,12 @@
+이미지 번호: 그림 4-5
+이미지 파일명: fig_ch04_v05.png
+단원: 제4장. 덩굴 생장 조절 및 생육 최적화 기법 (ch04)
+결합 절: 4.2 덩굴의 형태 제어 기술: 덩굴 뒤집기 및 지지체 활용
+시각화 유형: scientific_anatomy
+제목: [그림 4-5] 덩굴 뒤집기에 따른 수광 태세 개선 및 상호 음영 해소 메커니즘
+
+[문맥 기반 이미지 설명]
+[그림 4-5] 덩굴 뒤집기 처리 전과 후의 고구마 군락 내 태양광 투과 양상을 비교한 단면 해석도이다. 좌측의 방치된 포복형 덩굴에서는 상부 엽층이 하부 잎을 가려 심각한 상호 음영(self-shading)과 마디 부정근 형성이 발생하는 반면, 우측의 덩굴 뒤집기 처리군에서는 광선이 군락 내부 중하층까지 도달하여 엽면적 지수 대비 수광 효율이 극대화된다. 굴광성과 굴지성 조절을 통한 광합성 유효 방사(PAR) 포획량 증대 기전을 증명한다.
+
+[나노바나나 생성 프롬프트]
+Scientific comparative anatomical artwork on a pure white background illustrating canopy light interception before and after vine turning. The left side shows tangled sweet potato vines sprawling flat with dense self-shading, yellowing decaying bottom leaves in deep shadow, and unwanted roots penetrating the soil nodes. The right side illustrates mechanically folded and trained vines arranged systematically on the ridge crest, with bright yellow-orange light rays penetrating deeply through staggered leaf layers to hit vibrant green lower foliage, rendered in refined biological textbook style with clean cross-sectional perspective. Publication-grade realism only — strictly NO cartoon, NO childish clipart, NO flat vector doodles. ABSOLUTE ZERO-TEXT REQUIREMENT: Strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO titles, NO arrows with text, NO captions, NO signboards, NO logos, NO screens, NO watermarks anywhere in the image.

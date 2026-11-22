@@ -1,0 +1,12 @@
+이미지 번호: 그림 4-4
+이미지 파일명: fig_ch04_v04.png
+단원: 제4장. 덩굴 생장 조절 및 생육 최적화 기법 (ch04)
+결합 절: 4.2 덩굴의 형태 제어 기술: 덩굴 뒤집기 및 지지체 활용
+시각화 유형: photorealistic_field
+제목: [그림 4-4] 포장 두둑 위 고구마 덩굴 뒤집기 작업 현장
+
+[문맥 기반 이미지 설명]
+[그림 4-4] 고구마 재배 포장에서 이랑 사이로 뻗어 나온 덩굴을 두둑 상단으로 물리적으로 걷어 올리는 덩굴 뒤집기(Turning/Folding) 실무 작업 장면이다. 마디에서 불필요하게 뻗어 나오는 부정근 형성을 억제하고 주경 위주의 광 포획 구조를 재배치하는 물리적 개입 과정을 명확히 보여준다. 작업이 완료된 구역과 미작업 구역의 덩굴 정돈 상태가 시각적으로 뚜렷하게 대비된다.
+
+[나노바나나 생성 프롬프트]
+Field documentary photograph of an agricultural researcher gently lifting and folding sprawling sweet potato vine runners from the furrow back onto the raised planting bed. The sweet potato stems show clean separation from the dry soil surface without rooting. Sunlight casts angled shadows across the ridge, highlighting the contrasted rows: one side neatly rearranged and upright, the other still sprawling randomly across soil furrows under open natural sky. Publication-grade realism only — strictly NO cartoon, NO childish clipart, NO flat vector doodles. ABSOLUTE ZERO-TEXT REQUIREMENT: Strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO titles, NO arrows with text, NO captions, NO signboards, NO logos, NO screens, NO watermarks anywhere in the image.

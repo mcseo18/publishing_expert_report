@@ -1,0 +1,12 @@
+이미지 번호: 그림 1-8
+이미지 파일명: fig_ch01_v08.png
+단원: 제1장. 고구마의 분류학적 이해와 생리적 특성 (ch01)
+결합 절: 1.4 품종별 특성 분석: 밤고구마, 호박고구마, 꿀고구마의 비교
+시각화 유형: photorealistic_macro
+제목: [그림 1-8] 주요 품종(밤고구마·호박고구마·꿀고구마) 괴근의 종횡단면 육질 비교
+
+[문맥 기반 이미지 설명]
+[그림 1-8] 국내 주요 재배 품종인 밤고구마, 호박고구마, 꿀고구마 괴근의 신선 단면을 동일 규격으로 절단하여 비교한 고해상도 사진입니다 [SRC-103]. 전분질 함량이 높아 단단하고 유백색을 띠는 밤고구마와 카로티노이드 및 수분 함량이 풍부해 선명한 주황빛을 내는 호박고구마의 육질 차이가 두드러집니다. 또한 당류 축적이 활발하여 촉촉하고 은은한 황갈색 속살을 보이는 꿀고구마의 품종 고유 조직감이 선명하게 대조됩니다.
+
+[나노바나나 생성 프롬프트]
+A professional studio culinary and agronomic macro photograph of three harvested sweet potato cultivars cleanly sliced in half on a rustic slate surface. On the left, a chestnut sweet potato (Bam-goguma) reveals dense, chalky, pale creamy-yellow flesh rich in starch within deep reddish-purple skin. In the center, a pumpkin sweet potato (Hobak-goguma) shows vibrant, moist salmon-orange interior flesh indicating high carotenoid and moisture content. On the right, a honey sweet potato (Ggul-goguma) displays a translucent amber-golden, succulent interior with glistening sugary moisture droplets. Crisp textures, crisp skin cross-sections, and soft studio lighting. Publication-grade realism only — strictly NO cartoon, NO childish clipart, NO flat vector doodles. ABSOLUTE ZERO-TEXT REQUIREMENT: Strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO titles, NO arrows with text, NO captions, NO signboards, NO logos, NO screens, NO watermarks anywhere in the image.

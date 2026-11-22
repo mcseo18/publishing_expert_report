@@ -1,0 +1,12 @@
+이미지 번호: 그림 6-7
+이미지 파일명: fig_ch06_v07.png
+단원: 제6장. 재배 환경에 따른 생산성 및 품질 최적화 (ch06)
+결합 절: 6.3 품질 결정 인자: 당도, 전분 함량 및 색상(품종별)
+시각화 유형: scientific_anatomy
+제목: [그림 6-7] 성숙 후기 품질 스트레스 유도에 따른 자당 합성 및 액포 축적 대사도
+
+[문맥 기반 이미지 설명]
+[그림 6-7] 생육 후기 적절한 수분 제한과 질소 차단이 괴근 세포 내 당화 과정을 촉진하는 세포학적 반응 경로를 도해한 과학 일러스트레이션이다. 세포질 내 자당인산합성효소(SPS)의 활성화로 형성된 자당 분자가 액포막 수송 단백질을 통해 거대 액포 내부로 축적되는 과정이 표현되어 있다. 무조건적인 생장 촉진보다 적정 수준의 '품질 스트레스'가 당 분해를 방지하고 유리당 함량을 극대화하는 생화학적 원리를 나타낸다.
+
+[나노바나나 생성 프롬프트]
+Scientific botanical illustration of a single sweet potato tuber parenchyma cell undergoing sugar accumulation on a clean white background. Depicting the cell membrane, large central vacuole accumulating high concentrations of sucrose, and enzymatic transport shuttles across the tonoplast. Painterly botanical cross-section style with subtle color differentiation between crystalline starch particles and dissolving soluble sugars in cytoplasmic compartments. Publication-grade realism only — strictly NO cartoon, NO childish clipart, NO flat vector doodles. ABSOLUTE ZERO-TEXT REQUIREMENT: Strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO titles, NO arrows with text, NO captions, NO signboards, NO logos, NO screens, NO watermarks anywhere in the image.

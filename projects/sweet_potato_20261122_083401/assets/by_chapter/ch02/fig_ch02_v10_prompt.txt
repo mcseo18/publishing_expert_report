@@ -1,0 +1,12 @@
+이미지 번호: 그림 2-10
+이미지 파일명: fig_ch02_v10.png
+단원: 제2장. 토양학적 환경과 재배 기초 기술 (ch02)
+결합 절: 오해와 진실: 현장·이론 핵심 오해 교정
+시각화 유형: scientific_anatomy
+제목: [그림 2-10] 토양 유기물 C/N 비와 바이오차 양이온 교환(CEC) 복합 기작
+
+[문맥 기반 이미지 설명]
+[그림 2-10] 과도한 질소 시비의 문제점과 바이오차 투입에 따른 복합 토양 개량 메커니즘을 규명하는 과학 일러스트레이션입니다. 적정 탄소-질소 비율(C/N ratio) 하에서 유기물이 안정화되며, 고다공성 바이오차 표면의 음전하가 칼륨(K+), 칼슘(Ca2+), 마그네슘(Mg2+) 등의 양이온을 흡착하여 용탈을 방지합니다 [SRC-224, SRC-228]. 이는 단순 비료 투입을 넘어 토양 물리화학성과 완충능을 동시에 보전하는 원리를 설명합니다.
+
+[나노바나나 생성 프롬프트]
+Scientific cutaway illustration on a pure white background demonstrating soil chemical dynamics around a porous biochar fragment and decomposing organic matter. Microscopic negative electrical charges across the biochar lattice surfaces electrostatically hold essential nutrient cations represented as glowing spheres of potassium, calcium, and magnesium, preventing nutrient leaching. Nearby decomposing plant residue displays balanced carbon-nitrogen humification pathways, while avoiding excessive free nitrate toxicity. Refined academic textbook style with volumetric rendering, rich earthy pigments, and precise molecular-scale clarity. Publication-grade realism only — strictly NO cartoon, NO childish clipart, NO flat vector doodles. ABSOLUTE ZERO-TEXT REQUIREMENT: Strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO titles, NO arrows with text, NO captions, NO signboards, NO logos, NO screens, NO watermarks anywhere in the image.

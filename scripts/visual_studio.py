@@ -34,24 +34,33 @@ ZERO_TEXT_RULE = (
     "ZERO titles, ZERO captions, ZERO logos, ZERO tablet/monitor screens, ZERO signboards, ZERO watermarks anywhere in the image."
 )
 
-# 단원 주제(한국어 키워드) -> 순수 영문 과학 시각 장면 매핑 (이미지 생성 프롬프트에 한글 유입 원천 차단)
-TOPIC_SCENE_MAP: list[tuple[tuple[str, ...], str, str]] = [
-    (("기초 생물학", "품종군", "생육 주기"), "golden winter wheat stalks with visible tillers, flag leaves, and ripening spikes in an agricultural research plot at golden hour", "botanical anatomical cross-section of a mature wheat plant showing fibrous root system, crown, tillers, hollow culm, leaf sheath, and spikelet structure on pure white background"),
-    (("품종 선택", "유전", "종자"), "diverse wheat spikes and plump amber wheat kernels arranged cleanly on an agronomy seed inspection tray under soft studio daylight", "clean scientific illustration comparing diverse wheat spike morphologies and kernel endosperm-germ cross-sections on pure white background"),
-    (("토양", "파종"), "precision seed drill planting winter wheat in dark fertile loam soil furrows at an experimental farm under clear morning sky", "clean soil profile cross-section illustration showing dark topsoil crumbs, germinating wheat seeds at uniform depth, emerging coleoptile, and seminal roots on pure white background"),
-    (("월동", "초기 생육", "동해"), "young green winter wheat seedlings emerging across frost-dusted dark agricultural field ridges in crisp winter sunlight", "clean botanical illustration of winter wheat seedling crown depth below soil surface with protective snow cover and root cold acclimation on pure white background"),
-    (("분얼", "분화기", "생육 중기"), "lush green winter wheat canopy in vigorous tillering and stem elongation stage across neat experimental field plots", "clean botanical illustration showing sequential wheat vegetative growth from main shoot to primary tillers and developing apical spike primordium on pure white background"),
-    (("양분 분배", "생육모형", "질소"), "healthy deep-green winter wheat canopy with golden ripening heads in a precision nitrogen fertilization trial field under clear daylight", "clean Nature-style botanical cross-section illustration of a wheat plant showing glowing blue and amber nutrient transport pathways moving from soil roots through stems and leaves up into developing wheat grains on pure white background"),
-    (("병해충", "잡초", "녹병"), "close-up agronomic field inspection of healthy green wheat leaves alongside early rust pustules in a crop pathology test plot", "clean scientific botanical illustration contrasting a healthy wheat leaf cross-section with fungal spore penetration through stomata on pure white background"),
-    (("환경 스트레스", "가뭄", "고온", "관개"), "modern linear-move precision sprinkler irrigation watering a sunlit wheat field under dry summer sky with fine water mist", "clean scientific plant-soil-atmosphere illustration showing wheat root water uptake, stomatal closure under heat wave, and drip moisture distribution on pure white background"),
-    (("수확", "건조", "저장"), "modern combine harvester harvesting ripe golden winter wheat field under clear blue afternoon sky with clean grain flow", "clean cutaway engineering illustration of a grain drying silo showing warm airflow circulation through stored golden wheat kernels on pure white background"),
-    (("품질 분석", "단백질", "글루텐", "비파괴"), "clean grain quality laboratory workbench with golden wheat kernels in glass sample dishes and optical near-infrared grain analyzer", "clean microscopic cross-section illustration of a single wheat kernel showing bran layers, aleurone, starchy endosperm cells, and golden embryo on pure white background"),
-    (("글로벌", "세계 밀", "유통", "공급망"), "aerial panoramic view of vast golden wheat farmland and modern coastal grain export silos under bright daylight", "clean isometric editorial illustration of a wheat supply chain flowing from farmland harvest to grain silos, freight transport, and milling facility on pure white background"),
-    (("가공 기초", "제분", "전분"), "clean artisanal and industrial roller milling scene showing golden wheat grain transforming into fine silky white and whole-wheat flour", "clean microscopic molecular illustration showing starch granules embedded inside an elastic gluten protein network matrix on pure white background"),
-    (("제빵", "면류", "반죽", "용도별"), "freshly baked golden crusty artisan bread loaves, silky fresh wheat noodles, and raw wheat ears on a clean wooden culinary studio table", "clean scientific culinary illustration comparing wheat dough viscoelastic gluten networks for bread fermentation and noodle sheeting on pure white background"),
-    (("디지털 트윈", "인공지능", "원격 탐사", "드론"), "agricultural quadcopter multispectral drone flying low above a lush green winter wheat field during precision crop monitoring at sunrise", "clean isometric scientific illustration showing satellite orbit, agricultural drone, soil moisture probes, and sunlit wheat field connected by glowing light rays on pure white background"),
-    (("저탄소", "탄소 발자국", "지속 가능"), "regenerative no-till winter wheat growing vibrantly through golden cover crop residue mulch in rich dark carbon-rich soil", "clean ecosystem cross-section illustration showing atmospheric carbon entering green wheat foliage, flowing down through deep roots into dark stable soil organic matter on pure white background"),
-    (("미래 전망", "유전자 편집", "미생물"), "modern glass research greenhouse with neatly arranged experimental wheat plants under soft controlled LED lighting and misting", "clean microscopic rhizosphere illustration showing beneficial golden soil bacteria and white mycorrhizal fungal hyphae colonizing a wheat root tip on pure white background"),
+# 작물/분야 국문 -> 순수 영문 시각 주체 매핑 (어떤 주제 교재든 정확하고 한글 없는 순수 영문 장면 생성)
+CROP_SUBJECT_MAP: list[tuple[tuple[str, ...], str, str]] = [
+    (("고구마", "sweet potato"), "sweet potato (Ipomoea batatas) plants with lush heart-shaped green vines and rich reddish-purple orange storage roots", "sweet potato (Ipomoea batatas) plant showing leafy vines, fibrous feeder roots, and cross-section of a fleshy orange-red storage tuberous root"),
+    (("밀", "wheat"), "winter wheat (Triticum aestivum) stalks with green flag leaves and ripening golden spikes", "mature winter wheat plant showing fibrous root system, crown, tillers, hollow culm, leaf sheath, and ripening grain spike"),
+    (("벼", "쌀", "rice"), "paddy rice (Oryza sativa) plants with lush green leaves and drooping golden panicles", "rice plant showing flooded paddy root zone, tillers, culms, and grain panicle structure"),
+    (("감자", "potato"), "potato (Solanum tuberosum) plants with green compound foliage and clean golden-brown tubers in dark soil", "potato plant showing stems, stolons, fibrous roots, and developing underground tubers"),
+    (("토양", "유기물", "soil"), "fertile dark crumbly agricultural topsoil profile with healthy crop roots and earthworm channels", "layered agricultural soil profile showing organic matter aggregates, clay minerals, mycorrhizal hyphae, and root hairs"),
+    (("수확 후", "저장", "postharvest"), "freshly harvested agricultural produce inside a clean modern temperature-controlled postharvest facility", "cutaway illustration of a controlled-atmosphere postharvest cold storage and curing room"),
+]
+
+# 단원 세부 주제(한국어 키워드) -> {crop_field} / {crop_bot} 슬롯을 조합하는 범용 영문 장면 템플릿
+CHAPTER_THEME_SCENES: list[tuple[tuple[str, ...], str, str]] = [
+    (("기초", "분류", "생물학", "생리", "품종군", "생육 주기"), "{crop_field} thriving in a sunlit agricultural research station field plot at golden hour", "botanical anatomical cross-section of {crop_bot} on pure white background"),
+    (("품종", "유전", "종자", "육종", "씨고구마", "묘"), "diverse cultivars and propagation specimens of {crop_field} neatly arranged on an agronomy research inspection bench in natural daylight", "clean scientific botanical comparison of diverse cultivars and internal tissue cross-sections of {crop_bot} on pure white background"),
+    (("토양", "파종", "정식", "이랑", "멀칭"), "precision planting and raised soil beds prepared for {crop_field} in dark fertile loam soil at an experimental farm", "clean soil profile cross-section showing dark fertile soil beds, root zone moisture, and early rooting of {crop_bot} on pure white background"),
+    (("월동", "초기", "동해", "활착"), "young vigorous seedlings of {crop_field} established across neat mulched agricultural ridges in crisp morning sunlight", "clean botanical illustration of early root establishment and protective soil microclimate for {crop_bot} on pure white background"),
+    (("분얼", "분화", "덩이뿌리", "괴근", "비대", "중기"), "vigorous mid-season canopy and developing yield organs of {crop_field} across uniform experimental field plots", "clean botanical developmental sequence showing vegetative growth and storage/reproductive organ formation in {crop_bot} on pure white background"),
+    (("양분", "분배", "생육모형", "질소", "시비", "비료"), "precision fertilization research plots of {crop_field} showing lush healthy foliage and vigorous crop growth under clear daylight", "clean Nature-style botanical cross-section of {crop_bot} showing glowing blue and amber nutrient transport pathways moving from soil roots through stems and leaves into storage organs on pure white background"),
+    (("병해충", "잡초", "바이러스", "녹병", "방제"), "close-up agronomic field inspection of healthy leaves alongside plant pathology diagnostic observation in {crop_field}", "clean scientific botanical illustration contrasting healthy leaf and root tissue of {crop_bot} with pathogen defense mechanisms on pure white background"),
+    (("스트레스", "가뭄", "고온", "수분", "관개"), "modern precision drip and sprinkler irrigation watering a sunlit field of {crop_field} with fine water droplets", "clean plant-soil-atmosphere scientific illustration showing root water uptake and drip moisture distribution around {crop_bot} on pure white background"),
+    (("수확", "큐어링", "건조", "저장"), "modern agricultural harvesting and clean curing-storage handling of freshly harvested {crop_field} under bright daylight", "clean cutaway engineering illustration of a controlled temperature and humidity curing and storage facility holding harvested {crop_field} on pure white background"),
+    (("품질", "단백질", "전분", "당도", "비파괴", "평가"), "clean agricultural food quality laboratory workbench with samples of {crop_field} in glass inspection dishes beside an optical near-infrared analyzer", "clean microscopic cross-section illustration of internal cellular starch granules and nutrient storage tissues of {crop_bot} on pure white background"),
+    (("글로벌", "세계", "유통", "시장", "경제", "공급망"), "aerial panoramic view of expansive sunlit farmland growing {crop_field} beside modern agricultural distribution facilities", "clean isometric editorial illustration showing harvest transport from sunlit farmland of {crop_field} to modern cold storage and distribution center on pure white background"),
+    (("가공", "제분", "제빵", "면류", "기능성", "산업"), "clean artisanal and modern food processing showcase featuring freshly harvested {crop_field} and refined culinary ingredients on a wooden studio table", "clean scientific cross-section illustration of cellular starch and dietary fiber matrix derived from {crop_bot} on pure white background"),
+    (("디지털", "트윈", "인공지능", "원격", "드론", "스마트", "센서", "자동화"), "agricultural multispectral quadcopter drone flying above lush rows of {crop_field} during precision crop monitoring at sunrise", "clean isometric scientific illustration showing satellite orbit, agricultural drone, soil sensors, and sunlit field rows of {crop_field} connected by subtle light rays on pure white background"),
+    (("저탄소", "탄소", "지속 가능", "친환경", "기후"), "regenerative conservation farmland growing healthy {crop_field} with organic mulch and dark carbon-rich soil", "clean ecosystem cross-section showing atmospheric carbon captured by green foliage of {crop_bot} and stored deep in dark organic-rich soil on pure white background"),
+    (("미래", "유전자", "미생물", "로봇", "융합"), "modern glass smart agricultural research greenhouse cultivating experimental {crop_field} under precision LED lighting", "clean microscopic rhizosphere illustration showing beneficial golden soil bacteria and white mycorrhizal fungal hyphae around roots of {crop_bot} on pure white background"),
 ]
 
 # 단원당 기본 10종 시각화 아키타입 (실사진/과학도해 4종 + 정량/구조 한글 SVG 6종)
@@ -129,23 +138,35 @@ CHAPTER_VISUAL_TEMPLATES: list[dict[str, str]] = [
 ]
 
 
-def _resolve_english_visual_scenes(topic_en: str, chapter: dict[str, Any]) -> tuple[str, str, str]:
-    """한글 단원 제목/절을 순수 영문 시각 장면으로 변환한다 (한글 글자 유입 0% 보장)."""
-    blob = " ".join([
+def _resolve_english_visual_scenes(topic_ko: str, topic_en: str, chapter: dict[str, Any]) -> tuple[str, str, str]:
+    """한글 주제·단원 제목을 해당 작물/분야에 맞는 순수 영문 시각 장면으로 변환한다 (한글 글자 유입 0% 보장)."""
+    topic_blob = f"{topic_ko} {topic_en}".lower()
+    crop_field = ""
+    crop_bot = ""
+    for keys, cf, cb in CROP_SUBJECT_MAP:
+        if any(k.lower() in topic_blob for k in keys):
+            crop_field, crop_bot = cf, cb
+            break
+    if not crop_field:
+        base_en = re.sub(r"[^A-Za-z0-9 ,\-]", "", topic_en or "").strip() or "precision agricultural crops"
+        crop_field = f"{base_en} crops in a sunlit experimental agricultural field"
+        crop_bot = f"{base_en} plant showing roots, stems, leaves, and yield organs"
+
+    ch_blob = " ".join([
         str(chapter.get("title", "")),
         str(chapter.get("summary_ko", "")),
         " ".join(chapter.get("sections") or []),
     ])
-    for keys, field_s, diag_s in TOPIC_SCENE_MAP:
-        if any(k in blob for k in keys):
-            macro_s = f"close-up botanical details of {field_s}"
+    for keys, field_tmpl, diag_tmpl in CHAPTER_THEME_SCENES:
+        if any(k in ch_blob for k in keys):
+            field_s = field_tmpl.format(crop_field=crop_field, crop_bot=crop_bot)
+            diag_s = diag_tmpl.format(crop_field=crop_field, crop_bot=crop_bot)
+            macro_s = f"close-up botanical detail of {crop_field}"
             return field_s, diag_s, macro_s
-    kws_en = [re.sub(r"[^A-Za-z0-9 ,\-]", "", str(k)).strip() for k in (chapter.get("keywords_en") or []) if str(k).strip()]
-    base_en = re.sub(r"[^A-Za-z0-9 ,\-]", "", topic_en or "").strip() or "precision winter wheat agriculture"
-    extra = f" emphasizing {', '.join(kws_en[:3])}" if kws_en else ""
-    field_s = f"{base_en}{extra} in a sunlit experimental agricultural field"
-    diag_s = f"clean botanical cross-section diagram of {base_en}{extra} on pure white background"
-    macro_s = f"macro close-up of healthy crop foliage, grain heads, and dark soil structure in {base_en}"
+
+    field_s = f"{crop_field} in a sunlit experimental agricultural research field"
+    diag_s = f"clean botanical cross-section illustration of {crop_bot} on pure white background"
+    macro_s = f"macro close-up of healthy botanical tissues and soil structure of {crop_field}"
     return field_s, diag_s, macro_s
 
 
@@ -394,7 +415,7 @@ def build_chapter_visual_specs(
     ch_num = int(chapter.get("chapter_number") or 1)
     ch_title = chapter.get("title", f"제{ch_num}장")
     secs = chapter.get("sections") or [f"{ch_num}.1 개요", f"{ch_num}.2 원리", f"{ch_num}.3 응용", f"{ch_num}.4 현장관리"]
-    field_scene, diagram_scene, macro_scene = _resolve_english_visual_scenes(topic_en, chapter)
+    field_scene, diagram_scene, macro_scene = _resolve_english_visual_scenes(topic_ko, topic_en, chapter)
     count = max(10, int(per_chapter_count))
 
     specs: list[dict[str, Any]] = []

@@ -1,0 +1,12 @@
+이미지 번호: 그림 2-1
+이미지 파일명: fig_ch02_v01.png
+단원: 제2장. 토양학적 환경과 재배 기초 기술 (ch02)
+결합 절: 2.1 고구마 생육에 적합한 토양 특성 (사질양토 중심)
+시각화 유형: scientific_anatomy
+제목: [그림 2-1] 사질양토 내 삼상 분포와 고구마 모세근 발달 단면도
+
+[문맥 기반 이미지 설명]
+[그림 2-1] 고구마 생육에 이상적인 사질양토의 미세 토양 구조와 모세근 신장 메커니즘을 보여주는 정밀 과학 단면도입니다. 모래와 실트 입자가 균형 있게 결합된 토양 떼알 구조 사이로 공극과 수분 필름이 적절히 배치되어 근계의 원활한 호흡과 양분 흡수를 돕습니다 [SRC-103]. 불포화 토양 수분 환경에서 근모가 토양 유기물 입자와 상호작용하며 괴근 형성의 기초를 다지는 과정을 학술적으로 묘사합니다.
+
+[나노바나나 생성 프롬프트]
+Scientific botanical cross-section illustration on a clean pure white background depicting the soil microstructure of sandy loam optimal for sweet potato root expansion. Granular mineral matrix consisting of golden quartz sand particles, fine grey silt grains, and dark brown humus aggregates. Generous interconnected macro-pores and micro-pores filled with thin translucent capillary water films and air passages. Slender white and pale cream sweet potato feeder roots and delicate lateral root hairs penetrate smoothly through the soil pore spaces without physical impedance. Rendered in a richly shaded, elegant Nature editorial scientific textbook style with warm earth tones and luminous highlights. Publication-grade realism only — strictly NO cartoon, NO childish clipart, NO flat vector doodles. ABSOLUTE ZERO-TEXT REQUIREMENT: Strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO titles, NO arrows with text, NO captions, NO signboards, NO logos, NO screens, NO watermarks anywhere in the image.

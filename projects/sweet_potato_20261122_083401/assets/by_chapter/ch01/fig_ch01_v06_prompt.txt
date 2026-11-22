@@ -1,0 +1,12 @@
+이미지 번호: 그림 1-6
+이미지 파일명: fig_ch01_v06.png
+단원: 제1장. 고구마의 분류학적 이해와 생리적 특성 (ch01)
+결합 절: 1.3 호온성(Thermophilous) 작물로서의 생장 특성
+시각화 유형: photorealistic_field
+제목: [그림 1-6] 온도 조건별(28°C 적온 vs 15°C 저온 스트레스) 뿌리 생육 및 활력 비교
+
+[문맥 기반 이미지 설명]
+[그림 1-6] 호온성 작물인 고구마의 뿌리 반응을 관찰하기 위해 투명 근권 관찰상(rhizotron)에서 촬영한 생육 비교 사진입니다. 28°C의 적온 조건에서는 백색의 왕성한 1차근과 측근 분지가 활발하며 조기 괴근 분화가 균일하게 유도됩니다. 반면 15°C 저온 스트레스에 노출된 뿌리는 신장이 현저히 둔화되고 갈변화되며 유효 괴근 형성이 억제되는 뚜렷한 대사 저해 양상을 드러냅니다 [SRC-221].
+
+[나노바나나 생성 프롬프트]
+An agricultural laboratory documentary photograph of two adjacent transparent glass rhizotron soil root observation chambers under greenhouse lighting. On the left side, maintained under optimal 28 degrees Celsius, robust sweet potato roots extend deep into moist soil with prolific, bright white branching lateral roots and healthy swelling tuberous initials. On the right side, maintained under 15 degrees Celsius chilling stress, the root system is stunted, sparse, with brown tips and no swelling initiation. Crisp macro clarity of root hairs pressing against clean glass plates, natural research facility setting. Publication-grade realism only — strictly NO cartoon, NO childish clipart, NO flat vector doodles. ABSOLUTE ZERO-TEXT REQUIREMENT: Strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO titles, NO arrows with text, NO captions, NO signboards, NO logos, NO screens, NO watermarks anywhere in the image.

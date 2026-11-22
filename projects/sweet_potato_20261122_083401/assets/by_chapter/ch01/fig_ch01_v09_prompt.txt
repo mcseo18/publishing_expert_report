@@ -1,0 +1,12 @@
+이미지 번호: 그림 1-9
+이미지 파일명: fig_ch01_v09.png
+단원: 제1장. 고구마의 분류학적 이해와 생리적 특성 (ch01)
+결합 절: 1.4 품종별 특성 분석: 밤고구마, 호박고구마, 꿀고구마의 비교
+시각화 유형: scientific_anatomy
+제목: [그림 1-9] 품종별 탄수화물 대사 분기: 전분 축적형과 유리당 전환형의 경로 차이
+
+[문맥 기반 이미지 설명]
+[그림 1-9] 밤고구마 계통과 호박·꿀고구마 계통 간의 상이한 탄수화물 대사 조절 경로를 도식화한 세포생물학 도해입니다 [SRC-103]. 전분 축적형인 밤고구마는 아밀로플라스트 내 글루코스 중합 반응이 우세하여 불용성 전분으로 장기 보관에 유리한 반면, 호박 및 꿀고구마는 베타-아밀레이스(β-amylase)와 인버테이스(invertase) 활성이 높아 전분이 맥아당과 자당 등 유리당류로 신속히 분해·축적됩니다. 이러한 유전적 경로 차이가 품종별 식감과 당도 형성의 본질적 기작임을 규명합니다.
+
+[나노바나나 생성 프롬프트]
+Scientific metabolic pathway illustration on a clean white background comparing carbohydrate storage divergence in sweet potato cells. On the upper track representing starch-dominant cultivars, sucrose is funneled into amyloplasts where starch synthase creates densely packed, solid, crystalline amylose and amylopectin granules. On the lower track representing sugar-accumulating cultivars, heightened beta-amylase and invertase enzyme complexes cleave starch chains into abundant free maltose, sucrose, and fructose molecules accumulating inside the central vacuole. Beautifully rendered semi-transparent plant cells, organelle structures, and stylized molecular chains in sophisticated scientific textbook watercolor style. Publication-grade realism only — strictly NO cartoon, NO childish clipart, NO flat vector doodles. ABSOLUTE ZERO-TEXT REQUIREMENT: Strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO titles, NO arrows with text, NO captions, NO signboards, NO logos, NO screens, NO watermarks anywhere in the image.

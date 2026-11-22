@@ -1,0 +1,12 @@
+이미지 번호: 그림 3-2
+이미지 파일명: fig_ch03_v02.png
+단원: 제3장. 활착기 및 초기 생육 관리 (ch03)
+결합 절: 3.1 정식 및 활착 과정의 생리적 반응
+시각화 유형: scientific_anatomy
+제목: [그림 3-2] 활착기 고구마 뿌리 피층의 삼투 조절 및 수분 흡수 생리 메커니즘
+
+[문맥 기반 이미지 설명]
+[그림 3-2] 정식 초기 급격한 환경 변화에 대응하는 고구마 어린 뿌리의 세포 횡단면과 삼투 조절 기작을 표현한 정밀 과학 해부도입니다. 세포막 내 용질 농도 조절과 아쿠아포린 수송 경로를 통해 세포 팽압을 유지하고 수분을 중심주 물관부로 수송하는 경로를 상세히 보여줍니다[SRC-223]. 이러한 세포 수준의 삼투압 조절 능력 강화는 초기 활착 성공과 안정적 증산류 형성을 위한 생리적 기초가 됩니다[SRC-100].
+
+[나노바나나 생성 프롬프트]
+Scientific anatomical cross-section of a young sweet potato root showing cellular layers on a pure white background. The outermost epidermis features active root hairs, moving into thick cortical parenchyma cells with visible vacuoles, and entering the central vascular cylinder with developing xylem vessels. Richly shaded painterly textures display water flow trajectories and cellular turgor maintenance in detailed academic biological style. Publication-grade realism only — strictly NO cartoon, NO childish clipart, NO flat vector doodles. ABSOLUTE ZERO-TEXT REQUIREMENT: Strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO titles, NO arrows with text, NO captions, NO signboards, NO logos, NO screens, NO watermarks anywhere in the image.

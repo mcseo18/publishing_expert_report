@@ -1,0 +1,12 @@
+이미지 번호: 그림 3-5
+이미지 파일명: fig_ch03_v05.png
+단원: 제3장. 활착기 및 초기 생육 관리 (ch03)
+결합 절: 3.2 초기 생장 단계의 영양 공급: 가리질 비료 시비 전략
+시각화 유형: photorealistic_field
+제목: [그림 3-5] 균형 시비 포장과 질소 과잉 포장의 초기 지상부·지하부 발육 대비
+
+[문맥 기반 이미지 설명]
+[그림 3-5] 고구마 정식 후 초기 생장 단계에서 적정 가리질 시비 포장과 과도한 질소 시비 포장의 생육 반응 차이를 비교한 연구 포장 사진입니다. 좌측의 균형 시비 포장은 절간이 알맞고 뿌리 활착과 덩이뿌리 분화가 충실한 반면, 우측의 질소 과잉 포장은 잎만 무성하게 웃자라 뿌리 발달이 지연되는 현상을 나타냅니다[SRC-221]. 이는 활착기 초기 시비에서 질소 과잉을 억제하고 양분 공급 균형을 맞추는 것이 필수적임을 실증합니다.
+
+[나노바나나 생성 프롬프트]
+Documentary agricultural field photograph showing two adjacent sweet potato test plots on raised earthen ridges under bright daylight. On the left bed, sweet potato plants show sturdy, compact green vines with visible healthy adventitious root crowns near the furrow. On the right bed, plants exhibit excessively lush, elongated deep-green leaves tangled heavily over the ridges with sparse root systems, captured at eye-level. Publication-grade realism only — strictly NO cartoon, NO childish clipart, NO flat vector doodles. ABSOLUTE ZERO-TEXT REQUIREMENT: Strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO titles, NO arrows with text, NO captions, NO signboards, NO logos, NO screens, NO watermarks anywhere in the image.

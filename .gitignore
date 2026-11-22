@@ -37,7 +37,14 @@ projects/*/blueprints/_backups/
 projects/*/reports/*.json
 projects/*/assets/figures/*.png
 projects/*/assets/charts_png/
-projects/*/assets/by_chapter/
+projects/*/assets/by_chapter/*
+!projects/*/assets/by_chapter/*/
+projects/*/assets/by_chapter/*/*
+!projects/*/assets/by_chapter/*/prompts_and_descriptions.md
+!projects/*/assets/by_chapter/*/prompts_and_descriptions.json
+!projects/*/assets/by_chapter/*/*_prompt.txt
+!projects/*/assets/by_chapter/*/manifest.json
+!projects/sweet_potato_20261122_083401/assets/by_chapter/*/*.png
 
 # Node / Dashboard
 dashboard/node_modules/

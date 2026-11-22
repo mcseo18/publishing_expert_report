@@ -1,0 +1,12 @@
+이미지 번호: 그림 6-4
+이미지 파일명: fig_ch06_v04.png
+단원: 제6장. 재배 환경에 따른 생산성 및 품질 최적화 (ch06)
+결합 절: 6.2 수확량 극대화를 위한 생육 주기 관리 (생육 기간 조절)
+시각화 유형: scientific_anatomy
+제목: [그림 6-4] 영양 생장기에서 저장근 비대기로의 동화산물 전위(Source-to-Sink) 해부도
+
+[문맥 기반 이미지 설명]
+[그림 6-4] 고구마 식물체 전체에서 광합성 기관인 잎에서 지하부 저장근으로 동화산물이 전위되는 대사 흐름을 묘사한 정밀 식물 해부도이다. 영양 생장기 엽면적 지수(LAI) 극대화로 생성된 다량의 자당이 사부 도관을 따라 지하부 괴근의 전분 저장 유조직으로 집중 이동하는 경로를 시각화하였다. 생식 생장기로의 전환기에 질소 공급을 제어하고 인산 및 칼륨 비중을 높여 싱크 강도(Sink strength)를 증대시키는 수확량 증대 메커니즘을 상세히 보여준다.
+
+[나노바나나 생성 프롬프트]
+Detailed editorial scientific illustration of an entire sweet potato plant on a pure white background. Cross-sectional cutaways showing photosynthetic leaves with mesophyll chloroplasts, long trailing green stems with visible phloem bundles carrying sucrose, and swelling underground storage tubers accumulating starch grains. Rich botanical artistic rendering highlighting the vascular connectivity between leaf sources and tuber sinks, with precise cellular shading and botanical accuracy. Publication-grade realism only — strictly NO cartoon, NO childish clipart, NO flat vector doodles. ABSOLUTE ZERO-TEXT REQUIREMENT: Strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO titles, NO arrows with text, NO captions, NO signboards, NO logos, NO screens, NO watermarks anywhere in the image.

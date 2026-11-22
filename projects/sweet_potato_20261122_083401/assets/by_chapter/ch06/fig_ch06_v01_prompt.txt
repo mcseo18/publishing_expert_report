@@ -1,0 +1,12 @@
+이미지 번호: 그림 6-1
+이미지 파일명: fig_ch06_v01.png
+단원: 제6장. 재배 환경에 따른 생산성 및 품질 최적화 (ch06)
+결합 절: 6.1 기형근(Deformed Root) 발생 원인 분석 및 예방
+시각화 유형: photorealistic_macro
+제목: [그림 6-1] 정상 저장근과 경반층 및 염류 장해에 의한 기형근의 형태 비교
+
+[문맥 기반 이미지 설명]
+[그림 6-1] 본 매크로 사진은 정상적인 매끄러운 방추형 고구마 괴근과 토양 내 배수 불량 및 경반층 접촉으로 인해 뒤틀린 기형근의 외부 형태와 내부 단면을 정밀하게 비교한 것이다. 비정상적인 괴근은 유조직 발달이 불균일하여 결절과 수축륜이 심하게 형성되어 있으며, 중심 주위로 목화된 유관속 조직이 불규칙하게 얽혀 있다. 이는 [SRC-227]에서 규명된 토양 물리화학적 스트레스가 저장근의 정상적인 횡단면 분열을 저해하여 상품 가치를 급격히 떨어뜨리는 양상을 실증한다.
+
+[나노바나나 생성 프롬프트]
+Macro studio photograph comparing two freshly harvested sweet potato storage roots side by side on a dark slate background. On the left, a smooth, uniform spindle-shaped reddish-purple sweet potato with clean skin and healthy pale cream flesh cross-section. On the right, a severely deformed, twisted sweet potato with irregular constrictions, lumpy knobby surface, and dark internal vascular streaking caused by soil compaction. Natural high-contrast studio side lighting accentuating peel textures, root scars, and distinct morphological distortions. Publication-grade realism only — strictly NO cartoon, NO childish clipart, NO flat vector doodles. ABSOLUTE ZERO-TEXT REQUIREMENT: Strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO titles, NO arrows with text, NO captions, NO signboards, NO logos, NO screens, NO watermarks anywhere in the image.

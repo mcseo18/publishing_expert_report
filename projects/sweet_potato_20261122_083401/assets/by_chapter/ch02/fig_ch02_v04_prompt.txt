@@ -1,0 +1,12 @@
+이미지 번호: 그림 2-4
+이미지 파일명: fig_ch02_v04.png
+단원: 제2장. 토양학적 환경과 재배 기초 기술 (ch02)
+결합 절: 2.2 최적의 재배 환경 조건: 온도, 습도, 광량
+시각화 유형: scientific_anatomy
+제목: [그림 2-4] 토양 수분 장력에 따른 괴근 형성 및 통기성 반응 기작
+
+[문맥 기반 이미지 설명]
+[그림 2-4] 토양 수분 포화도와 공극 통기성에 따른 고구마 지하부 뿌리의 생리적 반응을 대비하여 표현한 과학 일러스트레이션입니다. 적정 수분 장력에서는 유세포 분열과 전분 축적이 활발하여 붉은빛의 방추형 괴근이 원활히 비대됩니다 [SRC-103]. 반면 과습으로 인한 침수 구역에서는 산소 결핍으로 피층 조직이 붕괴하고 흑변하는 뿌리 부후 현상이 발생함을 명확히 보여줍니다.
+
+[나노바나나 생성 프롬프트]
+Scientific botanical mechanism illustration on a clean pure white background comparing two root microenvironments. On the left, optimal aerated soil moisture tension allows a developing young sweet potato root to differentiate into a thick storage tuber, showing active vascular cambium and pinkish-purple periderm swelling with white starch storage parenchyma. On the right, waterlogged hypoxic soil conditions with water-saturated pore spaces causing cortical cell collapse, dark brownish lesions, and root rot deterioration. Richly detailed textbook cutaway with transparent water levels, cellular textures, and clean botanical draftsmanship. Publication-grade realism only — strictly NO cartoon, NO childish clipart, NO flat vector doodles. ABSOLUTE ZERO-TEXT REQUIREMENT: Strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO titles, NO arrows with text, NO captions, NO signboards, NO logos, NO screens, NO watermarks anywhere in the image.

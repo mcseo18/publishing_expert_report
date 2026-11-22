@@ -1,0 +1,12 @@
+이미지 번호: 그림 1-7
+이미지 파일명: fig_ch01_v07.png
+단원: 제1장. 고구마의 분류학적 이해와 생리적 특성 (ch01)
+결합 절: 1.3 호온성(Thermophilous) 작물로서의 생장 특성
+시각화 유형: photorealistic_macro
+제목: [그림 1-7] 바이오차 시용에 따른 근권 토양 미세공극 구조와 세근의 밀착 발달
+
+[문맥 기반 이미지 설명]
+[그림 1-7] 토양 물리화학성 개선 및 탄소 격리를 위해 시용된 다공성 바이오차 입자와 고구마 흡수근의 상호작용을 포착한 초접사 사진입니다 [SRC-225, SRC-226, SRC-228]. 미세 탄화 공극 사이로 뻗어나간 잔뿌리와 근모(root hair)가 토양 응집체(aggregate)와 긴밀하게 결합되어 있습니다. 이러한 근권 환경의 최적화는 수분 및 보비력을 증진시켜 호온성 대사 작용과 광합성 안정성을 간접적으로 지원합니다.
+
+[나노바나나 생성 프롬프트]
+Macro close-up photograph of dark porous biochar particles intermixed with rich, crumbly sandy loam soil around living sweet potato feeder roots. Slender, translucent white root hairs weave through the microscopic porous channels and honeycomb cavities of the black carbonized biochar fragments. Tiny soil mineral aggregates, organic moisture beads, and fine root tips form a tight rhizosphere network under soft directional research studio lighting with realistic macro depth. Publication-grade realism only — strictly NO cartoon, NO childish clipart, NO flat vector doodles. ABSOLUTE ZERO-TEXT REQUIREMENT: Strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO titles, NO arrows with text, NO captions, NO signboards, NO logos, NO screens, NO watermarks anywhere in the image.

@@ -1,0 +1,12 @@
+이미지 번호: 그림 3-10
+이미지 파일명: fig_ch03_v10.png
+단원: 제3장. 활착기 및 초기 생육 관리 (ch03)
+결합 절: 오해와 진실: 현장·이론 핵심 오해 교정
+시각화 유형: scientific_anatomy
+제목: [그림 3-10] 근권 토양 내 바이오차 양분 완충(CEC) 및 염류 집적 방지 메커니즘
+
+[문맥 기반 이미지 설명]
+[그림 3-10] 초기 활착기 과잉 시비로 인한 염류 장해와 바이오차의 양분 완충 작용을 과학적으로 비교한 단면 일러스트레이션입니다. 순수 화학 비료만 과다 투입된 구역에서는 고농도 염류로 인해 뿌리 세포 탈수가 일어나는 반면, 바이오차가 혼입된 토양에서는 미세 기공의 높은 양이온 교환능력(CEC)으로 양분을 일시 흡착하여 뿌리를 보호합니다[SRC-221, SRC-225, SRC-228]. 이는 바이오차가 직접적인 비료 대체재가 아닌 양분 보유 완충체임을 명확히 보여줍니다.
+
+[나노바나나 생성 프롬프트]
+Scientific anatomical comparative illustration on a clean white background depicting two microscopic root zones. On the left side, excessive chemical fertilizer granules in raw soil cause osmotic cellular shrinkage and plasmolysis in sweet potato root hairs. On the right side, micro-porous black biochar particles electrostatically attract and store ammonium and potassium ions, buffering the soil solution and allowing healthy turgid root cells to absorb water peacefully. Publication-grade realism only — strictly NO cartoon, NO childish clipart, NO flat vector doodles. ABSOLUTE ZERO-TEXT REQUIREMENT: Strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO titles, NO arrows with text, NO captions, NO signboards, NO logos, NO screens, NO watermarks anywhere in the image.

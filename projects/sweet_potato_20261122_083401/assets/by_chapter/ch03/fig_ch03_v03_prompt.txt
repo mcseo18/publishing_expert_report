@@ -1,0 +1,12 @@
+이미지 번호: 그림 3-3
+이미지 파일명: fig_ch03_v03.png
+단원: 제3장. 활착기 및 초기 생육 관리 (ch03)
+결합 절: 3.2 초기 생장 단계의 영양 공급: 가리질 비료 시비 전략
+시각화 유형: scientific_anatomy
+제목: [그림 3-3] 근권 미생물 제제 및 가리질 비료의 양분 가용화 상호작용
+
+[문맥 기반 이미지 설명]
+[그림 3-3] 고구마 뿌리 주변 근권(rhizosphere)에서 유기 미생물 제제와 가리질 비료 성분이 양분 가용성을 높이는 과정을 나타낸 과학 해부 일러스트레이션입니다. 유기물 분해 미생물 군집이 칼륨과 인산염을 흡수 가능한 이온 형태로 전환하고 토양 입자 간 응집 구조를 형성하는 상태를 묘사합니다[SRC-222, SRC-224]. 뿌리털 근접 부위의 완효성 양분 방출은 과도한 농도 장해를 방지하면서 지속적인 흡수를 유도합니다[SRC-221].
+
+[나노바나나 생성 프롬프트]
+Rich botanical scientific cross-section illustration of the sweet potato rhizosphere on a pure white background. An active elongated root hair extends through porous soil humus clusters, surrounded by beneficial bacterial colonies and delicate fungal mycorrhizal filaments. Micronutrient and potassium mineral spheres dissolve into the soil solution and enter the root epidermal transport channels, rendered in clear medical-grade textbook art. Publication-grade realism only — strictly NO cartoon, NO childish clipart, NO flat vector doodles. ABSOLUTE ZERO-TEXT REQUIREMENT: Strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO titles, NO arrows with text, NO captions, NO signboards, NO logos, NO screens, NO watermarks anywhere in the image.

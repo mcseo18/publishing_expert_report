@@ -1,0 +1,12 @@
+이미지 번호: 그림 1-4
+이미지 파일명: fig_ch01_v04.png
+단원: 제1장. 고구마의 분류학적 이해와 생리적 특성 (ch01)
+결합 절: 1.2 괴근(Tuberous Root) 형성 메커니즘 및 비대 원리
+시각화 유형: photorealistic_macro
+제목: [그림 1-4] 괴근 내부 저장 유조직 세포 및 전분립의 고배율 미세구조
+
+[문맥 기반 이미지 설명]
+[그림 1-4] 괴근 내부 유조직 세포를 고배율로 정밀 촬영하여 전분 축적 양상을 관찰한 현미경 사진입니다 [SRC-103]. 다각형태의 유세포 내부에 아밀로오스와 아밀로펙틴으로 구성된 구형 및 타원형의 전분립(starch granules)이 조밀하게 집적되어 있습니다. 이는 광합성으로 합성된 당류가 최종적으로 안정적인 다당류 형태로 전환 및 응집되는 미세 물리화학적 증거를 보여줍니다 [SRC-224].
+
+[나노바나나 생성 프롬프트]
+Ultra-sharp scanning electron macro microscopy photography of fractured sweet potato storage root parenchyma tissue. The thin polygonal plant cell walls form a three-dimensional cellular honeycomb matrix, densely packed with thousands of microscopic spherical and oval starch granules. The crystalline facets of individual amylose and amylopectin granules catch directional laboratory illumination, revealing delicate growth rings and smooth surface textures with extreme clarity and microscopic depth of field. Publication-grade realism only — strictly NO cartoon, NO childish clipart, NO flat vector doodles. ABSOLUTE ZERO-TEXT REQUIREMENT: Strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO titles, NO arrows with text, NO captions, NO signboards, NO logos, NO screens, NO watermarks anywhere in the image.

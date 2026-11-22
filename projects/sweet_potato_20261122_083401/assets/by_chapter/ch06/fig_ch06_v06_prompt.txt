@@ -1,0 +1,12 @@
+이미지 번호: 그림 6-6
+이미지 파일명: fig_ch06_v06.png
+단원: 제6장. 재배 환경에 따른 생산성 및 품질 최적화 (ch06)
+결합 절: 6.3 품질 결정 인자: 당도, 전분 함량 및 색상(품종별)
+시각화 유형: photorealistic_macro
+제목: [그림 6-6] 괴근 유조직 내 아밀로플라스트 전분립 집적의 현미경적 미세구조
+
+[문맥 기반 이미지 설명]
+[그림 6-6] 고구마 괴근 저장 조직 유세포 내부에 축적된 아밀로플라스트(전분체)의 조밀한 구조를 보여주는 고해상도 매크로 사진이다. 얇은 세포벽으로 구획된 식물 세포 내부를 구형 및 다면체의 반투명 전분립들이 빽빽하게 채우고 있는 모습이 관찰된다. 이는 충분한 인산 공급과 안정적인 광합성 기반 하에서 에너지 저장 기관의 발달이 극대화되었을 때 나타나는 전형적인 고전분질 괴근의 조직학적 증거이다.
+
+[나노바나나 생성 프롬프트]
+Ultra-sharp macro photograph of sweet potato storage parenchyma tissue cross-section. Cellular interior packed densely with semi-translucent, spherical and polygonal amyloplasts filled with starch granules, surrounded by delicate polyhedral plant cell walls. Crisp laboratory lighting, showing subtle glistening texture of wet cellular fluids and microscopic crystalline concentric rings on starch granule surfaces. Publication-grade realism only — strictly NO cartoon, NO childish clipart, NO flat vector doodles. ABSOLUTE ZERO-TEXT REQUIREMENT: Strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO titles, NO arrows with text, NO captions, NO signboards, NO logos, NO screens, NO watermarks anywhere in the image.

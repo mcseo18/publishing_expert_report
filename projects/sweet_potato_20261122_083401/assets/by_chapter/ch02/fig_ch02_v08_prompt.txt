@@ -1,0 +1,12 @@
+이미지 번호: 그림 2-8
+이미지 파일명: fig_ch02_v08.png
+단원: 제2장. 토양학적 환경과 재배 기초 기술 (ch02)
+결합 절: 2.4 초기 재식 방법: 심경, 이랑 조성 및 수평심기 원리
+시각화 유형: scientific_anatomy
+제목: [그림 2-8] 이랑 내 고구마 묘의 수평심기(Horizontal Planting) 구조 단면
+
+[문맥 기반 이미지 설명]
+[그림 2-8] 이랑 표면 하부 0.1~0.2m 깊이로 삽식된 고구마 묘의 수평심기 원리를 해부학적으로 분석한 과학 일러스트레이션입니다. 지표면과 평행하게 누워 묻힌 줄기 마디마다 균일하게 부정근이 발생하여 장차 크기가 고른 괴근으로 비대되는 공간 배치를 보여줍니다 [SRC-231]. 토양 수분 흡수 면적을 넓히고 지온 편차를 최소화하여 균일한 활착을 유도하는 기작을 나타냅니다.
+
+[나노바나나 생성 프롬프트]
+Scientific anatomical cutaway illustration on a solid pure white background depicting a sweet potato vine slip planted via the horizontal planting method inside a raised soil ridge. The cross-section reveals the friable sandy loam profile, with the green vine stem buried horizontally at a precise depth between 0.1 and 0.2 meters. Four submerged leaf nodes along the horizontal stem sprout clusters of pale pinkish adventitious tuberous roots evenly distributed in the soil. The aboveground stem tip bends gently upward displaying three fresh green leaves. Clean scientific precision, realistic soil layers, and rich biological textures. Publication-grade realism only — strictly NO cartoon, NO childish clipart, NO flat vector doodles. ABSOLUTE ZERO-TEXT REQUIREMENT: Strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO titles, NO arrows with text, NO captions, NO signboards, NO logos, NO screens, NO watermarks anywhere in the image.

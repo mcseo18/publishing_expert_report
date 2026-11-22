@@ -1,0 +1,12 @@
+이미지 번호: 그림 6-8
+이미지 파일명: fig_ch06_v08.png
+단원: 제6장. 재배 환경에 따른 생산성 및 품질 최적화 (ch06)
+결합 절: 6.3 품질 결정 인자: 당도, 전분 함량 및 색상(품종별)
+시각화 유형: photorealistic_macro
+제목: [그림 6-8] 품종별 고구마 괴근 단면의 기능성 색소 및 육색 발현 비교
+
+[문맥 기반 이미지 설명]
+[그림 6-8] [SRC-103]에서 제시된 품종 고유의 유전적 잠재력 차이를 시각화하기 위해 각기 다른 품종의 신선한 괴근 횡단면을 촬영한 매크로 사진이다. 안토시아닌이 농축되어 선명한 자색 동심원을 형성하는 자색고구마, 베타카로틴이 풍부하여 진한 주황색을 띠는 호박고구마, 그리고 전분 밀도가 높아 백황색을 띠는 밤고구마 과육의 결이 뚜렷하다. 재배 환경 최적화 시 품종 고유의 색소 발현 대사 경로를 고려해야 함을 보여준다.
+
+[나노바나나 생성 프롬프트]
+Studio macro photograph of three freshly sliced raw sweet potato rounds arranged horizontally on a white marble slab. On the left, a purple-fleshed cultivar bursting with deep violet anthocyanin rings; in the middle, an orange pumpkin-sweet potato cultivar rich in brilliant beta-carotene orange tones; on the right, a traditional starchy chestnut-type cultivar with dense, chalky cream-yellow flesh. Moisture droplets bead on the cut surfaces, natural raking light revealing dense internal flesh grain. Publication-grade realism only — strictly NO cartoon, NO childish clipart, NO flat vector doodles. ABSOLUTE ZERO-TEXT REQUIREMENT: Strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO titles, NO arrows with text, NO captions, NO signboards, NO logos, NO screens, NO watermarks anywhere in the image.

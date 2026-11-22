@@ -1,0 +1,12 @@
+이미지 번호: 그림 1-3
+이미지 파일명: fig_ch01_v03.png
+단원: 제1장. 고구마의 분류학적 이해와 생리적 특성 (ch01)
+결합 절: 1.2 괴근(Tuberous Root) 형성 메커니즘 및 비대 원리
+시각화 유형: scientific_anatomy
+제목: [그림 1-3] 부정근에서 괴근으로의 분열조직 발달 및 2차 비대 해부 단면
+
+[문맥 기반 이미지 설명]
+[그림 1-3] 세근 상태의 부정근이 저장 기관인 괴근으로 비대 발달하는 내부 조직학적 변화를 나타낸 단면 해부도입니다 [SRC-103]. 1차 물관부 주변에 형성된 기형성 2차 형성층(anomalous secondary cambium)의 활발한 세포분열과 저장 유조직(storage parenchyma)의 급격한 확장이 단계별로 묘사되어 있습니다. 이 과정에서 유조직 세포 내부에 전분 입자가 조밀하게 축적되며 괴근 부피가 증대되는 생리적 원리를 직관적으로 이해할 수 있습니다.
+
+[나노바나나 생성 프롬프트]
+A detailed scientific anatomy illustration on a pure white background depicting the histological progression from a slender adventitious fibrous root to an enlarged tuberous root. Transverse circular cross-sections display internal tissue layers: the outermost periderm protective bark, cortical parenchyma, vascular cambium ring, and anomalous secondary cambia actively budding around central primary xylem vessels. Enlarged storage parenchyma cells swell and multiply, filled with round crystalline starch granule clusters. Rich editorial scientific shading, smooth biological gradients, and distinct anatomical coloring delineate each cellular tissue boundary. Publication-grade realism only — strictly NO cartoon, NO childish clipart, NO flat vector doodles. ABSOLUTE ZERO-TEXT REQUIREMENT: Strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO titles, NO arrows with text, NO captions, NO signboards, NO logos, NO screens, NO watermarks anywhere in the image.

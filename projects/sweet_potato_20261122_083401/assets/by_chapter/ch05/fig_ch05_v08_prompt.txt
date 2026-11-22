@@ -1,0 +1,12 @@
+이미지 번호: 그림 5-8
+이미지 파일명: fig_ch05_v08.png
+단원: 제5장. 괴근 형성 및 비대 과정의 분자생물학적 이해 (ch05)
+결합 절: 5.4 최신 연구 동향: 전사체 분석(Transcriptomics)을 통한 발달 경로 규명
+시각화 유형: scientific_anatomy
+제목: [그림 5-8] RNA 시퀀싱 기반 전사체 발현 히트맵과 괴근 분화-비대 마스터 조절 전사 인자 네트워크
+
+[문맥 기반 이미지 설명]
+[그림 5-8] 차세대 염기서열 분석(RNA-Seq)을 통해 분화 초기부터 비대기까지 발현량이 급변하는 유전자군을 재구성한 전사체 네트워크 다이어그램입니다 [SRC-228, SRC-230]. 마스터 스위치 역할을 하는 전사 인자(Transcription Factors) 허브를 중심으로, 하위의 전분 생합성 효소 및 세포벽 변형 유전자들이 상향 조절(up-regulation)되는 동적 패턴이 다차원 컬러 히트맵 매트릭스와 상호작용 노드로 정교하게 시각화되어 있습니다. 괴근 형성 메커니즘의 총체적 분자 유전 지도를 직관적으로 전달합니다.
+
+[나노바나나 생성 프롬프트]
+Scientific data-art and genomic network illustration on an ultra-clean white canvas. A high-density transcriptomic expression heatmap grid with vibrant crimson red for up-regulated genes and deep royal blue for down-regulated genes wraps gracefully around a central 3D molecular transcription factor node. Luminous golden connectivity lines radiate outward from master regulatory protein complexes to peripheral clusters of metabolic enzyme genes. High-impact Nature genetics journal style, precise geometric layout, depth-of-field blur on background data lanes, exquisite vector-grade modern visualization. Publication-grade realism only — strictly NO cartoon, NO childish clipart, NO flat vector doodles. ABSOLUTE ZERO-TEXT REQUIREMENT: Strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO titles, NO arrows with text, NO captions, NO signboards, NO logos, NO screens, NO watermarks anywhere in the image.

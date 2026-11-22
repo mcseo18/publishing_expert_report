@@ -1,0 +1,12 @@
+이미지 번호: 그림 6-10
+이미지 파일명: fig_ch06_v10.png
+단원: 제6장. 재배 환경에 따른 생산성 및 품질 최적화 (ch06)
+결합 절: 6.4 생육 단계별 영양소 요구도 및 시비 전략 재검토
+시각화 유형: photorealistic_field
+제목: [그림 6-10] 점적 관수동시시비(Fertigation)를 적용한 분할 시비 근권 포장 단면
+
+[문맥 기반 이미지 설명]
+[그림 6-10] 작물의 생육 속도에 맞춰 양분을 분할 투입(Split Application)할 수 있는 점적 관수동시시비(Fertigation) 시스템이 매설된 고구마 이랑 내부의 모습이다. 점적 호스의 미세 배출구 주위로 수분과 양분이 균일하게 확산되어 모세근들이 조밀하고 건강하게 활착된 근권 토양이 드러나 있다. 한 번에 비료를 주는 관행 방식의 양분 용탈과 염류 집적을 극복하고 비료 흡수 효율을 극대화하는 선진 시비 전략의 실증 현장이다.
+
+[나노바나나 생성 프롬프트]
+Documentary agricultural field photograph showing an excavated sweet potato ridge profile with an integrated black drip fertigation tape buried near the root zone. Fibrous white feeder roots intertwining with dark, evenly moistened soil clumps surrounding the drip emitter. In the background, rows of healthy sweet potato foliage under sunny skies, highlighting precision nutrient delivery to the root zone with authentic farming textures. Publication-grade realism only — strictly NO cartoon, NO childish clipart, NO flat vector doodles. ABSOLUTE ZERO-TEXT REQUIREMENT: Strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO titles, NO arrows with text, NO captions, NO signboards, NO logos, NO screens, NO watermarks anywhere in the image.

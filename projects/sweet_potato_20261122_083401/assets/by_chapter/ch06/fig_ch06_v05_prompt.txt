@@ -1,0 +1,12 @@
+이미지 번호: 그림 6-5
+이미지 파일명: fig_ch06_v05.png
+단원: 제6장. 재배 환경에 따른 생산성 및 품질 최적화 (ch06)
+결합 절: 6.2 수확량 극대화를 위한 생육 주기 관리 (생육 기간 조절)
+시각화 유형: photorealistic_field
+제목: [그림 6-5] 토양 수분 포텐셜 센서 기반의 생육 주기 조절 정밀 모니터링 포장
+
+[문맥 기반 이미지 설명]
+[그림 6-5] 고구마의 생육 주기별 최적 수분 및 온도 조건을 관리하기 위해 스마트 토양 센서가 설치된 포장의 실제 모습이다. 흑색 생분해성 멀칭 필름 내부로 정밀 토양 수분 포텐셜 센서와 지온 프로브가 설치되어 근권의 환경 부하를 실시간으로 추적한다. [SRC-227]에서 설명된 바와 같이 만성적 가뭄 스트레스를 사전에 방지하면서도 저장기 전환에 필요한 완충 환경을 제어하는 첨단 재배 관리 기술을 담아냈다.
+
+[나노바나나 생성 프롬프트]
+National Geographic style documentary field photograph of an expansive sweet potato field during mid-summer. Neat raised beds covered with black biodegradable mulch from which vibrant green sweet potato vines vigorously spread. In the foreground, a slender weather-resistant soil monitoring probe inserted into the ridge with exposed soil sensors measuring moisture, surrounded by lush foliage under soft early morning golden light. Publication-grade realism only — strictly NO cartoon, NO childish clipart, NO flat vector doodles. ABSOLUTE ZERO-TEXT REQUIREMENT: Strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO titles, NO arrows with text, NO captions, NO signboards, NO logos, NO screens, NO watermarks anywhere in the image.

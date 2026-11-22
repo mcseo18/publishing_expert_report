@@ -1,0 +1,12 @@
+이미지 번호: 그림 2-7
+이미지 파일명: fig_ch02_v07.png
+단원: 제2장. 토양학적 환경과 재배 기초 기술 (ch02)
+결합 절: 2.4 초기 재식 방법: 심경, 이랑 조성 및 수평심기 원리
+시각화 유형: photorealistic_field
+제목: [그림 2-7] 배수성 극대화를 위한 규격화된 사질양토 고구마 이랑 조성
+
+[문맥 기반 이미지 설명]
+[그림 2-7] 트랙터 부착형 휴립기를 활용하여 정밀하게 성형된 고구마 본답의 이랑과 고랑 구조를 촬영한 농업 다큐멘터리 사진입니다. 균일한 사다리꼴 단면을 이루는 이랑은 높은 통기성과 우수한 배수 구배를 확보하여 과습 피해를 방지합니다 [SRC-103]. 붕괴 방지를 위해 다져진 이랑 측면 둑(berm)과 평탄하게 정지된 상면은 수평 식재를 위한 최적의 토대를 제공합니다.
+
+[나노바나나 생성 프롬프트]
+High-resolution agricultural documentary photograph of freshly formed, tall raised ridges in a commercial sweet potato field. The fine-textured sandy loam soil is sculpted into uniform, geometric trapezoidal mounds separated by clean furrows for drainage. Low-angle sunlight casts sharp shadows across the furrow channels, highlighting the friable, crumbly soil tilth on top of the beds and firm side berms. Expansive perspective stretching toward the horizon under clear rural morning skies. Publication-grade realism only — strictly NO cartoon, NO childish clipart, NO flat vector doodles. ABSOLUTE ZERO-TEXT REQUIREMENT: Strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO titles, NO arrows with text, NO captions, NO signboards, NO logos, NO screens, NO watermarks anywhere in the image.

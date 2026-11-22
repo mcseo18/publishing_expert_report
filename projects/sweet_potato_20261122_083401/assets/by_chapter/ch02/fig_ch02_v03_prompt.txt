@@ -1,0 +1,12 @@
+이미지 번호: 그림 2-3
+이미지 파일명: fig_ch02_v03.png
+단원: 제2장. 토양학적 환경과 재배 기초 기술 (ch02)
+결합 절: 2.2 최적의 재배 환경 조건: 온도, 습도, 광량
+시각화 유형: photorealistic_field
+제목: [그림 2-3] 최적 일조 및 수분 조건에서 생육 중인 고구마 포장
+
+[문맥 기반 이미지 설명]
+[그림 2-3] 충분한 광합성 유효방사(PAR)와 적정 토양 수분 장력이 유지되는 농업 시험 포장의 실물 현장 사진입니다. 정밀하게 형성된 이랑 위로 선명한 녹색의 심장형 고구마 잎들이 군락을 이루며 최적 엽면적 지수(LAI)를 형성하고 있습니다 [SRC-100]. 이랑 한편에 매설된 디지털 토양 수분 및 장력 계측 센서는 토양 통기성과 수분 균형의 과학적 모니터링을 실증합니다.
+
+[나노바나나 생성 프롬프트]
+Photorealistic documentary field photograph taken at a national agricultural research station during mid-morning. Raised agricultural ridges planted with thriving sweet potato vines displaying dense, heart-shaped emerald green leaves covered with subtle morning dew. Sunlight streams at a golden angle, emphasizing crisp foliage textures and leaf venation. Along one raised bed, a scientific digital tensiometer probe is neatly inserted into the sandy loam soil to monitor water tension. Low-angle realistic field perspective with soft natural depth of field and clear blue sky. Publication-grade realism only — strictly NO cartoon, NO childish clipart, NO flat vector doodles. ABSOLUTE ZERO-TEXT REQUIREMENT: Strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO titles, NO arrows with text, NO captions, NO signboards, NO logos, NO screens, NO watermarks anywhere in the image.

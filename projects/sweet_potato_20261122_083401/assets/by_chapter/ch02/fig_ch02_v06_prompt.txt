@@ -1,0 +1,12 @@
+이미지 번호: 그림 2-6
+이미지 파일명: fig_ch02_v06.png
+단원: 제2장. 토양학적 환경과 재배 기초 기술 (ch02)
+결합 절: 2.3 재배 준비: 씨고구마 선별 및 무병묘 생산 기술
+시각화 유형: photorealistic_macro
+제목: [그림 2-6] 조직배양 클린룸 내 무병묘 미세증식 단계
+
+[문맥 기반 이미지 설명]
+[그림 2-6] 병원균과 바이러스 감염을 원천 차단하기 위해 무균 클린룸에서 증식 중인 고구마 무병묘의 기내 배양 사진입니다. 반투명한 한천(agar) 배지 위에서 생장점 배양을 통해 분화된 소식물체들이 균일한 마디 간격을 유지하며 뿌리와 잎을 발달시키고 있습니다 [SRC-230]. 영양 번식 과정에서 종자 전염성 병해충을 회피할 수 있는 첨단 생명공학적 묘 생산 환경을 생생하게 담았습니다.
+
+[나노바나나 생성 프롬프트]
+Macro laboratory photograph of micropropagated virus-free sweet potato plantlets growing inside sterile cylindrical glass culture vessels. Clear agar nutrient gel at the base supports delicate white adventitious root systems. Miniature, perfectly formed bright green sweet potato stems with translucent leaflets rise under soft white and blue LED spectrum illumination. Condensation droplets bead faintly on the sterile inner glass wall. Crisp depth of field emphasizing clean biotechnological laboratory standards. Publication-grade realism only — strictly NO cartoon, NO childish clipart, NO flat vector doodles. ABSOLUTE ZERO-TEXT REQUIREMENT: Strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO titles, NO arrows with text, NO captions, NO signboards, NO logos, NO screens, NO watermarks anywhere in the image.

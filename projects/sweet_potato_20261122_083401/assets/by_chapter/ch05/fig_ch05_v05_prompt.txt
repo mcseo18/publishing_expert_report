@@ -1,0 +1,12 @@
+이미지 번호: 그림 5-5
+이미지 파일명: fig_ch05_v05.png
+단원: 제5장. 괴근 형성 및 비대 과정의 분자생물학적 이해 (ch05)
+결합 절: 5.2 괴근 비대(Tuberous Root Enlargement)를 조절하는 호르몬 및 유전자
+시각화 유형: photorealistic_macro
+제목: [그림 5-5] 비대기 고구마 괴근 유조직의 세포벽 확장 및 액포 팽창 공초점 레이저 형광 현미경 관찰상
+
+[문맥 기반 이미지 설명]
+[그림 5-5] 괴근 비대 최성기 유조직 세포들의 비후와 세포 내 구획화를 형광 염색법을 통해 시각화한 공초점 레이저 주사 현미경(CLSM) 사진입니다 [SRC-229]. 세포벽의 셀룰로오스 골격이 청록색 형광으로 대비되고, 거대해진 액포와 전분체들이 세포질을 둘러싸며 방추형으로 신장되는 양상이 선명합니다. 유전자 네트워크가 조절하는 세포 팽창과 전분 축적이 실제 미세조직 수준에서 어떻게 크기 증대를 유발하는지 실증합니다.
+
+[나노바나나 생성 프롬프트]
+Confocal laser scanning microscopy (CLSM) photograph of sweet potato storage root parenchyma tissue during peak enlargement. Fluorescent dual-staining displays vivid cyan cell wall pectin and cellulose matrices framing gigantic hexagonal storage cells. Inside each expanding cell, dark spherical inclusions of developing starch granules cluster around a massive central vacuole illuminated with subtle crimson autofluorescence. Ultra-sharp optical resolution revealing microscopic cell wall microfibrils, dark microscope background, high academic scientific aesthetic. Publication-grade realism only — strictly NO cartoon, NO childish clipart, NO flat vector doodles. ABSOLUTE ZERO-TEXT REQUIREMENT: Strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO titles, NO arrows with text, NO captions, NO signboards, NO logos, NO screens, NO watermarks anywhere in the image.

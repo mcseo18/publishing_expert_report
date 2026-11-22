@@ -1,0 +1,12 @@
+이미지 번호: 그림 1-1
+이미지 파일명: fig_ch01_v01.png
+단원: 제1장. 고구마의 분류학적 이해와 생리적 특성 (ch01)
+결합 절: 1.1 메꽃과(Convolvulaceae)의 특징과 고구마의 계통
+시각화 유형: scientific_anatomy
+제목: [그림 1-1] 메꽃과(Convolvulaceae) 고구마의 형태학적 구조와 덩굴성 영양기관 체계
+
+[문맥 기반 이미지 설명]
+[그림 1-1] 본 도해는 고구마가 속한 메꽃과(Convolvulaceae) 식물의 전형적인 영양 및 생식 기관 체계를 보여줍니다 [SRC-103]. 지표면을 따라 포복성으로 뻗어나가는 덩굴 줄기와 각 마디에서 분화하는 부정근(adventitious root) 및 심장형 엽신의 엽맥 배열이 정밀하게 묘사되어 있습니다. 또한 잎겨드랑이에서 피어나는 나팔 형태의 통꽃과 내부 생식기관의 해부학적 특성을 통해 메꽃과 고유의 분류학적 징표를 명확히 제시합니다.
+
+[나노바나나 생성 프롬프트]
+Scientific botanical cross-section illustration on a clean pure white background depicting the morphological anatomy of the sweet potato vine (Ipomoea batatas, Convolvulaceae). A central sprawling green trailing vine shows swollen nodes with developing adventitious roots emerging downward into fine rootlets. Alternately arranged cordate and heart-shaped green leaves display intricate palmate venation. A pale lavender funnel-shaped five-lobed sympetalous flower is shown in partial longitudinal cross-section, revealing internal slender stamens with pollen grains and a central pistil with a swollen ovary. Rich scientific watercolor shading with soft, precise botanical detailing. Publication-grade realism only — strictly NO cartoon, NO childish clipart, NO flat vector doodles. ABSOLUTE ZERO-TEXT REQUIREMENT: Strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO titles, NO arrows with text, NO captions, NO signboards, NO logos, NO screens, NO watermarks anywhere in the image.

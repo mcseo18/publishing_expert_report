@@ -1,0 +1,12 @@
+이미지 번호: 그림 3-7
+이미지 파일명: fig_ch03_v07.png
+단원: 제3장. 활착기 및 초기 생육 관리 (ch03)
+결합 절: 3.3 재식 밀도 결정과 덩굴 발달 최적화
+시각화 유형: scientific_anatomy
+제목: [그림 3-7] 덩굴성 고구마의 초기 분지 패턴 및 동화산물 분배 메커니즘
+
+[문맥 기반 이미지 설명]
+[그림 3-7] 고구마 덩굴의 초기 포복 생장과 마디별 측지 형성, 동화산물 분배 경로를 구조화한 식물학적 해부도입니다. 정단 분열조직의 신장과 엽액(leaf axil)에서의 1차 측지 분지, 그리고 마디 부위에서 발생하는 부정근의 상호작용을 세밀하게 표현합니다[SRC-103]. 지상부 엽면적 확대와 지하부 흡수 뿌리로 향하는 에너지 분배 균형이 작물의 초기 활착 성공을 결정함을 보여줍니다.
+
+[나노바나나 생성 프롬프트]
+Scientific anatomical botanical artwork of a trailing sweet potato vine horizontally extending across the substrate on a pure white background. Longitudinal cutaway views illustrate the internal vascular bundles inside the flexible green stem, an active growing shoot tip, heart-shaped alternate leaves, emerging secondary axillary branches, and nodal adventitious roots pushing downward, rendered in rich textbook illustration style. Publication-grade realism only — strictly NO cartoon, NO childish clipart, NO flat vector doodles. ABSOLUTE ZERO-TEXT REQUIREMENT: Strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO titles, NO arrows with text, NO captions, NO signboards, NO logos, NO screens, NO watermarks anywhere in the image.

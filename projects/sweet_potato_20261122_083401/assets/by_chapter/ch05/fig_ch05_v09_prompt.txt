@@ -1,0 +1,12 @@
+이미지 번호: 그림 5-9
+이미지 파일명: fig_ch05_v09.png
+단원: 제5장. 괴근 형성 및 비대 과정의 분자생물학적 이해 (ch05)
+결합 절: 5.4 최신 연구 동향: 전사체 분석(Transcriptomics)을 통한 발달 경로 규명
+시각화 유형: photorealistic_macro
+제목: [그림 5-9] 분자육종 연구실의 고구마 괴근 발달 단계별 RNA 추출 및 자동화 라이브러리 제작 공정
+
+[문맥 기반 이미지 설명]
+[그림 5-9] 고구마 발달 단계별 괴근 조직 시료를 액체질소로 파쇄한 후 RNA-Seq 라이브러리를 구축하는 첨단 식물유전체학 연구실의 작업 장면입니다 [SRC-228]. 멀티채널 마이크로피펫과 냉각 랙 위의 미세원심분리관 안에서 추출된 초순도 전사체 RNA 용액, 그리고 벤치탑 자동화 시퀀서가 정밀하게 초점을 맞추고 있습니다. 실험실 벤치 위에서 수행되는 분자생물학적 분석이 전사체 연구 동향과 직결됨을 현장감 있게 보여줍니다.
+
+[나노바나나 생성 프롬프트]
+Macro photograph inside an advanced plant molecular genetics laboratory. In the foreground, an array of sterile 1.5ml microcentrifuge tubes scientific illustration with development stages sits in a frosty chilled metal block, containing clear extracted RNA solutions. A modern robotic multi-channel pipette hovers above an optical 96-well sequencing plate illuminated by clean cool white laboratory lighting. Reflective stainless steel biosafety bench surface, soft-focus background showing high-throughput next-generation sequencer readouts, extremely crisp glass and liquid droplet textures. Publication-grade realism only — strictly NO cartoon, NO childish clipart, NO flat vector doodles. ABSOLUTE ZERO-TEXT REQUIREMENT: Strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO titles, NO arrows with text, NO captions, NO signboards, NO logos, NO screens, NO watermarks anywhere in the image.

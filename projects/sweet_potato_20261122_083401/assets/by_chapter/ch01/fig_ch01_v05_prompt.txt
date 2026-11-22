@@ -1,0 +1,12 @@
+이미지 번호: 그림 1-5
+이미지 파일명: fig_ch01_v05.png
+단원: 제1장. 고구마의 분류학적 이해와 생리적 특성 (ch01)
+결합 절: 1.2 괴근(Tuberous Root) 형성 메커니즘 및 비대 원리
+시각화 유형: scientific_anatomy
+제목: [그림 1-5] 광합성 동화산물(수크로스)의 사부 운반 및 괴근 전분 합성 대사 경로
+
+[문맥 기반 이미지 설명]
+[그림 1-5] 지상부 엽육세포에서 생성된 광합성 산물이 지하부 괴근의 수용능력(sink strength)에 의해 집중 전이되는 수송 및 합성 메커니즘입니다 [SRC-103, SRC-224]. 체관(phloem)을 통한 수크로스(sucrose)의 장거리 전류와 괴근 유세포로의 하적(unloading) 과정이 상세히 표현되어 있습니다. 유세포 내에서 수크로스가 효소 반응을 거쳐 아밀로오스와 아밀로펙틴 중합체로 합성되는 생화학적 저장 흐름을 정밀하게 보여줍니다.
+
+[나노바나나 생성 프롬프트]
+A scientific process illustration on a pure white background depicting the source-to-sink translocation of photoassimilates. At the top, a cross-section of a green leaf shows chloroplasts releasing sucrose molecules into vascular sieve tubes. The sucrose flows through the longitudinal vascular bundle of the stem down to the subterranean tuberous root. At the bottom, phloem unloading releases sucrose into storage parenchyma cells, where sucrose synthase and ADP-glucose pyrophosphorylase enzymes convert sugars into branching chains of amylopectin and helical amylose inside amyloplast organelles. Painted in elegant, precise editorial scientific art style with clean lighting. Publication-grade realism only — strictly NO cartoon, NO childish clipart, NO flat vector doodles. ABSOLUTE ZERO-TEXT REQUIREMENT: Strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO titles, NO arrows with text, NO captions, NO signboards, NO logos, NO screens, NO watermarks anywhere in the image.

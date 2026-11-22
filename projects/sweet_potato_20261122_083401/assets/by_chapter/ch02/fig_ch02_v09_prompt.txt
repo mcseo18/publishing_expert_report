@@ -1,0 +1,12 @@
+이미지 번호: 그림 2-9
+이미지 파일명: fig_ch02_v09.png
+단원: 제2장. 토양학적 환경과 재배 기초 기술 (ch02)
+결합 절: 2.4 초기 재식 방법: 심경, 이랑 조성 및 수평심기 원리
+시각화 유형: photorealistic_field
+제목: [그림 2-9] 재식 거리 및 이랑 간격 최적화에 따른 포장 군락
+
+[문맥 기반 이미지 설명]
+[그림 2-9] 식재 간격과 이랑 폭이 정밀하게 제어된 시험 포장에서 고구마 포기가 균일하게 활착하여 수관을 형성하는 모습입니다. 개체 간 적정 재식 밀도는 엽 상호 차광을 줄이고 광합성 유효 광량을 최대로 수용할 수 있는 최적 균형점(θ_opt)을 구현합니다 [SRC-232]. 가지런히 배열된 이랑 위로 뻗어 나가는 줄기 군락은 건전한 지상부 생육과 괴근 동화 산물 전이의 기반이 됩니다.
+
+[나노바나나 생성 프롬프트]
+Photorealistic documentary field photograph taken from an elevated angle looking down rows of juvenile sweet potato plants in an experimental trial field. The raised ridges are spaced at mathematically regular intervals, with young leafy vines spreading along the crests without overcrowding. Crisp green leaves intercept morning sunlight cleanly, leaving furrow bases exposed for aeration. Deep perspective lines along the sandy loam ridges demonstrate meticulous agronomic row spacing and canopy establishment. Publication-grade realism only — strictly NO cartoon, NO childish clipart, NO flat vector doodles. ABSOLUTE ZERO-TEXT REQUIREMENT: Strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO titles, NO arrows with text, NO captions, NO signboards, NO logos, NO screens, NO watermarks anywhere in the image.

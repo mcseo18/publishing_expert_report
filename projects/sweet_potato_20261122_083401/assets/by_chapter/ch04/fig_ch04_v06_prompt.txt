@@ -1,0 +1,12 @@
+이미지 번호: 그림 4-6
+이미지 파일명: fig_ch04_v06.png
+단원: 제4장. 덩굴 생장 조절 및 생육 최적화 기법 (ch04)
+결합 절: 4.2 덩굴의 형태 제어 기술: 덩굴 뒤집기 및 지지체 활용
+시각화 유형: photorealistic_field
+제목: [그림 4-6] 수직 격자망 지지체(Trellis)를 적용한 입체식 고구마 덩굴 유인 재배
+
+[문맥 기반 이미지 설명]
+[그림 4-6] 정밀 농업 연구 포장에서 고구마 덩굴을 수직 유인 그물망(Trellis)과 지주대에 결속하여 재배하는 입체 지지체 시스템의 전경이다. 지표면 포복 재배 대비 수직으로 고르게 분산된 엽층 구조는 통기성을 높이고 군락 내 수광량을 균일하게 배분한다. 지지체가 덩굴의 생체역학적 하중을 지탱함으로써 조직 손상을 줄이고 단위 면적당 수확 효율을 제어하는 첨단 재배 방식이다.
+
+[나노바나나 생성 프롬프트]
+Photorealistic documentary photograph of an experimental greenhouse sweet potato cultivation setup using vertical trellis netting and sturdy bamboo-metal support stakes. Thick, healthy green sweet potato vines climb systematically up the grid framework, showing lush leaves evenly distributed across vertical heights without clumping. Clean drip irrigation lines run along the raised beds below, captured with crisp depth of field and soft diffused sunlight filtering through greenhouse glass. Publication-grade realism only — strictly NO cartoon, NO childish clipart, NO flat vector doodles. ABSOLUTE ZERO-TEXT REQUIREMENT: Strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO titles, NO arrows with text, NO captions, NO signboards, NO logos, NO screens, NO watermarks anywhere in the image.

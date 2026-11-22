@@ -1,0 +1,12 @@
+이미지 번호: 그림 4-8
+이미지 파일명: fig_ch04_v08.png
+단원: 제4장. 덩굴 생장 조절 및 생육 최적화 기법 (ch04)
+결합 절: 4.3 생장 조절을 위한 재식 밀도 및 포기 간격 설정
+시각화 유형: photorealistic_macro
+제목: [그림 4-8] 바이오차 혼합 토양의 미세 공극과 고구마 유근 활착 구조
+
+[문맥 기반 이미지 설명]
+[그림 4-8] 포기 간격 설정의 토대가 되는 토양 환경 개량을 위해 바이오차(Biochar)를 시용한 근권 토양 단면의 초근접 매크로 촬영물이다. 다공성 탄소 구조체 내부로 뻗어 나간 미세 근모와 부식질 유기물 복합체가 안정적인 수분막과 무기 양분을 보지하고 있다. 본문 4.3절에서 다룬 토양 탄소 격리 및 유기물 관리가 뿌리의 초기 활착과 양분 흡수 효율을 극대화하는 미시적 환경을 입증한다 [SRC-225, SRC-227].
+
+[나노바나나 생성 프롬프트]
+Scientific macro photograph of a soil rhizosphere cross-section showing porous black biochar granules intimately embedded within warm brown soil aggregates. Delicate, translucent white sweet potato rootlets and microscopic root hairs wrap tightly around the biochar particles, showing microscopic moisture glistening on mineral surfaces. High magnification, razor-sharp focus on root tissue integration with porous carbon substrate, isolated on a neutral laboratory background. Publication-grade realism only — strictly NO cartoon, NO childish clipart, NO flat vector doodles. ABSOLUTE ZERO-TEXT REQUIREMENT: Strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO titles, NO arrows with text, NO captions, NO signboards, NO logos, NO screens, NO watermarks anywhere in the image.

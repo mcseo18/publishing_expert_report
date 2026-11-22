@@ -12,5 +12,5 @@ description: 주제를 설정하면 ① 초기 검색 + OpenAI API로 목차·�
 2. `stage2_source_collect`: 문헌·교과서·웹사이트 4계층 분리 폴더 수집 → `02_collection_report.md` 보고서 생성
 3. `stage3_kg_build`: `C:\SMC_GRAPHRAG\output\graph_platform_incremental.json` 지식그래프 증분 구축(기존 `graph.json` 무훼손) → `03_kg_report.md` 보고서 생성
 4. `stage4_manuscript_draft`: 단원별 교재 집필(`[SRC-NN]`, 오해와 진실, 1:1 문제↔풀이, 단원별 체크포인트) + 수식/인용 감사
-5. `stage5_visuals_generate`: 단원당 10개+ 시각화(`fal.ai API` 체크박스 · 나노바나나 · Vector SVG + 줄글 해설, 이미지별 체크포인트)
-6. `stage6_publish_report`: PDF · DOCX · 네이버 블로그 HTML 출판 → `06_final_book_report.md` 완료 보고서 생성
+5. `stage5_visuals_generate`: 『weed_control』 검증 **`textbook-visual-director`** 표준 적용 — 단원당 10~15종 `A/B/C/D` 4유형 분류(`A` 현장 실사 4:3 · `B` 스튜디오 표본 4:3 · `C` 교재 도해 16:9 5색 팔레트 · `D` 순수 Python `matplotlib` 300 DPI) · 3계층 하이브리드(`fal-ai/nano-banana-pro` `2K` / Google `nano-banana-pro-preview` / `Pillow` 오버레이 보정) · 단원별 `prompts_and_descriptions.md`·`manifest.json`·`qa_grid_chNN.jpg` 이중 저장 + `V-01~V-05` 멀티모달 시각 QA(`--only` 선택 재생성) + 줄글 해설
+6. `stage6_publish_report`: PDF · DOCX(`16:9` 155 mm · `4:3` 135 mm) · 오프라인 단일 HTML(`WebP` Base64 Data URI) · 네이버 블로그 HTML(`1600 px` JPG 분리 · 유니코드 수식) 출판 → `06_final_book_report.md` 완료 보고서 생성

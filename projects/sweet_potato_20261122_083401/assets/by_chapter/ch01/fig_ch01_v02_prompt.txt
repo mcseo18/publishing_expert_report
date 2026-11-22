@@ -1,0 +1,12 @@
+이미지 번호: 그림 1-2
+이미지 파일명: fig_ch01_v02.png
+단원: 제1장. 고구마의 분류학적 이해와 생리적 특성 (ch01)
+결합 절: 1.1 메꽃과(Convolvulaceae)의 특징과 고구마의 계통
+시각화 유형: photorealistic_field
+제목: [그림 1-2] 열대·아열대 유래 호온성 덩굴 캐노피의 포장 생육 군락
+
+[문맥 기반 이미지 설명]
+[그림 1-2] 열대 및 아열대 기후에 적응한 메꽃과 작물로서 고구마 덩굴 군락이 포장 두둑을 빈틈없이 피복하며 생장하는 현장 모습을 기록한 사진입니다 [SRC-103]. 넓은 잎면적을 확보하여 일사량을 극대화하는 포복형 줄기 전개 양상이 생생하게 관찰됩니다. 고온 다일조 조건에서 왕성한 영양생장이 이루어지는 재배 포장의 입체적 캐노피 구조를 확인할 수 있습니다.
+
+[나노바나나 생성 프롬프트]
+A documentary photograph taken in full natural daylight at an agricultural research farm showing a dense sweet potato field canopy. Broad emerald-green cordate leaves completely carpet the raised agricultural soil ridges, forming a lush, thick foliage layer that captures midday sunlight. Slender creeping runner vines wind across the damp reddish-brown loamy soil between furrows. The natural depth-of-field focuses crisply on foreground dew-kissed leaf blades showing textured epidermal veins, while the sweeping ridge rows softly recede toward the horizon under a bright summer sky. Publication-grade realism only — strictly NO cartoon, NO childish clipart, NO flat vector doodles. ABSOLUTE ZERO-TEXT REQUIREMENT: Strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO titles, NO arrows with text, NO captions, NO signboards, NO logos, NO screens, NO watermarks anywhere in the image.

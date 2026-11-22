@@ -1,0 +1,12 @@
+이미지 번호: 그림 5-10
+이미지 파일명: fig_ch05_v10.png
+단원: 제5장. 괴근 형성 및 비대 과정의 분자생물학적 이해 (ch05)
+결합 절: 오해와 진실: 현장·이론 핵심 오해 교정
+시각화 유형: photorealistic_field
+제목: [그림 5-10] 단순 기형근과 정상 비대 괴근의 수확기 형태학적 대비 및 단면 조직 비교
+
+[문맥 기반 이미지 설명]
+[그림 5-10] 환경 스트레스에 의해 단순히 단단해진 기형 섬유근(lignified fibrous root)과 능동적 유전 프로그램에 의해 전분을 정상 축적한 굵은 비대 괴근을 나란히 배치한 수확 현장 대비 사진입니다 [SRC-103, SRC-221]. 절단된 횡단면을 통해, 기형근은 목질화된 관다발이 딱딱하게 굳어 전분 축적이 전무한 반면, 정상 괴근은 크림빛 유조직에 자당과 전분이 농밀하게 차오른 차이를 선명하게 대조합니다. 괴근 비대가 기아에 의한 수동적 경화가 아닌 능동적 전분 축적 프로그램임을 명확히 증명합니다.
+
+[나노바나나 생성 프롬프트]
+Documentary agricultural field photograph displaying two harvested sweet potato root types side-by-side on coarse burlap fabric in natural afternoon sun. On the left, a woody, thin, distorted root sliced open exposes hard fibrous lignified xylem vessels without starch. On the right, a plump, beautifully developed ovate sweet potato root sliced in half reveals rich, dense, creamy-orange storage flesh bursting with starchy moisture and active parenchyma tissue. Earthy textures, crisp focus on cut surfaces, authentic harvest dust, dramatic documentary clarity emphasizing contrasting internal structures. Publication-grade realism only — strictly NO cartoon, NO childish clipart, NO flat vector doodles. ABSOLUTE ZERO-TEXT REQUIREMENT: Strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO titles, NO arrows with text, NO captions, NO signboards, NO logos, NO screens, NO watermarks anywhere in the image.

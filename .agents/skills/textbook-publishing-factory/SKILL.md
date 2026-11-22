@@ -28,12 +28,14 @@ description: 주제를 설정하면 ① 초기 검색 + OpenAI API로 목차·�
 4. **4단계 `stage4_manuscript_draft` (`domain-drafter`): 교재 단원 집필 · 오해교정 · 인용/수식 감사**
    - 단원별로 `[SRC-NN]` 인용, `오해와 진실`(≥3선), 1:1 문제↔풀이 연결 원고를 집필하고 완료 단원마다 체크포인트를 저장한다.
    - 수식·화학식 유니코드/HTML 정제(`clean_manuscripts.py`) 및 인용·15어절 복사율 전수 감사(`verify_citations.py`)를 수행한다.
-5. **5단계 `stage5_visuals_generate` (`visual-artist`): 단원당 10개 이상 시각화 자료 제작**
-   - **단원당 최소 10종 이상**(`visuals_per_chapter >= 10`)의 시각화를 제작한다 (`scripts/visual_studio.py`).
-   - 실사진·과학 인포그래픽은 대시보드 체크박스로 **`fal.ai API` (`FAL_KEY`, 모델 선택)** 및 **나노바나나(Gemini `GEMINI_API_KEY`)** 사용 여부를 제어하며, 정량 차트·흐름도·비교 매트릭스는 Vector SVG로 생성한다.
+5. **5단계 `stage5_visuals_generate` (`visual-artist`): 『weed_control』 검증 4유형(A/B/C/D)·3계층 하이브리드 시각화 제작 & 4게이트 시각 QA**
+   - 상세 실행 표준은 **`textbook-visual-director`** 스킬(`.agents/skills/textbook-visual-director/SKILL.md`)을 반드시 따른다.
+   - **원고 문맥 기반 기획 & 4유형 분류**: 단원별 실제 원고(`chapters/chNN.mdx`)를 정독해 **단원당 최소 10~15종**(`visuals_per_chapter >= 10`)을 **유형 A(현장 실사, `4:3`, 무문자)** · **유형 B(스튜디오 표본 접사, `4:3`, 스케일바 외 무문자)** · **유형 C(교재 개념·기작 도해, `16:9`, 5색 통일 팔레트 `#3A7D44/#E07A2E/#8B5E3C/#3B82C4/#1D3557`, Two-Track 타이포그래피·물음표 `?` 금지)** · **유형 D(정량 통계·수리 곡선, `16:9`, 100% 순수 Python `matplotlib` `2560×1440` `300 DPI`, 생성형 AI 단독 금지)**로 배정한다.
+   - **3계층 하이브리드 생성**: Tier 1(`fal-ai/nano-banana-pro` `2K` PNG 또는 Google Gemini `nano-banana-pro-preview`) · Tier 2(`/edit` 참조 편집 및 `Pillow`/`malgunbd.ttf` 픽셀 정밀 한글 오버레이 보정) · Tier 3(순수 Python `matplotlib`/`RDKit`). 실행 엔진은 `scripts/context_visual_director.py`(문맥 기획·단원별 해설/프롬프트·`manifest.json`·`qa_grid_chNN.jpg` 컨택트 시트 자동 생성 및 `--only` 선택 재생성 지원)와 `scripts/visual_studio.py`를 사용한다.
+   - **이중 분리 저장 & 멀티모달 시각 QA (`V-01`~`V-05`)**: 단원별 폴더(`assets/by_chapter/<chNN>/` 및 `E:\SMC_Report_Platform_Data\projects\<pid>\visuals\by_chapter\<chNN>\`)에 이미지 PNG·`prompts_and_descriptions.md`/`.json`·개별 `_prompt.txt`·`manifest.json`·`qa_grid_<chNN>.jpg`를 동시 보관하고, `read_file`로 5대 게이트(`V-01` 해부/도메인 · `V-02` 타이포그래피 · `V-03` 수치 일치 · `V-04` 현장/안전/PPE · `V-05` 팔레트/해상도)를 검증한다.
    - 각 시각화의 설명은 **표 형식을 쓰지 않고** 이미지 직하단 학술 **줄글 텍스트**(`assets/visuals_text_guide.md`)로 작성하며, 이미지 1건 완료마다 체크포인트를 저장한다.
 6. **6단계 `stage6_publish_report` (`book-publisher`): 최종 멀티포맷 출판 & 완료 종합 보고서 생성**
-   - 신국판·B5·A4 PDF, Word DOCX, 네이버 블로그 HTML(표 내부 수식 무손실 · 소단원별 해시태그 20개)을 생성해 `E:\SMC_Report_Platform_Data\projects\<project_id>\exports\`에 미러링하고, **`reports/06_final_book_report.md`** 완료 종합 보고서를 생성한다.
+   - 신국판·B5·A4 PDF, Word DOCX(`16:9` 155 mm · `4:3` 135 mm 중앙 정렬), 오프라인 단일 HTML(`RGB` 변환 WebP Base64 Data URI, 외부 의존 0건), 네이버 블로그 HTML(인라인 스타일 전용 · 표 내부 수식 유니코드 무손실 · 번호순 `1600 px` JPG 분리 · 소단원별 해시태그 20개)을 생성해 `E:\SMC_Report_Platform_Data\projects\<project_id>\exports\`에 미러링하고, **`reports/06_final_book_report.md`** 완료 종합 보고서를 생성한다.
 
 ## 3. 단일 HTML 통합 대시보드 실행
 - 모든 기능(상단 6단계 진도 바 · 1~6단계 워크플로 · 자료실/학술검색 · 690만건 기상 DB/KMA/OpenWeatherMap/공공포털/KOSIS/NotebookLM/심층조사 대화 · 7종 API 키 금고 · 프로젝트 관리)은 **단일 주소 `http://127.0.0.1:8501`**에서 URL 이동 없이 동작한다.

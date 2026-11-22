@@ -1,0 +1,12 @@
+이미지 번호: 그림 4-7
+이미지 파일명: fig_ch04_v07.png
+단원: 제4장. 덩굴 생장 조절 및 생육 최적화 기법 (ch04)
+결합 절: 4.3 생장 조절을 위한 재식 밀도 및 포기 간격 설정
+시각화 유형: scientific_anatomy
+제목: [그림 4-7] 재식 밀도별 근계 확장 및 군락 엽면적 지수(LAI) 상관 모델
+
+[문맥 기반 이미지 설명]
+[그림 4-7] 과밀 식재(15cm), 적정 간격(25~30cm), 과소 식재(45cm)의 세 가지 조건에서 나타나는 지상부 엽면적 및 지하부 덩이뿌리 비대 양상을 대비한 다이어그램이다. 과밀 조건에서는 개체 간 빛과 양분 경쟁으로 상호 음영이 심화되고 덩이뿌리 형성이 왜소해지는 반면, 적정 간격에서는 군락 엽면적 지수(LAI)와 광 차단율이 최적의 균형을 이루어 고른 괴근 수확을 달성한다. 개체군 생장 잠재량과 공간 최적화 이론의 핵심을 나타낸다.
+
+[나노바나나 생성 프롬프트]
+Editorial scientific illustration on a pure white background displaying three comparative sweet potato planting density panels side by side. Panel A shows crowded spacing at 15 cm with overlapping tall etiolated shoots, heavy mutual shading, and tiny stunted root tubers. Panel B depicts optimal spacing at 25-30 cm with well-spaced umbrella-like foliage intercepts, balanced light coverage, and uniformly sized plump reddish-purple storage roots. Panel C shows wide spacing at 45 cm with vigorous individual mounds but empty unused soil gaps between plants. Precise, realistic botanical rendering with three-dimensional depth and volumetric plant forms. Publication-grade realism only — strictly NO cartoon, NO childish clipart, NO flat vector doodles. ABSOLUTE ZERO-TEXT REQUIREMENT: Strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO titles, NO arrows with text, NO captions, NO signboards, NO logos, NO screens, NO watermarks anywhere in the image.

@@ -1,0 +1,12 @@
+이미지 번호: 그림 6-2
+이미지 파일명: fig_ch06_v02.png
+단원: 제6장. 재배 환경에 따른 생산성 및 품질 최적화 (ch06)
+결합 절: 6.1 기형근(Deformed Root) 발생 원인 분석 및 예방
+시각화 유형: scientific_anatomy
+제목: [그림 6-2] 토양 과습 및 혐기 조건에서의 고구마 근단 세포 붕괴 및 분열 저해 기전
+
+[문맥 기반 이미지 설명]
+[그림 6-2] 침수 및 통기 불량 조건에서 고구마 뿌리 끝 분열조직과 저장 유세포가 겪는 세포 생리적 손상을 보여주는 과학 해부도이다. 혐기 조건으로 인해 미토콘드리아의 ATP 합성이 중단되면서 세포막의 삼투압 조절 능력이 상실되고 세포벽이 불규칙하게 허물어지는 현상이 묘사된다. [SRC-226]에서 지적한 과습 스트레스에 따른 호흡 저하와 에틸렌 집적이 비정상적인 피층 통기조직을 형성하고 영구적 기형을 유발하는 과정을 설명한다.
+
+[나노바나나 생성 프롬프트]
+Scientific botanical cross-section illustration showing the apical meristem and elongation zone of a developing sweet potato storage root under hypoxia stress on a pure white background. Richly textured cellular illustration depicting normal orderly parenchymal cells on one half and collapsed, vacuolated, irregularly swollen cortex cells on the other half. Swollen intercellular spaces, disorganized secondary vascular cambium rings, and degraded cell walls rendered in precise botanical watercolor style with subtle cellular staining tones. Publication-grade realism only — strictly NO cartoon, NO childish clipart, NO flat vector doodles. ABSOLUTE ZERO-TEXT REQUIREMENT: Strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO titles, NO arrows with text, NO captions, NO signboards, NO logos, NO screens, NO watermarks anywhere in the image.

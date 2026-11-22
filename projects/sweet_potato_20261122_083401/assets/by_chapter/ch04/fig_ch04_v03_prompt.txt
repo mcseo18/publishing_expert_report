@@ -1,0 +1,12 @@
+이미지 번호: 그림 4-3
+이미지 파일명: fig_ch04_v03.png
+단원: 제4장. 덩굴 생장 조절 및 생육 최적화 기법 (ch04)
+결합 절: 4.1 덩굴무성(Vigorous Growth)의 유도 및 관리
+시각화 유형: photorealistic_macro
+제목: [그림 4-3] 급속 신장기 고구마 덩굴 선단부 생장점 및 모용의 미세 구조
+
+[문맥 기반 이미지 설명]
+[그림 4-3] 왕성한 영양생장이 진행 중인 고구마 덩굴 선단부(apical shoot)를 초접사 렌즈로 포착한 모습이다. 어린 미성숙 잎을 보호하는 표피 모용(trichome)과 엽맥의 미세 유관속 주위로 축적된 세포 분열 조직이 선명하게 관찰된다. 이는 광합성 동화 산물이 활발히 유입되어 세포 분열과 줄기 신장을 주도하는 '최적 무성성'의 형태학적 징표이다.
+
+[나노바나나 생성 프롬프트]
+Ultra-sharp macro scientific laboratory photograph of a growing sweet potato vine tip. The image reveals delicate purplish-green uncurling young leaves covered in fine translucent trichomes and protective epidermal hairs. Strong lateral studio lighting accentuates the velvety texture of the plant tissue, crisp vein ridges, and microscopic moisture beads on the leaf margin against a neutral out-of-focus slate gray laboratory background. Publication-grade realism only — strictly NO cartoon, NO childish clipart, NO flat vector doodles. ABSOLUTE ZERO-TEXT REQUIREMENT: Strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO titles, NO arrows with text, NO captions, NO signboards, NO logos, NO screens, NO watermarks anywhere in the image.

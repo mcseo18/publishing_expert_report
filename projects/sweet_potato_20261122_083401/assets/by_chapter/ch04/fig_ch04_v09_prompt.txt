@@ -1,0 +1,12 @@
+이미지 번호: 그림 4-9
+이미지 파일명: fig_ch04_v09.png
+단원: 제4장. 덩굴 생장 조절 및 생육 최적화 기법 (ch04)
+결합 절: 4.4 병해충 예방적 생육 관리 (예방적 방제 전략)
+시각화 유형: scientific_anatomy
+제목: [그림 4-9] 군락 통기성 확보에 따른 병원균 포자 확산 차단 및 미기후 변화
+
+[문맥 기반 이미지 설명]
+[그림 4-9] 적정 포기 간격 유지와 덩굴 배치 관리를 통해 형성된 군락 내부의 미기후 조절 및 예방적 방제 기작을 설명하는 과학적 구조도이다. 과습하고 정체된 미기후에서는 곰팡이 포자 발아와 잎 표면 침투가 촉진되지만, 원활한 공기 유동이 확보된 군락에서는 잎 표면 건조와 자외선 노출로 인해 병원균 정착이 원천적으로 억제된다. 화학적 약제 살포 이전에 물리적 생육 밀도 제어가 수행하는 면역 환경 조성 원리를 시각화한다 [SRC-221, SRC-222].
+
+[나노바나나 생성 프롬프트]
+Scientific cross-section diagram of sweet potato canopy microclimate on a white background. Blue aerodynamic streamlines represent smooth laminar airflow weaving cleanly through loosely clustered leaves, carrying away moisture droplets. A microscopic inset highlights the leaf cuticular surface where airborne fungal spores dehydrate and fail to produce germ tubes due to low relative humidity and direct sunlight exposure. Crisp, realistic scientific rendering with clear atmospheric tone and structural botanical precision. Publication-grade realism only — strictly NO cartoon, NO childish clipart, NO flat vector doodles. ABSOLUTE ZERO-TEXT REQUIREMENT: Strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO titles, NO arrows with text, NO captions, NO signboards, NO logos, NO screens, NO watermarks anywhere in the image.

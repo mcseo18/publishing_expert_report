@@ -1,0 +1,12 @@
+이미지 번호: 그림 3-4
+이미지 파일명: fig_ch03_v04.png
+단원: 제3장. 활착기 및 초기 생육 관리 (ch03)
+결합 절: 3.2 초기 생장 단계의 영양 공급: 가리질 비료 시비 전략
+시각화 유형: photorealistic_macro
+제목: [그림 3-4] 고구마 근권 토양 내 바이오차 다공성 구조와 미세 근계 결합
+
+[문맥 기반 이미지 설명]
+[그림 3-4] 토양 환경 안정화를 위해 시용한 다공성 바이오차(Biochar) 입자와 고구마 미세근의 물리적 결합 양상을 포착한 초접사 사진입니다. 미세한 벌집 구조의 탄소 기공이 수분과 양분을 흡착하여 보존하고 있는 형태를 선명하게 보여줍니다[SRC-225]. 이는 토양 유기 탄소(SOC)를 장기적으로 격리하는 동시에 근권의 보수력과 양분 보유능(CEC)을 지속적으로 증진시키는 물리적 토대가 됩니다[SRC-228].
+
+[나노바나나 생성 프롬프트]
+Ultra-sharp macro photograph of black porous biochar granules embedded in brown sandy loam soil beside tender white sweet potato rootlets. The microscopic honeycomb pore structure of the charcoal surface is visible in high detail, holding micro-droplets of water and dissolved minerals. Delicate root hairs wrap around the carbonaceous matrix, illuminated with crisp natural studio-quality lighting. Publication-grade realism only — strictly NO cartoon, NO childish clipart, NO flat vector doodles. ABSOLUTE ZERO-TEXT REQUIREMENT: Strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO titles, NO arrows with text, NO captions, NO signboards, NO logos, NO screens, NO watermarks anywhere in the image.

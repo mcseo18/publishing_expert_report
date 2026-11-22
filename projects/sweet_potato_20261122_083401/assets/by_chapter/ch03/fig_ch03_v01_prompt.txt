@@ -1,0 +1,12 @@
+이미지 번호: 그림 3-1
+이미지 파일명: fig_ch03_v01.png
+단원: 제3장. 활착기 및 초기 생육 관리 (ch03)
+결합 절: 3.1 정식 및 활착 과정의 생리적 반응
+시각화 유형: photorealistic_macro
+제목: [그림 3-1] 정식 직후 고구마 묘의 절간 부정근 발달 및 토양 안착 미세구조
+
+[문맥 기반 이미지 설명]
+[그림 3-1] 정식 직후 고구마 묘(cutting slip)의 줄기 마디에서 발생하는 부정근의 초기 발달 양상을 보여줍니다. 모체에서 분리된 묘목이 이식 스트레스(Disturbance Stress)를 극복하기 위해 토양 입자와 긴밀하게 접촉하며 측근 원기를 급속히 신장시키는 과정입니다[SRC-100]. 이는 활착기 초기 수분 장력 변화에 적응하고 양분 흡수 표면적을 조기에 확보하기 위한 핵심적인 형태학적 반응입니다[SRC-223].
+
+[나노바나나 생성 프롬프트]
+Macro photograph of a newly transplanted sweet potato vine stem node partially buried in dark crumbly moist loam soil. Tender translucent white adventitious root primordia and fine lateral rootlets are emerging from the purplish-green stem node, anchoring delicately into rich soil aggregates. Dewdrops and fine mineral particles cling to the hair-like roots under soft directional morning sunlight with shallow depth of field. Publication-grade realism only — strictly NO cartoon, NO childish clipart, NO flat vector doodles. ABSOLUTE ZERO-TEXT REQUIREMENT: Strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO titles, NO arrows with text, NO captions, NO signboards, NO logos, NO screens, NO watermarks anywhere in the image.

@@ -1,0 +1,167 @@
+# 제1장. 고구마의 분류학적 이해와 생리적 특성 — 문맥 기반 시각화 기획서 (이미지 번호 · 설명 · 프롬프트)
+
+- **단원 ID**: `ch01`
+- **총 시각화 수**: **10종** (Google Gemini Nano Banana 전량 제작)
+- **생성 시각**: `2026-11-22T04:12:24+00:00`
+
+---
+
+## [그림 1-1] 메꽃과(Convolvulaceae) 고구마의 형태학적 구조와 덩굴성 영양기관 체계
+
+- **이미지 번호 / 파일명**: `그림 1-1` / `fig_ch01_v01.png`
+- **문서 결합 절(Section)**: 1.1 메꽃과(Convolvulaceae)의 특징과 고구마의 계통
+- **시각화 유형**: `scientific_anatomy`
+
+### 문맥 기반 상세 설명 (줄글)
+[그림 1-1] 본 도해는 고구마가 속한 메꽃과(Convolvulaceae) 식물의 전형적인 영양 및 생식 기관 체계를 보여줍니다 [SRC-103]. 지표면을 따라 포복성으로 뻗어나가는 덩굴 줄기와 각 마디에서 분화하는 부정근(adventitious root) 및 심장형 엽신의 엽맥 배열이 정밀하게 묘사되어 있습니다. 또한 잎겨드랑이에서 피어나는 나팔 형태의 통꽃과 내부 생식기관의 해부학적 특성을 통해 메꽃과 고유의 분류학적 징표를 명확히 제시합니다.
+
+### 나노바나나 생성 프롬프트 (Pure English · Zero-Text)
+```text
+Scientific botanical cross-section illustration on a clean pure white background depicting the morphological anatomy of the sweet potato vine (Ipomoea batatas, Convolvulaceae). A central sprawling green trailing vine shows swollen nodes with developing adventitious roots emerging downward into fine rootlets. Alternately arranged cordate and heart-shaped green leaves display intricate palmate venation. A pale lavender funnel-shaped five-lobed sympetalous flower is shown in partial longitudinal cross-section, revealing internal slender stamens with pollen grains and a central pistil with a swollen ovary. Rich scientific watercolor shading with soft, precise botanical detailing. Publication-grade realism only — strictly NO cartoon, NO childish clipart, NO flat vector doodles. ABSOLUTE ZERO-TEXT REQUIREMENT: Strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO titles, NO arrows with text, NO captions, NO signboards, NO logos, NO screens, NO watermarks anywhere in the image.
+```
+
+---
+
+## [그림 1-2] 열대·아열대 유래 호온성 덩굴 캐노피의 포장 생육 군락
+
+- **이미지 번호 / 파일명**: `그림 1-2` / `fig_ch01_v02.png`
+- **문서 결합 절(Section)**: 1.1 메꽃과(Convolvulaceae)의 특징과 고구마의 계통
+- **시각화 유형**: `photorealistic_field`
+
+### 문맥 기반 상세 설명 (줄글)
+[그림 1-2] 열대 및 아열대 기후에 적응한 메꽃과 작물로서 고구마 덩굴 군락이 포장 두둑을 빈틈없이 피복하며 생장하는 현장 모습을 기록한 사진입니다 [SRC-103]. 넓은 잎면적을 확보하여 일사량을 극대화하는 포복형 줄기 전개 양상이 생생하게 관찰됩니다. 고온 다일조 조건에서 왕성한 영양생장이 이루어지는 재배 포장의 입체적 캐노피 구조를 확인할 수 있습니다.
+
+### 나노바나나 생성 프롬프트 (Pure English · Zero-Text)
+```text
+A documentary photograph taken in full natural daylight at an agricultural research farm showing a dense sweet potato field canopy. Broad emerald-green cordate leaves completely carpet the raised agricultural soil ridges, forming a lush, thick foliage layer that captures midday sunlight. Slender creeping runner vines wind across the damp reddish-brown loamy soil between furrows. The natural depth-of-field focuses crisply on foreground dew-kissed leaf blades showing textured epidermal veins, while the sweeping ridge rows softly recede toward the horizon under a bright summer sky. Publication-grade realism only — strictly NO cartoon, NO childish clipart, NO flat vector doodles. ABSOLUTE ZERO-TEXT REQUIREMENT: Strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO titles, NO arrows with text, NO captions, NO signboards, NO logos, NO screens, NO watermarks anywhere in the image.
+```
+
+---
+
+## [그림 1-3] 부정근에서 괴근으로의 분열조직 발달 및 2차 비대 해부 단면
+
+- **이미지 번호 / 파일명**: `그림 1-3` / `fig_ch01_v03.png`
+- **문서 결합 절(Section)**: 1.2 괴근(Tuberous Root) 형성 메커니즘 및 비대 원리
+- **시각화 유형**: `scientific_anatomy`
+
+### 문맥 기반 상세 설명 (줄글)
+[그림 1-3] 세근 상태의 부정근이 저장 기관인 괴근으로 비대 발달하는 내부 조직학적 변화를 나타낸 단면 해부도입니다 [SRC-103]. 1차 물관부 주변에 형성된 기형성 2차 형성층(anomalous secondary cambium)의 활발한 세포분열과 저장 유조직(storage parenchyma)의 급격한 확장이 단계별로 묘사되어 있습니다. 이 과정에서 유조직 세포 내부에 전분 입자가 조밀하게 축적되며 괴근 부피가 증대되는 생리적 원리를 직관적으로 이해할 수 있습니다.
+
+### 나노바나나 생성 프롬프트 (Pure English · Zero-Text)
+```text
+A detailed scientific anatomy illustration on a pure white background depicting the histological progression from a slender adventitious fibrous root to an enlarged tuberous root. Transverse circular cross-sections display internal tissue layers: the outermost periderm protective bark, cortical parenchyma, vascular cambium ring, and anomalous secondary cambia actively budding around central primary xylem vessels. Enlarged storage parenchyma cells swell and multiply, filled with round crystalline starch granule clusters. Rich editorial scientific shading, smooth biological gradients, and distinct anatomical coloring delineate each cellular tissue boundary. Publication-grade realism only — strictly NO cartoon, NO childish clipart, NO flat vector doodles. ABSOLUTE ZERO-TEXT REQUIREMENT: Strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO titles, NO arrows with text, NO captions, NO signboards, NO logos, NO screens, NO watermarks anywhere in the image.
+```
+
+---
+
+## [그림 1-4] 괴근 내부 저장 유조직 세포 및 전분립의 고배율 미세구조
+
+- **이미지 번호 / 파일명**: `그림 1-4` / `fig_ch01_v04.png`
+- **문서 결합 절(Section)**: 1.2 괴근(Tuberous Root) 형성 메커니즘 및 비대 원리
+- **시각화 유형**: `photorealistic_macro`
+
+### 문맥 기반 상세 설명 (줄글)
+[그림 1-4] 괴근 내부 유조직 세포를 고배율로 정밀 촬영하여 전분 축적 양상을 관찰한 현미경 사진입니다 [SRC-103]. 다각형태의 유세포 내부에 아밀로오스와 아밀로펙틴으로 구성된 구형 및 타원형의 전분립(starch granules)이 조밀하게 집적되어 있습니다. 이는 광합성으로 합성된 당류가 최종적으로 안정적인 다당류 형태로 전환 및 응집되는 미세 물리화학적 증거를 보여줍니다 [SRC-224].
+
+### 나노바나나 생성 프롬프트 (Pure English · Zero-Text)
+```text
+Ultra-sharp scanning electron macro microscopy photography of fractured sweet potato storage root parenchyma tissue. The thin polygonal plant cell walls form a three-dimensional cellular honeycomb matrix, densely packed with thousands of microscopic spherical and oval starch granules. The crystalline facets of individual amylose and amylopectin granules catch directional laboratory illumination, revealing delicate growth rings and smooth surface textures with extreme clarity and microscopic depth of field. Publication-grade realism only — strictly NO cartoon, NO childish clipart, NO flat vector doodles. ABSOLUTE ZERO-TEXT REQUIREMENT: Strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO titles, NO arrows with text, NO captions, NO signboards, NO logos, NO screens, NO watermarks anywhere in the image.
+```
+
+---
+
+## [그림 1-5] 광합성 동화산물(수크로스)의 사부 운반 및 괴근 전분 합성 대사 경로
+
+- **이미지 번호 / 파일명**: `그림 1-5` / `fig_ch01_v05.png`
+- **문서 결합 절(Section)**: 1.2 괴근(Tuberous Root) 형성 메커니즘 및 비대 원리
+- **시각화 유형**: `scientific_anatomy`
+
+### 문맥 기반 상세 설명 (줄글)
+[그림 1-5] 지상부 엽육세포에서 생성된 광합성 산물이 지하부 괴근의 수용능력(sink strength)에 의해 집중 전이되는 수송 및 합성 메커니즘입니다 [SRC-103, SRC-224]. 체관(phloem)을 통한 수크로스(sucrose)의 장거리 전류와 괴근 유세포로의 하적(unloading) 과정이 상세히 표현되어 있습니다. 유세포 내에서 수크로스가 효소 반응을 거쳐 아밀로오스와 아밀로펙틴 중합체로 합성되는 생화학적 저장 흐름을 정밀하게 보여줍니다.
+
+### 나노바나나 생성 프롬프트 (Pure English · Zero-Text)
+```text
+A scientific process illustration on a pure white background depicting the source-to-sink translocation of photoassimilates. At the top, a cross-section of a green leaf shows chloroplasts releasing sucrose molecules into vascular sieve tubes. The sucrose flows through the longitudinal vascular bundle of the stem down to the subterranean tuberous root. At the bottom, phloem unloading releases sucrose into storage parenchyma cells, where sucrose synthase and ADP-glucose pyrophosphorylase enzymes convert sugars into branching chains of amylopectin and helical amylose inside amyloplast organelles. Painted in elegant, precise editorial scientific art style with clean lighting. Publication-grade realism only — strictly NO cartoon, NO childish clipart, NO flat vector doodles. ABSOLUTE ZERO-TEXT REQUIREMENT: Strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO titles, NO arrows with text, NO captions, NO signboards, NO logos, NO screens, NO watermarks anywhere in the image.
+```
+
+---
+
+## [그림 1-6] 온도 조건별(28°C 적온 vs 15°C 저온 스트레스) 뿌리 생육 및 활력 비교
+
+- **이미지 번호 / 파일명**: `그림 1-6` / `fig_ch01_v06.png`
+- **문서 결합 절(Section)**: 1.3 호온성(Thermophilous) 작물로서의 생장 특성
+- **시각화 유형**: `photorealistic_field`
+
+### 문맥 기반 상세 설명 (줄글)
+[그림 1-6] 호온성 작물인 고구마의 뿌리 반응을 관찰하기 위해 투명 근권 관찰상(rhizotron)에서 촬영한 생육 비교 사진입니다. 28°C의 적온 조건에서는 백색의 왕성한 1차근과 측근 분지가 활발하며 조기 괴근 분화가 균일하게 유도됩니다. 반면 15°C 저온 스트레스에 노출된 뿌리는 신장이 현저히 둔화되고 갈변화되며 유효 괴근 형성이 억제되는 뚜렷한 대사 저해 양상을 드러냅니다 [SRC-221].
+
+### 나노바나나 생성 프롬프트 (Pure English · Zero-Text)
+```text
+An agricultural laboratory documentary photograph of two adjacent transparent glass rhizotron soil root observation chambers under greenhouse lighting. On the left side, maintained under optimal 28 degrees Celsius, robust sweet potato roots extend deep into moist soil with prolific, bright white branching lateral roots and healthy swelling tuberous initials. On the right side, maintained under 15 degrees Celsius chilling stress, the root system is stunted, sparse, with brown tips and no swelling initiation. Crisp macro clarity of root hairs pressing against clean glass plates, natural research facility setting. Publication-grade realism only — strictly NO cartoon, NO childish clipart, NO flat vector doodles. ABSOLUTE ZERO-TEXT REQUIREMENT: Strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO titles, NO arrows with text, NO captions, NO signboards, NO logos, NO screens, NO watermarks anywhere in the image.
+```
+
+---
+
+## [그림 1-7] 바이오차 시용에 따른 근권 토양 미세공극 구조와 세근의 밀착 발달
+
+- **이미지 번호 / 파일명**: `그림 1-7` / `fig_ch01_v07.png`
+- **문서 결합 절(Section)**: 1.3 호온성(Thermophilous) 작물로서의 생장 특성
+- **시각화 유형**: `photorealistic_macro`
+
+### 문맥 기반 상세 설명 (줄글)
+[그림 1-7] 토양 물리화학성 개선 및 탄소 격리를 위해 시용된 다공성 바이오차 입자와 고구마 흡수근의 상호작용을 포착한 초접사 사진입니다 [SRC-225, SRC-226, SRC-228]. 미세 탄화 공극 사이로 뻗어나간 잔뿌리와 근모(root hair)가 토양 응집체(aggregate)와 긴밀하게 결합되어 있습니다. 이러한 근권 환경의 최적화는 수분 및 보비력을 증진시켜 호온성 대사 작용과 광합성 안정성을 간접적으로 지원합니다.
+
+### 나노바나나 생성 프롬프트 (Pure English · Zero-Text)
+```text
+Macro close-up photograph of dark porous biochar particles intermixed with rich, crumbly sandy loam soil around living sweet potato feeder roots. Slender, translucent white root hairs weave through the microscopic porous channels and honeycomb cavities of the black carbonized biochar fragments. Tiny soil mineral aggregates, organic moisture beads, and fine root tips form a tight rhizosphere network under soft directional research studio lighting with realistic macro depth. Publication-grade realism only — strictly NO cartoon, NO childish clipart, NO flat vector doodles. ABSOLUTE ZERO-TEXT REQUIREMENT: Strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO titles, NO arrows with text, NO captions, NO signboards, NO logos, NO screens, NO watermarks anywhere in the image.
+```
+
+---
+
+## [그림 1-8] 주요 품종(밤고구마·호박고구마·꿀고구마) 괴근의 종횡단면 육질 비교
+
+- **이미지 번호 / 파일명**: `그림 1-8` / `fig_ch01_v08.png`
+- **문서 결합 절(Section)**: 1.4 품종별 특성 분석: 밤고구마, 호박고구마, 꿀고구마의 비교
+- **시각화 유형**: `photorealistic_macro`
+
+### 문맥 기반 상세 설명 (줄글)
+[그림 1-8] 국내 주요 재배 품종인 밤고구마, 호박고구마, 꿀고구마 괴근의 신선 단면을 동일 규격으로 절단하여 비교한 고해상도 사진입니다 [SRC-103]. 전분질 함량이 높아 단단하고 유백색을 띠는 밤고구마와 카로티노이드 및 수분 함량이 풍부해 선명한 주황빛을 내는 호박고구마의 육질 차이가 두드러집니다. 또한 당류 축적이 활발하여 촉촉하고 은은한 황갈색 속살을 보이는 꿀고구마의 품종 고유 조직감이 선명하게 대조됩니다.
+
+### 나노바나나 생성 프롬프트 (Pure English · Zero-Text)
+```text
+A professional studio culinary and agronomic macro photograph of three harvested sweet potato cultivars cleanly sliced in half on a rustic slate surface. On the left, a chestnut sweet potato (Bam-goguma) reveals dense, chalky, pale creamy-yellow flesh rich in starch within deep reddish-purple skin. In the center, a pumpkin sweet potato (Hobak-goguma) shows vibrant, moist salmon-orange interior flesh indicating high carotenoid and moisture content. On the right, a honey sweet potato (Ggul-goguma) displays a translucent amber-golden, succulent interior with glistening sugary moisture droplets. Crisp textures, crisp skin cross-sections, and soft studio lighting. Publication-grade realism only — strictly NO cartoon, NO childish clipart, NO flat vector doodles. ABSOLUTE ZERO-TEXT REQUIREMENT: Strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO titles, NO arrows with text, NO captions, NO signboards, NO logos, NO screens, NO watermarks anywhere in the image.
+```
+
+---
+
+## [그림 1-9] 품종별 탄수화물 대사 분기: 전분 축적형과 유리당 전환형의 경로 차이
+
+- **이미지 번호 / 파일명**: `그림 1-9` / `fig_ch01_v09.png`
+- **문서 결합 절(Section)**: 1.4 품종별 특성 분석: 밤고구마, 호박고구마, 꿀고구마의 비교
+- **시각화 유형**: `scientific_anatomy`
+
+### 문맥 기반 상세 설명 (줄글)
+[그림 1-9] 밤고구마 계통과 호박·꿀고구마 계통 간의 상이한 탄수화물 대사 조절 경로를 도식화한 세포생물학 도해입니다 [SRC-103]. 전분 축적형인 밤고구마는 아밀로플라스트 내 글루코스 중합 반응이 우세하여 불용성 전분으로 장기 보관에 유리한 반면, 호박 및 꿀고구마는 베타-아밀레이스(β-amylase)와 인버테이스(invertase) 활성이 높아 전분이 맥아당과 자당 등 유리당류로 신속히 분해·축적됩니다. 이러한 유전적 경로 차이가 품종별 식감과 당도 형성의 본질적 기작임을 규명합니다.
+
+### 나노바나나 생성 프롬프트 (Pure English · Zero-Text)
+```text
+Scientific metabolic pathway illustration on a clean white background comparing carbohydrate storage divergence in sweet potato cells. On the upper track representing starch-dominant cultivars, sucrose is funneled into amyloplasts where starch synthase creates densely packed, solid, crystalline amylose and amylopectin granules. On the lower track representing sugar-accumulating cultivars, heightened beta-amylase and invertase enzyme complexes cleave starch chains into abundant free maltose, sucrose, and fructose molecules accumulating inside the central vacuole. Beautifully rendered semi-transparent plant cells, organelle structures, and stylized molecular chains in sophisticated scientific textbook watercolor style. Publication-grade realism only — strictly NO cartoon, NO childish clipart, NO flat vector doodles. ABSOLUTE ZERO-TEXT REQUIREMENT: Strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO titles, NO arrows with text, NO captions, NO signboards, NO logos, NO screens, NO watermarks anywhere in the image.
+```
+
+---
+
+## [그림 1-10] 과잉 질소 시비로 인한 줄기 번무(웃자람) 포장과 균형 시비 포장의 대조
+
+- **이미지 번호 / 파일명**: `그림 1-10` / `fig_ch01_v10.png`
+- **문서 결합 절(Section)**: 오해와 진실: 현장·이론 핵심 오해 교정
+- **시각화 유형**: `photorealistic_field`
+
+### 문맥 기반 상세 설명 (줄글)
+[그림 1-10] 질소 과다 투입에 따른 생리적 장해(웃자람)와 적정 균형 시비 포장의 괴근 발달 차이를 실증적으로 대조한 포장 단면 사진입니다 [SRC-224]. 좌측 구획은 질소 과용으로 인해 지상부 잎과 줄기만 과도하게 무성하여 광합성 산물이 소모되고 지하부 괴근은 가늘고 빈약한 실뿌리에 그칩니다. 반면 우측의 적정 탄질률(C/N ratio) 관리 구획은 적절한 수관을 유지하며 굵고 충실한 방추형 괴근이 군집을 이루어 다수확을 실현한 상태를 명확히 보여줍니다.
+
+### 나노바나나 생성 프롬프트 (Pure English · Zero-Text)
+```text
+A documentary split-field agricultural photograph showing a soil profile trench cut horizontally across two sweet potato experimental plots. The left half shows an over-fertilized nitrogen plot with wildly overgrown, tangled, dark green vine canopies on top, but the subterranean cross-section reveals only spindly, thin fibrous string roots with tiny underdeveloped tubers. The right half shows a balanced carbon-to-nitrogen plot with moderate, orderly green foliage above and a subterranean root zone packed with plump, uniformly clustered purple-skinned oval tuberous roots bulging in the soil. Natural daylight, raw earthy soil textures, documentary agricultural photography. Publication-grade realism only — strictly NO cartoon, NO childish clipart, NO flat vector doodles. ABSOLUTE ZERO-TEXT REQUIREMENT: Strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO titles, NO arrows with text, NO captions, NO signboards, NO logos, NO screens, NO watermarks anywhere in the image.
+```
+
+---

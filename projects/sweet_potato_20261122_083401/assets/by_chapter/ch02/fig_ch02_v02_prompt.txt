@@ -1,0 +1,12 @@
+이미지 번호: 그림 2-2
+이미지 파일명: fig_ch02_v02.png
+단원: 제2장. 토양학적 환경과 재배 기초 기술 (ch02)
+결합 절: 2.1 고구마 생육에 적합한 토양 특성 (사질양토 중심)
+시각화 유형: photorealistic_macro
+제목: [그림 2-2] 토양 내 다공성 바이오차 입자와 탄소 안정화 미세환경
+
+[문맥 기반 이미지 설명]
+[그림 2-2] 사질양토에 혼합된 바이오차 입자의 다공성 벌집 미세구조를 초근접 매크로 렌즈로 포착한 연구 사진입니다. 높은 비표면적을 가진 다공성 탄소 구조체가 주변 토양 유기물(SOM)을 흡착하고 미생물 서식처를 제공하는 양상이 선명하게 드러납니다 [SRC-225, SRC-228]. 이는 토양의 탄소 격리 능력 증진과 보비력 개선을 통한 지속 가능한 고구마 재배 환경의 기초를 설명합니다.
+
+[나노바나나 생성 프롬프트]
+Ultra-sharp photorealistic macro photograph of a porous black biochar aggregate integrated into moist reddish-brown agricultural sandy loam soil. The biochar particle exhibits an intricate microscopic honeycomb lattice structure with hollow cylindrical micro-pores reflecting gentle laboratory lighting. Fine cream-colored sweet potato root hairs gracefully wrap around the carbon structure. Tiny glistening water droplets and micro-aggregates of organic matter cling to the textured pore walls. Crisp shallow depth of field, high scientific clarity, showcasing real soil texture and mineral fragments. Publication-grade realism only — strictly NO cartoon, NO childish clipart, NO flat vector doodles. ABSOLUTE ZERO-TEXT REQUIREMENT: Strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO titles, NO arrows with text, NO captions, NO signboards, NO logos, NO screens, NO watermarks anywhere in the image.

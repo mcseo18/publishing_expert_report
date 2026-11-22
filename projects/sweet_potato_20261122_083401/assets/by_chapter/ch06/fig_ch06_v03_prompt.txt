@@ -1,0 +1,12 @@
+이미지 번호: 그림 6-3
+이미지 파일명: fig_ch06_v03.png
+단원: 제6장. 재배 환경에 따른 생산성 및 품질 최적화 (ch06)
+결합 절: 6.1 기형근(Deformed Root) 발생 원인 분석 및 예방
+시각화 유형: photorealistic_field
+제목: [그림 6-3] 바이오차 혼입을 통한 토양 물리성 개선 및 고구마 근권 배수 구조
+
+[문맥 기반 이미지 설명]
+[그림 6-3] 다공성 바이오차를 투입하여 토양 물리성을 획기적으로 개선한 고구마 시험포장의 이랑 단면을 촬영한 현장 다큐멘터리 사진이다. 유기 탄소 함량이 높은 부슬부슬한 양토 사이에 미세한 흑색 바이오차 다공성 입자들이 균일하게 혼합되어 우수한 배수성과 통기 통로를 확보하고 있다. 이는 [SRC-225]와 [SRC-228]에서 강조된 양이온 교환 능력(CEC) 증진 및 토양 구조 안정화가 뿌리의 물리적 억압을 해소하여 기형근을 차단하는 환경적 기초를 나타낸다.
+
+[나노바나나 생성 프롬프트]
+Photorealistic field photograph of an agricultural soil trench cut revealing the internal vertical profile of a sweet potato planting ridge. Crumbly, aerated reddish-brown loam soil blended with porous black biochar granules in the upper root zone, exhibiting excellent macroscopic porosity and drainage channels. Healthy young sweet potato root fibers spreading downward freely without obstruction, shot in clear morning sunlight with natural camera depth of field. Publication-grade realism only — strictly NO cartoon, NO childish clipart, NO flat vector doodles. ABSOLUTE ZERO-TEXT REQUIREMENT: Strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO titles, NO arrows with text, NO captions, NO signboards, NO logos, NO screens, NO watermarks anywhere in the image.

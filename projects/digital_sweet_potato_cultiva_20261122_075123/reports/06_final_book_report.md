@@ -1,11 +1,11 @@
 # 6단계 교재 생성 완료 종합 보고서 — 《디지털 고구마 재배》
 
-- **완료 시각**: `2026-11-21T23:21:36+00:00`
+- **완료 시각**: `2026-11-22T03:40:01+00:00`
 - **교재 제목**: 《디지털 고구마 재배》 (Digital Sweet Potato Cultivation)
 - **목표 분량 / 단원 수**: 595p / 17개 단원
 - **집필 완료 원고**: **17개 단원 · 총 191,901자**
 - **근거 수집 자료**: **24건** (`E:\SMC_Report_Platform_Data\projects\digital_sweet_potato_cultiva_20261122_075123\collected`)
-- **시각화 자료**: 총 **170종** (AI 실사진/인포그래픽 67종 · Vector SVG 103종, 단원당 목표 10개+)
+- **시각화 자료**: 총 **170종** (AI 실사진/인포그래픽 68종 · Vector SVG 102종, 단원당 목표 10개+)
 - **인용 무결성 감사**: `PASS` (치명오류 0건 · 경고 2건)
 - **출판 산출물 파일 수**: **157개** (`E:\SMC_Report_Platform_Data\projects\digital_sweet_potato_cultiva_20261122_075123\exports` 미러링 완료)
 

@@ -1,0 +1,12 @@
+이미지 번호: 그림 5-4
+이미지 파일명: fig_ch05_v04.png
+단원: 제5장. 괴근 형성 및 비대 과정의 분자생물학적 이해 (ch05)
+결합 절: 5.2 괴근 비대(Tuberous Root Enlargement)를 조절하는 호르몬 및 유전자
+시각화 유형: scientific_anatomy
+제목: [그림 5-4] 괴근 비대를 지배하는 식물 호르몬(GA, 옥신, 사이토키닌)의 세포 분열 및 팽창 신호 전달 모식도
+
+[문맥 기반 이미지 설명]
+[그림 5-4] 괴근 비대 과정에서 옥신(Auxin), 지베렐린(GA), 사이토키닌이 형성층 세포 분열과 유조직 비대를 유도하는 생화학적 신호 경로를 도식화한 과학 일러스트레이션입니다 [SRC-227]. 지베렐린과 옥신이 유도하는 세포벽 이완 단백질과 유전자 전사체 발현, 그리고 중심 관다발 분열조직의 다방향성 확장이 순경로를 따라 세포 내부와 조직 수준에서 입체적으로 시각화되어 있습니다. 이는 비대가 단순 세포 분열뿐만 아니라 급격한 세포 부피 팽창의 결합임을 증명합니다.
+
+[나노바나나 생성 프롬프트]
+Scientific anatomical mechanism illustration set on a pure solid white background, depicting the plant hormone signaling cascades governing sweet potato root enlargement. A cross-section of expanding root parenchymal cells shows glowing molecular spheres representing auxin, gibberellin, and cytokinin interacting with plasma membrane receptors and nuclear transcription machinery. Arrows and biochemical pathway ribbons in elegant teal, amber, and deep magenta illustrate cell wall loosening, water uptake into expanding central vacuoles, and vascular cambium ring proliferation. Professional editorial journal rendering, crisp vector-like edges with rich volumetric 3D shading, no text or labels. Publication-grade realism only — strictly NO cartoon, NO childish clipart, NO flat vector doodles. ABSOLUTE ZERO-TEXT REQUIREMENT: Strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO titles, NO arrows with text, NO captions, NO signboards, NO logos, NO screens, NO watermarks anywhere in the image.

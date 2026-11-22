@@ -1,0 +1,12 @@
+이미지 번호: 그림 5-3
+이미지 파일명: fig_ch05_v03.png
+단원: 제5장. 괴근 형성 및 비대 과정의 분자생물학적 이해 (ch05)
+결합 절: 5.1 괴근 형성 유도 요인과 발달 시기
+시각화 유형: photorealistic_macro
+제목: [그림 5-3] 광주기 및 온도 환경 제어 챔버 내 고구마 유묘의 유도기 부정근 미세 형태
+
+[문맥 기반 이미지 설명]
+[그림 5-3] 제어된 인공기상실(growth chamber)에서 단일 광주기와 적정 야간 온도를 통해 괴근 형성을 유도한 고구마 유묘의 뿌리 미세구조를 촬영한 매크로 사진입니다 [SRC-224]. 뿌리 끝 신장대 뒤편에서 측근 분열조직이 팽대되며 유륜 형태의 환상 비대가 시작되는 초기 전구조직을 초고해상도로 보여줍니다. 생육 시기에 따른 환경 신호 통합 반응이 어떻게 물리적인 뿌리 형태 변화로 최초 발현되는지 명확히 나타냅니다.
+
+[나노바나나 생성 프롬프트]
+Macro laboratory photograph of an early-stage sweet potato plantlet cultured under controlled photoperiod conditions. The delicate white root junction against a dark matte slate plate shows dramatic localized radial swelling behind the elongation zone. Fine translucent root hairs spread into droplets of nutrient agar, while the primary cortex displays distinct horizontal cell expansion. Crisp optical focus on the newly swelling root axis, soft diffuse cold laboratory lighting, extremely shallow depth of field highlighting microscopic cellular turgor and translucent root tissue. Publication-grade realism only — strictly NO cartoon, NO childish clipart, NO flat vector doodles. ABSOLUTE ZERO-TEXT REQUIREMENT: Strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO titles, NO arrows with text, NO captions, NO signboards, NO logos, NO screens, NO watermarks anywhere in the image.

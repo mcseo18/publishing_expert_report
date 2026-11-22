@@ -1,0 +1,12 @@
+이미지 번호: 그림 1-10
+이미지 파일명: fig_ch01_v10.png
+단원: 제1장. 고구마의 분류학적 이해와 생리적 특성 (ch01)
+결합 절: 오해와 진실: 현장·이론 핵심 오해 교정
+시각화 유형: photorealistic_field
+제목: [그림 1-10] 과잉 질소 시비로 인한 줄기 번무(웃자람) 포장과 균형 시비 포장의 대조
+
+[문맥 기반 이미지 설명]
+[그림 1-10] 질소 과다 투입에 따른 생리적 장해(웃자람)와 적정 균형 시비 포장의 괴근 발달 차이를 실증적으로 대조한 포장 단면 사진입니다 [SRC-224]. 좌측 구획은 질소 과용으로 인해 지상부 잎과 줄기만 과도하게 무성하여 광합성 산물이 소모되고 지하부 괴근은 가늘고 빈약한 실뿌리에 그칩니다. 반면 우측의 적정 탄질률(C/N ratio) 관리 구획은 적절한 수관을 유지하며 굵고 충실한 방추형 괴근이 군집을 이루어 다수확을 실현한 상태를 명확히 보여줍니다.
+
+[나노바나나 생성 프롬프트]
+A documentary split-field agricultural photograph showing a soil profile trench cut horizontally across two sweet potato experimental plots. The left half shows an over-fertilized nitrogen plot with wildly overgrown, tangled, dark green vine canopies on top, but the subterranean cross-section reveals only spindly, thin fibrous string roots with tiny underdeveloped tubers. The right half shows a balanced carbon-to-nitrogen plot with moderate, orderly green foliage above and a subterranean root zone packed with plump, uniformly clustered purple-skinned oval tuberous roots bulging in the soil. Natural daylight, raw earthy soil textures, documentary agricultural photography. Publication-grade realism only — strictly NO cartoon, NO childish clipart, NO flat vector doodles. ABSOLUTE ZERO-TEXT REQUIREMENT: Strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO titles, NO arrows with text, NO captions, NO signboards, NO logos, NO screens, NO watermarks anywhere in the image.

@@ -1,0 +1,12 @@
+이미지 번호: 그림 4-2
+이미지 파일명: fig_ch04_v02.png
+단원: 제4장. 덩굴 생장 조절 및 생육 최적화 기법 (ch04)
+결합 절: 4.1 덩굴무성(Vigorous Growth)의 유도 및 관리
+시각화 유형: scientific_anatomy
+제목: [그림 4-2] 토양 입단 구조 및 고구마 신초 생장점 호르몬 수송 기전
+
+[문맥 기반 이미지 설명]
+[그림 4-2] 토양 내 유기물 복합체로부터 공급되는 수분 및 무기 양분이 지하부 뿌리를 거쳐 지상부 생장점으로 이동하는 생리적 기작을 묘사한 단면도이다. 근계 발달 영역의 미세 공극과 근모 표면에서의 질소·탄소 흡수, 그리고 줄기 유관속을 통한 옥신과 지베렐린의 극성 이동 경로가 정밀하게 표현되어 있다. 무성 생장 유도를 위한 물리화학적 환경 최적화와 내인성 호르몬 신호 전달 체계의 유기적 연결성을 설명한다 [SRC-221, SRC-222].
+
+[나노바나나 생성 프롬프트]
+Scientific anatomical cutaway illustration on a pure white background showing the biological mechanism of sweet potato vine vigor. On the lower half, a detailed longitudinal soil profile displays dark organic humus aggregates, crumb soil structure, and pale fibrous roots with root hairs. Clear gradient arrows indicate xylem sap flow ascending through stem vascular bundles into an apical shoot tip. The apical meristem shows cellular layers with subtle glowing pathways representing auxin and gibberellin translocation, rendered in high-end textbook painterly cross-section style with elegant shading and crisp biological accuracy. Publication-grade realism only — strictly NO cartoon, NO childish clipart, NO flat vector doodles. ABSOLUTE ZERO-TEXT REQUIREMENT: Strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO titles, NO arrows with text, NO captions, NO signboards, NO logos, NO screens, NO watermarks anywhere in the image.

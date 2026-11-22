@@ -1,0 +1,12 @@
+이미지 번호: 그림 2-5
+이미지 파일명: fig_ch02_v05.png
+단원: 제2장. 토양학적 환경과 재배 기초 기술 (ch02)
+결합 절: 2.3 재배 준비: 씨고구마 선별 및 무병묘 생산 기술
+시각화 유형: photorealistic_macro
+제목: [그림 2-5] 우량 씨고구마의 선별 기준과 싹 틔움 형태 비교
+
+[문맥 기반 이미지 설명]
+[그림 2-5] 종자 전염성 병해를 차단하기 위해 엄격하게 선별된 건전한 씨고구마와 맹아 발생 상태를 관찰한 매크로 사진입니다. 표피가 매끄럽고 균일한 적자색을 띠는 괴경의 눈(bud eye)에서 건강한 자줏빛 어린 싹이 규칙적으로 돋아나고 있습니다 [SRC-103]. 병원균 침입 흔적이나 형태적 결함이 배제된 우량 종저의 물리적 특성을 상세히 제시합니다.
+
+[나노바나나 생성 프롬프트]
+Ultra-detailed macro photograph of a certified disease-free seed sweet potato resting on a neutral laboratory inspection surface. The storage root has a smooth, vibrant coppery-purple periderm free from fungal blemishes, cracks, or rot. At several nodal eyes, stout and vigorous purplish-green young sprouts are emerging with tight microscopic leaf clusters. Soft lateral studio lighting reveals the velvety skin texture, subtle lenticels, and healthy turgid cell structure. Professional agronomic quality assessment setup. Publication-grade realism only — strictly NO cartoon, NO childish clipart, NO flat vector doodles. ABSOLUTE ZERO-TEXT REQUIREMENT: Strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO titles, NO arrows with text, NO captions, NO signboards, NO logos, NO screens, NO watermarks anywhere in the image.

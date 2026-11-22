@@ -1,0 +1,12 @@
+이미지 번호: 그림 5-7
+이미지 파일명: fig_ch05_v07.png
+단원: 제5장. 괴근 형성 및 비대 과정의 분자생물학적 이해 (ch05)
+결합 절: 5.3 당분 축적 메커니즘: 전분 및 당화 효소 연구 (Isoamylase 등)
+시각화 유형: photorealistic_macro
+제목: [그림 5-7] 성숙 고구마 괴근 전분체(Amyloplast) 내부 전분 과립의 주사전자현미경(SEM) 미세 미려 구조
+
+[문맥 기반 이미지 설명]
+[그림 5-7] 괴근 세포를 동결 파단하여 노출시킨 전분 과립(starch granules)의 미세 삼차원 구조를 주사전자현미경(SEM)으로 관찰한 고배율 사진입니다 [SRC-103, SRC-224]. 아이오마일라아제(Isoamylase) 등 가지치기 효소의 조절 작용에 의해 구형, 타원형, 다면체형으로 균일하고 치밀하게 다듬어진 직경 10~25μm의 전분 입자들이 세포 구획 내에 빼곡하게 들어차 있는 모습을 극적으로 보여줍니다. 이는 괴근 탄수화물 축적 능력의 최종 물리적 실체를 입증합니다.
+
+[나노바나나 생성 프롬프트]
+Scanning electron microscopy (SEM) micrograph of sweet potato storage root parenchyma fractured to reveal internal starch granules. A cluster of smooth-surfaced, spherical, bell-shaped, and polyhedral starch granules ranging from 10 to 25 micrometers packed tightly inside fractured thin-walled storage parenchyma chambers. Crisp micro-relief shadowing, subtle grayscale with scientific electron beam contrast, authentic nano-scale texture revealing tiny cleavage steps on grain surfaces, extreme depth and magnification. Publication-grade realism only — strictly NO cartoon, NO childish clipart, NO flat vector doodles. ABSOLUTE ZERO-TEXT REQUIREMENT: Strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO titles, NO arrows with text, NO captions, NO signboards, NO logos, NO screens, NO watermarks anywhere in the image.

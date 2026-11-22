@@ -1,0 +1,12 @@
+이미지 번호: 그림 3-9
+이미지 파일명: fig_ch03_v09.png
+단원: 제3장. 활착기 및 초기 생육 관리 (ch03)
+결합 절: 3.4 초기 생장 환경 제어: 전열온상 및 비닐 멀칭 적용
+시각화 유형: photorealistic_macro
+제목: [그림 3-9] 비닐 멀칭 두둑 내부의 열적 안정화 및 응결 수분 보존 상태
+
+[문맥 기반 이미지 설명]
+[그림 3-9] 비닐 멀칭이 적용된 고구마 두둑의 천공 부위에서 묘목이 안착해 자라나는 미세 환경을 포착한 초접사 사진입니다. 멀칭 필름 하부에 형성된 미세 응결 수적들이 토양 수분의 대기 증발을 차단하고 주야간 지온의 급격한 변동을 완충하는 물리적 보호막 역할을 합니다[SRC-100]. 이를 통해 묘목은 제한된 수분을 증산 작용에 집중적으로 사용하며 초기 활착률을 극대화할 수 있습니다.
+
+[나노바나나 생성 프롬프트]
+Macro photograph focusing on a circular opening in glossy black polyethylene mulch film laid over an earthen ridge at sunrise. Tiny droplets of condensed moisture glisten along the underside of the plastic sheet. A young, healthy sweet potato vine shoot emerges upright from the dark, crumbly damp soil beneath, bathed in low-angled natural sunlight that highlights microscopic water vapor. Publication-grade realism only — strictly NO cartoon, NO childish clipart, NO flat vector doodles. ABSOLUTE ZERO-TEXT REQUIREMENT: Strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO titles, NO arrows with text, NO captions, NO signboards, NO logos, NO screens, NO watermarks anywhere in the image.

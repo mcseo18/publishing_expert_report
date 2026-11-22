@@ -1,0 +1,12 @@
+이미지 번호: 그림 3-8
+이미지 파일명: fig_ch03_v08.png
+단원: 제3장. 활착기 및 초기 생육 관리 (ch03)
+결합 절: 3.4 초기 생장 환경 제어: 전열온상 및 비닐 멀칭 적용
+시각화 유형: photorealistic_field
+제목: [그림 3-8] 묘목 저온 스트레스 경감을 위한 전열온상 육묘 베드와 지하 열선 배열
+
+[문맥 기반 이미지 설명]
+[그림 3-8] 이른 봄 저온기 활착 촉진을 위해 인공 지온을 형성하는 전열온상 육묘상의 단면 구조와 묘목 생육 상태를 보여주는 연구 시설 사진입니다. 배양토 하부에 일정한 간격으로 매설된 전열선과 감온 센서가 뿌리 발근에 최적인 지온을 일정하게 유지하고 있습니다[SRC-103]. 이러한 정밀 온도 제어는 저온 스트레스를 차단하고 미생물 대사 활성을 촉진하여 묘목의 조기 활착 기간을 획기적으로 단축시킵니다.
+
+[나노바나나 생성 프롬프트]
+Documentary photograph of an agricultural greenhouse nursery bed with cutaway soil layers. Insulated orange and black electric heating cables are neatly laid in parallel beneath a layer of dark organic seedling substrate. Above the soil, robust sweet potato sprouts with vibrant emerald leaves and dense fibrous white root systems thrive uniformly in diffuse warm greenhouse lighting. Publication-grade realism only — strictly NO cartoon, NO childish clipart, NO flat vector doodles. ABSOLUTE ZERO-TEXT REQUIREMENT: Strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO titles, NO arrows with text, NO captions, NO signboards, NO logos, NO screens, NO watermarks anywhere in the image.

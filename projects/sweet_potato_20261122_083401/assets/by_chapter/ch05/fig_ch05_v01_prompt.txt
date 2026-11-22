@@ -1,0 +1,12 @@
+이미지 번호: 그림 5-1
+이미지 파일명: fig_ch05_v01.png
+단원: 제5장. 괴근 형성 및 비대 과정의 분자생물학적 이해 (ch05)
+결합 절: 단원 요약
+시각화 유형: scientific_anatomy
+제목: [그림 5-1] 고구마 뿌리의 초기 분화부터 비대 괴근 발달까지의 4단계 형태학적 및 분자적 전환
+
+[문맥 기반 이미지 설명]
+[그림 5-1] 고구마 부정근이 저장 기관으로 발달하는 연속적인 발달 단계를 한눈에 보여주는 과학적 횡단면 일러스트레이션입니다. 미분화된 백색 섬유근(fibrous root)에서 관다발 형성층이 활성화되는 연필형 예비괴근(pencil root)을 거쳐, 전분이 빽빽하게 축적되는 성숙 괴근(mature storage root)까지의 내부 세포 배열 변화를 정밀하게 묘사합니다. 이는 본 단원에서 다루는 괴근 분화, 호르몬 조절, 전분 합성 효소 작용의 시공간적 토대를 설명합니다.
+
+[나노바나나 생성 프롬프트]
+Scientific anatomical cross-section illustration showing the four chronological development stages of a sweet potato root system on an immaculate solid white background. From left to right: a thin white fibrous root with simple central stele, an early transitioning pencil root showing active vascular cambium division, a swelling young storage root with expanding parenchymal cells filled with early starch granules, and a fully enlarged mature tuberous root displaying dense cortical parenchyma packed with amylose and amylopectin spheres. Rich botanical watercolor and digital airbrushing texture, crisp cellular membrane boundaries, subtle violet-copper outer periderm, creamy white inner flesh, clean studio lighting with soft drop shadows, textbook quality scientific art. Publication-grade realism only — strictly NO cartoon, NO childish clipart, NO flat vector doodles. ABSOLUTE ZERO-TEXT REQUIREMENT: Strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO titles, NO arrows with text, NO captions, NO signboards, NO logos, NO screens, NO watermarks anywhere in the image.

@@ -1,0 +1,12 @@
+이미지 번호: 그림 5-6
+이미지 파일명: fig_ch05_v06.png
+단원: 제5장. 괴근 형성 및 비대 과정의 분자생물학적 이해 (ch05)
+결합 절: 5.3 당분 축적 메커니즘: 전분 및 당화 효소 연구 (Isoamylase 등)
+시각화 유형: scientific_anatomy
+제목: [그림 5-6] 엽육세포 광합성 당분의 체관 수송 및 아밀로플라스트 내 전분 합성 효소(GS) 복합체 경로
+
+[문맥 기반 이미지 설명]
+[그림 5-6] 광합성 산물인 자당(sucrose)이 괴근의 아밀로플라스트로 운반되어 아밀로스와 아밀로펙틴으로 합성되는 생화학적 효소 복합체 작용 경로를 나타낸 과학 단면도입니다 [SRC-103]. 자당 합성효소(SUS), ADP-포도당 피로인산분해효소(AGPase), 전분 합성효소(Starch Synthase, GS)가 차례로 작용하여 전분 입자의 동심원상 층상 구조를 합성해 나가는 과정이 분자 모델링 수준으로 섬세하게 표현되어 있습니다. 괴근이 광합성 동화 산물의 종착지(sink organ)로서 작동하는 효소적 기전을 규명합니다.
+
+[나노바나나 생성 프롬프트]
+Editorial scientific illustration depicting the starch biosynthesis pathway within an amyloplast of a sweet potato root cell, isolated on a stark white background. A translucent double-membrane amyloplast receives glucose precursors from the surrounding cytoplasm. Inside, 3D modeled enzyme structures of starch synthase (GS) and branching enzymes actively lengthen multi-branched amylopectin molecular polymers onto the faceted surface of an iridescent starch grain. Luminous gold and deep blue molecular ribbons, semi-transparent lipid bilayers, fine biochemical clarity, soft realistic shading with high-end academic textbook precision. Publication-grade realism only — strictly NO cartoon, NO childish clipart, NO flat vector doodles. ABSOLUTE ZERO-TEXT REQUIREMENT: Strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO titles, NO arrows with text, NO captions, NO signboards, NO logos, NO screens, NO watermarks anywhere in the image.

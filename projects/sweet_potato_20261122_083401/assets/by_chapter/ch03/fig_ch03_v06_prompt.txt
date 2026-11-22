@@ -1,0 +1,12 @@
+이미지 번호: 그림 3-6
+이미지 파일명: fig_ch03_v06.png
+단원: 제3장. 활착기 및 초기 생육 관리 (ch03)
+결합 절: 3.3 재식 밀도 결정과 덩굴 발달 최적화
+시각화 유형: photorealistic_field
+제목: [그림 3-6] 고구마 재식 밀도에 따른 두둑 간 수광 태세 및 군락 캐노피 구조
+
+[문맥 기반 이미지 설명]
+[그림 3-6] 최적 재식 밀도로 조성된 고구마 포장에서 두둑 위 덩굴 군락이 펼쳐진 수광 구조를 보여주는 농업 다큐멘터리 사진입니다. 포기 간 적정 간격을 유지함으로써 개체 간 과도한 광선 경쟁을 피하고 지표면을 균일하게 피복하여 잡초 발생을 억제합니다[SRC-103]. 이는 수분 스트레스와 양분 고갈을 최소화하면서 잎의 광합성 효율을 극대화하는 군락 환경을 형성합니다.
+
+[나노바나나 생성 프롬프트]
+Wide-angle documentary photograph of an expansive sweet potato field with perfectly straight raised ridges under late afternoon sunlight. Healthy green sweet potato vines spread rhythmically along the elevated furrows, creating an optimal open canopy where lower leaves receive filtered sunlight without dense overcrowding. Long warm shadows accentuate the uniform geometry of the agricultural landscape. Publication-grade realism only — strictly NO cartoon, NO childish clipart, NO flat vector doodles. ABSOLUTE ZERO-TEXT REQUIREMENT: Strictly NO text, NO words, NO letters, NO numbers, NO Korean Hangul, NO English labels, NO titles, NO arrows with text, NO captions, NO signboards, NO logos, NO screens, NO watermarks anywhere in the image.
