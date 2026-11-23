@@ -1,11 +1,11 @@
 {
   "project_id": "smart_farm_onion_cultivation_20261123_042527",
-  "generated_at": "2026-11-22T20:06:14+00:00",
-  "per_chapter_target": 10,
+  "generated_at": "2026-11-23T12:33:48+00:00",
+  "per_chapter_target": 5,
   "use_fal_ai": false,
   "fal_model": "fal-ai/nano-banana",
   "use_nano_banana": true,
-  "total_generated": 150,
+  "total_generated": 73,
   "ai_images_count": 12,
   "svg_charts_count": 138,
   "png_rasterized_count": 150,
@@ -197,12 +197,13 @@
       "path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts\\fig_ch01_v06.svg",
       "rel_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts/fig_ch01_v06.svg",
       "engine": "vector_svg",
-      "note": "",
-      "status": "OK",
+      "note": "2026-11-23 품질 감사(P8~P10): 빈 틀/고정값 차트 출판 제외 처리",
+      "status": "UNGENERATED",
       "docx_image_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts_png\\fig_ch01_v06.png",
       "png_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts_png/fig_ch01_v06.png",
       "chapter_dir_local": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\by_chapter\\ch01",
-      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch01"
+      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch01",
+      "exclude_from_publish": true
     },
     {
       "figure_id": "fig_ch01_v07",
@@ -284,12 +285,13 @@
       "path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts\\fig_ch01_v09.svg",
       "rel_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts/fig_ch01_v09.svg",
       "engine": "vector_svg",
-      "note": "",
-      "status": "OK",
+      "note": "2026-11-23 품질 감사(P8~P10): 빈 틀/고정값 차트 출판 제외 처리",
+      "status": "UNGENERATED",
       "docx_image_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts_png\\fig_ch01_v09.png",
       "png_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts_png/fig_ch01_v09.png",
       "chapter_dir_local": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\by_chapter\\ch01",
-      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch01"
+      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch01",
+      "exclude_from_publish": true
     },
     {
       "figure_id": "fig_ch01_v10",
@@ -487,12 +489,13 @@
       "path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts\\fig_ch02_v06.svg",
       "rel_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts/fig_ch02_v06.svg",
       "engine": "vector_svg",
-      "note": "",
-      "status": "OK",
+      "note": "2026-11-23 품질 감사(P8~P10): 빈 틀/고정값 차트 출판 제외 처리",
+      "status": "UNGENERATED",
       "docx_image_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts_png\\fig_ch02_v06.png",
       "png_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts_png/fig_ch02_v06.png",
       "chapter_dir_local": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\by_chapter\\ch02",
-      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch02"
+      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch02",
+      "exclude_from_publish": true
     },
     {
       "figure_id": "fig_ch02_v07",
@@ -574,12 +577,13 @@
       "path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts\\fig_ch02_v09.svg",
       "rel_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts/fig_ch02_v09.svg",
       "engine": "vector_svg",
-      "note": "",
-      "status": "OK",
+      "note": "2026-11-23 품질 감사(P8~P10): 빈 틀/고정값 차트 출판 제외 처리",
+      "status": "UNGENERATED",
       "docx_image_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts_png\\fig_ch02_v09.png",
       "png_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts_png/fig_ch02_v09.png",
       "chapter_dir_local": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\by_chapter\\ch02",
-      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch02"
+      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch02",
+      "exclude_from_publish": true
     },
     {
       "figure_id": "fig_ch02_v10",
@@ -690,12 +694,13 @@
       "path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts\\fig_ch03_v03.svg",
       "rel_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts/fig_ch03_v03.svg",
       "engine": "svg_blueprint_ready",
-      "note": "gemini-2.5-flash-image: 402 RESOURCE_EXHAUSTED. {'error': {'code': 402, 'message': 'Your prepayment credits are de",
-      "status": "OK",
+      "note": "2026-11-23 품질 감사(P8~P10): 빈 틀/고정값 차트 출판 제외 처리",
+      "status": "UNGENERATED",
       "docx_image_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts_png\\fig_ch03_v03.png",
       "png_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts_png/fig_ch03_v03.png",
       "chapter_dir_local": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\by_chapter\\ch03",
-      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch03"
+      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch03",
+      "exclude_from_publish": true
     },
     {
       "figure_id": "fig_ch03_v04",
@@ -777,12 +782,13 @@
       "path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts\\fig_ch03_v06.svg",
       "rel_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts/fig_ch03_v06.svg",
       "engine": "vector_svg",
-      "note": "",
-      "status": "OK",
+      "note": "2026-11-23 품질 감사(P8~P10): 빈 틀/고정값 차트 출판 제외 처리",
+      "status": "UNGENERATED",
       "docx_image_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts_png\\fig_ch03_v06.png",
       "png_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts_png/fig_ch03_v06.png",
       "chapter_dir_local": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\by_chapter\\ch03",
-      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch03"
+      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch03",
+      "exclude_from_publish": true
     },
     {
       "figure_id": "fig_ch03_v07",
@@ -864,12 +870,13 @@
       "path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts\\fig_ch03_v09.svg",
       "rel_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts/fig_ch03_v09.svg",
       "engine": "vector_svg",
-      "note": "",
-      "status": "OK",
+      "note": "2026-11-23 품질 감사(P8~P10): 빈 틀/고정값 차트 출판 제외 처리",
+      "status": "UNGENERATED",
       "docx_image_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts_png\\fig_ch03_v09.png",
       "png_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts_png/fig_ch03_v09.png",
       "chapter_dir_local": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\by_chapter\\ch03",
-      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch03"
+      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch03",
+      "exclude_from_publish": true
     },
     {
       "figure_id": "fig_ch03_v10",
@@ -951,12 +958,13 @@
       "path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts\\fig_ch04_v02.svg",
       "rel_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts/fig_ch04_v02.svg",
       "engine": "svg_blueprint_ready",
-      "note": "gemini-2.5-flash-image: 402 RESOURCE_EXHAUSTED. {'error': {'code': 402, 'message': 'Your prepayment credits are de",
-      "status": "OK",
+      "note": "2026-11-23 품질 감사(P8~P10): 빈 틀/고정값 차트 출판 제외 처리",
+      "status": "UNGENERATED",
       "docx_image_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts_png\\fig_ch04_v02.png",
       "png_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts_png/fig_ch04_v02.png",
       "chapter_dir_local": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\by_chapter\\ch04",
-      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch04"
+      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch04",
+      "exclude_from_publish": true
     },
     {
       "figure_id": "fig_ch04_v03",
@@ -980,12 +988,13 @@
       "path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts\\fig_ch04_v03.svg",
       "rel_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts/fig_ch04_v03.svg",
       "engine": "svg_blueprint_ready",
-      "note": "gemini-2.5-flash-image: 402 RESOURCE_EXHAUSTED. {'error': {'code': 402, 'message': 'Your prepayment credits are de",
-      "status": "OK",
+      "note": "2026-11-23 품질 감사(P8~P10): 빈 틀/고정값 차트 출판 제외 처리",
+      "status": "UNGENERATED",
       "docx_image_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts_png\\fig_ch04_v03.png",
       "png_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts_png/fig_ch04_v03.png",
       "chapter_dir_local": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\by_chapter\\ch04",
-      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch04"
+      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch04",
+      "exclude_from_publish": true
     },
     {
       "figure_id": "fig_ch04_v04",
@@ -1009,12 +1018,13 @@
       "path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts\\fig_ch04_v04.svg",
       "rel_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts/fig_ch04_v04.svg",
       "engine": "svg_blueprint_ready",
-      "note": "gemini-2.5-flash-image: 402 RESOURCE_EXHAUSTED. {'error': {'code': 402, 'message': 'Your prepayment credits are de",
-      "status": "OK",
+      "note": "2026-11-23 품질 감사(P8~P10): 빈 틀/고정값 차트 출판 제외 처리",
+      "status": "UNGENERATED",
       "docx_image_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts_png\\fig_ch04_v04.png",
       "png_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts_png/fig_ch04_v04.png",
       "chapter_dir_local": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\by_chapter\\ch04",
-      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch04"
+      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch04",
+      "exclude_from_publish": true
     },
     {
       "figure_id": "fig_ch04_v05",
@@ -1067,12 +1077,13 @@
       "path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts\\fig_ch04_v06.svg",
       "rel_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts/fig_ch04_v06.svg",
       "engine": "vector_svg",
-      "note": "",
-      "status": "OK",
+      "note": "2026-11-23 품질 감사(P8~P10): 빈 틀/고정값 차트 출판 제외 처리",
+      "status": "UNGENERATED",
       "docx_image_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts_png\\fig_ch04_v06.png",
       "png_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts_png/fig_ch04_v06.png",
       "chapter_dir_local": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\by_chapter\\ch04",
-      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch04"
+      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch04",
+      "exclude_from_publish": true
     },
     {
       "figure_id": "fig_ch04_v07",
@@ -1154,12 +1165,13 @@
       "path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts\\fig_ch04_v09.svg",
       "rel_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts/fig_ch04_v09.svg",
       "engine": "vector_svg",
-      "note": "",
-      "status": "OK",
+      "note": "2026-11-23 품질 감사(P8~P10): 빈 틀/고정값 차트 출판 제외 처리",
+      "status": "UNGENERATED",
       "docx_image_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts_png\\fig_ch04_v09.png",
       "png_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts_png/fig_ch04_v09.png",
       "chapter_dir_local": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\by_chapter\\ch04",
-      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch04"
+      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch04",
+      "exclude_from_publish": true
     },
     {
       "figure_id": "fig_ch04_v10",
@@ -1192,293 +1204,180 @@
     },
     {
       "figure_id": "fig_ch05_v01",
+      "figure_no": "그림 5-1",
       "chapter_id": "ch05",
       "chapter_number": 5,
       "index": 1,
-      "kind": "photo_ai",
-      "style": "photorealistic",
-      "is_ai_image": true,
-      "title_ko": "그림 5-1. 제5장. 토양 수분 모니터링 센서 네트워크와 스마트 관개 자동화 — 현장 실사진: 핵심 작물·재배 환경 전경 (5.1 FDR/TDR 센서 및 텐시오미터(Tensiometer)의 원리, 보정 계수 및 설치 프로토콜)",
-      "subtitle_ko": "스마트 팜 양파 재배 · 5.1 FDR/TDR 센서 및 텐시오미터(Tensiometer)의 원리, 보정 계수 및 설치 프로토콜",
-      "prompt": "Ultra-realistic documentary agricultural photograph of precision planting and raised soil beds prepared for onion (Allium cepa) plants with tubular green leaves and round golden-skinned bulbs emerging from loamy soil in dark fertile loam soil at an experimental farm, crisp natural daylight, field research station quality, accurate botanical morphology, shallow depth of field. STRICT REQUIREMENT: Pure visual photography or text-free scientific illustration ONLY. Absolutely ZERO text, ZERO words, ZERO letters, ZERO numbers, ZERO Korean Hangul, ZERO English labels, ZERO titles, ZERO captions, ZERO logos, ZERO tablet/monitor screens, ZERO signboards, ZERO watermarks anywhere in the image.",
-      "narrative_ko": "[그림 5-1] 그림 5-1. 제5장. 토양 수분 모니터링 센서 네트워크와 스마트 관개 자동화 — 현장 실사진: 핵심 작물·재배 환경 전경 (5.1 FDR/TDR 센서 및 텐시오미터(Tensiometer)의 원리, 보정 계수 및 설치 프로토콜)은(는) 《스마트 팜 양파 재배》 제5장. 토양 수분 모니터링 센서 네트워크와 스마트 관개 자동화의 핵심 학습 요소인 '5.1 FDR/TDR 센서 및 텐시오미터(Tensiometer)의 원리, 보정 계수 및 설치 프로토콜'을 사실적인 현장 실사진 및 고해상도 과학 도해으로 시각화한 자료이다. 독자는 이 도해를 통해 주요 환경·생리·관리 변수 간의 인과관계를 직관적으로 파악하고 현장 의사결정 기준과 직접 연결할 수 있다.",
-      "sections": [
-        "5.1 FDR/TDR 센서 및 텐시오미터(Tensiometer)의 원리, 보정 계수 및 설치 프로토콜",
-        "5.2 기상 데이터(온·습도, 일사량, 풍속) 기반 Penman-Monteith 작물 증발산량(ETc) 산출",
-        "5.3 점적 관개(Drip irrigation) 시스템의 수리학적 설계와 포장 내 관수 균일도(CU) 평가",
-        "5.4 토양 수분 결핍 지수(CWSI) 기반 무인 밸브 연동 자동 관개 알고리즘 구현"
+      "kind": "svg_layers",
+      "style": "layered_comparison",
+      "is_ai_image": false,
+      "target_section": "5.1 FDR/TDR 센서 및 텐시오미터(Tensiometer)의 원리, 보정 계수 및 설치 프로토콜",
+      "title_ko": "그림 5-1. TDR·FDR·텐시오미터 측정 원리와 양파 뿌리층 설치 깊이 비교",
+      "subtitle_ko": "양파 천근성 뿌리(주 근권 0~30 cm) 맞춤 2단 설치 프로토콜",
+      "claim_ko": "TDR·FDR은 토양 유전율로 체적수분함량(θv)을, 텐시오미터는 세라믹컵 압력으로 수분장력(Ψm)을 계측하며 양파 주 근권 15 cm와 하부 30 cm에 이중 설치한다",
+      "how_to_read_ko": "세 열에서 각 센서의 물리적 계측 원리·장단점을 비교하고 하단 강조 상자에서 양파 뿌리층 권장 설치 깊이와 관수 개시 기준을 확인한다",
+      "data_source": "Topp et al. (1980, Water Resour. Res. 16:574); FAO-56 (Allen et al., 1998) 양파 유효 근권 깊이(0.30–0.45 m) 기준",
+      "diagram_nodes": [
+        {
+          "tag": "TDR (시간영역 반사법)",
+          "label": "고주파 전자기파 전파속도 → 유전율(εa) 계측",
+          "detail": "Topp 보정식(θv=f(εa)) 적용. 토양 염류(EC) 영향이 적고 정밀도(±1~2%)가 우수하나 장비 단가가 높음.",
+          "metric": "설치: 15 cm(주 근권) + 30 cm(배수 감시)"
+        },
+        {
+          "tag": "FDR (주파수영역 반사법)",
+          "label": "정전용량 공진주파수 → 체적수분함량(θv) 환산",
+          "detail": "저전력·다지점 IoT 센서 네트워크 구축에 적합. 사양토·양토·식양토 및 EC 변화에 따른 현장 보정 필수.",
+          "metric": "설치: 점적기 직하부 10~15 cm · 25~30 cm"
+        },
+        {
+          "tag": "텐시오미터 (수분장력계)",
+          "label": "다공성 세라믹컵 매트릭 포텐셜(Ψm, kPa) 직측",
+          "detail": "토성에 무관하게 작물 뿌리가 느끼는 흡수 저항을 직접 반영. 작동 범위 0~−80 kPa(−85 kPa 이상 공기 유입 주의).",
+          "metric": "양파 구 비대기 관수개시: −15 ~ −25 kPa"
+        }
       ],
       "filename": "fig_ch05_v01.svg",
       "path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts\\fig_ch05_v01.svg",
-      "rel_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts/fig_ch05_v01.svg",
-      "engine": "svg_blueprint_ready",
-      "note": "gemini-2.5-flash-image: 402 RESOURCE_EXHAUSTED. {'error': {'code': 402, 'message': 'Your prepayment credits are de",
-      "status": "OK",
       "docx_image_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts_png\\fig_ch05_v01.png",
+      "rel_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts/fig_ch05_v01.svg",
       "png_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts_png/fig_ch05_v01.png",
-      "chapter_dir_local": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\by_chapter\\ch05",
-      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch05"
+      "engine": "content_vector_svg",
+      "status": "OK",
+      "exclude_from_publish": false,
+      "narrative_ko": "[그림 5-1] TDR·FDR은 토양 유전율로 체적수분함량(θv)을, 텐시오미터는 세라믹컵 압력으로 수분장력(Ψm)을 계측하며 양파 주 근권 15 cm와 하부 30 cm에 이중 설치한다. 세 열에서 각 센서의 물리적 계측 원리·장단점을 비교하고 하단 강조 상자에서 양파 뿌리층 권장 설치 깊이와 관수 개시 기준을 확인한다. (자료: Topp et al. (1980, Water Resour. Res. 16:574); FAO-56 (Allen et al., 1998) 양파 유효 근권 깊이(0.30–0.45 m) 기준)."
     },
     {
       "figure_id": "fig_ch05_v02",
+      "figure_no": "그림 5-2",
       "chapter_id": "ch05",
       "chapter_number": 5,
       "index": 2,
-      "kind": "infographic_ai",
-      "style": "scientific_illustration",
-      "is_ai_image": true,
-      "title_ko": "그림 5-2. 제5장. 토양 수분 모니터링 센서 네트워크와 스마트 관개 자동화 — 과학 단면도·생리 구조 도해 (5.2 기상 데이터(온·습도, 일사량, 풍속) 기반 Penman-Monteith 작물 증발산량(ETc) 산출)",
-      "subtitle_ko": "스마트 팜 양파 재배 · 5.2 기상 데이터(온·습도, 일사량, 풍속) 기반 Penman-Monteith 작물 증발산량(ETc) 산출",
-      "prompt": "Publication-grade Nature journal scientific botanical illustration: clean soil profile cross-section showing dark fertile soil beds, root zone moisture, and early rooting of onion (Allium cepa) plant showing concentric fleshy bulb scales in cross-section, basal plate, and fibrous roots on pure white background, anatomically and physically accurate, crisp editorial shading, clean pure white background. STRICT REQUIREMENT: Pure visual photography or text-free scientific illustration ONLY. Absolutely ZERO text, ZERO words, ZERO letters, ZERO numbers, ZERO Korean Hangul, ZERO English labels, ZERO titles, ZERO captions, ZERO logos, ZERO tablet/monitor screens, ZERO signboards, ZERO watermarks anywhere in the image.",
-      "narrative_ko": "[그림 5-2] 그림 5-2. 제5장. 토양 수분 모니터링 센서 네트워크와 스마트 관개 자동화 — 과학 단면도·생리 구조 도해 (5.2 기상 데이터(온·습도, 일사량, 풍속) 기반 Penman-Monteith 작물 증발산량(ETc) 산출)은(는) 《스마트 팜 양파 재배》 제5장. 토양 수분 모니터링 센서 네트워크와 스마트 관개 자동화의 핵심 학습 요소인 '5.2 기상 데이터(온·습도, 일사량, 풍속) 기반 Penman-Monteith 작물 증발산량(ETc) 산출'을 사실적인 현장 실사진 및 고해상도 과학 도해으로 시각화한 자료이다. 독자는 이 도해를 통해 주요 환경·생리·관리 변수 간의 인과관계를 직관적으로 파악하고 현장 의사결정 기준과 직접 연결할 수 있다.",
-      "sections": [
-        "5.1 FDR/TDR 센서 및 텐시오미터(Tensiometer)의 원리, 보정 계수 및 설치 프로토콜",
-        "5.2 기상 데이터(온·습도, 일사량, 풍속) 기반 Penman-Monteith 작물 증발산량(ETc) 산출",
-        "5.3 점적 관개(Drip irrigation) 시스템의 수리학적 설계와 포장 내 관수 균일도(CU) 평가",
-        "5.4 토양 수분 결핍 지수(CWSI) 기반 무인 밸브 연동 자동 관개 알고리즘 구현"
-      ],
-      "filename": "fig_ch05_v02.svg",
-      "path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts\\fig_ch05_v02.svg",
-      "rel_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts/fig_ch05_v02.svg",
-      "engine": "svg_blueprint_ready",
-      "note": "gemini-2.5-flash-image: 402 RESOURCE_EXHAUSTED. {'error': {'code': 402, 'message': 'Your prepayment credits are de",
+      "kind": "matplotlib_data_chart",
+      "style": "line",
+      "is_ai_image": false,
+      "target_section": "5.1 FDR/TDR 센서 및 텐시오미터(Tensiometer)의 원리, 보정 계수 및 설치 프로토콜",
+      "title_ko": "그림 5-2. 토성별 토양수분 특성곡선(SWRC)과 양파 적정 관수개시 장력 구간",
+      "claim_ko": "같은 수분장력(15~25 kPa)에서도 사양토·양토·식양토의 체적수분함량(θv)이 크게 달라 TDR/FDR 센서는 토성별 보정이 필수임을 보여준다",
+      "how_to_read_ko": "가로축 로그 눈금의 매트릭 장력(|Ψm|, kPa)에서 녹색 음영(15~25 kPa)과 세 곡선이 만나는 세로축 체적수분함량(θv, %)을 비교해 읽는다",
+      "data_source": "van Genuchten (1980) 모형 및 Carsel & Parrish (1988) 토성별 표준 매개변수 (CSV: fig_ch05_v02_swrc_van_genuchten.csv)",
+      "csv_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\chart_data\\fig_ch05_v02_swrc_van_genuchten.csv",
+      "filename": "fig_ch05_v02.png",
+      "path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\figures\\fig_ch05_v02.png",
+      "docx_image_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\figures\\fig_ch05_v02.png",
+      "rel_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/figures/fig_ch05_v02.png",
+      "png_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/figures/fig_ch05_v02.png",
+      "engine": "matplotlib (300 DPI, Okabe-Ito)",
       "status": "OK",
-      "docx_image_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts_png\\fig_ch05_v02.png",
-      "png_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts_png/fig_ch05_v02.png",
-      "chapter_dir_local": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\by_chapter\\ch05",
-      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch05"
+      "exclude_from_publish": false,
+      "narrative_ko": "[그림 5-2] 같은 수분장력(15~25 kPa)에서도 사양토·양토·식양토의 체적수분함량(θv)이 크게 달라 TDR/FDR 센서는 토성별 보정이 필수임을 보여준다. 가로축 로그 눈금의 매트릭 장력(|Ψm|, kPa)에서 녹색 음영(15~25 kPa)과 세 곡선이 만나는 세로축 체적수분함량(θv, %)을 비교해 읽는다. (자료: van Genuchten (1980) 모형 및 Carsel & Parrish (1988) 토성별 표준 매개변수)."
     },
     {
       "figure_id": "fig_ch05_v03",
+      "figure_no": "그림 5-3",
       "chapter_id": "ch05",
       "chapter_number": 5,
       "index": 3,
-      "kind": "photo_ai",
-      "style": "photorealistic_macro",
-      "is_ai_image": true,
-      "title_ko": "그림 5-3. 제5장. 토양 수분 모니터링 센서 네트워크와 스마트 관개 자동화 — 근접 실사진: 생리·품질·구조 정밀 관찰 (5.3 점적 관개(Drip irrigation) 시스템의 수리학적 설계와 포장 내 관수 균일도(CU) 평가)",
-      "subtitle_ko": "스마트 팜 양파 재배 · 5.3 점적 관개(Drip irrigation) 시스템의 수리학적 설계와 포장 내 관수 균일도(CU) 평가",
-      "prompt": "High-resolution macro scientific photography closely capturing close-up botanical detail of onion (Allium cepa) plants with tubular green leaves and round golden-skinned bulbs emerging from loamy soil, true-to-life botanical color, crisp natural texture, laboratory diagnostic clarity. STRICT REQUIREMENT: Pure visual photography or text-free scientific illustration ONLY. Absolutely ZERO text, ZERO words, ZERO letters, ZERO numbers, ZERO Korean Hangul, ZERO English labels, ZERO titles, ZERO captions, ZERO logos, ZERO tablet/monitor screens, ZERO signboards, ZERO watermarks anywhere in the image.",
-      "narrative_ko": "[그림 5-3] 그림 5-3. 제5장. 토양 수분 모니터링 센서 네트워크와 스마트 관개 자동화 — 근접 실사진: 생리·품질·구조 정밀 관찰 (5.3 점적 관개(Drip irrigation) 시스템의 수리학적 설계와 포장 내 관수 균일도(CU) 평가)은(는) 《스마트 팜 양파 재배》 제5장. 토양 수분 모니터링 센서 네트워크와 스마트 관개 자동화의 핵심 학습 요소인 '5.3 점적 관개(Drip irrigation) 시스템의 수리학적 설계와 포장 내 관수 균일도(CU) 평가'을 사실적인 현장 실사진 및 고해상도 과학 도해으로 시각화한 자료이다. 독자는 이 도해를 통해 주요 환경·생리·관리 변수 간의 인과관계를 직관적으로 파악하고 현장 의사결정 기준과 직접 연결할 수 있다.",
-      "sections": [
-        "5.1 FDR/TDR 센서 및 텐시오미터(Tensiometer)의 원리, 보정 계수 및 설치 프로토콜",
-        "5.2 기상 데이터(온·습도, 일사량, 풍속) 기반 Penman-Monteith 작물 증발산량(ETc) 산출",
-        "5.3 점적 관개(Drip irrigation) 시스템의 수리학적 설계와 포장 내 관수 균일도(CU) 평가",
-        "5.4 토양 수분 결핍 지수(CWSI) 기반 무인 밸브 연동 자동 관개 알고리즘 구현"
-      ],
-      "filename": "fig_ch05_v03.svg",
-      "path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts\\fig_ch05_v03.svg",
-      "rel_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts/fig_ch05_v03.svg",
-      "engine": "svg_blueprint_ready",
-      "note": "gemini-2.5-flash-image: 402 RESOURCE_EXHAUSTED. {'error': {'code': 402, 'message': 'Your prepayment credits are de",
+      "kind": "matplotlib_data_chart",
+      "style": "bar_line",
+      "is_ai_image": false,
+      "target_section": "5.2 기상 데이터 기반 FAO-56 Penman-Monteith 작물 증발산량(ETc) 산출",
+      "title_ko": "그림 5-3. 양파 주산지(목포권) 월별 ET0 및 양파 작물 증발산량 ETc (2015~2024)",
+      "claim_ko": "전남 양파 주산지(목포권)에서 양파 구 비대기인 4~5월에 일 증발산량(ETc)이 연중 최고치로 급증하여 정밀 관수가 집중되어야 함을 실측 기상으로 보여준다",
+      "how_to_read_ko": "파란 막대(±SD 오차막대, n=10년)로 월별 기준 증발산량 ET₀를, 주황 실선으로 작물계수 Kc(우측 축 점선)를 곱한 양파 작물 증발산량 ETc를 함께 읽는다",
+      "data_source": "기상청 ASOS 목포(지점 165, 2015–2024, weather_daily_kr.db, [SRC-388]) 및 FAO-56 Table 12 (Allen et al., 1998)",
+      "csv_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\chart_data\\fig_ch05_v03_mokpo_et0_etc.csv",
+      "filename": "fig_ch05_v03.png",
+      "path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\figures\\fig_ch05_v03.png",
+      "docx_image_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\figures\\fig_ch05_v03.png",
+      "rel_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/figures/fig_ch05_v03.png",
+      "png_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/figures/fig_ch05_v03.png",
+      "engine": "matplotlib (300 DPI, Weather DB)",
       "status": "OK",
-      "docx_image_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts_png\\fig_ch05_v03.png",
-      "png_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts_png/fig_ch05_v03.png",
-      "chapter_dir_local": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\by_chapter\\ch05",
-      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch05"
+      "exclude_from_publish": false,
+      "narrative_ko": "[그림 5-3] 전남 양파 주산지(목포권)에서 양파 구 비대기인 4~5월에 일 증발산량(ETc)이 연중 최고치로 급증하여 정밀 관수가 집중되어야 함을 실측 기상으로 보여준다. 파란 막대(±SD 오차막대, n=10년)로 월별 기준 증발산량 ET₀를, 주황 실선으로 작물계수 Kc(우측 축 점선)를 곱한 양파 작물 증발산량 ETc를 함께 읽는다. (자료: 기상청 ASOS 목포(2015–2024, weather_daily_kr.db, [SRC-388]) 및 FAO-56 (Allen et al., 1998))."
     },
     {
       "figure_id": "fig_ch05_v04",
+      "figure_no": "그림 5-4",
       "chapter_id": "ch05",
       "chapter_number": 5,
       "index": 4,
-      "kind": "infographic_ai",
-      "style": "system_illustration",
-      "is_ai_image": true,
-      "title_ko": "그림 5-4. 제5장. 토양 수분 모니터링 센서 네트워크와 스마트 관개 자동화 — 디지털·스마트 현장 시스템 도해 (5.4 토양 수분 결핍 지수(CWSI) 기반 무인 밸브 연동 자동 관개 알고리즘 구현)",
-      "subtitle_ko": "스마트 팜 양파 재배 · 5.4 토양 수분 결핍 지수(CWSI) 기반 무인 밸브 연동 자동 관개 알고리즘 구현",
-      "prompt": "Clean modern editorial isometric illustration on pure white background showing precision agriculture sensors, weather station, and field crop canopy related to precision planting and raised soil beds prepared for onion (Allium cepa) plants with tubular green leaves and round golden-skinned bulbs emerging from loamy soil in dark fertile loam soil at an experimental farm, realistic architectural clarity. STRICT REQUIREMENT: Pure visual photography or text-free scientific illustration ONLY. Absolutely ZERO text, ZERO words, ZERO letters, ZERO numbers, ZERO Korean Hangul, ZERO English labels, ZERO titles, ZERO captions, ZERO logos, ZERO tablet/monitor screens, ZERO signboards, ZERO watermarks anywhere in the image.",
-      "narrative_ko": "[그림 5-4] 그림 5-4. 제5장. 토양 수분 모니터링 센서 네트워크와 스마트 관개 자동화 — 디지털·스마트 현장 시스템 도해 (5.4 토양 수분 결핍 지수(CWSI) 기반 무인 밸브 연동 자동 관개 알고리즘 구현)은(는) 《스마트 팜 양파 재배》 제5장. 토양 수분 모니터링 센서 네트워크와 스마트 관개 자동화의 핵심 학습 요소인 '5.4 토양 수분 결핍 지수(CWSI) 기반 무인 밸브 연동 자동 관개 알고리즘 구현'을 사실적인 현장 실사진 및 고해상도 과학 도해으로 시각화한 자료이다. 독자는 이 도해를 통해 주요 환경·생리·관리 변수 간의 인과관계를 직관적으로 파악하고 현장 의사결정 기준과 직접 연결할 수 있다.",
-      "sections": [
-        "5.1 FDR/TDR 센서 및 텐시오미터(Tensiometer)의 원리, 보정 계수 및 설치 프로토콜",
-        "5.2 기상 데이터(온·습도, 일사량, 풍속) 기반 Penman-Monteith 작물 증발산량(ETc) 산출",
-        "5.3 점적 관개(Drip irrigation) 시스템의 수리학적 설계와 포장 내 관수 균일도(CU) 평가",
-        "5.4 토양 수분 결핍 지수(CWSI) 기반 무인 밸브 연동 자동 관개 알고리즘 구현"
-      ],
-      "filename": "fig_ch05_v04.svg",
-      "path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts\\fig_ch05_v04.svg",
-      "rel_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts/fig_ch05_v04.svg",
-      "engine": "svg_blueprint_ready",
-      "note": "gemini-2.5-flash-image: 402 RESOURCE_EXHAUSTED. {'error': {'code': 402, 'message': 'Your prepayment credits are de",
+      "kind": "matplotlib_data_chart",
+      "style": "line",
+      "is_ai_image": false,
+      "target_section": "5.3 점적 관개(Drip irrigation) 시스템의 수리학적 설계와 관수 균일도(CU·EU) 평가",
+      "title_ko": "그림 5-4. 점적관 길이(0–100 m)에 따른 압력 감소와 점적기 배출량 편차",
+      "claim_ko": "점적 지선이 길어질수록 마찰손실로 관 내 압력이 떨어지며, 비압력보상형(Non-PC)은 말단 유량이 크게 줄어드는 반면 압력보상형(PC)은 높은 배출 균일도를 유지한다",
+      "how_to_read_ko": "가로축 지선 거리(0~100 m)에 따라 우측 점선(압력수두 H)이 하강할 때 좌측 두 실선(Non-PC vs PC 점적기 유량 q)의 감소 폭 차이를 비교해 읽는다",
+      "data_source": "Hazen-Williams 마찰손실식(C=145, D=16 mm) 및 ASAE EP405.1 점적기 유량-압력식(q=kHˣ) 수치 계산",
+      "csv_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\chart_data\\fig_ch05_v04_drip_hydraulics.csv",
+      "filename": "fig_ch05_v04.png",
+      "path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\figures\\fig_ch05_v04.png",
+      "docx_image_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\figures\\fig_ch05_v04.png",
+      "rel_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/figures/fig_ch05_v04.png",
+      "png_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/figures/fig_ch05_v04.png",
+      "engine": "matplotlib (300 DPI, Hydraulic Calc)",
       "status": "OK",
-      "docx_image_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts_png\\fig_ch05_v04.png",
-      "png_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts_png/fig_ch05_v04.png",
-      "chapter_dir_local": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\by_chapter\\ch05",
-      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch05"
+      "exclude_from_publish": false,
+      "narrative_ko": "[그림 5-4] 점적 지선이 길어질수록 마찰손실로 관 내 압력이 떨어지며, 비압력보상형(Non-PC)은 말단 유량이 크게 줄어드는 반면 압력보상형(PC)은 높은 배출 균일도를 유지한다. 가로축 지선 거리(0~100 m)에 따라 우측 점선(압력수두 H)이 하강할 때 좌측 두 실선(Non-PC vs PC 점적기 유량 q)의 감소 폭 차이를 비교해 읽는다. (자료: Hazen-Williams 마찰손실식(C=145, D=16 mm) 및 ASAE EP405.1 점적기 유량-압력식 수치 계산)."
     },
     {
       "figure_id": "fig_ch05_v05",
+      "figure_no": "그림 5-5",
       "chapter_id": "ch05",
       "chapter_number": 5,
       "index": 5,
       "kind": "svg_flow",
-      "style": "flowchart",
+      "style": "content_diagram",
       "is_ai_image": false,
-      "title_ko": "그림 5-5. 제5장. 토양 수분 모니터링 센서 네트워크와 스마트 관개 자동화 — 핵심 메커니즘 및 의사결정 흐름도 (5.1 FDR/TDR 센서 및 텐시오미터(Tensiometer)의 원리, 보정 계수 및 설치 프로토콜)",
-      "subtitle_ko": "스마트 팜 양파 재배 · 5.1 FDR/TDR 센서 및 텐시오미터(Tensiometer)의 원리, 보정 계수 및 설치 프로토콜",
-      "prompt": "",
-      "narrative_ko": "[그림 5-5] 그림 5-5. 제5장. 토양 수분 모니터링 센서 네트워크와 스마트 관개 자동화 — 핵심 메커니즘 및 의사결정 흐름도 (5.1 FDR/TDR 센서 및 텐시오미터(Tensiometer)의 원리, 보정 계수 및 설치 프로토콜)은(는) 《스마트 팜 양파 재배》 제5장. 토양 수분 모니터링 센서 네트워크와 스마트 관개 자동화의 핵심 학습 요소인 '5.1 FDR/TDR 센서 및 텐시오미터(Tensiometer)의 원리, 보정 계수 및 설치 프로토콜'을 정량적 벡터 차트 및 구조 다이어그램으로 시각화한 자료이다. 독자는 이 도해를 통해 주요 환경·생리·관리 변수 간의 인과관계를 직관적으로 파악하고 현장 의사결정 기준과 직접 연결할 수 있다.",
-      "sections": [
-        "5.1 FDR/TDR 센서 및 텐시오미터(Tensiometer)의 원리, 보정 계수 및 설치 프로토콜",
-        "5.2 기상 데이터(온·습도, 일사량, 풍속) 기반 Penman-Monteith 작물 증발산량(ETc) 산출",
-        "5.3 점적 관개(Drip irrigation) 시스템의 수리학적 설계와 포장 내 관수 균일도(CU) 평가",
-        "5.4 토양 수분 결핍 지수(CWSI) 기반 무인 밸브 연동 자동 관개 알고리즘 구현"
+      "target_section": "5.4 토양 수분 허용결핍(MAD) 및 CWSI 기반 무인 밸브 연동 자동 관개 알고리즘 구현",
+      "title_ko": "그림 5-5. 양파 스마트 관개 측정 → 판단 → 밸브 제어 피드백 루프",
+      "subtitle_ko": "토양장력(Ψm)·MAD·기상 ETc·엽군온도 CWSI 융합 폐루프 자동 제어",
+      "claim_ko": "토양수분·기상·엽군온도 센서를 융합 계측하여 허용수분결핍(MAD) 또는 CWSI 임계치 초과 시 솔레노이드 밸브를 자동 개방하고 포장용수량 복귀 시 차단한다",
+      "how_to_read_ko": "좌측 실시간 계측에서 우측 밸브 구동으로 이어지는 실선 화살표와, 관수 후 하단 점선 피드백 루프를 통해 재계측·종료가 순환하는 구조를 따라 읽는다",
+      "data_source": "Idso et al. (1981) CWSI 모형, FAO-56 MAD(p=0.25–0.30) 기준 및 본문 5.4절 폐루프 제어 알고리즘",
+      "diagram_nodes": [
+        {
+          "tag": "1. 다중 계측",
+          "label": "토양(15·30cm)·기상·엽군온도",
+          "detail": "TDR·텐시오미터 10분 계측, 기상대 ET0 변수, 적외선 엽군온도(Tc−Ta) 수집",
+          "metric": "주기: 10~15분"
+        },
+        {
+          "tag": "2. 지수 연산",
+          "label": "MAD · ETc · CWSI 동시 산출",
+          "detail": "RAW=p·TAW(p=0.25~0.30), ETc=Kc·ET0 및 엽군온도 CWSI 산정",
+          "metric": "Kc: 0.70→1.05→0.75"
+        },
+        {
+          "tag": "3. 임계 판정",
+          "label": "관수 개시 및 강우 인터록",
+          "detail": "Ψm≤−20 kPa 또는 MAD≥25% 또는 CWSI≥0.30 시 개시(강우 예보 시 보류)",
+          "metric": "30cm 과습 차단"
+        },
+        {
+          "tag": "4. 밸브 제어",
+          "label": "솔레노이드 밸브 펄스 관수",
+          "detail": "목표 조관수량(RAW/EU) 분할 공급 및 유량·압력계로 EU≥90% 감시",
+          "metric": "종료: Ψm≥−10 kPa"
+        }
       ],
+      "diagram_edges": [
+        "전송",
+        "비교",
+        "구동"
+      ],
+      "feedback_label": "관수 후 15·30 cm 센서 재계측 → 포장용수량(−10 kPa) 복귀 시 밸브 차단",
       "filename": "fig_ch05_v05.svg",
       "path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts\\fig_ch05_v05.svg",
-      "rel_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts/fig_ch05_v05.svg",
-      "engine": "vector_svg",
-      "note": "",
-      "status": "OK",
       "docx_image_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts_png\\fig_ch05_v05.png",
+      "rel_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts/fig_ch05_v05.svg",
       "png_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts_png/fig_ch05_v05.png",
-      "chapter_dir_local": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\by_chapter\\ch05",
-      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch05"
-    },
-    {
-      "figure_id": "fig_ch05_v06",
-      "chapter_id": "ch05",
-      "chapter_number": 5,
-      "index": 6,
-      "kind": "svg_bar",
-      "style": "comparison_bar",
-      "is_ai_image": false,
-      "title_ko": "그림 5-6. 제5장. 토양 수분 모니터링 센서 네트워크와 스마트 관개 자동화 — 핵심 관리 요인별 상대 기여도 비교 차트 (5.2 기상 데이터(온·습도, 일사량, 풍속) 기반 Penman-Monteith 작물 증발산량(ETc) 산출)",
-      "subtitle_ko": "스마트 팜 양파 재배 · 5.2 기상 데이터(온·습도, 일사량, 풍속) 기반 Penman-Monteith 작물 증발산량(ETc) 산출",
-      "prompt": "",
-      "narrative_ko": "[그림 5-6] 그림 5-6. 제5장. 토양 수분 모니터링 센서 네트워크와 스마트 관개 자동화 — 핵심 관리 요인별 상대 기여도 비교 차트 (5.2 기상 데이터(온·습도, 일사량, 풍속) 기반 Penman-Monteith 작물 증발산량(ETc) 산출)은(는) 《스마트 팜 양파 재배》 제5장. 토양 수분 모니터링 센서 네트워크와 스마트 관개 자동화의 핵심 학습 요소인 '5.2 기상 데이터(온·습도, 일사량, 풍속) 기반 Penman-Monteith 작물 증발산량(ETc) 산출'을 정량적 벡터 차트 및 구조 다이어그램으로 시각화한 자료이다. 독자는 이 도해를 통해 주요 환경·생리·관리 변수 간의 인과관계를 직관적으로 파악하고 현장 의사결정 기준과 직접 연결할 수 있다.",
-      "sections": [
-        "5.1 FDR/TDR 센서 및 텐시오미터(Tensiometer)의 원리, 보정 계수 및 설치 프로토콜",
-        "5.2 기상 데이터(온·습도, 일사량, 풍속) 기반 Penman-Monteith 작물 증발산량(ETc) 산출",
-        "5.3 점적 관개(Drip irrigation) 시스템의 수리학적 설계와 포장 내 관수 균일도(CU) 평가",
-        "5.4 토양 수분 결핍 지수(CWSI) 기반 무인 밸브 연동 자동 관개 알고리즘 구현"
-      ],
-      "filename": "fig_ch05_v06.svg",
-      "path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts\\fig_ch05_v06.svg",
-      "rel_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts/fig_ch05_v06.svg",
-      "engine": "vector_svg",
-      "note": "",
+      "engine": "content_vector_svg",
       "status": "OK",
-      "docx_image_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts_png\\fig_ch05_v06.png",
-      "png_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts_png/fig_ch05_v06.png",
-      "chapter_dir_local": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\by_chapter\\ch05",
-      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch05"
-    },
-    {
-      "figure_id": "fig_ch05_v07",
-      "chapter_id": "ch05",
-      "chapter_number": 5,
-      "index": 7,
-      "kind": "svg_timeline",
-      "style": "stage_timeline",
-      "is_ai_image": false,
-      "title_ko": "그림 5-7. 제5장. 토양 수분 모니터링 센서 네트워크와 스마트 관개 자동화 — 단계별 생육·작업 프로세스 로드맵 (5.3 점적 관개(Drip irrigation) 시스템의 수리학적 설계와 포장 내 관수 균일도(CU) 평가)",
-      "subtitle_ko": "스마트 팜 양파 재배 · 5.3 점적 관개(Drip irrigation) 시스템의 수리학적 설계와 포장 내 관수 균일도(CU) 평가",
-      "prompt": "",
-      "narrative_ko": "[그림 5-7] 그림 5-7. 제5장. 토양 수분 모니터링 센서 네트워크와 스마트 관개 자동화 — 단계별 생육·작업 프로세스 로드맵 (5.3 점적 관개(Drip irrigation) 시스템의 수리학적 설계와 포장 내 관수 균일도(CU) 평가)은(는) 《스마트 팜 양파 재배》 제5장. 토양 수분 모니터링 센서 네트워크와 스마트 관개 자동화의 핵심 학습 요소인 '5.3 점적 관개(Drip irrigation) 시스템의 수리학적 설계와 포장 내 관수 균일도(CU) 평가'을 정량적 벡터 차트 및 구조 다이어그램으로 시각화한 자료이다. 독자는 이 도해를 통해 주요 환경·생리·관리 변수 간의 인과관계를 직관적으로 파악하고 현장 의사결정 기준과 직접 연결할 수 있다.",
-      "sections": [
-        "5.1 FDR/TDR 센서 및 텐시오미터(Tensiometer)의 원리, 보정 계수 및 설치 프로토콜",
-        "5.2 기상 데이터(온·습도, 일사량, 풍속) 기반 Penman-Monteith 작물 증발산량(ETc) 산출",
-        "5.3 점적 관개(Drip irrigation) 시스템의 수리학적 설계와 포장 내 관수 균일도(CU) 평가",
-        "5.4 토양 수분 결핍 지수(CWSI) 기반 무인 밸브 연동 자동 관개 알고리즘 구현"
-      ],
-      "filename": "fig_ch05_v07.svg",
-      "path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts\\fig_ch05_v07.svg",
-      "rel_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts/fig_ch05_v07.svg",
-      "engine": "vector_svg",
-      "note": "",
-      "status": "OK",
-      "docx_image_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts_png\\fig_ch05_v07.png",
-      "png_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts_png/fig_ch05_v07.png",
-      "chapter_dir_local": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\by_chapter\\ch05",
-      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch05"
-    },
-    {
-      "figure_id": "fig_ch05_v08",
-      "chapter_id": "ch05",
-      "chapter_number": 5,
-      "index": 8,
-      "kind": "svg_matrix",
-      "style": "diagnostic_matrix",
-      "is_ai_image": false,
-      "title_ko": "그림 5-8. 제5장. 토양 수분 모니터링 센서 네트워크와 스마트 관개 자동화 — 현장 이상 진단 및 대응 전략 매트릭스 (5.4 토양 수분 결핍 지수(CWSI) 기반 무인 밸브 연동 자동 관개 알고리즘 구현)",
-      "subtitle_ko": "스마트 팜 양파 재배 · 5.4 토양 수분 결핍 지수(CWSI) 기반 무인 밸브 연동 자동 관개 알고리즘 구현",
-      "prompt": "",
-      "narrative_ko": "[그림 5-8] 그림 5-8. 제5장. 토양 수분 모니터링 센서 네트워크와 스마트 관개 자동화 — 현장 이상 진단 및 대응 전략 매트릭스 (5.4 토양 수분 결핍 지수(CWSI) 기반 무인 밸브 연동 자동 관개 알고리즘 구현)은(는) 《스마트 팜 양파 재배》 제5장. 토양 수분 모니터링 센서 네트워크와 스마트 관개 자동화의 핵심 학습 요소인 '5.4 토양 수분 결핍 지수(CWSI) 기반 무인 밸브 연동 자동 관개 알고리즘 구현'을 정량적 벡터 차트 및 구조 다이어그램으로 시각화한 자료이다. 독자는 이 도해를 통해 주요 환경·생리·관리 변수 간의 인과관계를 직관적으로 파악하고 현장 의사결정 기준과 직접 연결할 수 있다.",
-      "sections": [
-        "5.1 FDR/TDR 센서 및 텐시오미터(Tensiometer)의 원리, 보정 계수 및 설치 프로토콜",
-        "5.2 기상 데이터(온·습도, 일사량, 풍속) 기반 Penman-Monteith 작물 증발산량(ETc) 산출",
-        "5.3 점적 관개(Drip irrigation) 시스템의 수리학적 설계와 포장 내 관수 균일도(CU) 평가",
-        "5.4 토양 수분 결핍 지수(CWSI) 기반 무인 밸브 연동 자동 관개 알고리즘 구현"
-      ],
-      "filename": "fig_ch05_v08.svg",
-      "path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts\\fig_ch05_v08.svg",
-      "rel_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts/fig_ch05_v08.svg",
-      "engine": "vector_svg",
-      "note": "",
-      "status": "OK",
-      "docx_image_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts_png\\fig_ch05_v08.png",
-      "png_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts_png/fig_ch05_v08.png",
-      "chapter_dir_local": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\by_chapter\\ch05",
-      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch05"
-    },
-    {
-      "figure_id": "fig_ch05_v09",
-      "chapter_id": "ch05",
-      "chapter_number": 5,
-      "index": 9,
-      "kind": "svg_curve",
-      "style": "response_curve",
-      "is_ai_image": false,
-      "title_ko": "그림 5-9. 제5장. 토양 수분 모니터링 센서 네트워크와 스마트 관개 자동화 — 환경 변수 변화에 따른 정량 반응 곡선 (5.1 FDR/TDR 센서 및 텐시오미터(Tensiometer)의 원리, 보정 계수 및 설치 프로토콜)",
-      "subtitle_ko": "스마트 팜 양파 재배 · 5.1 FDR/TDR 센서 및 텐시오미터(Tensiometer)의 원리, 보정 계수 및 설치 프로토콜",
-      "prompt": "",
-      "narrative_ko": "[그림 5-9] 그림 5-9. 제5장. 토양 수분 모니터링 센서 네트워크와 스마트 관개 자동화 — 환경 변수 변화에 따른 정량 반응 곡선 (5.1 FDR/TDR 센서 및 텐시오미터(Tensiometer)의 원리, 보정 계수 및 설치 프로토콜)은(는) 《스마트 팜 양파 재배》 제5장. 토양 수분 모니터링 센서 네트워크와 스마트 관개 자동화의 핵심 학습 요소인 '5.1 FDR/TDR 센서 및 텐시오미터(Tensiometer)의 원리, 보정 계수 및 설치 프로토콜'을 정량적 벡터 차트 및 구조 다이어그램으로 시각화한 자료이다. 독자는 이 도해를 통해 주요 환경·생리·관리 변수 간의 인과관계를 직관적으로 파악하고 현장 의사결정 기준과 직접 연결할 수 있다.",
-      "sections": [
-        "5.1 FDR/TDR 센서 및 텐시오미터(Tensiometer)의 원리, 보정 계수 및 설치 프로토콜",
-        "5.2 기상 데이터(온·습도, 일사량, 풍속) 기반 Penman-Monteith 작물 증발산량(ETc) 산출",
-        "5.3 점적 관개(Drip irrigation) 시스템의 수리학적 설계와 포장 내 관수 균일도(CU) 평가",
-        "5.4 토양 수분 결핍 지수(CWSI) 기반 무인 밸브 연동 자동 관개 알고리즘 구현"
-      ],
-      "filename": "fig_ch05_v09.svg",
-      "path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts\\fig_ch05_v09.svg",
-      "rel_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts/fig_ch05_v09.svg",
-      "engine": "vector_svg",
-      "note": "",
-      "status": "OK",
-      "docx_image_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts_png\\fig_ch05_v09.png",
-      "png_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts_png/fig_ch05_v09.png",
-      "chapter_dir_local": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\by_chapter\\ch05",
-      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch05"
-    },
-    {
-      "figure_id": "fig_ch05_v10",
-      "chapter_id": "ch05",
-      "chapter_number": 5,
-      "index": 10,
-      "kind": "svg_summary",
-      "style": "concept_map",
-      "is_ai_image": false,
-      "title_ko": "그림 5-10. 제5장. 토양 수분 모니터링 센서 네트워크와 스마트 관개 자동화 — 단원 핵심 개념 통합 관계도 (5.2 기상 데이터(온·습도, 일사량, 풍속) 기반 Penman-Monteith 작물 증발산량(ETc) 산출)",
-      "subtitle_ko": "스마트 팜 양파 재배 · 5.2 기상 데이터(온·습도, 일사량, 풍속) 기반 Penman-Monteith 작물 증발산량(ETc) 산출",
-      "prompt": "",
-      "narrative_ko": "[그림 5-10] 그림 5-10. 제5장. 토양 수분 모니터링 센서 네트워크와 스마트 관개 자동화 — 단원 핵심 개념 통합 관계도 (5.2 기상 데이터(온·습도, 일사량, 풍속) 기반 Penman-Monteith 작물 증발산량(ETc) 산출)은(는) 《스마트 팜 양파 재배》 제5장. 토양 수분 모니터링 센서 네트워크와 스마트 관개 자동화의 핵심 학습 요소인 '5.2 기상 데이터(온·습도, 일사량, 풍속) 기반 Penman-Monteith 작물 증발산량(ETc) 산출'을 정량적 벡터 차트 및 구조 다이어그램으로 시각화한 자료이다. 독자는 이 도해를 통해 주요 환경·생리·관리 변수 간의 인과관계를 직관적으로 파악하고 현장 의사결정 기준과 직접 연결할 수 있다.",
-      "sections": [
-        "5.1 FDR/TDR 센서 및 텐시오미터(Tensiometer)의 원리, 보정 계수 및 설치 프로토콜",
-        "5.2 기상 데이터(온·습도, 일사량, 풍속) 기반 Penman-Monteith 작물 증발산량(ETc) 산출",
-        "5.3 점적 관개(Drip irrigation) 시스템의 수리학적 설계와 포장 내 관수 균일도(CU) 평가",
-        "5.4 토양 수분 결핍 지수(CWSI) 기반 무인 밸브 연동 자동 관개 알고리즘 구현"
-      ],
-      "filename": "fig_ch05_v10.svg",
-      "path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts\\fig_ch05_v10.svg",
-      "rel_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts/fig_ch05_v10.svg",
-      "engine": "vector_svg",
-      "note": "",
-      "status": "OK",
-      "docx_image_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts_png\\fig_ch05_v10.png",
-      "png_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts_png/fig_ch05_v10.png",
-      "chapter_dir_local": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\by_chapter\\ch05",
-      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch05"
+      "exclude_from_publish": false,
+      "narrative_ko": "[그림 5-5] 토양수분·기상·엽군온도 센서를 융합 계측하여 허용수분결핍(MAD) 또는 CWSI 임계치 초과 시 솔레노이드 밸브를 자동 개방하고 포장용수량 복귀 시 차단한다. 좌측 실시간 계측에서 우측 밸브 구동으로 이어지는 실선 화살표와, 관수 후 하단 점선 피드백 루프를 통해 재계측·종료가 순환하는 구조를 따라 읽는다. (자료: Idso et al. (1981) CWSI 모형, FAO-56 MAD(p=0.25–0.30) 기준 및 본문 5.4절 폐루프 제어 알고리즘)."
     },
     {
       "figure_id": "fig_ch06_v01",
@@ -1502,12 +1401,13 @@
       "path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts\\fig_ch06_v01.svg",
       "rel_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts/fig_ch06_v01.svg",
       "engine": "svg_blueprint_ready",
-      "note": "gemini-2.5-flash-image: 402 RESOURCE_EXHAUSTED. {'error': {'code': 402, 'message': 'Your prepayment credits are de",
-      "status": "OK",
+      "note": "2026-11-23 품질 감사(P8~P10): 빈 틀/고정값 차트 출판 제외 처리",
+      "status": "UNGENERATED",
       "docx_image_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts_png\\fig_ch06_v01.png",
       "png_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts_png/fig_ch06_v01.png",
       "chapter_dir_local": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\by_chapter\\ch06",
-      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch06"
+      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch06",
+      "exclude_from_publish": true
     },
     {
       "figure_id": "fig_ch06_v02",
@@ -1531,12 +1431,13 @@
       "path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts\\fig_ch06_v02.svg",
       "rel_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts/fig_ch06_v02.svg",
       "engine": "svg_blueprint_ready",
-      "note": "gemini-2.5-flash-image: 402 RESOURCE_EXHAUSTED. {'error': {'code': 402, 'message': 'Your prepayment credits are de",
-      "status": "OK",
+      "note": "2026-11-23 품질 감사(P8~P10): 빈 틀/고정값 차트 출판 제외 처리",
+      "status": "UNGENERATED",
       "docx_image_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts_png\\fig_ch06_v02.png",
       "png_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts_png/fig_ch06_v02.png",
       "chapter_dir_local": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\by_chapter\\ch06",
-      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch06"
+      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch06",
+      "exclude_from_publish": true
     },
     {
       "figure_id": "fig_ch06_v03",
@@ -1560,12 +1461,13 @@
       "path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts\\fig_ch06_v03.svg",
       "rel_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts/fig_ch06_v03.svg",
       "engine": "svg_blueprint_ready",
-      "note": "gemini-2.5-flash-image: 402 RESOURCE_EXHAUSTED. {'error': {'code': 402, 'message': 'Your prepayment credits are de",
-      "status": "OK",
+      "note": "2026-11-23 품질 감사(P8~P10): 빈 틀/고정값 차트 출판 제외 처리",
+      "status": "UNGENERATED",
       "docx_image_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts_png\\fig_ch06_v03.png",
       "png_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts_png/fig_ch06_v03.png",
       "chapter_dir_local": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\by_chapter\\ch06",
-      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch06"
+      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch06",
+      "exclude_from_publish": true
     },
     {
       "figure_id": "fig_ch06_v04",
@@ -1589,12 +1491,13 @@
       "path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts\\fig_ch06_v04.svg",
       "rel_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts/fig_ch06_v04.svg",
       "engine": "svg_blueprint_ready",
-      "note": "gemini-2.5-flash-image: 402 RESOURCE_EXHAUSTED. {'error': {'code': 402, 'message': 'Your prepayment credits are de",
-      "status": "OK",
+      "note": "2026-11-23 품질 감사(P8~P10): 빈 틀/고정값 차트 출판 제외 처리",
+      "status": "UNGENERATED",
       "docx_image_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts_png\\fig_ch06_v04.png",
       "png_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts_png/fig_ch06_v04.png",
       "chapter_dir_local": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\by_chapter\\ch06",
-      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch06"
+      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch06",
+      "exclude_from_publish": true
     },
     {
       "figure_id": "fig_ch06_v05",
@@ -1647,12 +1550,13 @@
       "path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts\\fig_ch06_v06.svg",
       "rel_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts/fig_ch06_v06.svg",
       "engine": "vector_svg",
-      "note": "",
-      "status": "OK",
+      "note": "2026-11-23 품질 감사(P8~P10): 빈 틀/고정값 차트 출판 제외 처리",
+      "status": "UNGENERATED",
       "docx_image_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts_png\\fig_ch06_v06.png",
       "png_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts_png/fig_ch06_v06.png",
       "chapter_dir_local": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\by_chapter\\ch06",
-      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch06"
+      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch06",
+      "exclude_from_publish": true
     },
     {
       "figure_id": "fig_ch06_v07",
@@ -1734,12 +1638,13 @@
       "path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts\\fig_ch06_v09.svg",
       "rel_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts/fig_ch06_v09.svg",
       "engine": "vector_svg",
-      "note": "",
-      "status": "OK",
+      "note": "2026-11-23 품질 감사(P8~P10): 빈 틀/고정값 차트 출판 제외 처리",
+      "status": "UNGENERATED",
       "docx_image_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts_png\\fig_ch06_v09.png",
       "png_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts_png/fig_ch06_v09.png",
       "chapter_dir_local": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\by_chapter\\ch06",
-      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch06"
+      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch06",
+      "exclude_from_publish": true
     },
     {
       "figure_id": "fig_ch06_v10",
@@ -1792,12 +1697,13 @@
       "path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts\\fig_ch07_v01.svg",
       "rel_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts/fig_ch07_v01.svg",
       "engine": "svg_blueprint_ready",
-      "note": "gemini-2.5-flash-image: 402 RESOURCE_EXHAUSTED. {'error': {'code': 402, 'message': 'Your prepayment credits are de",
-      "status": "OK",
+      "note": "2026-11-23 품질 감사(P8~P10): 빈 틀/고정값 차트 출판 제외 처리",
+      "status": "UNGENERATED",
       "docx_image_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts_png\\fig_ch07_v01.png",
       "png_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts_png/fig_ch07_v01.png",
       "chapter_dir_local": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\by_chapter\\ch07",
-      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch07"
+      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch07",
+      "exclude_from_publish": true
     },
     {
       "figure_id": "fig_ch07_v02",
@@ -1821,12 +1727,13 @@
       "path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts\\fig_ch07_v02.svg",
       "rel_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts/fig_ch07_v02.svg",
       "engine": "svg_blueprint_ready",
-      "note": "gemini-2.5-flash-image: 402 RESOURCE_EXHAUSTED. {'error': {'code': 402, 'message': 'Your prepayment credits are de",
-      "status": "OK",
+      "note": "2026-11-23 품질 감사(P8~P10): 빈 틀/고정값 차트 출판 제외 처리",
+      "status": "UNGENERATED",
       "docx_image_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts_png\\fig_ch07_v02.png",
       "png_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts_png/fig_ch07_v02.png",
       "chapter_dir_local": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\by_chapter\\ch07",
-      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch07"
+      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch07",
+      "exclude_from_publish": true
     },
     {
       "figure_id": "fig_ch07_v03",
@@ -1850,12 +1757,13 @@
       "path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts\\fig_ch07_v03.svg",
       "rel_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts/fig_ch07_v03.svg",
       "engine": "svg_blueprint_ready",
-      "note": "gemini-2.5-flash-image: 402 RESOURCE_EXHAUSTED. {'error': {'code': 402, 'message': 'Your prepayment credits are de",
-      "status": "OK",
+      "note": "2026-11-23 품질 감사(P8~P10): 빈 틀/고정값 차트 출판 제외 처리",
+      "status": "UNGENERATED",
       "docx_image_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts_png\\fig_ch07_v03.png",
       "png_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts_png/fig_ch07_v03.png",
       "chapter_dir_local": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\by_chapter\\ch07",
-      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch07"
+      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch07",
+      "exclude_from_publish": true
     },
     {
       "figure_id": "fig_ch07_v04",
@@ -1879,12 +1787,13 @@
       "path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts\\fig_ch07_v04.svg",
       "rel_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts/fig_ch07_v04.svg",
       "engine": "svg_blueprint_ready",
-      "note": "gemini-2.5-flash-image: 402 RESOURCE_EXHAUSTED. {'error': {'code': 402, 'message': 'Your prepayment credits are de",
-      "status": "OK",
+      "note": "2026-11-23 품질 감사(P8~P10): 빈 틀/고정값 차트 출판 제외 처리",
+      "status": "UNGENERATED",
       "docx_image_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts_png\\fig_ch07_v04.png",
       "png_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts_png/fig_ch07_v04.png",
       "chapter_dir_local": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\by_chapter\\ch07",
-      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch07"
+      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch07",
+      "exclude_from_publish": true
     },
     {
       "figure_id": "fig_ch07_v05",
@@ -1937,12 +1846,13 @@
       "path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts\\fig_ch07_v06.svg",
       "rel_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts/fig_ch07_v06.svg",
       "engine": "vector_svg",
-      "note": "",
-      "status": "OK",
+      "note": "2026-11-23 품질 감사(P8~P10): 빈 틀/고정값 차트 출판 제외 처리",
+      "status": "UNGENERATED",
       "docx_image_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts_png\\fig_ch07_v06.png",
       "png_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts_png/fig_ch07_v06.png",
       "chapter_dir_local": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\by_chapter\\ch07",
-      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch07"
+      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch07",
+      "exclude_from_publish": true
     },
     {
       "figure_id": "fig_ch07_v07",
@@ -2024,12 +1934,13 @@
       "path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts\\fig_ch07_v09.svg",
       "rel_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts/fig_ch07_v09.svg",
       "engine": "vector_svg",
-      "note": "",
-      "status": "OK",
+      "note": "2026-11-23 품질 감사(P8~P10): 빈 틀/고정값 차트 출판 제외 처리",
+      "status": "UNGENERATED",
       "docx_image_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts_png\\fig_ch07_v09.png",
       "png_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts_png/fig_ch07_v09.png",
       "chapter_dir_local": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\by_chapter\\ch07",
-      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch07"
+      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch07",
+      "exclude_from_publish": true
     },
     {
       "figure_id": "fig_ch07_v10",
@@ -2082,12 +1993,13 @@
       "path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts\\fig_ch08_v01.svg",
       "rel_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts/fig_ch08_v01.svg",
       "engine": "svg_blueprint_ready",
-      "note": "gemini-2.5-flash-image: 402 RESOURCE_EXHAUSTED. {'error': {'code': 402, 'message': 'Your prepayment credits are de",
-      "status": "OK",
+      "note": "2026-11-23 품질 감사(P8~P10): 빈 틀/고정값 차트 출판 제외 처리",
+      "status": "UNGENERATED",
       "docx_image_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts_png\\fig_ch08_v01.png",
       "png_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts_png/fig_ch08_v01.png",
       "chapter_dir_local": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\by_chapter\\ch08",
-      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch08"
+      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch08",
+      "exclude_from_publish": true
     },
     {
       "figure_id": "fig_ch08_v02",
@@ -2111,12 +2023,13 @@
       "path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts\\fig_ch08_v02.svg",
       "rel_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts/fig_ch08_v02.svg",
       "engine": "svg_blueprint_ready",
-      "note": "gemini-2.5-flash-image: 402 RESOURCE_EXHAUSTED. {'error': {'code': 402, 'message': 'Your prepayment credits are de",
-      "status": "OK",
+      "note": "2026-11-23 품질 감사(P8~P10): 빈 틀/고정값 차트 출판 제외 처리",
+      "status": "UNGENERATED",
       "docx_image_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts_png\\fig_ch08_v02.png",
       "png_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts_png/fig_ch08_v02.png",
       "chapter_dir_local": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\by_chapter\\ch08",
-      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch08"
+      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch08",
+      "exclude_from_publish": true
     },
     {
       "figure_id": "fig_ch08_v03",
@@ -2140,12 +2053,13 @@
       "path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts\\fig_ch08_v03.svg",
       "rel_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts/fig_ch08_v03.svg",
       "engine": "svg_blueprint_ready",
-      "note": "gemini-2.5-flash-image: 402 RESOURCE_EXHAUSTED. {'error': {'code': 402, 'message': 'Your prepayment credits are de",
-      "status": "OK",
+      "note": "2026-11-23 품질 감사(P8~P10): 빈 틀/고정값 차트 출판 제외 처리",
+      "status": "UNGENERATED",
       "docx_image_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts_png\\fig_ch08_v03.png",
       "png_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts_png/fig_ch08_v03.png",
       "chapter_dir_local": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\by_chapter\\ch08",
-      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch08"
+      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch08",
+      "exclude_from_publish": true
     },
     {
       "figure_id": "fig_ch08_v04",
@@ -2169,12 +2083,13 @@
       "path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts\\fig_ch08_v04.svg",
       "rel_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts/fig_ch08_v04.svg",
       "engine": "svg_blueprint_ready",
-      "note": "gemini-2.5-flash-image: 402 RESOURCE_EXHAUSTED. {'error': {'code': 402, 'message': 'Your prepayment credits are de",
-      "status": "OK",
+      "note": "2026-11-23 품질 감사(P8~P10): 빈 틀/고정값 차트 출판 제외 처리",
+      "status": "UNGENERATED",
       "docx_image_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts_png\\fig_ch08_v04.png",
       "png_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts_png/fig_ch08_v04.png",
       "chapter_dir_local": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\by_chapter\\ch08",
-      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch08"
+      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch08",
+      "exclude_from_publish": true
     },
     {
       "figure_id": "fig_ch08_v05",
@@ -2227,12 +2142,13 @@
       "path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts\\fig_ch08_v06.svg",
       "rel_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts/fig_ch08_v06.svg",
       "engine": "vector_svg",
-      "note": "",
-      "status": "OK",
+      "note": "2026-11-23 품질 감사(P8~P10): 빈 틀/고정값 차트 출판 제외 처리",
+      "status": "UNGENERATED",
       "docx_image_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts_png\\fig_ch08_v06.png",
       "png_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts_png/fig_ch08_v06.png",
       "chapter_dir_local": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\by_chapter\\ch08",
-      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch08"
+      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch08",
+      "exclude_from_publish": true
     },
     {
       "figure_id": "fig_ch08_v07",
@@ -2314,12 +2230,13 @@
       "path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts\\fig_ch08_v09.svg",
       "rel_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts/fig_ch08_v09.svg",
       "engine": "vector_svg",
-      "note": "",
-      "status": "OK",
+      "note": "2026-11-23 품질 감사(P8~P10): 빈 틀/고정값 차트 출판 제외 처리",
+      "status": "UNGENERATED",
       "docx_image_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts_png\\fig_ch08_v09.png",
       "png_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts_png/fig_ch08_v09.png",
       "chapter_dir_local": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\by_chapter\\ch08",
-      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch08"
+      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch08",
+      "exclude_from_publish": true
     },
     {
       "figure_id": "fig_ch08_v10",
@@ -2372,12 +2289,13 @@
       "path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts\\fig_ch09_v01.svg",
       "rel_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts/fig_ch09_v01.svg",
       "engine": "svg_blueprint_ready",
-      "note": "gemini-2.5-flash-image: 402 RESOURCE_EXHAUSTED. {'error': {'code': 402, 'message': 'Your prepayment credits are de",
-      "status": "OK",
+      "note": "2026-11-23 품질 감사(P8~P10): 빈 틀/고정값 차트 출판 제외 처리",
+      "status": "UNGENERATED",
       "docx_image_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts_png\\fig_ch09_v01.png",
       "png_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts_png/fig_ch09_v01.png",
       "chapter_dir_local": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\by_chapter\\ch09",
-      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch09"
+      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch09",
+      "exclude_from_publish": true
     },
     {
       "figure_id": "fig_ch09_v02",
@@ -2401,12 +2319,13 @@
       "path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts\\fig_ch09_v02.svg",
       "rel_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts/fig_ch09_v02.svg",
       "engine": "svg_blueprint_ready",
-      "note": "gemini-2.5-flash-image: 402 RESOURCE_EXHAUSTED. {'error': {'code': 402, 'message': 'Your prepayment credits are de",
-      "status": "OK",
+      "note": "2026-11-23 품질 감사(P8~P10): 빈 틀/고정값 차트 출판 제외 처리",
+      "status": "UNGENERATED",
       "docx_image_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts_png\\fig_ch09_v02.png",
       "png_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts_png/fig_ch09_v02.png",
       "chapter_dir_local": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\by_chapter\\ch09",
-      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch09"
+      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch09",
+      "exclude_from_publish": true
     },
     {
       "figure_id": "fig_ch09_v03",
@@ -2430,12 +2349,13 @@
       "path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts\\fig_ch09_v03.svg",
       "rel_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts/fig_ch09_v03.svg",
       "engine": "svg_blueprint_ready",
-      "note": "gemini-2.5-flash-image: 402 RESOURCE_EXHAUSTED. {'error': {'code': 402, 'message': 'Your prepayment credits are de",
-      "status": "OK",
+      "note": "2026-11-23 품질 감사(P8~P10): 빈 틀/고정값 차트 출판 제외 처리",
+      "status": "UNGENERATED",
       "docx_image_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts_png\\fig_ch09_v03.png",
       "png_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts_png/fig_ch09_v03.png",
       "chapter_dir_local": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\by_chapter\\ch09",
-      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch09"
+      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch09",
+      "exclude_from_publish": true
     },
     {
       "figure_id": "fig_ch09_v04",
@@ -2459,12 +2379,13 @@
       "path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts\\fig_ch09_v04.svg",
       "rel_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts/fig_ch09_v04.svg",
       "engine": "svg_blueprint_ready",
-      "note": "gemini-2.5-flash-image: 402 RESOURCE_EXHAUSTED. {'error': {'code': 402, 'message': 'Your prepayment credits are de",
-      "status": "OK",
+      "note": "2026-11-23 품질 감사(P8~P10): 빈 틀/고정값 차트 출판 제외 처리",
+      "status": "UNGENERATED",
       "docx_image_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts_png\\fig_ch09_v04.png",
       "png_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts_png/fig_ch09_v04.png",
       "chapter_dir_local": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\by_chapter\\ch09",
-      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch09"
+      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch09",
+      "exclude_from_publish": true
     },
     {
       "figure_id": "fig_ch09_v05",
@@ -2517,12 +2438,13 @@
       "path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts\\fig_ch09_v06.svg",
       "rel_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts/fig_ch09_v06.svg",
       "engine": "vector_svg",
-      "note": "",
-      "status": "OK",
+      "note": "2026-11-23 품질 감사(P8~P10): 빈 틀/고정값 차트 출판 제외 처리",
+      "status": "UNGENERATED",
       "docx_image_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts_png\\fig_ch09_v06.png",
       "png_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts_png/fig_ch09_v06.png",
       "chapter_dir_local": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\by_chapter\\ch09",
-      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch09"
+      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch09",
+      "exclude_from_publish": true
     },
     {
       "figure_id": "fig_ch09_v07",
@@ -2604,12 +2526,13 @@
       "path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts\\fig_ch09_v09.svg",
       "rel_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts/fig_ch09_v09.svg",
       "engine": "vector_svg",
-      "note": "",
-      "status": "OK",
+      "note": "2026-11-23 품질 감사(P8~P10): 빈 틀/고정값 차트 출판 제외 처리",
+      "status": "UNGENERATED",
       "docx_image_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts_png\\fig_ch09_v09.png",
       "png_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts_png/fig_ch09_v09.png",
       "chapter_dir_local": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\by_chapter\\ch09",
-      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch09"
+      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch09",
+      "exclude_from_publish": true
     },
     {
       "figure_id": "fig_ch09_v10",
@@ -2662,12 +2585,13 @@
       "path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts\\fig_ch10_v01.svg",
       "rel_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts/fig_ch10_v01.svg",
       "engine": "svg_blueprint_ready",
-      "note": "gemini-2.5-flash-image: 402 RESOURCE_EXHAUSTED. {'error': {'code': 402, 'message': 'Your prepayment credits are de",
-      "status": "OK",
+      "note": "2026-11-23 품질 감사(P8~P10): 빈 틀/고정값 차트 출판 제외 처리",
+      "status": "UNGENERATED",
       "docx_image_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts_png\\fig_ch10_v01.png",
       "png_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts_png/fig_ch10_v01.png",
       "chapter_dir_local": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\by_chapter\\ch10",
-      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch10"
+      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch10",
+      "exclude_from_publish": true
     },
     {
       "figure_id": "fig_ch10_v02",
@@ -2691,12 +2615,13 @@
       "path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts\\fig_ch10_v02.svg",
       "rel_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts/fig_ch10_v02.svg",
       "engine": "svg_blueprint_ready",
-      "note": "gemini-2.5-flash-image: 402 RESOURCE_EXHAUSTED. {'error': {'code': 402, 'message': 'Your prepayment credits are de",
-      "status": "OK",
+      "note": "2026-11-23 품질 감사(P8~P10): 빈 틀/고정값 차트 출판 제외 처리",
+      "status": "UNGENERATED",
       "docx_image_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts_png\\fig_ch10_v02.png",
       "png_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts_png/fig_ch10_v02.png",
       "chapter_dir_local": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\by_chapter\\ch10",
-      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch10"
+      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch10",
+      "exclude_from_publish": true
     },
     {
       "figure_id": "fig_ch10_v03",
@@ -2720,12 +2645,13 @@
       "path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts\\fig_ch10_v03.svg",
       "rel_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts/fig_ch10_v03.svg",
       "engine": "svg_blueprint_ready",
-      "note": "gemini-2.5-flash-image: 402 RESOURCE_EXHAUSTED. {'error': {'code': 402, 'message': 'Your prepayment credits are de",
-      "status": "OK",
+      "note": "2026-11-23 품질 감사(P8~P10): 빈 틀/고정값 차트 출판 제외 처리",
+      "status": "UNGENERATED",
       "docx_image_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts_png\\fig_ch10_v03.png",
       "png_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts_png/fig_ch10_v03.png",
       "chapter_dir_local": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\by_chapter\\ch10",
-      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch10"
+      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch10",
+      "exclude_from_publish": true
     },
     {
       "figure_id": "fig_ch10_v04",
@@ -2749,12 +2675,13 @@
       "path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts\\fig_ch10_v04.svg",
       "rel_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts/fig_ch10_v04.svg",
       "engine": "svg_blueprint_ready",
-      "note": "gemini-2.5-flash-image: 402 RESOURCE_EXHAUSTED. {'error': {'code': 402, 'message': 'Your prepayment credits are de",
-      "status": "OK",
+      "note": "2026-11-23 품질 감사(P8~P10): 빈 틀/고정값 차트 출판 제외 처리",
+      "status": "UNGENERATED",
       "docx_image_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts_png\\fig_ch10_v04.png",
       "png_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts_png/fig_ch10_v04.png",
       "chapter_dir_local": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\by_chapter\\ch10",
-      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch10"
+      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch10",
+      "exclude_from_publish": true
     },
     {
       "figure_id": "fig_ch10_v05",
@@ -2807,12 +2734,13 @@
       "path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts\\fig_ch10_v06.svg",
       "rel_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts/fig_ch10_v06.svg",
       "engine": "vector_svg",
-      "note": "",
-      "status": "OK",
+      "note": "2026-11-23 품질 감사(P8~P10): 빈 틀/고정값 차트 출판 제외 처리",
+      "status": "UNGENERATED",
       "docx_image_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts_png\\fig_ch10_v06.png",
       "png_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts_png/fig_ch10_v06.png",
       "chapter_dir_local": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\by_chapter\\ch10",
-      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch10"
+      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch10",
+      "exclude_from_publish": true
     },
     {
       "figure_id": "fig_ch10_v07",
@@ -2894,12 +2822,13 @@
       "path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts\\fig_ch10_v09.svg",
       "rel_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts/fig_ch10_v09.svg",
       "engine": "vector_svg",
-      "note": "",
-      "status": "OK",
+      "note": "2026-11-23 품질 감사(P8~P10): 빈 틀/고정값 차트 출판 제외 처리",
+      "status": "UNGENERATED",
       "docx_image_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts_png\\fig_ch10_v09.png",
       "png_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts_png/fig_ch10_v09.png",
       "chapter_dir_local": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\by_chapter\\ch10",
-      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch10"
+      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch10",
+      "exclude_from_publish": true
     },
     {
       "figure_id": "fig_ch10_v10",
@@ -2952,12 +2881,13 @@
       "path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts\\fig_ch11_v01.svg",
       "rel_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts/fig_ch11_v01.svg",
       "engine": "svg_blueprint_ready",
-      "note": "gemini-2.5-flash-image: 402 RESOURCE_EXHAUSTED. {'error': {'code': 402, 'message': 'Your prepayment credits are de",
-      "status": "OK",
+      "note": "2026-11-23 품질 감사(P8~P10): 빈 틀/고정값 차트 출판 제외 처리",
+      "status": "UNGENERATED",
       "docx_image_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts_png\\fig_ch11_v01.png",
       "png_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts_png/fig_ch11_v01.png",
       "chapter_dir_local": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\by_chapter\\ch11",
-      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch11"
+      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch11",
+      "exclude_from_publish": true
     },
     {
       "figure_id": "fig_ch11_v02",
@@ -2981,12 +2911,13 @@
       "path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts\\fig_ch11_v02.svg",
       "rel_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts/fig_ch11_v02.svg",
       "engine": "svg_blueprint_ready",
-      "note": "gemini-2.5-flash-image: 402 RESOURCE_EXHAUSTED. {'error': {'code': 402, 'message': 'Your prepayment credits are de",
-      "status": "OK",
+      "note": "2026-11-23 품질 감사(P8~P10): 빈 틀/고정값 차트 출판 제외 처리",
+      "status": "UNGENERATED",
       "docx_image_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts_png\\fig_ch11_v02.png",
       "png_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts_png/fig_ch11_v02.png",
       "chapter_dir_local": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\by_chapter\\ch11",
-      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch11"
+      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch11",
+      "exclude_from_publish": true
     },
     {
       "figure_id": "fig_ch11_v03",
@@ -3010,12 +2941,13 @@
       "path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts\\fig_ch11_v03.svg",
       "rel_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts/fig_ch11_v03.svg",
       "engine": "svg_blueprint_ready",
-      "note": "gemini-2.5-flash-image: 402 RESOURCE_EXHAUSTED. {'error': {'code': 402, 'message': 'Your prepayment credits are de",
-      "status": "OK",
+      "note": "2026-11-23 품질 감사(P8~P10): 빈 틀/고정값 차트 출판 제외 처리",
+      "status": "UNGENERATED",
       "docx_image_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts_png\\fig_ch11_v03.png",
       "png_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts_png/fig_ch11_v03.png",
       "chapter_dir_local": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\by_chapter\\ch11",
-      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch11"
+      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch11",
+      "exclude_from_publish": true
     },
     {
       "figure_id": "fig_ch11_v04",
@@ -3039,12 +2971,13 @@
       "path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts\\fig_ch11_v04.svg",
       "rel_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts/fig_ch11_v04.svg",
       "engine": "svg_blueprint_ready",
-      "note": "gemini-2.5-flash-image: 402 RESOURCE_EXHAUSTED. {'error': {'code': 402, 'message': 'Your prepayment credits are de",
-      "status": "OK",
+      "note": "2026-11-23 품질 감사(P8~P10): 빈 틀/고정값 차트 출판 제외 처리",
+      "status": "UNGENERATED",
       "docx_image_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts_png\\fig_ch11_v04.png",
       "png_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts_png/fig_ch11_v04.png",
       "chapter_dir_local": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\by_chapter\\ch11",
-      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch11"
+      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch11",
+      "exclude_from_publish": true
     },
     {
       "figure_id": "fig_ch11_v05",
@@ -3097,12 +3030,13 @@
       "path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts\\fig_ch11_v06.svg",
       "rel_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts/fig_ch11_v06.svg",
       "engine": "vector_svg",
-      "note": "",
-      "status": "OK",
+      "note": "2026-11-23 품질 감사(P8~P10): 빈 틀/고정값 차트 출판 제외 처리",
+      "status": "UNGENERATED",
       "docx_image_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts_png\\fig_ch11_v06.png",
       "png_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts_png/fig_ch11_v06.png",
       "chapter_dir_local": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\by_chapter\\ch11",
-      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch11"
+      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch11",
+      "exclude_from_publish": true
     },
     {
       "figure_id": "fig_ch11_v07",
@@ -3184,12 +3118,13 @@
       "path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts\\fig_ch11_v09.svg",
       "rel_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts/fig_ch11_v09.svg",
       "engine": "vector_svg",
-      "note": "",
-      "status": "OK",
+      "note": "2026-11-23 품질 감사(P8~P10): 빈 틀/고정값 차트 출판 제외 처리",
+      "status": "UNGENERATED",
       "docx_image_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts_png\\fig_ch11_v09.png",
       "png_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts_png/fig_ch11_v09.png",
       "chapter_dir_local": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\by_chapter\\ch11",
-      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch11"
+      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch11",
+      "exclude_from_publish": true
     },
     {
       "figure_id": "fig_ch11_v10",
@@ -3242,12 +3177,13 @@
       "path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts\\fig_ch12_v01.svg",
       "rel_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts/fig_ch12_v01.svg",
       "engine": "svg_blueprint_ready",
-      "note": "gemini-2.5-flash-image: 402 RESOURCE_EXHAUSTED. {'error': {'code': 402, 'message': 'Your prepayment credits are de",
-      "status": "OK",
+      "note": "2026-11-23 품질 감사(P8~P10): 빈 틀/고정값 차트 출판 제외 처리",
+      "status": "UNGENERATED",
       "docx_image_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts_png\\fig_ch12_v01.png",
       "png_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts_png/fig_ch12_v01.png",
       "chapter_dir_local": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\by_chapter\\ch12",
-      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch12"
+      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch12",
+      "exclude_from_publish": true
     },
     {
       "figure_id": "fig_ch12_v02",
@@ -3271,12 +3207,13 @@
       "path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts\\fig_ch12_v02.svg",
       "rel_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts/fig_ch12_v02.svg",
       "engine": "svg_blueprint_ready",
-      "note": "gemini-2.5-flash-image: 402 RESOURCE_EXHAUSTED. {'error': {'code': 402, 'message': 'Your prepayment credits are de",
-      "status": "OK",
+      "note": "2026-11-23 품질 감사(P8~P10): 빈 틀/고정값 차트 출판 제외 처리",
+      "status": "UNGENERATED",
       "docx_image_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts_png\\fig_ch12_v02.png",
       "png_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts_png/fig_ch12_v02.png",
       "chapter_dir_local": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\by_chapter\\ch12",
-      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch12"
+      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch12",
+      "exclude_from_publish": true
     },
     {
       "figure_id": "fig_ch12_v03",
@@ -3300,12 +3237,13 @@
       "path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts\\fig_ch12_v03.svg",
       "rel_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts/fig_ch12_v03.svg",
       "engine": "svg_blueprint_ready",
-      "note": "gemini-2.5-flash-image: 402 RESOURCE_EXHAUSTED. {'error': {'code': 402, 'message': 'Your prepayment credits are de",
-      "status": "OK",
+      "note": "2026-11-23 품질 감사(P8~P10): 빈 틀/고정값 차트 출판 제외 처리",
+      "status": "UNGENERATED",
       "docx_image_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts_png\\fig_ch12_v03.png",
       "png_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts_png/fig_ch12_v03.png",
       "chapter_dir_local": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\by_chapter\\ch12",
-      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch12"
+      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch12",
+      "exclude_from_publish": true
     },
     {
       "figure_id": "fig_ch12_v04",
@@ -3329,12 +3267,13 @@
       "path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts\\fig_ch12_v04.svg",
       "rel_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts/fig_ch12_v04.svg",
       "engine": "svg_blueprint_ready",
-      "note": "gemini-2.5-flash-image: 402 RESOURCE_EXHAUSTED. {'error': {'code': 402, 'message': 'Your prepayment credits are de",
-      "status": "OK",
+      "note": "2026-11-23 품질 감사(P8~P10): 빈 틀/고정값 차트 출판 제외 처리",
+      "status": "UNGENERATED",
       "docx_image_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts_png\\fig_ch12_v04.png",
       "png_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts_png/fig_ch12_v04.png",
       "chapter_dir_local": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\by_chapter\\ch12",
-      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch12"
+      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch12",
+      "exclude_from_publish": true
     },
     {
       "figure_id": "fig_ch12_v05",
@@ -3387,12 +3326,13 @@
       "path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts\\fig_ch12_v06.svg",
       "rel_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts/fig_ch12_v06.svg",
       "engine": "vector_svg",
-      "note": "",
-      "status": "OK",
+      "note": "2026-11-23 품질 감사(P8~P10): 빈 틀/고정값 차트 출판 제외 처리",
+      "status": "UNGENERATED",
       "docx_image_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts_png\\fig_ch12_v06.png",
       "png_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts_png/fig_ch12_v06.png",
       "chapter_dir_local": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\by_chapter\\ch12",
-      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch12"
+      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch12",
+      "exclude_from_publish": true
     },
     {
       "figure_id": "fig_ch12_v07",
@@ -3474,12 +3414,13 @@
       "path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts\\fig_ch12_v09.svg",
       "rel_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts/fig_ch12_v09.svg",
       "engine": "vector_svg",
-      "note": "",
-      "status": "OK",
+      "note": "2026-11-23 품질 감사(P8~P10): 빈 틀/고정값 차트 출판 제외 처리",
+      "status": "UNGENERATED",
       "docx_image_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts_png\\fig_ch12_v09.png",
       "png_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts_png/fig_ch12_v09.png",
       "chapter_dir_local": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\by_chapter\\ch12",
-      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch12"
+      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch12",
+      "exclude_from_publish": true
     },
     {
       "figure_id": "fig_ch12_v10",
@@ -3532,12 +3473,13 @@
       "path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts\\fig_ch13_v01.svg",
       "rel_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts/fig_ch13_v01.svg",
       "engine": "svg_blueprint_ready",
-      "note": "gemini-2.5-flash-image: 402 RESOURCE_EXHAUSTED. {'error': {'code': 402, 'message': 'Your prepayment credits are de",
-      "status": "OK",
+      "note": "2026-11-23 품질 감사(P8~P10): 빈 틀/고정값 차트 출판 제외 처리",
+      "status": "UNGENERATED",
       "docx_image_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts_png\\fig_ch13_v01.png",
       "png_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts_png/fig_ch13_v01.png",
       "chapter_dir_local": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\by_chapter\\ch13",
-      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch13"
+      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch13",
+      "exclude_from_publish": true
     },
     {
       "figure_id": "fig_ch13_v02",
@@ -3561,12 +3503,13 @@
       "path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts\\fig_ch13_v02.svg",
       "rel_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts/fig_ch13_v02.svg",
       "engine": "svg_blueprint_ready",
-      "note": "gemini-2.5-flash-image: 402 RESOURCE_EXHAUSTED. {'error': {'code': 402, 'message': 'Your prepayment credits are de",
-      "status": "OK",
+      "note": "2026-11-23 품질 감사(P8~P10): 빈 틀/고정값 차트 출판 제외 처리",
+      "status": "UNGENERATED",
       "docx_image_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts_png\\fig_ch13_v02.png",
       "png_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts_png/fig_ch13_v02.png",
       "chapter_dir_local": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\by_chapter\\ch13",
-      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch13"
+      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch13",
+      "exclude_from_publish": true
     },
     {
       "figure_id": "fig_ch13_v03",
@@ -3590,12 +3533,13 @@
       "path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts\\fig_ch13_v03.svg",
       "rel_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts/fig_ch13_v03.svg",
       "engine": "svg_blueprint_ready",
-      "note": "gemini-2.5-flash-image: 402 RESOURCE_EXHAUSTED. {'error': {'code': 402, 'message': 'Your prepayment credits are de",
-      "status": "OK",
+      "note": "2026-11-23 품질 감사(P8~P10): 빈 틀/고정값 차트 출판 제외 처리",
+      "status": "UNGENERATED",
       "docx_image_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts_png\\fig_ch13_v03.png",
       "png_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts_png/fig_ch13_v03.png",
       "chapter_dir_local": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\by_chapter\\ch13",
-      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch13"
+      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch13",
+      "exclude_from_publish": true
     },
     {
       "figure_id": "fig_ch13_v04",
@@ -3619,12 +3563,13 @@
       "path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts\\fig_ch13_v04.svg",
       "rel_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts/fig_ch13_v04.svg",
       "engine": "svg_blueprint_ready",
-      "note": "gemini-2.5-flash-image: 402 RESOURCE_EXHAUSTED. {'error': {'code': 402, 'message': 'Your prepayment credits are de",
-      "status": "OK",
+      "note": "2026-11-23 품질 감사(P8~P10): 빈 틀/고정값 차트 출판 제외 처리",
+      "status": "UNGENERATED",
       "docx_image_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts_png\\fig_ch13_v04.png",
       "png_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts_png/fig_ch13_v04.png",
       "chapter_dir_local": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\by_chapter\\ch13",
-      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch13"
+      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch13",
+      "exclude_from_publish": true
     },
     {
       "figure_id": "fig_ch13_v05",
@@ -3677,12 +3622,13 @@
       "path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts\\fig_ch13_v06.svg",
       "rel_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts/fig_ch13_v06.svg",
       "engine": "vector_svg",
-      "note": "",
-      "status": "OK",
+      "note": "2026-11-23 품질 감사(P8~P10): 빈 틀/고정값 차트 출판 제외 처리",
+      "status": "UNGENERATED",
       "docx_image_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts_png\\fig_ch13_v06.png",
       "png_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts_png/fig_ch13_v06.png",
       "chapter_dir_local": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\by_chapter\\ch13",
-      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch13"
+      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch13",
+      "exclude_from_publish": true
     },
     {
       "figure_id": "fig_ch13_v07",
@@ -3764,12 +3710,13 @@
       "path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts\\fig_ch13_v09.svg",
       "rel_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts/fig_ch13_v09.svg",
       "engine": "vector_svg",
-      "note": "",
-      "status": "OK",
+      "note": "2026-11-23 품질 감사(P8~P10): 빈 틀/고정값 차트 출판 제외 처리",
+      "status": "UNGENERATED",
       "docx_image_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts_png\\fig_ch13_v09.png",
       "png_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts_png/fig_ch13_v09.png",
       "chapter_dir_local": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\by_chapter\\ch13",
-      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch13"
+      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch13",
+      "exclude_from_publish": true
     },
     {
       "figure_id": "fig_ch13_v10",
@@ -3822,12 +3769,13 @@
       "path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts\\fig_ch14_v01.svg",
       "rel_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts/fig_ch14_v01.svg",
       "engine": "svg_blueprint_ready",
-      "note": "gemini-2.5-flash-image: 402 RESOURCE_EXHAUSTED. {'error': {'code': 402, 'message': 'Your prepayment credits are de",
-      "status": "OK",
+      "note": "2026-11-23 품질 감사(P8~P10): 빈 틀/고정값 차트 출판 제외 처리",
+      "status": "UNGENERATED",
       "docx_image_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts_png\\fig_ch14_v01.png",
       "png_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts_png/fig_ch14_v01.png",
       "chapter_dir_local": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\by_chapter\\ch14",
-      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch14"
+      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch14",
+      "exclude_from_publish": true
     },
     {
       "figure_id": "fig_ch14_v02",
@@ -3851,12 +3799,13 @@
       "path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts\\fig_ch14_v02.svg",
       "rel_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts/fig_ch14_v02.svg",
       "engine": "svg_blueprint_ready",
-      "note": "gemini-2.5-flash-image: 402 RESOURCE_EXHAUSTED. {'error': {'code': 402, 'message': 'Your prepayment credits are de",
-      "status": "OK",
+      "note": "2026-11-23 품질 감사(P8~P10): 빈 틀/고정값 차트 출판 제외 처리",
+      "status": "UNGENERATED",
       "docx_image_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts_png\\fig_ch14_v02.png",
       "png_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts_png/fig_ch14_v02.png",
       "chapter_dir_local": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\by_chapter\\ch14",
-      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch14"
+      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch14",
+      "exclude_from_publish": true
     },
     {
       "figure_id": "fig_ch14_v03",
@@ -3880,12 +3829,13 @@
       "path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts\\fig_ch14_v03.svg",
       "rel_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts/fig_ch14_v03.svg",
       "engine": "svg_blueprint_ready",
-      "note": "gemini-2.5-flash-image: 402 RESOURCE_EXHAUSTED. {'error': {'code': 402, 'message': 'Your prepayment credits are de",
-      "status": "OK",
+      "note": "2026-11-23 품질 감사(P8~P10): 빈 틀/고정값 차트 출판 제외 처리",
+      "status": "UNGENERATED",
       "docx_image_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts_png\\fig_ch14_v03.png",
       "png_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts_png/fig_ch14_v03.png",
       "chapter_dir_local": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\by_chapter\\ch14",
-      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch14"
+      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch14",
+      "exclude_from_publish": true
     },
     {
       "figure_id": "fig_ch14_v04",
@@ -3909,12 +3859,13 @@
       "path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts\\fig_ch14_v04.svg",
       "rel_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts/fig_ch14_v04.svg",
       "engine": "svg_blueprint_ready",
-      "note": "gemini-2.5-flash-image: 402 RESOURCE_EXHAUSTED. {'error': {'code': 402, 'message': 'Your prepayment credits are de",
-      "status": "OK",
+      "note": "2026-11-23 품질 감사(P8~P10): 빈 틀/고정값 차트 출판 제외 처리",
+      "status": "UNGENERATED",
       "docx_image_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts_png\\fig_ch14_v04.png",
       "png_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts_png/fig_ch14_v04.png",
       "chapter_dir_local": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\by_chapter\\ch14",
-      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch14"
+      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch14",
+      "exclude_from_publish": true
     },
     {
       "figure_id": "fig_ch14_v05",
@@ -3967,12 +3918,13 @@
       "path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts\\fig_ch14_v06.svg",
       "rel_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts/fig_ch14_v06.svg",
       "engine": "vector_svg",
-      "note": "",
-      "status": "OK",
+      "note": "2026-11-23 품질 감사(P8~P10): 빈 틀/고정값 차트 출판 제외 처리",
+      "status": "UNGENERATED",
       "docx_image_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts_png\\fig_ch14_v06.png",
       "png_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts_png/fig_ch14_v06.png",
       "chapter_dir_local": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\by_chapter\\ch14",
-      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch14"
+      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch14",
+      "exclude_from_publish": true
     },
     {
       "figure_id": "fig_ch14_v07",
@@ -4054,12 +4006,13 @@
       "path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts\\fig_ch14_v09.svg",
       "rel_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts/fig_ch14_v09.svg",
       "engine": "vector_svg",
-      "note": "",
-      "status": "OK",
+      "note": "2026-11-23 품질 감사(P8~P10): 빈 틀/고정값 차트 출판 제외 처리",
+      "status": "UNGENERATED",
       "docx_image_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts_png\\fig_ch14_v09.png",
       "png_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts_png/fig_ch14_v09.png",
       "chapter_dir_local": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\by_chapter\\ch14",
-      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch14"
+      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch14",
+      "exclude_from_publish": true
     },
     {
       "figure_id": "fig_ch14_v10",
@@ -4112,12 +4065,13 @@
       "path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts\\fig_ch15_v01.svg",
       "rel_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts/fig_ch15_v01.svg",
       "engine": "svg_blueprint_ready",
-      "note": "gemini-2.5-flash-image: 402 RESOURCE_EXHAUSTED. {'error': {'code': 402, 'message': 'Your prepayment credits are de",
-      "status": "OK",
+      "note": "2026-11-23 품질 감사(P8~P10): 빈 틀/고정값 차트 출판 제외 처리",
+      "status": "UNGENERATED",
       "docx_image_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts_png\\fig_ch15_v01.png",
       "png_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts_png/fig_ch15_v01.png",
       "chapter_dir_local": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\by_chapter\\ch15",
-      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch15"
+      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch15",
+      "exclude_from_publish": true
     },
     {
       "figure_id": "fig_ch15_v02",
@@ -4141,12 +4095,13 @@
       "path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts\\fig_ch15_v02.svg",
       "rel_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts/fig_ch15_v02.svg",
       "engine": "svg_blueprint_ready",
-      "note": "gemini-2.5-flash-image: 402 RESOURCE_EXHAUSTED. {'error': {'code': 402, 'message': 'Your prepayment credits are de",
-      "status": "OK",
+      "note": "2026-11-23 품질 감사(P8~P10): 빈 틀/고정값 차트 출판 제외 처리",
+      "status": "UNGENERATED",
       "docx_image_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts_png\\fig_ch15_v02.png",
       "png_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts_png/fig_ch15_v02.png",
       "chapter_dir_local": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\by_chapter\\ch15",
-      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch15"
+      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch15",
+      "exclude_from_publish": true
     },
     {
       "figure_id": "fig_ch15_v03",
@@ -4170,12 +4125,13 @@
       "path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts\\fig_ch15_v03.svg",
       "rel_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts/fig_ch15_v03.svg",
       "engine": "svg_blueprint_ready",
-      "note": "gemini-2.5-flash-image: 402 RESOURCE_EXHAUSTED. {'error': {'code': 402, 'message': 'Your prepayment credits are de",
-      "status": "OK",
+      "note": "2026-11-23 품질 감사(P8~P10): 빈 틀/고정값 차트 출판 제외 처리",
+      "status": "UNGENERATED",
       "docx_image_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts_png\\fig_ch15_v03.png",
       "png_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts_png/fig_ch15_v03.png",
       "chapter_dir_local": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\by_chapter\\ch15",
-      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch15"
+      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch15",
+      "exclude_from_publish": true
     },
     {
       "figure_id": "fig_ch15_v04",
@@ -4199,12 +4155,13 @@
       "path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts\\fig_ch15_v04.svg",
       "rel_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts/fig_ch15_v04.svg",
       "engine": "svg_blueprint_ready",
-      "note": "gemini-2.5-flash-image: 402 RESOURCE_EXHAUSTED. {'error': {'code': 402, 'message': 'Your prepayment credits are de",
-      "status": "OK",
+      "note": "2026-11-23 품질 감사(P8~P10): 빈 틀/고정값 차트 출판 제외 처리",
+      "status": "UNGENERATED",
       "docx_image_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts_png\\fig_ch15_v04.png",
       "png_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts_png/fig_ch15_v04.png",
       "chapter_dir_local": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\by_chapter\\ch15",
-      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch15"
+      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch15",
+      "exclude_from_publish": true
     },
     {
       "figure_id": "fig_ch15_v05",
@@ -4257,12 +4214,13 @@
       "path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts\\fig_ch15_v06.svg",
       "rel_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts/fig_ch15_v06.svg",
       "engine": "vector_svg",
-      "note": "",
-      "status": "OK",
+      "note": "2026-11-23 품질 감사(P8~P10): 빈 틀/고정값 차트 출판 제외 처리",
+      "status": "UNGENERATED",
       "docx_image_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts_png\\fig_ch15_v06.png",
       "png_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts_png/fig_ch15_v06.png",
       "chapter_dir_local": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\by_chapter\\ch15",
-      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch15"
+      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch15",
+      "exclude_from_publish": true
     },
     {
       "figure_id": "fig_ch15_v07",
@@ -4344,12 +4302,13 @@
       "path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts\\fig_ch15_v09.svg",
       "rel_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts/fig_ch15_v09.svg",
       "engine": "vector_svg",
-      "note": "",
-      "status": "OK",
+      "note": "2026-11-23 품질 감사(P8~P10): 빈 틀/고정값 차트 출판 제외 처리",
+      "status": "UNGENERATED",
       "docx_image_path": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\charts_png\\fig_ch15_v09.png",
       "png_url": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/charts_png/fig_ch15_v09.png",
       "chapter_dir_local": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\by_chapter\\ch15",
-      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch15"
+      "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch15",
+      "exclude_from_publish": true
     },
     {
       "figure_id": "fig_ch15_v10",
@@ -4380,5 +4339,8 @@
       "chapter_dir_local": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\smart_farm_onion_cultivation_20261123_042527\\assets\\by_chapter\\ch15",
       "chapter_dir_e": "E:\\SMC_Report_Platform_Data\\projects\\smart_farm_onion_cultivation_20261123_042527\\visuals\\by_chapter\\ch15"
     }
-  ]
+  ],
+  "contact_sheets": {
+    "ch05": "/project-files/smart_farm_onion_cultivation_20261123_042527/assets/by_chapter/ch05/qa_grid_ch05.jpg"
+  }
 }

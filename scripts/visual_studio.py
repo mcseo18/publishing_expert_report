@@ -132,76 +132,34 @@ CHAPTER_THEME_SCENES: list[tuple[tuple[str, ...], str, str]] = [
     (("미래", "유전자", "미생물", "로봇", "융합"), "modern glass smart agricultural research greenhouse cultivating experimental {crop_field} under precision LED lighting", "clean microscopic rhizosphere illustration showing beneficial golden soil bacteria and white mycorrhizal fungal hyphae around roots of {crop_bot} on pure white background"),
 ]
 
-# 단원당 기본 10종 시각화 아키타입 (실사진/과학도해 4종 + 정량/구조 한글 SVG 6종)
+# 단원당 기본 주장 기반 시각화 아키타입 (V1·V2: 가짜 수치 막대/곡선 틀 완전 제거, 3~6장 권장)
 CHAPTER_VISUAL_TEMPLATES: list[dict[str, str]] = [
     {
         "slot": "v01",
         "kind": "photo_ai",
         "style": "photorealistic",
-        "role_ko": "현장 실사진: 핵심 작물·재배 환경 전경",
+        "role_ko": "장 도입 · 현장 관찰 실사",
         "prompt_tmpl": "Ultra-realistic documentary agricultural photograph of {field_scene}, crisp natural daylight, field research station quality, accurate botanical morphology, shallow depth of field. {zero_text}",
     },
     {
         "slot": "v02",
-        "kind": "infographic_ai",
-        "style": "scientific_illustration",
-        "role_ko": "과학 단면도·생리 구조 도해",
-        "prompt_tmpl": "Publication-grade Nature journal scientific botanical illustration: {diagram_scene}, anatomically and physically accurate, crisp editorial shading, clean pure white background. {zero_text}",
+        "kind": "svg_flow",
+        "style": "content_diagram",
+        "role_ko": "원고 내용 기반 구조·피드백 도해",
+        "prompt_tmpl": "",
     },
     {
         "slot": "v03",
         "kind": "photo_ai",
         "style": "photorealistic_macro",
-        "role_ko": "근접 실사진: 생리·품질·구조 정밀 관찰",
+        "role_ko": "근접 형태·조직 관찰 실사",
         "prompt_tmpl": "High-resolution macro scientific photography closely capturing {macro_scene}, true-to-life botanical color, crisp natural texture, laboratory diagnostic clarity. {zero_text}",
     },
     {
         "slot": "v04",
-        "kind": "infographic_ai",
-        "style": "system_illustration",
-        "role_ko": "디지털·스마트 현장 시스템 도해",
-        "prompt_tmpl": "Clean modern editorial isometric illustration on pure white background showing precision agriculture sensors, weather station, and field crop canopy related to {field_scene}, realistic architectural clarity. {zero_text}",
-    },
-    {
-        "slot": "v05",
-        "kind": "svg_flow",
-        "style": "flowchart",
-        "role_ko": "핵심 메커니즘 및 의사결정 흐름도",
-        "prompt_tmpl": "",
-    },
-    {
-        "slot": "v06",
-        "kind": "svg_bar",
-        "style": "comparison_bar",
-        "role_ko": "핵심 관리 요인별 상대 기여도 비교 차트",
-        "prompt_tmpl": "",
-    },
-    {
-        "slot": "v07",
-        "kind": "svg_timeline",
-        "style": "stage_timeline",
-        "role_ko": "단계별 생육·작업 프로세스 로드맵",
-        "prompt_tmpl": "",
-    },
-    {
-        "slot": "v08",
-        "kind": "svg_matrix",
-        "style": "diagnostic_matrix",
-        "role_ko": "현장 이상 진단 및 대응 전략 매트릭스",
-        "prompt_tmpl": "",
-    },
-    {
-        "slot": "v09",
-        "kind": "svg_curve",
-        "style": "response_curve",
-        "role_ko": "환경 변수 변화에 따른 정량 반응 곡선",
-        "prompt_tmpl": "",
-    },
-    {
-        "slot": "v10",
-        "kind": "svg_summary",
-        "style": "concept_map",
-        "role_ko": "단원 핵심 개념 통합 관계도",
+        "kind": "svg_layers",
+        "style": "layered_comparison",
+        "role_ko": "원고 내용 기반 계층·비교 도해",
         "prompt_tmpl": "",
     },
 ]
@@ -372,110 +330,214 @@ def _generate_with_nano_banana(
     return False, last_err or "Gemini 응답에 이미지 바이너리가 없습니다."
 
 
-def _svg_canvas(title: str, subtitle: str, body: str, accent: str = "#0f172a") -> str:
-    t_clean = _wrap_svg_lines(title, max_chars=48, max_lines=1)[0]
-    s_clean = _wrap_svg_lines(subtitle, max_chars=74, max_lines=1)[0]
+def _svg_canvas(title: str, subtitle: str, body: str, accent: str = "#1D3557", source_note: str = "") -> str:
+    t_clean = _wrap_svg_lines(title, max_chars=56, max_lines=1)[0]
+    s_clean = _wrap_svg_lines(subtitle, max_chars=82, max_lines=1)[0]
+    footer = ""
+    if source_note:
+        sn = _wrap_svg_lines(f"자료: {source_note}", max_chars=96, max_lines=1)[0]
+        footer = f'  <text x="22" y="458" font-size="10.2" fill="#475569">{html.escape(sn)}</text>\n'
     return (
-        f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" width="800" height="420" '
+        f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 476" width="880" height="476" '
         f'style="background:#ffffff;font-family:{FONT};">\n'
-        f'  <rect x="0" y="0" width="800" height="420" rx="12" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>\n'
-        f'  <rect x="0" y="0" width="800" height="58" rx="12" fill="{accent}"/>\n'
-        f'  <rect x="0" y="42" width="800" height="16" fill="{accent}"/>\n'
+        f'  <rect x="0" y="0" width="880" height="476" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.4"/>\n'
+        f'  <rect x="0" y="0" width="880" height="58" rx="10" fill="{accent}"/>\n'
+        f'  <rect x="0" y="42" width="880" height="16" fill="{accent}"/>\n'
         f'  <text x="22" y="27" font-size="14.5" font-weight="700" fill="#f8fafc">{html.escape(t_clean)}</text>\n'
-        f'  <text x="22" y="47" font-size="11" fill="#cbd5e1">{html.escape(s_clean)}</text>\n'
+        f'  <text x="22" y="47" font-size="10.8" fill="#cbd5e1">{html.escape(s_clean)}</text>\n'
         f'  {body}\n'
+        f'{footer}'
         f'</svg>'
     )
 
 
-def _render_vector_svg(spec: dict[str, Any], sections: list[str]) -> str:
-    """단원 내용에 맞춘 출판급 한글 벡터 SVG 도해·차트를 생성한다 (단어 경계 줄바꿈으로 글자 잘림·오탈자 0%)."""
-    style = spec.get("style", "flowchart")
-    title = spec["title_ko"]
-    sub = spec["subtitle_ko"]
-    sec_labels = [_clean_svg_label(s) for s in (sections[:4] or ["1. 기초 원리", "2. 환경 제어", "3. 정밀 분석", "4. 현장 적용"])]
-    while len(sec_labels) < 4:
-        sec_labels.append(f"단계 {len(sec_labels)+1}")
+def _extract_content_nodes_from_spec(spec: dict[str, Any], sections: list[str]) -> list[dict[str, str]]:
+    """원고에서 추출한 구조화 노드(nodes)가 있으면 그대로 사용하고, 없으면 절/주장 내용에서 핵심 단계를 구성한다 (V4)."""
+    raw_nodes = spec.get("diagram_nodes") or spec.get("nodes") or []
+    nodes: list[dict[str, str]] = []
+    for i, n in enumerate(raw_nodes[:5], 1):
+        if isinstance(n, dict):
+            nodes.append(
+                {
+                    "tag": str(n.get("tag") or f"STEP {i}"),
+                    "label": str(n.get("label") or f"단계 {i}"),
+                    "detail": str(n.get("detail") or ""),
+                    "metric": str(n.get("metric") or ""),
+                }
+            )
+    if nodes:
+        return nodes
+    # 폴백: 절 제목을 반복 문구 없이 간결한 개념 노드로 정리
+    base_secs = [_clean_svg_label(s) for s in (sections[:4] or []) if str(s).strip()]
+    for i, s in enumerate(base_secs, 1):
+        clean_s = re.sub(r"^\d+(?:\.\d+)*\s*", "", s).strip()
+        nodes.append({"tag": f"요소 {i}", "label": clean_s, "detail": spec.get("claim_ko", "")[:34] if i == 1 else "", "metric": ""})
+    return nodes
 
-    if style == "comparison_bar":
-        vals = [92, 84, 76, 68]
-        colors = ["#0284c7", "#16a34a", "#d97706", "#7c3aed"]
-        parts = []
-        for i, (lbl, v, col) in enumerate(zip(sec_labels, vals, colors)):
-            y = 92 + i * 74
-            w = int((v / 100.0) * 410)
-            lines = _wrap_svg_lines(lbl, max_chars=16, max_lines=2)
-            parts.append(_svg_multiline_text(24, y + 20, lines, font_size=11.5, line_height=15, fill="#1e293b", weight="700", anchor="start"))
-            parts.append(f'<rect x="270" y="{y+6}" width="420" height="28" rx="6" fill="#f1f5f9"/>')
-            parts.append(f'<rect x="270" y="{y+6}" width="{w}" height="28" rx="6" fill="{col}"/>')
-            parts.append(f'<text x="{278+w}" y="{y+25}" font-size="12" font-weight="700" fill="#0f172a">{v}%</text>')
-        return _svg_canvas(title, sub, "\n  ".join(parts), "#0f2942")
 
-    if style == "response_curve":
-        pts = [(110, 310), (220, 250), (350, 155), (480, 125), (610, 175), (720, 265)]
-        poly = " ".join(f"{x},{y}" for x, y in pts)
-        parts = [
-            '<rect x="85" y="84" width="665" height="260" fill="#f8fafc" stroke="#cbd5e1"/>',
-            '<line x1="85" y1="214" x2="750" y2="214" stroke="#e2e8f0" stroke-dasharray="4,4"/>',
-            '<rect x="300" y="84" width="220" height="260" fill="rgba(22,163,74,0.10)"/>',
-            '<text x="410" y="106" text-anchor="middle" font-size="11.5" font-weight="700" fill="#15803d">최적 관리 구간 (Optimal Zone)</text>',
-            f'<polyline fill="none" stroke="#0284c7" stroke-width="3.2" points="{poly}"/>',
-        ]
-        for x, y in pts:
-            parts.append(f'<circle cx="{x}" cy="{y}" r="5.5" fill="#0284c7" stroke="#ffffff" stroke-width="2"/>')
-        parts.append('<text x="418" y="378" text-anchor="middle" font-size="12" font-weight="700" fill="#334155">환경 · 투입 인자 수준 (부족 → 최적 → 과잉)</text>')
-        parts.append('<text x="26" y="215" text-anchor="middle" font-size="12" font-weight="700" fill="#334155" transform="rotate(-90 26 215)">생육 · 품질 지수</text>')
-        return _svg_canvas(title, sub, "\n  ".join(parts), "#064e3b")
-
-    if style == "diagnostic_matrix":
-        cells = [
-            (40, 88, "#dcfce7", "#166534", "정상 · 최적 상태", sec_labels[0]),
-            (415, 88, "#dbeafe", "#1e40af", "예방적 디지털 모니터링", sec_labels[1]),
-            (40, 245, "#fef9c3", "#854d0e", "주의 · 임계치 접근", sec_labels[2]),
-            (415, 245, "#fee2e2", "#991b1b", "즉각 교정 · 방제 조치", sec_labels[3]),
-        ]
-        parts = []
-        for x, y, bg, fg, head, desc in cells:
-            parts.append(f'<rect x="{x}" y="{y}" width="345" height="135" rx="10" fill="{bg}" stroke="{fg}" stroke-width="1.5"/>')
-            parts.append(f'<text x="{x+18}" y="{y+34}" font-size="14" font-weight="700" fill="{fg}">{html.escape(head)}</text>')
-            d_lines = _wrap_svg_lines(desc, max_chars=24, max_lines=2)
-            parts.append(_svg_multiline_text(x + 18, y + 70, d_lines, font_size=11.8, line_height=16, fill="#1e293b", weight="600", anchor="start"))
-            parts.append(f'<text x="{x+18}" y="{y+114}" font-size="11" fill="#475569">정량 계측 → 임계 판정 → 현장 처방</text>')
-        return _svg_canvas(title, sub, "\n  ".join(parts), "#312e81")
-
-    if style == "stage_timeline":
-        parts = ['<line x1="70" y1="228" x2="730" y2="228" stroke="#0284c7" stroke-width="4"/>']
-        colors = ["#0284c7", "#0d9488", "#16a34a", "#7c3aed"]
-        for i, (lbl, col) in enumerate(zip(sec_labels, colors)):
-            cx = 115 + i * 190
-            parts.append(f'<circle cx="{cx}" cy="228" r="22" fill="{col}" stroke="#ffffff" stroke-width="3"/>')
-            parts.append(f'<text x="{cx}" y="233" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">S{i+1}</text>')
-            parts.append(f'<rect x="{cx-84}" y="96" width="168" height="86" rx="8" fill="#f8fafc" stroke="{col}" stroke-width="1.5"/>')
-            t_lines = _wrap_svg_lines(lbl, max_chars=12, max_lines=3)
-            parts.append(_svg_multiline_text(cx, 139, t_lines, font_size=11.5, line_height=16, fill="#0f172a", weight="700", anchor="middle"))
-            parts.append(f'<text x="{cx}" y="286" text-anchor="middle" font-size="11" fill="#475569">핵심 지표 계측 · 검증</text>')
-        return _svg_canvas(title, sub, "\n  ".join(parts), "#1e293b")
-
-    # flowchart / concept_map / ai_blueprint_card
-    parts = [
-        '<defs><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">'
-        '<path d="M 0 1 L 10 5 L 0 9 z" fill="#334155"/></marker></defs>'
-    ]
-    bgs = ["#e0f2fe", "#dcfce7", "#fef3c7", "#f3e8ff"]
-    for i, (lbl, bg) in enumerate(zip(sec_labels, bgs)):
-        x = 34 + i * 188
-        parts.append(f'<rect x="{x}" y="128" width="164" height="158" rx="10" fill="{bg}" stroke="#334155" stroke-width="1.4"/>')
-        parts.append(f'<text x="{x+82}" y="162" text-anchor="middle" font-size="11" font-weight="700" fill="#475569">STEP {i+1}</text>')
-        b_lines = _wrap_svg_lines(lbl, max_chars=11, max_lines=3)
-        parts.append(_svg_multiline_text(x + 82, 224, b_lines, font_size=12, line_height=18, fill="#0f172a", weight="700", anchor="middle"))
-        if i < 3:
-            parts.append(f'<line x1="{x+164}" y1="208" x2="{x+188}" y2="208" stroke="#334155" stroke-width="2" marker-end="url(#ar)"/>')
-    if spec.get("prompt"):
-        parts.append(
-            f'<text x="400" y="348" text-anchor="middle" font-size="11" fill="#64748b">'
-            f'실사진/도해 생성 프롬프트 준비됨 (fal.ai 또는 나노바나나 API 키 활성화 시 실사 PNG 자동 대체)</text>'
+def render_content_diagram_svg(spec: dict[str, Any], sections: list[str] | None = None) -> str:
+    """원고 내용 기반 구조도·피드백 흐름도·계층 비교도 SVG를 생성한다 (V2/V4: 가짜 수치 차트 및 고정 문구 완전 삭제)."""
+    style = str(spec.get("style") or "content_diagram")
+    if style in ("comparison_bar", "response_curve"):
+        raise ValueError(
+            f"고정값 차트 틀({style})은 V2 원칙에 따라 삭제되었습니다. "
+            "실제 데이터 표/CSV로 academic_plot_style.render_data_chart_png()를 사용하십시오."
         )
-    return _svg_canvas(title, sub, "\n  ".join(parts), "#0f172a")
+
+    title = str(spec.get("title_ko") or "내용 기반 구조 도해")
+    sub = str(spec.get("subtitle_ko") or spec.get("claim_ko") or "")
+    source_note = str(spec.get("data_source") or "")
+    nodes = _extract_content_nodes_from_spec(spec, sections or [])
+    edges = spec.get("diagram_edges") or []
+    feedback_label = str(spec.get("feedback_label") or "")
+
+    # 색맹 안전 Okabe-Ito 기반 연색 박스 + 진색 테두리
+    palette = [
+        ("#E0F2FE", "#0072B2"),
+        ("#DCFCE7", "#009E73"),
+        ("#FEF3C7", "#D55E00"),
+        ("#F3E8FF", "#CC79A7"),
+        ("#E2E8F0", "#1D3557"),
+    ]
+
+    if style == "layered_comparison" and len(nodes) >= 2:
+        n_cols = min(3, len(nodes))
+        col_w = int((832 - (n_cols - 1) * 16) / n_cols)
+        parts: list[str] = []
+        for idx, nd in enumerate(nodes[:n_cols]):
+            bg, bd = palette[idx % len(palette)]
+            x = 24 + idx * (col_w + 16)
+            parts.append(f'<rect x="{x}" y="84" width="{col_w}" height="346" rx="10" fill="{bg}" stroke="{bd}" stroke-width="1.6"/>')
+            parts.append(f'<rect x="{x}" y="84" width="{col_w}" height="38" rx="10" fill="{bd}"/>')
+            parts.append(f'<rect x="{x}" y="108" width="{col_w}" height="14" fill="{bd}"/>')
+            parts.append(f'<text x="{x + col_w / 2:.1f}" y="108" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">{html.escape(nd["tag"])}</text>')
+            l_lines = _wrap_svg_lines(nd["label"], max_chars=max(12, col_w // 14), max_lines=3)
+            parts.append(_svg_multiline_text(x + col_w / 2, 164, l_lines, font_size=13, line_height=19, fill="#0f172a", weight="700"))
+            if nd.get("detail"):
+                d_lines = _wrap_svg_lines(nd["detail"], max_chars=max(16, col_w // 11), max_lines=5)
+                parts.append(_svg_multiline_text(x + 16, 260, d_lines, font_size=11.3, line_height=17, fill="#1e293b", weight="500", anchor="start"))
+            if nd.get("metric"):
+                parts.append(f'<rect x="{x + 14}" y="366" width="{col_w - 28}" height="46" rx="7" fill="#ffffff" stroke="{bd}" stroke-width="1.1"/>')
+                m_lines = _wrap_svg_lines(nd["metric"], max_chars=max(16, col_w // 11), max_lines=2)
+                parts.append(_svg_multiline_text(x + col_w / 2, 389, m_lines, font_size=11, line_height=15, fill=bd, weight="700"))
+        return _svg_canvas(title, sub, "\n  ".join(parts), "#1D3557", source_note=source_note)
+
+    # 기본: 내용 기반 프로세스·피드백 루프 흐름도 (V4)
+    n_cnt = max(1, min(4, len(nodes)))
+    gap = 28
+    box_w = int((832 - (n_cnt - 1) * gap) / n_cnt)
+    box_y = 104
+    box_h = 228 if feedback_label else 284
+
+    parts = [
+        '<defs><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">'
+        '<path d="M 0 1 L 10 5 L 0 9 z" fill="#1D3557"/></marker></defs>'
+    ]
+    for i, nd in enumerate(nodes[:n_cnt]):
+        bg, bd = palette[i % len(palette)]
+        x = 24 + i * (box_w + gap)
+        parts.append(f'<rect x="{x}" y="{box_y}" width="{box_w}" height="{box_h}" rx="10" fill="{bg}" stroke="{bd}" stroke-width="1.6"/>')
+        parts.append(f'<rect x="{x}" y="{box_y}" width="{box_w}" height="32" rx="10" fill="{bd}"/>')
+        parts.append(f'<rect x="{x}" y="{box_y + 20}" width="{box_w}" height="12" fill="{bd}"/>')
+        parts.append(f'<text x="{x + box_w / 2:.1f}" y="{box_y + 21}" text-anchor="middle" font-size="11.5" font-weight="700" fill="#ffffff">{html.escape(nd["tag"])}</text>')
+        l_lines = _wrap_svg_lines(nd["label"], max_chars=max(10, box_w // 14), max_lines=3)
+        parts.append(_svg_multiline_text(x + box_w / 2, box_y + 74, l_lines, font_size=12.5, line_height=18, fill="#0f172a", weight="700"))
+        if nd.get("detail"):
+            d_lines = _wrap_svg_lines(nd["detail"], max_chars=max(13, box_w // 11), max_lines=4)
+            parts.append(_svg_multiline_text(x + box_w / 2, box_y + 148, d_lines, font_size=10.8, line_height=15.5, fill="#334155", weight="500"))
+        if nd.get("metric"):
+            my = box_y + box_h - 38
+            parts.append(f'<rect x="{x + 10}" y="{my}" width="{box_w - 20}" height="28" rx="6" fill="#ffffff" stroke="{bd}" stroke-width="1"/>')
+            m_clean = _wrap_svg_lines(nd["metric"], max_chars=max(12, box_w // 10), max_lines=1)[0]
+            parts.append(f'<text x="{x + box_w / 2:.1f}" y="{my + 18}" text-anchor="middle" font-size="10.2" font-weight="700" fill="{bd}">{html.escape(m_clean)}</text>')
+        if i < n_cnt - 1:
+            ay = box_y + box_h // 2
+            parts.append(f'<line x1="{x + box_w}" y1="{ay}" x2="{x + box_w + gap - 4}" y2="{ay}" stroke="#1D3557" stroke-width="2.2" marker-end="url(#ar)"/>')
+            if i < len(edges) and edges[i]:
+                elbl = _wrap_svg_lines(str(edges[i]), max_chars=8, max_lines=1)[0]
+                parts.append(f'<text x="{x + box_w + gap / 2:.1f}" y="{ay - 8}" text-anchor="middle" font-size="9.5" font-weight="700" fill="#1D3557">{html.escape(elbl)}</text>')
+
+    if feedback_label and n_cnt >= 2:
+        x_start = 24 + (n_cnt - 1) * (box_w + gap) + box_w // 2
+        x_end = 24 + box_w // 2
+        y_bot = box_y + box_h
+        y_loop = y_bot + 54
+        parts.append(
+            f'<path d="M {x_start} {y_bot} L {x_start} {y_loop} L {x_end} {y_loop} L {x_end} {y_bot + 6}" '
+            f'fill="none" stroke="#009E73" stroke-width="2.4" stroke-dasharray="6,4" marker-end="url(#ar)"/>'
+        )
+        parts.append(f'<rect x="230" y="{y_loop - 14}" width="420" height="28" rx="14" fill="#ECFDF5" stroke="#009E73" stroke-width="1.3"/>')
+        parts.append(f'<text x="440" y="{y_loop + 4}" text-anchor="middle" font-size="11.2" font-weight="700" fill="#065F46">{html.escape(_wrap_svg_lines(feedback_label, max_chars=52, max_lines=1)[0])}</text>')
+
+    return _svg_canvas(title, sub, "\n  ".join(parts), "#1D3557", source_note=source_note)
+
+
+def _render_vector_svg(spec: dict[str, Any], sections: list[str]) -> str:
+    """하위 호환 래퍼: 내용 기반 구조도만 렌더링하고 가짜 수치 차트 생성을 차단한다 (V2/V4)."""
+    return render_content_diagram_svg(spec, sections)
+
+
+def overlay_korean_labels_pillow(
+    base_image_path: Path,
+    labels: list[dict[str, Any]],
+    out_path: Path,
+) -> Path:
+    """V5 (textbook-visual-director Tier 2): 무문자 AI 바탕 이미지 위에 Pillow + 맑은 고딕 Bold로 한글 라벨·지시선을 정밀 합성한다."""
+    from PIL import Image, ImageDraw, ImageFont
+
+    with Image.open(base_image_path) as im:
+        img = im.convert("RGBA")
+    w, h = img.size
+    overlay = Image.new("RGBA", (w, h), (0, 0, 0, 0))
+    draw = ImageDraw.Draw(overlay)
+    try:
+        font = ImageFont.truetype("C:/Windows/Fonts/malgunbd.ttf", max(18, int(w * 0.015)))
+    except Exception:
+        font = ImageFont.load_default()
+
+    for lb in labels:
+        text = str(lb.get("text") or "").strip()
+        if not text:
+            continue
+        # 상대 좌표 (0.0~1.0) 기준 배치
+        lx = int(float(lb.get("x", 0.5)) * w)
+        ly = int(float(lb.get("y", 0.5)) * h)
+        tx = lb.get("target_x")
+        ty = lb.get("target_y")
+        accent = lb.get("color", (29, 53, 87, 255))
+        if tx is not None and ty is not None:
+            px, py = int(float(tx) * w), int(float(ty) * h)
+            draw.line([(lx, ly), (px, py)], fill=(255, 255, 255, 220), width=5)
+            draw.line([(lx, ly), (px, py)], fill=accent, width=3)
+            r = max(5, int(w * 0.004))
+            draw.ellipse([px - r, py - r, px + r, py + r], fill=accent, outline=(255, 255, 255, 255), width=2)
+        bbox = draw.textbbox((0, 0), text, font=font)
+        tw, th = bbox[2] - bbox[0], bbox[3] - bbox[1]
+        pad_x, pad_y = 12, 7
+        bx0 = max(6, min(w - tw - pad_x * 2 - 6, lx - (tw // 2) - pad_x))
+        by0 = max(6, min(h - th - pad_y * 2 - 6, ly - (th // 2) - pad_y))
+        bx1, by1 = bx0 + tw + pad_x * 2, by0 + th + pad_y * 2
+        draw.rounded_rectangle([bx0, by0, bx1, by1], radius=8, fill=(255, 255, 255, 236), outline=accent, width=2)
+        draw.text((bx0 + pad_x, by0 + pad_y - 1), text, fill=(15, 23, 42, 255), font=font)
+
+    merged = Image.alpha_composite(img, overlay).convert("RGB")
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    merged.save(str(out_path), format="PNG")
+    return out_path
+
+
+def format_three_sentence_narrative(
+    *,
+    fig_no: str,
+    claim_ko: str,
+    how_to_read_ko: str,
+    data_source: str,
+) -> str:
+    """V9 / P12: 그림마다 '① 무엇을 보여 주는가 → ② 어떻게 읽는가 → ③ 출처' 3문장 구조로 해설을 작성한다."""
+    s1 = (claim_ko or "").strip().rstrip(".")
+    s2 = (how_to_read_ko or "").strip().rstrip(".")
+    s3 = (data_source or "본문 인용 근거 및 표준 문헌").strip().rstrip(".")
+    return f"[{fig_no}] {s1}. {s2}. (자료: {s3})."
 
 
 def build_chapter_visual_specs(
@@ -483,26 +545,45 @@ def build_chapter_visual_specs(
     topic_ko: str,
     topic_en: str,
     chapter: dict[str, Any],
-    per_chapter_count: int = 10,
+    per_chapter_count: int = 4,
+    manuscript_path: Path | None = None,
 ) -> list[dict[str, Any]]:
-    """단원 1개당 사용자 지정 개수(0~25개)의 시각화 명세(실사진/과학도해 + 정량 SVG + 줄글 해설)를 구성한다."""
+    """V1/V8/V9: 원고의 실제 절·주장을 기반으로 간결한 제목과 3문장 해설을 갖춘 시각화 명세(권장 3~6장)를 구성한다."""
     cid = chapter.get("chapter_id", "ch01")
     ch_num = int(chapter.get("chapter_number") or 1)
     ch_title = chapter.get("title", f"제{ch_num}장")
-    secs = chapter.get("sections") or [f"{ch_num}.1 개요", f"{ch_num}.2 원리", f"{ch_num}.3 응용", f"{ch_num}.4 현장관리"]
+    secs = chapter.get("sections") or [f"{ch_num}.1 개요", f"{ch_num}.2 원리", f"{ch_num}.3 응용"]
     field_scene, diagram_scene, macro_scene = _resolve_english_visual_scenes(topic_ko, topic_en, chapter)
-    count = max(0, min(25, int(per_chapter_count)))
+    count = max(0, min(12, int(per_chapter_count)))
     if count == 0:
         return []
+
+    # 원고가 존재하면 실제 절 본문에서 인용키와 핵심 요지를 발췌
+    sec_claims: dict[str, tuple[str, str]] = {}
+    if manuscript_path and manuscript_path.is_file():
+        raw_md = manuscript_path.read_text(encoding="utf-8", errors="ignore")
+        body_md = re.split(r"(?m)^##\s*참고문헌", raw_md, maxsplit=1)[0]
+        for m in re.finditer(r"(?m)^##\s+([^\n]+)\n([\s\S]*?)(?=^##\s+|\Z)", body_md):
+            h_txt = m.group(1).strip()
+            s_body = m.group(2).strip()
+            cites = sorted(set(re.findall(r"\[SRC-\d+\]", s_body)))
+            first_para = next((p.strip() for p in s_body.split("\n\n") if p.strip() and not p.strip().startswith(("#", "|", "<", "*"))), "")
+            first_sent = re.split(r"(?<=[.다])\s+", re.sub(r"\s+", " ", first_para))[0][:140]
+            sec_claims[h_txt] = (first_sent, ", ".join(cites[:4]) if cites else "본문 분석")
 
     specs: list[dict[str, Any]] = []
     for idx in range(count):
         tmpl = CHAPTER_VISUAL_TEMPLATES[idx % len(CHAPTER_VISUAL_TEMPLATES)]
         v_num = idx + 1
         fig_id = f"fig_{cid}_v{v_num:02d}"
+        fig_no = f"그림 {ch_num}-{v_num}"
         sec_ref = secs[idx % len(secs)]
+        short_sec = re.sub(r"^\d+(?:\.\d+)*\s*", "", sec_ref).strip()
+        if len(short_sec) > 34:
+            short_sec = short_sec[:33].rstrip(" ,·(") + "…"
         is_ai = tmpl["kind"] in ("photo_ai", "infographic_ai")
-        title_ko = f"그림 {ch_num}-{v_num}. {ch_title} — {tmpl['role_ko']} ({sec_ref})"
+        # V8: 간결한 그림 제목 (장 제목 반복 금지!)
+        title_ko = f"{fig_no}. {short_sec}"
         prompt = (
             tmpl["prompt_tmpl"].format(
                 field_scene=field_scene,
@@ -513,22 +594,36 @@ def build_chapter_visual_specs(
             if is_ai
             else ""
         )
-        narrative_ko = (
-            f"[그림 {ch_num}-{v_num}] {title_ko}은(는) 《{topic_ko}》 {ch_title}의 핵심 학습 요소인 '{sec_ref}'을 "
-            f"{'사실적인 현장 실사진 및 고해상도 과학 도해' if is_ai else '정량적 벡터 차트 및 구조 다이어그램'}으로 시각화한 자료이다. "
-            f"독자는 이 도해를 통해 주요 환경·생리·관리 변수 간의 인과관계를 직관적으로 파악하고 현장 의사결정 기준과 직접 연결할 수 있다."
+        matched_claim, matched_src = sec_claims.get(sec_ref, ("", ""))
+        claim_ko = matched_claim or f"{short_sec}의 핵심 구성 요소와 작동 원리를 보여준다"
+        how_to_read = (
+            "현장 실사 장면의 생육 형태와 환경 배치를 중심으로 관찰한다"
+            if is_ai
+            else "좌측 입력·계측 요소에서 우측 판단·적용 단계로 이어지는 화살표와 핵심 기준값을 따라 읽는다"
+        )
+        data_src = matched_src or f"《{topic_ko}》 {sec_ref} 본문 및 근거 패킷"
+        narrative_ko = format_three_sentence_narrative(
+            fig_no=fig_no,
+            claim_ko=claim_ko,
+            how_to_read_ko=how_to_read,
+            data_source=data_src,
         )
         specs.append(
             {
                 "figure_id": fig_id,
+                "figure_no": fig_no,
                 "chapter_id": cid,
                 "chapter_number": ch_num,
                 "index": v_num,
                 "kind": tmpl["kind"],
                 "style": tmpl["style"],
                 "is_ai_image": is_ai,
+                "target_section": sec_ref,
                 "title_ko": title_ko,
-                "subtitle_ko": f"{topic_ko} · {sec_ref}",
+                "subtitle_ko": short_sec,
+                "claim_ko": claim_ko,
+                "how_to_read_ko": how_to_read,
+                "data_source": data_src,
                 "prompt": prompt,
                 "narrative_ko": narrative_ko,
                 "sections": secs,
@@ -583,7 +678,7 @@ def generate_project_visuals(
     topic_ko: str,
     topic_en: str,
     chapters: list[dict[str, Any]],
-    per_chapter_count: int = 10,
+    per_chapter_count: int = 4,
     use_fal_ai: bool = False,
     fal_model: str = "fal-ai/nano-banana",
     use_nano_banana: bool = True,
@@ -592,7 +687,7 @@ def generate_project_visuals(
     should_stop: Callable[[], bool] | None = None,
     cfg: PlatformConfig | None = None,
 ) -> dict[str, Any]:
-    """프로젝트 단원별 10개 이상 시각화 자료를 체크포인트 기반으로 생성하고 별도 폴더(로컬+E:\\)에 체계 저장한다."""
+    """V1/V6/V7: 주장·내용 기반 시각화 자료를 체크포인트 기반으로 생성한다. AI 생성 실패 시 빈 틀 SVG를 저장하지 않고 '미생성(UNGENERATED)'으로 표기해 출판에서 제외한다."""
     import shutil
 
     cfg = cfg or get_config()
@@ -612,12 +707,15 @@ def generate_project_visuals(
 
     all_specs: list[dict[str, Any]] = []
     for ch in chapters:
+        cid = ch.get("chapter_id", "ch01")
+        mdx_p = proj_ws / "chapters" / f"{cid}.mdx"
         all_specs.extend(
             build_chapter_visual_specs(
                 topic_ko=topic_ko,
                 topic_en=topic_en,
                 chapter=ch,
                 per_chapter_count=per_chapter_count,
+                manuscript_path=mdx_p if mdx_p.is_file() else None,
             )
         )
 
@@ -625,6 +723,7 @@ def generate_project_visuals(
     records: list[dict[str, Any]] = []
     ai_generated_cnt = 0
     svg_generated_cnt = 0
+    ungenerated_cnt = 0
     stopped_early = False
 
     for idx, spec in enumerate(all_specs, 1):
@@ -647,6 +746,7 @@ def generate_project_visuals(
                 "rel_url": f"/project-files/{project_id}/assets/{sub}/{actual_p.name}",
                 "engine": "resumed_checkpoint",
                 "status": "OK",
+                "exclude_from_publish": False,
             }
             records.append(rec)
             if actual_p.suffix == ".png":
@@ -656,12 +756,13 @@ def generate_project_visuals(
             continue
 
         engine_used = "vector_svg"
-        saved_path = svg_path
+        saved_path: Path | None = svg_path
         note = ""
+        item_status = "OK"
+        exclude_pub = False
 
         if spec["is_ai_image"]:
             generated_ai = False
-            # 1순위: fal.ai API (사용자 체크 ON + FAL_KEY 보유 시)
             if use_fal_ai and fal_key:
                 try:
                     ok, msg = _generate_with_fal_ai(prompt=spec["prompt"], out_path=png_path, fal_model=fal_model, api_key=fal_key)
@@ -673,9 +774,8 @@ def generate_project_visuals(
                     else:
                         note = msg
                 except Exception as exc:
-                    note = f"fal.ai 폴백({str(exc)[:80]})"
+                    note = f"fal.ai 실패({str(exc)[:80]})"
 
-            # 2순위: Google Gemini 나노바나나 (GEMINI_API_KEY 보유 시)
             if not generated_ai and use_nano_banana and gemini_key:
                 try:
                     ok, msg = _generate_with_nano_banana(prompt=spec["prompt"], out_path=png_path, api_key=gemini_key)
@@ -687,58 +787,77 @@ def generate_project_visuals(
                     else:
                         note = msg
                 except Exception as exc:
-                    note = f"나노바나나 폴백({str(exc)[:80]})"
+                    note = f"나노바나나 실패({str(exc)[:80]})"
 
-            # 3순위: API 키 미설정 시 출판급 벡터 도해 SVG + 실사 프롬프트 매니페스트 보존
+            # V6 핵심 수정: API 키 미설정 또는 생성 실패 시 빈 틀 SVG를 저장하지 않고 '미생성(UNGENERATED)'으로 기록해 출판에서 제외!
             if not generated_ai:
-                svg_text = _render_vector_svg(spec, spec.get("sections") or [])
-                svg_path.write_text(svg_text, encoding="utf-8")
-                engine_used = "svg_blueprint_ready"
-                saved_path = svg_path
-                svg_generated_cnt += 1
+                engine_used = "unrendered_no_api_or_failed"
+                saved_path = None
+                item_status = "UNGENERATED"
+                exclude_pub = True
+                ungenerated_cnt += 1
                 if not note:
-                    note = "FAL_KEY 또는 GEMINI_API_KEY 입력 시 실사 PNG 자동 생성"
+                    note = "미생성 — FAL_KEY 또는 GEMINI_API_KEY 활성화 후 개별 생성 필요 (출판물에서 자동 제외됨)"
         else:
             svg_text = _render_vector_svg(spec, spec.get("sections") or [])
             svg_path.write_text(svg_text, encoding="utf-8")
-            engine_used = "vector_svg"
+            engine_used = "content_vector_svg"
             saved_path = svg_path
             svg_generated_cnt += 1
 
-        sub = "figures" if saved_path.suffix == ".png" else "charts"
+        if saved_path is not None and saved_path.is_file():
+            sub = "figures" if saved_path.suffix == ".png" else "charts"
+            rel_u = f"/project-files/{project_id}/assets/{sub}/{saved_path.name}"
+            fname = saved_path.name
+            p_str = str(saved_path)
+            done_set.add(fid)
+        else:
+            rel_u = ""
+            fname = ""
+            p_str = ""
+
         rec = {
             **spec,
-            "filename": saved_path.name,
-            "path": str(saved_path),
-            "rel_url": f"/project-files/{project_id}/assets/{sub}/{saved_path.name}",
+            "filename": fname,
+            "path": p_str,
+            "rel_url": rel_u,
             "engine": engine_used,
             "note": note,
-            "status": "OK",
+            "status": item_status,
+            "exclude_from_publish": exclude_pub,
         }
         records.append(rec)
-        done_set.add(fid)
         if on_item_done:
             on_item_done(rec, idx, total)
 
-    # SVG → 고해상도 PNG 일괄 래스터화 (DOCX·네이버 블로그 <img> 완벽 삽입용)
+    # SVG → 고해상도 PNG 일괄 래스터화 (DOCX·네이버 블로그 <img> 삽입용)
     svg_batch: list[tuple[Path, Path]] = []
     for r in records:
+        if r.get("status") != "OK" or not r.get("path"):
+            continue
         p = Path(r["path"])
         if p.suffix.lower() == ".svg":
             svg_batch.append((p, png_dir / f"{p.stem}.png"))
     raster_map = _rasterize_svgs_batch(svg_batch)
 
-    # 단원별 분리 폴더(로컬 assets/by_chapter/<chNN>/ + E:\SMC_Report_Platform_Data\projects\<pid>\visuals\by_chapter\<chNN>\) 저장
+    # 단원별 분리 폴더 저장 (미생성 항목은 파일 복사 건너뜀)
     by_ch_summary: dict[str, int] = {}
     for r in records:
         cid = r.get("chapter_id", "ch01")
-        by_ch_summary[cid] = by_ch_summary.get(cid, 0) + 1
-        src_p = Path(r["path"])
         loc_ch = by_ch_dir / cid
         e_ch = e_by_ch_dir / cid
         loc_ch.mkdir(parents=True, exist_ok=True)
         e_ch.mkdir(parents=True, exist_ok=True)
+        r["chapter_dir_local"] = str(loc_ch)
+        r["chapter_dir_e"] = str(e_ch)
 
+        if r.get("status") != "OK" or not r.get("path"):
+            r["docx_image_path"] = ""
+            r["png_url"] = ""
+            continue
+
+        by_ch_summary[cid] = by_ch_summary.get(cid, 0) + 1
+        src_p = Path(r["path"])
         if src_p.is_file():
             shutil.copy2(src_p, loc_ch / src_p.name)
             shutil.copy2(src_p, e_ch / src_p.name)
@@ -758,24 +877,40 @@ def generate_project_visuals(
                 r["docx_image_path"] = ""
                 r["png_url"] = ""
 
-        r["chapter_dir_local"] = str(loc_ch)
-        r["chapter_dir_e"] = str(e_ch)
+    # 단원별 QA 컨택트 시트 자동 생성 (V7)
+    contact_sheets: dict[str, str] = {}
+    for cid in sorted({r.get("chapter_id", "ch01") for r in records}):
+        ch_recs = [r for r in records if r.get("chapter_id") == cid and r.get("status") == "OK"]
+        if not ch_recs:
+            continue
+        grid_local = by_ch_dir / cid / f"qa_grid_{cid}.jpg"
+        grid_e = e_by_ch_dir / cid / f"qa_grid_{cid}.jpg"
+        try:
+            build_visual_contact_sheet(cid, f"{topic_ko} ({cid})", ch_recs, grid_local)
+            if grid_local.is_file():
+                shutil.copy2(grid_local, grid_e)
+                contact_sheets[cid] = f"/project-files/{project_id}/assets/by_chapter/{cid}/qa_grid_{cid}.jpg"
+        except Exception:
+            pass
 
-    # 매니페스트 및 줄글 텍스트 해설 가이드(표 금지 규칙 준수!) 저장 + E:\ 별도 저장소 미러링
+    generated_ok = [r for r in records if r.get("status") == "OK"]
     manifest_payload = {
         "project_id": project_id,
         "generated_at": utc_now_iso(),
-        "per_chapter_target": max(10, int(per_chapter_count)),
+        "per_chapter_target": int(per_chapter_count),
         "use_fal_ai": use_fal_ai,
         "fal_model": fal_model,
         "use_nano_banana": use_nano_banana,
-        "total_generated": len(records),
+        "total_planned": total,
+        "total_generated": len(generated_ok),
+        "ungenerated_count": ungenerated_cnt,
         "ai_images_count": ai_generated_cnt,
         "svg_charts_count": svg_generated_cnt,
-        "png_rasterized_count": sum(1 for r in records if r.get("docx_image_path")),
+        "png_rasterized_count": sum(1 for r in generated_ok if r.get("docx_image_path")),
         "local_visuals_dir": str(by_ch_dir),
         "e_visuals_dir": str(e_vis_root),
         "by_chapter_counts": by_ch_summary,
+        "contact_sheets": contact_sheets,
         "stopped_early": stopped_early,
         "visuals": records,
     }
@@ -785,14 +920,14 @@ def generate_project_visuals(
     (e_vis_root / "visuals_plan.json").write_text(manifest_text, encoding="utf-8")
 
     guide_lines = [
-        f"# 《{topic_ko}》 시각화 자료 줄글 해설 가이드",
+        f"# 《{topic_ko}》 시각화 자료 3문장 해설 가이드 (무엇을 보여 주나 · 어떻게 읽나 · 출처)",
         "",
-        f"본 문서는 각 단원당 {max(10, int(per_chapter_count))}개 이상 제작된 실사진·인포그래픽 및 정량 차트의 상세 내용을 표 형식이 아닌 자연스러운 줄글로 설명합니다.",
+        f"- **완료된 출판 가능 도판**: {len(generated_ok)}종 (미생성/출판 제외: {ungenerated_cnt}종)",
         f"- 로컬 단원별 저장소: `{by_ch_dir}`",
         f"- E 드라이브 별도 저장소: `{e_vis_root}`",
         "",
     ]
-    for r in records:
+    for r in generated_ok:
         guide_lines.append(f"## {r['title_ko']}")
         guide_lines.append("")
         guide_lines.append(r["narrative_ko"])
@@ -802,11 +937,10 @@ def generate_project_visuals(
     guide_path.write_text(guide_text, encoding="utf-8")
     (e_vis_root / "visuals_text_guide.md").write_text(guide_text, encoding="utf-8")
 
-    # E:\visuals\INDEX.md 별도 인덱스 작성
     idx_lines = [
         f"# 《{topic_ko}》 시각화 자료 별도 저장소 인덱스",
         "",
-        f"- **총 시각화 자료**: {len(records)}종 (AI/실사 {ai_generated_cnt}종 · SVG {svg_generated_cnt}종 · DOCX/블로그용 PNG {manifest_payload['png_rasterized_count']}종)",
+        f"- **출판 가능 시각화**: {len(generated_ok)}종 (AI/실사 {ai_generated_cnt}종 · 내용 도해/차트 {svg_generated_cnt}종 · 미생성 {ungenerated_cnt}종)",
         f"- **단원별 저장 폴더**: `{e_by_ch_dir}`",
         "",
     ]
@@ -817,15 +951,151 @@ def generate_project_visuals(
     return {
         "status": "INTERRUPTED" if stopped_early else "DONE",
         "total_planned": total,
-        "total_generated": len(records),
+        "total_generated": len(generated_ok),
+        "ungenerated_count": ungenerated_cnt,
         "ai_images_count": ai_generated_cnt,
         "svg_charts_count": svg_generated_cnt,
         "png_rasterized_count": manifest_payload["png_rasterized_count"],
         "local_visuals_dir": str(by_ch_dir),
         "e_visuals_dir": str(e_vis_root),
         "by_chapter_counts": by_ch_summary,
+        "contact_sheets": contact_sheets,
         "completed_visual_ids": sorted(done_set),
         "manifest_path": str(manifest_path),
         "guide_path": str(guide_path),
         "visuals": records,
+    }
+
+
+def build_visual_contact_sheet(
+    chapter_id: str,
+    chapter_title: str,
+    records: list[dict[str, Any]],
+    out_jpg: Path,
+) -> Path:
+    """V7: 단원별 완성 도판을 한눈에 시각 검수하는 고해상도 QA 컨택트 시트(qa_grid_chNN.jpg)를 생성한다."""
+    from PIL import Image, ImageDraw, ImageFont
+
+    cols = 3 if len(records) <= 6 else 4
+    rows = max(1, (len(records) + cols - 1) // cols)
+    cell_w, cell_h = 680, 440
+    margin, header_h = 18, 62
+    canvas_w = margin + cols * (cell_w + margin)
+    canvas_h = header_h + margin + rows * (cell_h + margin)
+    canvas = Image.new("RGB", (canvas_w, canvas_h), (248, 250, 252))
+    draw = ImageDraw.Draw(canvas)
+    try:
+        f_title = ImageFont.truetype("C:/Windows/Fonts/malgunbd.ttf", 24)
+        f_lbl = ImageFont.truetype("C:/Windows/Fonts/malgunbd.ttf", 15)
+    except Exception:
+        f_title = f_lbl = ImageFont.load_default()
+
+    draw.rectangle([0, 0, canvas_w, header_h], fill=(29, 53, 87))
+    draw.text((22, 16), f"[{chapter_id}] {chapter_title} — 시각 QA 컨택트 시트 ({len(records)}종)", fill=(255, 255, 255), font=f_title)
+
+    for idx, rec in enumerate(records):
+        r, c = idx // cols, idx % cols
+        x = margin + c * (cell_w + margin)
+        y = header_h + margin + r * (cell_h + margin)
+        draw.rectangle([x, y, x + cell_w, y + cell_h], fill=(255, 255, 255), outline=(203, 213, 225), width=2)
+        img_cand = Path(rec.get("docx_image_path") or rec.get("path") or "")
+        if img_cand.is_file() and img_cand.suffix.lower() in (".png", ".jpg", ".jpeg", ".webp"):
+            try:
+                with Image.open(img_cand) as im:
+                    im_rgb = im.convert("RGB")
+                    im_rgb.thumbnail((cell_w - 12, cell_h - 46), Image.Resampling.LANCZOS)
+                    px = x + (cell_w - im_rgb.width) // 2
+                    py = y + (cell_h - 40 - im_rgb.height) // 2
+                    canvas.paste(im_rgb, (px, py))
+            except Exception:
+                draw.text((x + 14, y + 40), f"이미지 로드 오류: {img_cand.name}", fill=(220, 38, 38), font=f_lbl)
+        else:
+            draw.text((x + 18, y + 60), f"미생성 / PNG 없음 ({rec.get('status', '')})", fill=(180, 83, 9), font=f_lbl)
+        lbl_y = y + cell_h - 38
+        draw.rectangle([x + 1, lbl_y, x + cell_w - 1, y + cell_h - 1], fill=(241, 245, 249))
+        caption = f"{rec.get('title_ko', rec.get('figure_id', ''))[:44]} | {rec.get('engine', '')[:18]}"
+        draw.text((x + 10, lbl_y + 8), caption, fill=(15, 23, 42), font=f_lbl)
+
+    out_jpg.parent.mkdir(parents=True, exist_ok=True)
+    canvas.save(str(out_jpg), format="JPEG", quality=90)
+    return out_jpg
+
+
+def audit_visual_assets(
+    project_id: str,
+    chapter_id: str | None = None,
+    cfg: PlatformConfig | None = None,
+) -> dict[str, Any]:
+    """V7: 렌더링된 시각화 자산의 출처 유무·틀 그림·가짜 수치·제목 잘림·해상도를 자동 감사한다."""
+    from figure_registry import _is_placeholder_or_fake_visual
+
+    cfg = cfg or get_config()
+    ws = cfg.project_dir(project_id)
+    plan_p = ws / "assets" / "visuals_plan.json"
+    if not plan_p.is_file():
+        return {
+            "project_id": project_id,
+            "total": 0,
+            "publishable": 0,
+            "issues_count": 0,
+            "source_coverage_pct": 100.0,
+            "has_placeholder_or_fake": False,
+            "items": [],
+        }
+
+    plan = json.loads(plan_p.read_text(encoding="utf-8"))
+    raw_items = plan.get("visuals") or plan.get("items") or []
+    if chapter_id:
+        raw_items = [x for x in raw_items if x.get("chapter_id") == chapter_id]
+
+    audited: list[dict[str, Any]] = []
+    publishable = 0
+    with_source = 0
+    has_fake = False
+    issues_total = 0
+
+    for it in raw_items:
+        issues: list[str] = []
+        fp = Path(it.get("path") or "") if it.get("path") else Path("")
+        is_bad = _is_placeholder_or_fake_visual(it, fp)
+        if is_bad:
+            issues.append("빈 틀 또는 가짜 수치 차트(출판 제외 대상)")
+            has_fake = True
+        if str(it.get("status", "")).upper() == "UNGENERATED" or not fp.is_file():
+            issues.append("이미지 파일 미생성")
+        title = str(it.get("title_ko") or "")
+        if "— 현장" in title or len(title) > 68:
+            issues.append("그림 제목 과장/잘림 위험(장 제목 반복 제거 필요)")
+        src_str = str(it.get("data_source") or "").strip()
+        if not src_str:
+            issues.append("자료 출처(data_source) 미기재")
+        else:
+            with_source += 1
+        if not is_bad and fp.is_file():
+            publishable += 1
+        issues_total += len(issues)
+        audited.append(
+            {
+                "figure_id": it.get("figure_id", ""),
+                "chapter_id": it.get("chapter_id", ""),
+                "title_ko": title,
+                "status": it.get("status", ""),
+                "engine": it.get("engine", ""),
+                "has_source": bool(src_str),
+                "publishable": (not is_bad and fp.is_file()),
+                "issues": issues,
+            }
+        )
+
+    tot = len(raw_items)
+    return {
+        "project_id": project_id,
+        "chapter_id": chapter_id,
+        "total": tot,
+        "publishable": publishable,
+        "issues_count": issues_total,
+        "source_coverage_pct": round((with_source / max(1, tot)) * 100.0, 1) if tot else 100.0,
+        "has_placeholder_or_fake": has_fake,
+        "contact_sheets": plan.get("contact_sheets") or {},
+        "items": audited,
     }

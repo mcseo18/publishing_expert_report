@@ -13,8 +13,97 @@
 from __future__ import annotations
 
 import html
+import json
 import re
+from pathlib import Path
 from typing import Any
+
+STANDARD_EQUATIONS_PATH = Path(__file__).resolve().parent.parent / "schemas" / "standard_equations.json"
+_EQUATIONS_CACHE: list[dict[str, Any]] | None = None
+
+
+def load_standard_equations(path: Path | None = None) -> list[dict[str, Any]]:
+    """검증된 농학·관개·토양 표준 수식 라이브러리(schemas/standard_equations.json)를 로드한다 (C7)."""
+    global _EQUATIONS_CACHE
+    target = path or STANDARD_EQUATIONS_PATH
+    if path is None and _EQUATIONS_CACHE is not None:
+        return _EQUATIONS_CACHE
+    if not target.is_file():
+        return []
+    try:
+        data = json.loads(target.read_text(encoding="utf-8"))
+        eqs = list(data.get("equations") or [])
+        if path is None:
+            _EQUATIONS_CACHE = eqs
+        return eqs
+    except Exception:
+        return []
+
+
+def match_equations_for_text(query_text: str, *, limit: int = 6) -> list[dict[str, Any]]:
+    """주제·단원·절 텍스트와 관련된 검증 표준 수식 목록을 반환한다."""
+    blob = (query_text or "").lower()
+    if not blob.strip():
+        return []
+    scored: list[tuple[int, dict[str, Any]]] = []
+    for eq in load_standard_equations():
+        kws = [str(k).lower() for k in (eq.get("keywords") or [])]
+        score = sum(2 if len(k) >= 3 else 1 for k in kws if k and k in blob)
+        if score > 0:
+            scored.append((score, eq))
+    scored.sort(key=lambda x: x[0], reverse=True)
+    return [eq for _, eq in scored[:limit]]
+
+
+def format_equations_for_prompt(query_text: str, *, limit: int = 5) -> str:
+    """4단계 집필 프롬프트에 주입할 [검증 표준 수식 라이브러리] 블록을 생성한다 (모델의 수식 창작 차단)."""
+    matched = match_equations_for_text(query_text, limit=limit)
+    if not matched:
+        return ""
+    lines = [
+        "[검증 표준 수식 라이브러리 — 아래 수식이 필요할 경우 반드시 검증된 원형과 출처를 그대로 사용하고 임의로 변형·창작하지 마십시오]"
+    ]
+    for eq in matched:
+        lines.append(f"- **{eq['name_ko']}** (`{eq['id']}`):")
+        lines.append(f"  - 표준식: `{eq['html']}`")
+        lines.append(f"  - 변수/단위: {'; '.join(eq.get('variables') or [])}")
+        lines.append(f"  - 표준 출처: {eq.get('reference', '')}")
+    return "\n".join(lines)
+
+
+def validate_known_formulas(markdown_text: str) -> list[dict[str, Any]]:
+    """원고 본문에서 알려진 오류 수식·개념 왜곡 패턴(P2~P5 등)을 탐지한다."""
+    findings: list[dict[str, Any]] = []
+    lines = (markdown_text or "").splitlines()
+    for eq in load_standard_equations():
+        patterns = eq.get("known_invalid_patterns") or []
+        for pat in patterns:
+            try:
+                rx = re.compile(pat, re.I)
+            except re.error:
+                continue
+            for lineno, line in enumerate(lines, start=1):
+                stripped_l = line.strip()
+                # '오해와 진실'의 오해(Myth) 예시 문장은 오류 교정 목적이므로 예외 처리
+                if stripped_l.startswith(("- **오해", "**오해", "오해:")):
+                    continue
+                if rx.search(line):
+                    findings.append(
+                        {
+                            "type": "INVALID_FORMULA_PATTERN",
+                            "equation_id": eq["id"],
+                            "equation_name": eq["name_ko"],
+                            "line": lineno,
+                            "snippet": line.strip()[:140],
+                            "expected_html": eq.get("html", ""),
+                            "reference": eq.get("reference", ""),
+                            "message": (
+                                f"검증된 표준식({eq['name_ko']})과 모순되는 오류 표현이 탐지되었습니다. "
+                                f"표준식: {eq.get('html', '')} ({eq.get('reference', '')})"
+                            ),
+                        }
+                    )
+    return findings
 
 # 지원 LaTeX 심볼 테이블 (전 16장 전수 감사 기준 39종 명령어 + 일반 과학 기호 완비)
 SYMBOL_MAP: dict[str, str] = {

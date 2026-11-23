@@ -3,201 +3,214 @@ chapter_id: "ch05"
 title: "제5장. 토양 수분 모니터링 센서 네트워크와 스마트 관개 자동화"
 audience: "대학 전공 심화, 대학원생, 연구자 및 선도 현장 실무자"
 evidence_packet: "smart_farm_onion_cultivation_20261123_042527_evidence.json"
+persona: "textbook_distinguished_prof"
 ---
 
 # 제5장. 토양 수분 모니터링 센서 네트워크와 스마트 관개 자동화
 
-본 장에서는 정밀 농업의 핵심 요소인 토양 수분 관리를 지능화하는 기술적 체계와 알고리즘을 심층적으로 다룬다. 토양 수분 센서(TDR, FDR, 텐시오미터)를 활용하여 작물 생육 단계별 최적의 토양 수분 상태를 실시간으로 계측하고, 기상학적 데이터를 기반으로 작물의 증발산량을 정확히 추정한다. 이 두 가지 정보를 융합하여, 점적 관개 시스템의 수리학적 특성을 고려한 정밀 관수 제어 알고리즘을 구축함으로써, 작물의 생리적 스트레스를 최소화하고 생산성을 극대화하는 방안을 모색한다.
+양파(*Allium cepa* L.)는 유효 근권 깊이가 0.30~0.45 m 내외로 얕고 수염뿌리가 표토 15~30 cm 층에 집중 분포하는 대표적인 천근성 채소여서, 가벼운 토양 건조에도 구 비대가 급격히 위축되고 반대로 과습 시에는 뿌리 호흡 저해와 무름병·노균병 발생 위험이 커진다 [SRC-366, SRC-389]. 본 장에서는 토양 수분 센서(TDR·FDR·텐시오미터)의 물리적 계측 원리와 양파 뿌리층 맞춤 설치 규격, 기상 관측값 기반 FAO-56 Penman-Monteith 증발산량($ET_0$·$ET_c$) 산정, 점적관개 지선의 수리학적 설계와 관수 균일도($CU$·$EU$) 평가, 그리고 허용수분결핍($MAD$)과 엽군 온도 기반 작물 수분 스트레스 지수($CWSI$)를 결합한 무인 밸브 폐루프 자동 관개 알고리즘을 정량 수치와 실측 기상 데이터 중심으로 체계화한다 [SRC-384, SRC-387, SRC-388, SRC-389].
 
 ## 5.1 FDR/TDR 센서 및 텐시오미터(Tensiometer)의 원리, 보정 계수 및 설치 프로토콜
 
-토양 수분 모니터링은 관개량 결정의 가장 기초적인 단계이다. 토양 수분 센서는 토양 내 수분 함량이나 토양의 수분 장력을 측정하여 작물이 필요로 하는 물의 양을 간접적으로 파악하게 한다.
+양파 스마트 관개의 출발점은 작물 근권에 실제로 남아 있는 수분량과 뿌리가 물을 빨아들이기 위해 극복해야 하는 수분 장력을 오차 없이 계측하는 것이다 [SRC-373, SRC-389]. 토양 수분 센서는 측정하는 물리량에 따라 체적수분함량(θ<sub>v</sub>, m³ m⁻³ 또는 %)을 간접 산출하는 유전율 센서(TDR·FDR)와 토양 매트릭 포텐셜(Ψ<sub>m</sub>, kPa)을 직접 계측하는 텐시오미터로 나뉜다 [SRC-389].
 
-### 5.1.1. 센서 기술의 원리
+### 5.1.1 유전율 기반(TDR·FDR)과 수분 장력 기반(텐시오미터) 계측 원리
 
-**토양 수분 센서:** 토양 수분 측정 센서는 크게 유전율 기반 방식과 물리적 장력 측정 방식으로 구분된다.
+**시간영역 반사법(Time Domain Reflectometry, TDR)**은 금속 도파관을 따라 수백 MHz~GHz 대역의 전자기 펄스를 송신하고 반사 왕복 시간으로 토양의 겉보기 유전율(ε<sub>a</sub>)을 산출한다 [SRC-389]. 순수한 물의 유전율은 약 80(20 °C 기준)인 반면 토양 광물 입자는 3~5, 공기는 1이므로 토양 수분 변화가 ε<sub>a</sub>에 민감하게 반영되며, 일반 광질토에서는 Topp 등(1980)의 3차 경험 보정식으로 체적수분함량을 환산한다 [SRC-389].
 
-*   **토양 수분 토밀도/함량 센서 (TDR/FDR):** Time Domain Reflectometry (TDR) 또는 Frequency Domain Reflectometry (FDR) 방식은 토양의 유전율을 측정하여 수분 함량을 계산한다. 이 방식은 센서가 토양 입자 사이를 흐르는 물 분자의 분극 정도를 측정하는 원리이다 [SRC-118].
-*   **토양 수분 장력계 (Tensiometer):** 텐시오미터는 토양 매트릭스 내의 물이 가지는 **수분 장력(Soil Water Tension)**을 측정한다. 이는 작물이 물을 흡수할 때 작용하는 포텐셜(pressure potential)을 나타내며, 토양 수분 포화도보다 더 생리적으로 의미 있는 지표를 제공한다.
+<div class="math-block"><span class="math-eq">θ<sub>v</sub> = −5.3 × 10<sup>−2</sup> + 2.92 × 10<sup>−2</sup> ε<sub>a</sub> − 5.5 × 10<sup>−4</sup> ε<sub>a</sub><sup>2</sup> + 4.3 × 10<sup>−6</sup> ε<sub>a</sub><sup>3</sup></span></div>
 
-### 5.1.2. 보정 계수 및 설치 프로토콜
+**주파수영역 반사법(Frequency Domain Reflectometry, FDR)**은 토양을 유전체로 삼는 축전기 회로의 공진 주파수 변화로 유전율을 추정한다 [SRC-389]. TDR보다 저전력·저비용으로 다지점 무선 센서 노드를 구축하기 유리하지만, 10~150 MHz의 상대적으로 낮은 작동 주파수를 쓰기 때문에 점토 함량, 유기물 함량, 토양 전기전도도(EC) 변동에 따른 민감도가 크다 [SRC-379, SRC-389]. 특히 웃거름 시용 직후 근권 토양 EC가 일시 상승하는 양파 재배지에서는 EC 보정 기능이 탑재된 센서를 선택하거나 포장 토양 시료로 현장 검정곡선을 재구축해야 한다 [SRC-379, SRC-380].
 
-센서 측정값은 토양의 물리적 특성(입도, 유기물 함량 등)에 따라 달라지기 때문에, 정확한 해석을 위해서는 반드시 현장 보정이 필요하다.
+**텐시오미터(Tensiometer)**는 물로 채워진 밀폐 관 끝단의 다공성 세라믹 컵이 토양 수분과 수리학적 평형을 이룰 때 내부에 걸리는 음압, 즉 **토양 수분 장력(매트릭 포텐셜 Ψ<sub>m</sub>, kPa)**을 압력 트랜스듀서로 직접 측정한다 [SRC-377, SRC-389]. 체적수분함량과 수분 장력 사이의 비선형 관계는 van Genuchten(1980) 토양수분 특성곡선(SWRC)으로 표현된다 [SRC-389].
 
-*   **보정 계수:** TDR/FDR 센서의 경우, 특정 토양 유형에 대한 체적 수분 함량(θ<sub>v</sub>)을 얻기 위해 측정된 유전율(ε)을 보정 곡선(Calibration Curve)을 통해 변환해야 한다. 이는 토양 샘플과 센서의 정밀한 비교 측정을 통해 확립된다.
-*   **설치 프로토콜:** 센서는 작물의 주 뿌리 분포대(Root Zone) 내에 설치되어야 하며, 심도와 간격은 작물의 특성과 재배 시스템에 따라 최적화되어야 한다. 텐시오미터 설치 시, 토양과 센서 사이의 공극(Pore)이 적절히 채워지도록 주의하며, 관개 시스템과의 연계 지점을 고려하여 설치해야 한다.
+<div class="math-block"><span class="math-eq">θ(h) = θ<sub>r</sub> + <span class="m-frac"><span class="m-num">θ<sub>s</sub> − θ<sub>r</sub></span><span class="m-den">[1 + (α |h|)<sup>n</sup>]<sup>m</sup></span></span> , &nbsp; m = 1 − <span class="m-frac"><span class="m-num">1</span><span class="m-den">n</span></span></span></div>
 
-## 5.2 기상 데이터(온·습도, 일사량, 풍속) 기반 Penman-Monteith 작물 증발산량(E<sub>Tc</sub>) 산출
+여기서 |h|는 매트릭 포텐셜 수두(cm H₂O; 1 kPa ≈ 10.2 cm H₂O), θ<sub>s</sub>와 θ<sub>r</sub>은 각각 포화·잔류 체적수분함량, α(cm⁻¹)와 n은 토성별 형상 매개변수이다 [SRC-389]. Carsel과 Parrish(1988)의 표준 토성 매개변수를 적용하면, 양파 구 비대기 관수 개시 장력인 **−15 ~ −25 kPa** 구간에서 사양토는 θ<sub>v</sub> ≈ 14.5~16.7%, 양토는 22.9~25.6%, 식양토는 30.8~32.8%로 동일한 장력에서도 체적수분함량이 2배 이상 차이 난다(그림 5-2) [SRC-389]. 따라서 TDR·FDR을 현장에 도입할 때는 토성별 SWRC 대조 없이 단일 % 임계값을 일괄 적용하면 사양토에서는 과습, 식양토에서는 건조 스트레스를 유발하게 된다 [SRC-389].
 
-토양 수분 모니터링이 '필요한 물의 양'을 측정한다면, 증발산량 산정은 '잃어버리는 물의 양'을 예측하는 과정이다. 작물 증발산량(E<sub>Tc</sub>)은 증발산량(E)에 작물 계수(K<sub>c</sub>)를 곱하여 산정된다 (ET<sub>c</sub> = K<sub>c</sub> × E).
+| 센서 유형 | 측정 물리량 (단위) | 측정 정밀도 · 범위 | 토성·EC 보정 요구 | 양파 포장 권장 설치 깊이 및 활용 |
+| :--- | :--- | :--- | :--- | :--- |
+| **TDR** | 체적수분함량 θ<sub>v</sub> (%) | ±1~2%, 전 구간(0~100%) | 일반 광질토 Topp식 적용 가능; 고염류·화산회토 보정 | 15 cm(주 근권 기준) + 30 cm(심층 배수 감시) [SRC-373, SRC-389] |
+| **FDR (정전용량)** | 체적수분함량 θ<sub>v</sub> (%) | ±2~3%, 0~60% | **토성·EC 현장 2점 이상 보정 필수** | 점적기 직하부 10~15 cm · 25~30 cm 다지점 IoT 배치 [SRC-379, SRC-389] |
+| **텐시오미터** | 매트릭 포텐셜 Ψ<sub>m</sub> (kPa) | ±1 kPa, 0 ~ −80 kPa | **토성 보정 불필요** (작물 흡수저항 직접 반영) | 구 비대기 관수 개시 −15 ~ −25 kPa, 종료 −10 kPa [SRC-377, SRC-389] |
 
-### 5.2.1. Penman-Monteith 방정식 적용
+### 5.1.2 양파 뿌리층 맞춤 설치 프로토콜과 현장 사례
 
-가장 표준적으로 사용되는 방법은 Penman-Monteith 방정식이다. 이 방정식은 증발(Evaporation)과 증산(Transpiration)을 통합하여 작물 단위의 물 소비량을 추정한다 [SRC-109].
+자동 점적관개 시스템의 센서 설치 깊이 연구에 따르면, 센서를 주 흡수 근권보다 지나치게 얕게 두면 잦은 단시간 관수가 반복되고 반대로 너무 깊게 두면 상층부 뿌리가 이미 수분 스트레스를 겪은 뒤에야 관수가 개시된다 [SRC-373]. 양파는 정식 후 뿌리의 80% 이상이 지표 아래 0~30 cm에 분포하므로, 두둑 상단 점적 테이프에서 측면 5~10 cm 떨어진 양파 포기 사이에 **주 제어 센서(깊이 15 cm)**와 **과습·심층 배수 감시 센서(깊이 30 cm)**를 2단으로 설치하는 프로토콜이 효과적이다(그림 5-1) [SRC-373, SRC-389].
 
-<div class="math-block"><span class="math-eq">ET<sub>0</sub> = <span class="m-frac"><span class="m-num">0.408 Δ (R<sub>n</sub> - G) + γ (900 e<sub>s</sub> (1 - u/2c<sub>a</sub>))</span><span class="m-den">Δ + γ (1 - 0.35)</span></span></span></div>
+- **전남 무안·함평 사양토 양파 포장 설치 사례**: 포장용수량(−10 kPa)이 θ<sub>v</sub> ≈ 19.5%, 구 비대기 관수 개시 장력(−20 kPa)이 θ<sub>v</sub> ≈ 15.3%인 사양토 포장에서는, 15 cm 주 센서가 15.5%(또는 텐시오미터 −20 kPa)에 도달할 때 관수를 시작하고 30 cm 보조 센서의 체적수분함량이 20%를 초과해 상승하기 직전에 관수를 차단함으로써 심층 용탈과 구 부패를 예방한다 [SRC-366, SRC-373, SRC-389].
 
-여기서 ET<sub>0</sub>는 기준 증발산량이며, 작물 특성에 맞는 ET<sub>c</sub>는 다음과 같이 산출된다:
+---
+
+## 5.2 기상 데이터 기반 FAO-56 Penman-Monteith 작물 증발산량(ET<sub>c</sub>) 산출
+
+토양 수분 센서가 근권의 현재 잔류 수분을 계측한다면, 기상학적 증발산량 모형은 일사·기온·습도·풍속 조건에서 작물과 토양이 하루 동안 대기로 잃어버리는 물의 양을 정량 예측한다 [SRC-385, SRC-389].
+
+### 5.2.1 FAO-56 Penman-Monteith 기준 증발산량(ET<sub>0</sub>)과 작물 증발산량(ET<sub>c</sub>)
+
+국제 표준인 **FAO-56 Penman-Monteith 방정식**(Allen et al., 1998)은 초장 0.12 m, 표면저항 70 s m⁻¹, 알베도 0.23의 가상 기준 잔디를 기준으로 일 기준 증발산량(ET<sub>0</sub>, mm day⁻¹)을 다음과 같이 정의한다 [SRC-385, SRC-389].
+
+<div class="math-block"><span class="math-eq">ET<sub>0</sub> = <span class="m-frac"><span class="m-num">0.408 Δ (R<sub>n</sub> − G) + γ <span class="m-frac"><span class="m-num">900</span><span class="m-den">T + 273</span></span> u<sub>2</sub> (e<sub>s</sub> − e<sub>a</sub>)</span><span class="m-den">Δ + γ (1 + 0.34 u<sub>2</sub>)</span></span></span></div>
+
+여기서 R<sub>n</sub>은 작물 표면 순복사량(MJ m⁻² day⁻¹), G는 토양 열유속 밀도(MJ m⁻² day⁻¹; 일 단위 계산에서는 약 0으로 근사), T는 지상 2 m 일평균 기온(°C), u<sub>2</sub>는 지상 2 m 풍속(m s⁻¹), e<sub>s</sub> − e<sub>a</sub>는 포화수증기압차(VPD, kPa), Δ는 포화수증기압 곡선 기울기(kPa °C⁻¹), γ는 건습계 상수(해수면 기준 약 0.0665 kPa °C⁻¹)이다 [SRC-389]. 분모의 항은 반드시 `Δ + γ(1 + 0.34 u₂)`이며, 분자의 공기역학 항은 `γ (900 / (T + 273)) u₂ (eₛ − eₐ)`로 차원이 일치해야 한다 [SRC-389].
+
+산출된 기준 증발산량(ET<sub>0</sub>)에 생육단계별 작물계수(K<sub>c</sub>)를 곱하면 표준 조건의 **작물 증발산량(ET<sub>c</sub>, mm day⁻¹)**이 도출된다 [SRC-380, SRC-389].
 
 <div class="math-block"><span class="math-eq">ET<sub>c</sub> = K<sub>c</sub> × ET<sub>0</sub></span></div>
 
-이 계산에는 기상 관측 데이터(온도, 상대 습도, 풍속, 일사량(R<sub>n</sub>), 지표면 온도(G))가 필수적으로 사용된다.
+건조 구근 양파(*Allium cepa* L.)의 FAO-56 Table 12 표준 작물계수는 **초기 활착·월동기 K<sub>c,ini</sub> = 0.70**, **중기 구 비대기 K<sub>c,mid</sub> = 1.05**, **후기 성숙·도복기 K<sub>c,end</sub> = 0.75**이다 [SRC-389]. 비닐 멀칭을 적용한 점적관개 포장에서는 토양 표면 증발이 억제되므로 초기 K<sub>c,ini</sub>를 10~15% 하향 보정해 관수 효율과 물 생산성(WP)을 더욱 높일 수 있다 [SRC-366, SRC-389].
 
-### 5.2.2. 데이터 활용의 중요성
+### 5.2.2 국내 양파 주산지(전남 목포·무안권) 10년 실측 기상 기반 월별 ET<sub>0</sub> · ET<sub>c</sub> 산출
 
-정확한 ET<sub>c</sub> 산출은 관개 시기 및 양을 결정하는 핵심 입력 변수이다. 농촌진흥청은 이러한 농업 기상 데이터를 포함하여 다양한 공공 데이터를 개방하고 있으며, 이는 스마트 농업 시스템의 기반을 제공한다 [SRC-101]. 현대 농업 기술은 나노기술(Nanotechnology)과 같은 첨단 기술을 통해 농업 분야에 혁신적인 영향을 미치고 있다 [SRC-125].
+기상청 ASOS 목포 관측소(지점 165, 위도 34.82°, 표고 38.0 m)의 2015~2024년(n = 10년) 실측 일기상 자료(`weather_daily_kr.db`)에 FAO-56 Penman-Monteith 방정식과 중만생종 양파 생육단계별 K<sub>c</sub>를 적용해 월별 물 요구량을 산출한 결과는 다음과 같다(그림 5-3) [SRC-388, SRC-389].
 
-## 5.3 점적 관개(Drip irrigation) 시스템의 수리학적 설계와 포장 내 관수 균일도(CU) 평가
+| 생육 월 (단계) | 평균기온 (°C) | 월평균 강수량 (mm) | ET<sub>0</sub> 평균 ± SD (mm day⁻¹) | 양파 K<sub>c</sub> | ET<sub>c</sub> 일평균 (mm day⁻¹) | ET<sub>c</sub> 월합계 (mm) | 수분 수지 해석 |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :--- |
+| **11월 (정식·활착)** | 10.9 | 48.3 | 1.59 ± 0.28 | 0.70 | 1.11 | 33.3 | 활착 초기 얕은 관수 유지 [SRC-388, SRC-389] |
+| **12월 (초기 월동)** | 4.3 | 36.9 | 1.09 ± 0.15 | 0.70 | 0.76 | 23.6 | 저온기 동해 예방, 배수 관리 우선 [SRC-388] |
+| **1월 (월동 휴면)** | 2.2 | 41.3 | 0.99 ± 0.16 | 0.70 | 0.69 | 21.4 | 연중 최저 증발산 구간 [SRC-388] |
+| **2월 (후기 월동)** | 3.4 | 36.2 | 1.32 ± 0.20 | 0.70 | 0.92 | 26.1 | 해빙기 토양 과습·서릿발 점검 [SRC-388] |
+| **3월 (생육 재생)** | 7.9 | 64.0 | 2.00 ± 0.29 | 0.85 | 1.70 | 52.7 | 엽신 신장 개시, 관수량 점진 확대 [SRC-388, SRC-389] |
+| **4월 (구 비대 전기)** | 13.2 | 101.1 | 2.77 ± 0.46 | 1.05 | 2.91 | 87.3 | 구 비대 본격화, 무강우 5일 이상 시 즉각 관수 [SRC-366, SRC-388] |
+| **5월 (구 비대 성기)** | 18.0 | 94.0 | 3.61 ± 0.50 | 1.05 | **3.79** | **117.3** | **연중 최대 소비수량(강수량 초과 · 정밀 관개 핵심기)** [SRC-366, SRC-388] |
+| **6월 (도복·수확)** | 22.2 | 138.6 | 3.68 ± 0.49 | 0.75 | 2.76 | 82.8 | 수확 10~14일 전 단수(저장성·경도 확보) [SRC-378, SRC-388, SRC-389] |
 
-스마트 관개 시스템에서 물을 효율적으로 공급하는 하드웨어적 측면은 점적 관개 시스템의 수리학적 설계에 달려있다.
+**단계별 계산 예제 (5월 구 비대 성기 관개 소요량 산정)**: 전남 무안·목포권 5월 일평균 ET<sub>0</sub> = 3.61 mm day⁻¹이고 양파 중기 작물계수 K<sub>c,mid</sub> = 1.05이므로, 하루 작물 증발산량은 `ET_c = 1.05 × 3.61 = 3.79 mm day⁻¹`이다 [SRC-388, SRC-389]. 무강우가 4일간 지속되면 누적 순관수 요구량은 `3.79 × 4 = 15.16 mm`(= 151.6 m³ ha⁻¹)이며, 점적관개 현장 적용 효율(E<sub>a</sub>)이 90%라면 총 공급해야 할 조관수량은 `15.16 / 0.90 = 16.84 mm`로 계산된다 [SRC-384, SRC-389].
 
-### 5.3.1. 수리학적 설계 고려사항
+---
 
-점적 관개는 작물 뿌리 영역에 직접적으로 물을 공급하여 물 손실을 최소화한다. 시스템 설계 시에는 유량(Flow rate), 압력(Pressure), 배관의 마찰 손실(Friction Loss)을 정밀하게 계산해야 한다.
+## 5.3 점적 관개(Drip Irrigation) 시스템의 수리학적 설계와 관수 균일도(CU · EU) 평가
 
-### 5.3.2. 관수 균일도(CU) 평가
+관개 요구량을 정확히 계산하더라도 포장 전체에 물이 고르게 분배되지 않으면, 상류 구간은 과습으로 질산태 질소가 용탈되고 말단 구간은 만성 건조로 양파 구 크기가 작아져 상품 수량이 급감한다 [SRC-369, SRC-384].
 
-관수 균일도(CU)는 시스템이 작물 포장 전체에 얼마나 균일하게 물을 공급하는지를 나타내는 지표로, 농업 생산성의 직결 변수이다.
+### 5.3.1 점적관 수리학적 마찰 손실과 점적기 유량-압력 특성
 
-<div class="math-block"><span class="math-eq">CU = <span class="m-frac"><span class="m-num">Average Application Rate</span><span class="m-den">Maximum Application Rate</span></span></span></div>
+다수의 점적기가 일정 간격으로 배치된 지선(lateral)에서는 말단으로 갈수록 관 내 통과 유량이 줄어들며, 전체 마찰 손실수두(h<sub>f</sub>, m)는 **Hazen-Williams 방정식**에 Christiansen 다중 분출구 보정계수(F ≈ 0.36~0.40)를 곱해 계산하고, 개별 점적기의 유량(q, L h⁻¹)은 작동 압력수두(H, m)의 멱함수로 결정된다 [SRC-384, SRC-389].
 
-CU 값이 높을수록(1에 가까울수록) 관개 효율이 높다. 이 균일도 평가는 실제 현장에서 센서 데이터와 결합하여 시스템 성능을 검증하는 과정이 포함된다.
+<div class="math-block"><span class="math-eq">h<sub>f</sub> = 10.67 · F · L · <span class="m-frac"><span class="m-num">Q<sup>1.852</sup></span><span class="m-den">C<sup>1.852</sup> D<sup>4.87</sup></span></span> , &nbsp; q = k · H<sup>x</sup></span></div>
 
-## 5.4 토양 수분 결핍 지수(CWSI) 기반 무인 밸브 연동 자동 관개 알고리즘 구현
+여기서 L은 점적관 길이(m), Q는 지선 입구 유량(m³ s⁻¹), C는 PE관 조도계수(140~150), D는 관 내경(m), x는 점적기 유량 지수이다 [SRC-389]. **비압력보상형(Non-PC) 난류 점적기**는 x ≈ 0.50이어서 압력이 20% 떨어지면 유량이 약 10.6% 감소하지만, **압력보상형(PC) 점적기**는 탄성 실리콘 격막이 유로를 자동 조절해 x ≈ 0.00~0.05 수준을 유지하므로 100 m 장거리 지선이나 완경사 양파 포장에서도 유량 편차를 3% 이내로 억제할 수 있다(그림 5-4) [SRC-384, SRC-389].
 
-최종 단계는 센서 데이터와 모델링 결과를 결합하여 능동적으로 관수를 제어하는 알고리즘을 구현하는 것이다.
+### 5.3.2 Christiansen 관수 균일도(CU)와 점적관개 배출 균일도(EU)
 
-### 5.4.1. 작물 수분 스트레스 지수 활용
+포장 관수 균일성의 표준 지표인 **Christiansen 관수 균일도(CU)**는 평균 살수량을 최대 살수량으로 나눈 비율이 아니라, 각 지점 관수량(x<sub>i</sub>)이 전체 평균(x̄)에서 벗어난 절대 편차의 평균 비율을 1에서 뺀 값으로 정의된다 [SRC-384, SRC-389].
 
-**작물 수분 결핍 지수 (Crop Water Stress Index, CWSI)**는 현재 토양 수분 상태(θ)와 작물의 임계 스트레스 지점(θ<sub>crit</sub>)을 비교하여 작물이 겪는 실제적인 수분 스트레스 수준을 나타낸다.
+<div class="math-block"><span class="math-eq">CU = <span class="m-frac"><span class="m-num">n x̄ − ∑|x<sub>i</sub> − x̄|</span><span class="m-den">n x̄</span></span> × 100 = <span class="m-frac"><span class="m-num">1 − ∑|x<sub>i</sub> − x̄| / (n x̄)</span><span class="m-den">1</span></span> × 100 (%)</span></div>
 
-<div class="math-block"><span class="math-eq">CWSI = f(θ<sub>actual</sub>, θ<sub>wilting_point</sub>, ET<sub>c</sub>)</span></div>
+점적관개에서는 개별 점적기의 제조 오차(CV<sub>m</sub>)와 최소 압력 지점의 유량 저하까지 반영하는 **배출 균일도(Emission Uniformity, EU)**(Keller & Karmeli, 1974; ASAE EP405.1)를 함께 평가해야 한다 [SRC-384, SRC-389].
 
-CWSI 값이 특정 임계값(CWSI<sub>threshold</sub>)을 초과하면, 이는 작물의 생육에 부정적인 영향을 미치는 수분 부족 상태로 판단된다.
+<div class="math-block"><span class="math-eq">EU = 100 × (1 − <span class="m-frac"><span class="m-num">1.27 · CV<sub>m</sub></span><span class="m-den">√n<sub>e</sub></span></span>) × <span class="m-frac"><span class="m-num">q<sub>min</sub></span><span class="m-den">q<sub>avg</sub></span></span> (%)</span></div>
 
-### 5.4.2. 자동 제어 알고리즘 로직
+현장 점검 시에는 지선 초입·1/3·2/3·말단 4개 위치에서 총 16개 이상 점적기의 5분간 토출량을 받아 하위 25% 평균 유량(q<sub>lq</sub>)을 전체 평균(q<sub>avg</sub>)으로 나눈 현장 배출 균일도 `EU_f = (q_lq / q_avg) × 100`으로 평가한다 [SRC-384, SRC-389].
 
-자동 관개 알고리즘은 다음과 같은 피드백 루프를 따른다:
+| 평가 지표 | 표준 정의식 | 양파 포장 설계·운영 기준 (ASAE EP405.1) | 균일도 저하 시 현장 문제 |
+| :--- | :--- | :--- | :--- |
+| **Christiansen CU** | `(1 − Σ|xᵢ − x̄| / (n·x̄)) × 100` | 스프링클러 ≥ 85%, 점적 ≥ 90% | 관수 불균일로 구중 변이계수(CV) 확대 [SRC-369, SRC-384] |
+| **설계 배출 균일도 (EU)** | `100·(1 − 1.27·CVₘ/√nₑ)·(q_min/q_avg)` | 평탄지 **90~95%**, 경사지 **85~90%** | 말단 저압 구간 구 비대 지연·감수 [SRC-369, SRC-389] |
+| **현장 배출 균일도 (EU<sub>f</sub>)** | `(q_lq / q_avg) × 100` | ≥ 90% 우수, 80~90% 양호, < 70% 불량(교체) | 점적기 막힘·파손·지선 과장(L > 80 m) 진단 [SRC-384, SRC-389] |
 
-1.  **계측:** 토양 센서가 실시간 θ<sub>actual</sub>을 측정하고, 기상 스테이션이 ET<sub>c</sub>를 계산한다.
-2.  **판단:** CWSI를 계산하고, 설정된 허용 범위를 벗어났는지 확인한다.
-3.  **제어:** CWSI가 임계치를 초과할 경우, 무인 밸브(Solenoid Valve)가 자동으로 개방되어 관개 시스템을 작동시키고, 관수 완료 후 센서가 포화 상태(θ<sub>max</sub>)에 도달할 때까지 반복한다.
+**양파 이랑 점적관개 수리 계산 사례**: 내경 16 mm PE 점적테이프(점적 간격 20 cm, 공칭 유량 1.6 L h⁻¹ @ 1.0 bar, C = 145)를 길이 100 m로 설치하면 입구 압력수두 10.0 m에서 말단 압력이 약 7.2 m까지 떨어져 비압력보상형(x = 0.50)은 말단 유량이 1.36 L h⁻¹(−15%)로 저하되지만, 지선 길이를 60 m 이내로 분할하거나 압력보상형(x = 0.05)을 채택하면 말단 유량이 1.57 L h⁻¹ 이상으로 유지되어 EU 94% 이상을 확보할 수 있다(그림 5-4) [SRC-369, SRC-384, SRC-389].
 
-이러한 지능형 제어는 토양의 물리적 특성 데이터나 생산 데이터(예: 한국농촌경제연구원의 농어촌서비스기준 이행실태 점검·평가 자료 [SRC-106] 등)와 결합될 때 최적의 시퀀스를 보장한다.
+---
+
+## 5.4 허용수분결핍(MAD) 및 작물 수분 스트레스 지수(CWSI) 기반 무인 밸브 자동 관개 알고리즘
+
+스마트 관개 자동화에서 가장 흔한 개념 혼동은 토양 수분 기반의 **허용수분결핍(MAD)**과 엽군 온도 기반의 **작물 수분 스트레스 지수(CWSI)**를 같은 식이나 토양 수분 함수로 뒤섞어 쓰는 것이다 [SRC-387, SRC-389]. 두 지표는 계측 대상(토양 vs 작물 엽군)과 물리적 원리가 명확히 다르며, 상호 보완적으로 융합할 때 제어 정밀도가 극대화된다 [SRC-370, SRC-387, SRC-389].
+
+### 5.4.1 엽군 온도 기반 CWSI(Idso·Jackson)와 토양 수분 기반 MAD의 명확한 구분
+
+**작물 수분 스트레스 지수(Crop Water Stress Index, CWSI)**는 토양 수분이나 영구위조점의 함수가 아니라, 적외선 방사온도계 또는 열화상 카메라로 측정한 **작물 엽군 온도(T<sub>c</sub>)**와 **기온(T<sub>a</sub>)**의 차이를 정규화한 에너지 수지 지표이다(Idso et al., 1981; Jackson et al., 1981) [SRC-370, SRC-387, SRC-389]. 작물이 충분한 수분을 흡수하면 기공이 열려 증산 냉각이 일어나므로 엽군 온도가 기온보다 낮아지고(하한 기준선 LL), 반대로 수분 스트레스로 기공이 닫히면 증산이 멈춰 엽군 온도가 급상승한다(상한 기준선 UL) [SRC-387].
+
+<div class="math-block"><span class="math-eq">CWSI = <span class="m-frac"><span class="m-num">(T<sub>c</sub> − T<sub>a</sub>) − (T<sub>c</sub> − T<sub>a</sub>)<sub>LL</sub></span><span class="m-den">(T<sub>c</sub> − T<sub>a</sub>)<sub>UL</sub> − (T<sub>c</sub> − T<sub>a</sub>)<sub>LL</sub></span></span></span></div>
+
+여기서 `(T_c − T_a)_LL = a + b · VPD`는 충분 관수 조건의 무스트레스 하한선(Non-Water-Stressed Baseline), `(T_c − T_a)_UL`은 증산 정지 상한선이며, CWSI는 0(스트레스 없음)에서 1(최대 스트레스) 사이 값을 갖는다 [SRC-370, SRC-387, SRC-389].
+
+반면 토양 수분 센서로 관수 개시 시점을 정하는 기준은 **허용수분결핍(Management Allowed Depletion, MAD 또는 고갈계수 p)**과 **이용가능 유효수분(Readily Available Water, RAW)**이다 [SRC-389].
+
+<div class="math-block"><span class="math-eq">RAW = p · TAW = p · 1000 (θ<sub>FC</sub> − θ<sub>WP</sub>) Z<sub>r</sub></span></div>
+
+양파는 FAO-56 Table 22 기준 **p (MAD) = 0.25~0.30**, 유효 근권 깊이 **Z<sub>r</sub> = 0.30~0.45 m**로, 총 유효수분(TAW)의 25~30%만 소진되어도 즉시 관수를 개시해야 수량 손실을 막을 수 있다 [SRC-366, SRC-389]. 예를 들어 양토(θ<sub>FC</sub> = 0.28, θ<sub>WP</sub> = 0.12 m³ m⁻³, Z<sub>r</sub> = 0.35 m)의 총 유효수분은 `TAW = 1000 × (0.28 − 0.12) × 0.35 = 56.0 mm`이고, p = 0.25 적용 시 1회 적정 순관수량은 `RAW = 0.25 × 56.0 = 14.0 mm`가 된다 [SRC-389].
+
+| 구분 | 토양 수분 기준 (MAD · 텐시오미터) | 작물 생리 기준 (CWSI) | 기상 수지 기준 (FAO-56 ET<sub>c</sub>) |
+| :--- | :--- | :--- | :--- |
+| **측정 대상·센서** | 토양 근권(15·30 cm) TDR/FDR/텐시오미터 | 작물 엽군 적외선 온도계(IRT)·열화상 | 기상대 일사·기온·습도·풍속 |
+| **핵심 산정식** | `RAW = p · 1000(θ_FC − θ_WP) Z_r` | `[(T_c−T_a)−LL] / [UL−LL]` | `ET_c = K_c × ET_0` |
+| **양파 관수 개시 임계치** | **MAD 25~30%** 또는 **Ψ<sub>m</sub> ≤ −15~−25 kPa** | **CWSI ≥ 0.25~0.35** (정오 맑은 날 기준) | 누적 `(ET_c − 유효강우) ≥ RAW` |
+| **강점과 한계** | 야간·구름 날에도 연속 계측; 국소 점 계측 편차 존재 [SRC-373] | 작물의 실제 기공·증산 반응 직접 감지; 운량·토양배경 영향 보정 필요 [SRC-370, SRC-387] | 관수량(mm) 정량 산정에 최적; 국지 토양 배수성 반영 한계 [SRC-385] |
+
+### 5.4.2 다중 센서 융합 폐루프(Closed-Loop) 무인 밸브 제어 알고리즘
+
+현장 스마트 관개 제어기는 그림 5-5와 같이 **계측 → 연산 → 임계 판정(+기상·배수 인터록) → 펄스 관수 → 재계측 종료**의 4단계 폐루프 로직으로 구동한다 [SRC-373, SRC-377, SRC-389].
+
+1. **다중 계측 (10~15분 주기)**: 15 cm 주 센서(Ψ<sub>m</sub> 또는 보정된 θ<sub>v</sub>), 30 cm 심층 배수 센서, 포장 기상대(ET<sub>0</sub>), 정오 전후(11:00~14:00) 적외선 엽군 온도 센서(T<sub>c</sub>)를 동기 수집한다 [SRC-370, SRC-373, SRC-387].
+2. **지수 연산**: 실시간 누적 증발산 결핍량 `D_r(t) = D_r(t−1) + ET_c(t) − P_eff(t) − I(t)`, 현재 MAD 비율, 그리고 맑은 날 주간 CWSI를 동시 산출한다 [SRC-387, SRC-389].
+3. **임계 판정 및 안전 인터록**: 15 cm 텐시오미터가 **−20 kPa 이하**(또는 MAD ≥ 25~30%, 주간 CWSI ≥ 0.30)에 도달하면 관수 트리거를 활성화하되, ① 향후 24시간 강우 예보가 5 mm 이상이거나 ② 30 cm 심층 센서가 포화 근접 상태(Ψ<sub>m</sub> > −8 kPa)이거나 ③ 수확 전 14일 단수 기간(6월 상순)에 해당하면 밸브 개방을 자동 보류한다 [SRC-366, SRC-377, SRC-389].
+4. **펄스 관수 및 폐루프 종료**: 목표 조관수량(`RAW / EU`)을 2~3회 분할(펄스) 공급하여 사양토 침투 손실을 줄이고, 유량계·압력계로 배관 누수나 막힘을 감시하며 15 cm 센서가 포장용수량(−10 kPa)에 복귀하면 솔레노이드 밸브를 즉시 차단한다 [SRC-373, SRC-384, SRC-389].
 
 ---
 
 ## 핵심 용어집
 
-| 용어 | 정의 | 관련 기술/개념 |
+| 용어 | 정의 | 표준 기준 · 단위 |
 | :--- | :--- | :--- |
-| TDR | Time Domain Reflectometry. 토양 유전율을 측정하여 체적 수분 함량을 산출하는 센서 기술. | 토양 물리 특성 측정 |
-| FDR | Frequency Domain Reflectometry. TDR과 유사하게 토양 수분 함량을 측정하는 센서 기술. | 토양 물리 특성 측정 |
-| 텐시오미터 | 토양 내 물이 가지는 수분 장력(Water Tension)을 측정하는 장치. | 토양 수분 포텐셜 |
-| ET<sub>c</sub> | 작물 증발산량. 작물 생장에 필요한 물의 증발량과 증산량을 합산한 값. | 기상 모델링, 관개 요구량 산정 |
-| Penman-Monteith | 표준화된 기상학적 방정식을 이용한 증발산량 추정 모델. | 기상 데이터 입력, ET<sub>0</sub> 산정 |
-| CU | 관수 균일도(Coefficient of Uniformity). 관개 시스템이 포장 내에 물을 공급하는 균일성을 나타내는 지표. | 수리학적 설계, 관개 효율 |
-| CWSI | 작물 수분 결핍 지수(Crop Water Stress Index). 현재 토양 수분 상태를 기준으로 작물이 겪는 스트레스 정도를 지수화한 값. | 자동 관개 제어, 생리적 스트레스 모니터링 |
+| **TDR / FDR** | 토양의 겉보기 유전율(ε<sub>a</sub>)을 이용해 체적수분함량(θ<sub>v</sub>)을 산출하는 전자기파·정전용량 토양 수분 센서 | θ<sub>v</sub> (%, m³ m⁻³), Topp(1980) [SRC-389] |
+| **텐시오미터 (Tensiometer)** | 다공성 세라믹 컵으로 토양 매트릭 포텐셜(수분 장력 Ψ<sub>m</sub>)을 직접 측정하는 장치 | kPa (양파 구 비대기 개시 −15~−25 kPa) [SRC-377, SRC-389] |
+| **FAO-56 ET<sub>0</sub> / ET<sub>c</sub>** | Penman-Monteith 기준 증발산량(ET<sub>0</sub>)과 작물계수(K<sub>c</sub>)를 곱한 작물 증발산량(`ET_c = K_c × ET_0`) | mm day⁻¹ (양파 K<sub>c</sub>: 0.70 / 1.05 / 0.75) [SRC-388, SRC-389] |
+| **CU / EU** | Christiansen 관수 균일도(`1 − Σ|xᵢ−x̄|/(n·x̄)`)와 점적관개 배출 균일도(`EU`, Keller & Karmeli) | % (점적관개 권장 ≥ 90%) [SRC-384, SRC-389] |
+| **CWSI** | 적외선 엽군 온도(T<sub>c</sub>)와 기온(T<sub>a</sub>) 차이의 정규화 지수(Idso·Jackson 모형) | 무차원 0~1 (개시 기준 0.25~0.35) [SRC-370, SRC-387] |
+| **MAD / RAW** | 작물 스트레스 없이 허용되는 토양 수분 고갈 비율(MAD, p)과 이용가능 유효수분량(`RAW = p·TAW`) | p = 0.25~0.30, RAW (mm) [SRC-366, SRC-389] |
 
 ## 이해도 점검 연습문제 및 해설
 
-**문제 1.** 토양 수분 측정 센서 중, 토양 매트릭스 내의 물 포텐셜(장력)을 직접 측정하여 작물 생리에 가장 밀접하게 연관된 정보를 제공하는 센서는 무엇이며, 그 측정 물리량은 무엇인가?
-**정답:** 텐시오미터(Tensiometer). 측정 물리량은 토양 수분 장력(Water Tension)이다.
-**상세 풀이:** 텐시오미터는 수분 함량(θ<sub>v</sub>) 대신 작물이 물을 흡수할 때 필요한 압력 포텐셜을 측정한다. 이는 작물 생장 상태와 직접적인 연관이 있으며, TDR/FDR은 주로 체적 수분 함량(θ<sub>v</sub>)을 측정한다 [SRC-118].
+### 문제 1
+동일한 양파 구 비대기 관수 개시 수분 장력(−20 kPa)에서 사양토와 식양토에 설치된 FDR 센서가 지시하는 체적수분함량(θ<sub>v</sub>)이 서로 다른 이유를 토양수분 특성곡선(SWRC) 관점에서 설명하시오.
 
-**문제 2.** Penman-Monteith 방정식에 사용되는 ET<sub>c</sub>를 정확하게 산출하기 위해 반드시 필요하며, 농림축산식품부의 데이터 개방 정책과 연관될 수 있는 주요 기상 변수 세 가지를 서술하시오.
-**정답:** 온도, 일사량, 풍속 (또는 상대 습도).
-**상세 풀이:** Penman-Monteith 방정식은 온도, 상대 습도, 일사량, 풍속과 같은 기상 데이터를 입력 변수로 사용하여 기준 증발산량(ET<sub>0</sub>)을 계산한다. 농촌진흥청은 이러한 농업 기상 데이터를 포함한 공공 데이터를 개방하고 있다 [SRC-101].
+#### ▶ 문제 1 정답 및 상세 풀이
+**정답:** 토성에 따라 공극 크기 분포와 보수력이 다르기 때문이다. van Genuchten(1980) 모형과 Carsel & Parrish(1988) 표준 매개변수에 따르면 −20 kPa 장력에서 사양토의 체적수분함량은 약 15.3%인 반면, 미세 공극이 많은 식양토는 약 31.7%에 달한다 [SRC-389]. 따라서 FDR/TDR 센서는 반드시 해당 포장의 토성에 맞춘 현장 보정곡선을 적용해야 하며, 토성 보정이 어려운 경우에는 수분 장력을 직접 측정하는 텐시오미터를 병행하는 것이 안전하다 [SRC-377, SRC-389].
 
-**문제 3.** 스마트 관개 알고리즘에서 CWSI가 설정된 임계값(CWSI<sub>threshold</sub>)을 초과했을 때 발생해야 할 최적의 제어 동작과, 이 제어가 성공적으로 이루어지기 위해 필요한 하드웨어적 요소는 무엇인가?
-**정답:** 무인 밸브(Solenoid Valve)가 자동으로 개방되어 관수 시스템이 작동해야 하며, 이 제어 동작을 수행하는 것이 알고리즘의 핵심이다.
-**상세 풀이:** CWSI는 작물의 수분 스트레스를 판단하는 지표이다. 이 지수가 위험 수준을 넘으면, 알고리즘은 사전에 프로그래밍된 논리에 따라 무인 밸브에 전기 신호를 보내 관수를 시작시킨다. 이는 실시간 센서 피드백 기반의 능동적 제어의 예시이다.
+### 문제 2
+기상청 목포 관측소 5월 평균 기준 증발산량(ET<sub>0</sub>)이 3.61 mm day⁻¹이고 양파 중기 작물계수(K<sub>c,mid</sub>)가 1.05, 점적관개 현장 적용 효율(E<sub>a</sub>)이 90%일 때, 무강우 3일 누적 조관수량(mm)을 계산하시오.
+
+#### ▶ 문제 2 정답 및 상세 풀이
+**정답:** **12.63 mm** (`ET_c = 1.05 × 3.61 = 3.79 mm day⁻¹`, 3일 순관수량 `3.79 × 3 = 11.37 mm`, 조관수량 `11.37 / 0.90 = 12.63 mm`). FAO-56 표준식 `ET_c = K_c × ET_0`을 통해 산출된 순관수량을 관개 효율로 나누어 실제 펌프·밸브 공급량을 결정한다 [SRC-384, SRC-388, SRC-389].
+
+### 문제 3
+작물 수분 스트레스 지수(CWSI)와 토양 허용수분결핍(MAD)의 계측 원리 차이를 설명하고, 왜 두 지표를 병행해 자동 관개 제어에 활용하는지 서술하시오.
+
+#### ▶ 문제 3 정답 및 상세 풀이
+**정답:** CWSI는 적외선 센서로 계측한 엽군 온도(T<sub>c</sub>)와 기온(T<sub>a</sub>)의 차이를 VPD 기반 무스트레스 하한선(LL)·상한선(UL)으로 정규화한 작물 생리 지표이며 [SRC-370, SRC-387], MAD(p = 0.25~0.30)는 토양 수분 센서로 측정한 근권 유효수분(TAW) 대비 허용 고갈 비율이다 [SRC-389]. CWSI는 작물이 실제로 느끼는 기공 폐쇄·증산 저하를 직접 반영하지만 야간이나 흐린 날 활용이 제한되므로, 24시간 연속 감시가 가능한 토양 수분(MAD·텐시오미터) 및 기상 ET<sub>c</sub>와 융합해야 오동작 없는 폐루프 제어가 가능하다 [SRC-373, SRC-387, SRC-389].
 
 ## 오해와 진실: 현장·이론 핵심 오해 교정
 
-**오해 1:** TDR/FDR 센서의 측정값만으로 작물의 수분 스트레스를 완벽하게 판단할 수 있다.
-**진실:** TDR/FDR은 '물리적인 토양 수분 함량(θ<sub>v</sub>)'을 측정하는 것이며, 이는 작물이 실제로 느끼는 '생리적 스트레스'와는 차이가 있다. 생리적 스트레스 반영을 위해서는 토양 수분 장력(텐시오미터)이나 CWSI와 같은 포텐셜 기반 지표를 함께 활용해야 한다.
+### 오해 5-1. CWSI는 토양 수분 함량과 위조점으로 계산하는 토양 지표이다
+- **오해 (Myth):** 토양 수분 센서 값과 위조점을 식에 대입하면 CWSI가 산출된다.
+- **진실 (Fact):** CWSI(Idso et al., 1981; Jackson et al., 1981)는 적외선 엽군 온도(T<sub>c</sub>)와 기온(T<sub>a</sub>) 차이에 기반한 에너지 수지·증산 스트레스 지표이다 [SRC-370, SRC-387]. 토양 수분 함량 기준 관수 개시 지표는 허용수분결핍(MAD)과 유효수분(RAW)으로 구분해 사용해야 한다 [SRC-389].
+- **현장 교정 포인트:** 열화상·적외선 온도 센서가 없는 포장에서는 CWSI라는 명칭을 임의로 쓰지 말고, 텐시오미터 장력(−15~−25 kPa) 또는 보정된 MAD 비율(25~30%)로 제어 로직을 명기한다 [SRC-377, SRC-389].
 
-**오해 2:** 관개 시스템의 균일도(CU)는 관개량을 정밀하게 맞추는 것과 완전히 같은 개념이다.
-**진실:** CU는 **'균일성(Uniformity)'**을 나타내는 지표로, 포장 내 모든 지점에 물을 얼마나 고르게 분배하는가에 초점을 맞춘다. 반면, 정밀 관개 제어는 CWSI나 ET<sub>c</sub>를 이용하여 '얼마나 많이' (양) 공급할지를 결정하는 과정이다. 둘은 상호 보완적이다.
+### 오해 5-2. 점적관개 균일도(CU)는 평균 유량을 최대 유량으로 나누어 구한다
+- **오해 (Myth):** `평균 살수량 ÷ 최대 살수량`이 관수 균일도(CU)이다.
+- **진실 (Fact):** 표준 Christiansen CU는 `1 − Σ|xᵢ − x̄| / (n·x̄)`이며, 점적관개에서는 제조 변동계수(CV<sub>m</sub>)와 최저 압력 유량 비율을 반영한 배출 균일도(EU) 또는 현장 하위 25% 기준 `EU_f = (q_lq / q_avg) × 100`으로 평가한다 [SRC-384, SRC-389].
+- **현장 교정 포인트:** 점적 지선 16개 이상 지점의 5분 토출량을 계량컵으로 실측해 `EU_f ≥ 90%` 여부를 연 1회 이상 점검하고, 80% 미만이면 필터 세척·압력조절기 교체·지선 길이 단축을 시행한다 [SRC-384, SRC-389].
 
-**오해 3:** 관개 알고리즘은 ET<sub>c</sub>만 고려하면 된다.
-**진실:** ET<sub>c</sub>는 작물이 *필요로 하는* 양을 예측하는 반면, 토양 수분 센서(TDR, 텐시오미터)는 토양 내에 *현재 남아있는* 양과 그 상태를 실시간으로 알려준다. 따라서 ET<sub>c</sub>와 토양 수분 데이터(θ)를 결합하여 현재 상태를 기준으로 미래의 필요량을 예측하는 피드백 루프가 필수적이다.
+### 오해 5-3. 양파는 월동 이후 수확 직전까지 동일한 관수량으로 관리해도 된다
+- **오해 (Myth):** 양파 생육 전 기간에 일정한 일 관수량(또는 단일 K<sub>c</sub>)을 유지하면 구가 커진다.
+- **진실 (Fact):** 목포·무안권 10년 실측 기상 분석 결과 양파 일 증발산량(ET<sub>c</sub>)은 1월 0.69 mm day⁻¹에서 구 비대 성기인 5월 3.79 mm day⁻¹로 5.5배 급증하며, 반대로 6월 수확 10~14일 전에는 K<sub>c</sub>가 0.75로 낮아지고 저장성 확보를 위해 단수가 필요하다 [SRC-366, SRC-378, SRC-388, SRC-389].
+- **현장 교정 포인트:** 4~5월 구 비대기에는 −15~−25 kPa 기준 정밀 펄스 관수를 집중하고, 6월 도복 진행 후에는 자동 밸브에 단수 스케줄 인터록을 설정해 구 부패와 저장 감모를 방지한다 [SRC-366, SRC-378, SRC-389].
 
 ## 참고문헌 및 근거 출처 목록
 
-| 출처 ID | 유형 | 제목 | URL | 라이선스 |
-| :--- | :--- | :--- | :--- | :--- |
-| `SRC-100` | web | 농촌진흥청 | https://www.rda.go.kr/ | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-101` | web | 보도자료 < 새소식 < 정책홍보 < 농촌진흥청 | https://www.rda.go.kr/board/board.do?boardId=farmprmninfo&prgId=day_farmprmninfoEntry | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-102` | web | 한국식품연구원 | https://www.kfri.re.kr/ | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-103` | web | 국립식량과학원 | https://www.nics.go.kr/index.do | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-104` | web | 농림축산식품부 | https://www.mafra.go.kr/home/index.do | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-105` | web | 국민 안심이 기준입니다, 식품의약품안전처 | https://www.mfds.go.kr/index.do | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-106` | web | 한국농촌경제연구원 | https://www.krei.re.kr/krei/index.do | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-107` | web | 저온 유통 - 위키백과, 우리 모두의 백과사전 | https://ko.wikipedia.org/wiki/%EC%BD%9C%EB%93%9C_%EC%B2%B4%EC%9D%B8 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-108` | web | 에틸렌 - 위키백과, 우리 모두의 백과사전 | https://ko.wikipedia.org/wiki/%EC%97%90%ED%8B%B8%EB%A0%8C | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-109` | web | [2021] Inhibition of Ethylene Binding and Biosynthesis Maintains Fruit Quality of ‘Formosa’ Plums during Postharvest Storage (Horticultural Science and Technology) | https://doi.org/10.7235/hort.20210033 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-111` | web | [2010] Cold storage and fruit quality (Postharvest Biology and Technology for Preserving Fruit Quality) | https://doi.org/10.1201/9781439802670-c4 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-110` | web | [1998] Effects of storage temperature and atmosphere on saskatoon (Amelanchier alnifolia Nutt.) fruit quality, respiration and ethylene production (Postharvest Biology and Technology) | https://doi.org/10.1016/s0925-5214(98)00012-x | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-112` | web | [2013] Postharvest treatments for preserving quality of ‘Kinnow’ fruit under different storage conditions (Advances in Horticultural Science) | https://doi.org/10.36253/ahsc-18414 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-117` | web | [2016] Nondestructive Assessment of Fruit Quality (Advances in Postharvest Fruit and Vegetable Technology) | https://doi.org/10.1201/b18489-10 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-118` | web | [2015] Nondestructive Assessment of Fruit Quality (Contemporary Food Engineering) | https://doi.org/10.1201/b18489-4 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-119` | web | [2016] Metabolomics Tools for Postharvest Quality and Safety of Fresh Produce (Advances in Postharvest Fruit and Vegetable Technology) | https://doi.org/10.1201/b18489-20 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-120` | web | [2021] Effects of postharvest ultraviolet-C treatment on shelf-life and quality of bitter gourd fruit during storage (Food Packaging and Shelf Life) | https://doi.org/10.1016/j.fpsl.2021.100665 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-121` | web | [2020] Evaluation of Postharvest Shelf Life and Quality of Lemon Treated with  Different Coatings during Storage (Food Science and Engineering) | https://doi.org/10.37256/fse.122020463 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-122` | web | [2026] Aloe Vera-Honey Composite Edible Coatings Extend Postharvest Shelf Life and Preserve Quality of Roma Tomatoes Under Tropical Ambient Storage in Rwanda (Journal of Food Science and Horticulture) | https://doi.org/10.69739/jfsh.v1i1.1696 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-123` | web | [2024] Different Postharvest Treatments and Storage Conditions for Shelf-life Enhancement and Quality Retention of Litchi (Journal of Food Chemistry &amp; Nanotechnology) | https://doi.org/10.17756/jfcn.2024-s1-015 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-124` | web | [2019] Understanding Food Loss and Waste—Why Are We Losing and Wasting Food? (Foods) | http://dx.doi.org/10.3390/foods8080297 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-125` | pdf | [2020] Nanotechnologies in Food Science: Applications, Recent Trends, and Future Perspectives (Nano-Micro Letters) | https://doi.org/10.1007/s40820-020-0383-9 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-126` | web | [2020] ZnO Nanostructures in Active Antibacterial Food Packaging: Preparation Methods, Antimicrobial Mechanisms, Safety Issues, Future Prospects, and Challenges (Food Reviews International) | https://doi.org/10.1080/87559129.2020.1737709 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-127` | web | [2019] Value-added chemicals from food supply chain wastes: State-of-the-art review and future prospects (Chemical Engineering Journal) | https://doi.org/10.1016/j.cej.2019.121983 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-263` | web | [2020] Citrus Essential Oils (CEOs) and Their Applications in Food: An Overview (Plants) | http://dx.doi.org/10.3390/plants9030357 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-128` | web | [2024] Advances in strawberry postharvest preservation and packaging: A comprehensive review (Comprehensive Reviews in Food Science and Food Safety) | https://doi.org/10.1111/1541-4337.13417 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-129` | pdf | [2019] Characterization of Fruit Quality Attributes and Cell Wall Metabolism in 1-Methylcyclopropene (1-MCP)-Treated ‘Summer King’ and ‘Green Ball’ Apples During Cold Storage (Frontiers in Plant Science) | https://doi.org/10.3389/fpls.2019.01513 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-130` | web | [2014] Shelf life extension and antioxidant activity of ‘Hayward’ kiwi fruit as a result of prestorage conditioning and 1-methylcyclopropene treatment (Journal of Food Science and Technology) | https://doi.org/10.1007/s13197-014-1300-3 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-131` | web | [2012] Effects of Vibration Stress on the Quality of Packaged Apples during Simulated Transport (Journal of Biosystems Engineering) | https://doi.org/10.5307/jbe.2012.37.1.044 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-264` | web | [2025] Plant–Microbe Interactions for Improving Postharvest Shelf Life and Quality of Fresh Produce Through Protective Mechanisms (Horticulturae) | https://doi.org/10.3390/horticulturae11070732 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-132` | web | [2022] Prediction of Total Soluble Solids and pH of Strawberry Fruits Using RGB, HSV and HSL Colour Spaces and Machine Learning Models (Foods) | https://doi.org/10.3390/foods11142086 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-133` | web | [2017] Nondestructive Estimation of Moisture Content, pH and Soluble Solid Contents in Intact Tomatoes Using Hyperspectral Imaging (Applied Sciences) | https://doi.org/10.3390/app7010109 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-134` | web | [2024] Prediction of Soluble-Solid Content in Citrus Fruit Using Visible–Near-Infrared Hyperspectral Imaging Based on Effective-Wavelength Selection Algorithm (Sensors) | https://doi.org/10.3390/s24051512 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-135` | pdf | [2018] Hyperspectral imaging technique to evaluate the firmness and the sweetness index of tomatoes (Korean Journal of Agricultural Science) | https://doi.org/10.7744/kjoas.20180075 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-265` | web | [2022] Field Application of a Vis/NIR Hyperspectral Imaging System for Nondestructive Evaluation of Physicochemical Properties in ‘Madoka’ Peaches (Plants) | https://doi.org/10.3390/plants11172327 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-136` | web | Technical Platform on the Measurement and Reduction of Food Loss and Waste / Food and Agriculture Organization of the United Nations | https://www.fao.org/platform-food-loss-waste/en/ | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-137` | web | FLW Database / Technical Platform on the Measurement and Reduction of Food Loss and Waste / Food and Agriculture Organization of the United Nations | https://www.fao.org/food-loss-and-food-waste/flw-data/en/ | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-138` | web | Codex / Home | https://www.fao.org/fao-who-codexalimentarius/en/ | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-139` | web | Ask IFAS: Topic - Postharvest and Handling | https://edis.ifas.ufl.edu/topics/postharvest | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-140` | web | ARS Home : USDA ARS | https://www.ars.usda.gov/ | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-141` | web | National Programs : USDA ARS | https://www.ars.usda.gov/research/programs/ | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-142` | web | NFRI / National Agriculture and Food Research Organization | https://www.naro.go.jp/english/laboratory/nfri/index.html | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-143` | web | Ministry of Agriculture, Forestry and Fisheries | https://www.maff.go.jp/e/index.html | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-144` | web | Postharvest - Wikipedia | https://en.wikipedia.org/wiki/Postharvest | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-145` | web | Controlled atmosphere - Wikipedia | https://en.wikipedia.org/wiki/Controlled_atmosphere | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-146` | web | Modified atmosphere - Wikipedia | https://en.wikipedia.org/wiki/Modified_atmosphere | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-147` | web | 1-Methylcyclopropene - Wikipedia | https://en.wikipedia.org/wiki/1-Methylcyclopropene | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-148` | web | Cold chain - Wikipedia | https://en.wikipedia.org/wiki/Cold_chain | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-149` | pdf | [2014] Agricultural uses of plant biostimulants (Plant and Soil) | https://doi.org/10.1007/s11104-014-2131-8 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-150` | web | [2017] Biostimulants in Plant Science: A Global Perspective (Frontiers in Plant Science) | https://doi.org/10.3389/fpls.2016.02049 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-151` | web | [1986] The commercial storage of fruits, vegetables, and florist and nursery stocks (Biodiversity Heritage Library (Smithsonian Institution)) | https://www.biodiversitylibrary.org/item/295012 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-152` | web | [2017] Reducing Postharvest Losses during Storage of Grain Crops to Strengthen Food Security in Developing Countries (Foods) | https://doi.org/10.3390/foods6010008 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-266` | web | [2015] Bioactive Compounds and Antioxidant Activity in Different Types of Berries (International Journal of Molecular Sciences) | http://dx.doi.org/10.3390/ijms161024673 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-153` | web | [2019] The role of hydrogen and fuel cells in the global energy system (Energy & Environmental Science) | https://doi.org/10.1039/c8ee01157e | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-154` | web | [2018] Methanol as a fuel for internal combustion engines (Progress in Energy and Combustion Science) | https://doi.org/10.1016/j.pecs.2018.10.001 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-155` | web | [2017] Overview of Ice Nucleating Particles (Meteorological Monographs) | https://doi.org/10.1175/amsmonographs-d-16-0006.1 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-156` | web | [2021] Liquid Hydrogen: A Review on Liquefaction, Storage, Transportation, and Safety (Energies) | https://doi.org/10.3390/en14185917 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-267` | web | [2022] Hydrogen liquefaction: a review of the fundamental physics, engineering practice and future opportunities (Energy & Environmental Science) | https://doi.org/10.1039/d2ee00099g | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-157` | web | [2013] Advances in Fruit Aroma Volatile Research (Molecules) | https://doi.org/10.3390/molecules18078200 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-158` | web | [2019] Tomato Fruit Development and Metabolism (Frontiers in Plant Science) | https://doi.org/10.3389/fpls.2019.01554 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-159` | web | [2019] Chemical Composition of Mango (Mangifera indica L.) Fruit: Nutritional and Phytochemical Compounds (Frontiers in Plant Science) | https://doi.org/10.3389/fpls.2019.01073 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-160` | web | [2016] Induced resistance to control postharvest decay of fruit and vegetables (Postharvest Biology and Technology) | https://www.sciencedirect.com/science/article/pii/S0925521416301946/pdf | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-268` | pdf | [2020] Primary Metabolism in Fresh Fruits During Storage (Frontiers in Plant Science) | https://doi.org/10.3389/fpls.2020.00080 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-161` | web | [2014] Near-infrared spectroscopy and hyperspectral imaging: non-destructive analysis of biological materials (Chemical Society Reviews) | https://doi.org/10.1039/c4cs00062e | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-162` | web | [2020] Visible-NIR ‘point’ spectroscopy in postharvest fruit and vegetable assessment: The science behind three decades of commercial use (Postharvest Biology and Technology) | https://doi.org/10.1016/j.postharvbio.2020.111246 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-163` | web | [2015] Fruit Quality Evaluation Using Spectroscopy Technology: A Review (Sensors) | http://dx.doi.org/10.3390/s150511889 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-164` | web | [2019] Monitoring strategies for quality control of agricultural products using visible and near-infrared spectroscopy: A review (Trends in Food Science & Technology) | https://www.sciencedirect.com/science/article/abs/pii/S0924224418304825 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-269` | web | [2011] Machine vision system: a tool for quality inspection of food and agricultural products (Journal of Food Science and Technology) | https://doi.org/10.1007/s13197-011-0321-4 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-165` | web | [1995] Biosolids–Yard Trimming Composts Increases Bell Pepper (Capsicum annuum L.) and Cucumber (Cucumis sativus L.) Yields (HortScience) | https://doi.org/10.21273/hortsci.30.4.892 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-166` | web | [1995] Physiology of Lightly Processed Fruits and Vegetables (HortScience) | https://doi.org/10.21273/hortsci.30.1.18 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-167` | web | [2006] Nutritional and medicinal use of Cactus pear (Opuntia spp.) cladodes and fruits (Frontiers in bioscience) | https://doi.org/10.2741/1992 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-168` | web | [2017] Antifungal Microbial Agents for Food Biopreservation—A Review (Microorganisms) | https://doi.org/10.3390/microorganisms5030037 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-270` | web | [2010] Effect of hydroxypropylmethylcellulose and chitosan coatings with and without bergamot essential oil on quality and safety of cold-stored grapes (Postharvest Biology and Technology) | https://doi.org/10.1016/j.postharvbio.2010.11.004 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+| 출처 ID | 유형 | 제목 | URL / 출처 |
+| :--- | :--- | :--- | :--- |
+| `SRC-389` | anchor | FAO-56 작물 증발산량 · 점적관개 수리설계 · 토양수분 표준 기준 (Allen et al., 1998; ASAE EP405.1; Topp et al., 1980; Carsel & Parrish, 1988) | 프로젝트 핵심 앵커 문헌 (`00_anchor_literature`) |
+| `SRC-388` | local_db | 기상청 ASOS 목포권(2015~2024, n=10년) 월별 FAO-56 ET0 및 양파 ETc 실측 산출표 | `weather_daily_kr.db` (ASOS 지점 165) |
+| `SRC-366` | paper | [2021] Effect of Deficit Irrigation and Mulching on Water Productivity and Yield of Drip-Irrigated Onion | OpenAlex / 학술지 원문 |
+| `SRC-369` | paper | [2014] Simulating impacts of irrigation heterogeneity on onion (*Allium cepa* L.) yield in a humid climate | OpenAlex / 학술지 원문 |
+| `SRC-370` | paper | [2019] Estimation of evapotranspiration using the crop canopy temperature at field to regional scales | OpenAlex / 학술지 원문 |
+| `SRC-373` | paper | [2013] Estimation of the Optimum Installation Depth of Soil Moisture Sensor in an Automatic Subsurface Drip Irrigation System | OpenAlex KR / 국내 학술지 |
+| `SRC-377` | paper | [2025] Optimizing Irrigation Thresholds Using a Tensiometer-Based Automated Irrigation System | OpenAlex KR / 국내 학술지 |
+| `SRC-378` | paper | [2016] Regional Differences in Onion Bulb Quality and Nutrient Content | OpenAlex KR / 국내 학술지 |
+| `SRC-379` | paper | [2023] Monitoring of Soil Nutrient Levels by an EC Sensor during Spring Onion Cultivation | OpenAlex KR / 국내 학술지 |
+| `SRC-380` | paper | [2019] Coping with salinity in irrigated agriculture: Crop evapotranspiration and water management | OpenAlex / 학술지 원문 |
+| `SRC-384` | paper | [2011] Irrigation Efficiency and Uniformity, and Crop Water Use Efficiency | OpenAlex / 학술지 원문 |
+| `SRC-385` | paper | [2007] Evapotranspiration: Progress in Measurement and Modeling in Agriculture (*Trans. ASABE*) | OpenAlex / 학술지 원문 |
+| `SRC-387` | paper | [1981] Canopy temperature as a crop water stress indicator (*Water Resources Research*, Jackson et al.) | OpenAlex / 학술지 원문 |

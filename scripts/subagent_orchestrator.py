@@ -88,10 +88,10 @@ STAGE_DEFINITIONS: list[dict[str, str]] = [
         "stage_id": "stage5_visuals_generate",
         "order": "5",
         "agent_name": "visual-artist",
-        "title": "시각화 자료 제작 (단원당 10개 이상)",
-        "short_title": "시각화(장당 10+)",
-        "tier": "fal.ai API (선택 체크) · 나노바나나 · Vector SVG · 줄글 해설",
-        "description": "단원당 10개 이상의 실사진·과학 인포그래픽(fal.ai/나노바나나) 및 정량 벡터 차트를 생성하고 줄글 해설을 작성합니다.",
+        "title": "시각화 자료 제작 (주장·내용 기반 3~6장)",
+        "short_title": "시각화(내용 기반)",
+        "tier": "실데이터 matplotlib 300 DPI · 내용 기반 도해 · AI 실사+Pillow 라벨",
+        "description": "원고의 핵심 주장과 검증 데이터에 기반해 단원당 3~6장의 학술 차트·도해·실사를 생성하고 시각 QA 검수를 수행합니다.",
     },
     {
         "stage_id": "stage6_publish_report",
@@ -624,9 +624,11 @@ def _migrate_to_v2_if_needed(state: dict[str, Any], cfg: PlatformConfig) -> dict
     opts.setdefault("use_fal_ai", False)
     opts.setdefault("fal_model", "fal-ai/nano-banana")
     opts.setdefault("use_nano_banana", True)
-    opts.setdefault("visuals_per_chapter", 10)
-    opts.setdefault("gemma_model", cfg.ollama_fast_model)
+    opts.setdefault("visuals_per_chapter", 4)
+    opts.setdefault("gemma_model", cfg.ollama_llm_model)
     opts.setdefault("kg_model", cfg.ollama_fast_model)
+    opts.setdefault("strict_evidence_gate", True)
+    opts.setdefault("require_expert_review", True)
     state["options"] = opts
 
     # 기존 수집/KG 데이터로 2단계·3단계 마크다운 보고서 자동 보완
@@ -814,13 +816,15 @@ def create_project(
         "use_fal_ai": False,
         "fal_model": "fal-ai/nano-banana",
         "use_nano_banana": True,
-        "visuals_per_chapter": int(resolved_profile.get("visuals_per_chapter", 6)),
+        "visuals_per_chapter": int(resolved_profile.get("visuals_per_chapter", 4)),
         "enable_naver_blog": bool(resolved_profile.get("include_naver_hashtags", True)),
         "enable_myths": bool(resolved_profile.get("include_myths", True)),
         "enable_linked_quiz": bool(resolved_profile.get("include_exercises", True)),
         "download_oa_pdf": True,
-        "gemma_model": cfg.ollama_fast_model,
+        "gemma_model": cfg.ollama_llm_model,
         "kg_model": cfg.ollama_fast_model,
+        "strict_evidence_gate": True,
+        "require_expert_review": True,
         "use_claude_review": False,
         "use_claude_blueprint": False,
         "domestic_agency_urls": [],
@@ -1730,6 +1734,94 @@ def _run_stage3_kg_build(state: dict[str, Any], cfg: PlatformConfig) -> None:
     )
 
 
+def build_subsection_evidence_checked(
+    sources: list[dict[str, Any]],
+    query_text: str,
+    cfg: PlatformConfig,
+    *,
+    max_chunks: int = 12,
+    max_chars_per_chunk: int = 880,
+    min_relevant_score: int = 2,
+) -> dict[str, Any]:
+    """C2/C3: 핵심 앵커 문헌을 최우선 배치하고 포털 첫 화면을 제외한 뒤, 관련도 기준을 넘는 근거 조각 수를 반환한다."""
+    tokens = [t.lower() for t in re.findall(r"[0-9A-Za-z가-힣]{2,}", query_text or "")]
+    tok_set = set(tokens)
+
+    scored_chunks: list[tuple[int, bool, int, str, str, str]] = []
+    for idx_s, s in enumerate(sources):
+        sid = str(s.get("source_id") or "").strip()
+        if not sid:
+            continue
+        if s.get("citable") is False:
+            continue
+        is_anchor = bool(s.get("is_anchor", False))
+        title = str(s.get("title") or "").strip()
+        chunks = s.get("chunks") or []
+        if not chunks:
+            summary_txt = str(s.get("abstract") or s.get("summary") or title).strip()
+            if summary_txt:
+                chunks = [{"text": summary_txt}]
+        chunk_cap = 8 if is_anchor else 5
+        for c in chunks[:chunk_cap]:
+            txt = str(c.get("text") or "").strip()
+            if not txt:
+                continue
+            hay = (title + " " + txt).lower()
+            hit_score = sum(2 if t in title.lower() else 1 for t in tok_set if t in hay)
+            anchor_bonus = 500 if is_anchor else 0
+            sort_score = anchor_bonus + hit_score * 10 - idx_s
+            scored_chunks.append((sort_score, is_anchor, hit_score, sid, title, txt[:max_chars_per_chunk]))
+
+    scored_chunks.sort(key=lambda x: x[0], reverse=True)
+    picked_lines: list[str] = []
+    used_ids: list[str] = []
+    per_source_cap: dict[str, int] = {}
+    relevant_chunks = 0
+    anchor_hits = 0
+    for _, is_anchor, hit_score, sid, title, snippet in scored_chunks:
+        if len(picked_lines) >= max_chunks:
+            break
+        cap_for_src = 4 if is_anchor else 2
+        if per_source_cap.get(sid, 0) >= cap_for_src:
+            continue
+        if not is_anchor and hit_score < min_relevant_score:
+            continue
+        per_source_cap[sid] = per_source_cap.get(sid, 0) + 1
+        tag_prefix = "[핵심앵커] " if is_anchor else ""
+        picked_lines.append(f"[{sid}] {tag_prefix}{title}\n{snippet}")
+        relevant_chunks += 1
+        if is_anchor:
+            anchor_hits += 1
+        if sid not in used_ids:
+            used_ids.append(sid)
+
+    # C:\SMC_GRAPHRAG 통합 RAG 보강 검색 (동일 프로젝트 근거 출처 내 보강)
+    try:
+        from rag_capture_unifier import search_unified_rag
+
+        rag_hits = search_unified_rag(query_text[:120], limit=4, cfg=cfg)
+        existing_sids = {str(s.get("source_id")) for s in sources if s.get("source_id") and s.get("citable") is not False}
+        for hit in rag_hits:
+            h_sid = str(hit.get("source_id") or "").strip()
+            h_snip = str(hit.get("snippet") or hit.get("content") or "").strip()[:500]
+            h_title = str(hit.get("title") or "").strip()
+            if h_snip and h_sid in existing_sids and per_source_cap.get(h_sid, 0) < 2:
+                per_source_cap[h_sid] = per_source_cap.get(h_sid, 0) + 1
+                picked_lines.append(f"[{h_sid}] (통합RAG) {h_title}\n{h_snip}")
+                relevant_chunks += 1
+                if h_sid not in used_ids:
+                    used_ids.append(h_sid)
+    except Exception:
+        pass
+
+    return {
+        "text": "\n\n".join(picked_lines),
+        "used_ids": used_ids,
+        "relevant_chunks": relevant_chunks,
+        "anchor_hits": anchor_hits,
+    }
+
+
 def _build_subsection_evidence_context(
     sources: list[dict[str, Any]],
     query_text: str,
@@ -1738,63 +1830,16 @@ def _build_subsection_evidence_context(
     max_chunks: int = 12,
     max_chars_per_chunk: int = 880,
 ) -> tuple[str, list[str]]:
-    """세부 절 제목·키워드에 맞춰 근거 패킷 전체 + C:\\SMC_GRAPHRAG 통합 RAG에서 고밀도 관련 발췌를 조합한다."""
-    tokens = [t.lower() for t in re.findall(r"[0-9A-Za-z가-힣]{2,}", query_text or "")]
-    tok_set = set(tokens)
-
-    scored_chunks: list[tuple[int, str, str, str]] = []
-    for idx_s, s in enumerate(sources):
-        sid = str(s.get("source_id") or "").strip()
-        if not sid:
-            continue
-        title = str(s.get("title") or "").strip()
-        chunks = s.get("chunks") or []
-        if not chunks:
-            summary_txt = str(s.get("abstract") or s.get("summary") or title).strip()
-            if summary_txt:
-                chunks = [{"text": summary_txt}]
-        for c in chunks[:5]:
-            txt = str(c.get("text") or "").strip()
-            if not txt:
-                continue
-            hay = (title + " " + txt).lower()
-            hit_score = sum(2 if t in title.lower() else 1 for t in tok_set if t in hay)
-            # 근거 다양성을 위해 기본 점수 부여
-            scored_chunks.append((hit_score * 10 - idx_s, sid, title, txt[:max_chars_per_chunk]))
-
-    scored_chunks.sort(key=lambda x: x[0], reverse=True)
-    picked_lines: list[str] = []
-    used_ids: list[str] = []
-    per_source_cap: dict[str, int] = {}
-    for _, sid, title, snippet in scored_chunks:
-        if len(picked_lines) >= max_chunks:
-            break
-        if per_source_cap.get(sid, 0) >= 2:
-            continue
-        per_source_cap[sid] = per_source_cap.get(sid, 0) + 1
-        picked_lines.append(f"[{sid}] {title}\n{snippet}")
-        if sid not in used_ids:
-            used_ids.append(sid)
-
-    # C:\SMC_GRAPHRAG 통합 RAG 보강 검색 (동일 주제 관련 심층 문헌 발췌 추가)
-    try:
-        from rag_capture_unifier import search_unified_rag
-
-        rag_hits = search_unified_rag(query_text[:120], limit=4, cfg=cfg)
-        existing_sids = {str(s.get("source_id")) for s in sources if s.get("source_id")}
-        for hit in rag_hits:
-            h_sid = str(hit.get("source_id") or "").strip()
-            h_snip = str(hit.get("snippet") or hit.get("content") or "").strip()[:500]
-            h_title = str(hit.get("title") or "").strip()
-            if h_snip and h_sid in existing_sids and per_source_cap.get(h_sid, 0) < 2:
-                per_source_cap[h_sid] = per_source_cap.get(h_sid, 0) + 1
-                picked_lines.append(f"[{h_sid}] (통합RAG) {h_title}\n{h_snip}")
-                if h_sid not in used_ids:
-                    used_ids.append(h_sid)
-    except Exception:
-        pass
-
-    return "\n\n".join(picked_lines), used_ids
+    """세부 절 제목·키워드에 맞춰 핵심 앵커 문헌 우선 + 근거 패킷에서 고밀도 관련 발췌를 조합한다."""
+    res = build_subsection_evidence_checked(
+        sources,
+        query_text,
+        cfg,
+        max_chunks=max_chunks,
+        max_chars_per_chunk=max_chars_per_chunk,
+        min_relevant_score=1,
+    )
+    return res["text"], res["used_ids"]
 
 
 def _dedup_leading_chapter_heading(draft_body: str, ch_title: str) -> str:
@@ -1853,7 +1898,8 @@ def _run_stage4_manuscript_draft(state: dict[str, Any], cfg: PlatformConfig) -> 
     digest = "\n".join(digest_lines) or f"주제: {state['topic_ko']}"
 
     completed_chs: set[str] = set(state.setdefault("checkpoint", {}).get("completed_chapters") or [])
-    gemma_model = state.get("options", {}).get("gemma_model") or cfg.ollama_fast_model
+    gemma_model = state.get("options", {}).get("gemma_model") or cfg.ollama_llm_model
+    strict_ev_gate = bool(state.get("options", {}).get("strict_evidence_gate", True))
     client = LocalGemmaClient(cfg)
 
     total_n = max(1, len(target_chapters))
@@ -1967,9 +2013,29 @@ def _run_stage4_manuscript_draft(state: dict[str, Any], cfg: PlatformConfig) -> 
                         progress=min(89, pct + int((s_i / max(1, len(secs))) * (78 / total_n))),
                         current_action=f"[{idx}/{total_n}] {cid} · 세부 절 ({s_i}/{len(secs)}) '{sec_title[:28]}' 심층 집필 중 ({persona['name_ko']})...",
                     )
+                    from math_typography import format_equations_for_prompt
+
                     sec_query = f"{state['topic_ko']} {ch['title']} {sec_title} {' '.join(ch.get('keywords_ko') or [])}"
-                    sec_evidence, _ = _build_subsection_evidence_context(sources, sec_query, cfg, max_chunks=12, max_chars_per_chunk=900)
-                    sec_evidence = sec_evidence or digest
+                    ev_checked = build_subsection_evidence_checked(sources, sec_query, cfg, max_chunks=12, max_chars_per_chunk=900)
+                    sec_evidence = ev_checked["text"]
+                    if strict_ev_gate and ev_checked["relevant_chunks"] < 3:
+                        assembled_parts.append(
+                            f"## {sec_title}\n\n"
+                            f"> **[근거 부족 — 추가 수집 필요 (C3)]** 본 절('{sec_title}')에 대해 주제 관련도 기준을 통과한 1차 근거 조각이 "
+                            f"**{ev_checked['relevant_chunks']}개(최소 3개 필요)**에 불과하여 임의 집필을 중단했습니다. "
+                            f"1단계 핵심 문헌(앵커 PDF) 업로드 또는 2단계 주제별 재수집 후 이 단원을 다시 집필하십시오.\n\n"
+                            f"<!-- NEED_EVIDENCE: {sec_title} 관련 1차 문헌·표준 수치·실험 데이터 최소 3건 이상 필요 -->"
+                        )
+                        append_event(
+                            pid,
+                            "domain-drafter",
+                            sid,
+                            f"[{cid}] C3 근거 부족 차단: '{sec_title}' (관련 근거 {ev_checked['relevant_chunks']}건 < 3건)",
+                            level="WARN",
+                            cfg=cfg,
+                        )
+                        continue
+                    eq_block = format_equations_for_prompt(sec_query, limit=5)
                     kg_triples = query_kg_triples_for_chapter(
                         chapter_title=f"{ch['title']} {sec_title}",
                         chapter_text=ch.get("summary_ko", "") + " " + sec_title,
@@ -1994,8 +2060,8 @@ def _run_stage4_manuscript_draft(state: dict[str, Any], cfg: PlatformConfig) -> 
                     if is_paper and chapter_role == "results_discussion":
                         is_last_res = (s_i == len(secs))
                         extra_sec_directive = (
-                            "\n[학회 투고급 결과 및 고찰 세부 절 필수 논리] "
-                            "① 정량 실증 발견 및 구조화 비교표(Table), ② 생리·분자·물리화학·알고리즘 인과 기작 해석(Why/How), "
+                            "\n[학회 투고급 결과 및 고찰 세부 절 필수 논리 (C8)] 먼저 문헌 비교표(연구·작물·방법·데이터셋·정확도·출처)를 작성한 뒤 "
+                            "① 정량 실증 발견, ② 생리·분자·물리화학·알고리즘 인과 기작 해석(Why/How), "
                             "③ 국내외 선행연구 비교 및 불일치 원인 규명, ④ 경계조건·민감도·트레이드오프·교란변수 분석, "
                             "⑤ 학술적 기여 및 한국 농업 현장·정책 함의를 빠짐없이 깊이 있게 논증하십시오."
                             + (" 또한 최종 세부 절이므로 ⑥ 방법론적 한계(Limitations)와 구체적 후속 연구 설계를 완결하십시오." if is_last_res else "")
@@ -2007,10 +2073,11 @@ def _run_stage4_manuscript_draft(state: dict[str, Any], cfg: PlatformConfig) -> 
                         f"단원 요약: {ch.get('summary_ko', '')}\n"
                         f"대상 독자: {state['target_audience']}\n"
                         f"{continuity_note}\n\n"
+                        + (f"{eq_block}\n\n" if eq_block else "")
                         + (f"{kg_block}\n\n" if kg_block else "")
-                        + f"[세부 절 맞춤 검증 근거 자료]\n{sec_evidence}\n\n"
-                        f"오직 '## {sec_title}' 절 하나에만 온전히 집중하여, 최소 {min_sub_chars:,}자 이상의 "
-                        f"고밀도·심층 전문 원고를 작성하십시오 (장 제목 '# ...'이나 다른 절, 참고문헌 표는 쓰지 마십시오)."
+                        + f"[세부 절 맞춤 검증 근거 자료 (관련 조각 {ev_checked['relevant_chunks']}건 · 앵커 {ev_checked['anchor_hits']}건)]\n{sec_evidence}\n\n"
+                        f"오직 '## {sec_title}' 절 하나에만 온전히 집중하여 단위가 있는 핵심 수치 3개 이상, 비교표 1개 이상, 대상 작물 고유 사례 1개 이상을 포함한 "
+                        f"고밀도 전문 원고(보조 기준 약 {min_sub_chars:,}자)를 작성하십시오 (장 제목 '# ...'이나 다른 절, 참고문헌 표는 쓰지 마십시오)."
                         + extra_sec_directive
                     )
                     try:
@@ -2152,9 +2219,9 @@ def _run_stage4_manuscript_draft(state: dict[str, Any], cfg: PlatformConfig) -> 
         save_project_state(state, cfg)
         append_event(pid, "domain-drafter", sid, f"체크포인트 저장 [{cid}] 완료 ({len(full_mdx):,}자, 누적 {len(completed_chs)}/{total_n}장)", cfg=cfg)
 
-    # 전수 인용·수식 감사 (+ 미등록 인용키 자동 보정 게이트)
-    _update_stage(state, sid, cfg, progress=92, current_action="전 단원 인용 무결성·원문 복사율 감사 실행 중...")
-    audit = verify_target(ch_dir, cfg=cfg)
+    # 전수 인용·수식·내용 일치 감사 (+ 미등록 인용키 자동 보정 게이트, C6/P15)
+    _update_stage(state, sid, cfg, progress=92, current_action="전 단원 인용 형식·표준 수식·내용 일치율 감사 실행 중...")
+    audit = verify_target(ch_dir, semantic=True, cfg=cfg)
     if any(e.get("type") == "MISSING_SOURCE_ID" for e in audit.get("critical_errors", [])):
         try:
             from agro_framework import auto_repair_chapter_citations
@@ -2167,13 +2234,16 @@ def _run_stage4_manuscript_draft(state: dict[str, Any], cfg: PlatformConfig) -> 
                 f"인용 자동 보정 게이트 실행: {rep_res.get('repaired_files', 0)}개 단원 · {rep_res.get('replaced_tags', 0)}건 보정 완료",
                 cfg=cfg,
             )
-            audit = verify_target(ch_dir, cfg=cfg)
+            audit = verify_target(ch_dir, semantic=True, cfg=cfg)
         except Exception as exc:
             append_event(pid, "citation-auditor", sid, f"인용 자동 보정 경고: {exc}", level="WARN", cfg=cfg)
     audit_path = rep_dir / "audit_latest.json"
     audit_path.write_text(json.dumps(audit, ensure_ascii=False, indent=2), encoding="utf-8")
     crit = len(audit.get("critical_errors", []))
     warns = len(audit.get("warnings", []))
+    fmt_label = audit.get("format_check_status") or f"형식 검사 {audit['status']}"
+    ca = audit.get("content_audit") or {}
+    align_str = f" · 내용 일치율 {ca.get('alignment_rate_pct', 0)}%(무관 {ca.get('unrelated_ratio_pct', 0)}%)" if ca else ""
 
     if state.get("options", {}).get("use_claude_review"):
         sample_chs = sorted(ch_dir.glob("*.mdx"))[:2]
@@ -2199,9 +2269,19 @@ def _run_stage4_manuscript_draft(state: dict[str, Any], cfg: PlatformConfig) -> 
         status="DONE",
         progress=100,
         finished_at=utc_now_iso(),
-        current_action=f"{len(completed_chs)}개 단원 집필·정제 및 감사({audit['status']}, 치명오류 {crit}건) 완료"
+        current_action=f"{len(completed_chs)}개 단원 집필·정제 및 감사({fmt_label}, 치명오류 {crit}건{align_str}) 완료"
         + (f" · ⚠ 틀 원고 {len(_fb_list)}개 단원({', '.join(_fb_list[:5])}) 재집필 필요" if _fb_list else ""),
-        metrics={"completed_chapters": len(completed_chs), "total_chapters": total_n, "audit_status": audit["status"], "critical_errors": crit, "warnings": warns, "fallback_chapters": len(_fb_list)},
+        metrics={
+            "completed_chapters": len(completed_chs),
+            "total_chapters": total_n,
+            "audit_status": audit["status"],
+            "format_check_status": fmt_label,
+            "alignment_rate_pct": ca.get("alignment_rate_pct") if ca else None,
+            "unrelated_ratio_pct": ca.get("unrelated_ratio_pct") if ca else None,
+            "critical_errors": crit,
+            "warnings": warns,
+            "fallback_chapters": len(_fb_list),
+        },
         artifacts=[str(audit_path)] + [str(ch_dir / f"{c}.mdx") for c in sorted(completed_chs)[:5]],
     )
 
@@ -2213,7 +2293,7 @@ def _run_stage5_visuals_generate(state: dict[str, Any], cfg: PlatformConfig) -> 
     sid = "stage5_visuals_generate"
     opts = state.get("options", {})
     raw_per_ch = opts.get("visuals_per_chapter")
-    per_ch = max(0, min(25, int(10 if raw_per_ch is None else raw_per_ch)))
+    per_ch = max(0, min(25, int(4 if raw_per_ch is None else raw_per_ch)))
     if per_ch == 0:
         _update_stage(
             state,
@@ -2338,6 +2418,113 @@ def _run_stage5_visuals_generate(state: dict[str, Any], cfg: PlatformConfig) -> 
     )
 
 
+def set_chapter_expert_review(
+    project_id: str,
+    chapter_id: str,
+    reviewed: bool,
+    *,
+    reviewer: str = "전문가",
+    note: str = "",
+    cfg: PlatformConfig | None = None,
+) -> dict[str, Any]:
+    """C9: 단원별 전문가 [검토 완료] 상태를 기록한다 (검토 완료된 단원만 6단계 출판에 포함)."""
+    cfg = cfg or get_config()
+    st = load_project_state(project_id, cfg)
+    if not st:
+        raise FileNotFoundError(f"Project not found: {project_id}")
+    safe_cid = Path(chapter_id).name.replace(".mdx", "")
+    reviews = dict(st.get("chapter_reviews") or {})
+    reviews[safe_cid] = {
+        "reviewed": bool(reviewed),
+        "reviewer": reviewer.strip() or "전문가",
+        "note": note.strip(),
+        "reviewed_at": utc_now_iso() if reviewed else "",
+    }
+    st["chapter_reviews"] = reviews
+    save_project_state(st, cfg)
+    append_event(
+        project_id,
+        "expert-reviewer",
+        "stage4_manuscript_draft",
+        f"[{safe_cid}] 전문가 검토 상태 변경: {'✅ 검토 완료' if reviewed else '⏳ 검토 해제'} ({reviewer})",
+        cfg=cfg,
+    )
+    return {"status": "OK", "chapter_id": safe_cid, "review": reviews[safe_cid], "chapter_reviews": reviews}
+
+
+def evaluate_publish_readiness(
+    project_id: str,
+    cfg: PlatformConfig | None = None,
+) -> dict[str, Any]:
+    """C6/C9/V7: 6단계 출판 전 4대 품질 게이트(근거 관련도·내용 일치율·그림 자료 출처·전문가 검토)를 종합 판정한다."""
+    from visual_studio import audit_visual_assets
+
+    cfg = cfg or get_config()
+    st = load_project_state(project_id, cfg)
+    if not st:
+        raise FileNotFoundError(f"Project not found: {project_id}")
+    ws = Path(st["workspace_dir"])
+    ch_dir = ws / "chapters"
+    ch_files = sorted(ch_dir.glob("*.mdx")) if ch_dir.is_dir() else []
+    ch_ids = [p.stem for p in ch_files]
+
+    # 1. 근거 관련도 (수집 소스의 relevance_score 평균 또는 앵커 존재 여부)
+    collected = st.get("collected_sources") or []
+    rel_scores = [float(s["relevance_score"]) for s in collected if s.get("relevance_score") is not None]
+    avg_rel_pct = round((sum(rel_scores) / len(rel_scores)) * 100.0, 1) if rel_scores else None
+
+    # 2. 인용 형식 및 내용 일치율 (audit_latest.json)
+    audit_p = ws / "reports" / "audit_latest.json"
+    audit = json.loads(audit_p.read_text(encoding="utf-8")) if audit_p.is_file() else {}
+    crit_cnt = len(audit.get("critical_errors") or [])
+    ca = audit.get("content_audit") or {}
+    align_pct = ca.get("alignment_rate_pct")
+    unrel_pct = ca.get("unrelated_ratio_pct")
+
+    # 3. 그림 자료 출처 및 가짜/틀 그림 여부 (V7)
+    vis_qa = audit_visual_assets(project_id, cfg=cfg)
+
+    # 4. 전문가 검토 완료 단원 (C9)
+    reviews = st.get("chapter_reviews") or {}
+    reviewed_ids = [cid for cid in ch_ids if (reviews.get(cid) or {}).get("reviewed")]
+    require_review = bool((st.get("options") or {}).get("require_expert_review", True))
+
+    blockers: list[str] = []
+    if not ch_ids:
+        blockers.append("집필된 원고(.mdx)가 없습니다.")
+    if crit_cnt > 0:
+        blockers.append(f"인용·수식 치명 오류 {crit_cnt}건이 남아 있습니다.")
+    if avg_rel_pct is not None and avg_rel_pct < 40.0:
+        blockers.append(f"근거 평균 관련도({avg_rel_pct}%)가 기준(40% 이상) 미만입니다.")
+    if unrel_pct is not None and float(unrel_pct) > 30.0:
+        blockers.append(f"출처와 무관한 인용 비율({unrel_pct}%)이 기준(30% 이하)을 초과합니다.")
+    if vis_qa.get("has_placeholder_or_fake"):
+        blockers.append("빈 틀 그림 또는 가짜 수치 차트가 남아 있습니다(5단계 정리 필요).")
+    if vis_qa.get("total", 0) > 0 and vis_qa.get("source_coverage_pct", 100.0) < 80.0:
+        blockers.append(f"그림 자료 출처 기재율({vis_qa['source_coverage_pct']}%)이 기준(80% 이상) 미만입니다.")
+    if require_review and len(reviewed_ids) == 0:
+        blockers.append("전문가 [검토 완료] 체크된 단원이 0개입니다(4단계 점검표에서 1개 이상 검토 완료 필요).")
+
+    return {
+        "ready": len(blockers) == 0,
+        "blockers": blockers,
+        "metrics": {
+            "total_chapters": len(ch_ids),
+            "reviewed_chapters": len(reviewed_ids),
+            "reviewed_chapter_ids": reviewed_ids,
+            "avg_evidence_relevance_pct": avg_rel_pct,
+            "critical_errors": crit_cnt,
+            "alignment_rate_pct": align_pct,
+            "unrelated_ratio_pct": unrel_pct,
+            "visuals_total": vis_qa.get("total", 0),
+            "visuals_publishable": vis_qa.get("publishable", 0),
+            "visual_source_coverage_pct": vis_qa.get("source_coverage_pct", 100.0),
+            "visual_has_placeholder_or_fake": bool(vis_qa.get("has_placeholder_or_fake", False)),
+            "require_expert_review": require_review,
+        },
+    }
+
+
 def _run_stage6_publish_report(state: dict[str, Any], cfg: PlatformConfig) -> None:
     from output_converter import publish_default_outputs
 
@@ -2345,6 +2532,14 @@ def _run_stage6_publish_report(state: dict[str, Any], cfg: PlatformConfig) -> No
     sid = "stage6_publish_report"
     otype = state.get("primary_output_type") or (state.get("output_profile") or {}).get("primary_output_type") or "textbook"
     pdf_desc = "국내 학회지 논문 규격 PDF(A4 2단)" if otype == "paper" else "마스터 PDF"
+
+    # C6/C9/V7: 품질 게이트 미달 시 6단계 출판 차단
+    gate = evaluate_publish_readiness(pid, cfg=cfg)
+    if not gate["ready"]:
+        msg = "품질 게이트 미달로 6단계 출판이 차단되었습니다: " + " / ".join(gate["blockers"])
+        append_event(pid, "book-publisher", sid, f"⛔ {msg}", level="WARN", cfg=cfg)
+        raise RuntimeError(msg)
+
     _update_stage(
         state,
         sid,
@@ -2357,7 +2552,8 @@ def _run_stage6_publish_report(state: dict[str, Any], cfg: PlatformConfig) -> No
     )
     append_event(pid, "book-publisher", sid, f"6단계 시작: 중복 제거 기본 2종 출판 ({pdf_desc} + 블로그용 단일 HTML)", cfg=cfg)
 
-    res = publish_default_outputs(pid, cfg=cfg)
+    only_rev = bool((state.get("options") or {}).get("require_expert_review", True))
+    res = publish_default_outputs(pid, only_reviewed=only_rev, check_quality_gate=False, cfg=cfg)
     fresh = load_project_state(pid, cfg)
     if fresh:
         state.clear()

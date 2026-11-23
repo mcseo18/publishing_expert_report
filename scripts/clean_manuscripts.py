@@ -38,17 +38,29 @@ def _clean_single_chapter(text: str) -> tuple[str, dict[str, int]]:
     main_body = ref_split[0]
     ref_tail = ref_split[1] if len(ref_split) > 1 else ""
 
-    # 1. 중복 H1(# 제N장...) 제거 — 첫 번째 H1만 유지
+    # 1. 중복 H1(# ...) 및 H1 직후 동일 제목 H2(## ...) 제거 (P14 / C8)
     seen_h1 = False
+    first_h1_norm = ""
     new_lines: list[str] = []
     for ln in main_body.splitlines():
-        if re.match(r"^#\s+제\d+장", ln):
+        stripped = ln.strip()
+        if re.match(r"^#\s+.+", stripped):
             if not seen_h1:
                 seen_h1 = True
-                new_lines.append(ln.replace(" [신설]", ""))
-            else:
+                clean_h1 = ln.replace(" [신설]", "")
+                first_h1_norm = re.sub(r"\s+", "", re.sub(r"^#\s+", "", clean_h1.strip()))
+                new_lines.append(clean_h1)
+            elif re.match(r"^#\s+제\d+장", stripped) or re.sub(r"\s+", "", re.sub(r"^#\s+", "", stripped)) == first_h1_norm:
                 stats["dup_h1_removed"] += 1
                 continue
+            else:
+                new_lines.append(ln)
+        elif seen_h1 and first_h1_norm and re.match(r"^##\s+.+", stripped):
+            h2_norm = re.sub(r"\s+", "", re.sub(r"^##\s+", "", stripped))
+            if h2_norm == first_h1_norm:
+                stats["dup_h1_removed"] += 1
+                continue
+            new_lines.append(ln)
         else:
             new_lines.append(ln)
     main_body = "\n".join(new_lines)

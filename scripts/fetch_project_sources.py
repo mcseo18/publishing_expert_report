@@ -19,9 +19,11 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
 import re
 import shutil
 import sys
+import urllib.parse
 from pathlib import Path
 from typing import Any, Callable
 
@@ -55,12 +57,15 @@ TIER_LABELS_KO: dict[str, str] = {
 # 분야별 국내외 공식기관(robots.txt 허용 검증 완료) 및 학회지 프리셋
 DOMAIN_PRESETS: dict[str, dict[str, Any]] = {
     "postharvest": {
-        "match_terms": [
-            "수확", "수확후", "수확 후", "저장", "예냉", "저온유통", "콜드체인",
-            "품질평가", "품질 평가", "선도유지", "비파괴", "에틸렌",
-            "postharvest", "harvest", "cold chain", "precooling", "1-mcp",
-            "chilling injury", "quality evaluation", "controlled atmosphere",
+        "topic_patterns": [
+            r"수확\s*후", r"수확후", r"postharvest", r"저온\s*유통", r"콜드\s*체인", r"cold\s*chain", r"예냉", r"선도\s*유지",
         ],
+        "match_terms": [
+            "수확후", "수확 후", "예냉", "저온유통", "콜드체인",
+            "선도유지", "에틸렌", "postharvest", "cold chain", "precooling", "1-mcp",
+            "chilling injury", "controlled atmosphere",
+        ],
+        "required_terms": ["postharvest", "storage", "cold chain", "ethylene", "1-mcp", "수확후", "저장", "선도", "예냉"],
         "domestic_agencies": [
             {
                 "name": "농촌진흥청 (RDA) 공식 포털",
@@ -262,6 +267,70 @@ DOMAIN_PRESETS: dict[str, dict[str, Any]] = {
         ],
         "international_openalex_queries": ["soil organic matter POM MAOM carbon sequestration"],
     },
+    "onion": {
+        "topic_patterns": [r"양파", r"onion", r"allium\s*cepa"],
+        "match_terms": ["양파", "onion", "allium cepa", "구 비대", "점적관개", "스마트 관개", "bulbing"],
+        "required_terms": [
+            "onion", "allium", "양파", "evapotranspiration", "penman-monteith", "fao-56",
+            "drip irrigation", "soil moisture", "tensiometer", "tdr", "fdr", "cwsi",
+            "irrigation uniformity", "관개", "증발산", "토양수분",
+        ],
+        "domestic_agencies": [],
+        "domestic_journals": [
+            {"journal": "Horticultural Science and Technology", "query": "onion Allium cepa cultivation irrigation yield"},
+            {"journal": "Korean Journal of Agricultural and Forest Meteorology", "query": "onion evapotranspiration irrigation temperature"},
+            {"journal": "Korean Journal of Soil Science and Fertilizer", "query": "onion soil moisture drip irrigation fertilization"},
+            {"journal": "Journal of Bio-Environment Control", "query": "onion smart farm sensor irrigation"},
+        ],
+        "domestic_openalex_queries": [
+            "onion Allium cepa cultivation irrigation Korea",
+            "onion bulb yield soil moisture fertilization Korea",
+            "smart farm drip irrigation soil moisture sensor Korea",
+        ],
+        "international_agencies": [],
+        "international_openalex_queries": [
+            "onion Allium cepa drip irrigation evapotranspiration crop coefficient Kc",
+            "FAO-56 Penman-Monteith reference evapotranspiration crop water requirement",
+            "onion irrigation scheduling soil water tension tensiometer TDR FDR bulb yield",
+            "drip irrigation emission uniformity Christiansen hydraulic design",
+            "crop water stress index CWSI canopy temperature infrared irrigation scheduling",
+            "onion smart farming precision agriculture sensor automated irrigation",
+        ],
+    },
+    "crop_model": {
+        "topic_patterns": [r"생육\s*모형", r"생육\s*모델", r"crop\s*growth\s*model", r"dssat", r"apsim", r"oryza"],
+        "match_terms": ["생육모형", "생육모델", "작물모형", "crop growth model", "dssat", "apsim", "wofost", "aquacrop"],
+        "required_terms": ["crop model", "growth model", "dssat", "apsim", "wofost", "aquacrop", "simulation", "생육모형", "작물모형", "생육"],
+        "domestic_agencies": [],
+        "domestic_journals": [
+            {"journal": "Korean Journal of Agricultural and Forest Meteorology", "query": "crop growth model simulation yield climate"},
+            {"journal": "Korean Journal of Crop Science", "query": "crop model phenology biomass yield"},
+        ],
+        "domestic_openalex_queries": ["crop growth model DSSAT APSIM ORYZA Korea"],
+        "international_agencies": [],
+        "international_openalex_queries": [
+            "crop growth model DSSAT APSIM WOFOST calibration validation review",
+            "crop simulation model climate change yield prediction uncertainty",
+            "process-based crop model data assimilation remote sensing",
+        ],
+    },
+    "3d_vision": {
+        "topic_patterns": [r"3차원", r"3d\s*image", r"3d\s*reconstruction", r"포인트\s*클라우드", r"point\s*cloud", r"nerf", r"gaussian\s*splatting"],
+        "match_terms": ["3차원", "3d image", "3d reconstruction", "point cloud", "photogrammetry", "lidar", "phenotyping", "표현형"],
+        "required_terms": ["3d", "point cloud", "reconstruction", "lidar", "photogrammetry", "phenotyping", "nerf", "depth", "rgb-d", "3차원", "표현형"],
+        "domestic_agencies": [],
+        "domestic_journals": [
+            {"journal": "Journal of Biosystems Engineering", "query": "3D crop phenotyping point cloud reconstruction"},
+            {"journal": "Korean Journal of Agricultural Science", "query": "3D imaging plant phenotyping deep learning"},
+        ],
+        "domestic_openalex_queries": ["3D crop phenotyping point cloud RGB-D LiDAR Korea"],
+        "international_agencies": [],
+        "international_openalex_queries": [
+            "3D plant phenotyping point cloud reconstruction deep learning review",
+            "crop 3D reconstruction multi-view stereo NeRF Gaussian splatting agriculture",
+            "RGB-D LiDAR 3D crop morphology biomass volume estimation accuracy",
+        ],
+    },
     "general": {
         "match_terms": [],
         "domestic_agencies": [
@@ -336,6 +405,90 @@ def _copy_source_files_to_tier(
             shutil.copy2(rp, dst_r)
             copied.append(str(dst_r))
     return copied
+
+
+# 기관 홈페이지 첫 화면(탐색 전용, 근거 목록 제외) 판별 규칙 (C1)
+PORTAL_HOMEPAGE_PATHS = {"", "/", "/index.do", "/index.html", "/index.htm", "/home/index.do", "/krei/index.do", "/e/index.html", "/en/", "/english/laboratory/nfri/index.html"}
+
+
+def is_portal_homepage_url(url: str) -> bool:
+    """기관 홈페이지 첫 화면(루트·인덱스 URL) 여부를 판별한다 (탐색용으로만 쓰고 인용 근거에서 제외, C1)."""
+    u = (url or "").strip()
+    if not u.startswith(("http://", "https://")):
+        return False
+    parsed = urllib.parse.urlparse(u)
+    host = (parsed.netloc or "").lower()
+    path = (parsed.path or "").lower()
+    if path in PORTAL_HOMEPAGE_PATHS and not parsed.query:
+        return True
+    if any(h in host for h in ("rda.go.kr", "kfri.re.kr", "nics.go.kr", "mafra.go.kr", "mfds.go.kr", "krei.re.kr", "ars.usda.gov", "maff.go.jp", "naro.go.jp")):
+        if path in PORTAL_HOMEPAGE_PATHS or path.endswith(("/index.do", "/index.html", "/home/", "/research/programs/")):
+            return True
+    if "wikipedia.org/wiki/" in u.lower():
+        return True
+    return False
+
+
+def _cosine_sim_vec(a: list[float], b: list[float]) -> float:
+    if not a or not b or len(a) != len(b):
+        return 0.0
+    dot = sum(x * y for x, y in zip(a, b))
+    na = math.sqrt(sum(x * x for x in a))
+    nb = math.sqrt(sum(y * y for y in b))
+    return (dot / (na * nb)) if (na > 0 and nb > 0) else 0.0
+
+
+class TopicRelevanceScorer:
+    """로컬 Ollama bge-m3 임베딩(+어휘 폴백) 기반 주제 관련도 평가기 (C1: 기수집 연계 포함 전수 필터)."""
+
+    def __init__(self, topic_query: str, cfg: PlatformConfig | None = None, min_threshold: float = 0.42):
+        self.topic_query = (topic_query or "").strip()
+        self.cfg = cfg or get_config()
+        self.min_threshold = float(min_threshold)
+        self._query_vec: list[float] | None = None
+        self._embed_available: bool | None = None
+        self._query_tokens = {t.lower() for t in re.findall(r"[0-9A-Za-z가-힣]{2,}", self.topic_query)}
+
+    def _ensure_query_vec(self) -> bool:
+        if self._embed_available is not None:
+            return self._embed_available
+        try:
+            from local_gemma import LocalGemmaClient
+
+            vecs = LocalGemmaClient(self.cfg).embed([self.topic_query[:1000]], timeout=25)
+            if vecs and vecs[0]:
+                self._query_vec = vecs[0]
+                self._embed_available = True
+                return True
+        except Exception:
+            pass
+        self._embed_available = False
+        return False
+
+    def score(self, title: str, text_snippet: str = "") -> tuple[float, str]:
+        cand = f"{title or ''}\n{(text_snippet or '')[:1000]}".strip()
+        if not cand:
+            return 0.0, "empty"
+        if self._ensure_query_vec() and self._query_vec:
+            try:
+                from local_gemma import LocalGemmaClient
+
+                vecs = LocalGemmaClient(self.cfg).embed([cand], timeout=25)
+                if vecs and vecs[0]:
+                    sim = _cosine_sim_vec(self._query_vec, vecs[0])
+                    return round(sim, 4), "bge-m3"
+            except Exception:
+                pass
+        cand_tokens = {t.lower() for t in re.findall(r"[0-9A-Za-z가-힣]{2,}", cand)}
+        if not self._query_tokens or not cand_tokens:
+            return 0.0, "lexical"
+        overlap = len(self._query_tokens & cand_tokens) / max(1, min(len(self._query_tokens), 8))
+        return round(min(1.0, overlap), 4), "lexical"
+
+    def is_relevant(self, title: str, text_snippet: str = "") -> tuple[bool, float, str]:
+        sc, method = self.score(title, text_snippet)
+        thr = self.min_threshold if method == "bge-m3" else 0.18
+        return sc >= thr, sc, method
 
 
 def _ensure_duplicate_in_packet(
@@ -481,6 +634,10 @@ def collect_project_sources(
     blocked_or_failed: list[dict[str, Any]] = []
     pdf_downloaded_count = 0
 
+    # C1: 주제별 자료 격리 — bge-m3 유사도 평가기 초기화 (기수집 연계 포함 전수 필터)
+    topic_query_str = " ".join([topic_ko, topic_en, *kw_ko[:6], *kw_en[:6]]).strip()
+    relevance_scorer = TopicRelevanceScorer(topic_query_str, cfg=cfg, min_threshold=0.42)
+
     def _register_collected(rec: dict[str, Any]) -> None:
         sid = rec.get("source_id", "")
         if sid and sid not in seen_sids:
@@ -496,6 +653,18 @@ def collect_project_sources(
             if not url.startswith(("http://", "https://")):
                 continue
             name = entry.get("name") or url
+            # C1: 기관 홈페이지 첫 화면·위키백과 개괄은 탐색용으로만 기록하고 근거 패킷에서 제외
+            if is_portal_homepage_url(url) and not entry.get("force_citable"):
+                blocked_or_failed.append(
+                    {
+                        "tier": tier_key,
+                        "url": url,
+                        "status": "PORTAL_DISCOVERY_ONLY",
+                        "reason": "기관 홈페이지 첫 화면/위키 개괄은 탐색용으로만 사용하고 인용 근거 목록에서 제외 (C1)",
+                    }
+                )
+                _emit(start_pct, f"{t_label} 탐색 전용 제외", f"[C1] 기관 첫 화면/개괄 URL 근거 제외: {name} ({url})", "INFO")
+                continue
             lic = entry.get("license_note") or f"{t_label} 공개 웹자료 - 변환적 분석 및 정식 인용"
             pct = start_pct + int((idx / total_n) * max(1, end_pct - start_pct))
             try:
@@ -512,6 +681,21 @@ def collect_project_sources(
                 status = res.get("status", "")
                 if status == "OK":
                     sid = res["source_id"]
+                    parsed_txt = ""
+                    if res.get("parsed_path") and Path(res["parsed_path"]).is_file():
+                        parsed_txt = Path(res["parsed_path"]).read_text(encoding="utf-8", errors="ignore")[:1200]
+                    is_rel, rel_score, rel_method = relevance_scorer.is_relevant(res.get("title") or name, parsed_txt)
+                    if not is_rel:
+                        blocked_or_failed.append(
+                            {
+                                "tier": tier_key,
+                                "url": url,
+                                "status": "OFF_TOPIC_LOW_RELEVANCE",
+                                "reason": f"주제 관련도 미달 ({rel_method}={rel_score:.3f})",
+                            }
+                        )
+                        _emit(pct, f"{t_label} 관련도 제외", f"[C1] 주제 관련도 미달({rel_score:.2f}) 제외: {name}", "WARN")
+                        continue
                     saved = _copy_source_files_to_tier(
                         tier_dir=t_dir,
                         source_id=sid,
@@ -532,14 +716,32 @@ def collect_project_sources(
                             "provider": t_label,
                             "robots_status": res.get("robots_status", "allowed"),
                             "license_note": lic,
+                            "relevance_score": rel_score,
+                            "relevance_method": rel_method,
                             "status": "OK",
                             "saved_files": saved,
                         }
                     )
-                    _emit(pct, f"{t_label} 수집 중 ({idx}/{total_n})", f"[{TIER_DIRS[tier_key]}] 수집 완료 [{sid}] {name}")
+                    _emit(pct, f"{t_label} 수집 중 ({idx}/{total_n})", f"[{TIER_DIRS[tier_key]}] 수집 완료 [{sid}] {name} (관련도 {rel_score:.2f})")
                 elif status == "SKIPPED_DUPLICATE" and res.get("existing"):
                     ex = res["existing"]
                     sid = ex.get("source_id", "")
+                    ex_txt = ""
+                    if ex.get("parsed_path") and Path(ex["parsed_path"]).is_file():
+                        ex_txt = Path(ex["parsed_path"]).read_text(encoding="utf-8", errors="ignore")[:1200]
+                    # C1 핵심 수정: 기수집 연계 자료도 현재 주제와의 관련도(bge-m3)를 반드시 검증!
+                    is_rel, rel_score, rel_method = relevance_scorer.is_relevant(ex.get("title") or name, ex_txt)
+                    if not is_rel:
+                        blocked_or_failed.append(
+                            {
+                                "tier": tier_key,
+                                "url": url,
+                                "status": "OFF_TOPIC_REUSE_BLOCKED",
+                                "reason": f"기수집 연계 자료 주제 무관 차단 ({rel_method}={rel_score:.3f}, [{sid}])",
+                            }
+                        )
+                        _emit(pct, f"{t_label} 기수집 격리", f"[C1] 주제 무관 기수집 자료 차단 [{sid}] {ex.get('title', name)[:50]} ({rel_score:.2f})", "WARN")
+                        continue
                     _ensure_duplicate_in_packet(existing_rec=ex, packet_id=packet_id, topic=topic_ko, cfg=cfg)
                     saved = _copy_source_files_to_tier(
                         tier_dir=t_dir,
@@ -561,11 +763,13 @@ def collect_project_sources(
                             "provider": f"{t_label} (기수집 연계)",
                             "robots_status": ex.get("robots_status", "allowed"),
                             "license_note": lic,
+                            "relevance_score": rel_score,
+                            "relevance_method": rel_method,
                             "status": "REUSED",
                             "saved_files": saved,
                         }
                     )
-                    _emit(pct, f"{t_label} 연계 중 ({idx}/{total_n})", f"[{TIER_DIRS[tier_key]}] 기수집 자료 분리 폴더 복사 [{sid}] {name}")
+                    _emit(pct, f"{t_label} 연계 중 ({idx}/{total_n})", f"[{TIER_DIRS[tier_key]}] 기수집 자료 관련도 검증 통과({rel_score:.2f}) [{sid}] {name}")
                 else:
                     blocked_or_failed.append(
                         {
@@ -586,12 +790,27 @@ def collect_project_sources(
         t_label = TIER_LABELS_KO[tier_key]
         req_terms = [x.lower() for x in preset.get("required_terms", [])]
         for p in papers:
+            p_title = str(p.get("title") or "").strip()
+            p_abs = str(p.get("abstract") or "").strip()
             if req_terms:
-                hay = f"{p.get('title', '')} {p.get('abstract', '')}".lower()
+                hay = f"{p_title} {p_abs}".lower()
                 if not any(term in hay for term in req_terms):
                     blocked_or_failed.append({"tier": tier_key, "url": p.get("url", ""), "status": "OFF_TOPIC", "reason": "주제 핵심어 없음"})
-                    _emit(pct, f"{t_label} 주제 적합도 검사", f"주제와 무관하여 제외: {p.get('title', '')[:70]}", "WARN")
+                    _emit(pct, f"{t_label} 주제 적합도 검사", f"주제와 무관하여 제외: {p_title[:70]}", "WARN")
                     continue
+            # C1: 제목·초록 의미 관련도(bge-m3) 검사
+            is_rel, rel_score, rel_method = relevance_scorer.is_relevant(p_title, p_abs)
+            if not is_rel:
+                blocked_or_failed.append(
+                    {
+                        "tier": tier_key,
+                        "url": p.get("url", ""),
+                        "status": "OFF_TOPIC_LOW_RELEVANCE",
+                        "reason": f"제목·초록 관련도 미달 ({rel_method}={rel_score:.3f})",
+                    }
+                )
+                _emit(pct, f"{t_label} 관련도 필터", f"[C1] 관련도 미달({rel_score:.2f}) 제외: {p_title[:65]}", "WARN")
+                continue
             want_pdf = bool(download_oa_pdf and p.get("pdf_url") and pdf_downloaded_count < max_pdf_downloads)
             try:
                 res = ingest_paper_record(
@@ -624,22 +843,40 @@ def collect_project_sources(
                         "tier": tier_key,
                         "tier_folder": TIER_DIRS[tier_key],
                         "tier_label": t_label,
-                        "title": p.get("title", ""),
+                        "title": p_title,
                         "journal": p.get("journal", ""),
                         "year": p.get("year"),
                         "cited_by_count": p.get("cited_by_count", 0),
                         "url": p.get("url", ""),
                         "provider": provider_label,
                         "pdf_downloaded": bool(res.get("pdf_downloaded")),
+                        "relevance_score": rel_score,
+                        "relevance_method": rel_method,
                         "status": "OK",
                         "saved_files": saved,
                     }
                 )
                 pdf_tag = " [OA PDF]" if res.get("pdf_downloaded") else ""
-                _emit(pct, f"{t_label} 적재 중", f"[{TIER_DIRS[tier_key]}] 수집 [{sid}] {p.get('title','')[:70]} ({p.get('year') or '-'}){pdf_tag}")
+                _emit(pct, f"{t_label} 적재 중", f"[{TIER_DIRS[tier_key]}] 수집 [{sid}] {p_title[:65]} ({p.get('year') or '-'}, 관련도 {rel_score:.2f}){pdf_tag}")
             elif status == "SKIPPED_DUPLICATE" and res.get("existing"):
                 ex = res["existing"]
                 sid = ex.get("source_id", "")
+                ex_title = p_title or ex.get("title", "")
+                ex_txt = p_abs
+                if not ex_txt and ex.get("parsed_path") and Path(ex["parsed_path"]).is_file():
+                    ex_txt = Path(ex["parsed_path"]).read_text(encoding="utf-8", errors="ignore")[:1000]
+                is_rel_ex, rel_score_ex, rel_method_ex = relevance_scorer.is_relevant(ex_title, ex_txt)
+                if not is_rel_ex:
+                    blocked_or_failed.append(
+                        {
+                            "tier": tier_key,
+                            "url": p.get("url") or ex.get("url", ""),
+                            "status": "OFF_TOPIC_REUSE_BLOCKED",
+                            "reason": f"기수집 논문 주제 무관 차단 ({rel_method_ex}={rel_score_ex:.3f}, [{sid}])",
+                        }
+                    )
+                    _emit(pct, f"{t_label} 기수집 격리", f"[C1] 주제 무관 기수집 논문 차단 [{sid}] {ex_title[:60]} ({rel_score_ex:.2f})", "WARN")
+                    continue
                 _ensure_duplicate_in_packet(existing_rec=ex, packet_id=packet_id, topic=topic_ko, cfg=cfg)
                 saved = _copy_source_files_to_tier(
                     tier_dir=t_dir,
@@ -653,13 +890,15 @@ def collect_project_sources(
                         "tier": tier_key,
                         "tier_folder": TIER_DIRS[tier_key],
                         "tier_label": t_label,
-                        "title": p.get("title") or ex.get("title", ""),
+                        "title": ex_title,
                         "journal": p.get("journal") or ex.get("journal", ""),
                         "year": p.get("year") or ex.get("year"),
                         "cited_by_count": p.get("cited_by_count") or ex.get("cited_by_count", 0),
                         "url": p.get("url") or ex.get("url", ""),
                         "provider": f"{provider_label} (기수집 연계)",
                         "pdf_downloaded": False,
+                        "relevance_score": rel_score_ex,
+                        "relevance_method": rel_method_ex,
                         "status": "REUSED",
                         "saved_files": saved,
                     }

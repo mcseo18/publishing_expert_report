@@ -205,10 +205,35 @@ FIGURE_NARRATIVE_DESCRIPTIONS: dict[str, dict[str, str]] = {
 }
 
 
+def _is_placeholder_or_fake_visual(item: dict[str, Any], fp: Path) -> bool:
+    """빈 틀 SVG(svg_blueprint_ready) 또는 가짜 고정값 차트(92·84·76·68%, 부족→최적→과잉)를 출판에서 원천 차단한다 (P8~P10, V2, V6)."""
+    status = str(item.get("status") or "").upper()
+    engine = str(item.get("engine") or "").lower()
+    if item.get("exclude_from_publish") is True:
+        return True
+    if status in {"UNGENERATED", "PENDING", "ERROR", "FAILED", "SKIPPED"}:
+        return True
+    if engine in {"svg_blueprint_ready", "unrendered_no_api_or_failed"}:
+        return True
+    if fp.suffix.lower() == ".svg" and fp.is_file():
+        try:
+            svg_txt = fp.read_text(encoding="utf-8", errors="ignore")
+            if "실사진/도해 생성 프롬프트 준비됨" in svg_txt:
+                return True
+            if all(tok in svg_txt for tok in (">92%<", ">84%<", ">76%<", ">68%<")):
+                return True
+            if "부족 → 최적 → 과잉" in svg_txt and "최적 관리 구간 (Optimal Zone)" in svg_txt:
+                return True
+        except Exception:
+            pass
+    return False
+
+
 def load_chapter_visuals(
     cfg: PlatformConfig | None = None,
     *,
     project_ws: Path | None = None,
+    include_placeholders: bool = False,
 ) -> dict[str, list[dict[str, Any]]]:
     """단원 ID(ch01~chNN)별 시각화 자산 목록을 반환한다 (신규 visuals_plan.json 우선 → 레거시 매니페스트 호환)."""
     cfg = cfg or get_config()
@@ -221,11 +246,16 @@ def load_chapter_visuals(
         try:
             data = json.loads(vp_manifest.read_text(encoding="utf-8"))
             for item in data.get("visuals", []):
-                fp = Path(item.get("path", ""))
+                fp = Path(item.get("path", "")) if item.get("path") else Path("")
+                if not item.get("path") or not fp.is_file():
+                    fname = str(item.get("filename", "")).strip()
+                    if not fname:
+                        continue
+                    sub = "figures" if fname.endswith(".png") else "charts"
+                    fp = assets_dir / sub / fname
                 if not fp.is_file():
-                    sub = "figures" if str(item.get("filename", "")).endswith(".png") else "charts"
-                    fp = assets_dir / sub / item.get("filename", "")
-                if not fp.is_file():
+                    continue
+                if not include_placeholders and _is_placeholder_or_fake_visual(item, fp):
                     continue
                 cid = item.get("chapter_id", "ch01")
                 fid = item.get("figure_id", fp.stem)
@@ -251,6 +281,8 @@ def load_chapter_visuals(
                         "description_ko": item.get("narrative_ko", ""),
                         "caption_ko": raw_title,
                         "engine": item.get("engine", ""),
+                        "data_source": item.get("data_source", ""),
+                        "claim_ko": item.get("claim_ko", ""),
                     }
                 )
             if by_ch:

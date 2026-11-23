@@ -158,6 +158,10 @@ def parse_document(
     use_docling: bool = True,
     extract_facts: bool = False,
     force: bool = False,
+    is_anchor: bool = False,
+    anchor_citation: str = "",
+    title_override: str = "",
+    project_id: str | None = None,
     cfg: PlatformConfig | None = None,
 ) -> dict[str, Any]:
     cfg = cfg or get_config()
@@ -269,14 +273,15 @@ def parse_document(
 
     now = utc_now_iso()
     page_range = f"p.1-{page_count}" if page_count > 1 else "p.1"
+    eff_title = (title_override or "").strip() or src_path.stem
     source_item = {
         "source_id": source_id,
         "source_type": source_type,
         "url": src_path.as_uri(),
-        "title": src_path.stem,
+        "title": eff_title,
         "accessed_at": now,
         "robots_allowed": True,
-        "robots_status": "local_file",
+        "robots_status": "local_anchor_file" if is_anchor else "local_file",
         "license_note": license_note,
         "page_or_section": page_range,
         "raw_path": str(archived_raw),
@@ -285,6 +290,10 @@ def parse_document(
         "pii_redaction_count": pii_count,
         "prompt_injection_warnings": injection_warnings,
         "sha256": content_hash,
+        "is_anchor": bool(is_anchor),
+        "priority_weight": 3.0 if is_anchor else 1.0,
+        "anchor_citation": anchor_citation.strip(),
+        "citable": True,
         "extracted_facts": extracted_facts,
         "tables": tables,
         "chunks": chunks,
@@ -300,6 +309,10 @@ def parse_document(
         kg_store_root=str(cfg.smc_graphrag_root),
         schema_path=cfg.evidence_schema_path,
     )
+    if project_id:
+        proj_pkt_dir = cfg.project_e_evidence_dir(project_id)
+        proj_pkt_dir.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(packet_path, proj_pkt_dir / f"{packet_id}.json")
 
     registry.append(
         {
@@ -307,10 +320,12 @@ def parse_document(
             "source_type": source_type,
             "url": src_path.as_uri(),
             "normalized_url": src_path.as_uri(),
-            "title": src_path.stem,
+            "title": eff_title,
             "accessed_at": now,
             "robots_allowed": True,
-            "robots_status": "local_file",
+            "robots_status": "local_anchor_file" if is_anchor else "local_file",
+            "is_anchor": bool(is_anchor),
+            "anchor_citation": anchor_citation.strip(),
             "sha256": raw_file_sha,
             "parsed_sha256": content_hash,
             "raw_path": str(archived_raw),
@@ -330,7 +345,9 @@ def parse_document(
         "status": "OK",
         "source_id": source_id,
         "parser_engine": parser_engine,
-        "title": src_path.stem,
+        "title": eff_title,
+        "is_anchor": bool(is_anchor),
+        "anchor_citation": anchor_citation.strip(),
         "page_count": page_count,
         "raw_path": str(archived_raw),
         "parsed_path": str(parsed_md_path),
@@ -341,6 +358,7 @@ def parse_document(
         "chunk_count": len(chunks),
         "table_count": len(tables),
         "fact_count": len(extracted_facts),
+        "source": source_item,
     }
 
 

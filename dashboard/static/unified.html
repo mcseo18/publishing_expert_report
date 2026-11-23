@@ -2927,6 +2927,43 @@ function renderStage1Body(st) {
       </div>
     </div>
 
+    <div class="card" style="background:#0c1b2a;border-color:rgba(16,185,129,.45)">
+      <div class="card-head" style="margin-bottom:8px">
+        <div>
+          <h3 class="card-title">📌 핵심 문헌(앵커 PDF · 표준 교과서/매뉴얼) 지정 (C2)</h3>
+          <div class="muted">분야 표준 문헌 5~10편(예: FAO-56, 농촌진흥청 농업기술길잡이, 표준 교과서 PDF)을 올리면 4단계 집필 시 최우선 근거로 사용합니다.</div>
+        </div>
+        <span class="badge b-done">등록됨 ${(st.anchor_sources || []).length}편</span>
+      </div>
+      <div class="grid-3 mb8">
+        <div>
+          <label class="label">문헌 파일 (PDF · DOCX · MD · TXT)</label>
+          <input type="file" id="s1AnchorFile" accept=".pdf,.docx,.md,.txt" />
+        </div>
+        <div>
+          <label class="label">문헌 제목</label>
+          <input id="s1AnchorTitle" placeholder="예: FAO-56 Crop Evapotranspiration (Allen et al., 1998)" />
+        </div>
+        <div>
+          <label class="label">표준 출처/인용 표기</label>
+          <div class="flex">
+            <input id="s1AnchorCitation" placeholder="예: Allen et al. (1998), FAO Paper 56" style="flex:1" />
+            <button class="btn-primary btn-sm" onclick="uploadStage1Anchor()">⬆ 앵커 등록</button>
+          </div>
+        </div>
+      </div>
+      ${(st.anchor_sources || []).length ? `
+        <div class="flex" style="flex-wrap:wrap;gap:6px">
+          ${(st.anchor_sources || []).map(a => `
+            <span class="chip" style="background:rgba(16,185,129,.14);border-color:rgba(16,185,129,.45)">
+              <strong>[${esc(a.source_id)}]</strong> ${esc(a.title)} (${a.page_count || 1}p · ${a.chunk_count || 0}조각)
+              <button class="btn-sm btn-red" style="padding:1px 6px;margin-left:4px" onclick="deleteStage1Anchor('${esc(a.source_id)}')">×</button>
+            </span>
+          `).join("")}
+        </div>
+      ` : `<div class="muted" style="font-size:12px">아직 등록된 핵심 앵커 문헌이 없습니다. 자동 검색보다 검증된 표준 PDF 몇 편이 원고 정확도를 크게 높입니다.</div>`}
+    </div>
+
     <div id="stage1OutlineEditor">${editorHtml}</div>
   `;
 }
@@ -2993,7 +3030,14 @@ function renderStage4Body(st) {
   const estPages = Math.round(sm.est_pages_total || 0);
   const tgtPages = sm.target_pages_total || st.target_pages || 0;
   const pagePct = tgtPages ? Math.min(100, Math.round(estPages / tgtPages * 100)) : 0;
-  const auditLabel = audit ? (audit.status === "PASS" ? "✅ 통과" : (audit.status === "FAIL" ? "⛔ 불합격" : esc(audit.status))) : "대기";
+  const auditLabel = audit
+    ? (audit.status === "PASS" ? "✅ 형식 검사 PASS" : (audit.status === "FAIL" ? "⛔ 형식 검사 FAIL" : esc(audit.status)))
+    : "대기";
+  const caAll = (audit && audit.content_audit) || null;
+  const readiness = data.publish_readiness || null;
+  const holdBanner = st.deployment_status === "HOLD_NEEDS_REVIEW"
+    ? `<div class="notice notice-warn mb8"><span>⛔ <strong>배포 보류(검토 필요)</strong>: ${esc(st.deployment_hold_reason || "품질 감사 항목 보완 및 전문가 검토 완료 전 배포 금지")}</span></div>`
+    : "";
   const curPersona = st.persona || {};
   const personaName = curPersona.name_ko || "기본 전문가 페르소나 (클릭해 시나리오·심층 프롬프트 설정)";
   const deepOn = (curPersona.section_depth_mode || "deep_per_section") === "deep_per_section";
@@ -3075,19 +3119,21 @@ function renderStage4Body(st) {
         <div class="pages-bar"><div style="width:${pagePct}%"></div></div>
       </div>
       <div class="kpi"><div class="kpi-val" style="${sm.fallback_count ? "color:#fca5a5" : ""}">${sm.fallback_count || 0}개</div><div class="kpi-lbl">⛔ 틀 원고 (다시 집필 필요)</div></div>
-      <div class="kpi"><div class="kpi-val" style="font-size:17px">${auditLabel}</div><div class="kpi-lbl">인용·표절 검사 (치명 오류 ${audit ? (audit.critical_errors || []).length : 0}건)</div></div>
+      <div class="kpi"><div class="kpi-val" style="font-size:15px">${auditLabel}</div><div class="kpi-lbl">인용·수식 형식 (오류 ${audit ? (audit.critical_errors || []).length : 0}건${caAll ? ` · 일치율 ${caAll.alignment_rate_pct}% / 무관 ${caAll.unrelated_ratio_pct}%` : ""})</div></div>
     </div>
+    ${holdBanner}
+    ${readiness && !readiness.ready ? `<div class="notice notice-warn mb8"><span>🔒 <strong>6단계 출판 게이트 대기</strong>: ${(readiness.blockers || []).map(b => esc(b)).join(" · ")}</span></div>` : ""}
     ${sm.fallback_count ? `<div class="notice notice-warn mb8"><span>⛔ '틀 원고'는 AI 집필이 실패해 같은 문장이 반복되는 임시 원고입니다. 해당 단원을 열어 직접 고치거나, 설정에서 Ollama가 켜져 있는지 확인한 뒤 다시 집필하세요.</span></div>` : ""}
     <div class="grid-2">
       <div class="card" style="background:var(--surface);margin-bottom:0">
         <div class="card-head" style="margin-bottom:8px">
-          <h3 class="card-title">📑 원고 품질 점검표</h3>
+          <h3 class="card-title">📑 원고 품질 점검표 (검토 완료 ${sm.reviewed_count || 0}/${doneCnt})</h3>
           <button class="btn-sm" onclick="openProjectFolder('chapters')">📂 원고 폴더 열기</button>
         </div>
-        <div class="muted mb8">단원을 누르면 오른쪽에 원고가 열립니다. 품질 배지에 마우스를 올리면 이유가 보입니다.</div>
+        <div class="muted mb8">단원을 눌러 원고를 확인한 뒤 [검토 완료]를 체크하세요. 기준 미달 또는 미검토 단원은 6단계 출판이 차단됩니다.</div>
         <div style="max-height:460px;overflow:auto;">
           <table class="tbl">
-            <thead><tr><th>단원</th><th>제목</th><th title="예상 쪽수 / 목표 쪽수">쪽수</th><th title="[SRC-NN] 인용 표시 개수">인용</th><th>품질</th></tr></thead>
+            <thead><tr><th>단원</th><th>제목</th><th title="예상 쪽수 / 목표 쪽수">쪽수</th><th title="[SRC-NN] 인용 표시 개수">인용</th><th title="주제-근거 평균 관련도 (C1)">근거 관련도</th><th title="인용 문장-출처 내용 일치율 (C6)">내용 일치율</th><th title="자료 출처가 기재된 출판 가능 그림 수 (V7)">그림 출처</th><th>품질</th><th title="검토 완료된 단원만 6단계 출판에 포함 (C9)">전문가 검토</th></tr></thead>
             <tbody>
               ${chs.map(c => `
                 <tr style="cursor:pointer" class="${c.quality === "틀 원고" ? "row-bad" : ""}" onclick="openChapterPreview('${esc(c.chapter_id)}')">
@@ -3095,7 +3141,13 @@ function renderStage4Body(st) {
                   <td>${esc(c.title)}</td>
                   <td title="${esc(c.pages_source || "")}">${c.exists ? `${c.est_pages} / ${esc(c.target_pages)}` : "-"}</td>
                   <td>${c.exists ? c.citation_count : "-"}</td>
+                  <td>${c.evidence_relevance_pct != null ? `${c.evidence_relevance_pct}%` : "-"}</td>
+                  <td title="${c.unrelated_ratio_pct != null ? `무관 인용 ${c.unrelated_ratio_pct}%` : ""}">${c.alignment_rate_pct != null ? `${c.alignment_rate_pct}%` : "-"}</td>
+                  <td>${esc(c.visual_source_status || "-")}</td>
                   <td>${qualityBadge(c)}</td>
+                  <td onclick="event.stopPropagation()">
+                    ${c.exists ? `<button class="btn-sm ${c.expert_reviewed ? 'btn-green' : ''}" onclick="toggleChapterExpertReview('${esc(c.chapter_id)}', ${!c.expert_reviewed})">${c.expert_reviewed ? '✅ 검토 완료' : '☐ 검토 필요'}</button>` : "-"}
+                  </td>
                 </tr>
               `).join("")}
             </tbody>
@@ -3183,10 +3235,12 @@ function renderStage5Body(st) {
     </div>
 
     <div class="card" style="background:var(--surface);padding:12px 14px;margin-bottom:12px">
-      <div class="flex" style="justify-content:space-between">
+      <div class="flex" style="justify-content:space-between;flex-wrap:wrap;gap:8px">
         <div class="flex">
           <button class="btn-sm" onclick="openProjectFolder('assets')" title="${esc(localDir)}">📂 그림 폴더 열기</button>
           <button class="btn-sm" onclick="openProjectFolder('e_visuals')" title="${esc(eDir)}">💾 E 드라이브 백업 폴더 열기</button>
+          <button class="btn-sm btn-gold" onclick="runVisualQaCheck()">🔍 시각 QA 자동 검수 (V7)</button>
+          ${vis.plan && vis.plan.contact_sheets && Object.keys(vis.plan.contact_sheets).length ? Object.entries(vis.plan.contact_sheets).map(([cid, url]) => `<a class="badge b-rev" href="${esc(url)}" target="_blank">🖼️ ${esc(cid)} 컨택트 시트</a>`).join("") : ""}
         </div>
         <div class="flex">
           <span class="label" style="margin:0">단원 필터:</span>
@@ -3196,23 +3250,27 @@ function renderStage5Body(st) {
           </select>
         </div>
       </div>
+      <div id="s5VisualQaBox" class="mt8"></div>
     </div>
 
     ${items.length ? `
       <div class="grid-2">
         ${items.slice(0, 60).map(it => {
           const isBound = Number(boundMap[it.chapter_id] || 0) > 0;
+          const isUngen = String(it.status || "").toUpperCase() === "UNGENERATED" || it.exclude_from_publish || it.engine === "svg_blueprint_ready";
+          const imgUrl = it.png_url || it.rel_url || it.web_url || "";
           return `
-          <div class="vis-card">
+          <div class="vis-card" style="${isUngen ? 'border-color:rgba(245,158,11,.55);opacity:.85' : ''}">
             <div class="flex" style="justify-content:space-between">
               <strong style="font-size:13px">${esc(it.title_ko)}</strong>
               <div class="flex">
-                <span class="badge ${isBound?'b-done':'b-wait'}">${isBound?'🔗 문서결합됨':'미결합'}</span>
+                <span class="badge ${isUngen ? 'b-err' : (isBound?'b-done':'b-wait')}">${isUngen ? '⛔ 미생성(출판 제외)' : (isBound?'🔗 문서결합됨':'미결합')}</span>
                 <span class="badge b-run">${esc(it.engine)}</span>
               </div>
             </div>
             ${it.target_section ? `<div class="muted" style="font-size:11.5px">📍 문서 결합 절: <strong>${esc(it.target_section)}</strong></div>` : ""}
-            <img id="visImg_${esc(it.figure_id)}" src="${esc(it.png_url || it.rel_url || it.web_url)}?v=${encodeURIComponent(it.regenerated_at || (vis.plan && vis.plan.generated_at) || "")}" alt="${esc(it.title_ko)}" loading="lazy" />
+            ${it.data_source ? `<div class="muted" style="font-size:11.5px">📚 자료 출처: ${esc(it.data_source)}</div>` : `<div style="font-size:11.5px;color:#fca5a5">⚠ 자료 출처(data_source) 미기재</div>`}
+            ${!isUngen && imgUrl ? `<img id="visImg_${esc(it.figure_id)}" src="${esc(imgUrl)}?v=${encodeURIComponent(it.regenerated_at || (vis.plan && vis.plan.generated_at) || "")}" alt="${esc(it.title_ko)}" loading="lazy" />` : `<div style="padding:26px;text-align:center;background:#0f172a;border:1px dashed #f59e0b;border-radius:8px;color:#fcd34d;font-size:12.5px">⛔ 미생성 도판 — 출판물에서 자동 제외됩니다.<br><small>${esc(it.note || "API 키 설정 후 아래 [이 그림만 다시 만들기]로 생성하세요.")}</small></div>`}
             <div class="vis-desc">${esc(it.narrative_ko)}</div>
             ${it.prompt ? `
               <details style="font-size:11.5px;background:#0a1120;border:1px solid var(--border);border-radius:6px;padding:6px 9px;">
@@ -5383,9 +5441,15 @@ function renderInspectorQa(rep) {
   const vrBadge = document.getElementById("qaVerifiedRatioBadge");
   if (stBadge) {
     stBadge.className = "badge " + (rep.status === "PASS" ? "b-done" : "b-err");
-    stBadge.textContent = rep.status === "PASS" ? "✅ QA 통과 (PASS)" : "⛔ 오류 발견 (FAIL)";
+    const fmtTxt = rep.format_check_status || (rep.status === "PASS" ? "형식 검사 PASS" : "형식 검사 FAIL");
+    stBadge.textContent = (rep.status === "PASS" ? "✅ " : "⛔ ") + fmtTxt;
   }
-  if (vrBadge) vrBadge.textContent = `인용 검증률 ${rep.verified_ratio ?? 100}%`;
+  if (vrBadge) {
+    const ca = rep.content_audit;
+    vrBadge.textContent = ca
+      ? `형식 등록 ${rep.verified_ratio ?? 100}% · 내용 일치 ${ca.alignment_rate_pct}% (무관 ${ca.unrelated_ratio_pct}%)`
+      : `형식 등록 ${rep.verified_ratio ?? 100}%`;
+  }
 
   const bindBox = document.getElementById("qaBindingsBox");
   const bindings = rep.bindings || [];
@@ -6222,6 +6286,65 @@ try {
   }
 } catch (e) {}
 loadFrameworkCatalog();
+
+// ---------- C2/C9/V7: 앵커 문헌 업로드 · 전문가 검토 체크 · 시각 QA ----------
+async function uploadStage1Anchor() {
+  if (!CURRENT_PID) return toast("프로젝트를 먼저 선택하세요.");
+  const fileEl = document.getElementById("s1AnchorFile");
+  const file = fileEl && fileEl.files && fileEl.files[0];
+  if (!file) return toast("업로드할 핵심 문헌(PDF/DOCX/MD/TXT) 파일을 선택해 주세요.");
+  const title = (document.getElementById("s1AnchorTitle")?.value || "").trim() || file.name.replace(/\.[^.]+$/, "");
+  const citation = (document.getElementById("s1AnchorCitation")?.value || "").trim();
+  const reader = new FileReader();
+  reader.onload = async () => {
+    try {
+      toast("📌 핵심 앵커 문헌 파싱 및 최우선 근거 등록 중...", 5000);
+      const res = await api(`/api/projects/${encodeURIComponent(CURRENT_PID)}/anchors/upload`, {
+        method: "POST",
+        body: JSON.stringify({ filename: file.name, file_base64: String(reader.result || ""), title, citation }),
+      });
+      toast(`✅ 앵커 문헌 등록 완료: [${res.anchor.source_id}] ${res.anchor.title} (${res.anchor.chunk_count}조각)`, 5000);
+      await refreshCurrentProject(false);
+    } catch (e) { toast("❌ 앵커 업로드 실패: " + e.message, 5000); }
+  };
+  reader.readAsDataURL(file);
+}
+
+async function deleteStage1Anchor(sourceId) {
+  if (!CURRENT_PID) return;
+  try {
+    await api(`/api/projects/${encodeURIComponent(CURRENT_PID)}/anchors/${encodeURIComponent(sourceId)}`, { method: "DELETE" });
+    toast(`🗑 앵커 문헌 [${sourceId}] 목록에서 제거했습니다.`);
+    await refreshCurrentProject(false);
+  } catch (e) { toast("❌ " + e.message, 4000); }
+}
+
+async function toggleChapterExpertReview(chapterId, reviewed) {
+  if (!CURRENT_PID) return;
+  try {
+    const res = await api(`/api/projects/${encodeURIComponent(CURRENT_PID)}/chapters/${encodeURIComponent(chapterId)}/review`, {
+      method: "POST",
+      body: JSON.stringify({ reviewed: !!reviewed, reviewer: "연구자" }),
+    });
+    toast(`${reviewed ? "✅" : "☐"} [${chapterId}] 전문가 검토 상태: ${reviewed ? "검토 완료" : "검토 필요"}`);
+    await loadStage4Chapters();
+    renderStageDetail();
+  } catch (e) { toast("❌ " + e.message, 4000); }
+}
+
+async function runVisualQaCheck() {
+  if (!CURRENT_PID) return;
+  const box = document.getElementById("s5VisualQaBox");
+  try {
+    const res = await api(`/api/projects/${encodeURIComponent(CURRENT_PID)}/visuals/qa`);
+    if (box) {
+      box.innerHTML = `<div style="padding:8px 12px;border-radius:8px;background:#0a1120;border:1px solid ${res.has_placeholder_or_fake || res.issues_count ? '#f59e0b' : '#10b981'};font-size:12px">
+        <strong>🔍 시각 QA 결과 (V7):</strong> 출판 가능 ${res.publishable}/${res.total}종 · 자료 출처 기재율 <strong>${res.source_coverage_pct}%</strong> · 지적사항 ${res.issues_count}건
+        ${res.has_placeholder_or_fake ? ' · <span style="color:#fca5a5">⛔ 빈 틀/가짜 차트 탐지됨(출판 제외)</span>' : ' · <span style="color:#6ee7b7">✅ 틀·가짜 차트 없음</span>'}
+      </div>`;
+    }
+  } catch (e) { toast("❌ 시각 QA 오류: " + e.message, 4000); }
+}
 
 init();
 </script>

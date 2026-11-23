@@ -386,7 +386,7 @@ def plan_visual_queue(
     topic_ko = st.get("topic_ko", project_id)
     topic_en = st.get("topic_en", "")
 
-    svg_kinds = ["svg_flow", "svg_bar", "svg_timeline", "svg_matrix", "svg_curve", "svg_radar"]
+    svg_kinds = ["svg_flow", "svg_layers"]
 
     for ch in chs:
         cid = ch["chapter_id"]
@@ -426,19 +426,20 @@ def plan_visual_queue(
             elif tcode == "C":
                 base_prompt = f"Publication-grade scientific anatomical and mechanism illustration of {diagram_scene}."
                 prompt = base_prompt + STYLE_SUFFIX_BY_TYPE["C"]
-                kind = svg_kinds[(idx - 1) % 3]  # svg_flow / svg_bar / svg_timeline
-                role_txt = "개념·메커니즘 도해"
+                kind = svg_kinds[(idx - 1) % len(svg_kinds)]
+                role_txt = "내용 기반 구조·흐름 도해"
             else:
-                prompt = f"Quantitative agronomic comparison chart for {topic_en or topic_ko} ({sec_ref}). {ZERO_TEXT_RULE}"
-                kind = svg_kinds[1 + ((idx - 1) % (len(svg_kinds) - 1))]
-                role_txt = "정량 비교 차트"
+                prompt = ""
+                kind = "matplotlib_data_chart"
+                role_txt = "실데이터 정량 차트(CSV/DB 필수)"
 
             fig_no = f"그림 {ch_num}-{idx}"
-            title_ko = f"[{fig_no}] {ch_title} — {role_txt} ({sec_ref})"
+            short_sec = re.sub(r"^\d+(?:\.\d+)*\s*", "", sec_ref).strip()[:36]
+            title_ko = f"[{fig_no}] {short_sec}"
             narrative_ko = (
-                f"[{fig_no}] 본 도판은 《{topic_ko}》 {ch_title}의 '{sec_ref}' 내용을 "
-                f"{meta['label_ko']} 형식으로 시각화한 자료이다. "
-                "핵심 생리·환경 변수와 현장 의사결정 기준을 한눈에 파악할 수 있도록 구성되었다."
+                f"[{fig_no}] {short_sec}의 핵심 구성과 정량 관계를 보여준다. "
+                f"도해의 입력 요소·축 단위와 판단 기준을 순서대로 따라 읽는다. "
+                f"(자료: 《{topic_ko}》 {sec_ref} 본문 및 검증 근거 패킷)."
             )
             new_items.append(
                 {
@@ -501,9 +502,12 @@ def _render_single_free_local(
         d.mkdir(parents=True, exist_ok=True)
 
     spec_for_svg = dict(item)
+    if spec_for_svg.get("style") in ("comparison_bar", "response_curve"):
+        spec_for_svg["style"] = "content_diagram"
     if not str(spec_for_svg.get("kind", "")).startswith("svg_"):
-        spec_for_svg["kind"] = "svg_flow" if item.get("type") in ("A", "C") else "svg_bar"
-    secs = item.get("sections") or [item.get("target_section") or "핵심 원리", "정량 기준", "현장 적용", "법규·관리"]
+        spec_for_svg["kind"] = "svg_flow"
+        spec_for_svg["style"] = "content_diagram"
+    secs = item.get("sections") or [item.get("target_section") or "핵심 원리", "정량 기준", "현장 적용"]
     svg_markup = _render_vector_svg(spec_for_svg, secs)
     svg_p = chart_dir / f"{fid}.svg"
     svg_p.write_text(svg_markup, encoding="utf-8")

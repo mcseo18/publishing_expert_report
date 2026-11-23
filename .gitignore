@@ -41,6 +41,7 @@ projects/*/exports/front_matter/*
 !projects/*/exports/front_matter/cover_and_toc.html
 !projects/*/exports/front_matter/cover_art.svg
 projects/*/blueprints/_backups/
+projects/*/_snapshots/
 projects/*/reports/*.json
 projects/*/assets/figures/*.png
 projects/*/assets/charts_png/

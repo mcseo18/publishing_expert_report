@@ -626,11 +626,13 @@ def _draft_single_chapter(
         infer_paper_section_role,
         resolve_output_profile,
     )
+    from math_typography import format_equations_for_prompt
     from persona_studio import build_deepening_prompt, compile_persona_system_prompt, resolve_project_persona
     from subagent_orchestrator import (
         _build_subsection_evidence_context,
         _dedup_leading_chapter_heading,
         append_event,
+        build_subsection_evidence_checked,
         save_project_state,
     )
 
@@ -672,7 +674,9 @@ def _draft_single_chapter(
             merged_sources.append(s)
     valid_ids = [s["source_id"] for s in merged_sources if s.get("source_id")]
 
-    gemma_model = state.get("options", {}).get("gemma_model") or cfg.ollama_fast_model
+    # C4: 본문 집필 기본 모델을 gemma4:26b(ollama_llm_model) 이상으로 상향
+    gemma_model = state.get("options", {}).get("gemma_model") or cfg.ollama_llm_model
+    strict_ev_gate = bool(state.get("options", {}).get("strict_evidence_gate", True))
     client = LocalGemmaClient(cfg)
     is_fallback = False
 
@@ -718,7 +722,29 @@ def _draft_single_chapter(
                 save_project_state(state, cfg)
 
                 sec_query = f"{state['topic_ko']} {ch['title']} {sec_title} {' '.join(ch.get('keywords_ko') or [])}"
-                sec_evidence, _ = _build_subsection_evidence_context(merged_sources, sec_query, cfg, max_chunks=12, max_chars_per_chunk=920)
+                ev_checked = build_subsection_evidence_checked(merged_sources, sec_query, cfg, max_chunks=12, max_chars_per_chunk=920)
+                sec_evidence = ev_checked["text"]
+                # C3: 관련도 기준을 넘는 근거 조각이 3개 미만인 절은 집필하지 않고 '근거 부족'으로 표시해 추가 수집 요청
+                if strict_ev_gate and ev_checked["relevant_chunks"] < 3:
+                    assembled_parts.append(
+                        f"## {sec_title}\n\n"
+                        f"> **[근거 부족 — 추가 수집 필요 (C3)]** 본 절('{sec_title}')에 대해 주제 관련도 기준을 통과한 1차 근거 조각이 "
+                        f"**{ev_checked['relevant_chunks']}개(최소 3개 필요)**에 불과하여 임의 집필을 중단했습니다. "
+                        f"1단계 핵심 문헌(앵커 PDF) 업로드 또는 2단계 주제별 재수집 후 이 단원을 다시 집필하십시오.\n\n"
+                        f"<!-- NEED_EVIDENCE: {sec_title} 관련 1차 문헌·표준 수치·실험 데이터 최소 3건 이상 필요 -->"
+                    )
+                    append_event(
+                        pid,
+                        "domain-drafter",
+                        "stage4_manuscript_draft",
+                        f"[{cid}] C3 근거 부족 차단: '{sec_title}' (관련 근거 {ev_checked['relevant_chunks']}건 < 3건)",
+                        level="WARN",
+                        cfg=cfg,
+                    )
+                    d_step["subsections_done"] = s_i
+                    save_project_state(state, cfg)
+                    continue
+                eq_block = format_equations_for_prompt(sec_query, limit=5)
                 kg_triples = query_kg_triples_for_chapter(
                     chapter_title=f"{ch['title']} {sec_title}",
                     chapter_text=ch.get("summary_ko", "") + " " + sec_title,
@@ -739,7 +765,8 @@ def _draft_single_chapter(
                 if is_paper and chapter_role == "results_discussion":
                     is_last = (s_i == len(secs))
                     extra_res = (
-                        "\n[학회 투고급 6단계 논리 필수] ① 정량 실증 발견·비교표, ② 생리·분자·물리화학·알고리즘 기작 해석, "
+                        "\n[학회 투고급 6단계 논리 필수 (C8)] 먼저 문헌 비교표(연구·작물·방법·데이터셋·정확도·출처)를 구성한 뒤 "
+                        "① 정량 실증 발견, ② 생리·분자·물리화학·알고리즘 기작 해석, "
                         "③ 국내외 선행연구 비교·불일치 원인 규명, ④ 경계조건·민감도·트레이드오프·교란변수, ⑤ 학술·현장 함의"
                         + (" + ⑥ 방법론적 한계 및 향후 연구 과제 완결." if is_last else ".")
                     )
@@ -748,9 +775,10 @@ def _draft_single_chapter(
                     f"단원: {ch['title']}\n현재 단독 심층 집필 절 ({s_i}/{len(secs)}): {sec_title}\n"
                     f"단원 요약: {ch.get('summary_ko', '')}\n대상 독자: {state['target_audience']}\n"
                     f"{cont_block}\n\n"
+                    + (f"{eq_block}\n\n" if eq_block else "")
                     + (f"{kg_block}\n\n" if kg_block else "")
-                    + f"[이 단원 전용 심층 검증 근거 자료]\n{sec_evidence or state['topic_ko']}\n\n"
-                    f"오직 '## {sec_title}' 절 하나에만 집중하여 최소 {min_sub_chars:,}자 이상의 고밀도 전문 원고를 작성하십시오."
+                    + f"[이 단원 전용 심층 검증 근거 자료 (관련 조각 {ev_checked['relevant_chunks']}건 · 앵커 {ev_checked['anchor_hits']}건)]\n{sec_evidence}\n\n"
+                    f"오직 '## {sec_title}' 절 하나에만 집중하여 단위가 있는 핵심 수치 3개 이상, 비교표 1개 이상, 대상 작물 고유 사례 1개 이상을 포함한 고밀도 전문 원고(보조 기준 약 {min_sub_chars:,}자)를 작성하십시오."
                     + extra_res
                 )
                 try:

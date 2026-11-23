@@ -1,0 +1,212 @@
+{
+  "version": "1.0.0",
+  "description": "농학·관개·토양·작물생육모형 검증 표준 수식 라이브러리 (모델의 임의 수식 창작 방지 및 오류 탐지용)",
+  "equations": [
+    {
+      "id": "fao56_penman_monteith",
+      "name_ko": "FAO-56 Penman-Monteith 기준 증발산량 방정식",
+      "name_en": "FAO-56 Penman-Monteith Reference Evapotranspiration Equation",
+      "keywords": ["penman", "monteith", "et0", "et_0", "증발산", "기준 증발산", "관개", "fao-56", "evapotranspiration"],
+      "latex": "ET_0 = \\frac{0.408 \\Delta (R_n - G) + \\gamma \\frac{900}{T + 273} u_2 (e_s - e_a)}{\\Delta + \\gamma (1 + 0.34 u_2)}",
+      "html": "ET<sub>0</sub> = [0.408 Δ (R<sub>n</sub> − G) + γ (900 / (T + 273)) u<sub>2</sub> (e<sub>s</sub> − e<sub>a</sub>)] / [Δ + γ (1 + 0.34 u<sub>2</sub>)]",
+      "variables": [
+        "ET_0: 기준 증발산량 (mm day⁻¹)",
+        "R_n: 작물 표면 순복사량 (MJ m⁻² day⁻¹)",
+        "G: 토양 열유속 밀도 (MJ m⁻² day⁻¹; 일 단위 계산 시 ≈ 0)",
+        "T: 높이 2 m 일평균 기온 (°C)",
+        "u_2: 높이 2 m 풍속 (m s⁻¹)",
+        "e_s: 포화 수증기압 (kPa), e_a: 실제 수증기압 (kPa), (e_s − e_a): 포화수증기압차(VPD, kPa)",
+        "Δ: 수증기압 곡선 기울기 (kPa °C⁻¹)",
+        "γ: 건습계 상수 (kPa °C⁻¹, 해수면 기준 약 0.0665 kPa °C⁻¹)"
+      ],
+      "reference": "Allen, R. G., Pereira, L. S., Raes, D., & Smith, M. (1998). Crop evapotranspiration: Guidelines for computing crop water requirements. FAO Irrigation and Drainage Paper No. 56, Rome.",
+      "known_invalid_patterns": [
+        "1\\s*[-−]\\s*0\\.35",
+        "u\\s*/\\s*2c_?a",
+        "900\\s*[·\\*]?\\s*e_?s\\s*\\(\\s*1\\s*[-−]"
+      ]
+    },
+    {
+      "id": "crop_evapotranspiration",
+      "name_ko": "작물 증발산량 산정식 (단일 작물계수법)",
+      "name_en": "Crop Evapotranspiration (Single Crop Coefficient Approach)",
+      "keywords": ["et_c", "etc", "작물 계수", "작물계수", "작물 증발산", "kc", "k_c", "관개량"],
+      "latex": "ET_c = K_c \\times ET_0",
+      "html": "ET<sub>c</sub> = K<sub>c</sub> × ET<sub>0</sub>",
+      "variables": [
+        "ET_c: 표준 조건 작물 증발산량 (mm day⁻¹)",
+        "K_c: 생육단계별 작물계수 (무차원; 건조 양파 기준 FAO-56 Table 12: K_c,ini = 0.70, K_c,mid = 1.05, K_c,end = 0.75)",
+        "ET_0: 기준 증발산량 (mm day⁻¹)"
+      ],
+      "reference": "Allen et al. (1998), FAO Irrigation and Drainage Paper No. 56, Chapter 6 & Table 12.",
+      "known_invalid_patterns": [
+        "ET(?:<sub>)?c(?:</sub>)?\\s*=\\s*K(?:<sub>)?c(?:</sub>)?\\s*[×x\\*]\\s*E(?![T_]|<sub>)"
+      ]
+    },
+    {
+      "id": "christiansen_cu",
+      "name_ko": "Christiansen 관수 균일도 (CU)",
+      "name_en": "Christiansen's Coefficient of Uniformity (CU)",
+      "keywords": ["균일도", "christiansen", "cu", "관수 균일", "살수", "점적", "uniformity"],
+      "latex": "CU = \\left(1 - \\frac{\\sum_{i=1}^{n} |x_i - \\bar{x}|}{n \\bar{x}}\\right) \\times 100",
+      "html": "CU = (1 − Σ|x<sub>i</sub> − x̄| / (n · x̄)) × 100 (%)",
+      "variables": [
+        "CU: Christiansen 관수 균일도 (%)",
+        "x_i: i번째 측정 지점의 관수량 또는 점적기 유량 (mm 또는 L h⁻¹)",
+        "x̄: 전체 n개 측정 지점의 평균 관수량/유량",
+        "n: 측정 지점(또는 점적기) 수"
+      ],
+      "reference": "Christiansen, J. E. (1942). Irrigation by Sprinkling. California Agricultural Experiment Station Bulletin 670; ASABE S436.1.",
+      "known_invalid_patterns": [
+        "Average\\s+Application\\s+Rate.*?Maximum\\s+Application\\s+Rate",
+        "평균\\s*살수량\\s*[÷/]\\s*최대\\s*살수량"
+      ]
+    },
+    {
+      "id": "drip_emission_uniformity",
+      "name_ko": "점적관개 배출 균일도 (EU)",
+      "name_en": "Keller-Karmeli Drip Emission Uniformity (EU)",
+      "keywords": ["배출 균일도", "점적", "drip", "emission uniformity", "eu", "점적기", "emitter"],
+      "latex": "EU = 100 \\times \\left(1 - \\frac{1.27 \\cdot CV_m}{\\sqrt{n_e}}\\right) \\frac{q_{min}}{q_{avg}}",
+      "html": "EU = 100 × (1 − 1.27 · CV<sub>m</sub> / √n<sub>e</sub>) × (q<sub>min</sub> / q<sub>avg</sub>) (%)",
+      "variables": [
+        "EU: 설계 배출 균일도 (%; 현장 평가 시 EU_f = (q_lq / q_avg) × 100, q_lq는 하위 25% 평균 유량)",
+        "CV_m: 점적기 제조 변동계수 (무차원; 우수 등급 < 0.05)",
+        "n_e: 작물 1주당 할당 점적기 수 (또는 점적 간격 기준 유효 점적기 수)",
+        "q_min: 최소 압력 지점의 점적기 유량 (L h⁻¹)",
+        "q_avg: 포장 전체 평균 점적기 유량 (L h⁻¹)"
+      ],
+      "reference": "Keller, J., & Karmeli, D. (1974). Trickle irrigation design parameters. Transactions of the ASAE, 17(4), 678-684; ASAE EP405.1.",
+      "known_invalid_patterns": []
+    },
+    {
+      "id": "cwsi_idso_jackson",
+      "name_ko": "작물 수분 스트레스 지수 (CWSI, 엽군 온도 기반)",
+      "name_en": "Crop Water Stress Index (Idso-Jackson Canopy Temperature Model)",
+      "keywords": ["cwsi", "수분 스트레스 지수", "엽군 온도", "canopy temperature", "열화상", "적외선 온도", "자동 관개"],
+      "latex": "CWSI = \\frac{(T_c - T_a) - (T_c - T_a)_{LL}}{(T_c - T_a)_{UL} - (T_c - T_a)_{LL}}",
+      "html": "CWSI = [(T<sub>c</sub> − T<sub>a</sub>) − (T<sub>c</sub> − T<sub>a</sub>)<sub>LL</sub>] / [(T<sub>c</sub> − T<sub>a</sub>)<sub>UL</sub> − (T<sub>c</sub> − T<sub>a</sub>)<sub>LL</sub>]",
+      "variables": [
+        "CWSI: 작물 수분 스트레스 지수 (0 = 무스트레스, 1 = 최대 수분 스트레스)",
+        "T_c: 적외선/열화상 센서로 측정한 작물 엽군 온도 (°C)",
+        "T_a: 주변 대기 온도 (°C)",
+        "(T_c − T_a)_LL: 충분 관수(무스트레스) 하한 기준선(Non-Water-Stressed Baseline, VPD의 선형함수 a + b·VPD)",
+        "(T_c − T_a)_UL: 증산 정지(최대 스트레스) 상한 기준선"
+      ],
+      "reference": "Idso, S. B., Jackson, R. D., Pinter, P. J., Reginato, R. J., & Hatfield, J. L. (1981). Normalizing the stress-degree-day parameter for environmental variability. Agricultural Meteorology, 24, 45-55; Jackson et al. (1981), Water Resources Research, 17(4), 1133-1138.",
+      "known_invalid_patterns": [
+        "CWSI\\s*=\\s*f\\s*\\(\\s*θ",
+        "CWSI.*wilting_point"
+      ]
+    },
+    {
+      "id": "mad_raw_soil_water",
+      "name_ko": "허용수분결핍(MAD) 및 이용가능 유효수분(RAW)",
+      "name_en": "Management Allowed Depletion (MAD) and Readily Available Water (RAW)",
+      "keywords": ["mad", "raw", "taw", "허용수분결핍", "유효수분", "포장용수량", "위조점", "관수 개시", "토양수분"],
+      "latex": "RAW = p \\cdot TAW = p \\cdot 1000 (\\theta_{FC} - \\theta_{WP}) Z_r",
+      "html": "RAW = p · TAW = p · 1000 (θ<sub>FC</sub> − θ<sub>WP</sub>) Z<sub>r</sub> (mm)",
+      "variables": [
+        "TAW: 총 유효수분량 (mm)",
+        "RAW: 작물 스트레스 없이 이용 가능한 유효수분량 (mm)",
+        "p (또는 MAD): 허용수분결핍 비율 (양파 FAO-56 Table 22 기준 p = 0.25~0.30)",
+        "θ_FC: 포장용수량 체적수분함량 (m³ m⁻³)",
+        "θ_WP: 영구위조점 체적수분함량 (m³ m⁻³)",
+        "Z_r: 유효 근권 깊이 (m; 양파 기준 0.30~0.45 m)"
+      ],
+      "reference": "Allen et al. (1998), FAO Irrigation and Drainage Paper No. 56, Chapter 8 & Table 22.",
+      "known_invalid_patterns": []
+    },
+    {
+      "id": "topp_tdr_equation",
+      "name_ko": "Topp TDR 유전율-체적수분함량 보정식",
+      "name_en": "Topp's Empirical Calibration Equation for TDR Soil Moisture",
+      "keywords": ["tdr", "fdr", "유전율", "topp", "체적수분함량", "토양 수분 센서", "보정"],
+      "latex": "\\theta_v = -5.3 \\times 10^{-2} + 2.92 \\times 10^{-2} \\varepsilon_a - 5.5 \\times 10^{-4} \\varepsilon_a^2 + 4.3 \\times 10^{-6} \\varepsilon_a^3",
+      "html": "θ<sub>v</sub> = −5.3×10<sup>−2</sup> + 2.92×10<sup>−2</sup> ε<sub>a</sub> − 5.5×10<sup>−4</sup> ε<sub>a</sub><sup>2</sup> + 4.3×10<sup>−6</sup> ε<sub>a</sub><sup>3</sup>",
+      "variables": [
+        "θ_v: 토양 체적수분함량 (m³ m⁻³)",
+        "ε_a: 토양 겉보기 유전율 (apparent dielectric permittivity, 무차원; 물 ≈ 80, 토양광물 3~5, 공기 ≈ 1)"
+      ],
+      "reference": "Topp, G. C., Davis, J. L., & Annan, A. P. (1980). Electromagnetic determination of soil water content: Measurements in coaxial transmission lines. Water Resources Research, 16(3), 574-582.",
+      "known_invalid_patterns": []
+    },
+    {
+      "id": "van_genuchten_swrc",
+      "name_ko": "van Genuchten 토양수분 특성곡선(SWRC)",
+      "name_en": "van Genuchten Soil Water Retention Curve",
+      "keywords": ["토양수분 특성곡선", "swrc", "van genuchten", "수분 장력", "텐시오미터", "tensiometer", "매트릭 포텐셜"],
+      "latex": "\\theta(h) = \\theta_r + \\frac{\\theta_s - \\theta_r}{[1 + (\\alpha |h|)^n]^m}, \\quad m = 1 - \\frac{1}{n}",
+      "html": "θ(h) = θ<sub>r</sub> + (θ<sub>s</sub> − θ<sub>r</sub>) / [1 + (α|h|)<sup>n</sup>]<sup>m</sup>  (m = 1 − 1/n)",
+      "variables": [
+        "θ(h): 수분장력 수두 |h|에서의 체적수분함량 (cm³ cm⁻³)",
+        "θ_s: 포화 체적수분함량, θ_r: 잔류 체적수분함량 (cm³ cm⁻³)",
+        "|h|: 매트릭 포텐셜 수두 (cm H₂O; 1 kPa ≈ 10.2 cm H₂O)",
+        "α (cm⁻¹), n (무차원): 토성별 형상 매개변수 (Carsel & Parrish, 1988)"
+      ],
+      "reference": "van Genuchten, M. Th. (1980). A closed-form equation for predicting the hydraulic conductivity of unsaturated soils. Soil Science Society of America Journal, 44(5), 892-898.",
+      "known_invalid_patterns": []
+    },
+    {
+      "id": "hazen_williams_headloss",
+      "name_ko": "Hazen-Williams 점적관 마찰 손실수두 및 점적기 유량-압력식",
+      "name_en": "Hazen-Williams Friction Head Loss & Emitter Flow-Pressure Relation",
+      "keywords": ["마찰 손실", "hazen", "williams", "수리학", "압력 감소", "배관", "점적관", "emitter"],
+      "latex": "h_f = 10.67 \\cdot F \\cdot L \\cdot \\frac{Q^{1.852}}{C^{1.852} D^{4.87}}, \\quad q = k H^x",
+      "html": "h<sub>f</sub> = 10.67 · F · L · Q<sup>1.852</sup> / (C<sup>1.852</sup> · D<sup>4.87</sup>),  q = k · H<sup>x</sup>",
+      "variables": [
+        "h_f: 다중 분출구 점적관의 마찰 손실수두 (m)",
+        "F: Christiansen 다중 분출구 보정계수 (다수 점적기 시 ≈ 0.36~0.40)",
+        "L: 점적관 길이 (m), Q: 유입 유량 (m³ s⁻¹), C: Hazen-Williams 조도계수 (PE관 140~150), D: 관 내경 (m)",
+        "q: 점적기 유량 (L h⁻¹), H: 작동 압력수두 (m 또는 bar), x: 유량 지수 (압력보상형 PC ≈ 0.0~0.1, 비압력보상형 난류 ≈ 0.5)"
+      ],
+      "reference": "ASAE EP405.1 (2003). Design and Installation of Microirrigation Systems; Keller & Bliesner (1990), Sprinkle and Trickle Irrigation.",
+      "known_invalid_patterns": []
+    },
+    {
+      "id": "gdd_thermal_time",
+      "name_ko": "유효적산온도 (GDD)",
+      "name_en": "Growing Degree Days (GDD)",
+      "keywords": ["gdd", "적산온도", "생육모형", "발육", "생육단계", "phenology", "thermal time"],
+      "latex": "GDD = \\sum \\max\\left(0, \\frac{T_{max} + T_{min}}{2} - T_{base}\\right)",
+      "html": "GDD = ∑ max(0, (T<sub>max</sub> + T<sub>min</sub>) / 2 − T<sub>base</sub>) (°C·day)",
+      "variables": [
+        "GDD: 누적 유효적산온도 (°C·day)",
+        "T_max, T_min: 일 최고·최저기온 (°C)",
+        "T_base: 작물 발육 기준온도 (°C; 양파 생육 기준온도 약 4~5 °C)"
+      ],
+      "reference": "McMaster, G. S., & Wilhelm, W. W. (1997). Growing degree-days: one equation, two interpretations. Agricultural and Forest Meteorology, 87(4), 291-300.",
+      "known_invalid_patterns": []
+    },
+    {
+      "id": "q10_respiration",
+      "name_ko": "Q10 토양·작물 호흡 온도 민감도 함수",
+      "name_en": "Q10 Temperature Sensitivity Function",
+      "keywords": ["q10", "q_10", "호흡", "토양 유기물", "유기물 분해", "온도 민감도", "respiration"],
+      "latex": "R(T) = R_{ref} \\cdot Q_{10}^{(T - T_{ref})/10}",
+      "html": "R(T) = R<sub>ref</sub> · Q<sub>10</sub><sup>(T − T<sub>ref</sub>)/10</sup>",
+      "variables": [
+        "R(T): 온도 T에서의 호흡 또는 분해 속도",
+        "R_ref: 기준 온도 T_ref에서의 호흡 속도",
+        "Q_10: 온도 10 °C 상승 시 반응속도 배수 (토양 유기물 분해 일반 범위 1.5~2.5)"
+      ],
+      "reference": "Davidson, E. A., & Janssens, I. A. (2006). Temperature sensitivity of soil carbon decomposition and feedbacks to climate change. Nature, 440, 165-173.",
+      "known_invalid_patterns": []
+    },
+    {
+      "id": "first_order_decomposition",
+      "name_ko": "1차 유기물 분해 및 질소 무기화 모델",
+      "name_en": "First-Order Decomposition & Stanford-Smith Mineralization Model",
+      "keywords": ["1차 분해", "유기물 분해", "질소 무기화", "stanford", "rothc", "분해속도", "decomposition"],
+      "latex": "C_t = C_0 e^{-kt}, \\quad N_t = N_0 (1 - e^{-kt})",
+      "html": "C<sub>t</sub> = C<sub>0</sub> e<sup>−kt</sup>,   N<sub>t</sub> = N<sub>0</sub> (1 − e<sup>−kt</sup>)",
+      "variables": [
+        "C_t, C_0: t 시점 및 초기 토양 유기탄소량",
+        "N_t, N_0: t 시점 누적 무기화 질소 및 잠재 무기화 질소량 (mg kg⁻¹ 또는 kg ha⁻¹)",
+        "k: 1차 분해/무기화 속도상수 (day⁻¹ 또는 week⁻¹)"
+      ],
+      "reference": "Stanford, G., & Smith, S. J. (1972). Nitrogen mineralization potentials of soils. Soil Science Society of America Proceedings, 36(3), 465-472.",
+      "known_invalid_patterns": []
+    }
+  ]
+}

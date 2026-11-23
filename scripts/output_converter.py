@@ -798,22 +798,40 @@ def _recommended_default_pdf_mode(state: dict[str, Any]) -> tuple[str, str]:
 
 def publish_default_outputs(
     project_id: str,
+    *,
+    only_reviewed: bool = False,
+    check_quality_gate: bool = True,
+    force: bool = False,
     cfg: PlatformConfig | None = None,
 ) -> dict[str, Any]:
-    """중복 산출물 없이 기본 핵심 2종(① 마스터 PDF 1종 + ② 블로그용 단일 HTML 1종)만 생성한다."""
+    """중복 산출물 없이 기본 핵심 2종(① 마스터 PDF 1종 + ② 블로그용 단일 HTML 1종)만 생성한다 (C9 품질·검토 게이트 지원)."""
     from build_outputs import _render_html_to_pdf
     from figure_registry import load_chapter_visuals
-    from subagent_orchestrator import load_project_state, save_project_state
+    from subagent_orchestrator import evaluate_publish_readiness, load_project_state, save_project_state
 
     cfg = cfg or get_config()
     st = load_project_state(project_id, cfg)
     if not st:
         raise FileNotFoundError(f"Project not found: {project_id}")
 
+    if check_quality_gate and not force:
+        gate = evaluate_publish_readiness(project_id, cfg=cfg)
+        if not gate["ready"]:
+            raise ValueError("품질 게이트 미달로 출판이 차단되었습니다: " + " / ".join(gate["blockers"]))
+
     ws = Path(st["workspace_dir"])
     chapters = _load_project_chapters(ws)
     if not chapters:
         raise FileNotFoundError("출판할 단원 원고(.mdx)가 없습니다. 4단계 집필을 먼저 완료하세요.")
+
+    # C9: 전문가 검토 완료된 단원만 포함 옵션
+    require_rev = only_reviewed or (bool((st.get("options") or {}).get("require_expert_review", False)) and not force)
+    if require_rev:
+        reviews = st.get("chapter_reviews") or {}
+        reviewed_chapters = [ch for ch in chapters if (reviews.get(ch["chapter_id"]) or {}).get("reviewed")]
+        if not reviewed_chapters:
+            raise ValueError("전문가 [검토 완료] 표시된 단원이 없습니다. 4단계 원고 품질 점검표에서 단원 검토를 완료하세요.")
+        chapters = reviewed_chapters
 
     exp_root = ws / "exports"
     exp_root.mkdir(parents=True, exist_ok=True)

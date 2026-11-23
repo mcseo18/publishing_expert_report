@@ -152,6 +152,7 @@ from subagent_orchestrator import (  # noqa: E402
     build_last_work_summary,
     create_project,
     create_stage_snapshot,
+    evaluate_publish_readiness,
     list_stage_snapshots,
     restore_stage_snapshot,
     delete_project,
@@ -165,6 +166,7 @@ from subagent_orchestrator import (  # noqa: E402
     revise_stage1_outline,
     save_project_state,
     scan_project_folders,
+    set_chapter_expert_review,
     set_project_hidden,
     start_pipeline_async,
     stop_pipeline,
@@ -203,8 +205,8 @@ class CreateProjectRequest(BaseModel):
     use_fal_ai: bool = False
     fal_model: str = "fal-ai/nano-banana"
     use_nano_banana: bool = True
-    visuals_per_chapter: int = Field(default=6, ge=0, le=25)
-    gemma_model: str = "gemma4:latest"
+    visuals_per_chapter: int = Field(default=4, ge=0, le=25)
+    gemma_model: str = "gemma4:26b"
     use_claude_review: bool = False
     use_claude_blueprint: bool = False
     download_oa_pdf: bool = True
@@ -957,6 +959,45 @@ def api_list_chapters(project_id: str) -> dict[str, Any]:
                 )
     audit_path = ws / "reports" / "audit_latest.json"
     audit = json.loads(audit_path.read_text(encoding="utf-8")) if audit_path.is_file() else None
+    audit_by_ch: dict[str, dict[str, Any]] = {}
+    if audit and isinstance(audit.get("files"), list):
+        for fr in audit["files"]:
+            fname = Path(str(fr.get("file") or "")).stem
+            if fname:
+                audit_by_ch[fname] = fr
+
+    # C1/C6/C9/V7: 단원별 근거 관련도 · 내용 일치율 · 그림 출처 유무 · 전문가 검토 상태 결합
+    from visual_studio import audit_visual_assets
+
+    collected = st.get("collected_sources") or []
+    rel_vals = [float(s["relevance_score"]) for s in collected if s.get("relevance_score") is not None]
+    proj_rel_pct = round((sum(rel_vals) / len(rel_vals)) * 100.0, 1) if rel_vals else None
+    reviews = st.get("chapter_reviews") or {}
+    vis_qa = audit_visual_assets(project_id, cfg=cfg)
+    vis_by_ch: dict[str, list[dict[str, Any]]] = {}
+    for vi in vis_qa.get("items") or []:
+        vis_by_ch.setdefault(vi.get("chapter_id", ""), []).append(vi)
+
+    for it in items:
+        cid = it["chapter_id"]
+        fr = audit_by_ch.get(cid) or {}
+        ca = fr.get("content_audit") or {}
+        ch_vis = vis_by_ch.get(cid) or []
+        vis_ok_cnt = sum(1 for v in ch_vis if v.get("has_source") and v.get("publishable"))
+        rev_obj = reviews.get(cid) or {}
+        it["evidence_relevance_pct"] = proj_rel_pct
+        it["alignment_rate_pct"] = ca.get("alignment_rate_pct")
+        it["unrelated_ratio_pct"] = ca.get("unrelated_ratio_pct")
+        it["formula_error_count"] = len(fr.get("formula_errors") or [])
+        it["visual_total"] = len(ch_vis)
+        it["visual_source_ok_count"] = vis_ok_cnt
+        it["visual_source_status"] = (
+            f"{vis_ok_cnt}/{len(ch_vis)}" if ch_vis else "-"
+        )
+        it["expert_reviewed"] = bool(rev_obj.get("reviewed", False))
+        it["expert_review"] = rev_obj
+
+    readiness = evaluate_publish_readiness(project_id, cfg=cfg)
     written = [c for c in items if c["exists"]]
     summary = {
         "written": len(written),
@@ -966,9 +1007,11 @@ def api_list_chapters(project_id: str) -> dict[str, Any]:
         "target_pages_total": int(st.get("target_pages") or sum(int(c.get("target_pages") or 0) for c in items)),
         "fallback_count": sum(1 for c in written if c.get("is_fallback")),
         "weak_count": sum(1 for c in written if c.get("quality") in ("약함", "틀 원고")),
+        "reviewed_count": sum(1 for c in written if c.get("expert_reviewed")),
+        "avg_evidence_relevance_pct": proj_rel_pct,
         "chars_per_page": CHARS_PER_PAGE,
     }
-    return {"chapters": items, "audit": audit, "summary": summary}
+    return {"chapters": items, "audit": audit, "summary": summary, "publish_readiness": readiness}
 
 
 # ---------- F1: 원고 품질 점검 ----------
@@ -2242,13 +2285,145 @@ def api_project_outputs_summary(project_id: str) -> dict[str, Any]:
 
 
 @app.post("/api/projects/{project_id}/publish-default")
-def api_publish_default_outputs(project_id: str) -> dict[str, Any]:
+def api_publish_default_outputs(project_id: str, force: bool = False) -> dict[str, Any]:
     try:
-        return publish_default_outputs(project_id)
+        return publish_default_outputs(project_id, force=force)
     except FileNotFoundError as exc:
         raise HTTPException(status_code=404, detail=str(exc))
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc))
     except Exception as exc:
         raise HTTPException(status_code=400, detail=f"기본 2종 출판 오류: {exc}")
+
+
+# ---------- C2: 핵심 문헌(앵커 PDF/문서) 업로드 · 목록 · 삭제 ----------
+class AnchorUploadRequest(BaseModel):
+    filename: str
+    file_base64: str
+    title: str = ""
+    citation: str = ""
+    license_note: str = "연구자 지정 핵심 앵커 문헌(표준 교과서·매뉴얼·논문) - 최우선 근거"
+
+
+@app.get("/api/projects/{project_id}/anchors")
+def api_list_anchors(project_id: str) -> dict[str, Any]:
+    st = load_project_state(project_id)
+    if not st:
+        raise HTTPException(status_code=404, detail="Project not found")
+    return {"anchors": st.get("anchor_sources") or []}
+
+
+@app.post("/api/projects/{project_id}/anchors/upload")
+def api_upload_anchor(project_id: str, req: AnchorUploadRequest) -> dict[str, Any]:
+    import base64
+    from parse_pdf import parse_document
+
+    cfg = get_config()
+    st = load_project_state(project_id, cfg)
+    if not st:
+        raise HTTPException(status_code=404, detail="Project not found")
+    if not req.file_base64.strip():
+        raise HTTPException(status_code=400, detail="업로드할 파일 데이터가 비어 있습니다.")
+
+    raw_b64 = req.file_base64.split(",", 1)[-1]
+    try:
+        raw_bytes = base64.b64decode(raw_b64)
+    except Exception as exc:
+        raise HTTPException(status_code=400, detail=f"Base64 디코딩 실패: {exc}")
+
+    safe_name = re.sub(r"[^0-9A-Za-z가-힣._\-]", "_", Path(req.filename or "anchor.pdf").name)
+    anchor_dir = cfg.project_collected_dir(project_id) / "00_anchor_literature"
+    anchor_dir.mkdir(parents=True, exist_ok=True)
+    saved_file = anchor_dir / safe_name
+    saved_file.write_bytes(raw_bytes)
+
+    parsed = parse_document(
+        file_path=saved_file,
+        packet_id=st["packet_id"],
+        topic=st.get("topic_ko", project_id),
+        license_note=req.license_note,
+        use_docling=False,
+        extract_facts=False,
+        force=True,
+        is_anchor=True,
+        anchor_citation=req.citation,
+        title_override=req.title or saved_file.stem,
+        project_id=project_id,
+        cfg=cfg,
+    )
+    anchor_rec = {
+        "source_id": parsed["source_id"],
+        "title": parsed["title"],
+        "citation": req.citation.strip(),
+        "filename": safe_name,
+        "page_count": parsed.get("page_count", 1),
+        "chunk_count": parsed.get("chunk_count", 0),
+        "is_anchor": True,
+        "relevance_score": 1.0,
+        "provider": "핵심 앵커 문헌 (연구자 업로드)",
+        "tier_folder": "00_anchor_literature",
+        "url": saved_file.as_uri(),
+    }
+    anchors = list(st.get("anchor_sources") or [])
+    anchors.append(anchor_rec)
+    st["anchor_sources"] = anchors
+    col = list(st.get("collected_sources") or [])
+    col.insert(0, anchor_rec)
+    st["collected_sources"] = col
+    save_project_state(st, cfg)
+    return {"status": "OK", "anchor": anchor_rec, "anchors": anchors}
+
+
+@app.delete("/api/projects/{project_id}/anchors/{source_id}")
+def api_delete_anchor(project_id: str, source_id: str) -> dict[str, Any]:
+    cfg = get_config()
+    st = load_project_state(project_id, cfg)
+    if not st:
+        raise HTTPException(status_code=404, detail="Project not found")
+    st["anchor_sources"] = [a for a in (st.get("anchor_sources") or []) if a.get("source_id") != source_id]
+    save_project_state(st, cfg)
+    return {"status": "DELETED", "source_id": source_id, "anchors": st["anchor_sources"]}
+
+
+# ---------- C9: 단원별 전문가 [검토 완료] 토글 & 6단계 출판 가능성 품질 게이트 ----------
+class ChapterReviewRequest(BaseModel):
+    reviewed: bool = True
+    reviewer: str = "연구자"
+    note: str = ""
+
+
+@app.post("/api/projects/{project_id}/chapters/{chapter_id}/review")
+def api_set_chapter_review(project_id: str, chapter_id: str, req: ChapterReviewRequest) -> dict[str, Any]:
+    try:
+        res = set_chapter_expert_review(
+            project_id,
+            chapter_id,
+            req.reviewed,
+            reviewer=req.reviewer,
+            note=req.note,
+        )
+        res["publish_readiness"] = evaluate_publish_readiness(project_id)
+        return res
+    except FileNotFoundError:
+        raise HTTPException(status_code=404, detail="Project not found")
+
+
+@app.get("/api/projects/{project_id}/publish-readiness")
+def api_publish_readiness(project_id: str) -> dict[str, Any]:
+    try:
+        return evaluate_publish_readiness(project_id)
+    except FileNotFoundError:
+        raise HTTPException(status_code=404, detail="Project not found")
+
+
+@app.get("/api/projects/{project_id}/visuals/qa")
+def api_visuals_qa(project_id: str, chapter_id: str | None = None) -> dict[str, Any]:
+    from visual_studio import audit_visual_assets
+
+    try:
+        return audit_visual_assets(project_id, chapter_id=chapter_id or None)
+    except FileNotFoundError:
+        raise HTTPException(status_code=404, detail="Project not found")
 
 
 class ConvertOutputRequest(BaseModel):

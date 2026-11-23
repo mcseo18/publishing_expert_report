@@ -1,24 +1,32 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" width="800" height="420" style="background:#ffffff;font-family:'Malgun Gothic', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;">
-  <rect x="0" y="0" width="800" height="420" rx="12" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
-  <rect x="0" y="0" width="800" height="58" rx="12" fill="#0f172a"/>
-  <rect x="0" y="42" width="800" height="16" fill="#0f172a"/>
-  <text x="22" y="27" font-size="14.5" font-weight="700" fill="#f8fafc">그림 5-1. 제5장. 토양 수분 모니터링 센서 네트워크와 스마트 관개 자동화 — 현장</text>
-  <text x="22" y="47" font-size="11" fill="#cbd5e1">스마트 팜 양파 재배 · 5.1 FDR/TDR 센서 및 텐시오미터의 원리, 보정 계수 및 설치 프로토콜</text>
-  <defs><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 1 L 10 5 L 0 9 z" fill="#334155"/></marker></defs>
-  <rect x="34" y="128" width="164" height="158" rx="10" fill="#e0f2fe" stroke="#334155" stroke-width="1.4"/>
-  <text x="116" y="162" text-anchor="middle" font-size="11" font-weight="700" fill="#475569">STEP 1</text>
-  <text text-anchor="middle" font-size="12" font-weight="700" fill="#0f172a"><tspan x="116" y="206.0">5.1 FDR/TDR</tspan><tspan x="116" y="224.0">센서 및 텐시오미터의</tspan><tspan x="116" y="242.0">원리, 보정 계수 및</tspan></text>
-  <line x1="198" y1="208" x2="222" y2="208" stroke="#334155" stroke-width="2" marker-end="url(#ar)"/>
-  <rect x="222" y="128" width="164" height="158" rx="10" fill="#dcfce7" stroke="#334155" stroke-width="1.4"/>
-  <text x="304" y="162" text-anchor="middle" font-size="11" font-weight="700" fill="#475569">STEP 2</text>
-  <text text-anchor="middle" font-size="12" font-weight="700" fill="#0f172a"><tspan x="304" y="206.0">5.2 기상</tspan><tspan x="304" y="224.0">데이터</tspan><tspan x="304" y="242.0">일사량, 풍속) 기반</tspan></text>
-  <line x1="386" y1="208" x2="410" y2="208" stroke="#334155" stroke-width="2" marker-end="url(#ar)"/>
-  <rect x="410" y="128" width="164" height="158" rx="10" fill="#fef3c7" stroke="#334155" stroke-width="1.4"/>
-  <text x="492" y="162" text-anchor="middle" font-size="11" font-weight="700" fill="#475569">STEP 3</text>
-  <text text-anchor="middle" font-size="12" font-weight="700" fill="#0f172a"><tspan x="492" y="206.0">5.3 점적 관개</tspan><tspan x="492" y="224.0">시스템의 수리학적</tspan><tspan x="492" y="242.0">설계와 포장 내 관수</tspan></text>
-  <line x1="574" y1="208" x2="598" y2="208" stroke="#334155" stroke-width="2" marker-end="url(#ar)"/>
-  <rect x="598" y="128" width="164" height="158" rx="10" fill="#f3e8ff" stroke="#334155" stroke-width="1.4"/>
-  <text x="680" y="162" text-anchor="middle" font-size="11" font-weight="700" fill="#475569">STEP 4</text>
-  <text text-anchor="middle" font-size="12" font-weight="700" fill="#0f172a"><tspan x="680" y="206.0">5.4 토양 수분</tspan><tspan x="680" y="224.0">결핍 지수(CWSI)</tspan><tspan x="680" y="242.0">기반 무인 밸브 연동</tspan></text>
-  <text x="400" y="348" text-anchor="middle" font-size="11" fill="#64748b">실사진/도해 생성 프롬프트 준비됨 (fal.ai 또는 나노바나나 API 키 활성화 시 실사 PNG 자동 대체)</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 476" width="880" height="476" style="background:#ffffff;font-family:'Malgun Gothic', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;">
+  <rect x="0" y="0" width="880" height="476" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.4"/>
+  <rect x="0" y="0" width="880" height="58" rx="10" fill="#1D3557"/>
+  <rect x="0" y="42" width="880" height="16" fill="#1D3557"/>
+  <text x="22" y="27" font-size="14.5" font-weight="700" fill="#f8fafc">그림 5-1. TDR·FDR·텐시오미터 측정 원리와 양파 뿌리층 설치 깊이 비교</text>
+  <text x="22" y="47" font-size="10.8" fill="#cbd5e1">양파 천근성 뿌리(주 근권 0~30 cm) 맞춤 2단 설치 프로토콜</text>
+  <rect x="24" y="84" width="266" height="346" rx="10" fill="#E0F2FE" stroke="#0072B2" stroke-width="1.6"/>
+  <rect x="24" y="84" width="266" height="38" rx="10" fill="#0072B2"/>
+  <rect x="24" y="108" width="266" height="14" fill="#0072B2"/>
+  <text x="157.0" y="108" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">TDR (시간영역 반사법)</text>
+  <text text-anchor="middle" font-size="13" font-weight="700" fill="#0f172a"><tspan x="157.0" y="154.5">고주파 전자기파 전파속도 →</tspan><tspan x="157.0" y="173.5">유전율(εa) 계측</tspan></text>
+  <text text-anchor="start" font-size="11.3" font-weight="500" fill="#1e293b"><tspan x="40" y="234.5">Topp 보정식(θv=f(εa)) 적용.</tspan><tspan x="40" y="251.5">토양 염류(EC) 영향이 적고</tspan><tspan x="40" y="268.5">정밀도(±1~2%)가 우수하나 장비 단가가</tspan><tspan x="40" y="285.5">높음.</tspan></text>
+  <rect x="38" y="366" width="238" height="46" rx="7" fill="#ffffff" stroke="#0072B2" stroke-width="1.1"/>
+  <text text-anchor="middle" font-size="11" font-weight="700" fill="#0072B2"><tspan x="157.0" y="381.5">설치: 15 cm(주 근권) + 30</tspan><tspan x="157.0" y="396.5">cm(배수 감시)</tspan></text>
+  <rect x="306" y="84" width="266" height="346" rx="10" fill="#DCFCE7" stroke="#009E73" stroke-width="1.6"/>
+  <rect x="306" y="84" width="266" height="38" rx="10" fill="#009E73"/>
+  <rect x="306" y="108" width="266" height="14" fill="#009E73"/>
+  <text x="439.0" y="108" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">FDR (주파수영역 반사법)</text>
+  <text text-anchor="middle" font-size="13" font-weight="700" fill="#0f172a"><tspan x="439.0" y="154.5">정전용량 공진주파수 →</tspan><tspan x="439.0" y="173.5">체적수분함량(θv) 환산</tspan></text>
+  <text text-anchor="start" font-size="11.3" font-weight="500" fill="#1e293b"><tspan x="322" y="243.0">저전력·다지점 IoT 센서 네트워크 구축에</tspan><tspan x="322" y="260.0">적합. 사양토·양토·식양토 및 EC 변화에</tspan><tspan x="322" y="277.0">따른 현장 보정 필수.</tspan></text>
+  <rect x="320" y="366" width="238" height="46" rx="7" fill="#ffffff" stroke="#009E73" stroke-width="1.1"/>
+  <text text-anchor="middle" font-size="11" font-weight="700" fill="#009E73"><tspan x="439.0" y="381.5">설치: 점적기 직하부 10~15 cm ·</tspan><tspan x="439.0" y="396.5">25~30 cm</tspan></text>
+  <rect x="588" y="84" width="266" height="346" rx="10" fill="#FEF3C7" stroke="#D55E00" stroke-width="1.6"/>
+  <rect x="588" y="84" width="266" height="38" rx="10" fill="#D55E00"/>
+  <rect x="588" y="108" width="266" height="14" fill="#D55E00"/>
+  <text x="721.0" y="108" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">텐시오미터 (수분장력계)</text>
+  <text text-anchor="middle" font-size="13" font-weight="700" fill="#0f172a"><tspan x="721.0" y="154.5">다공성 세라믹컵 매트릭</tspan><tspan x="721.0" y="173.5">포텐셜(Ψm, kPa) 직측</tspan></text>
+  <text text-anchor="start" font-size="11.3" font-weight="500" fill="#1e293b"><tspan x="604" y="234.5">토성에 무관하게 작물 뿌리가 느끼는 흡수</tspan><tspan x="604" y="251.5">저항을 직접 반영. 작동 범위 0~−80</tspan><tspan x="604" y="268.5">kPa</tspan><tspan x="604" y="285.5">주의).</tspan></text>
+  <rect x="602" y="366" width="238" height="46" rx="7" fill="#ffffff" stroke="#D55E00" stroke-width="1.1"/>
+  <text text-anchor="middle" font-size="11" font-weight="700" fill="#D55E00"><tspan x="721.0" y="381.5">양파 구 비대기 관수개시: −15 ~ −25</tspan><tspan x="721.0" y="396.5">kPa</tspan></text>
+  <text x="22" y="458" font-size="10.2" fill="#475569">자료: Topp et al. (1980, Water Resour. Res. 16:574); FAO-56 (Allen et al., 1998) 양파 유효 근권</text>
 </svg>

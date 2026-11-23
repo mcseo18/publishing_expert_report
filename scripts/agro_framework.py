@@ -336,14 +336,21 @@ def build_citation_inspector_report(
             except Exception:
                 continue
 
-    valid_ids, ngram_index = _load_evidence_corpus(cfg)
+    valid_ids, ngram_index, source_docs = _load_evidence_corpus(cfg)
     proj_sids = set(sources_index.keys())
 
     if chapter_id:
         safe_cid = Path(chapter_id).name.replace(".mdx", "")
         target_p = ch_dir / f"{safe_cid}.mdx"
         if target_p.is_file():
-            ch_audit = audit_file(target_p, valid_ids, ngram_index)
+            ch_audit = audit_file(
+                target_p,
+                valid_ids,
+                ngram_index,
+                source_docs=source_docs,
+                semantic=True,
+                cfg=cfg,
+            )
             text = target_p.read_text(encoding="utf-8", errors="ignore")
             body = text.split("## 참고문헌")[0]
             counts: dict[str, int] = {}
@@ -371,13 +378,16 @@ def build_citation_inspector_report(
                 limit=20,
                 cfg=cfg,
             )
+            st_code = "FAIL" if ch_audit["critical_errors"] else "PASS"
             return {
                 "scope": "chapter",
                 "chapter_id": safe_cid,
-                "status": "FAIL" if ch_audit["critical_errors"] else "PASS",
+                "status": st_code,
+                "format_check_status": f"형식 검사 {st_code}",
                 "critical_errors": ch_audit["critical_errors"],
                 "warnings": ch_audit["warnings"][:40],
                 "warning_total": len(ch_audit["warnings"]),
+                "content_audit": ch_audit.get("content_audit"),
                 "bindings": bindings,
                 "triples": triples,
                 "verified_ratio": round(
@@ -387,12 +397,14 @@ def build_citation_inspector_report(
                 else 100.0,
             }
 
-    # 프로젝트 전체 감사
-    full_audit = verify_target(ch_dir, cfg=cfg) if ch_dir.is_dir() else {
+    # 프로젝트 전체 감사 (내용 일치 검사 포함)
+    full_audit = verify_target(ch_dir, semantic=True, cfg=cfg) if ch_dir.is_dir() else {
         "status": "PASS",
+        "format_check_status": "형식 검사 PASS",
         "checked_files": 0,
         "critical_errors": [],
         "warnings": [],
+        "content_audit": None,
         "files": [],
     }
     (rep_dir / "audit_latest.json").write_text(
