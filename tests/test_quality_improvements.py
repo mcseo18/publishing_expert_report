@@ -366,3 +366,65 @@ def test_source_visual_harvester_jats_redraw_and_license_gate(tmp_path: Path, mo
 
     cap = build_provenance_caption(provenance_type="direct_reuse", title_ko="제목", source_meta=fig_cc, orig_label="Fig. 1")
     assert "Fig. 1" in cap and "[SRC-901]" in cap
+
+
+def test_universal_scientific_typography_across_all_formats(tmp_path: Path) -> None:
+    from docx import Document
+    from math_typography import (
+        add_rich_runs_to_docx_paragraph,
+        detect_unformatted_math_leaks,
+        normalize_scientific_typography,
+    )
+
+    sample = (
+        "이방성 3D 가우시안 타원체(위치 $\\boldsymbol{\\mu}$, 공분산 $\\boldsymbol{\\Sigma}$, 불투명도 $\\alpha$, "
+        "시선 $(\\theta, \\phi)$, 관련도 $\\ge 0.44$, 결정계수 $R^2 > 0.94$, 인스턴스 $AP_{50}$ = 0.924)와 "
+        "토양 화학 반응 $\\ce{NH4+ + 2 O2 -> NO3- + H2O + 2 H+}$ 및 평문 CO2, CH4, NO3-, Ca2+, PO4^3-, "
+        "엽면적 8.98 cm2, LAI 1.45 m2/m2, 비용 $0.039/장, 모델 F2DMAS/Plant3R/CLCFM3, "
+        "URL https://doi.org/10.1016/j.plaphe.2026.100200 [SRC-393].\n\n"
+        "$$\\mathrm{CD}(P, Q) = \\frac{1}{|P|} \\sum_{\\mathbf{p} \\in P} \\min_{\\mathbf{q} \\in Q} \\|\\mathbf{p} - \\mathbf{q}\\|_2^2, "
+        "\\qquad \\mathrm{RMSE} = \\sqrt{\\frac{1}{n} \\sum_{i=1}^{n} (\\hat{y}_i - \\bar{y})^2}$$"
+    )
+
+    # 1) HTML / Blog HTML / DOCX / Plain 4개 포맷 모두 미변환 LaTeX 누수 0건
+    for fmt in ("html", "blog_html", "docx", "plain"):
+        out = normalize_scientific_typography(sample, target_format=fmt)
+        leaks = detect_unformatted_math_leaks(out)
+        assert leaks == [], f"Leak in format={fmt}: {leaks}"
+        assert "μ" in out and "Σ" in out and "α" in out and "≥" in out
+        assert "‖" in out and "∑" in out and "∈" in out and "√" in out
+        assert "ŷ" in out and "ȳ" in out
+        # URL·달러 통화·모델명은 손상되지 않아야 함
+        assert "$0.039" in out
+        assert "F2DMAS/Plant3R/CLCFM3" in out
+        assert "https://doi.org/10.1016/j.plaphe.2026.100200" in out
+        assert "[SRC-393]" in out
+
+    # 2) HTML 화학식·단위 첨자 확인
+    html_out = normalize_scientific_typography(sample, target_format="html")
+    assert "CO<sub>2</sub>" in html_out
+    assert "NO<sub>3</sub><sup>−</sup>" in html_out
+    assert "Ca<sup>2+</sup>" in html_out
+    assert "cm<sup>2</sup>" in html_out
+    assert "m<sup>2</sup>/m<sup>2</sup>" in html_out
+    assert "AP<sub>50</sub>" in html_out
+
+    # 3) Plain 텍스트에는 HTML 태그도 0개여야 하며 유니코드 첨자 변환
+    plain_out = normalize_scientific_typography(sample, target_format="plain")
+    assert "<sub>" not in plain_out and "<sup>" not in plain_out and "<b>" not in plain_out
+    assert "CO₂" in plain_out and "cm²" in plain_out and "R²" in plain_out
+
+    # 4) 네이티브 Word(.docx) Run 위첨자·아래첨자·볼드 검증
+    doc = Document()
+    p = doc.add_paragraph()
+    add_rich_runs_to_docx_paragraph(p, sample.splitlines()[0])
+    full_docx_txt = "".join(r.text for r in p.runs)
+    assert detect_unformatted_math_leaks(full_docx_txt) == []
+    assert any(r.bold and "μ" in r.text for r in p.runs)
+    assert any(r.bold and "Σ" in r.text for r in p.runs)
+    assert any(r.font.superscript and "2" in r.text for r in p.runs)
+    assert any(r.font.subscript and "50" in r.text for r in p.runs)
+    assert any(r.font.subscript and "2" in r.text for r in p.runs)
+    docx_p = tmp_path / "math_check.docx"
+    doc.save(str(docx_p))
+    assert docx_p.is_file()

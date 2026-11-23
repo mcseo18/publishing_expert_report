@@ -110,10 +110,13 @@ def _load_all_sources_map(cfg: PlatformConfig) -> dict[str, dict[str, Any]]:
     return out
 
 
-def _clean_mdx_artifacts(body: str) -> str:
-    """MDX 원고 내 HTML 주석(<br>, NEED_EVIDENCE, 내부 마커 등)을 출판용으로 정리한다."""
+def _clean_mdx_artifacts(body: str, *, target_format: str = "html") -> str:
+    """MDX 원고 내 HTML 주석(<br>, NEED_EVIDENCE 등)을 정리하고 수식·기호·화학식·첨자를 목표 포맷으로 일괄 정규화한다."""
+    from math_typography import normalize_scientific_typography
+
     cleaned = re.sub(r"<!--\s*(?:NEED_EVIDENCE:.*?|EXPANDED_500P_V1|MYTH_VS_FACT_V1|QUIZ_LINKED_V1)\s*-->", "", body, flags=re.S | re.I)
     cleaned = re.sub(r"<br\s*/?>", "\n", cleaned, flags=re.I)
+    cleaned = normalize_scientific_typography(cleaned, target_format=target_format)
     return cleaned.strip()
 
 

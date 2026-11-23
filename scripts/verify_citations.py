@@ -323,8 +323,12 @@ def audit_file(
                 }
             )
 
-    # 2. 15어절 연속 원문 복사(표절·저작권 위험) 검사 (참고문헌 목록 섹션은 정식 논문 제목 표기이므로 제외)
-    body_for_copy_check = re.split(r"(?m)^##\s*참고문헌", text, maxsplit=1)[0]
+    # 2. 15어절 연속 원문 복사(표절·저작권 위험) 검사 (참고문헌 단원·목록 섹션은 정식 논문 제목 표기이므로 제외)
+    is_references_doc = bool(
+        re.search(r'(?m)^chapter_role:\s*["\']?references["\']?', text)
+        or re.search(r"(?m)^#\s*(?:\d+\.\s*)?(?:참고문헌|References)\b", text)
+    )
+    body_for_copy_check = "" if is_references_doc else re.split(r"(?m)^#{1,2}\s*(?:\d+\.\s*)?(?:참고문헌|통합 참고문헌|References)\b", text, maxsplit=1)[0]
     chapter_tokens = _tokenize_words(body_for_copy_check)
     if len(chapter_tokens) >= 15 and ngram_index:
         seen_overlap_sources: set[str] = set()

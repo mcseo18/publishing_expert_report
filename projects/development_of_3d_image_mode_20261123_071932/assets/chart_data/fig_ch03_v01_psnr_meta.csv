@@ -1,0 +1,17 @@
+﻿3D 복원 모델 (대상 작물),평균 PSNR (dB)
+"Plant3R
+(밀)",34.0
+"MSNeRF
+(벼)",33.89
+"Splatfacto
+(벼)",32.34
+"Instant-NGP
+(벼)",31.64
+"InspectGS
+(감귤)",31.23
+"F2DMAS
+(15종)",31.09
+"NeRFacto
+(벼)",30.41
+"4D-3DGS
+(양치류)",26.35

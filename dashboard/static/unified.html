@@ -3324,16 +3324,16 @@ function renderStage6Body(st) {
   const isPaper = (otype === "paper");
   const chIds = [...new Set(Object.keys(outputs).filter(k => /^ch\d+_/.test(k)).map(k => k.split("_")[0]))].sort();
 
-  const pdfUrl = outputs.master_pdf || outputs.master_pdf_b5 || outputs.master_pdf_a4 || outputs.master_pdf_shinkuk || "";
-  const pdfLabel = outputs.master_pdf_label || (isPaper ? "국내 학회지 논문 규격 PDF (A4 2단 · 1단 표제/초록 · 3선표)" : "마스터 출판 PDF");
+  const docxUrl = outputs.master_docx || (converted.docx && converted.docx.url) || "";
+  const docxLabel = outputs.master_docx_label || (isPaper ? "국내 학회지 논문 투고 규격 DOCX (A4 · 3선표 · 300 DPI 도판 · 내어쓰기 참고문헌)" : "마스터 출판 Word (DOCX)");
   const blogUrl = outputs.blog_single_html || "";
 
   const convBtns = [
-    { id: "docx", icon: "📝", name: "MS Word (DOCX)" },
     { id: "korean_journal_pdf", icon: "📄", name: "국내 학회지 규격 PDF" },
     { id: "b5_pdf", icon: "📗", name: "B5 교재 PDF" },
     { id: "shinkuk_pdf", icon: "📕", name: "신국판 단행본 PDF" },
     { id: "a4_pdf", icon: "📘", name: "A4 표준 PDF" },
+    { id: "docx", icon: "📝", name: "MS Word (DOCX) 재변환" },
     { id: "markdown_master", icon: "📋", name: "통합 마크다운 (.md)" },
     { id: "chapter_split_html", icon: "🌐", name: "단원별 분할 블로그 HTML" },
     { id: "quarto_book", icon: "⚙️", name: "Quarto 프로젝트" },
@@ -3346,10 +3346,10 @@ function renderStage6Body(st) {
       <div class="card-head" style="margin-bottom:10px">
         <div>
           <h3 class="card-title" style="color:#fef08a">📦 기본 최종 산출물 (중복 제거 · 핵심 2종)</h3>
-          <div class="muted">중복 파일을 만들지 않고 <strong>① 마스터 PDF 1종</strong>${isPaper ? " (국내 학회지 2단 논문 규격 자동 적용)" : ""}과 <strong>② 블로그용 단일 통합 HTML 1종</strong>만 깔끔하게 생성합니다.</div>
+          <div class="muted">중복 파일을 만들지 않고 <strong>① 마스터 Word(DOCX) 1종</strong>${isPaper ? " (국내 학회지 논문 규격 자동 적용)" : ""}과 <strong>② 블로그용 단일 통합 HTML 1종</strong>만 깔끔하게 생성합니다.</div>
         </div>
         <div class="flex">
-          <button class="btn-gold btn-sm" onclick="runPublishDefaultTwo()">⚡ 기본 2종(PDF + 블로그 HTML) 지금 생성/갱신</button>
+          <button class="btn-gold btn-sm" onclick="runPublishDefaultTwo()">⚡ 기본 2종(DOCX + 블로그 HTML) 지금 생성/갱신</button>
           <a class="badge b-run" style="padding:7px 12px;font-size:12.5px" href="/api/projects/${encodeURIComponent(st.project_id)}/exports.zip" download>⬇ 전체 산출물 ZIP</a>
           <button class="btn-sm" onclick="openProjectFolder('exports')">📂 출판 폴더</button>
         </div>
@@ -3357,18 +3357,17 @@ function renderStage6Body(st) {
 
       ${isPaper ? `
         <div style="background:rgba(6,59,44,.75);border:1px solid #34d399;border-radius:9px;padding:9px 13px;margin-bottom:12px;font-size:12.5px;color:#d1fae5">
-          <strong>📄 국내 학회지 논문 규격 PDF 자동 적용 중:</strong> A4 (210×297mm · 상하 25mm/좌우 20mm) · 1단 전폭 표제부 및 단일 초록 박스 · 본문 2단 편집 · 학술지 3선표 · 최하단 내어쓰기 단일 통합 참고문헌
+          <strong>📝 국내 학회지 논문 투고 규격 DOCX 자동 적용 중:</strong> A4 (210×297mm · 상하 25mm/좌우 20mm) · 표제부/단일 초록 · 학술지 3선표 · 300 DPI 흑백 대응 도판 · 최하단 내어쓰기 단일 통합 참고문헌 (PDF는 아래 변환 모듈에서 필요 시 생성)
         </div>
       ` : ""}
 
       <div class="grid-2" style="gap:12px">
         <div class="card" style="background:var(--surface);margin-bottom:0;border-color:rgba(52,211,153,.4)">
-          <div style="font-size:12px;color:#34d399;font-weight:800">기본 산출물 ① · 인쇄 / 투고용 마스터 PDF</div>
-          <div style="font-size:14.5px;font-weight:800;margin:4px 0 8px">${esc(pdfLabel)}</div>
-          ${pdfUrl ? `
+          <div style="font-size:12px;color:#34d399;font-weight:800">기본 산출물 ① · 편집 / 투고용 마스터 Word (DOCX)</div>
+          <div style="font-size:14.5px;font-weight:800;margin:4px 0 8px">${esc(docxLabel)}</div>
+          ${docxUrl ? `
             <div class="flex">
-              <a class="badge b-done" style="padding:8px 14px;font-size:13px" href="${esc(pdfUrl)}" target="_blank">📕 마스터 PDF 열기</a>
-              <a class="badge b-run" style="padding:8px 14px;font-size:13px" href="${esc(pdfUrl)}" download>⬇ PDF 다운로드</a>
+              <a class="badge b-done" style="padding:8px 14px;font-size:13px" href="${esc(docxUrl)}" download>📝 마스터 DOCX 다운로드</a>
             </div>
           ` : `<div class="muted">아직 생성되지 않았습니다. 위 [⚡ 기본 2종 지금 생성/갱신] 또는 6단계 실행을 눌러주세요.</div>`}
         </div>
@@ -3446,11 +3445,11 @@ function renderStage6Body(st) {
 
 async function runPublishDefaultTwo() {
   if (!CURRENT_PID) return toast("먼저 프로젝트를 선택해 주세요.");
-  toast("⚡ 기본 2종 산출물(마스터 PDF + 블로그용 단일 HTML)을 생성 중입니다...", 5000);
+  toast("⚡ 기본 2종 산출물(마스터 Word DOCX + 블로그용 단일 HTML)을 생성 중입니다...", 5000);
   try {
     const res = await api(`/api/projects/${encodeURIComponent(CURRENT_PID)}/publish-default`, { method: "POST" });
     const d = res.default_outputs || {};
-    toast(`✅ 기본 2종 생성 완료! PDF(${d.master_pdf?.size_kb || 0}KB) + 블로그 HTML(${d.blog_single_html?.size_kb || 0}KB)`, 5000);
+    toast(`✅ 기본 2종 생성 완료! DOCX(${d.master_docx?.size_kb || 0}KB) + 블로그 HTML(${d.blog_single_html?.size_kb || 0}KB)`, 5000);
     await loadCurrentProject();
   } catch (e) {
     toast("❌ 기본 출판 오류: " + e.message, 5000);

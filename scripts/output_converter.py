@@ -1,29 +1,24 @@
-"""참참살이 영농 AI 출판도우미 — 기본 2종 출판기(PDF + 블로그용 단일 HTML) 및 사후 포맷 변환 모듈.
+"""참참살이 영농 AI 출판도우미 — 기본 2종 출판기(DOCX + 블로그용 단일 HTML) 및 사후 포맷 변환 모듈.
 
 설계 원칙 (산출물 중복 제거):
 1. 기본 출판(`publish_default_outputs`)은 정확히 2개의 핵심 산출물만 생성한다:
-   - ① 마스터 PDF 1종 (`exports/<pid>_master.pdf`)
-     * `paper`(논문·리뷰)인 경우: 국내 학회지 논문 규격(KCI 등재 농학계 학회지 표준 — A4, 상하 25mm/좌우 20mm,
-       1단 전폭 표제·단일 초록 박스, 본문 2단 편집, 3선표, 명조 9.2pt, 내어쓰기 단일 통합 참고문헌) 자동 적용
-     * 그 외 유형: 1차 산출물 권장 판형(교과서 B5, 이야기책 신국판, 보고서/강의/웹 A4) 자동 적용
+   - ① 마스터 DOCX 1종 (`exports/<pid>_master.docx`)
+     * `paper`(논문·리뷰)인 경우: 국내 학회지 논문 투고 규격(A4, 상하 25mm/좌우 20mm,
+       표제부·단일 초록 박스, 3선표, 300 DPI 도판 임베딩, 내어쓰기 단일 통합 참고문헌) 자동 적용
+     * 그 외 유형: 1차 산출물 권장 판형(교과서 B5, 이야기책 신국판, 보고서/강의 A4) Word 마스터 합본 자동 적용
    - ② 블로그용 단일 HTML 1종 (`exports/<pid>_blog_single.html`)
      * 전체 원고(ch01~chNN)와 시각화를 1개 HTML 파일로 통합, 네이버 스마트에디터 ONE 복붙 최적화 및 원클릭 복사 버튼 포함
 
 2. 추가 포맷 사후 변환 모듈(`convert_project_output`)은 사용자가 필요할 때만 개별 실행한다:
-   - `docx`               : MS Word 마스터 합본 (.docx)
    - `korean_journal_pdf` : 국내 학회지 논문 규격 2단 PDF (A4)
    - `b5_pdf`             : B5 대학교재 합본 PDF (182×257mm)
    - `shinkuk_pdf`        : 신국판 단행본 합본 PDF (152×225mm)
    - `a4_pdf`             : A4 표준 합본 PDF (210×297mm)
+   - `docx`               : MS Word 마스터 합본 (.docx) 재변환
    - `markdown_master`    : 단일 통합 마크다운 (.md)
    - `chapter_split_html` : 단원별 분할 블로그/웹 HTML 묶음
    - `quarto_book`        : Quarto 싱글소스 프로젝트 (_quarto.yml + .qmd)
    - `cover_toc`          : 별도 표지 · 머리말 · 전체 목차 패키지
-
-CLI 사용 예:
-    .venv\\Scripts\\python.exe scripts\\output_converter.py --project <pid> --default-only
-    .venv\\Scripts\\python.exe scripts\\output_converter.py --project <pid> --format docx
-    .venv\\Scripts\\python.exe scripts\\output_converter.py --project <pid> --format korean_journal_pdf
 """
 from __future__ import annotations
 
@@ -776,8 +771,306 @@ def render_single_blog_html(
 </html>"""
 
 
+def _recommended_default_docx_mode(state: dict[str, Any]) -> tuple[str, str]:
+    """1차 산출물 유형에 따른 기본 마스터 DOCX 규격 키와 한글 라벨을 반환한다."""
+    otype = str(state.get("primary_output_type") or (state.get("output_profile") or {}).get("primary_output_type") or "textbook")
+    if otype == "paper":
+        return "korean_journal_docx", "국내 학회지 논문 투고 규격 DOCX (A4 · 3선표 · 300 DPI 도판 · 내어쓰기 참고문헌)"
+    trim = str((state.get("output_profile") or {}).get("recommended_trim") or "")
+    label_map = {
+        "b5": "B5 대학교재 마스터 DOCX (182 × 257 mm)",
+        "shinkuk": "신국판 단행본 마스터 DOCX (152 × 225 mm)",
+        "a4": "A4 표준 보고서·강의 마스터 DOCX (210 × 297 mm)",
+    }
+    if trim in label_map:
+        return f"{trim}_docx", label_map[trim]
+    default_map = {
+        "textbook": ("b5_docx", label_map["b5"]),
+        "storybook": ("shinkuk_docx", label_map["shinkuk"]),
+        "report": ("a4_docx", label_map["a4"]),
+        "lecture": ("a4_docx", label_map["a4"]),
+        "web_publish": ("a4_docx", label_map["a4"]),
+    }
+    return default_map.get(otype, ("b5_docx", label_map["b5"]))
+
+
+def build_master_docx(
+    state: dict[str, Any],
+    chapters: list[dict[str, Any]],
+    docx_path: Path,
+    *,
+    visuals_map: dict[str, list[dict[str, Any]]] | None = None,
+) -> Path:
+    """출판·학회 투고·편집용 마스터 MS Word(.docx) 합본을 생성한다 (3선표·수식·300 DPI 도판·내어쓰기 참고문헌 지원)."""
+    from build_outputs import _clean_mdx_artifacts
+    from docx import Document
+    from docx.enum.text import WD_ALIGN_PARAGRAPH
+    from docx.oxml import parse_xml
+    from docx.oxml.ns import nsdecls, qn
+    from docx.shared import Inches, Mm, Pt, RGBColor
+    from math_typography import add_rich_runs_to_docx_paragraph
+
+    otype = str(state.get("primary_output_type") or (state.get("output_profile") or {}).get("primary_output_type") or "textbook")
+    is_paper = (otype == "paper")
+    topic_ko = str(state.get("topic_ko") or state.get("project_id") or "전문 보고서").strip()
+    topic_en = str(state.get("topic_en") or "").strip()
+    author_line = str((state.get("cover_settings") or {}).get("author") or "참참살이 영농 AI 연구집필위원회")
+    affil_line = str((state.get("cover_settings") or {}).get("publisher") or "참참살이 영농 AI 연구소 (Agro AI Publishing Lab)")
+
+    doc = Document()
+    sec0 = doc.sections[0]
+    trim = str((state.get("output_profile") or {}).get("recommended_trim") or ("a4" if is_paper else "b5"))
+    if is_paper or trim == "a4":
+        sec0.page_width = Mm(210)
+        sec0.page_height = Mm(297)
+        sec0.top_margin = Mm(25)
+        sec0.bottom_margin = Mm(25)
+        sec0.left_margin = Mm(20)
+        sec0.right_margin = Mm(20)
+        fig_width_in = 5.9
+    elif trim == "shinkuk":
+        sec0.page_width = Mm(152)
+        sec0.page_height = Mm(225)
+        sec0.top_margin = Mm(20)
+        sec0.bottom_margin = Mm(20)
+        sec0.left_margin = Mm(18)
+        sec0.right_margin = Mm(18)
+        fig_width_in = 4.4
+    else:
+        sec0.page_width = Mm(182)
+        sec0.page_height = Mm(257)
+        sec0.top_margin = Mm(22)
+        sec0.bottom_margin = Mm(22)
+        sec0.left_margin = Mm(20)
+        sec0.right_margin = Mm(20)
+        fig_width_in = 5.2
+
+    style_normal = doc.styles["Normal"]
+    style_normal.font.name = "Malgun Gothic"
+    style_normal.font.size = Pt(10.0 if is_paper else 10.5)
+    style_normal._element.rPr.rFonts.set(qn("w:eastAsia"), "Malgun Gothic")
+    style_normal.paragraph_format.line_spacing = 1.45
+
+    # 러닝 헤더
+    hdr_p = sec0.header.paragraphs[0]
+    hdr_p.alignment = WD_ALIGN_PARAGRAPH.RIGHT
+    r_hdr = hdr_p.add_run(f"{topic_ko[:42]}  |  {datetime.now().strftime('%Y.%m')}")
+    r_hdr.font.name = "Malgun Gothic"
+    r_hdr._element.rPr.rFonts.set(qn("w:eastAsia"), "Malgun Gothic")
+    r_hdr.font.size = Pt(8.2)
+    r_hdr.font.color.rgb = RGBColor(100, 116, 139)
+
+    def _set_run_font(run: Any, size_pt: float, bold: bool = False, color: tuple[int, int, int] | None = None) -> None:
+        run.font.name = "Malgun Gothic"
+        run._element.rPr.rFonts.set(qn("w:eastAsia"), "Malgun Gothic")
+        run.font.size = Pt(size_pt)
+        run.bold = bold
+        if color:
+            run.font.color.rgb = RGBColor(*color)
+
+    # 표제부
+    p_kick = doc.add_paragraph()
+    p_kick.alignment = WD_ALIGN_PARAGRAPH.CENTER if is_paper else WD_ALIGN_PARAGRAPH.LEFT
+    k_txt = "총설 (Review Article) · 학술지 투고 마스터 원고" if is_paper else f"{(state.get('output_profile') or {}).get('output_type_name_ko', '전문 교재')} · 마스터 출판 원고"
+    _set_run_font(p_kick.add_run(k_txt), 9.0, bold=True, color=(30, 64, 175))
+
+    p_t = doc.add_paragraph()
+    p_t.alignment = WD_ALIGN_PARAGRAPH.CENTER if is_paper else WD_ALIGN_PARAGRAPH.LEFT
+    p_t.paragraph_format.space_after = Pt(4)
+    _set_run_font(p_t.add_run(topic_ko), 16.5 if is_paper else 18.0, bold=True, color=(15, 23, 42))
+
+    if topic_en:
+        p_en = doc.add_paragraph()
+        p_en.alignment = WD_ALIGN_PARAGRAPH.CENTER if is_paper else WD_ALIGN_PARAGRAPH.LEFT
+        p_en.paragraph_format.space_after = Pt(6)
+        _set_run_font(p_en.add_run(topic_en), 11.5, bold=False, color=(51, 65, 85))
+
+    p_meta = doc.add_paragraph()
+    p_meta.alignment = WD_ALIGN_PARAGRAPH.CENTER if is_paper else WD_ALIGN_PARAGRAPH.LEFT
+    p_meta.paragraph_format.space_after = Pt(12)
+    _set_run_font(p_meta.add_run(f"{author_line} · {affil_line} · {datetime.now().strftime('%Y-%m-%d')}"), 9.2, color=(71, 85, 105))
+
+    def _set_cell_borders(cell: Any, top: str = "none", bottom: str = "none") -> None:
+        tcPr = cell._tc.get_or_add_tcPr()
+        xml = (
+            f'<w:tcBorders {nsdecls("w")}>'
+            f'<w:top w:val="{"single" if top != "none" else "none"}" w:sz="{top if top != "none" else "0"}" w:color="0F172A"/>'
+            f'<w:bottom w:val="{"single" if bottom != "none" else "none"}" w:sz="{bottom if bottom != "none" else "0"}" w:color="0F172A"/>'
+            f'<w:left w:val="none"/><w:right w:val="none"/>'
+            f"</w:tcBorders>"
+        )
+        tcPr.append(parse_xml(xml))
+
+    def _add_md_table(table_lines: list[str]) -> None:
+        parsed_rows: list[list[str]] = []
+        for tl in table_lines:
+            cells = [c.strip() for c in tl.strip().strip("|").split("|")]
+            if all(re.match(r"^:?-{2,}:?$", c.replace(" ", "")) for c in cells if c):
+                continue
+            parsed_rows.append(cells)
+        if not parsed_rows:
+            return
+        ncols = max(len(r) for r in parsed_rows)
+        tbl = doc.add_table(rows=len(parsed_rows), cols=ncols)
+        if not is_paper:
+            tbl.style = "Table Grid"
+        last_idx = len(parsed_rows) - 1
+        for r_idx, row in enumerate(parsed_rows):
+            for c_idx in range(ncols):
+                val = row[c_idx] if c_idx < len(row) else ""
+                cell = tbl.cell(r_idx, c_idx)
+                cell.text = ""
+                p_c = cell.paragraphs[0]
+                p_c.paragraph_format.space_before = Pt(2)
+                p_c.paragraph_format.space_after = Pt(2)
+                if is_paper:
+                    add_rich_runs_to_docx_paragraph(p_c, val, font_size=8.3, base_bold=(r_idx == 0), color_rgb=(15, 23, 42))
+                    if r_idx == 0:
+                        cell._tc.get_or_add_tcPr().append(parse_xml(f'<w:shd {nsdecls("w")} w:fill="F1F5F9"/>'))
+                        _set_cell_borders(cell, top="12", bottom="6")
+                    elif r_idx == last_idx:
+                        _set_cell_borders(cell, top="none", bottom="12")
+                    else:
+                        _set_cell_borders(cell, top="none", bottom="none")
+                else:
+                    add_rich_runs_to_docx_paragraph(
+                        p_c,
+                        val,
+                        font_size=8.5,
+                        color_rgb=(255, 255, 255) if r_idx == 0 else None,
+                        base_bold=(r_idx == 0),
+                    )
+                    if r_idx == 0:
+                        cell._tc.get_or_add_tcPr().append(parse_xml(f'<w:shd {nsdecls("w")} w:fill="1D3557"/>'))
+        p_sp = doc.add_paragraph()
+        p_sp.paragraph_format.space_after = Pt(4)
+
+    def _embed_figure(v_item: dict[str, Any]) -> None:
+        img_str = v_item.get("docx_image_path") or v_item.get("path") or ""
+        if not img_str or not Path(img_str).is_file() or Path(img_str).suffix.lower() not in (".png", ".jpg", ".jpeg"):
+            return
+        p_img = doc.add_paragraph()
+        p_img.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        p_img.paragraph_format.space_before = Pt(6)
+        p_img.paragraph_format.space_after = Pt(3)
+        p_img.add_run().add_picture(img_str, width=Inches(fig_width_in))
+
+        title_ko = str(v_item.get("title_ko") or v_item.get("caption_ko") or v_item.get("figure_id") or "").strip()
+        p_cap = doc.add_paragraph()
+        p_cap.alignment = WD_ALIGN_PARAGRAPH.LEFT
+        p_cap.paragraph_format.space_after = Pt(2)
+        add_rich_runs_to_docx_paragraph(p_cap, title_ko, font_size=9.0, base_bold=True, color_rgb=(15, 23, 42))
+
+        desc = str(v_item.get("narrative_ko") or v_item.get("description_ko") or v_item.get("source_note") or "").strip()
+        if desc:
+            p_desc = doc.add_paragraph()
+            p_desc.paragraph_format.space_after = Pt(8)
+            add_rich_runs_to_docx_paragraph(p_desc, desc, font_size=8.6, color_rgb=(71, 85, 105))
+
+    for ch_idx, ch in enumerate(chapters):
+        cid = ch["chapter_id"]
+        is_ref_ch = (cid == "ch05" and is_paper) or ("참고문헌" in ch.get("title", ""))
+        if ch_idx > 0 and not is_paper:
+            doc.add_page_break()
+
+        clean_md = _clean_mdx_artifacts(ch["body"])
+        ch_vis = list((visuals_map or {}).get(cid, []))
+        vis_inserted = False
+
+        lines = clean_md.splitlines()
+        i = 0
+        h2_seen = 0
+        while i < len(lines):
+            ln = lines[i].strip()
+            if not ln or ln == "---":
+                i += 1
+                continue
+            if ln.startswith("<!--") and ln.endswith("-->"):
+                i += 1
+                continue
+            if ln.startswith("|") and "|" in ln[1:]:
+                tbl_block = []
+                while i < len(lines) and lines[i].strip().startswith("|"):
+                    tbl_block.append(lines[i].strip())
+                    i += 1
+                _add_md_table(tbl_block)
+                continue
+            if ln.startswith("$$"):
+                eq_lines = [ln.lstrip("$").rstrip("$").strip()]
+                if not (ln.endswith("$$") and len(ln) > 4):
+                    i += 1
+                    while i < len(lines) and not lines[i].strip().endswith("$$"):
+                        eq_lines.append(lines[i].strip())
+                        i += 1
+                    if i < len(lines):
+                        eq_lines.append(lines[i].strip().rstrip("$").strip())
+                eq_text = " ".join(x for x in eq_lines if x)
+                p_eq = doc.add_paragraph()
+                p_eq.alignment = WD_ALIGN_PARAGRAPH.CENTER
+                p_eq._p.get_or_add_pPr().append(parse_xml(f'<w:shd {nsdecls("w")} w:fill="F8FAFC"/>'))
+                add_rich_runs_to_docx_paragraph(p_eq, eq_text, font_size=9.5, color_rgb=(15, 23, 42))
+                i += 1
+                continue
+
+            if ln.startswith("# "):
+                h1 = doc.add_heading("", level=1)
+                h1.paragraph_format.space_before = Pt(12)
+                h1.paragraph_format.space_after = Pt(5)
+                add_rich_runs_to_docx_paragraph(h1, ln[2:].strip(), font_size=13.0 if is_paper else 14.0, base_bold=True, color_rgb=(15, 23, 42))
+            elif ln.startswith("## "):
+                h2_seen += 1
+                h2 = doc.add_heading("", level=2)
+                h2.paragraph_format.space_before = Pt(9)
+                h2.paragraph_format.space_after = Pt(4)
+                add_rich_runs_to_docx_paragraph(h2, ln[3:].strip(), font_size=11.2, base_bold=True, color_rgb=(30, 58, 138))
+                # 본문 절 사이에 단원 도판을 고르게 삽입
+                if ch_vis and h2_seen <= len(ch_vis):
+                    _embed_figure(ch_vis[h2_seen - 1])
+                    if h2_seen == len(ch_vis):
+                        vis_inserted = True
+            elif ln.startswith("### "):
+                h3 = doc.add_heading("", level=3)
+                h3.paragraph_format.space_before = Pt(7)
+                h3.paragraph_format.space_after = Pt(3)
+                add_rich_runs_to_docx_paragraph(h3, ln[4:].strip(), font_size=10.3, base_bold=True, color_rgb=(30, 41, 59))
+            elif ln.startswith('<div class="math-block">'):
+                p_eq = doc.add_paragraph()
+                p_eq.alignment = WD_ALIGN_PARAGRAPH.CENTER
+                p_eq._p.get_or_add_pPr().append(parse_xml(f'<w:shd {nsdecls("w")} w:fill="F8FAFC"/>'))
+                add_rich_runs_to_docx_paragraph(p_eq, ln, font_size=9.6, color_rgb=(15, 23, 42))
+            elif ln.startswith("> "):
+                p_q = doc.add_paragraph()
+                p_q.paragraph_format.left_indent = Inches(0.25)
+                p_q._p.get_or_add_pPr().append(parse_xml(f'<w:shd {nsdecls("w")} w:fill="F1F5F9"/>'))
+                add_rich_runs_to_docx_paragraph(p_q, ln.lstrip("> ").strip(), font_size=9.5, color_rgb=(30, 41, 59))
+            elif ln.startswith(("- ", "* ")):
+                p_b = doc.add_paragraph(style="List Bullet")
+                p_b.paragraph_format.space_after = Pt(2)
+                add_rich_runs_to_docx_paragraph(p_b, ln[2:].strip(), font_size=9.8 if is_paper else 10.0)
+            elif is_ref_ch:
+                p_r = doc.add_paragraph()
+                p_r.paragraph_format.left_indent = Inches(0.35)
+                p_r.paragraph_format.first_line_indent = Inches(-0.35)
+                p_r.paragraph_format.space_after = Pt(3)
+                add_rich_runs_to_docx_paragraph(p_r, ln, font_size=8.8, color_rgb=(30, 41, 59))
+            else:
+                p_p = doc.add_paragraph()
+                p_p.paragraph_format.space_after = Pt(4)
+                add_rich_runs_to_docx_paragraph(p_p, ln, font_size=9.8 if is_paper else 10.2)
+            i += 1
+
+        # 미삽입 잔여 도판은 단원 말미에 안전하게 삽입
+        if ch_vis and not vis_inserted:
+            for rem_v in ch_vis[h2_seen:]:
+                _embed_figure(rem_v)
+
+    docx_path.parent.mkdir(parents=True, exist_ok=True)
+    doc.save(str(docx_path))
+    return docx_path
+
+
 def _recommended_default_pdf_mode(state: dict[str, Any]) -> tuple[str, str]:
-    """1차 산출물 유형에 따른 기본 마스터 PDF 규격 키와 한글 라벨을 반환한다."""
+    """1차 산출물 유형에 따른 사후 변환 PDF 규격 키와 한글 라벨을 반환한다."""
     otype = str(state.get("primary_output_type") or (state.get("output_profile") or {}).get("primary_output_type") or "textbook")
     if otype == "paper":
         return "korean_journal", KOREAN_JOURNAL_PDF_SPEC["label_ko"]
@@ -804,8 +1097,7 @@ def publish_default_outputs(
     force: bool = False,
     cfg: PlatformConfig | None = None,
 ) -> dict[str, Any]:
-    """중복 산출물 없이 기본 핵심 2종(① 마스터 PDF 1종 + ② 블로그용 단일 HTML 1종)만 생성한다 (C9 품질·검토 게이트 지원)."""
-    from build_outputs import _render_html_to_pdf
+    """중복 산출물 없이 기본 핵심 2종(① 마스터 DOCX 1종 + ② 블로그용 단일 HTML 1종)만 생성한다 (PDF는 필요 시 사후 변환)."""
     from figure_registry import load_chapter_visuals
     from subagent_orchestrator import evaluate_publish_readiness, load_project_state, save_project_state
 
@@ -842,23 +1134,19 @@ def publish_default_outputs(
     bound_visuals_by_ch = {ch["chapter_id"]: len(visuals_map.get(ch["chapter_id"], [])) for ch in chapters}
     total_vis_loaded = sum(bound_visuals_by_ch.values())
 
-    # 1) 마스터 PDF 1종 생성 (paper 모드는 국내 학회지 논문 규격 PDF 자동 적용)
-    pdf_mode, pdf_label = _recommended_default_pdf_mode(st)
-    if pdf_mode == "korean_journal":
-        print_html = render_korean_journal_html(st, chapters, visuals_map=visuals_map)
-    else:
-        print_html = render_standard_master_html(st, chapters, visuals_map=visuals_map, trim_key=pdf_mode)
-
-    pdf_name = f"{project_id}_master.pdf"
-    pdf_path = exp_root / pdf_name
-    pdf_ok = _render_html_to_pdf(print_html, pdf_path)
-    if pdf_ok and pdf_path.is_file():
+    # 1) 기본 산출물 ①: 마스터 DOCX 1종 생성 (편집·심사·투고 즉시 활용)
+    docx_mode, docx_label = _recommended_default_docx_mode(st)
+    docx_name = f"{project_id}_master.docx"
+    docx_path = exp_root / docx_name
+    build_master_docx(st, chapters, docx_path, visuals_map=visuals_map)
+    docx_ok = docx_path.is_file() and docx_path.stat().st_size > 1000
+    if docx_ok:
         try:
-            shutil.copy2(pdf_path, e_proj_exp / pdf_name)
+            shutil.copy2(docx_path, e_proj_exp / docx_name)
         except Exception:
             pass
 
-    # 2) 블로그용 단일 HTML 1종 생성
+    # 2) 기본 산출물 ②: 블로그용 단일 HTML 1종 생성
     blog_name = f"{project_id}_blog_single.html"
     blog_path = exp_root / blog_name
     blog_html = render_single_blog_html(st, chapters, visuals_map=visuals_map)
@@ -868,13 +1156,13 @@ def publish_default_outputs(
     except Exception:
         pass
 
-    rel_pdf = f"/project-files/{project_id}/exports/{pdf_name}" if pdf_ok else ""
+    rel_docx = f"/project-files/{project_id}/exports/{docx_name}" if docx_ok else ""
     rel_blog = f"/project-files/{project_id}/exports/{blog_name}"
 
     outputs = dict(st.get("outputs") or {})
-    outputs["master_pdf"] = rel_pdf
-    outputs["master_pdf_mode"] = pdf_mode
-    outputs["master_pdf_label"] = pdf_label
+    outputs["master_docx"] = rel_docx
+    outputs["master_docx_mode"] = docx_mode
+    outputs["master_docx_label"] = docx_label
     outputs["blog_single_html"] = rel_blog
 
     st["outputs"] = outputs
@@ -882,20 +1170,20 @@ def publish_default_outputs(
     st.setdefault("checkpoint", {})["published_chapters"] = [ch["chapter_id"] for ch in chapters]
     save_project_state(st, cfg)
 
-    built_files = [str(p) for p in (pdf_path, blog_path) if p.is_file()]
+    built_files = [str(p) for p in (docx_path, blog_path) if p.is_file()]
     return {
         "status": "OK",
         "project_id": project_id,
         "chapters_count": len(chapters),
         "total_visuals_bound": total_vis_loaded,
         "default_outputs": {
-            "master_pdf": {
-                "ok": pdf_ok,
-                "mode": pdf_mode,
-                "label_ko": pdf_label,
-                "url": rel_pdf,
-                "path": str(pdf_path) if pdf_ok else "",
-                "size_kb": round(pdf_path.stat().st_size / 1024, 1) if pdf_path.is_file() else 0,
+            "master_docx": {
+                "ok": docx_ok,
+                "mode": docx_mode,
+                "label_ko": docx_label,
+                "url": rel_docx,
+                "path": str(docx_path) if docx_ok else "",
+                "size_kb": round(docx_path.stat().st_size / 1024, 1) if docx_path.is_file() else 0,
             },
             "blog_single_html": {
                 "ok": blog_path.is_file(),
@@ -975,15 +1263,7 @@ def convert_project_output(
 
     elif fmt == "docx":
         out_p = conv_dir / f"{project_id}_master.docx"
-        combined_md = "\n\n---\n\n".join(ch["body"] for ch in chapters)
-        _build_report_docx(
-            f"{project_id}_master",
-            topic_ko,
-            f"{topic_en} · 참참살이 영농 AI 출판도우미 합본",
-            combined_md,
-            out_p,
-            visuals_map=visuals_map,
-        )
+        build_master_docx(st, chapters, out_p, visuals_map=visuals_map)
         if out_p.is_file():
             shutil.copy2(out_p, e_conv_dir / out_p.name)
             out_url = f"/project-files/{project_id}/exports/converted/{out_p.name}"
@@ -991,9 +1271,12 @@ def convert_project_output(
             size_kb = round(out_p.stat().st_size / 1024, 1)
 
     elif fmt == "markdown_master":
+        from math_typography import normalize_scientific_typography
+
         out_p = conv_dir / f"{project_id}_master.md"
         header = f"# {topic_ko}\n\n" + (f"*{topic_en}*\n\n" if topic_en else "")
-        out_p.write_text(header + "\n\n---\n\n".join(ch["body"] for ch in chapters) + "\n", encoding="utf-8")
+        body_norm = "\n\n---\n\n".join(normalize_scientific_typography(ch["body"], target_format="plain") for ch in chapters)
+        out_p.write_text(header + body_norm + "\n", encoding="utf-8")
         shutil.copy2(out_p, e_conv_dir / out_p.name)
         out_url = f"/project-files/{project_id}/exports/converted/{out_p.name}"
         out_files = [str(out_p)]
@@ -1110,11 +1393,15 @@ def list_project_outputs_summary(project_id: str, cfg: PlatformConfig | None = N
         raise FileNotFoundError(f"Project not found: {project_id}")
 
     outputs = st.get("outputs") or {}
+    docx_mode, docx_label = _recommended_default_docx_mode(st)
     pdf_mode, pdf_label = _recommended_default_pdf_mode(st)
     return {
         "project_id": project_id,
         "primary_output_type": st.get("primary_output_type") or "textbook",
         "default_outputs": {
+            "master_docx": outputs.get("master_docx") or "",
+            "master_docx_mode": outputs.get("master_docx_mode") or docx_mode,
+            "master_docx_label": outputs.get("master_docx_label") or docx_label,
             "master_pdf": outputs.get("master_pdf") or "",
             "master_pdf_mode": outputs.get("master_pdf_mode") or pdf_mode,
             "master_pdf_label": outputs.get("master_pdf_label") or pdf_label,

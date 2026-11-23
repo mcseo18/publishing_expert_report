@@ -105,12 +105,13 @@ def validate_known_formulas(markdown_text: str) -> list[dict[str, Any]]:
                     )
     return findings
 
-# 지원 LaTeX 심볼 테이블 (전 16장 전수 감사 기준 39종 명령어 + 일반 과학 기호 완비)
+# 지원 LaTeX 심볼 테이블 (그리스 문자·수학 연산자·집합·화살표·단위·함수명 완비)
 SYMBOL_MAP: dict[str, str] = {
-    # 그리스 문자
+    # 그리스 문자 (소문자·대문자)
     "alpha": "α",
     "beta": "β",
     "gamma": "γ",
+    "Gamma": "Γ",
     "delta": "δ",
     "Delta": "Δ",
     "epsilon": "ε",
@@ -118,6 +119,7 @@ SYMBOL_MAP: dict[str, str] = {
     "zeta": "ζ",
     "eta": "η",
     "theta": "θ",
+    "vartheta": "ϑ",
     "Theta": "Θ",
     "iota": "ι",
     "kappa": "κ",
@@ -126,12 +128,17 @@ SYMBOL_MAP: dict[str, str] = {
     "mu": "μ",
     "nu": "ν",
     "xi": "ξ",
+    "Xi": "Ξ",
     "pi": "π",
     "Pi": "Π",
     "rho": "ρ",
+    "varrho": "ϱ",
     "sigma": "σ",
+    "varsigma": "ς",
     "Sigma": "Σ",
     "tau": "τ",
+    "upsilon": "υ",
+    "Upsilon": "Υ",
     "phi": "φ",
     "varphi": "φ",
     "Phi": "Φ",
@@ -140,15 +147,24 @@ SYMBOL_MAP: dict[str, str] = {
     "Psi": "Ψ",
     "omega": "ω",
     "Omega": "Ω",
-    # 연산자·관계 기호
+    "ell": "ℓ",
+    # 연산자·관계·집합·논리 기호
     "times": "×",
     "cdot": "·",
+    "cdots": "⋯",
+    "ldots": "…",
+    "dots": "…",
     "pm": "±",
     "mp": "∓",
     "div": "÷",
+    "ast": "∗",
+    "star": "★",
+    "oplus": "⊕",
+    "otimes": "⊗",
     "approx": "≈",
     "sim": "~",
     "simeq": "≃",
+    "cong": "≅",
     "equiv": "≡",
     "neq": "≠",
     "ne": "≠",
@@ -162,24 +178,61 @@ SYMBOL_MAP: dict[str, str] = {
     "in": "∈",
     "notin": "∉",
     "subset": "⊂",
+    "subseteq": "⊆",
+    "supset": "⊃",
+    "supseteq": "⊇",
+    "cup": "∪",
+    "cap": "∩",
+    "emptyset": "∅",
+    "varnothing": "∅",
+    "forall": "∀",
+    "exists": "∃",
+    "neg": "¬",
+    "wedge": "∧",
+    "vee": "∨",
+    "perp": "⊥",
+    "parallel": "∥",
+    "angle": "∠",
+    "triangle": "△",
     "infty": "∞",
     "partial": "∂",
     "nabla": "∇",
     "sum": "∑",
     "prod": "∏",
     "int": "∫",
+    "oint": "∮",
     "circ": "°",
     "degree": "°",
     "deg": "°",
+    "prime": "′",
+    "mid": "|",
+    "setminus": "\\",
+    "langle": "⟨",
+    "rangle": "⟩",
+    "lfloor": "⌊",
+    "rfloor": "⌋",
+    "lceil": "⌈",
+    "rceil": "⌉",
+    "Vert": "‖",
+    "lVert": "‖",
+    "rVert": "‖",
+    "vert": "|",
+    "lvert": "|",
+    "rvert": "|",
     # 화살표·반응 기호
     "rightarrow": "→",
     "to": "→",
+    "longrightarrow": "⟶",
     "leftarrow": "←",
+    "longleftarrow": "⟵",
     "leftrightarrow": "↔",
+    "longleftrightarrow": "⟷",
     "Rightarrow": "⇒",
     "implies": "⇒",
     "Leftarrow": "⇐",
     "Leftrightarrow": "⇔",
+    "iff": "⇔",
+    "mapsto": "↦",
     "rightleftharpoons": "⇌",
     "uparrow": "↑",
     "downarrow": "↓",
@@ -191,9 +244,22 @@ SYMBOL_MAP: dict[str, str] = {
     "sin": "sin",
     "cos": "cos",
     "tan": "tan",
+    "arcsin": "arcsin",
+    "arccos": "arccos",
+    "arctan": "arctan",
     "max": "max",
     "min": "min",
+    "argmax": "argmax",
+    "argmin": "argmin",
+    "arg": "arg",
+    "sup": "sup",
+    "inf": "inf",
     "lim": "lim",
+    "det": "det",
+    "Pr": "Pr",
+    "std": "SD",
+    "var": "Var",
+    "cov": "Cov",
     # 공백·구분
     "quad": "  ",
     "qquad": "    ",
@@ -206,7 +272,56 @@ SYMBOL_MAP: dict[str, str] = {
     "Big": "",
     "bigg": "",
     "Bigg": "",
+    "displaystyle": "",
+    "textstyle": "",
+    "limits": "",
+    "nolimits": "",
 }
+
+_BLACKBOARD_MAP: dict[str, str] = {
+    "R": "ℝ",
+    "N": "ℕ",
+    "Z": "ℤ",
+    "Q": "ℚ",
+    "C": "ℂ",
+    "E": "𝔼",
+    "P": "ℙ",
+}
+
+_ACCENT_COMBINING: dict[str, str] = {
+    "hat": "\u0302",
+    "widehat": "\u0302",
+    "bar": "\u0304",
+    "overline": "\u0304",
+    "tilde": "\u0303",
+    "widetilde": "\u0303",
+    "vec": "\u20d7",
+    "dot": "\u0307",
+    "ddot": "\u0308",
+}
+
+_ACCENT_PRECOMPOSED: dict[tuple[str, str], str] = {
+    ("hat", "y"): "ŷ",
+    ("hat", "Y"): "Ŷ",
+    ("hat", "a"): "â",
+    ("hat", "e"): "ê",
+    ("hat", "i"): "î",
+    ("hat", "o"): "ô",
+    ("hat", "u"): "û",
+    ("bar", "y"): "ȳ",
+    ("bar", "Y"): "Ȳ",
+    ("bar", "a"): "ā",
+    ("bar", "e"): "ē",
+    ("bar", "i"): "ī",
+    ("bar", "o"): "ō",
+    ("bar", "u"): "ū",
+    ("tilde", "n"): "ñ",
+    ("tilde", "a"): "ã",
+    ("tilde", "o"): "õ",
+}
+
+_UNICODE_SUB_MAP = str.maketrans("0123456789+-=()aeoxhklmnpst", "₀₁₂₃₄₅₆₇₈₉₊₋₌₍₎ₐₑₒₓₕₖₗₘₙₚₛₜ")
+_UNICODE_SUP_MAP = str.maketrans("0123456789+-=()ni", "⁰¹²³⁴⁵⁶⁷⁸⁹⁺⁻⁼⁽⁾ⁿⁱ")
 
 
 def _read_brace_group(s: str, pos: int) -> tuple[str, int]:
@@ -313,9 +428,11 @@ def _parse_latex_segment(s: str, *, in_script: bool = False) -> str:
                 i += 1
                 continue
             nxt = s[i + 1]
-            # 1문자 이스케이프: \%, \_, \ , \,, \;, \:, \!
+            # 1문자 이스케이프: \|, \%, \_, \ , \,, \;, \:, \!
             if not nxt.isalpha():
-                if nxt in ("%", "_", "&", "#", "$", "{", "}"):
+                if nxt == "|":
+                    out.append("‖")
+                elif nxt in ("%", "_", "&", "#", "$", "{", "}"):
                     out.append(html.escape(nxt))
                 elif nxt in (" ", ",", ";", ":"):
                     out.append(" ")
@@ -331,13 +448,50 @@ def _parse_latex_segment(s: str, *, in_script: bool = False) -> str:
             cmd = m.group(0) if m else ""
             i += 1 + len(cmd)
 
-            # \text{...}, \mathrm{...}, \operatorname{...}
-            if cmd in ("text", "mathrm", "textrm", "operatorname", "rm"):
+            # \ce{...} 화학식 (mhchem 호환)
+            if cmd == "ce":
+                while i < n and s[i] == " ":
+                    i += 1
+                if i < n and s[i] == "{":
+                    grp, i = _read_brace_group(s, i)
+                    out.append(_parse_ce_formula(grp))
+                continue
+
+            # \text{...}, \mathrm{...}, \operatorname{...}, \mathsf{...}
+            if cmd in ("text", "mathrm", "textrm", "operatorname", "rm", "mathsf", "mathtt"):
                 while i < n and s[i] == " ":
                     i += 1
                 if i < n and s[i] == "{":
                     grp, i = _read_brace_group(s, i)
                     out.append(_format_plain_text_in_math(grp))
+                continue
+
+            # \mathbb{R}, \mathcal{L} 등 수학 특수 서체
+            if cmd in ("mathbb", "mathcal", "mathfrak"):
+                while i < n and s[i] == " ":
+                    i += 1
+                if i < n and s[i] == "{":
+                    grp, i = _read_brace_group(s, i)
+                    if cmd == "mathbb":
+                        out.append("".join(_BLACKBOARD_MAP.get(c, c) for c in grp))
+                    else:
+                        out.append(f"<i>{html.escape(grp)}</i>")
+                continue
+
+            # \hat{y}, \bar{y}, \overline{x}, \tilde{x}, \vec{v}, \dot{x} 등 악센트 기호
+            if cmd in _ACCENT_COMBINING:
+                while i < n and s[i] == " ":
+                    i += 1
+                arg, i = _read_script_arg(s, i)
+                rendered = _parse_latex_segment(arg, in_script=True).strip()
+                plain_r = re.sub(r"<[^>]+>", "", rendered)
+                base_cmd = "hat" if "hat" in cmd else ("bar" if cmd in ("bar", "overline") else ("tilde" if "tilde" in cmd else cmd))
+                if len(plain_r) == 1 and (base_cmd, plain_r) in _ACCENT_PRECOMPOSED:
+                    out.append(_ACCENT_PRECOMPOSED[(base_cmd, plain_r)])
+                elif len(plain_r) == 1:
+                    out.append(f"{plain_r}{_ACCENT_COMBINING[cmd]}")
+                else:
+                    out.append(f"{rendered}{_ACCENT_COMBINING[cmd]}")
                 continue
 
             # \mathbf{...}, \textbf{...}, \boldsymbol{...}
@@ -459,9 +613,98 @@ def _parse_latex_segment(s: str, *, in_script: bool = False) -> str:
     return res
 
 
+def _parse_ce_formula(ce_str: str) -> str:
+    """\\ce{...} 화학식·이온·반응식을 출판급 HTML 첨자(<sub>/<sup>)로 변환한다."""
+    s = ce_str.strip()
+    s = s.replace("<=>", " ⇌ ").replace("<->", " ↔ ").replace("->", " → ").replace("<-", " ← ")
+    # 명시적 위첨자 전하: ^{2+}, ^{3-}, ^+, ^-
+    s = re.sub(r"\^\{([^}]+)\}", lambda m: f"<sup>{m.group(1).replace('-', '−')}</sup>", s)
+    s = re.sub(r"\^([0-9]*[+-])", lambda m: f"<sup>{m.group(1).replace('-', '−')}</sup>", s)
+    # 원소/닫는괄호 뒤 전하: NH4+, NO3-, Ca2+, PO43-
+    s = re.sub(r"([A-Za-z\)])(\d+)([+-])(?=\s|$|[,;.)])", lambda m: f"{m.group(1)}<sub>{m.group(2)}</sub><sup>{m.group(3).replace('-', '−')}</sup>", s)
+    s = re.sub(r"([A-Za-z\)])([+-])(?=\s|$|[,;.)])", lambda m: f"{m.group(1)}<sup>{m.group(2).replace('-', '−')}</sup>", s)
+    # 원소/닫는괄호 뒤 화학량론 숫자: CO2, H2O, CaCO3, PO4
+    s = re.sub(r"([A-Za-z\)])(\d+)", r"\1<sub>\2</sub>", s)
+    return s
+
+
+# 평문 본문에서 안전하게 정규화할 표준 화학식·이온·단위 패턴 (URL/DOI/코드/모델명 보호 영역 외부에서만 적용)
+_PLAIN_CHEM_REPLACEMENTS: list[tuple[re.Pattern[str], str]] = [
+    # 주요 이온 (전하 포함)
+    (re.compile(r"\bNH4\+"), "NH<sub>4</sub><sup>+</sup>"),
+    (re.compile(r"\bNO3-(?!\w)"), "NO<sub>3</sub><sup>−</sup>"),
+    (re.compile(r"\bNO2-(?!\w)"), "NO<sub>2</sub><sup>−</sup>"),
+    (re.compile(r"\bPO4\^?3-"), "PO<sub>4</sub><sup>3−</sup>"),
+    (re.compile(r"\bHPO4\^?2-"), "HPO<sub>4</sub><sup>2−</sup>"),
+    (re.compile(r"\bH2PO4-(?!\w)"), "H<sub>2</sub>PO<sub>4</sub><sup>−</sup>"),
+    (re.compile(r"\bSO4\^?2-"), "SO<sub>4</sub><sup>2−</sup>"),
+    (re.compile(r"\bHCO3-(?!\w)"), "HCO<sub>3</sub><sup>−</sup>"),
+    (re.compile(r"\bCO3\^?2-"), "CO<sub>3</sub><sup>2−</sup>"),
+    (re.compile(r"\bCa2\+"), "Ca<sup>2+</sup>"),
+    (re.compile(r"\bMg2\+"), "Mg<sup>2+</sup>"),
+    (re.compile(r"\bFe2\+"), "Fe<sup>2+</sup>"),
+    (re.compile(r"\bFe3\+"), "Fe<sup>3+</sup>"),
+    (re.compile(r"\bAl3\+"), "Al<sup>3+</sup>"),
+    (re.compile(r"\bMn2\+"), "Mn<sup>2+</sup>"),
+    (re.compile(r"\bZn2\+"), "Zn<sup>2+</sup>"),
+    # 주요 분자·산화물·동위원소
+    (re.compile(r"\bCO2\b"), "CO<sub>2</sub>"),
+    (re.compile(r"\bCH4\b"), "CH<sub>4</sub>"),
+    (re.compile(r"\bN2O\b"), "N<sub>2</sub>O"),
+    (re.compile(r"\bH2O\b"), "H<sub>2</sub>O"),
+    (re.compile(r"\bO2\b"), "O<sub>2</sub>"),
+    (re.compile(r"\bN2\b"), "N<sub>2</sub>"),
+    (re.compile(r"\bNH3\b"), "NH<sub>3</sub>"),
+    (re.compile(r"\bCaCO3\b"), "CaCO<sub>3</sub>"),
+    (re.compile(r"\bP2O5\b"), "P<sub>2</sub>O<sub>5</sub>"),
+    (re.compile(r"\bK2O\b"), "K<sub>2</sub>O"),
+    (re.compile(r"\bSiO2\b"), "SiO<sub>2</sub>"),
+    (re.compile(r"δ13C\b"), "δ<sup>13</sup>C"),
+    (re.compile(r"\b13C-NMR\b"), "<sup>13</sup>C-NMR"),
+    (re.compile(r"δ15N\b"), "δ<sup>15</sup>N"),
+    # 주요 단위 지수·과학 지표 (단독 토큰 한정)
+    (re.compile(r"(?<![A-Za-z0-9_])(cm|mm|km|μm|um)2(?![A-Za-z0-9_])"), r"\1<sup>2</sup>"),
+    (re.compile(r"(?<![A-Za-z0-9_])(cm|mm|m)3(?![A-Za-z0-9_])"), r"\1<sup>3</sup>"),
+    (re.compile(r"(?<![A-Za-z0-9_])m2(?=/m2|[^A-Za-z0-9_]|$)"), "m<sup>2</sup>"),
+    (re.compile(r"(?<![A-Za-z0-9_])(m|s|d|day|h|ha|kg|g|L|mol)\^(-?\d+)(?![A-Za-z0-9_])"), lambda m: f"{m.group(1)}<sup>{m.group(2).replace('-', '−')}</sup>"),
+    (re.compile(r"\b(AP|AR)(25|50|75)\b"), r"\1<sub>\2</sub>"),
+    (re.compile(r"\bET0\b"), "ET<sub>0</sub>"),
+    (re.compile(r"\bETc\b"), "ET<sub>c</sub>"),
+    (re.compile(r"\bQ10\b"), "Q<sub>10</sub>"),
+    (re.compile(r"\bR2(?=\s*(?:=|>|<|≥|≤|값|는|가|의|\d))"), "R<sup>2</sup>"),
+]
+
+
+def normalize_plain_scientific_tokens(text: str) -> str:
+    """URL·DOI·코드·인용키·HTML 태그를 보호하면서 평문 화학식·원소이온·단위 지수를 <sub>/<sup>로 정규화한다."""
+    if not text:
+        return text
+    protected: list[str] = []
+
+    def _stash(m: re.Match[str]) -> str:
+        idx = len(protected)
+        protected.append(m.group(0))
+        return f"@@SCI_PROT_{idx}@@"
+
+    # 코드펜스, 인라인 코드, URL, DOI, [SRC-NN], HTML 태그 보호
+    s = re.sub(r"```[\s\S]*?```", _stash, text)
+    s = re.sub(r"`[^`\n]+`", _stash, s)
+    s = re.sub(r"https?://\S+", _stash, s)
+    s = re.sub(r"\b10\.\d{4,9}/[^\s\])]+", _stash, s)
+    s = re.sub(r"\[SRC-\d{2,4}[^\]]*\]", _stash, s)
+    s = re.sub(r"<[^>]+>", _stash, s)
+
+    for rx, repl in _PLAIN_CHEM_REPLACEMENTS:
+        s = rx.sub(repl, s)
+
+    for idx, orig in enumerate(protected):
+        s = s.replace(f"@@SCI_PROT_{idx}@@", orig)
+    return s
+
+
 def convert_markdown_math_to_html(md_text: str) -> str:
-    """마크다운 텍스트 내 코드펜스를 보존하면서 모든 $$...$$ 및 $...$ 수식을 출판급 HTML/Unicode로 변환한다."""
-    # 코드펜스 보호
+    """마크다운 텍스트 내 코드펜스를 보존하면서 모든 $$...$$, \\[...\\], $...$, \\(...\\) 수식을 출판급 HTML/Unicode로 변환한다."""
+    # 코드펜스·인라인 코드 보호
     fences: list[str] = []
 
     def _stash_fence(m: re.Match[str]) -> str:
@@ -470,6 +713,7 @@ def convert_markdown_math_to_html(md_text: str) -> str:
         return f"@@CODE_FENCE_{idx}@@"
 
     text = re.sub(r"```[\s\S]*?```", _stash_fence, md_text)
+    text = re.sub(r"`[^`\n]+`", _stash_fence, text)
 
     # 1) 인용 괄호 내부에 들어간 $...$ 선처리: [SRC-65, 퇴비화 $\rightarrow$ 이분해성 탄소]
     def _clean_cite_bracket(m: re.Match[str]) -> str:
@@ -484,7 +728,7 @@ def convert_markdown_math_to_html(md_text: str) -> str:
 
     text = re.sub(r"\[SRC-\d{2,4}[^\]]*\]", _clean_cite_bracket, text)
 
-    # 2) 블록 수식 $$...$$ 변환
+    # 2) 블록 수식 $$...$$ 및 \[...\] 변환
     def _replace_block(m: re.Match[str]) -> str:
         expr = m.group(1).strip()
         h, cites = latex_to_html(expr, display=True)
@@ -492,10 +736,14 @@ def convert_markdown_math_to_html(md_text: str) -> str:
         return f'\n<div class="math-block"><span class="math-eq">{h}</span>{cite_str}</div>\n'
 
     text = re.sub(r"\$\$([\s\S]*?)\$\$", _replace_block, text)
+    text = re.sub(r"\\\[([\s\S]*?)\\\]", _replace_block, text)
 
-    # 3) 인라인 수식 $...$ 변환 (같은 줄 내에서 좌→우 순차 매칭)
+    # 3) 인라인 수식 $...$ 및 \(...\) 변환 (통화 금액 $1.00 / $0.039 제외!)
     def _replace_inline(m: re.Match[str]) -> str:
         expr = m.group(1)
+        # 달러 통화($0.039, $1.00 등) 오인 방지: 앞뒤가 순수 금액 형태이고 LaTeX 기호가 없으면 유지
+        if re.fullmatch(r"\s*\d+(?:[.,]\d+)?\s*(?:~|-|–|to)?\s*(?:\d+(?:[.,]\d+)?)?\s*", expr):
+            return m.group(0)
         h, cites = latex_to_html(expr, display=False)
         cite_str = (" " + " ".join(cites)) if cites else ""
         if not h and cite_str:
@@ -503,12 +751,87 @@ def convert_markdown_math_to_html(md_text: str) -> str:
         return f"{h}{cite_str}"
 
     text = re.sub(r"(?<!\$)\$(?!\$)([^$\n]+?)(?<!\$)\$(?!\$)", _replace_inline, text)
+    text = re.sub(r"\\\(([^)\n]+?)\\\)", _replace_inline, text)
+
+    # 4) 평문 화학식·이온·단위 지수 정규화
+    text = normalize_plain_scientific_tokens(text)
 
     # 코드펜스 복원
     for idx, code in enumerate(fences):
         text = text.replace(f"@@CODE_FENCE_{idx}@@", code)
 
     return text
+
+
+def _html_scripts_to_unicode_plain(html_text: str) -> str:
+    """<sub>/<sup> HTML 태그를 순수 유니코드 첨자(또는 괄호 안전 표기)로 변환하고 태그를 제거한다."""
+    s = _flatten_html_math_for_docx(html_text)
+
+    def _rep_sub(m: re.Match[str]) -> str:
+        inner = re.sub(r"<[^>]+>", "", m.group(1)).strip()
+        if inner and all(ch in "0123456789+-=()aeoxhklmnpst" for ch in inner):
+            return inner.translate(_UNICODE_SUB_MAP)
+        return f"_{inner}" if len(inner) <= 3 else f"({inner})"
+
+    def _rep_sup(m: re.Match[str]) -> str:
+        inner = re.sub(r"<[^>]+>", "", m.group(1)).strip().replace("−", "-")
+        if inner and all(ch in "0123456789+-=()ni" for ch in inner):
+            return inner.translate(_UNICODE_SUP_MAP)
+        return f"^{inner}" if len(inner) <= 3 else f"^({inner})"
+
+    s = re.sub(r"<sub>([\s\S]*?)</sub>", _rep_sub, s, flags=re.I)
+    s = re.sub(r"<sup>([\s\S]*?)</sup>", _rep_sup, s, flags=re.I)
+    s = re.sub(r"</?(?:b|i|strong|em|span|div)(?:\s+[^>]*)?>", "", s, flags=re.I)
+    return html.unescape(s)
+
+
+def normalize_scientific_typography(text: str, *, target_format: str = "html") -> str:
+    """모든 문서 포맷(html | blog_html | docx | plain)에서 수식·특수기호·원소기호·첨자를 누수 없이 일괄 정규화한다."""
+    if not text:
+        return ""
+    fmt = (target_format or "html").strip().lower()
+    converted = convert_markdown_math_to_html(text)
+    if fmt == "html":
+        return converted
+    if fmt == "blog_html":
+        # 네이버 스마트에디터 등 CSS flex 분수가 깨지는 웹/블로그용 안전 인라인 평탄화 (<sub>/<sup>/<b>/<i> 유지)
+        s = converted
+        def _rep_frac_blog(m: re.Match[str]) -> str:
+            num = m.group(1).strip()
+            den = m.group(2).strip()
+            np = re.sub(r"<[^>]+>", "", num)
+            dp = re.sub(r"<[^>]+>", "", den)
+            ns = num if len(np) <= 6 and " " not in np else f"({num})"
+            ds = den if len(dp) <= 6 and " " not in dp else f"({den})"
+            return f"{ns} / {ds}"
+        for _ in range(3):
+            prev = s
+            s = re.sub(r'<span class="m-frac"><span class="m-num">([\s\S]*?)</span><span class="m-den">([\s\S]*?)</span></span>', _rep_frac_blog, s)
+            if s == prev:
+                break
+        s = re.sub(r'<span class="m-rxn"><span class="m-rxn-lbl">([\s\S]*?)</span><span class="m-rxn-arr">[^<]*</span></span>', r"—[\1]→", s)
+        return s
+    if fmt == "docx":
+        return _flatten_html_math_for_docx(converted)
+    if fmt == "plain":
+        return _html_scripts_to_unicode_plain(converted)
+    return converted
+
+
+_RAW_LATEX_LEAK_RE = re.compile(
+    r"(?:\\(?:boldsymbol|mathbf|mathrm|mathit|text|frac|dfrac|sqrt|sum|prod|int|alpha|beta|gamma|delta|Delta|mu|sigma|Sigma|theta|phi|lambda|rho|omega|Omega|ge|le|geq|leq|neq|approx|times|cdot|pm|in|hat|bar|tilde|vec|overline|ce|qquad|quad)\b)"
+    r"|(?:\$\$[^$]+\$\$)"
+    r"|(?:(?<!\$)\$(?!\$)[^$\n]*\\[a-zA-Z]+[^$\n]*\$)"
+)
+
+
+def detect_unformatted_math_leaks(text: str) -> list[str]:
+    """최종 산출물(DOCX/HTML/블로그/평문)에 미변환 LaTeX 명령어나 원시 수식 기호가 남아 있는지 탐지한다."""
+    if not text:
+        return []
+    # 코드 블록 제외
+    clean = re.sub(r"```[\s\S]*?```", "", text)
+    return [m.group(0) for m in _RAW_LATEX_LEAK_RE.finditer(clean)]
 
 
 def math_typography_css(theme: str = "print") -> str:
@@ -623,56 +946,57 @@ def add_rich_runs_to_docx_paragraph(
     base_bold: bool = False,
     font_name: str = "Malgun Gothic",
 ) -> None:
-    """HTML <sub>/<sup>/<b>/<i> 및 마크다운 서식을 네이티브 Word Run으로 추가한다."""
+    """LaTeX($...$/$$...$$)·화학식·단위·HTML <sub>/<sup>/<b>/<i>·마크다운 서식을 모두 네이티브 Word Run으로 안전 렌더링한다."""
     from docx.oxml.ns import qn
     from docx.shared import Pt, RGBColor
 
-    flat = _flatten_html_math_for_docx(text)
+    # 어떤 경로에서 원시 LaTeX나 평문 화학식이 들어와도 DOCX용으로 먼저 자동 정규화
+    flat = normalize_scientific_typography(text, target_format="docx")
     tokens = _INLINE_TAG_RE.split(flat)
 
-    bold = base_bold
-    italic = False
-    sub = False
-    sup = False
+    bold_depth = 1 if base_bold else 0
+    italic_depth = 0
+    sub_depth = 0
+    sup_depth = 0
 
     for tok in tokens:
         if not tok:
             continue
         low = tok.lower()
         if low in ("<b>", "<strong>"):
-            bold = True
+            bold_depth += 1
             continue
         if low in ("</b>", "</strong>"):
-            bold = base_bold
+            bold_depth = max(1 if base_bold else 0, bold_depth - 1)
             continue
         if low in ("<i>", "<em>"):
-            italic = True
+            italic_depth += 1
             continue
         if low in ("</i>", "</em>"):
-            italic = False
+            italic_depth = max(0, italic_depth - 1)
             continue
         if low == "<sub>":
-            sub = True
+            sub_depth += 1
             continue
         if low == "</sub>":
-            sub = False
+            sub_depth = max(0, sub_depth - 1)
             continue
         if low == "<sup>":
-            sup = True
+            sup_depth += 1
             continue
         if low == "</sup>":
-            sup = False
+            sup_depth = max(0, sup_depth - 1)
             continue
 
         run = paragraph.add_run(tok)
         run.font.name = font_name
         run._element.rPr.rFonts.set(qn("w:eastAsia"), font_name)
         run.font.size = Pt(font_size)
-        run.bold = bold
-        run.italic = italic
-        if sub:
+        run.bold = bold_depth > 0
+        run.italic = italic_depth > 0
+        if sub_depth > 0:
             run.font.subscript = True
-        if sup:
+        if sup_depth > 0:
             run.font.superscript = True
         if color_rgb is not None:
             run.font.color.rgb = RGBColor(*color_rgb)

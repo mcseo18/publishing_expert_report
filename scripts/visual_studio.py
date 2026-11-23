@@ -1070,7 +1070,7 @@ def audit_visual_assets(
         title = str(it.get("title_ko") or "")
         if "— 현장" in title or len(title) > 68:
             issues.append("그림 제목 과장/잘림 위험(장 제목 반복 제거 필요)")
-        src_str = str(it.get("data_source") or "").strip()
+        src_str = str(it.get("data_source") or it.get("source_note") or "").strip()
         if not src_str:
             issues.append("자료 출처(data_source) 미기재")
         else:

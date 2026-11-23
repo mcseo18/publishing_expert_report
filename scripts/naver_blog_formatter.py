@@ -320,9 +320,11 @@ def _sup_to_naver_plain(inner: str) -> str:
 
 
 def sanitize_math_for_naver_blog(fragment_html: str) -> str:
-    """네이버 블로그 SmartEditor ONE 붙여넣기 시 깨지는 CSS 분수·화살표·표 내부 sub/sup를
+    """네이버 블로그 SmartEditor ONE 붙여넣기 시 깨지는 LaTeX·CSS 분수·화살표·표 내부 sub/sup를
     100% 깨지지 않는 유니코드·평문 수식 표기로 변환한다."""
-    s = fragment_html
+    from math_typography import convert_markdown_math_to_html
+
+    s = convert_markdown_math_to_html(fragment_html) if ("$" in fragment_html or "\\" in fragment_html) else fragment_html
 
     # 1) 세로 분수 <span class="m-frac"> → A / B (또는 (A) / (B))
     def _rep_frac(m: re.Match[str]) -> str:

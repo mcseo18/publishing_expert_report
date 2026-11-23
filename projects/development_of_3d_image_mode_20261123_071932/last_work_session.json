@@ -7,17 +7,17 @@
   "last_stage_id": "stage6_publish_report",
   "last_stage_order": "6",
   "last_stage_title": "최종 출판·보고서",
-  "last_stage_status": "WAITING_REVIEW",
+  "last_stage_status": "DONE",
   "last_stage_progress": 100,
   "last_open_chapter": "",
   "last_visual_filter": "ALL",
   "last_action_summary": "⛔ 배포 보류(검토 필요) — 품질 개선 및 전문가 검토 후 재출판 필요",
-  "last_event_message": "💾 재실행 전 자동 백업 완료: 20261123_211424_stage2+stage4+stage5+stage6 (collected, reports, chapters, assets, exports)",
-  "done_stages": 5,
+  "last_event_message": "⛔ 배포 보류 설정 및 전체 백업 완료 (품질 감사 P1~P15 반영 대기)",
+  "done_stages": 6,
   "total_stages": 6,
-  "overall_status": "WAITING_REVIEW",
+  "overall_status": "DONE",
   "completed_chapters_count": 5,
   "completed_visuals_count": 10,
-  "saved_at": "2026-11-23T12:14:24+00:00",
-  "saved_at_local": "2026-11-23 21:14:24"
+  "saved_at": "2026-11-23T18:25:38+00:00",
+  "saved_at_local": "2026-11-24 03:25:38"
 }

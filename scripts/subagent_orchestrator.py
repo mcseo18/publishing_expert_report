@@ -2586,7 +2586,7 @@ def _run_stage6_publish_report(state: dict[str, Any], cfg: PlatformConfig) -> No
     pid = state["project_id"]
     sid = "stage6_publish_report"
     otype = state.get("primary_output_type") or (state.get("output_profile") or {}).get("primary_output_type") or "textbook"
-    pdf_desc = "국내 학회지 논문 규격 PDF(A4 2단)" if otype == "paper" else "마스터 PDF"
+    docx_desc = "국내 학회지 논문 투고 규격 DOCX(A4 · 3선표)" if otype == "paper" else "마스터 Word(DOCX)"
 
     # C6/C9/V7: 품질 게이트 미달 시 6단계 출판 차단
     gate = evaluate_publish_readiness(pid, cfg=cfg)
@@ -2602,10 +2602,10 @@ def _run_stage6_publish_report(state: dict[str, Any], cfg: PlatformConfig) -> No
         status="RUNNING",
         progress=15,
         started_at=utc_now_iso(),
-        current_action=f"기본 핵심 산출물 2종({pdf_desc} + 블로그용 단일 HTML) 생성 중...",
+        current_action=f"기본 핵심 산출물 2종({docx_desc} + 블로그용 단일 HTML) 생성 중...",
         error="",
     )
-    append_event(pid, "book-publisher", sid, f"6단계 시작: 중복 제거 기본 2종 출판 ({pdf_desc} + 블로그용 단일 HTML)", cfg=cfg)
+    append_event(pid, "book-publisher", sid, f"6단계 시작: 중복 제거 기본 2종 출판 ({docx_desc} + 블로그용 단일 HTML)", cfg=cfg)
 
     only_rev = bool((state.get("options") or {}).get("require_expert_review", True))
     res = publish_default_outputs(pid, only_reviewed=only_rev, check_quality_gate=False, cfg=cfg)
@@ -2615,7 +2615,7 @@ def _run_stage6_publish_report(state: dict[str, Any], cfg: PlatformConfig) -> No
         state.update(fresh)
 
     d_out = res.get("default_outputs") or {}
-    pdf_info = d_out.get("master_pdf") or {}
+    docx_info = d_out.get("master_docx") or {}
     blog_info = d_out.get("blog_single_html") or {}
     built_files = res.get("built_files") or []
 
@@ -2623,7 +2623,7 @@ def _run_stage6_publish_report(state: dict[str, Any], cfg: PlatformConfig) -> No
         pid,
         "book-publisher",
         sid,
-        f"기본 산출물 2종 완료: ① {pdf_info.get('label_ko', '마스터 PDF')} ({pdf_info.get('size_kb', 0)} KB), "
+        f"기본 산출물 2종 완료: ① {docx_info.get('label_ko', '마스터 DOCX')} ({docx_info.get('size_kb', 0)} KB), "
         f"② 블로그용 단일 HTML ({blog_info.get('size_kb', 0)} KB) · 시각화 {res.get('total_visuals_bound', 0)}종 결합",
         cfg=cfg,
     )
@@ -2638,12 +2638,12 @@ def _run_stage6_publish_report(state: dict[str, Any], cfg: PlatformConfig) -> No
         status="DONE",
         progress=100,
         finished_at=utc_now_iso(),
-        current_action=f"기본 산출물 2종 완료 ({pdf_info.get('label_ko', 'PDF')} + 블로그용 단일 HTML) · 추가 포맷은 변환 모듈에서 선택 생성",
+        current_action=f"기본 산출물 2종 완료 ({docx_info.get('label_ko', 'DOCX')} + 블로그용 단일 HTML) · PDF 등 추가 포맷은 변환 모듈에서 선택 생성",
         metrics={
             "published_files": len(built_files),
             "chapters_published": res.get("chapters_count", 0),
             "total_visuals_bound": res.get("total_visuals_bound", 0),
-            "master_pdf_mode": pdf_info.get("mode", ""),
+            "master_docx_mode": docx_info.get("mode", ""),
             "report": rep_md.name,
         },
         artifacts=[str(rep_md)] + built_files,

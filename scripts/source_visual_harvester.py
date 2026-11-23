@@ -912,6 +912,7 @@ def redraw_chart_from_harvested_table(
         "kind": "matplotlib_redrawn_from_table",
         "title_ko": full_title,
         "narrative_ko": narrative,
+        "data_source": source_note,
         "source_note": source_note,
         "provenance_type": "adapted_redrawn",
         "source_id": asset.get("source_id", ""),

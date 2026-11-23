@@ -116,6 +116,8 @@ def render_data_chart_png(
     y2_series: list[dict[str, Any]] | None = None,
     highlight_band: dict[str, Any] | None = None,
     x_log: bool = False,
+    y_lim: tuple[float, float] | None = None,
+    legend_loc: str = "",
     paper_mode: bool = False,
     csv_out_path: Path | None = None,
 ) -> dict[str, Any]:
@@ -249,14 +251,22 @@ def render_data_chart_png(
         handles += h2
         labels += l2
 
+    if y_lim is not None:
+        ax.set_ylim(y_lim[0], y_lim[1])
+    elif chart_type == "bar" and not y2_series:
+        ymin, ymax = ax.get_ylim()
+        ax.set_ylim(ymin, ymax * 1.18)
+
     if handles:
-        leg_loc = "lower left" if chart_type == "line" and y2_series else "upper left"
+        leg_loc = legend_loc or ("lower left" if chart_type == "line" and y2_series else "upper right" if chart_type == "bar" and not y2_series else "upper left")
         ax.legend(handles, labels, loc=leg_loc, frameon=True, framealpha=0.94)
 
+    sn_clean = source_note.strip()
+    footer_txt = sn_clean if sn_clean.startswith(("자료:", "출처:")) else f"자료: {sn_clean}"
     fig.text(
         0.015,
         0.012,
-        f"자료: {source_note.strip()}",
+        footer_txt,
         fontsize=7.3,
         color="#475569",
         ha="left",
