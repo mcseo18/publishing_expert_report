@@ -180,3 +180,189 @@ def test_c4_default_draft_model_is_26b() -> None:
     cfg = get_config()
     assert cfg.ollama_llm_model == "gemma4:26b"
     assert cfg.ollama_fast_model == "gemma4:latest"
+
+
+def test_gemini_cost_leak_guards_and_track_separation() -> None:
+    import inspect
+    from context_visual_director import NANO_BANANA_MODEL_CHAIN, rebuild_project_visuals_with_nano_banana
+    from image_generation_studio import ENGINE_UNIT_COST_USD, start_batch_generation_async
+    from output_type_profiles import resolve_output_profile
+    from visual_studio import _generate_with_nano_banana
+
+    # 1) 기본 이미지 모델은 저비용 gemini-2.5-flash-image이며 Pro로 자동 에스컬레이션되지 않아야 함
+    assert inspect.signature(_generate_with_nano_banana).parameters["model"].default == "gemini-2.5-flash-image"
+    assert NANO_BANANA_MODEL_CHAIN[0] == "gemini-2.5-flash-image"
+    assert "nano-banana-pro-preview" not in NANO_BANANA_MODEL_CHAIN
+    assert inspect.signature(rebuild_project_visuals_with_nano_banana).parameters["primary_model"].default == "gemini-2.5-flash-image"
+
+    # 2) 실제 단가 반영 및 기본 예산 상한 $1.00
+    assert ENGINE_UNIT_COST_USD["cited_redraw"] == 0.0
+    assert ENGINE_UNIT_COST_USD["nano_banana"] == pytest.approx(0.039)
+    assert ENGINE_UNIT_COST_USD["nano_banana_pro"] == pytest.approx(0.134)
+    assert inspect.signature(start_batch_generation_async).parameters["budget_limit_usd"].default == pytest.approx(1.0)
+
+    # 3) 논문 리뷰 vs 교과서 시작 트랙 분리 검증
+    p_paper = resolve_output_profile("paper")
+    p_tb = resolve_output_profile("textbook")
+    assert p_paper["workflow_track"] == "paper_review"
+    assert p_paper["visual_generation_mode"] == "cited_and_redrawn_only"
+    assert p_paper["default_use_nano_banana"] is False
+    assert p_paper["visual_priority"]["A"] == 0 and p_paper["visual_priority"]["B"] == 0
+    assert p_tb["workflow_track"] == "textbook"
+    assert p_tb["visual_generation_mode"] == "hybrid_cited"
+    assert p_tb["default_use_nano_banana"] is False
+
+
+def test_source_visual_harvester_jats_redraw_and_license_gate(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    from config import PlatformConfig
+    from PIL import Image
+    from source_visual_harvester import (
+        adopt_direct_reuse_figure,
+        build_provenance_caption,
+        classify_reuse_policy,
+        parse_jats_xml_tables_and_figures,
+        redraw_chart_from_harvested_table,
+        synthesize_multi_source_comparison_chart,
+    )
+
+    # 1) 라이선스 판정 검증 (CC-BY 허용, ND/All Rights Reserved 차단)
+    assert classify_reuse_policy(license_str="cc-by-4.0", is_oa=True)["can_direct_reuse"] is True
+    assert classify_reuse_policy(license_str="CC0", is_oa=True)["can_direct_reuse"] is True
+    assert classify_reuse_policy(license_str="공공누리 제1유형", is_oa=True)["can_direct_reuse"] is True
+    assert classify_reuse_policy(license_str="cc-by-nd-4.0", is_oa=True)["can_direct_reuse"] is False
+    assert classify_reuse_policy(license_str="All Rights Reserved", is_oa=False)["can_direct_reuse"] is False
+    assert classify_reuse_policy(license_str="", is_oa=False)["reuse_policy"] == "REDRAW_DATA_ONLY"
+
+    # 2) JATS XML 표·그림 파싱 검증
+    sample_jats = """<?xml version="1.0" encoding="UTF-8"?>
+    <article xmlns:xlink="http://www.w3.org/1999/xlink">
+      <front><article-meta><permissions>
+        <license license-type="open-access" xlink:href="https://creativecommons.org/licenses/by/4.0/">
+          <license-p>CC-BY 4.0</license-p>
+        </license>
+      </permissions></article-meta></front>
+      <body>
+        <table-wrap id="T1">
+          <label>Table 1</label>
+          <caption><p>3D crop reconstruction accuracy by sensor modality</p></caption>
+          <table>
+            <thead><tr><th>Method</th><th>RMSE (mm)</th><th>R2</th></tr></thead>
+            <tbody>
+              <tr><td>LiDAR</td><td>2.4 ± 0.3</td><td>0.96</td></tr>
+              <tr><td>SfM-MVS</td><td>4.8 ± 0.7</td><td>0.91</td></tr>
+              <tr><td>RGB-D</td><td>6.2 ± 0.9</td><td>0.87</td></tr>
+            </tbody>
+          </table>
+        </table-wrap>
+        <fig id="F1">
+          <label>Fig. 1</label>
+          <caption><p>Multi-view camera rig for tomato canopy 3D modeling</p></caption>
+          <graphic xlink:href="agronomy-14-00312-g001.jpg"/>
+        </fig>
+      </body>
+    </article>"""
+
+    out_dir = tmp_path / "extracted"
+    parsed = parse_jats_xml_tables_and_figures(
+        xml_text=sample_jats,
+        source_meta={
+            "source_id": "SRC-901",
+            "title": "3D Crop Phenotyping",
+            "authors": "Kim, J., Lee, S.",
+            "year": 2024,
+            "journal": "Agronomy",
+            "doi": "https://doi.org/10.3390/agronomy14020312",
+            "is_oa": True,
+        },
+        out_dir=out_dir,
+        pmcid="PMC10888888",
+    )
+    assert parsed["policy"]["can_direct_reuse"] is True
+    assert len(parsed["tables"]) == 1
+    assert parsed["tables"][0]["plottable"] is True
+    assert len(parsed["figures"]) == 1
+    assert "PMC10888888" in parsed["figures"][0]["remote_image_url"]
+
+    # 3) 격리된 임시 프로젝트 환경에서 표 → 300 DPI 그래프 재작성, 메타 통합, CC-BY 직접 인용 & 비-CC-BY 차단 검증
+    cfg = PlatformConfig(
+        workspace_root=tmp_path / "ws",
+        collected_data_root=tmp_path / "e_data",
+        smc_graphrag_root=tmp_path / "kg",
+        lightrag_working_dir=tmp_path / "kg" / "lightrag_store",
+        lightrag_workspace="test_ws",
+        lightrag_api_url="http://127.0.0.1:9621",
+        ollama_host="http://127.0.0.1:11434",
+        ollama_llm_model="gemma4:26b",
+        ollama_fast_model="gemma4:latest",
+        ollama_embed_model="bge-m3",
+        ollama_num_ctx=8192,
+        active_project="paper_test",
+    )
+    cfg.ensure_directories()
+    pid = "paper_test"
+    (cfg.project_dir(pid) / "assets").mkdir(parents=True, exist_ok=True)
+    state_dir = cfg.index_dir / "subagent_runs" / pid
+    state_dir.mkdir(parents=True, exist_ok=True)
+    (state_dir / "state.json").write_text(
+        json.dumps({"project_id": pid, "primary_output_type": "paper", "workspace_dir": str(cfg.project_dir(pid))}, ensure_ascii=False),
+        encoding="utf-8",
+    )
+
+    # 로컬 CC-BY 테스트 PNG와 비-CC-BY 차단 테스트 그림 자산 구성
+    cc_png = tmp_path / "cc_fig.png"
+    Image.new("RGB", (320, 240), (240, 248, 255)).save(cc_png)
+    fig_cc = dict(parsed["figures"][0])
+    fig_cc["local_image_path"] = str(cc_png)
+    fig_blocked = dict(parsed["figures"][0])
+    fig_blocked["asset_id"] = "src-902_blocked_f01"
+    fig_blocked["can_direct_reuse"] = False
+    fig_blocked["reuse_policy"] = "REDRAW_DATA_ONLY"
+    fig_blocked["license_normalized"] = "All Rights Reserved"
+
+    idx_payload = {"project_id": pid, "assets": [parsed["tables"][0], fig_cc, fig_blocked]}
+    (cfg.project_dir(pid) / "assets" / "harvested_visual_assets.json").write_text(
+        json.dumps(idx_payload, ensure_ascii=False, indent=2), encoding="utf-8"
+    )
+
+    # (a) 출처 표 → 300 DPI 논문 흑백 대응 그래프 재작성 (0원)
+    redrawn = redraw_chart_from_harvested_table(
+        project_id=pid,
+        asset_id=parsed["tables"][0]["asset_id"],
+        chapter_id="ch03",
+        figure_no="그림 3-1",
+        title_ko="센서별 3D 작물 복원 정확도 비교",
+        cfg=cfg,
+    )
+    assert Path(redrawn["visual"]["path"]).is_file()
+    assert Path(redrawn["visual"]["data_csv_path"]).is_file()
+    assert "[SRC-901]" in redrawn["visual"]["source_note"]
+    assert "Adapted from" in redrawn["visual"]["source_note"]
+
+    # (b) 다중 문헌 메타 비교 차트 통합 재작성 (0원)
+    meta_res = synthesize_multi_source_comparison_chart(
+        project_id=pid,
+        chapter_id="ch03",
+        figure_no="그림 3-2",
+        title_ko="선행 연구별 3D 초고 추정 오차 비교",
+        x_label="연구 (기법)",
+        y_label="RMSE (mm)",
+        records=[
+            {"label": "Kim et al. (LiDAR)", "value": 2.4, "yerr": 0.3, "source_id": "SRC-901"},
+            {"label": "Park et al. (SfM)", "value": 4.5, "yerr": 0.6, "source_id": "SRC-905"},
+        ],
+        cfg=cfg,
+    )
+    assert Path(meta_res["visual"]["path"]).is_file()
+    assert "SRC-901" in meta_res["visual"]["source_note"] and "SRC-905" in meta_res["visual"]["source_note"]
+
+    # (c) CC-BY 그림 직접 인용 허용 & 비-CC-BY 그림 차단 검증
+    adopted = adopt_direct_reuse_figure(project_id=pid, asset_id=fig_cc["asset_id"], chapter_id="ch03", cfg=cfg)
+    assert Path(adopted["visual"]["path"]).is_file()
+    assert "CC-BY" in adopted["visual"]["source_note"].upper()
+    assert "[SRC-901]" in adopted["visual"]["source_note"]
+
+    with pytest.raises(PermissionError):
+        adopt_direct_reuse_figure(project_id=pid, asset_id=fig_blocked["asset_id"], chapter_id="ch03", cfg=cfg)
+
+    cap = build_provenance_caption(provenance_type="direct_reuse", title_ko="제목", source_meta=fig_cc, orig_label="Fig. 1")
+    assert "Fig. 1" in cap and "[SRC-901]" in cap

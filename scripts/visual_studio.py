@@ -301,15 +301,19 @@ def _generate_with_nano_banana(
     *,
     prompt: str,
     out_path: Path,
-    model: str = "nano-banana-pro-preview",
+    model: str = "gemini-2.5-flash-image",
     api_key: str,
 ) -> tuple[bool, str]:
-    """Google Gemini 나노바나나(Nano Banana Pro 우선 폴백 체인) API로 실사진/과학 일러스트를 생성한다."""
+    """Google Gemini 저비용 이미지 모델(gemini-2.5-flash-image 기본, Pro는 명시 요청 시만)로 실사진/일러스트를 생성한다."""
     from google import genai
     from google.genai import types
 
     client = genai.Client(api_key=api_key)
-    chain = [model] + [m for m in ("nano-banana-pro-preview", "gemini-nano-banana-2.1", "gemini-3.1-flash-image", "gemini-2.5-flash-image") if m != model]
+    # 비용 누수 차단: flash 기본 호출 시 고가 Pro(nano-banana-pro-preview)로 자동 에스컬레이션 금지
+    if "pro" in (model or "").lower():
+        chain = [model, "gemini-2.5-flash-image"]
+    else:
+        chain = [model] + [m for m in ("gemini-2.5-flash-image", "gemini-3.1-flash-image") if m != model]
     last_err = ""
     out_path.parent.mkdir(parents=True, exist_ok=True)
     for mdl in chain:

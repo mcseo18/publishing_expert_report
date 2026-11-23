@@ -28,11 +28,13 @@ from compliance import utc_now_iso
 from config import PlatformConfig, get_config
 from data_connectors import resolve_api_key
 
-# 엔진별 1장당 예상 단가(USD) 및 원화 환산 기준
+# 엔진별 1장당 예상 단가(USD) 및 원화 환산 기준 (실제 Google Gemini/fal.ai 단가 반영)
 ENGINE_UNIT_COST_USD: dict[str, float] = {
     "free_local_only": 0.0,
-    "auto_hybrid": 0.04,      # AI 대상(A/B)만 과금, C/D는 무료(0원)
-    "nano_banana": 0.04,
+    "cited_redraw": 0.0,      # 원문 표 재작성 / CC-BY 직접 인용 (0원)
+    "auto_hybrid": 0.039,     # AI 대상(A/B)만 gemini-2.5-flash-image 과금, C/D는 무료(0원)
+    "nano_banana": 0.039,     # gemini-2.5-flash-image (표준 저비용)
+    "nano_banana_pro": 0.134, # nano-banana-pro-preview (고화질 표지·대표도판 선택 옵션)
     "fal_ai": 0.045,
 }
 USD_TO_KRW = 1400
@@ -577,13 +579,12 @@ def _render_single_paid_ai(
         ok, msg = _generate_with_fal_ai(prompt=prompt, out_path=tmp_png, fal_model=fal_model, api_key=fal_key)
     else:
         if gem_key:
-            for mdl in ("nano-banana-pro-preview", "gemini-2.5-flash-image"):
-                try:
-                    ok, msg = _generate_with_nano_banana(prompt=prompt, out_path=tmp_png, model=mdl, api_key=gem_key)
-                    if ok:
-                        break
-                except Exception as exc:
-                    errs.append(f"{mdl}: {str(exc)[:100]}")
+            # 이중 폴백 루프 제거 + 저비용 flash 기본 / 명시적 pro 옵션 분리
+            target_mdl = "nano-banana-pro-preview" if engine_mode == "nano_banana_pro" else "gemini-2.5-flash-image"
+            try:
+                ok, msg = _generate_with_nano_banana(prompt=prompt, out_path=tmp_png, model=target_mdl, api_key=gem_key)
+            except Exception as exc:
+                errs.append(f"{target_mdl}: {str(exc)[:100]}")
         if not ok and fal_key:
             try:
                 ok, msg = _generate_with_fal_ai(prompt=prompt, out_path=tmp_png, fal_model=fal_model, api_key=fal_key)
@@ -619,14 +620,14 @@ def _render_single_paid_ai(
 def start_batch_generation_async(
     *,
     project_id: str,
-    engine: str = "auto_hybrid",  # auto_hybrid | free_local_only | nano_banana | fal_ai
-    fal_model: str = "fal-ai/nano-banana-pro",
+    engine: str = "auto_hybrid",  # auto_hybrid | free_local_only | nano_banana | nano_banana_pro | fal_ai
+    fal_model: str = "fal-ai/nano-banana",
     figure_ids: list[str] | None = None,
     chapter_ids: list[str] | None = None,
     visual_types: list[str] | None = None,
     only_pending: bool = True,
     max_batch: int = 5,
-    budget_limit_usd: float = 0.0,
+    budget_limit_usd: float = 1.0,
     cfg: PlatformConfig | None = None,
 ) -> dict[str, Any]:
     """비용·장수 상한을 지키며 독립 백그라운드 스레드에서 분할 배치 이미지 생성을 시작한다."""
@@ -701,10 +702,10 @@ def start_batch_generation_async(
                     continue
                 job_info["current_figure"] = fid
                 use_paid = (
-                    engine in ("nano_banana", "fal_ai")
+                    engine in ("nano_banana", "nano_banana_pro", "fal_ai")
                     or (engine == "auto_hybrid" and it.get("type") in ("A", "B"))
                 )
-                unit_cost = ENGINE_UNIT_COST_USD.get(engine, 0.04) if use_paid else 0.0
+                unit_cost = ENGINE_UNIT_COST_USD.get(engine, 0.039) if use_paid else 0.0
                 if budget_limit_usd > 0 and use_paid and (spent + unit_cost) > budget_limit_usd + 1e-6:
                     job_info["message"] = f"예산 상한(${budget_limit_usd:.2f}) 도달로 안전 정지 ({job_info['succeeded']}장 완료)"
                     break
@@ -712,10 +713,11 @@ def start_batch_generation_async(
                 job_info["message"] = f"[{idx}/{len(target_ids)}] {fid} ({'유료 AI' if use_paid else '무료 로컬'}) 생성 중..."
                 try:
                     if use_paid:
+                        paid_mode = engine if engine in ("fal_ai", "nano_banana_pro") else "nano_banana"
                         _render_single_paid_ai(
                             it,
                             project_id=project_id,
-                            engine_mode="fal_ai" if engine == "fal_ai" else "nano_banana",
+                            engine_mode=paid_mode,
                             fal_model=fal_model,
                             ws=ws,
                             e_vis_root=e_vis_root,

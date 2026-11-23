@@ -623,7 +623,12 @@ def _migrate_to_v2_if_needed(state: dict[str, Any], cfg: PlatformConfig) -> dict
     opts.setdefault("use_gemini_outline", True)
     opts.setdefault("use_fal_ai", False)
     opts.setdefault("fal_model", "fal-ai/nano-banana")
-    opts.setdefault("use_nano_banana", True)
+    opts.setdefault("use_nano_banana", False)
+    opts.setdefault("allow_auto_paid_ai", False)
+    opts.setdefault("image_model_tier", "flash")
+    opts.setdefault("visual_budget_limit_usd", 1.0)
+    opts.setdefault("visual_generation_mode", "cited_and_redrawn_only" if state.get("primary_output_type") == "paper" else "hybrid_cited")
+    opts.setdefault("auto_harvest_oa_assets", True)
     opts.setdefault("visuals_per_chapter", 4)
     opts.setdefault("gemma_model", cfg.ollama_llm_model)
     opts.setdefault("kg_model", cfg.ollama_fast_model)
@@ -811,15 +816,22 @@ def create_project(
     resolved_persona = resolve_project_persona(resolved_profile["primary_output_type"], persona, cfg=cfg)
     type_spec = get_output_type_spec(primary_output_type)
 
+    is_paper_track = (resolved_profile["primary_output_type"] == "paper")
+    workflow_track = resolved_profile.get("workflow_track") or ("paper_review" if is_paper_track else resolved_profile["primary_output_type"])
     opts = {
         "use_gemini_outline": True,
         "use_fal_ai": False,
         "fal_model": "fal-ai/nano-banana",
-        "use_nano_banana": True,
-        "visuals_per_chapter": int(resolved_profile.get("visuals_per_chapter", 4)),
-        "enable_naver_blog": bool(resolved_profile.get("include_naver_hashtags", True)),
-        "enable_myths": bool(resolved_profile.get("include_myths", True)),
-        "enable_linked_quiz": bool(resolved_profile.get("include_exercises", True)),
+        "use_nano_banana": False,  # 비용 누수 차단: 5단계 자동 유료 AI 기본 OFF (출처 표/그림 재작성·SVG 0원 우선)
+        "allow_auto_paid_ai": False,
+        "image_model_tier": "flash",  # flash(gemini-2.5-flash-image, $0.039) | pro(nano-banana-pro-preview, $0.134)
+        "visual_budget_limit_usd": 0.0 if is_paper_track else 1.0,
+        "visual_generation_mode": "cited_and_redrawn_only" if is_paper_track else "hybrid_cited",
+        "auto_harvest_oa_assets": True,
+        "visuals_per_chapter": int(resolved_profile.get("visuals_per_chapter", 2 if is_paper_track else 4)),
+        "enable_naver_blog": bool(resolved_profile.get("include_naver_hashtags", not is_paper_track)),
+        "enable_myths": bool(resolved_profile.get("include_myths", not is_paper_track)),
+        "enable_linked_quiz": bool(resolved_profile.get("include_exercises", not is_paper_track)),
         "download_oa_pdf": True,
         "gemma_model": cfg.ollama_llm_model,
         "kg_model": cfg.ollama_fast_model,
@@ -830,7 +842,7 @@ def create_project(
         "domestic_agency_urls": [],
         "international_agency_urls": [],
         "trim_formats": type_spec.get("trim_formats", ["shinkuk", "b5", "a4"]),
-        "papers_per_query": 5,
+        "papers_per_query": 7 if is_paper_track else 5,
         "draft_chapter_limit": 0,  # 0 = 전체 단원 순차 집필
         **(options or {}),
     }
@@ -838,6 +850,7 @@ def create_project(
     now = utc_now_iso()
     state = {
         "workflow_version": 3,
+        "workflow_track": workflow_track,
         "project_id": pid,
         "is_reference_book": False,
         "primary_output_type": resolved_profile["primary_output_type"],
@@ -1668,6 +1681,32 @@ def _run_stage2_source_collect(state: dict[str, Any], cfg: PlatformConfig) -> No
     state["collected_sources"] = manifest["sources"]
     save_project_state(state, cfg)
 
+    # 2단계 후속(0원): OA 논문 JATS XML 및 PDF에서 인용/재작성 가능한 표·CC-BY 그림 자동 색인
+    harvest_summary: dict[str, Any] = {}
+    if opts.get("auto_harvest_oa_assets", True):
+        try:
+            from source_visual_harvester import harvest_project_visual_assets
+
+            _update_stage(state, sid, cfg, progress=92, current_action="OA 원문 표·CC-BY 그림 자동 추출(0원) 중...")
+            h_res = harvest_project_visual_assets(
+                pid,
+                max_jats=8 if state.get("primary_output_type") == "paper" else 4,
+                max_pdfs=4,
+                cfg=cfg,
+            )
+            harvest_summary = h_res.get("summary") or {}
+            state["harvested_visuals_summary"] = harvest_summary
+            save_project_state(state, cfg)
+            append_event(
+                pid,
+                "web-scout",
+                sid,
+                f"OA 표·그림 자동 추출 완료(0원): 표 {harvest_summary.get('tables', 0)}건(그래프화 가능 {harvest_summary.get('plottable_tables', 0)}건), CC-BY 그림 {harvest_summary.get('direct_reuse_figures', 0)}건",
+                cfg=cfg,
+            )
+        except Exception as exc:
+            append_event(pid, "web-scout", sid, f"OA 표·그림 자동 추출 생략: {exc}", level="WARN", cfg=cfg)
+
     _update_stage(state, sid, cfg, progress=95, current_action="2단계 자료 수집 현황 보고서(02_collection_report.md) 작성 중...")
     rep_md = _write_stage2_report(state, cfg)
     append_event(pid, "web-scout", sid, f"2단계 자료 수집 현황 보고서 생성 완료: {rep_md.name} (총 {manifest['total_collected']}건)", cfg=cfg)
@@ -1678,13 +1717,15 @@ def _run_stage2_source_collect(state: dict[str, Any], cfg: PlatformConfig) -> No
         status="DONE",
         progress=100,
         finished_at=utc_now_iso(),
-        current_action=f"자료 수집 완료 총 {manifest['total_collected']}건 · 현황 보고서 생성 완료",
+        current_action=f"자료 수집 완료 총 {manifest['total_collected']}건 · 추출 표 {harvest_summary.get('tables', 0)}건 · 보고서 생성 완료",
         metrics={
             "total_collected": manifest["total_collected"],
             "01_국내기관": bd["domestic_agencies"],
             "02_국내학회": bd["domestic_journals"],
             "03_해외기관": bd["international_agencies"],
             "04_국제SCI": bd["international_journals"],
+            "harvested_tables": harvest_summary.get("tables", 0),
+            "harvested_cc_figures": harvest_summary.get("direct_reuse_figures", 0),
             "report": rep_md.name,
         },
         artifacts=[str(rep_md), res["manifest_path"], res["index_md_path"]],
@@ -2306,25 +2347,39 @@ def _run_stage5_visuals_generate(state: dict[str, Any], cfg: PlatformConfig) -> 
             metrics={"total_visuals": 0, "per_chapter": 0, "ai_images": 0, "svg_charts": 0},
         )
         return
-    use_fal = bool(opts.get("use_fal_ai", False))
-    fal_model = opts.get("fal_model") or "fal-ai/nano-banana-pro"
-    use_nb = bool(opts.get("use_nano_banana", True))
+    is_paper_track = (state.get("primary_output_type") == "paper")
+    use_fal = bool(opts.get("use_fal_ai", False)) and not is_paper_track
+    fal_model = opts.get("fal_model") or "fal-ai/nano-banana"
+    use_nb = bool(opts.get("use_nano_banana", False)) and not is_paper_track
+    allow_auto_paid = bool(opts.get("allow_auto_paid_ai", False)) and not is_paper_track
+    model_tier = str(opts.get("image_model_tier") or "flash").lower()
+    nb_primary = "nano-banana-pro-preview" if model_tier == "pro" else "gemini-2.5-flash-image"
+
+    # 5단계 선행(0원): OA 원문 표·CC-BY 그림 자산 인덱스 최신화
+    try:
+        from source_visual_harvester import harvest_project_visual_assets
+
+        h_res = harvest_project_visual_assets(pid, max_jats=6 if is_paper_track else 3, max_pdfs=3, cfg=cfg)
+        state["harvested_visuals_summary"] = h_res.get("summary") or {}
+        save_project_state(state, cfg)
+    except Exception:
+        pass
 
     ch_dir = Path(state["workspace_dir"]) / "chapters"
     drafted_files = sorted(ch_dir.glob("*.mdx"))
     gemini_key = resolve_api_key("GEMINI_API_KEY", None, cfg)
 
-    # 원고가 집필되어 있고 GEMINI_API_KEY가 있으면 『weed_control』 문맥 기반 Nano Banana Pro 엔진을 기본 사용
-    if drafted_files and gemini_key and (use_nb or use_fal):
+    # 비용 누수 차단: 전량 유료 AI 엔진은 사용자가 명시적으로 allow_auto_paid_ai=True를 켠 비-논문 프로젝트에서만 실행
+    if allow_auto_paid and drafted_files and gemini_key and (use_nb or use_fal):
         try:
             from context_visual_director import rebuild_project_visuals_with_nano_banana
 
             res = rebuild_project_visuals_with_nano_banana(
                 pid,
                 per_chapter_count=per_ch,
-                primary_model="nano-banana-pro-preview",
+                primary_model=nb_primary,
                 backend="fal" if (use_fal and resolve_api_key("FAL_KEY", None, cfg)) else "google",
-                max_workers=4,
+                max_workers=2,
                 purge_first=False,
                 cfg=cfg,
             )
@@ -2335,7 +2390,7 @@ def _run_stage5_visuals_generate(state: dict[str, Any], cfg: PlatformConfig) -> 
                 state.update(fresh)
             return
         except Exception as exc:
-            append_event(pid, "visual-artist", sid, f"문맥 기반 Nano Banana Pro 엔진 폴백 → visual_studio 사용: {exc}", level="WARN", cfg=cfg)
+            append_event(pid, "visual-artist", sid, f"문맥 기반 이미지 AI 엔진 폴백 → 저비용 하이브리드 visual_studio 사용: {exc}", level="WARN", cfg=cfg)
 
     _update_stage(
         state,

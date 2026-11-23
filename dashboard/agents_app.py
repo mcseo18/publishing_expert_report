@@ -204,7 +204,12 @@ class CreateProjectRequest(BaseModel):
     use_gemini_outline: bool = True
     use_fal_ai: bool = False
     fal_model: str = "fal-ai/nano-banana"
-    use_nano_banana: bool = True
+    use_nano_banana: bool = False  # 비용 누수 차단: 5단계 자동 유료 AI 기본 OFF
+    allow_auto_paid_ai: bool = False
+    image_model_tier: str = "flash"  # flash | pro
+    visual_budget_limit_usd: float = Field(default=1.0, ge=0.0, le=500.0)
+    visual_generation_mode: str = "hybrid_cited"  # cited_and_redrawn_only | hybrid_cited | paid_ai_batch
+    auto_harvest_oa_assets: bool = True
     visuals_per_chapter: int = Field(default=4, ge=0, le=25)
     gemma_model: str = "gemma4:26b"
     use_claude_review: bool = False
@@ -621,9 +626,14 @@ def api_create_project(req: CreateProjectRequest) -> dict[str, Any]:
             "domestic_agency_urls": req.domestic_agency_urls,
             "international_agency_urls": req.international_agency_urls,
             "use_gemini_outline": req.use_gemini_outline,
-            "use_fal_ai": req.use_fal_ai,
+            "use_fal_ai": req.use_fal_ai if req.primary_output_type != "paper" else False,
             "fal_model": req.fal_model,
-            "use_nano_banana": req.use_nano_banana,
+            "use_nano_banana": req.use_nano_banana if req.primary_output_type != "paper" else False,
+            "allow_auto_paid_ai": req.allow_auto_paid_ai if req.primary_output_type != "paper" else False,
+            "image_model_tier": req.image_model_tier,
+            "visual_budget_limit_usd": 0.0 if req.primary_output_type == "paper" else req.visual_budget_limit_usd,
+            "visual_generation_mode": "cited_and_redrawn_only" if req.primary_output_type == "paper" else req.visual_generation_mode,
+            "auto_harvest_oa_assets": req.auto_harvest_oa_assets,
             "visuals_per_chapter": req.visuals_per_chapter,
             "gemma_model": req.gemma_model,
             "kg_model": "gemma4:latest",
@@ -2175,14 +2185,138 @@ def api_image_studio_plan(project_id: str, req: StudioPlanRequest) -> dict[str, 
 
 
 class StudioGenerateRequest(BaseModel):
-    engine: str = "auto_hybrid"  # auto_hybrid | free_local_only | nano_banana | fal_ai
-    fal_model: str = "fal-ai/nano-banana-pro"
+    engine: str = "auto_hybrid"  # auto_hybrid | free_local_only | nano_banana | nano_banana_pro | fal_ai
+    fal_model: str = "fal-ai/nano-banana"
     figure_ids: list[str] | None = None
     chapter_ids: list[str] | None = None
     visual_types: list[str] | None = None
     only_pending: bool = True
     max_batch: int = Field(default=5, ge=0, le=200)
-    budget_limit_usd: float = Field(default=0.0, ge=0.0, le=500.0)
+    budget_limit_usd: float = Field(default=1.0, ge=0.0, le=500.0)
+
+
+class HarvestAssetsRequest(BaseModel):
+    max_jats: int = Field(default=8, ge=0, le=30)
+    max_pdfs: int = Field(default=4, ge=0, le=20)
+    fetch_remote_jats: bool = True
+
+
+class RedrawFromTableRequest(BaseModel):
+    chapter_id: str = "ch03"
+    figure_no: str = ""
+    title_ko: str = ""
+    chart_type: str = "bar"  # bar | line
+    x_col: int | None = None
+    y_cols: list[int] | None = None
+    x_label: str = ""
+    y_label: str = ""
+
+
+class AdoptCitedFigureRequest(BaseModel):
+    chapter_id: str = "ch03"
+    figure_no: str = ""
+    title_ko: str = ""
+
+
+class SynthesizeMetaChartRequest(BaseModel):
+    chapter_id: str = "ch03"
+    figure_no: str = "그림 3-1"
+    title_ko: str
+    x_label: str
+    y_label: str
+    chart_type: str = "bar"
+    series_label: str = "보고 지표"
+    records: list[dict[str, Any]]
+
+
+@app.post("/api/projects/{project_id}/harvest-assets")
+def api_harvest_project_visual_assets(project_id: str, req: HarvestAssetsRequest | None = None) -> dict[str, Any]:
+    from source_visual_harvester import harvest_project_visual_assets
+
+    r = req or HarvestAssetsRequest()
+    try:
+        return harvest_project_visual_assets(
+            project_id,
+            max_jats=r.max_jats,
+            max_pdfs=r.max_pdfs,
+            fetch_remote_jats=r.fetch_remote_jats,
+        )
+    except FileNotFoundError:
+        raise HTTPException(status_code=404, detail="Project not found")
+    except Exception as exc:
+        raise HTTPException(status_code=400, detail=f"OA 표·그림 추출 오류: {exc}")
+
+
+@app.get("/api/projects/{project_id}/harvested-assets")
+def api_get_harvested_assets(project_id: str) -> dict[str, Any]:
+    from source_visual_harvester import load_harvested_assets
+
+    return load_harvested_assets(project_id)
+
+
+@app.post("/api/projects/{project_id}/harvested-assets/{asset_id}/redraw")
+def api_redraw_harvested_table(project_id: str, asset_id: str, req: RedrawFromTableRequest) -> dict[str, Any]:
+    from source_visual_harvester import redraw_chart_from_harvested_table
+
+    try:
+        return redraw_chart_from_harvested_table(
+            project_id=project_id,
+            asset_id=asset_id,
+            chapter_id=req.chapter_id,
+            figure_no=req.figure_no,
+            title_ko=req.title_ko,
+            chart_type=req.chart_type,
+            x_col=req.x_col,
+            y_cols=req.y_cols,
+            x_label=req.x_label,
+            y_label=req.y_label,
+        )
+    except FileNotFoundError as exc:
+        raise HTTPException(status_code=404, detail=str(exc))
+    except Exception as exc:
+        raise HTTPException(status_code=400, detail=f"출처 표 그래프 재작성 오류: {exc}")
+
+
+@app.post("/api/projects/{project_id}/harvested-assets/{asset_id}/adopt")
+def api_adopt_cited_figure(project_id: str, asset_id: str, req: AdoptCitedFigureRequest) -> dict[str, Any]:
+    from source_visual_harvester import adopt_direct_reuse_figure
+
+    try:
+        return adopt_direct_reuse_figure(
+            project_id=project_id,
+            asset_id=asset_id,
+            chapter_id=req.chapter_id,
+            figure_no=req.figure_no,
+            title_ko=req.title_ko,
+        )
+    except PermissionError as exc:
+        raise HTTPException(status_code=403, detail=str(exc))
+    except FileNotFoundError as exc:
+        raise HTTPException(status_code=404, detail=str(exc))
+    except Exception as exc:
+        raise HTTPException(status_code=400, detail=f"CC-BY 그림 직접 인용 오류: {exc}")
+
+
+@app.post("/api/projects/{project_id}/harvested-assets/synthesize")
+def api_synthesize_meta_chart(project_id: str, req: SynthesizeMetaChartRequest) -> dict[str, Any]:
+    from source_visual_harvester import synthesize_multi_source_comparison_chart
+
+    try:
+        return synthesize_multi_source_comparison_chart(
+            project_id=project_id,
+            chapter_id=req.chapter_id,
+            figure_no=req.figure_no,
+            title_ko=req.title_ko,
+            x_label=req.x_label,
+            y_label=req.y_label,
+            records=req.records,
+            chart_type=req.chart_type,
+            series_label=req.series_label,
+        )
+    except FileNotFoundError as exc:
+        raise HTTPException(status_code=404, detail=str(exc))
+    except Exception as exc:
+        raise HTTPException(status_code=400, detail=f"다중 문헌 메타 차트 생성 오류: {exc}")
 
 
 @app.post("/api/projects/{project_id}/image-studio/generate")

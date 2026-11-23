@@ -3213,15 +3213,28 @@ function renderStage5Body(st) {
           </select>
         </div>
         <label class="flex" style="background:var(--surface);padding:9px 12px;border-radius:8px;border:1px solid var(--border)">
-          <input type="checkbox" id="s5UseNb" ${opts.use_nano_banana!==false ? "checked" : ""} />
-          <span><strong>나노바나나(구글 Gemini)</strong><br><small class="muted">유료 · 사진형 그림 생성</small></span>
+          <input type="checkbox" id="s5UseNb" ${opts.use_nano_banana === true ? "checked" : ""} ${st.primary_output_type === "paper" ? "disabled" : ""} />
+          <span><strong>나노바나나(Gemini Flash $0.039)</strong><br><small class="muted">${st.primary_output_type === "paper" ? "논문 트랙: AI 실사 자동 차단(0원)" : "기본 OFF · 0원 출처 재작성 우선"}</small></span>
         </label>
         <div>
           <label class="label">단원당 시각화 개수 (0~25)</label>
-          <input type="number" id="s5PerCh" min="0" max="25" value="${opts.visuals_per_chapter !== undefined && opts.visuals_per_chapter !== null ? opts.visuals_per_chapter : 6}" />
+          <input type="number" id="s5PerCh" min="0" max="25" value="${opts.visuals_per_chapter !== undefined && opts.visuals_per_chapter !== null ? opts.visuals_per_chapter : 4}" />
         </div>
       </div>
-      <div class="muted mt8">※ 그림은 단원별 폴더(C 드라이브 + E 드라이브 백업)에 저장되고, 6단계 출판 때 PDF·Word·블로그 본문에 설명과 함께 들어갑니다. 그림을 바꾼 뒤에는 6단계를 다시 실행해야 출판물에 반영됩니다.</div>
+      <div class="muted mt8">※ 비용 보호 기본값: <strong>OA 원문 표 재작성(300 DPI) · CC-BY 직접 인용 · SVG 구조도(0원)</strong>가 우선 적용됩니다. 유료 AI 실사가 필요하면 [🖼️ 이미지 스튜디오]에서 저비용 Flash($0.039)로 선택 생성하세요.</div>
+    </div>
+
+    <div class="card" style="background:#0f261e;border-color:rgba(52,211,153,.45);margin-bottom:12px">
+      <div class="card-head" style="margin-bottom:8px">
+        <h3 class="card-title">📚 출처 확보 표·그림 라이브러리 <span class="muted" style="font-weight:500">심층 검색 OA 논문(Europe PMC JATS · PDF Docling) → 0원 재작성·직접 인용</span></h3>
+        <div class="flex">
+          <button class="btn-sm btn-primary" onclick="triggerHarvestAssets()">🔍 OA 원문 표·그림 추출 (0원)</button>
+          <button class="btn-sm" onclick="loadHarvestedAssets()">🔄 추출 목록 보기</button>
+        </div>
+      </div>
+      <div id="s5HarvestBox" class="muted" style="font-size:12.5px">
+        ${st.harvested_visuals_summary ? `추출됨: 표 <strong>${st.harvested_visuals_summary.tables || 0}건</strong> (그래프화 가능 ${st.harvested_visuals_summary.plottable_tables || 0}건) · CC-BY 직접 인용 가능 그림 <strong>${st.harvested_visuals_summary.direct_reuse_figures || 0}건</strong> — [🔄 추출 목록 보기]를 눌러 단원에 배치하세요.` : "[🔍 OA 원문 표·그림 추출 (0원)]을 누르면 수집된 논문에서 표와 CC-BY 그림을 자동 추출해 출처가 명시된 300 DPI 그래프로 재작성할 수 있습니다."}
+      </div>
     </div>
 
     <div class="grid-4 mb8">
@@ -4072,13 +4085,96 @@ async function saveStage5VisualOptions() {
     use_fal_ai: document.getElementById("s5UseFal").checked,
     fal_model: document.getElementById("s5FalModel").value,
     use_nano_banana: document.getElementById("s5UseNb").checked,
-    visuals_per_chapter: Math.max(0, Math.min(25, isNaN(parsedPer) ? 6 : parsedPer)),
+    visuals_per_chapter: Math.max(0, Math.min(25, isNaN(parsedPer) ? 4 : parsedPer)),
   };
   try {
     const res = await api(`/api/projects/${CURRENT_PID}/options`, { method: "PATCH", body: JSON.stringify(payload) });
     if (res.project) CURRENT_STATE = res.project;
     toast(`✅ 그림 설정을 저장했습니다 (단원당 ${payload.visuals_per_chapter}개). 분할 생성은 [🖼️ 이미지 스튜디오]를 이용하세요.`, 4500);
   } catch (e) { toast("❌ " + e.message); }
+}
+
+// --- 5단계: OA 원문 표·그림 추출 & 0원 재작성/직접 인용 ---
+function _renderHarvestedAssetsBox(data) {
+  const box = document.getElementById("s5HarvestBox");
+  if (!box) return;
+  const assets = (data && data.assets) || [];
+  const sm = (data && data.summary) || {};
+  if (!assets.length) {
+    box.innerHTML = `<div class="muted">추출된 원문 표·그림이 아직 없습니다. 2단계 수집 또는 1단계 앵커 PDF 업로드 후 [🔍 OA 원문 표·그림 추출 (0원)]을 눌러 주세요.</div>`;
+    return;
+  }
+  const rows = assets.slice(0, 25).map(a => {
+    const isTbl = a.asset_kind === "table";
+    const licBadge = a.can_direct_reuse
+      ? `<span class="badge b-done">${esc(a.badge_ko || a.license_normalized)}</span>`
+      : `<span class="badge b-warn">${esc(a.badge_ko || "수치 재작성 전용")}</span>`;
+    const actionBtn = isTbl
+      ? (a.plottable
+          ? `<button class="btn-sm btn-primary" onclick="redrawHarvestedTable('${esc(a.asset_id)}')">📊 300 DPI 그래프 재작성 (0원)</button>`
+          : `<span class="muted">비수치 표 (문헌 비교표 인용)</span>`)
+      : (a.can_direct_reuse
+          ? `<button class="btn-sm btn-gold" onclick="adoptCitedFigure('${esc(a.asset_id)}')">✅ CC-BY 직접 인용 (0원)</button>`
+          : `<span class="muted">원본 복제 차단 (저작권 보호)</span>`);
+    return `<tr>
+      <td><strong>[${esc(a.source_id)}]</strong> ${esc(a.orig_label || a.asset_id)}<br><small class="muted">${esc((a.caption || a.source_title || "").slice(0, 95))}</small></td>
+      <td>${isTbl ? `표 (${a.row_count || 0}행)` : "원문 그림"}</td>
+      <td>${licBadge}</td>
+      <td>${actionBtn}</td>
+    </tr>`;
+  }).join("");
+  box.innerHTML = `
+    <div style="margin-bottom:8px">총 <strong>${sm.total_assets || assets.length}건</strong> — 표 <strong>${sm.tables || 0}건</strong> (그래프화 가능 ${sm.plottable_tables || 0}건) · CC-BY 직접 인용 그림 <strong>${sm.direct_reuse_figures || 0}건</strong> · 재작성 전용 <strong>${sm.redraw_only_assets || 0}건</strong></div>
+    <table class="tbl"><thead><tr><th>출처 · 원문 항목</th><th>유형</th><th>라이선스 정책</th><th>0원 작업</th></tr></thead><tbody>${rows}</tbody></table>`;
+}
+
+async function loadHarvestedAssets() {
+  if (!CURRENT_PID) return;
+  try {
+    const res = await api(`/api/projects/${CURRENT_PID}/harvested-assets`);
+    _renderHarvestedAssetsBox(res);
+  } catch (e) { toast("❌ " + e.message); }
+}
+
+async function triggerHarvestAssets() {
+  if (!CURRENT_PID) return;
+  const box = document.getElementById("s5HarvestBox");
+  if (box) box.innerHTML = `<div class="muted">⏳ Europe PMC JATS XML 및 PDF Docling에서 표·CC-BY 그림을 추출 중입니다 (비용 0원)...</div>`;
+  try {
+    const res = await api(`/api/projects/${CURRENT_PID}/harvest-assets`, { method: "POST", body: JSON.stringify({ max_jats: 8, max_pdfs: 4, fetch_remote_jats: true }) });
+    _renderHarvestedAssetsBox(res);
+    toast(`✅ OA 표·그림 추출 완료: 표 ${res.summary?.tables || 0}건 · CC-BY 그림 ${res.summary?.direct_reuse_figures || 0}건`, 5000);
+  } catch (e) { toast("❌ " + e.message, 5000); }
+}
+
+async function redrawHarvestedTable(assetId) {
+  if (!CURRENT_PID) return;
+  const ch = prompt("어느 단원에 배치할까요? (예: ch03, ch05)", "ch03");
+  if (!ch) return;
+  try {
+    const res = await api(`/api/projects/${CURRENT_PID}/harvested-assets/${encodeURIComponent(assetId)}/redraw`, {
+      method: "POST",
+      body: JSON.stringify({ chapter_id: ch.trim(), chart_type: "bar" }),
+    });
+    toast(`✅ 300 DPI 출처 그래프 재작성 완료 (0원): ${res.visual?.title_ko || assetId}`, 5000);
+    VISUALS_CACHE = await api(`/api/projects/${CURRENT_PID}/visuals`);
+    renderStageDetail();
+  } catch (e) { toast("❌ " + e.message, 5000); }
+}
+
+async function adoptCitedFigure(assetId) {
+  if (!CURRENT_PID) return;
+  const ch = prompt("CC-BY 그림을 배치할 단원 ID를 입력하세요 (예: ch03)", "ch03");
+  if (!ch) return;
+  try {
+    const res = await api(`/api/projects/${CURRENT_PID}/harvested-assets/${encodeURIComponent(assetId)}/adopt`, {
+      method: "POST",
+      body: JSON.stringify({ chapter_id: ch.trim() }),
+    });
+    toast(`✅ CC-BY 원문 그림 직접 인용 완료 (0원): ${res.visual?.title_ko || assetId}`, 5000);
+    VISUALS_CACHE = await api(`/api/projects/${CURRENT_PID}/visuals`);
+    renderStageDetail();
+  } catch (e) { toast("❌ " + e.message, 5000); }
 }
 
 async function regenerateVisual(fid) {

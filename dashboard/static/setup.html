@@ -174,10 +174,48 @@ input[type="checkbox"] { width: auto; accent-color: var(--accent); transform: sc
     </div>
   </div>
 
-  <!-- STEP 1: 1차 산출물 6대 유형 선택 -->
+  <!-- STEP 1: 논문 리뷰 vs 교과서 시작 분기 + 6대 유형 선택 -->
   <section class="section-card">
-    <h2 class="sec-title">1단계. 생성할 1차 산출물의 종류를 선택하세요</h2>
-    <div class="muted">선택한 1차 산출물에 따라 <strong>1단계 목차 구조, 4단계 AI 집필 문체·필수 구성, 5단계 시각화 비율, 6단계 출판 판형</strong>이 모두 자동으로 최적화됩니다.</div>
+    <h2 class="sec-title">1단계. 작성 트랙을 먼저 분리해 선택하세요 (논문 리뷰 vs 교과서 · 기타)</h2>
+    <div class="muted">시작 시점부터 <strong>수집 채널(OA 표·그림 추출), 원고 구조, 시각화 비용 정책(0원 출처 재작성 vs 선택적 저비용 실사)</strong>이 트랙별로 완전히 분리됩니다.</div>
+
+    <!-- 핵심 2대 트랙 비교 분기 카드 -->
+    <div class="grid-2" style="margin-top:14px;margin-bottom:14px">
+      <div class="type-card" id="trackCardTextbook" onclick="selectOutputType('textbook')" style="border-width:2.5px;background:linear-gradient(145deg,#09251b,#103527)">
+        <span class="check-pill">✓ 교과서 트랙</span>
+        <div class="type-head">
+          <div class="type-icon">📘</div>
+          <div>
+            <div class="type-name">교과서 · 전문 교재 작성 트랙</div>
+            <div class="type-sub">단원 체계 · 앵커 문헌 + 기상DB/통계 + 선택 실사</div>
+          </div>
+        </div>
+        <div class="type-desc">부·장·절 교육과정 청사진, 표준 수식·현장 계산 예제·연습문제를 포함합니다. <strong>차트·구조도·공공/CC-BY 사진은 0원</strong>으로 우선 제작하고, 부족한 대표 실사만 <code>gemini-2.5-flash-image</code>($0.039/장)로 선택 생성합니다.</div>
+        <div class="type-tags">
+          <span class="tag">하이브리드 0원 우선</span>
+          <span class="tag">예산 상한 $1.00 기본</span>
+          <span class="tag">OA 표·그림 자동 추출</span>
+        </div>
+      </div>
+      <div class="type-card" id="trackCardPaper" onclick="selectOutputType('paper')" style="border-width:2.5px;background:linear-gradient(145deg,#0c1e35,#122d4d)">
+        <span class="check-pill">✓ 논문 리뷰 트랙</span>
+        <div class="type-head">
+          <div class="type-icon">📄</div>
+          <div>
+            <div class="type-name">학술 논문 · 리뷰(Review) 작성 트랙</div>
+            <div class="type-sub">PRISMA · 문헌 비교표 선행 · 출처 표/그래프 재작성 (AI 과금 0원)</div>
+          </div>
+        </div>
+        <div class="type-desc">학회 투고 5대 고정 구조(초록→재료·방법→결과·고찰→요약→통합 참고문헌)를 적용합니다. <strong>유료 AI 실사 생성을 기본 차단(0원)</strong>하고, OA 원문 표 재작성(300 DPI 흑백 대응)·다중 문헌 메타 차트·CC-BY 직접 인용으로 학술 신뢰도를 극대화합니다.</div>
+        <div class="type-tags">
+          <span class="tag">유료 이미지 AI 0원</span>
+          <span class="tag">Europe PMC JATS 표 추출</span>
+          <span class="tag">Adapted from 자동 출처</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="muted" style="margin-bottom:6px;font-weight:700">전체 6대 1차 산출물 유형 (교과서 · 논문 포함 / 보고서 · 강의 교재 · 웹 출판 · 이야기 책)</div>
     <div class="type-grid" id="outputTypeGrid">불러오는 중...</div>
   </section>
 
@@ -367,9 +405,20 @@ input[type="checkbox"] { width: auto; accent-color: var(--accent); transform: sc
       </div>
     </div>
 
-    <div class="flex" style="margin-top:14px;gap:14px">
+    <div class="grid-3" style="margin-top:14px">
+      <label class="check-box-card"><input type="checkbox" id="fAutoHarvest" checked /> <span><strong>📚 OA 원문 표·CC-BY 그림 자동 추출 (0원)</strong><br><small class="muted">Europe PMC JATS XML · PDF Docling 표 추출 후 그래프 재작성</small></span></label>
+      <label class="check-box-card"><input type="checkbox" id="fUseNb" /> <span><strong>🎨 5단계 유료 Gemini 이미지 AI 허용</strong><br><small class="muted" id="fUseNbHint">기본 OFF (0원 출처·차트·SVG 우선 / 논문 모드 자동 비활성)</small></span></label>
+      <div>
+        <label class="label">이미지 AI 모델 티어 (스튜디오 선택 생성 시)</label>
+        <select id="fImgTier">
+          <option value="flash" selected>⚡ 저비용 표준: gemini-2.5-flash-image ($0.039/장 · 권장)</option>
+          <option value="pro">💎 고화질 표지·대표도판: nano-banana-pro ($0.134/장)</option>
+        </select>
+      </div>
+    </div>
+    <div class="flex" style="margin-top:10px;gap:14px">
       <label class="check-box-card"><input type="checkbox" id="fUseGemini" checked /> <span><strong>1단계 Gemini API 목차 설계</strong> (실패 시 로컬 Gemma 4)</span></label>
-      <label class="check-box-card"><input type="checkbox" id="fUseFal" /> <span><strong>5단계 fal.ai 이미지 AI 사용</strong> (체크 해제 시 이미지 스튜디오 분할/무료 병행)</span></label>
+      <label class="check-box-card"><input type="checkbox" id="fUseFal" /> <span><strong>5단계 fal.ai 이미지 AI 사용</strong> (기본 OFF)</span></label>
       <label class="check-box-card"><input type="checkbox" id="fAutoStart" checked /> <span><strong>생성 즉시 1단계 목차 초안 작성 시작</strong></span></label>
     </div>
   </section>
@@ -520,6 +569,19 @@ function selectOutputType(typeId, existingProfile = null, existingPersona = null
 
   const chInput = document.getElementById("fChapters");
   const isPaper = (typeId === "paper");
+  const trackTb = document.getElementById("trackCardTextbook");
+  const trackPp = document.getElementById("trackCardPaper");
+  if (trackTb) trackTb.classList.toggle("selected", typeId === "textbook");
+  if (trackPp) trackPp.classList.toggle("selected", isPaper);
+  const nbEl = document.getElementById("fUseNb");
+  const nbHint = document.getElementById("fUseNbHint");
+  if (nbEl) {
+    nbEl.checked = false;
+    nbEl.disabled = isPaper;
+    if (nbHint) nbHint.textContent = isPaper
+      ? "논문 리뷰 트랙: 유료 AI 실사 자동 차단 (0원 원문 표 재작성·CC-BY 직접 인용 전용)"
+      : "기본 OFF (0원 출처·차트·SVG 우선, 필요 시 이미지 스튜디오에서 선택 생성)";
+  }
   const paperBanner = document.getElementById("paperStandardBanner");
   if (paperBanner) paperBanner.style.display = isPaper ? "block" : "none";
   chInput.readOnly = isPaper;
@@ -785,7 +847,13 @@ async function submitSetupProject() {
         keywords_ko: document.getElementById("fKwKo").value.split(",").map(x => x.trim()).filter(Boolean),
         keywords_en: document.getElementById("fKwEn").value.split(",").map(x => x.trim()).filter(Boolean),
         use_gemini_outline: document.getElementById("fUseGemini").checked,
-        use_fal_ai: document.getElementById("fUseFal").checked,
+        use_fal_ai: SELECTED_TYPE === "paper" ? false : document.getElementById("fUseFal").checked,
+        use_nano_banana: SELECTED_TYPE === "paper" ? false : !!document.getElementById("fUseNb")?.checked,
+        allow_auto_paid_ai: false,
+        image_model_tier: document.getElementById("fImgTier")?.value || "flash",
+        visual_budget_limit_usd: SELECTED_TYPE === "paper" ? 0.0 : 1.0,
+        visual_generation_mode: SELECTED_TYPE === "paper" ? "cited_and_redrawn_only" : "hybrid_cited",
+        auto_harvest_oa_assets: !!document.getElementById("fAutoHarvest")?.checked,
         enable_naver_blog: profile.include_naver_hashtags !== false,
         enable_myths: profile.include_myths !== false,
         enable_linked_quiz: profile.include_exercises !== false,

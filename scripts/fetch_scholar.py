@@ -164,6 +164,7 @@ def search_europepmc_papers(
         doi = f"https://doi.org/{doi_raw}" if doi_raw and not doi_raw.startswith("http") else doi_raw
         pmcid = (it.get("pmcid") or "").strip()
         is_oa = str(it.get("isOpenAccess", "")).upper() == "Y" or bool(pmcid)
+        license_raw = str(it.get("license") or ("cc-by" if is_oa and "plos" in journal.lower() else "")).strip()
         pdf_url = f"https://europepmc.org/articles/{pmcid}?pdf=render" if pmcid else ""
         url = doi or (f"https://europepmc.org/article/PMC/{pmcid}" if pmcid else f"https://europepmc.org/article/MED/{it.get('pmid','')}")
         abstract = _clean_crossref_abstract(it.get("abstractText") or "")
@@ -176,6 +177,8 @@ def search_europepmc_papers(
                 "year": year,
                 "journal": journal,
                 "doi": doi,
+                "pmcid": pmcid,
+                "license": license_raw,
                 "url": url,
                 "pdf_url": pdf_url,
                 "is_oa": is_oa,
@@ -365,6 +368,11 @@ def search_openalex_papers(
         ]
         authors = [a for a in authors if a]
         doi = w.get("doi") or ""
+        ids_obj = w.get("ids") or {}
+        pmcid_url = str(ids_obj.get("pmcid") or "")
+        m_pmc = re.search(r"(PMC\d+)", pmcid_url, re.I)
+        pmcid = m_pmc.group(1).upper() if m_pmc else ""
+        license_raw = str(best_oa.get("license") or primary.get("license") or "").strip()
         landing = best_oa.get("landing_page_url") or primary.get("landing_page_url") or doi or w.get("id", "")
         pdf_url = best_oa.get("pdf_url") or primary.get("pdf_url") or ""
         abstract = _reconstruct_openalex_abstract(w.get("abstract_inverted_index"))
@@ -382,6 +390,8 @@ def search_openalex_papers(
                 "year": w.get("publication_year"),
                 "journal": journal_name,
                 "doi": doi,
+                "pmcid": pmcid,
+                "license": license_raw,
                 "url": landing,
                 "pdf_url": pdf_url,
                 "is_oa": bool((w.get("open_access") or {}).get("is_oa")),
@@ -597,8 +607,10 @@ def ingest_paper_record(
     ]
 
     now = utc_now_iso()
+    paper_license = str(paper.get("license") or "").strip()
+    paper_pmcid = str(paper.get("pmcid") or "").strip()
     license_note = (
-        f"학술 논문 오픈액세스({provider}) - 변환적 분석 및 정식 학술 인용"
+        f"학술 논문 오픈액세스({provider}{', ' + paper_license if paper_license else ''}) - 변환적 분석 및 정식 학술 인용"
         if paper.get("is_oa") or pdf_saved_path
         else f"학술 서지 메타데이터·초록({provider}) - 정식 인용 목적(원문 무단 복제 금지)"
     )
@@ -607,6 +619,13 @@ def ingest_paper_record(
         "source_type": "pdf" if pdf_saved_path else "web",
         "url": url,
         "title": f"[{year}] {title} ({journal})",
+        "authors": authors_str,
+        "year": year,
+        "journal": journal,
+        "doi": doi,
+        "pmcid": paper_pmcid,
+        "license": paper_license,
+        "is_oa": bool(paper.get("is_oa") or pdf_saved_path),
         "accessed_at": now,
         "robots_allowed": True,
         "robots_status": f"api_or_bibtex ({provider})",
@@ -644,6 +663,8 @@ def ingest_paper_record(
             "year": year,
             "journal": journal,
             "doi": doi,
+            "pmcid": paper_pmcid,
+            "license": paper_license,
             "cited_by_count": cited,
             "is_oa": bool(paper.get("is_oa") or pdf_saved_path),
             "url": url,

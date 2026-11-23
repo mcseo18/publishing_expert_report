@@ -118,17 +118,47 @@ def expand_research_subqueries(
     keywords_en: list[str] | None = None,
     chapter_titles: list[str] | None = None,
     max_queries: int = 8,
+    use_gemini_expand: bool = False,
     cfg: PlatformConfig | None = None,
 ) -> dict[str, Any]:
-    """주제와 질의를 6~12개의 학술·현장·정량·정책 다관점 국/영문 서브쿼리로 자동 확장한다."""
+    """주제와 질의를 6~12개의 학술·현장·정량·정책 다관점 국/영문 서브쿼리로 자동 확장한다 (로컬 Ollama 0원 우선)."""
     cfg = cfg or get_config()
     core_query = (user_query or topic_ko or topic_en).strip()
     base_en = (topic_en or "").strip()
     kws_ko = [k.strip() for k in (keywords_ko or []) if k.strip()]
     kws_en = [k.strip() for k in (keywords_en or []) if k.strip()]
 
-    # 1) Gemini API(빠름) 우선 시도
-    gem_key = resolve_api_key("GEMINI_API_KEY", None, cfg)
+    # 1) 비용 0원 로컬 Ollama(gemma4:26b / fast) 우선 시도
+    if not use_gemini_expand:
+        try:
+            from local_gemma import generate_json
+
+            local_prompt = (
+                f"주제: {topic_ko} ({base_en})\n요청: {core_query}\n"
+                f"한글 키워드: {', '.join(kws_ko[:8])}\n영문 키워드: {', '.join(kws_en[:8])}\n"
+                f"OpenAlex/Europe PMC/PubMed/arXiv 학술 검색용 정밀 다관점 영문 쿼리 {max_queries}개와 국문 쿼리를 JSON으로 생성하세요.\n"
+                "JSON 형식: {\"en_queries\": [{\"angle\": \"...\", \"query\": \"...\"}], \"ko_queries\": [\"...\"], \"strategy_ko\": \"...\"}"
+            )
+            parsed = generate_json(prompt=local_prompt, model=cfg.ollama_fast_model, num_ctx=8192, timeout=35)
+            en_list = (parsed or {}).get("en_queries") or []
+            ko_list = [str(x).strip() for x in ((parsed or {}).get("ko_queries") or []) if str(x).strip()]
+            cleaned_en = [
+                {"angle": str(x.get("angle", "심층탐색")), "query": str(x.get("query", "")).strip()}
+                for x in en_list
+                if isinstance(x, dict) and str(x.get("query", "")).strip()
+            ][:max_queries]
+            if cleaned_en:
+                return {
+                    "engine": f"local_ollama ({cfg.ollama_fast_model}, 0원)",
+                    "strategy_ko": str((parsed or {}).get("strategy_ko") or f"'{core_query}' {len(cleaned_en)}개 다관점 심층 탐색"),
+                    "en_queries": cleaned_en,
+                    "ko_queries": ko_list[:max_queries] or [core_query, topic_ko] + kws_ko[:4],
+                }
+        except Exception:
+            pass
+
+    # 2) Gemini API는 명시적 요청(use_gemini_expand=True) 시에만 호출
+    gem_key = resolve_api_key("GEMINI_API_KEY", None, cfg) if use_gemini_expand else ""
     if gem_key:
         try:
             from google import genai

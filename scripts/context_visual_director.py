@@ -77,13 +77,12 @@ VISUAL_TYPE_TO_CODE = {
 }
 
 NANO_BANANA_MODEL_CHAIN = [
-    "nano-banana-pro-preview",
-    "gemini-nano-banana-2.1",
-    "gemini-3.1-flash-image",
     "gemini-2.5-flash-image",
+    "gemini-3.1-flash-image",
 ]
+PRO_NANO_BANANA_MODEL = "nano-banana-pro-preview"
 
-FAL_NANO_BANANA_MODEL = "fal-ai/nano-banana-pro"
+FAL_NANO_BANANA_MODEL = "fal-ai/nano-banana"
 
 
 def purge_project_visuals(project_id: str, cfg: PlatformConfig | None = None) -> dict[str, Any]:
@@ -143,15 +142,12 @@ def plan_chapter_visuals_from_manuscript(
     chapter_id: str,
     chapter_number: int,
     mdx_path: Path,
-    per_chapter_count: int = 10,
-    api_key: str,
+    per_chapter_count: int = 4,
+    api_key: str = "",
+    use_gemini_planner: bool = False,
 ) -> list[dict[str, Any]]:
-    """Google Gemini(gemini-2.5-flash)로 실제 단원 원고 문맥에 100% 맞춘 10종 시각화 기획을 생성한다."""
-    from google import genai
-    from google.genai import types
-
+    """로컬 Ollama(gemma4:26b, 비용 0원) 우선 + 선택적 Gemini 폴백으로 원고 문맥 기반 시각화 기획을 생성한다."""
     ch_title, body_main, headings = _extract_chapter_body(mdx_path)
-    client = genai.Client(api_key=api_key)
 
     sys_inst = (
         "You are a senior scientific visual director for Nature/Springer university agricultural textbooks.\n"
@@ -159,70 +155,94 @@ def plan_chapter_visuals_from_manuscript(
         f"{per_chapter_count} distinct, high-impact visual figures (v01 to v{per_chapter_count:02d}) "
         "strictly grounded in the chapter's actual sections, biological/agronomic mechanisms, cultivars, tools, and field practices.\n\n"
         "CRITICAL RULES:\n"
-        "1. Distribute the 10 visuals evenly across ALL body sections (## headings) of the chapter, covering concrete concepts "
-        "(e.g., specific cultivars, soil profiles, planting geometry, root physiology, hormones/enzymes, field diagnostics, curing/storage, quality traits).\n"
-        "   STRICT BOTANICAL SUBJECT RULE: Every single image prompt MUST depict ONLY the exact target crop/subject of the book title and chapter manuscript "
-        "(e.g., for corn/maize books depict ONLY Zea mays tall stalks, broad arching leaves, tassels, ears/cobs, kernels — NEVER wheat spikes, rice, or unrelated crops!).\n"
+        "1. Distribute visuals across body sections (## headings) of the chapter, covering concrete concepts.\n"
+        "   STRICT BOTANICAL SUBJECT RULE: Every single image prompt MUST depict ONLY the exact target crop/subject of the book title and chapter manuscript.\n"
         "2. Alternate thoughtfully between:\n"
-        "   - 'photorealistic_field': National Geographic / agricultural research station documentary photograph (natural daylight, realistic camera depth-of-field, crisp botanical texture).\n"
-        "   - 'photorealistic_macro': Ultra-sharp macro / laboratory / microscopy photography (real root tissue, cross-sections, starch granules, soil crumbs, instruments).\n"
-        "   - 'scientific_anatomy': Nature/Scientific American editorial scientific cross-section or biological mechanism illustration on a clean pure white background — richly shaded painterly scientific art, NEVER childish cartoon or flat clipart.\n"
-        "3. EVERY 'image_prompt_en' MUST BE 100% PURE ENGLISH with ZERO Korean/Hangul characters, ZERO words like 'infographic', 'chart', 'diagram with labels', 'caption', 'title', 'signboard', 'text'. "
-        "Describe ONLY concrete visual objects, lighting, composition, botanical anatomy, textures, colors, and spatial arrangement.\n"
-        "4. EVERY 'description_ko' MUST be 3-4 natural academic Korean sentences (prose ONLY, no markdown tables) accurately explaining what the figure depicts in direct connection with the chapter's prose and relevant [SRC-NN] citations found in the manuscript.\n"
-        "5. Output valid JSON strictly matching the schema."
+        "   - 'photorealistic_field': documentary field photograph.\n"
+        "   - 'photorealistic_macro': laboratory macro / microscopy photography.\n"
+        "   - 'scientific_anatomy': publication-grade cross-section or biological mechanism illustration on a pure white background.\n"
+        "3. EVERY 'image_prompt_en' MUST BE 100% PURE ENGLISH with ZERO Korean/Hangul characters, ZERO text/labels/captions.\n"
+        "4. EVERY 'description_ko' MUST be 3 concise academic Korean sentences (what it shows, how to read it, source).\n"
+        "5. Output valid JSON strictly matching {\"figures\": [{\"slot_index\": 1, \"target_section\": \"...\", \"visual_type\": \"...\", \"title_ko\": \"...\", \"description_ko\": \"...\", \"image_prompt_en\": \"...\"}]}."
     )
 
     user_prompt = (
         f"Book Title: {topic_ko} ({topic_en})\n"
         f"Chapter: {chapter_id} (Chapter {chapter_number}) — {ch_title}\n"
         f"Body Sections: {', '.join(headings)}\n\n"
-        f"=== FULL CHAPTER MANUSCRIPT (Korean) ===\n{body_main[:9500]}\n=== END MANUSCRIPT ===\n\n"
+        f"=== FULL CHAPTER MANUSCRIPT (Korean) ===\n{body_main[:7000]}\n=== END MANUSCRIPT ===\n\n"
         f"Design exactly {per_chapter_count} bespoke, non-redundant, context-matched figures for this chapter."
     )
 
-    schema = {
-        "type": "OBJECT",
-        "properties": {
-            "figures": {
-                "type": "ARRAY",
-                "items": {
-                    "type": "OBJECT",
-                    "properties": {
-                        "slot_index": {"type": "INTEGER"},
-                        "target_section": {"type": "STRING"},
-                        "visual_type": {"type": "STRING"},
-                        "title_ko": {"type": "STRING"},
-                        "description_ko": {"type": "STRING"},
-                        "image_prompt_en": {"type": "STRING"},
-                    },
-                    "required": ["slot_index", "target_section", "visual_type", "title_ko", "description_ko", "image_prompt_en"],
-                },
-            }
-        },
-        "required": ["figures"],
-    }
-
-    resp = None
-    last_plan_err = ""
-    for plan_mdl in ("gemini-3.8-flash", "gemini-3-flash-preview", "gemini-3.1-flash-lite", "gemini-2.5-flash-lite"):
+    data: dict[str, Any] | None = None
+    # 1) 비용 0원 로컬 Ollama(gemma4:26b) 우선 실행
+    if not use_gemini_planner:
         try:
-            resp = client.models.generate_content(
-                model=plan_mdl,
-                contents=user_prompt,
-                config=types.GenerateContentConfig(
-                    system_instruction=sys_inst,
-                    response_mime_type="application/json",
-                    response_schema=schema,
-                    temperature=0.35,
-                ),
+            from local_gemma import generate_json
+
+            cfg_local = get_config()
+            local_out = generate_json(
+                prompt=user_prompt,
+                system=sys_inst,
+                model=cfg_local.ollama_llm_model,
+                num_ctx=16384,
+                timeout=120,
             )
-            break
-        except Exception as exc:
-            last_plan_err = f"{plan_mdl}: {str(exc)[:100]}"
-    if resp is None:
-        raise RuntimeError(f"Gemini context planner failed: {last_plan_err}")
-    data = json.loads(resp.text)
+            if isinstance(local_out, dict) and isinstance(local_out.get("figures"), list) and local_out["figures"]:
+                data = local_out
+        except Exception:
+            data = None
+
+    # 2) 명시 요청 또는 로컬 폴백 시에만 Gemini Flash 텍스트 모델 사용
+    if data is None and api_key:
+        from google import genai
+        from google.genai import types
+
+        client = genai.Client(api_key=api_key)
+        schema = {
+            "type": "OBJECT",
+            "properties": {
+                "figures": {
+                    "type": "ARRAY",
+                    "items": {
+                        "type": "OBJECT",
+                        "properties": {
+                            "slot_index": {"type": "INTEGER"},
+                            "target_section": {"type": "STRING"},
+                            "visual_type": {"type": "STRING"},
+                            "title_ko": {"type": "STRING"},
+                            "description_ko": {"type": "STRING"},
+                            "image_prompt_en": {"type": "STRING"},
+                        },
+                        "required": ["slot_index", "target_section", "visual_type", "title_ko", "description_ko", "image_prompt_en"],
+                    },
+                }
+            },
+            "required": ["figures"],
+        }
+        resp = None
+        last_plan_err = ""
+        for plan_mdl in ("gemini-2.5-flash", "gemini-2.5-flash-lite"):
+            try:
+                resp = client.models.generate_content(
+                    model=plan_mdl,
+                    contents=user_prompt,
+                    config=types.GenerateContentConfig(
+                        system_instruction=sys_inst,
+                        response_mime_type="application/json",
+                        response_schema=schema,
+                        temperature=0.35,
+                    ),
+                )
+                break
+            except Exception as exc:
+                last_plan_err = f"{plan_mdl}: {str(exc)[:100]}"
+        if resp is None:
+            raise RuntimeError(f"Gemini context planner failed: {last_plan_err}")
+        data = json.loads(resp.text)
+
+    if data is None:
+        raise RuntimeError("시각화 기획 생성 실패: 로컬 Ollama와 Gemini 모두 응답하지 않았습니다.")
     raw_figs = data.get("figures") or []
 
     out: list[dict[str, Any]] = []
@@ -547,34 +567,31 @@ def _generate_single_nano_banana(
         except Exception as exc:
             last_err = f"fal.ai: {str(exc)[:100]}"
 
-    # Google Gemini Nano Banana 백엔드 (기본 또는 fal.ai 폴백)
+    # Google Gemini Nano Banana 백엔드 (단일 시도 + 일시적 오류만 1회 재시도해 중복 과금 차단)
     if not engine_used:
         client = genai.Client(api_key=api_key)
         for mdl in model_chain:
-            for attempt in range(2):
-                try:
-                    resp = client.models.generate_content(
-                        model=mdl,
-                        contents=spec["prompt"],
-                        config=types.GenerateContentConfig(response_modalities=["IMAGE"]),
-                    )
-                    for part in resp.candidates[0].content.parts:
-                        inline = getattr(part, "inline_data", None)
-                        if inline and getattr(inline, "data", None):
-                            raw = inline.data if isinstance(inline.data, bytes) else base64.b64decode(inline.data)
-                            out_png.parent.mkdir(parents=True, exist_ok=True)
-                            out_png.write_bytes(raw)
-                            shutil.copy2(out_png, loc_ch_dir / out_png.name)
-                            shutil.copy2(out_png, e_ch_dir / out_png.name)
-                            engine_used = f"Nano Banana ({mdl})"
-                            break
-                    if engine_used:
+            try:
+                resp = client.models.generate_content(
+                    model=mdl,
+                    contents=spec["prompt"],
+                    config=types.GenerateContentConfig(response_modalities=["IMAGE"]),
+                )
+                for part in resp.candidates[0].content.parts:
+                    inline = getattr(part, "inline_data", None)
+                    if inline and getattr(inline, "data", None):
+                        raw = inline.data if isinstance(inline.data, bytes) else base64.b64decode(inline.data)
+                        out_png.parent.mkdir(parents=True, exist_ok=True)
+                        out_png.write_bytes(raw)
+                        shutil.copy2(out_png, loc_ch_dir / out_png.name)
+                        shutil.copy2(out_png, e_ch_dir / out_png.name)
+                        engine_used = f"Nano Banana ({mdl})"
                         break
-                except Exception as exc:
-                    last_err = f"{mdl}: {str(exc)[:100]}"
-                    time.sleep(1.5 * (attempt + 1))
-            if engine_used:
-                break
+                if engine_used:
+                    break
+            except Exception as exc:
+                last_err = f"{mdl}: {str(exc)[:100]}"
+                time.sleep(1.0)
 
     if not engine_used:
         raise RuntimeError(f"Failed to generate {fid}: {last_err}")
@@ -603,11 +620,11 @@ def _generate_single_nano_banana(
 def rebuild_project_visuals_with_nano_banana(
     project_id: str,
     *,
-    per_chapter_count: int = 10,
-    primary_model: str = "nano-banana-pro-preview",
+    per_chapter_count: int = 4,
+    primary_model: str = "gemini-2.5-flash-image",
     backend: str = "google",
     only_figure_ids: list[str] | None = None,
-    max_workers: int = 3,
+    max_workers: int = 2,
     purge_first: bool = True,
     cfg: PlatformConfig | None = None,
 ) -> dict[str, Any]:
