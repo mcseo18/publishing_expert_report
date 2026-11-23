@@ -457,7 +457,7 @@ def apply_naver_inline_styles(fragment_html: str, *, full_naver_math: bool = Fal
     return s
 
 
-def render_hashtag_box_html(tags: list[str], section_idx: int) -> str:
+def render_hashtag_box_html(tags: list[str], section_idx: int = 0) -> str:
     """소단원 말미에 들어갈 관련 해시태그 20개 텍스트 블록 HTML을 생성한다."""
     tags_text = " ".join(tags)
     return (

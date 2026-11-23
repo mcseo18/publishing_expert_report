@@ -3,167 +3,60 @@ chapter_id: "ch12"
 title: "제12장. 자율주행 기반 정식·포장관리 및 지능형 수확 로봇"
 audience: "대학 전공 심화, 대학원생, 연구자 및 선도 현장 실무자"
 evidence_packet: "smart_farm_onion_cultivation_20261123_042527_evidence.json"
+persona: "textbook_distinguished_prof"
 ---
 
 # 제12장. 자율주행 기반 정식·포장관리 및 지능형 수확 로봇
 
-본 장에서는 첨단 ICT 기술을 농업 현장에 융합하여 농작업의 자동화 및 지능화를 실현하는 핵심 기술들을 다룬다. 특히, RTK-GNSS를 기반으로 한 센티미터급 정밀 자율주행 양파 자동 정식기의 구동 원리, 포장 주행 제어 경로 생성 기법, 그리고 비전 센서를 활용한 지능형 수확 로봇의 실시간 품질 판별 기술에 초점을 맞춘다. 이러한 기술의 도입은 농업 생산성의 극대화뿐만 아니라, 지속가능한 농업 실현이라는 목표(예: SDG 12.3)에 기여한다 [SRC-137].
+> **학습 목표**: 본 장을 학습한 후 독자는 ① RTK-GNSS 기반 자율주행 주행선과 두둑·점적관개 라인의 정밀 정합 원리를 설명하고, ② 전자동 양파 정식기의 정식 심도·재식밀도 일정화 제어와 정식 후 센서·미생물 관리 연계를 설계하며, ③ 양파 인경의 디지털 형태계측 데이터베이스(극·적도직경·목 두께)를 반영한 일관 수확기 저손상 굴취·줄기절단 설계 기준을 도출하고, ④ 온보드 컴퓨터 비전과 UAV 수량 맵을 결합한 수확 동시 등급·수량 맵핑 체계를 이해할 수 있다 [SRC-368, SRC-480, SRC-486, SRC-493].
 
----
+## 12.1 RTK-GNSS 기반 노지 자율주행 플랫폼과 포장 주행선 정합
 
-## 12.1 RTK-GNSS 및 SLAM 기반 노지 자율주행 플랫폼의 포장 주행선 추종 제어 알고리즘 (개념 소개·이론적 배경)
+국내 양파 재배에서 전체 노동 시간의 과반이 집중되는 정식(10–11월)과 수확(5–6월) 공정을 무인화하려면 센티미터급(±2 cm) 위치 정밀도를 제공하는 **RTK-GNSS 자율주행 플랫폼**이 기반이 되어야 한다. 자율주행 농기계가 두둑 성형–멀칭–점적 테이프 부설–정식–중경·방제–수확의 전 공정에서 **동일한 디지털 주행 기준선(A–B line)**을 공유하면, 바퀴 답압에 의한 두둑 붕괴와 지중 점적관 손상을 방지하고 후속 작업기의 자동 정렬 오차를 최소화할 수 있다 [SRC-369, SRC-376].
 
-자율주행 농기계의 핵심은 정밀한 위치 인식 및 제어 능력이다. 노지(Open Field) 환경에서 센티미터(cm) 수준의 정밀도를 확보하기 위해 **RTK-GNSS(Real-Time Kinematic Global Navigation Satellite System)** 기술이 필수적으로 사용된다 [SRC-100]. RTK-GNSS는 기준국(Base Station)과 이동국(Rover) 간의 위상차 정보를 실시간으로 보정하여 GPS의 오차를 획기적으로 줄인다.
+특히 점적관 배치 연구에서 확인되었듯 점적 라인과 작물 근권 간의 수평·수직 거리는 뿌리 발달과 수분 이용효율에 직접 영향을 미치므로 [SRC-373, SRC-376, SRC-389], 자율주행 두둑 성형 단계에서 점적 테이프 매설 좌표를 기록해 두고 정식기가 해당 좌표로부터 정확히 5–10 cm 이격된 열에 묘를 식재하도록 경로를 동기화해야 한다 [SRC-389].
 
-또한, 지형이나 환경적 변화에 강인하게 대응하기 위해 **SLAM (Simultaneous Localization and Mapping)** 기술이 병행 적용된다. SLAM은 센서 데이터(주로 카메라, LiDAR 등)를 이용하여 주변 환경의 지도를 동시에 생성하면서 자신의 위치를 추정하는 기술이다.
+## 12.2 고속 전자동 양파 정식기의 정식 심도·재식밀도 제어
 
-포장 주행선 추종 제어는 이러한 정밀 위치 정보를 바탕으로 농기계가 설정된 경로를 벗어나지 않고 주행하도록 제어하는 알고리즘이다. 일반적으로 **피드백 제어(Feedback Control)** 기법이 사용되며, 경로 이탈 오차(Error)를 계산하고 이를 기반으로 조향각(Steering Angle)을 수정하는 방식으로 작동한다. 이는 농업 분야에서 정확한 이식 간격 및 작업 폭 유지를 가능하게 하여, 작물 생육에 최적화된 환경을 조성하는 기초가 된다.
+재식밀도는 양파 단위면적당 총수량과 개별 구의 크기(상품 규격)를 결정하는 가장 직접적인 재배 변수이다 [SRC-368]. 밀식이 과도하면 소구 비율이 높아지고 통풍 저하로 노균병 위험이 커지며, 반대로 결주가 많으면 대구·분구 발생이 증가해 규격 균일도가 무너진다 [SRC-368, SRC-481].
 
-## 12.2 고속 전자동 양파 정식기의 묘 취출-천공-복토 메커니즘과 정식 심도 일정화 유압 제어 (생리·분자 메커니즘)
+고속 전자동 정식기(보통 6–8조식)는 제11장에서 100% 충실 보식된 플러그 트레이를 공급받아 **취출 → 천공 → 식재 → 복토·진압**의 4단계 사이클을 고속 수행한다. 이때 핵심 제어 변수는 **정식 심도 일정화**이다. 양파는 천근성 뿌리가 지표 0–30 cm에 분포하므로 [SRC-389] 정식 깊이가 너무 얕으면 월동기 동해·서릿발로 묘가 들뜨고, 너무 깊으면 구가 길쭉하게 변형(극직경 $D_p$ 과다 증가, 구형도 저하)되어 상품성과 기계 수확성이 떨어진다 [SRC-493]. 따라서 초음파·레이저 지표 높이 센서와 유압 액추에이터를 연동해 두둑 높낮이 변화에도 식재 깊이를 2.0–2.5 cm로 자동 유지한다. 정식 직후에는 제5장의 15·30 cm 2단 토양수분 센서를 기준 열에 매설해 초기 활착 관수를 자동화하고 [SRC-373, SRC-389], 정식 14일 후 *Pantoea phytobeneficialis* PF55 + *Trichoderma harzianum* ESALQ 1306 같은 성장촉진·길항 미생물을 점적 라인으로 일괄 관주해 활착률을 극대화한다 [SRC-500].
 
-고속 전자동 양파 정식기는 정식 작업의 자동화와 노동력 절감을 목표로 한다. 이 시스템은 크게 묘(Seedling) 취출, 정식 위치 천공, 그리고 묘를 토양에 묻히는 복토(Backfilling) 세 단계로 구성된다.
+## 12.3 줄기 절단·굴취·수집 일관 수확기의 인경 기하 기반 저손상 설계
 
-**묘 취출 메커니즘:** 컨베이어 벨트 위에서 묘를 정확한 간격으로 분리하여 흡입하거나 집는 장치(Gripper)가 사용된다.
-**천공 및 식재:** 정밀한 유압 액추에이터(Hydraulic Actuator)를 사용하여 토양에 일정 깊이의 구멍을 뚫는다. 여기서 **정식 심도 일정화 유압 제어**가 결정적으로 작용한다. 유압 시스템은 토양의 밀도나 종류에 따른 저항 변화에도 불구하고, 설정된 목표 심도(Target Planting Depth)를 벗어나지 않도록 실시간으로 유압 압력을 조절한다 [SRC-102].
+양파 수확 기계화에서 발생하는 외피 박리(skinning)와 타박상(bruising)은 수확 직후에는 눈에 잘 띄지 않으나 저장 중 *Fusarium* 밑둥썩음병 및 세균성 부패 손실을 급격히 증폭시킨다 [SRC-378, SRC-499]. 따라서 일관 수확기(줄기 절단기 + 굴취 수집기)의 기계 치수와 완충 구조는 실제 재배 품종의 **인경 형태·기하 데이터베이스**에 정밀 정합되어야 한다 [SRC-486, SRC-493].
 
-**식물 생리적 연관성:** 정식 심도는 양파 묘의 초기 생존율 및 건강에 직접적인 영향을 미친다. 너무 깊으면 뿌리 발달이 저해되고, 너무 얕으면 외부 환경 변화에 취약해지기 때문이다. 이는 식물 생장 단계에 중요한 물리적 스트레스 요인을 최소화하는 작업으로 해석된다.
+| 인경 기하 파라미터 | 국내 실증 분포 (AVRI 29자원 / 무안·창녕 6품종) | 일관 수확기 설계·제어 반영 기준 | 출처 |
+|---|---|---|---|
+| **극직경 ($D_p$)** | 4.731 – 11.998 cm (평균 **9.213 cm**) | 줄기 절단 높이를 구 상단 +2–3 cm로 자동 추종해 구 상단 절삭 방지 | [SRC-493] |
+| **적도직경 ($D_e$)** | 4.540 – 10.196 cm (평균 **7.472 cm**) | 굴취 체인 봉 간격(pitch)을 최소 적도직경 미만(3.5–4.0 cm)으로 설정해 소구 탈락 방지 | [SRC-493] |
+| **기하평균 직경 ($D_g$) · 구 두께** | $D_g$ 평균 **7.901 cm**; 구 두께 광의유전력 **$H^2 = 0.83$** | 품종군(대립형 Spring Breeze·Katamaru vs 소립형)에 따라 이송 갭·진동 주파수 프리셋 전환 | [SRC-486, SRC-493] |
+| **목 두께 (Neck thickness)** | 극직경과 고도의 양의 상관 (**$r > 0.84$**) | 대립·굵은 목 품종 수확 시 줄기 절단 날 토크 증대 및 큐어링 건조 시간 연장 연동 | [SRC-493] |
 
-## 12.3 줄기 절단 및 굴취 수집 일관 수확기의 동역학 해석과 외피 충격 최소화 완충 설계 (현장 적용·실전 기술)
+굴취 칼날은 지표 아래 5–7 cm 깊이로 진입해 수염뿌리 하단을 절단함으로써 구 저면(basal plate) 손상을 차단하고, 이송 컨베이어 전 구간에 고무 코팅 바(bar)와 낙차 제한(< 25 cm) 완충 슈트를 적용한다. 또한 수확 2–3주 전 도복·단수기($K_c = 0.75$ [SRC-389])에 토양 수분을 적정 수준으로 낮추어 흙덩이 부착과 굴취 저항을 줄여야 외피 손상을 최소화할 수 있다.
 
-지능형 수확 로봇은 단순한 수집을 넘어, 작물의 물리적 손상을 최소화하는 것이 가장 중요한 설계 목표 중 하나이다. 양파 수확 과정에서 줄기 절단 및 굴취(Digging) 메커니즘은 작물의 품질(외피 손상)과 직결된다.
+## 12.4 수확 동시 온보드 컴퓨터 비전 등급 판별 및 수량 맵핑
 
-**동역학 해석:** 수확기에서 작물(양파)을 분리하고 토양으로부터 들어 올리는 과정은 복잡한 **동역학적 과정**이다. 로봇의 구동부(Actuator)가 작물에 가하는 힘(Force)과 운동량(Momentum)을 분석하여, 불필요한 과도한 진동이나 충격을 예측하고 제어한다.
+지능형 일관 수확기의 수집 컨베이어 상부에 산업용 RGB 카메라와 중량 로드셀을 탑재하면, 수확과 동시에 개별 양파의 외관 치수·등급·포장 위치별 수량을 실시간 기록할 수 있다 [SRC-480, SRC-493]. Kim et al. (2025)이 검증한 바와 같이 2D 디지털 영상에서 스케일 보정 후 추출한 극직경($D_p$)과 적도직경($D_e$)은 **단면적($r > 0.96$), 표면적($r > 0.96$), 정면 투영면적($r > 0.94$), 기하평균 직경($r > 0.98$)**과 극도로 강한 상관을 가지므로 [SRC-493], 컨베이어 위를 통과하는 양파의 실시간 윤곽 분할만으로 개별 구의 등급(특·상·중·소)과 추정 중량을 고속 계산할 수 있다.
 
-**완충 설계:** 외피 충격 최소화를 위해 **완충 장치(Damping/Cushioning System)**가 적용된다. 이 완충 장치는 작물이 기계적 접촉 지점에 도달할 때 순간적인 충격 에너지를 흡수하여, 양파의 껍질이나 인경(Bulb neck)에 발생하는 미세 손상(Damage)을 방지한다. 이는 수확된 작물의 등급(Grade) 유지에 결정적인 역할을 한다 [SRC-118].
+수확기에서 실시간 생성된 **실측 수량 지도(yield map)**는 제7장에서 수확 2–4주 전에 작성한 **무안군 UAV 초분광 수량 예측 맵($R^2 = 0.9656$ [SRC-480])** 및 **다분광 UAV 맵($R^2 = 0.755$ [SRC-491])**과 자동 대조되어 디지털 트윈 모형의 다음 연도 가중치를 스스로 업데이트하는 자가 학습 피드백 루프를 완성한다.
 
-## 12.4 수확 동시 포장 내 등급 판별 및 인경 크기·중량 맵핑을 위한 온보드 컴퓨터 비전 (현장 적용·실전 기술)
+### 오해와 진실
+- **오해 (Myth):** 양파 수확기는 품종이나 재배 지역에 관계없이 동일한 굴취 깊이와 컨베이어 간격으로 운전하면 된다.
+- **진실 (Fact):** 국내 무안·창녕 다지역 시험에서 동일 품종도 지역 환경($G \times L$)에 따라 구 크기와 형질이 −80%에서 +160% 이상 변동하며, 대립형(Spring Breeze·Katamaru)과 소립형(Cheonjujeok·Eomji Nara) 간 치수 편차가 크므로 수확 전 디지털 형태계측과 UAV 맵에 기반한 작업기 프리셋 조정이 필수적이다 [SRC-486, SRC-493].
 
-지능형 수확 로봇의 최종 목표 중 하나는 수확 과정 중 실시간으로 작물의 품질을 평가하고 분류하는 것이다. 이를 위해 **온보드 컴퓨터 비전(Onboard Computer Vision)** 시스템이 활용된다.
+### 핵심 용어집
+| 국문 용어 | 영문 용어 | 정의 |
+|---|---|---|
+| A–B 주행 기준선 | RTK-GNSS A–B Line | 두둑 성형·점적 부설·정식·수확 전 공정이 공유하는 ±2 cm 정밀 자율주행 직선 경로 |
+| 외피 박리 손상 | Mechanical Skinning Damage | 굴취·이송 중 과도한 마찰·낙차로 외피가 벗겨져 저장 부패를 유발하는 기계적 손상 [SRC-378] |
+| 온보드 수량 맵핑 | On-Board Yield Mapping | 수확기 비전 센서·로드셀과 GNSS 좌표를 결합해 포장 내 구 크기·수량 분포를 실시간 지도화하는 기술 [SRC-480, SRC-493] |
 
-**이미지 획득 및 처리:** 로봇에 탑재된 고해상도 카메라와 센서는 수확된 양파를 촬영한다. 여기서 **하이퍼스펙트럴 이미지(Hyperspectral Images)** 등의 고급 센싱 기술이 사용될 수 있으며, 이로부터 **평균 스펙트럼(Mean Spectra)**을 추출하여 작물의 내부 품질 특성(예: 병해, 숙성도)을 추론한다 [SRC-135].
+### 이해도 점검
+1. AVRI 29개 유전자원의 디지털 형태계측에서 극직경($D_p$)과 적도직경($D_e$)의 평균·범위 및 목 두께와의 상관계수를 제시하고, 수확기 설계에 주는 시사점을 설명하시오.
+   - **풀이:** 극직경은 평균 9.213 cm(4.731–11.998 cm), 적도직경은 평균 7.472 cm(4.540–10.196 cm)이며 극직경과 목 두께 간 상관은 $r > 0.84$이다. 따라서 품종별 치수 분포에 맞추어 컨베이어 봉 간격과 줄기 절단 높이·토크를 가변 조정해야 소구 탈락과 구 상단 절삭을 예방할 수 있다 [SRC-493].
+2. 수확기 온보드 비전 실측 수량 지도와 수확 전 UAV 초분광 수량 예측 지도를 연계할 때 얻어지는 시스템적 이점은 무엇인가?
+   - **풀이:** 실측 수량 지도를 UAV 예측 모델(GA-RF 등)의 사후 정답(ground truth)으로 자동 환류시켜 연차별·품종별 예측 오차를 지속 보정하고, 저수량 구역의 토양 EC·관수 불균일 원인을 차기 작기 처방 맵에 즉시 반영할 수 있다 [SRC-369, SRC-480, SRC-491].
 
-**품질 판별 알고리즘:** 딥러닝 기반의 객체 인식(Object Detection) 알고리즘은 다음과 같은 항목을 실시간으로 판별한다:
-1. **등급 판별:** 외관상의 결함(흠집, 변색)을 기반으로 최상급, 상급, 하급으로 분류한다.
-2. **인경 크기 및 중량 맵핑:** 2D/3D 스캔을 통해 인경의 직경, 길이 등을 측정하고, 통합적으로 중량 데이터를 맵핑하여 재고 관리 및 유통 관리에 필요한 데이터를 산출한다.
-
-이러한 자동화된 품질 관리는 생산 과정의 불확실성을 제거하고, 신선도 유지를 위한 유통 최적화에도 기여한다. 예를 들어, 수확 후 저장 과정에서 **에틸렌(Ethylene)** 가스 생성이 작물 품질 저하의 주요 요인으로 작용할 수 있으므로, 수확 시점의 정밀한 품질 데이터는 최적의 저장 조건 설정에 필수적이다 [SRC-108].
-
----
-
-## ## 핵심 용어집 (표)
-
-| 용어 | 정의 및 역할 | 관련 기술/기능 |
-| :--- | :--- | :--- |
-| **RTK-GNSS** | 실시간 위상차 보정을 통해 수 미터 단위의 위치 오차를 센티미터 수준으로 줄이는 위성항법 시스템. | 정밀 포장선 추종 제어, 자율주행 플랫폼 |
-| **SLAM** | 환경 지도(Map)를 생성함과 동시에 자신의 위치(Localization)를 추정하는 동시적 기술. | 노지 자율주행, 환경 인지 |
-| **유압 제어** | 유체(오일)의 압력을 이용해 정밀한 힘과 위치를 제어하는 메커니즘. | 양파 정식 심도 일정화, 동역학적 정밀 제어 |
-| **컴퓨터 비전** | 카메라와 AI 알고리즘을 활용하여 영상 데이터를 분석하고 객체의 속성(크기, 결함)을 추출하는 기술. | 실시간 등급 판별, 인경 크기/중량 맵핑 |
-| **하이퍼스펙트럴 이미지** | 여러 파장대의 빛 정보를 획득하여 작물의 화학적/생리적 특성을 분석하는 센싱 기술. | 품질 특성(숙성도, 병해)의 비파괴적 평가 |
-| **외피 충격 완충** | 수확 과정에서 발생하는 기계적 충격 에너지를 흡수하여 작물의 물리적 손상을 최소화하는 설계. | 수집기 동역학 제어, 품질 유지 |
-
----
-
-## ## 이해도 점검 연습문제 및 해설
-
-**문제 1:** 자율주행 농기계가 노지 환경에서 센티미미터급 정밀도를 달성하기 위해 필수적으로 사용되는 기술과, 이 기술이 좌표계 추정 과정에서 발생하는 환경 변화에 유연하게 대응할 수 있도록 보조하는 기술의 조합을 서술하시오.
-
-**정답 및 상세 풀이 1:** 정밀도 달성을 위해 **RTK-GNSS**가 사용된다. 이는 기준국과의 통신을 통해 GNSS의 오차를 실시간으로 보정한다. 이와 더불어, 지형이나 장애물 같은 환경적 변화에 로봇이 안정적으로 위치와 지도를 파악할 수 있도록 돕는 **SLAM** 기술이 보조적으로 적용된다.
-
-**문제 2:** 고속 전자동 양파 정식기에서 유압 제어의 핵심적인 역할은 무엇이며, 이 제어가 농업 생물학적으로 가지는 의미는 무엇인가?
-
-**정답 및 상세 풀이 2:** 유압 제어의 핵심 역할은 토양의 저항 변화에도 불구하고 설정된 **정식 심도(Planting Depth)**를 일정하게 유지하는 것이다 [SRC-102]. 농업 생물학적 의미는 이 심도 유지가 양파 묘의 초기 뿌리 발달 환경을 안정화시키고, 물리적 스트레스 요인을 최소화하여 **초기 생존율 및 건강성을 극대화**하는 데 기여하기 때문이다.
-
-**문제 3:** 수확 로봇이 현장에서 실시간 품질 판별(등급 판별 및 크기 맵핑)을 수행할 때 활용하는 비전 기술 중, 작물의 화학적/생리적 정보를 추론하는 데 사용되는 고급 센싱 방법론은 무엇이며, 이 기술이 최종적으로 기여하는 농업 목표는 무엇인가?
-
-**정답 및 상세 풀이 3:** 작물의 화학적 정보를 추론하는 고급 센싱 방법론은 **하이퍼스펙트럴 이미지** 획득을 통해 **평균 스펙트럼**을 분석하는 것이다 [SRC-135]. 이 기술이 기여하는 궁극적인 농업 목표는 수확 단계에서부터 작물의 품질을 객관적으로 평가하고 분류함으로써, **최적의 저장 및 유통 경로를 결정**하여 농산물 가치 사슬 전반의 효율성 증대와 식품 손실 감소에 기여하는 것이다.
-
----
-
-## ## 오해와 진실: 현장·이론 핵심 오해 교정
-
-**오해 1: 모든 자동화 로봇은 GPS 신호만으로 정밀 제어가 가능하다.**
-**진실:** GPS(GNSS)는 대략적인 위치를 제공하지만, 농업 현장처럼 미터 단위의 오차가 허용되지 않는 정식/수확 작업에서는 RTK와 같은 실시간 보정 기술이 필수적이다. 또한, GPS 신호가 수신되지 않거나(예: 나무 밀집 지역) 환경 변화가 클 경우, SLAM과 같은 자체 환경 인식 기술이 동반되어야 안정적인 주행 및 작업을 수행할 수 있다.
-
-**오해 2: 로봇의 수확 효율성은 단순히 절단 속도에 의해 결정된다.**
-**진실:** 수확 효율성은 단순한 처리 속도 외에도 **작물 손상 최소화**에 의해 크게 좌우된다. 동역학적으로 설계된 완충 장치와 정밀한 굴취 메커니즘은 작물의 외피 손상(Damage)을 줄여 최종 판매되는 농산물의 **등급(Grade)**을 유지하게 하며, 이는 곧 경제적 수확량으로 이어진다 [SRC-118].
-
-**오해 3: 정밀 농업 기술 도입은 농업 데이터의 '수집'에만 초점을 맞춘다.**
-**진실:** 데이터 수집은 시작에 불과하다. 진정한 지능화는 수집된 데이터(예: 인경 크기, 결함 위치)를 **실시간 의사결정 시스템(Decision Support System)**으로 활용하는 것이다. 예를 들어, 품질 데이터를 기반으로 최적의 저장 온도(저온 유통 환경 등)를 예측하거나 [SRC-107], 영농 단계의 의사결정을 지원하는 데 활용될 수 있다 [SRC-106].
-
-## 참고문헌 및 근거 출처 목록
-
-| 출처 ID | 유형 | 제목 | URL | 라이선스 |
-| :--- | :--- | :--- | :--- | :--- |
-| `SRC-100` | web | 농촌진흥청 | https://www.rda.go.kr/ | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-101` | web | 보도자료 < 새소식 < 정책홍보 < 농촌진흥청 | https://www.rda.go.kr/board/board.do?boardId=farmprmninfo&prgId=day_farmprmninfoEntry | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-102` | web | 한국식품연구원 | https://www.kfri.re.kr/ | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-103` | web | 국립식량과학원 | https://www.nics.go.kr/index.do | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-104` | web | 농림축산식품부 | https://www.mafra.go.kr/home/index.do | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-105` | web | 국민 안심이 기준입니다, 식품의약품안전처 | https://www.mfds.go.kr/index.do | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-106` | web | 한국농촌경제연구원 | https://www.krei.re.kr/krei/index.do | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-107` | web | 저온 유통 - 위키백과, 우리 모두의 백과사전 | https://ko.wikipedia.org/wiki/%EC%BD%9C%EB%93%9C_%EC%B2%B4%EC%9D%B8 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-108` | web | 에틸렌 - 위키백과, 우리 모두의 백과사전 | https://ko.wikipedia.org/wiki/%EC%97%90%ED%8B%B8%EB%A0%8C | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-109` | web | [2021] Inhibition of Ethylene Binding and Biosynthesis Maintains Fruit Quality of ‘Formosa’ Plums during Postharvest Storage (Horticultural Science and Technology) | https://doi.org/10.7235/hort.20210033 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-111` | web | [2010] Cold storage and fruit quality (Postharvest Biology and Technology for Preserving Fruit Quality) | https://doi.org/10.1201/9781439802670-c4 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-110` | web | [1998] Effects of storage temperature and atmosphere on saskatoon (Amelanchier alnifolia Nutt.) fruit quality, respiration and ethylene production (Postharvest Biology and Technology) | https://doi.org/10.1016/s0925-5214(98)00012-x | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-112` | web | [2013] Postharvest treatments for preserving quality of ‘Kinnow’ fruit under different storage conditions (Advances in Horticultural Science) | https://doi.org/10.36253/ahsc-18414 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-117` | web | [2016] Nondestructive Assessment of Fruit Quality (Advances in Postharvest Fruit and Vegetable Technology) | https://doi.org/10.1201/b18489-10 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-118` | web | [2015] Nondestructive Assessment of Fruit Quality (Contemporary Food Engineering) | https://doi.org/10.1201/b18489-4 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-119` | web | [2016] Metabolomics Tools for Postharvest Quality and Safety of Fresh Produce (Advances in Postharvest Fruit and Vegetable Technology) | https://doi.org/10.1201/b18489-20 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-120` | web | [2021] Effects of postharvest ultraviolet-C treatment on shelf-life and quality of bitter gourd fruit during storage (Food Packaging and Shelf Life) | https://doi.org/10.1016/j.fpsl.2021.100665 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-121` | web | [2020] Evaluation of Postharvest Shelf Life and Quality of Lemon Treated with  Different Coatings during Storage (Food Science and Engineering) | https://doi.org/10.37256/fse.122020463 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-122` | web | [2026] Aloe Vera-Honey Composite Edible Coatings Extend Postharvest Shelf Life and Preserve Quality of Roma Tomatoes Under Tropical Ambient Storage in Rwanda (Journal of Food Science and Horticulture) | https://doi.org/10.69739/jfsh.v1i1.1696 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-123` | web | [2024] Different Postharvest Treatments and Storage Conditions for Shelf-life Enhancement and Quality Retention of Litchi (Journal of Food Chemistry &amp; Nanotechnology) | https://doi.org/10.17756/jfcn.2024-s1-015 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-124` | web | [2019] Understanding Food Loss and Waste—Why Are We Losing and Wasting Food? (Foods) | http://dx.doi.org/10.3390/foods8080297 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-125` | pdf | [2020] Nanotechnologies in Food Science: Applications, Recent Trends, and Future Perspectives (Nano-Micro Letters) | https://doi.org/10.1007/s40820-020-0383-9 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-126` | web | [2020] ZnO Nanostructures in Active Antibacterial Food Packaging: Preparation Methods, Antimicrobial Mechanisms, Safety Issues, Future Prospects, and Challenges (Food Reviews International) | https://doi.org/10.1080/87559129.2020.1737709 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-127` | web | [2019] Value-added chemicals from food supply chain wastes: State-of-the-art review and future prospects (Chemical Engineering Journal) | https://doi.org/10.1016/j.cej.2019.121983 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-263` | web | [2020] Citrus Essential Oils (CEOs) and Their Applications in Food: An Overview (Plants) | http://dx.doi.org/10.3390/plants9030357 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-128` | web | [2024] Advances in strawberry postharvest preservation and packaging: A comprehensive review (Comprehensive Reviews in Food Science and Food Safety) | https://doi.org/10.1111/1541-4337.13417 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-129` | pdf | [2019] Characterization of Fruit Quality Attributes and Cell Wall Metabolism in 1-Methylcyclopropene (1-MCP)-Treated ‘Summer King’ and ‘Green Ball’ Apples During Cold Storage (Frontiers in Plant Science) | https://doi.org/10.3389/fpls.2019.01513 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-130` | web | [2014] Shelf life extension and antioxidant activity of ‘Hayward’ kiwi fruit as a result of prestorage conditioning and 1-methylcyclopropene treatment (Journal of Food Science and Technology) | https://doi.org/10.1007/s13197-014-1300-3 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-131` | web | [2012] Effects of Vibration Stress on the Quality of Packaged Apples during Simulated Transport (Journal of Biosystems Engineering) | https://doi.org/10.5307/jbe.2012.37.1.044 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-264` | web | [2025] Plant–Microbe Interactions for Improving Postharvest Shelf Life and Quality of Fresh Produce Through Protective Mechanisms (Horticulturae) | https://doi.org/10.3390/horticulturae11070732 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-132` | web | [2022] Prediction of Total Soluble Solids and pH of Strawberry Fruits Using RGB, HSV and HSL Colour Spaces and Machine Learning Models (Foods) | https://doi.org/10.3390/foods11142086 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-133` | web | [2017] Nondestructive Estimation of Moisture Content, pH and Soluble Solid Contents in Intact Tomatoes Using Hyperspectral Imaging (Applied Sciences) | https://doi.org/10.3390/app7010109 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-134` | web | [2024] Prediction of Soluble-Solid Content in Citrus Fruit Using Visible–Near-Infrared Hyperspectral Imaging Based on Effective-Wavelength Selection Algorithm (Sensors) | https://doi.org/10.3390/s24051512 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-135` | pdf | [2018] Hyperspectral imaging technique to evaluate the firmness and the sweetness index of tomatoes (Korean Journal of Agricultural Science) | https://doi.org/10.7744/kjoas.20180075 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-265` | web | [2022] Field Application of a Vis/NIR Hyperspectral Imaging System for Nondestructive Evaluation of Physicochemical Properties in ‘Madoka’ Peaches (Plants) | https://doi.org/10.3390/plants11172327 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-136` | web | Technical Platform on the Measurement and Reduction of Food Loss and Waste / Food and Agriculture Organization of the United Nations | https://www.fao.org/platform-food-loss-waste/en/ | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-137` | web | FLW Database / Technical Platform on the Measurement and Reduction of Food Loss and Waste / Food and Agriculture Organization of the United Nations | https://www.fao.org/food-loss-and-food-waste/flw-data/en/ | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-138` | web | Codex / Home | https://www.fao.org/fao-who-codexalimentarius/en/ | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-139` | web | Ask IFAS: Topic - Postharvest and Handling | https://edis.ifas.ufl.edu/topics/postharvest | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-140` | web | ARS Home : USDA ARS | https://www.ars.usda.gov/ | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-141` | web | National Programs : USDA ARS | https://www.ars.usda.gov/research/programs/ | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-142` | web | NFRI / National Agriculture and Food Research Organization | https://www.naro.go.jp/english/laboratory/nfri/index.html | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-143` | web | Ministry of Agriculture, Forestry and Fisheries | https://www.maff.go.jp/e/index.html | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-144` | web | Postharvest - Wikipedia | https://en.wikipedia.org/wiki/Postharvest | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-145` | web | Controlled atmosphere - Wikipedia | https://en.wikipedia.org/wiki/Controlled_atmosphere | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-146` | web | Modified atmosphere - Wikipedia | https://en.wikipedia.org/wiki/Modified_atmosphere | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-147` | web | 1-Methylcyclopropene - Wikipedia | https://en.wikipedia.org/wiki/1-Methylcyclopropene | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-148` | web | Cold chain - Wikipedia | https://en.wikipedia.org/wiki/Cold_chain | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-149` | pdf | [2014] Agricultural uses of plant biostimulants (Plant and Soil) | https://doi.org/10.1007/s11104-014-2131-8 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-150` | web | [2017] Biostimulants in Plant Science: A Global Perspective (Frontiers in Plant Science) | https://doi.org/10.3389/fpls.2016.02049 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-151` | web | [1986] The commercial storage of fruits, vegetables, and florist and nursery stocks (Biodiversity Heritage Library (Smithsonian Institution)) | https://www.biodiversitylibrary.org/item/295012 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-152` | web | [2017] Reducing Postharvest Losses during Storage of Grain Crops to Strengthen Food Security in Developing Countries (Foods) | https://doi.org/10.3390/foods6010008 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-266` | web | [2015] Bioactive Compounds and Antioxidant Activity in Different Types of Berries (International Journal of Molecular Sciences) | http://dx.doi.org/10.3390/ijms161024673 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-153` | web | [2019] The role of hydrogen and fuel cells in the global energy system (Energy & Environmental Science) | https://doi.org/10.1039/c8ee01157e | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-154` | web | [2018] Methanol as a fuel for internal combustion engines (Progress in Energy and Combustion Science) | https://doi.org/10.1016/j.pecs.2018.10.001 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-155` | web | [2017] Overview of Ice Nucleating Particles (Meteorological Monographs) | https://doi.org/10.1175/amsmonographs-d-16-0006.1 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-156` | web | [2021] Liquid Hydrogen: A Review on Liquefaction, Storage, Transportation, and Safety (Energies) | https://doi.org/10.3390/en14185917 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-267` | web | [2022] Hydrogen liquefaction: a review of the fundamental physics, engineering practice and future opportunities (Energy & Environmental Science) | https://doi.org/10.1039/d2ee00099g | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-157` | web | [2013] Advances in Fruit Aroma Volatile Research (Molecules) | https://doi.org/10.3390/molecules18078200 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-158` | web | [2019] Tomato Fruit Development and Metabolism (Frontiers in Plant Science) | https://doi.org/10.3389/fpls.2019.01554 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-159` | web | [2019] Chemical Composition of Mango (Mangifera indica L.) Fruit: Nutritional and Phytochemical Compounds (Frontiers in Plant Science) | https://doi.org/10.3389/fpls.2019.01073 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-160` | web | [2016] Induced resistance to control postharvest decay of fruit and vegetables (Postharvest Biology and Technology) | https://www.sciencedirect.com/science/article/pii/S0925521416301946/pdf | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-268` | pdf | [2020] Primary Metabolism in Fresh Fruits During Storage (Frontiers in Plant Science) | https://doi.org/10.3389/fpls.2020.00080 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-161` | web | [2014] Near-infrared spectroscopy and hyperspectral imaging: non-destructive analysis of biological materials (Chemical Society Reviews) | https://doi.org/10.1039/c4cs00062e | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-162` | web | [2020] Visible-NIR ‘point’ spectroscopy in postharvest fruit and vegetable assessment: The science behind three decades of commercial use (Postharvest Biology and Technology) | https://doi.org/10.1016/j.postharvbio.2020.111246 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-163` | web | [2015] Fruit Quality Evaluation Using Spectroscopy Technology: A Review (Sensors) | http://dx.doi.org/10.3390/s150511889 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-164` | web | [2019] Monitoring strategies for quality control of agricultural products using visible and near-infrared spectroscopy: A review (Trends in Food Science & Technology) | https://www.sciencedirect.com/science/article/abs/pii/S0924224418304825 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-269` | web | [2011] Machine vision system: a tool for quality inspection of food and agricultural products (Journal of Food Science and Technology) | https://doi.org/10.1007/s13197-011-0321-4 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-165` | web | [1995] Biosolids–Yard Trimming Composts Increases Bell Pepper (Capsicum annuum L.) and Cucumber (Cucumis sativus L.) Yields (HortScience) | https://doi.org/10.21273/hortsci.30.4.892 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-166` | web | [1995] Physiology of Lightly Processed Fruits and Vegetables (HortScience) | https://doi.org/10.21273/hortsci.30.1.18 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-167` | web | [2006] Nutritional and medicinal use of Cactus pear (Opuntia spp.) cladodes and fruits (Frontiers in bioscience) | https://doi.org/10.2741/1992 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-168` | web | [2017] Antifungal Microbial Agents for Food Biopreservation—A Review (Microorganisms) | https://doi.org/10.3390/microorganisms5030037 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-270` | web | [2010] Effect of hydroxypropylmethylcellulose and chitosan coatings with and without bergamot essential oil on quality and safety of cold-stored grapes (Postharvest Biology and Technology) | https://doi.org/10.1016/j.postharvbio.2010.11.004 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+### 참고문헌
+- [SRC-368] Effect of plant density and manure on onion yield (2005), *NJHS*; [SRC-369] Simulating impacts of irrigation heterogeneity on onion yield (2014), *Irrigation Science*; [SRC-373] Optimum Installation Depth of Soil Moisture Sensor (2013), *KJSSF*; [SRC-376] Subsurface Drip Irrigation with Different Dripline Placements (2018), *KJSSF*; [SRC-378] Regional Differences in Onion Bulb Quality and Storage Loss (2016), *HST*; [SRC-389] FAO-56 & Irrigation Engineering Standards Anchor; [SRC-480] Su et al. (2026), *BMC Plant Biology*; [SRC-481] Fujiwara et al. (2019), *Data in Brief*; [SRC-486] Ochar et al. (2026), *Scientific Reports*; [SRC-491] Wayal et al. (2025), *Frontiers in Plant Science*; [SRC-493] Kim et al. (2025), *PeerJ*; [SRC-499] Kim et al. (2026), *The Plant Pathology Journal*; [SRC-500] Machado et al. (2026), *Archives of Microbiology*.

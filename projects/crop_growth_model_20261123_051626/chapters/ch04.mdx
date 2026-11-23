@@ -1,158 +1,59 @@
 ---
 chapter_id: "ch04"
 title: "제4장. 기후 및 물리적 환경 요인 통합과 파라미터 보정"
-audience: "대학 전공 심화, 대학원생, 연구자 및 선도 현장 실무자"
-evidence_packet: "crop_growth_model_20261123_051626_evidence.json"
+book_title: "작물 생육모형"
+primary_output_type: "textbook"
+evidence_packet: "crop_growth_model_20261123_051626_evidence"
 ---
 
 # 제4장. 기후 및 물리적 환경 요인 통합과 파라미터 보정
 
-본 장에서는 작물 성장 모형의 예측 정확도를 극대화하기 위해 다양한 기후적 및 물리적 환경 요인을 모형에 통합하는 방법론과, 모형의 강건성(Robustness) 확보를 위한 파라미터 보정(Calibration) 및 민감도 분석 기법을 심도 있게 논한다. 복잡한 생장 현상을 정확히 시뮬레이션하기 위해서는 단순히 생리적 과정뿐만 아니라, 실제 농업 환경을 구성하는 외부 환경 변수들의 영향을 정밀하게 반영해야 하기 때문이다.
+> **학습 목표**: 본 장에서는 ① GCM 기후변화 시나리오의 편향 보정(bias correction)과 모형 입력 통합 절차를 이해하고, ② GLUE·MNSGA-II·DE·MCMC·칼만 필터 기반 품종 파라미터 최적화 알고리즘을 비교하며, ③ EFAST 전역 민감도 분석을 통한 모형 불확실성 정량화 및 의사결정 지원(DSS) 활용 전략을 습득한다 [SRC-446, SRC-455, SRC-456, SRC-458, SRC-464].
 
 ## 4.1 기후 데이터(온도, 강수, 일조량)의 모형 입력 및 처리
 
-농업 생장 모형은 외부 기후 변수, 특히 온도(temperature), 강수량, 일조량과 같은 동적인 환경 데이터를 주요 입력 변수로 사용한다. 이 데이터들은 작물의 생리적 반응을 직접적으로 제어하는 핵심 구동력이다.
-
-### 개념 소개 및 이론적 배경
-작물의 발달 단계(Phenology)는 온도 변화에 매우 민감하게 반응한다. 예를 들어, temperature는 봄밀(Triticum aestivum L., cv. Polkka)과 같은 작물의 생장 패턴에 중요한 영향을 미친다 [SRC-287]. 온도가 특정 임계점을 초과하거나 하회할 경우, 광합성 효율, 증산 작용, 개화 시기 등 모든 생리적 과정이 변화한다.
-
-기후 데이터 처리 시에는 사용되는 작물 모형의 요구사항에 맞춘 전처리 과정이 필수적이다. 예를 들어, 강수량 데이터는 증발산량 계산 및 토양 수분 함량 변화를 예측하는 데 사용된다 [SRC-290]. 또한, 일조량 데이터는 광합성 속도를 결정짓는 주요 에너지원으로서 모형의 에너지 수지 계산에 필수적으로 통합된다.
-
-### 생리·분자 메커니즘
-온도 의존적 생장 과정은 광합성 효소의 활성도와 관련된다. 특정 온도 범위 내에서 효소의 촉매 작용이 최적화되며, 이 범위를 벗어나면 효소 구조의 변성(Denaturation)이 발생하여 생장이 저해된다. 강수량 변화는 뿌리 시스템의 수분 흡수 능력에 직접적인 영향을 주며, 이는 식물체 내의 수분 스트레스 정도를 결정한다 [SRC-295].
-
-### 현장 적용 및 실전 기술
-현장에서는 기상 관측소에서 얻은 시계열 기상 자료(Time-series meteorological data)를 모형 입력 데이터로 사용한다. 정확한 예측을 위해서는 특정 작물에 최적화된 수문학적, 열역학적 파라미터 셋을 갖춘 모델(예: CERES 모델 계열)을 활용하며 [SRC-283], 이를 통해 작물의 개화 시기나 수확량을 정밀하게 예측할 수 있다. 또한, SVR_Seq2Seq 모델과 같은 고급 머신러닝 기법은 온도를 포함한 복합적인 환경 변수를 기반으로 온실 작물(greenhouse crop growth)의 다단계 예측을 수행하는 데 활용된다 [SRC-285].
+작물 생육모형은 일별 최고·최저 기온($T_{\max}, T_{\min}$), 일사량($R_s$), 강수량($P$), 풍속 및 상대습도를 필수 구동 입력으로 사용한다 [SRC-446, SRC-451]. 장기 기후변화 영향 평가에서는 전 지구 기후모델(GCM, 예: GFDL-ESM2M)의 RCP 4.5 및 RCP 8.5 시나리오 출력을 기준 기간 관측치와 대조해 **편향 보정(bias correction)**한 뒤 작물 모형에 입력한다 [SRC-446]. Baydar (2026)의 편향 보정 분석(원문 표 5)에 따르면, GFDL-ESM2M 모델은 2016–2040년에서 2041–2070년으로 갈수록 RCP 8.5 시나리오에서 $T_{\max}$ 편차가 7.09 °C → 8.21 °C, $T_{\min}$ 편차가 4.75 °C → 5.68 °C로 확대되는 반면 강수량 변동은 0.56 mm 수준까지 축소되어 고온·가뭄 복합 위험이 심화됨을 보여준다 [SRC-446].
 
 ## 4.2 비생물적 환경 요인(토양 특성, 미기후)의 모형 통합
 
-식물 자체의 생리 반응 외에도, 토양의 물리화학적 특성과 지역적인 미기후 조건은 모형의 예측 정확성에 결정적인 영향을 미친다.
-
-### 개념 소개 및 이론적 배경
-토양 특성 중 **토양 질감(soil texture)**은 작물의 뿌리 환경에 가장 기본적인 영향을 미친다. 토양 질감은 물의 보유 능력, 통기성, 그리고 염분 이동에 관여하며, 이는 작물의 **수분 스트레스(plant water stress)** 발생 정도와 밀접하게 연결된다 [SRC-295].
-
-또한, 미기후(Microclimate)는 광범위한 기후 모델이 포착하지 못하는 국지적이고 세부적인 환경 변화를 반영한다. 예를 들어, 특정 작물의 재배지에서의 지온(Soil Temperature)이나 국지적 증발산량은 지역별로 큰 편차를 보인다.
-
-### 생리·분자 메커니즘
-토양의 유기물 함량이나 pH와 같은 특성 파라미터는 미생물 활동을 조절하며, 이는 양분 순환 속도(Nutrient cycling rate)와 작물에 이용 가능한 양분 형태(Available nutrient forms)를 결정한다. 잔존하는 생물학적 잔재물(예: residual broken roots) 역시 토양의 물리적 구조와 미생물 군집에 영향을 주어 작물의 생육 환경을 변화시킨다 [SRC-286].
-
-### 현장 적용 및 실전 기술
-현장 적용 시, 토양 특성 파라미터(예: 함수율, 영양분 보유력)는 토양 시료 분석을 통해 정량적으로 확보하며, 이는 모형의 초기 조건(Initial condition) 설정에 사용된다. 토양-작물 상호작용을 정밀화하기 위해, 일부 연구에서는 작물 윤작(crop rotation) 최적화에 경험적으로 추정된 전작값(empirically estimated pre-crop values)을 결합하여 동적 농장 수준 모형을 개선하고 있다 [SRC-289].
+기상 입력 외에도 토층별 물리·화학성(토성, 가비중, 유기탄소, 초기 무기태 질소, 염분 EC)과 지표 피복·미기후 조건이 모의 정확도를 좌우한다 [SRC-454, SRC-463, SRC-471]. 멀칭 재배에서는 피복재에 의한 지온 완충 효과를 토양온도 모듈로 통합해야 하며 [SRC-454], 광역 시뮬레이션에서는 MODIS 위성 산출물(MCD15A3H LAI, MOD17A2/MOD17A3 바이오매스) [SRC-447]이나 초분광(HSI) 원격탐사 데이터 [SRC-461]를 결합해 필지 간 토양·미기후 공간 이질성을 보정한다. 육종 다지역 시험(MET)에서는 Okoma et al. (2025)이 국제열대농업연구소(IITA)의 카사바 67개 클론 데이터를 활용해 DSSAT CROPGRO-MANIHOT-Cassava의 유전자형 특이 매개변수를 통합 추정함으로써 미시험 환경에서의 품종 적응성 예측 기반을 구축하였다 [SRC-471].
 
 ## 4.3 파라미터 최적화 및 모형 보정(Calibration & Validation) 기법
 
-모형이 현실의 작물 생장 과정을 정확하게 재현하도록 모형 내의 미지의 변수들(파라미터)을 조정하는 과정이 파라미터 보정이다.
+작물 생육모형의 예측 성능을 결정짓는 핵심 단계는 관측 데이터를 이용해 품종 유전 모수(CSPs)와 토양 수리·질소 모수를 추정하는 **파라미터 보정(calibration)**과 독립 연도·지역 데이터에 대한 **검증(validation)**이다 [SRC-456, SRC-458]. 최근 연구들은 목적함수 수렴 속도와 사후 불확실성 추정을 개선하기 위해 다양한 전역 최적화 및 베이지안 알고리즘을 비교·적용하고 있다.
 
-### 개념 소개 및 이론적 배경
-**보정(Calibration)**은 모형의 출력이 실제 관측된 데이터(예: 실제 수확량, 특정 시점의 바이오매스)와 가장 근접하도록 모형의 입력 파라미터(θ)를 반복적으로 최적화하는 과정이다. 이 과정에서 사용되는 θ<sub>opt</sub>와 같은 최적화된 파라미터 셋을 찾는 것이 목표이다.
+| 최적화·동화 알고리즘 | 원리 및 특징 | 대표 적용 모형·작물 | 성능 비교 및 실무 선택 기준 | 출처 |
+|---|---|---|---|---|
+| **GLUE (일반화 우도 불확실성 추정)** | 무작위 표본에서 우도 가중치로 사후 분포 추정 | CROPGRO-Soybean (4개 생육기 조합) | 구현 간편·불확실성 분포 제공; 다차원 모수 공간에서 연산량 크고 관측 조합 선정 중요 | [SRC-456, SRC-458] |
+| **MNSGA-II / DE (진화·다목적 최적화)** | PEST 코어 결합 다목적 유전알고리즘 / 차분진화 | CROPGRO-Soybean 다중소스 데이터 | 다목적 생육기·수량 동시 수렴 속도 우수; GLUE 대비 탐색 효율 높음 | [SRC-458] |
+| **PSO / SCE-UA / SA (군집·전역 탐색)** | 입자군집(PSO)·셔플드 복합진화(SCE-UA)·모의담금질 | Ricegrow, AquaCrop, ChinaAgrosys (벼·밀) | 겨울밀 AGB 동화에서 SCE-UA가 정확도·효율 최상, 수량 추정에서 PSO 강점 | [SRC-450] |
+| **MCMC (마르코프 연쇄 몬테카를로)** | 베이지안 사후 분포 정밀 샘플링 | DSSAT + 원격탐사(LAI, PNA) 벼 | 초기 파종일·파종량·시비량 재보정과 신뢰구간 동시 산출에 최적 | [SRC-453] |
+| **칼만 필터 기반 최적화 (EnKF 등)** | 예측-관측 공분산 가중으로 순차적 모수·상태 갱신 | WHCNS 토양-작물 수분·질소 모형 | ME·RMSE·IA 지표 개선 및 실시간 시계열 순차 동화에 적합 | [SRC-464] |
 
-**검증(Validation)**은 보정 과정에 사용되지 않은 독립적인 외부 데이터셋을 이용하여 모형의 예측 능력을 평가하는 절차이다. 이는 모형이 단순히 특정 데이터에 과적합(Overfitting)되는 것을 방지하고, 일반화된 예측 능력을 갖추었는지 확인하는 핵심 단계이다.
-
-### 생리·분자 메커니즘
-모형 보정은 기본적으로 관측치와 예측치 간의 오차(Error)를 최소화하는 통계적 최적화 문제로 귀결된다. 이 과정은 작물의 생리적 반응 메커니즘(예: 광합성 최대 속도 A<sub>max</sub>, 증산 기공 전도도 g<sub>s</sub>)을 수학적 함수로 변환한 후, 이 함수들에 가장 적합한 물리적 의미를 지니는 계수(Parameter)를 찾는 과정이다.
-
-### 현장 적용 및 실전 기술
-현장 연구에서는 다양한 보정 기법(예: 최소 제곱법, 유전 알고리즘)을 적용한다. 예를 들어, 특정 작물 모델에서 온도 변화가 밀에 미치는 영향을 분석할 때 [SRC-287], 해당 모델의 온도 민감도를 파라미터 보정을 통해 정량화할 수 있다. 또한, 농업 분야의 데이터 표준화와 실태 점검 시에는 한국농촌경제연구원에서 발행하는 [2025 농어촌서비스기준 이행실태 점검·평가]와 같은 기준을 활용하여 모형 결과의 현장 적용 타당성을 평가할 수 있다 [SRC-106].
+특히 Zhang et al. (2024)은 CROPGRO-Soybean 생육기 모형에서 개화시·결협시·성숙기 등 4개 관측 생육기의 조합을 체계적으로 비교하여, 모든 시기를 무분별하게 관측하는 대신 **정보량이 높은 핵심 생육기 조합을 선정하면 GLUE 연산 비용을 줄이면서도 모수 추정 정확도를 유지**할 수 있음을 증명하였다 [SRC-456]. 이어진 연구(Zhang et al., 2025)에서는 PEST 핵심 알고리즘을 결합한 수정 다목적 유전알고리즘(MNSGA-II)이 다중소스 데이터 기반 모수 추정에서 GLUE 및 차분진화(DE)와 비교해 우수한 수렴 특성을 보였다 [SRC-458].
 
 ## 4.4 민감도 분석(Sensitivity Analysis)을 통한 모형 불확실성 평가
 
-파라미터가 모형 예측 결과에 얼마나 큰 영향을 미치는지를 정량적으로 파악하는 것이 민감도 분석이다.
+매개변수가 수십 개에 달하는 기작 모형에서 모든 변수를 동시에 보정하면 과적합과 매개변수 동등성(equifinality) 문제가 발생한다. 따라서 보정 전 **전역 민감도 분석(Global Sensitivity Analysis, GSA)**을 수행해 출력 변동에 가장 크게 기여하는 핵심 매개변수만 선별해야 한다 [SRC-455]. Gao et al. (2025)이 6가지 수분·질소 처리 조건 하에서 밀 DSSAT 모형의 품종 매개변수에 확장 푸리에 진폭 민감도 검정(**EFAST**)을 적용한 결과, 지상부 건물중과 건물 질소 축적량에 가장 민감한 지배 유전 모수는 등숙 기간을 결정하는 **$P5$**와 일장 감응 계수인 **$P1D$**로 규명되었다 [SRC-455].
 
-### 개념 소개 및 이론적 배경
-민감도 분석은 모형의 각 입력 파라미터 변화에 대한 최종 출력 변수(Output variable)의 변화율을 측정한다. 이는 특정 파라미터에 불확실성이 크더라도, 해당 파라미터가 예측 결과에 미치는 영향이 미미하다면 모형의 신뢰도가 상대적으로 높음을 의미한다.
+모형 불확실성은 ① 입력 기상·토양 불확실성, ② 매개변수 불확실성, ③ 모형 구조 불확실성으로 분해된다 [SRC-455, SRC-462]. Correa & Calderon (2026)이 강조하듯, 단일 모형의 점 추정치에 의존하기보다 다중 모형 앙상블과 베이지안 사후 불확실성 구간을 함께 제시해야 농생태 적응 설계(*in silico* design) 및 영농 의사결정 지원 시스템(DSS)의 위험 관리 신뢰도를 확보할 수 있다 [SRC-462].
 
-### 생리·분자 메커니즘
-모형의 민감도는 작물의 생리적 경로 중 어느 부분이 가장 병목 현상(Bottleneck)을 일으키는지에 대한 통찰을 제공한다. 예를 들어, 수분 스트레스 상황에서 토양 질감 변화가 작물 반응에 미치는 영향의 정도를 분석함으로써, 어떤 환경 요인을 집중적으로 관리해야 할지 생물학적 근거를 확보하게 된다 [SRC-295].
+### 오해와 진실
+- **오해 (Myth):** 모형의 모든 매개변수를 한꺼번에 최적화 프로그램에 넣으면 가장 정확한 보정 결과를 얻는다.
+- **진실 (Fact):** 비민감 매개변수까지 과도하게 자유도를 열면 서로 다른 모수 조합이 동일한 오차를 내는 동등성(equifinality)과 과적합이 발생하므로, EFAST 같은 전역 민감도 분석으로 지배 매개변수($P5, P1D$ 등)를 선별한 뒤 핵심 관측 조합으로 보정해야 한다 [SRC-455, SRC-456].
 
-### 현장 적용 및 실전 기술
-실제 현장 적용 시, 민감도 분석은 의사결정 지원 시스템(DSS) 구축에 매우 중요하다. 어느 환경 요인(기온, 강수, 질산태 질소 등)의 불확실성을 줄이는 데 투입 자원을 집중할지 우선순위를 설정할 수 있다. 또한, 농업 정책 결정 시에는 농림축산식품부와 같은 중앙정부 기관의 가이드라인을 참조하여 모형 결과의 정책적 함의를 도출해야 한다 [SRC-104].
+### 핵심 용어집
+| 국문 용어 | 영문 용어 | 정의 |
+|---|---|---|
+| 전역 민감도 분석 | Global Sensitivity Analysis (GSA / EFAST) | 전체 모수 공간에서 개별 모수의 주효과와 교호작용이 출력 분산에 미치는 기여도를 정량 분해하는 기법 [SRC-455] |
+| 편향 보정 | Bias Correction | GCM 기후 시나리오의 계통적 오차를 기준 관측 기후 분포에 맞추어 보정하는 전처리 절차 [SRC-446] |
+| 매개변수 동등성 | Equifinality | 서로 다른 매개변수 조합이 유사한 모의 적합도를 산출해 물리적 유일성이 훼손되는 현상 [SRC-455, SRC-462] |
 
----
+### 이해도 점검
+1. 밀 DSSAT 모형에서 EFAST 전역 민감도 분석을 수행한 결과 지상부 건물중과 질소 축적에 가장 민감했던 2개 품종 모수는 무엇인가?
+   - **풀이:** 등숙 기간 모수인 $P5$와 일장 감응 계수인 $P1D$가 6개 수분·질소 처리 전반에서 가장 높은 민감도를 보였다 [SRC-455].
+2. GLUE, MNSGA-II, MCMC, 칼만 필터 중 실시간 위성·UAV 관측이 순차적으로 유입되는 생육 중반 동화에 가장 적합한 접근과 그 이유를 설명하시오.
+   - **풀이:** 칼만 필터 계열은 새 관측치가 들어올 때마다 예측-관측 공분산 가중치로 상태변수와 매개변수를 순차 갱신하므로 실시간 운영에 유리하며, MCMC는 초기 관리 모수의 사후 확률분포와 불확실성 구간을 정밀 추정하는 데 강점이 있다 [SRC-453, SRC-464].
 
-## 핵심 용어집 (표)
-
-| 용어 (Term) | 정의 (Definition) | 관련 개념/이론 | 출처 키 |
-| :--- | :--- | :--- | :--- |
-| **파라미터 보정 (Calibration)** | 모형의 예측 결과가 실제 관측치와 가장 유사하도록 모형 내부 계수를 조정하는 과정. | θ<sub>opt</sub> 찾기, 오차 최소화 | N/A |
-| **민감도 분석 (Sensitivity Analysis)** | 모형의 특정 입력 파라미터가 최종 예측 결과에 미치는 영향의 크기를 정량적으로 분석하는 기법. | 불확실성 평가, 병목 현상 식별 | N/A |
-| **강건성 (Robustness)** | 모형이 입력 데이터의 작은 변동이나 불확실성에도 불구하고 안정적인 예측 능력을 유지하는 특성. | 모형 안정성 확보 | N/A |
-| **토양 질감 (Soil Texture)** | 토양을 구성하는 모래, 실트, 점토 입자의 상대적 비율로, 수분 및 공기 투과성에 결정적 영향. | plant water stress 유발 인자 | SRC-295 |
-| **SVR_Seq2Seq 모델** | 서포트 벡터 회귀 시퀀스-투-시퀀스 모델로, 시간 의존적 농업 현상 예측에 사용되는 고급 머신러닝 기법. | greenhouse crop growth 예측 | SRC-285 |
-
----
-
-## 이해도 점검 연습문제 및 해설
-
-**문제 1.** 작물 생장 모형에서 temperature와 같은 기후 변수가 작물의 생리적 반응에 미치는 영향을 정량적으로 확인하고, 특정 온도 환경에서의 반응 변화를 예측하는 데 사용되는 모형적 접근 방식은 무엇인가? (287 참고)
-A) 토양 질감 분석
-B) 파라미터 보정
-C) 민감도 분석
-D) 작물 윤작 최적화
-
-**정답:** C) 민감도 분석
-**상세 풀이:** 민감도 분석은 모형의 각 입력 변수(이 경우 temperature)가 최종 결과(Phenological response)에 미치는 영향의 크기를 측정하는 과정이다 [SRC-287]. 파라미터 보정은 '최적값'을 찾는 것이고, 민감도 분석은 '영향력의 크기'를 파악하는 것이다.
-
-**문제 2.** 농업 모형의 강건성을 높이기 위해 외부 환경 데이터를 통합할 때, 토양의 물리적 특성과 관련된 지표 중 작물의 수분 스트레스에 가장 직접적으로 영향을 미치는 요소는 무엇이며, 이는 모형 입력 시 어떤 고려가 필요한가? (295 참고)
-A) 유기물 함량; 미생물 활동 관찰
-B) soil texture; 물 보유 능력 및 통기성 반영
-C) CO<sub>2</sub> 농도; 광합성 최대 속도 파라미터 설정
-D) harvesting date; 수확량 최적화 알고리즘 적용
-
-**정답:** B) soil texture; 물 보유 능력 및 통기성 반영
-**상세 풀이:** soil texture는 토양의 물리적 특성으로, plant water stress 발생 가능성에 직접적인 영향을 미치며 [SRC-295], 이는 모형이 토양의 수분 역학을 정확하게 시뮬레이션하기 위해 필수적으로 고려되어야 한다.
-
-**문제 3.** 농업 시스템의 복합적인 환경 요인(토양, 기후 등)을 고려하여 작물 생산 시스템의 지속 가능성을 평가하고 정책적 활용도를 높이기 위해 요구되는 종합적 접근 방식은 무엇인가? (106 참고)
-A) 농촌진흥청의 채용 공고에 명시된 일반 행정 절차 준수
-B) 한국식품연구원의 연구 목적 정의에 따른 기술 개발
-C) 농촌서비스기준 이행실태 점검 및 평가를 통한 현장 타당성 검증
-D) 특정 작물 단일 생장 모델의 최대 효율 추구
-
-**정답:** C) 농촌서비스기준 이행실태 점검 및 평가를 통한 현장 타당성 검증
-**상세 풀이:** 모형의 예측 정확도를 현장 단위에서 검증하고 정책적 적용 가능성을 평가하기 위해서는, 한국농촌경제연구원에서 수행하는 [2025 농어촌서비스기준 이행실태 점검·평가]와 같은 기준적 시도가 요구된다 [SRC-106]. 이는 기술적 정밀도와 현장 현실 간의 괴리를 줄이는 과정이다.
-
----
-
-## 오해와 진실: 현장·이론 핵심 오해 교정
-
-**오해 1:** 모형 보정(Calibration)을 한 번 완료하면 해당 모형은 어떠한 환경 변화에도 완벽하게 적용 가능한 '만능 모델'이 된다.
-**진실:** 모형 보정은 특정 관측 데이터 셋에 대해 최적화하는 과정이며, 이는 과적합(Overfitting)의 위험을 내포한다. 모형의 강건성을 확보하고 보편성을 검증하기 위해서는 **독립적인 데이터셋을 이용한 검증(Validation)** 절차가 필수적이다. 단일 보정으로 모든 시나리오에 대응할 수 없다.
-
-**오해 2:** 온도와 강수량 같은 기후 데이터가 모형의 입력값으로 사용되면, 모형은 단순히 해당 조건에서 발생할 생장 패턴을 '나타내기만' 할 뿐, 환경 변화에 대한 '적응 전략'을 제시하지 못한다.
-**진실:** 정교하게 보정된 모형, 특히 생리/수문학적 메커니즘을 내포하는 모형은 특정 환경 스트레스(예: 가뭄 시 soil texture로 인한 수분 부족)가 발생했을 때, 작물이 생존을 위해 취할 수 있는 생리적 반응(예: 기공 닫힘)을 예측하며, 이를 통해 최적의 **대응 전략**을 모색할 수 있는 기초 정보를 제공한다 [SRC-295].
-
-**오해 3:** 농업 모형의 정확도를 높이기 위해 가장 중요한 것은 기후 변수(온도, 강수량)의 해상도를 높이는 것이다.
-**진실:** 기후 데이터의 해상도 향상도 중요하지만, 모형의 **구조적 이해와 파라미터의 물리적 타당성** 확보가 더 중요하다. 예를 들어, 고해상도 기후 데이터가 들어와도, 토양의 실제 수분 보유 능력(soil texture와 관련된 파라미터)이 부정확하다면, 모형은 비물리적 예측을 하게 되며, 이는 모형의 강건성을 저해한다. 경험적 파라미터 추정(SRC-289)과 생리적 기반의 통합이 필요하다.
-
-## 참고문헌 및 근거 출처 목록
-
-| 출처 ID | 유형 | 제목 | URL | 라이선스 |
-| :--- | :--- | :--- | :--- | :--- |
-| `SRC-100` | web | 농촌진흥청 | https://www.rda.go.kr/ | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-102` | web | 한국식품연구원 | https://www.kfri.re.kr/ | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-104` | web | 농림축산식품부 | https://www.mafra.go.kr/home/index.do | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-106` | web | 한국농촌경제연구원 | https://www.krei.re.kr/krei/index.do | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-283` | web | [2021] Rice phenology and growth simulation using DSSAT- CERES-Rice crop model under the different temperatures changing with climatic condition (International Journal of Agricultural Sciences and Technology) | https://doi.org/10.51483/ijagst.1.2.2021.1-11 | 학술 서지 메타데이터·초록(Crossref) - 정식 인용 목적(원문 무단 복제 금지) |
-| `SRC-284` | web | [2016] A preliminary model of sweet corn growth and yield (New Zealand Journal of Crop and Horticultural Science) | https://doi.org/10.1080/01140671.2016.1264078 | 학술 서지 메타데이터·초록(Crossref) - 정식 인용 목적(원문 무단 복제 금지) |
-| `SRC-285` | web | [2025] Multi-step prediction of greenhouse crop growth based on the SVR_Seq2Seq model (Smart Agricultural Technology) | https://doi.org/10.1016/j.atech.2025.100986 | 학술 서지 메타데이터·초록(Crossref) - 정식 인용 목적(원문 무단 복제 금지) |
-| `SRC-286` | web | [2022] Effects of residual broken roots on the growth and rhizosphere soil of herbaceous peony (European Journal of Horticultural Science) | https://doi.org/10.17660/ejhs.2022/035 | 학술 서지 메타데이터·초록(Crossref) - 정식 인용 목적(원문 무단 복제 금지) |
-| `SRC-287` | web | [2001] Simulation of spring wheat responses to elevated CO2 and temperature by using CERES-wheat crop model (Agricultural and Food Science) | https://doi.org/10.23986/afsci.5692 | 학술 서지 메타데이터·초록(Crossref) - 정식 인용 목적(원문 무단 복제 금지) |
-| `SRC-288` | web | [2025] Assessment of the Effects of Drying Methods on the  Drying Characteristics, Color, Nutritional and  Medicinal Attributes of Dioscorea opposita Thunb (ES Food &amp; Agroforestry) | https://doi.org/10.30919/faf1652 | 학술 서지 메타데이터·초록(Crossref) - 정식 인용 목적(원문 무단 복제 금지) |
-| `SRC-289` | web | [2024] Improving a dynamic farm level model by coupling empirically estimated pre-crop values with crop rotation optimization (Agricultural and Food Science) | https://doi.org/10.23986/afsci.144747 | 학술 서지 메타데이터·초록(Crossref) - 정식 인용 목적(원문 무단 복제 금지) |
-| `SRC-290` | web | [2013] Comparison of Crop Growth and Evapotranspiration Simulations between Noah Multi Physics Model and CERES-Rice Model (Korean Journal of Agricultural and Forest Meteorology) | https://doi.org/10.5532/kjafm.2013.15.4.282 | 학술 서지 메타데이터·초록(Crossref) - 정식 인용 목적(원문 무단 복제 금지) |
-| `SRC-291` | web | [2013] Cassava Nitrogen Requirements in Thailand and Crop Simulation Model Predictions (Soil Science) | https://doi.org/10.1097/ss.0b013e31829a283f | 학술 서지 메타데이터·초록(Crossref) - 정식 인용 목적(원문 무단 복제 금지) |
-| `SRC-86` | web | [2025] Determination of optimal mixing ratio of organic fertilizer and biochar derived from agricultural waste to increase crop growth and soil carbon sequestration (Korean Journal of Soil Science and Fertilizer) | https://doi.org/10.7745/kjssf.2025.58.1.118 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-292` | web | [2022] Korean Model for Estimating Soil Available Water Content of Soybean Cultivation Area with Integrated Soil, Meteorology, and Crop Data (Korean Journal of Soil Science and Fertilizer) | https://doi.org/10.7745/kjssf.2022.55.4.570 | 학술 서지 메타데이터·초록(Crossref) - 정식 인용 목적(원문 무단 복제 금지) |
-| `SRC-293` | web | [연도 미상] Crop simulation model of the second and the third productivity levels (Modelling water and nutrient dynamics in soil–crop systems) | https://doi.org/10.1007/978-1-4020-4479-3_7 | 학술 서지 메타데이터·초록(Crossref) - 정식 인용 목적(원문 무단 복제 금지) |
-| `SRC-294` | web | [2023] Irrigation in the Earth system (Nature Reviews Earth & Environment) | https://doi.org/10.1038/s43017-023-00438-5 | 학술 논문 오픈액세스(OpenAlex) - 변환적 분석 및 정식 학술 인용 |
-| `SRC-295` | pdf | [2024] Global critical soil moisture thresholds of plant water stress (Nature Communications) | https://doi.org/10.1038/s41467-024-49244-7 | 학술 논문 오픈액세스(OpenAlex) - 변환적 분석 및 정식 학술 인용 |
-| `SRC-296` | web | [2021] Statistical upscaling of ecosystem CO 2 fluxes across the terrestrial tundra and boreal domain: Regional patterns and uncertainties (Global Change Biology) | https://doi.org/10.1111/gcb.15659 | 학술 논문 오픈액세스(OpenAlex) - 변환적 분석 및 정식 학술 인용 |
-| `SRC-297` | web | [2023] Effects of Climate Change and Drought Tolerance on Maize Growth (Plants) | https://doi.org/10.3390/plants12203548 | 학술 논문 오픈액세스(OpenAlex) - 변환적 분석 및 정식 학술 인용 |
-| `SRC-298` | web | [2021] Eco‐evolutionary optimality as a means to improve vegetation and land‐surface models (New Phytologist) | https://doi.org/10.1111/nph.17558 | 학술 논문 오픈액세스(OpenAlex) - 변환적 분석 및 정식 학술 인용 |
-| `SRC-136` | web | Technical Platform on the Measurement and Reduction of Food Loss and Waste / Food and Agriculture Organization of the United Nations | https://www.fao.org/platform-food-loss-waste/en/ | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-140` | web | ARS Home : USDA ARS | https://www.ars.usda.gov/ | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-142` | web | NFRI / National Agriculture and Food Research Organization | https://www.naro.go.jp/english/laboratory/nfri/index.html | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-299` | web | [2012] Impacts of climate change on the future of biodiversity (Ecology Letters) | https://doi.org/10.1111/j.1461-0248.2011.01736.x | 학술 논문 오픈액세스(OpenAlex) - 변환적 분석 및 정식 학술 인용 |
-| `SRC-300` | web | [2023] Earth beyond six of nine planetary boundaries (Science Advances) | https://doi.org/10.1126/sciadv.adh2458 | 학술 논문 오픈액세스(OpenAlex) - 변환적 분석 및 정식 학술 인용 |
-| `SRC-301` | pdf | [2005] Europe-wide reduction in primary productivity caused by the heat and drought in 2003 (Nature) | https://insu.hal.science/insu-00373792 | 학술 논문 오픈액세스(OpenAlex) - 변환적 분석 및 정식 학술 인용 |
-| `SRC-302` | pdf | [2017] More than 75 percent decline over 27 years in total flying insect biomass in protected areas (PLoS ONE) | https://doi.org/10.1371/journal.pone.0185809 | 학술 논문 오픈액세스(OpenAlex) - 변환적 분석 및 정식 학술 인용 |
-| `SRC-303` | web | [2001] FLUXNET: A New Tool to Study the Temporal and Spatial Variability of Ecosystem–Scale Carbon Dioxide, Water Vapor, and Energy Flux Densities (Bulletin of the American Meteorological Society) | https://doi.org/10.1175/1520-0477(2001)082<2415:fantts>2.3.co;2 | 학술 논문 오픈액세스(OpenAlex) - 변환적 분석 및 정식 학술 인용 |
+### 참고문헌
+- [SRC-446] Baydar (2026), *PeerJ*; [SRC-447] Amin et al. (2025), *Scientific Reports*; [SRC-450] Zhao et al. (2025), *Frontiers in Plant Science*; [SRC-451] Li et al. (2026), *Plants*; [SRC-453] Chen et al. (2025), *Plants*; [SRC-454] Song et al. (2026), *Frontiers in Plant Science*; [SRC-455] Gao et al. (2025), *Scientific Reports*; [SRC-456] Zhang et al. (2024), *PLOS ONE*; [SRC-458] Zhang et al. (2025), *PLOS ONE*; [SRC-461] Wen et al. (2026), *Foods*; [SRC-462] Correa & Calderon (2026), *Frontiers in Bioinformatics*; [SRC-463] Manhou et al. (2026), *Plants*; [SRC-464] Guo & Wu (2023), *IJERPH*; [SRC-471] Okoma et al. (2025), *Frontiers in Plant Science*.

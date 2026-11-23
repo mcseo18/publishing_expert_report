@@ -1,121 +1,67 @@
 ---
 chapter_id: "ch03"
 title: "제3장. 물 수지 및 질소 동태 모델링"
-audience: "대학 전공 심화, 대학원생, 연구자 및 선도 현장 실무자"
-evidence_packet: "crop_growth_model_20261123_051626_evidence.json"
+book_title: "작물 생육모형"
+primary_output_type: "textbook"
+evidence_packet: "crop_growth_model_20261123_051626_evidence"
 ---
 
 # 제3장. 물 수지 및 질소 동태 모델링
 
-본 장에서는 작물 생산 시스템의 핵심적인 두 가지 자원인 물(Water)과 질소(N)의 거동을 정량적으로 예측하고 이해하기 위한 동태적 모델링 방법론을 심층적으로 다룹니다. 토양-작물-대기 시스템(Soil-Crop-Atmosphere System) 내에서 발생하는 복잡한 수분 이동(Hydrological movement)과 영양소 순환(Nutrient cycling) 과정을 수학적 방정식과 시뮬레이션 모델을 통해 분석함으로써, 작물 생육 환경에 대한 과학적 기반을 제공합니다.
+> **학습 목표**: 본 장에서는 ① 근권 토양 물 수지 방정식과 FAO-56 증발산·염류 스트레스 반응을 정량화하고, ② UAV 열화상 CWSI 기반 정밀 관개 의사결정 원리를 이해하며, ③ DSSAT·APSIM(SCRUM)·WHCNS에서의 질소 무기화·흡수·추비 동화 알고리즘을 현장 사례와 함께 습득한다 [SRC-448, SRC-449, SRC-450, SRC-463, SRC-468].
 
 ## 3.1 작물 및 토양의 물 수지(Water Balance) 모델링 원리
 
-물 수지(Water Balance) 모델링은 특정 농경지 시스템 내에서 물의 유입(Input), 유출(Output), 저장량 변화(Change in Storage) 간의 균형을 정립하는 과정입니다. 이는 작물 생장에 필요한 물의 가용성을 예측하는 기초가 됩니다. 토양 내 수분량의 변화는 증발산(Evapotranspiration)을 통한 증발 및 작물 transpiration(증산 작용)의 합, 토양 침투(Infiltration), 강우(Precipitation) 등의 요인에 의해 결정됩니다 [SRC-293].
+토양-작물-대기 연속체(SPAC)에서 근권 토층의 일별 토양 수분 변화량($\Delta S$, mm)은 유입 항(강수 $P$, 관개 $I$, 모세관 상승 $CR$)과 유출 항(증발산 $ET_a$, 지표 유출 $RO$, 심층 배수 $DP$)의 질량 보존으로 정의된다 [SRC-449, SRC-463]:
 
-토양의 물리적 특성, 특히 토양의 입자 구성인 **토양 텍스처(soil texture)**는 물의 보유 능력과 이동 속도에 결정적인 영향을 미치며, 이는 궁극적으로 **식물 수분 스트레스(plant water stress)** 발생 가능성에 연관됩니다 [SRC-295]. 물 수지 모델은 작물 생육 시기별로 필요한 물의 양을 추정하며, 이는 작물 시뮬레이션 모델링의 필수 입력 변수 중 하나입니다.
+$$\Delta S = (P + I + CR) - (ET_a + RO + DP)$$
+
+작물 생육모형은 토양 단면을 다층으로 분할하여 각 층의 포장용수량(FC), 영구위조점(PWP), 포화수분함량(SAT) 및 포화수리전도도($K_{\mathrm{sat}}$)에 따라 하향 배수와 뿌리 수분 흡수를 일별로 계산한다 [SRC-449, SRC-464]. APSIM Next Generation의 SCRUM 모형은 수관 에너지 수지(MicroClimate 모듈)를 통해 잠재 증산 요구량과 토양 수분 공급 가능량의 비율로 수분 제한 계수를 산출한다 [SRC-449]. 염류 관개 환경에서는 삼투 포텐셜 저하가 뿌리 수분 흡수를 추가로 제약하므로, Manhou et al. (2026)은 모로코 반건조 지역 겨울밀(cv. Achtar)에 AquaCrop을 보정·검증하여 염류 관개 하의 수관피복률(CC), 실제 증발산($ET_a$), 토양수분함량(SWC), 건물중 및 종실 수량을 정밀 모의하였다 [SRC-463].
 
 ## 3.2 증발산(Evapotranspiration) 계산 및 작물 수분 스트레스 반응
 
-증발산(ET)은 토양 표면으로부터의 증발(E)과 식물 잎을 통한 증산(T)의 합(ET = E + T)으로 정의됩니다. ET 계산은 작물 생육의 에너지 균형과 물 이용 효율을 평가하는 데 가장 중요한 요소입니다 [SRC-290].
+표준 작물 증발산량($ET_c$)은 기준 증발산량($ET_0$, FAO-56 Penman-Monteith 식)과 작물계수($K_c$)의 곱으로 산출하며, 실제 증발산량($ET_a$)은 토양 수분 스트레스 계수($K_s$)를 반영해 $ET_a = K_s \cdot K_c \cdot ET_0$로 계산된다 [SRC-463].
 
-작물 시뮬레이션 모델들은 기상 데이터(온도, 복사 에너지 등)를 활용하여 ET를 추정하며, 모델의 정교성은 사용된 물리적 과정(예: CERES 모델 등)의 상세함에 따라 달라집니다 [SRC-283].
+$$\mathrm{ET}_0 = \frac{0.408\,\Delta\,(R_n - G) + \gamma\,\frac{900}{T + 273}\,u_2\,(e_s - e_a)}{\Delta + \gamma\,(1 + 0.34\,u_2)}, \qquad \mathrm{ET}_c = K_c \times \mathrm{ET}_0$$
 
-**작물 수분 스트레스 반응:**
-작물은 토양 수분 공급이 부족해지면 광합성 효율 감소, 생육 지연 등 수분 스트레스 증상을 나타냅니다. 수분 스트레스의 심도는 **토양 수분 부족(soil water deficit, D)**과 밀접하게 연관됩니다. 일부 농업 모델에서는 복사 에너지 포집 효율(conversion efficiency for intercepted radiation to biomass) 변화를 통해 토양 수분 부족(D)의 영향을 모델링하기도 합니다 [SRC-284]. 이는 에너지 이용과 수분 이용의 상호작용을 보여주는 지표입니다.
+최근에는 토양 수분 센서뿐 아니라 **무인기(UAV) 열적외선 영상 기반 작물 수분 스트레스 지수(CWSI)**가 실시간 수분 진단과 모형 보정에 통합되고 있다 [SRC-466, SRC-468]. 기공 폐쇄로 증산 냉각이 감소하면 엽군 온도($T_c$)가 기온($T_a$) 대비 상승하며, Idso-Jackson 정의에 따라 다음과 같이 정규화된다 [SRC-466, SRC-468]:
+
+$$\mathrm{CWSI} = \frac{(T_c - T_a) - (T_c - T_a)_{ll}}{(T_c - T_a)_{ul} - (T_c - T_a)_{ll}}$$
+
+Li et al. (2026)은 차밭에서 다중 프레임 정합·임계 수관 추출·회색조-온도 보정 모델을 결합한 UAV 열화상 역산 프레임워크로 연속 엽군 온도 지도와 CWSI 기반 관개 의사결정을 구현했고 [SRC-466], Lu et al. (2026)은 겨울밀 열적외선 원격탐사에서 관측 각도 효과와 커널 구동 모델을 통합해 CWSI 진단 정밀도를 개선하였다 [SRC-468].
 
 ## 3.3 질소(N)의 흡수, 이동, 분해(Mineralization) 과정 모델링
 
-질소(N)는 식물의 필수 다량 영양소이며, 토양 내에서 질산태(NO<sub>3</sub><sup>−</sup>), 암모늄태(NH<sub>4</sub><sup>+</sup>)와 같은 흡수 가능한 형태로 존재합니다. 질소의 동태 모델링은 주로 다음 세 가지 핵심 과정을 정량화합니다.
+작물 생육모형에서 토양 질소 동태는 유기물 무기화(mineralization)·부동화(immobilization), 질산화($\mathrm{NH}_4^+ \rightarrow \mathrm{NO}_3^-$), 탈질($\mathrm{N}_2\mathrm{O}/\mathrm{N}_2$ 손실), 용탈(leaching) 및 작물 뿌리의 능동·수동 흡수로 구성된다 [SRC-448, SRC-452, SRC-464]. SCRUM(APSIM)에서는 기관 성장률과 목표 조직 질소 농도에 의해 작물 질소 수요량이 결정되며, 두과작물의 경우 근류(nodule) 질소 고정 모듈이 결합된다 [SRC-449].
 
-1. **흡수(Uptake):** 작물이 뿌리를 통해 토양 용액으로부터 N을 흡수하는 과정입니다. 이는 작물의 생육 단계 및 질소 요구도에 따라 변합니다.
-2. **분해(Mineralization) 및 질산화(Nitrification):** 토양 유기물(SOM) 속에 포함된 유기 질소가 미생물 작용을 통해 무기태 질소(NH<sub>4</sub><sup>+</sup> 및 NO<sub>3</sub><sup>−</sup>)로 전환되는 과정입니다. 토양 유기물과 탄소, 질소, 황 물질의 순환은 토양의 건강성을 나타내는 핵심 지표이며 [SRC-28], 유기물 분해 과정은 생태계 내 물질 순환의 근간을 이룹니다 [SRC-29].
-3. **이동(Movement):** 질산태 질소는 물에 잘 녹기 때문에 토양 용액을 따라 지하수나 표면수로 유실(Leaching)될 위험이 있습니다.
-
-최신 모델들은 이러한 복잡한 생지화학적 과정을 통합하여 작물 생육 및 환경 영향을 동시에 예측합니다. 예를 들어, DNDC 탄소질소연계모델은 토양 유기탄소(SOC)와 질소의 역동적 관계를 모사합니다 [SRC-62].
+| 모형·접근 | 대상 작물·관리 | 핵심 수분·질소 모듈 | 주요 정량 입력·성과 | 출처 |
+|---|---|---|---|---|
+| **DSSAT CERES-Maize (v4.8)** | 보존농업(CA) 옥수수-밀 윤작 | 다층 물수지 + 토양 N 무기화·용탈·흡수 | 장기 보존농업 다수준 질소 시비 하 옥수수 생육·수량·N 동태 보정·검증 | [SRC-448, SRC-452] |
+| **APSIM Next Gen (SCRUM)** | 밀·브로콜리 윤작 (뉴질랜드) | MicroClimate 에너지수지 + 기관별 N 수요 | 밀 관개 330–375 mm·질소 150 kg N/ha, 브로콜리 0–120 kg N/ha 통합 모의 | [SRC-449] |
+| **DSSAT + 원격탐사 2단계 동화** | 겨울밀 질소 추비 처방 | HLM 지상부 건물중(AGB) 원격탐사 동화 | 초기 밀도 350 본/m³, 관개 150 mm, 시비 0–400 kg N/ha; AGB $R^2_c = 0.94$, $\mathrm{nRMSE}_c = 13.62\%$ | [SRC-450] |
+| **DSSAT + MCMC (LAI·PNA 동화)** | 벼 생육·수량 예측 | 분광지수 LAI·식물 질소축적량(PNA) MCMC 역추정 | 파종기·파종량·질소 시비량 초기 관리 모수 재보정으로 수량 예측력 향상 | [SRC-453] |
+| **WHCNS + 칼만 필터 최적화** | 토양-작물 수분·질소 계통 | 수분-열-탄소-질소 통합(WHCNS) + 앙상블 칼만 | ME·RMSE·일치도(IA) 기준 수분·질소 매개변수 정밀 식별 및 시비 최적화 | [SRC-464] |
 
 ## 3.4 양분 이용 효율(Nutrient Use Efficiency)과 질소 동태의 상호작용
 
-**양분 이용 효율(Nutrient Use Efficiency, NUE)**은 투입된 양분 대비 작물이 실제로 얼마나 많은 생물량을 생산했는지의 효율성을 나타냅니다. 질소 동태 모델링과 NUE는 밀접하게 연결되어 있습니다.
+과다한 질소 시비는 질산태 질소($\mathrm{NO}_3^-$) 용탈과 온실가스 배출을 유발할 뿐 아니라 생산비를 증가시킨다 [SRC-450, SRC-452]. Gobezie et al. (2025)의 체계적 리뷰는 CERES-Maize가 다양한 농생태구(agroecological zone)에서 질소 분시 시기와 적정 시비량을 도출해 질소이용효율(NUE)을 제고함을 종합하였다 [SRC-452]. 특히 **원격탐사 자료동화 기반 정밀 추비 처방**에서 Zhao et al. (2025)은 겨울밀 2년 포장 시험(시비 범위 0–400 kg N/ha, 초기 관개 150 mm)에서 원격탐사 추정 지상부 건물중(AGB)과 DSSAT 모의 AGB 간의 오차를 최소화하는 2단계 자료동화(HLM 보정 $R^2_c = 0.94$, $\mathrm{nRMSE}_c = 13.62\%$, 검증 $R^2_v = 0.82$)를 구축하여 과잉 시비 없는 최적 추비량을 산출하였다 [SRC-450]. 또한 IoT 토양 센서와 머신러닝을 연계한 자동 관개 시스템은 현장 수분·양분 공급의 실시간 자동화를 가속하고 있다 [SRC-470].
 
-질소의 손실(질산태 유실, 암모니아 휘발 등)이 증가할수록, 동일한 양의 질소를 투입하더라도 NUE는 감소합니다. 따라서 정밀 농업 및 작물 관리 전략의 핵심은, 작물의 흡수 속도와 토양 내 질소의 공급 속도를 최적으로 매칭시키고, 질소의 손실을 최소화하는 것입니다.
+### 오해와 진실
+- **오해 (Myth):** 작물 생육모형에서 관개량과 질소 시비량을 늘릴수록 수량은 선형으로 비례해 증가한다.
+- **진실 (Fact):** 포장용수량을 초과하는 과잉 관개는 심층 배수($DP$)를 통해 질산태 질소($\mathrm{NO}_3^-$) 용탈을 가속화해 오히려 질소이용효율(NUE)을 떨어뜨리며, 염류 관개 시에는 삼투 스트레스로 증산과 수량이 급감한다 [SRC-450, SRC-463, SRC-464].
 
-최근 연구들은 농업 시스템 전반의 동태적 시뮬레이션에 초점을 맞추고 있으며, 토양-작물 시스템의 물 및 영양소 역학을 통합적으로 모델링하는 접근 방식이 강조되고 있습니다 [SRC-293].
+### 핵심 용어집
+| 국문 용어 | 영문 용어 | 정의 |
+|---|---|---|
+| 작물 수분 스트레스 지수 | Crop Water Stress Index (CWSI) | 엽군 온도($T_c$)와 기온($T_a$) 차이를 비스트레스/완전스트레스 기준선으로 정규화한 0–1 지표 [SRC-466, SRC-468] |
+| 식물 질소 축적량 | Plant Nitrogen Accumulation (PNA) | 단위 면적당 작물 체내에 흡수·축적된 총 질소량($\mathrm{kg\ N\ ha^{-1}}$) [SRC-453] |
+| 질소이용효율 | Nutrient/Nitrogen Use Efficiency (NUE) | 투입 질소 단위량당 생산된 종실 수량 또는 작물 흡수 질소 비율 [SRC-452] |
 
----
+### 이해도 점검
+1. 염류 관개 환경에서 AquaCrop과 같은 수분 모형이 추가적으로 고려해야 하는 생리적 제약을 설명하시오.
+   - **풀이:** 토양 용액의 염분 농도(EC) 상승이 삼투 포텐셜을 낮추어 뿌리의 수분 흡수를 억제하므로, 수관피복률(CC)·실제 증발산($ET_a$)·수량 감소를 염분 스트레스 함수로 함께 보정해야 한다 [SRC-463].
+2. 원격탐사(LAI·AGB·PNA)를 DSSAT 모형에 동화할 때 얻어지는 현장 시비 관리상의 이점은 무엇인가?
+   - **풀이:** 포장 내 불확실한 초기 파종 조건과 공간 변이를 생육 중반에 실시간 재보정(예: MCMC, 2단계 동화)함으로써 과잉 시비를 줄이고 필지 맞춤형 질소 추비 처방이 가능하다 [SRC-450, SRC-453].
 
-## ## 핵심 용어집 (표)
-
-| 용어 (Term) | 정의 (Definition) | 주요 관련 개념 |
-| :--- | :--- | :--- |
-| **물 수지 (Water Balance)** | 특정 구역에서 물의 유입량과 유출량을 고려하여 저장량 변화를 정량화하는 원리. | 강우, 증발산, 침투, 토양 수분 부족(D) |
-| **증발산 (Evapotranspiration, ET)** | 토양 표면 증발과 식물 잎을 통한 증산 작용의 총합. 작물 물 요구량을 결정함. | 기상 조건, 작물 생육 단계 |
-| **질소 동태 (Nitrogen Dynamics)** | 토양 내에서 질소 화합물이 흡수 가능 형태(무기태)로 변환되고 이동하며 사용되는 전 과정. | 미생물 분해, 질산화, 유실(Leaching) |
-| **양분 이용 효율 (NUE)** | 투입된 양분(예: 질소) 대비 작물체가 실제로 생산한 생물량의 비율. | 질소 손실 최소화, 작물 생육 모니터링 |
-| **토양 텍스처 (Soil Texture)** | 토양을 구성하는 입자(모래, 실트, 점토)의 상대적 비율. 물 및 양분 보유 능력에 결정적 영향. | 식물 수분 스트레스 |
-
----
-
-## ## 이해도 점검 연습문제 및 해설
-
-**문제 1.** 작물 시뮬레이션 모델에서 토양 수분 부족(D)이 발생할 때, 이는 물리적으로 어떤 과정과 관련하여 모델링의 중요한 변수로 사용되는가?
-
-**정답:** conversion efficiency for intercepted radiation to biomass의 변화와 관련하여 모델링된다 [SRC-284].
-**상세 풀이:** 토양 수분 부족(D)은 작물이 필요한 물을 충분히 공급받지 못할 때 발생하며, 이는 작물의 에너지 대사 및 생물량 생산 효율(광합성)의 저하로 이어지는데, 일부 모델에서는 이 에너지 변환 효율의 변화를 통해 스트레스를 반영한다 [SRC-284].
-
-**문제 2.** 토양 유기물과 질소 순환 과정에서, 유기질소가 무기태 질소로 전환되는 핵심 과정에 해당하는 것은 무엇이며, 이 과정에 대한 이해는 어떤 학문적 맥락을 포함하는가?
-
-**정답:** 유기물 분해 과정이며, 이는 토양 생물학 및 기후변화 대응 관리 원리와 연관된다 [SRC-29].
-**상세 풀이:** 토양 내의 유기 탄소 및 질소는 미생물에 의해 분해되면서 무기질소 형태로 전환된다. 이 분해 과정은 [SRC-29]에 설명되어 있으며, 이는 토양 생물과 유기물에 대한 이해가 필수적이다.
-
-**문제 3.** 물 수지 모델링 시, 작물에 대한 물의 유출량을 대표하는 주요 과정은 무엇이며, 이 과정은 다른 어떤 과정과 상호작용하여 시스템의 균형을 이루는가?
-
-**정답:** 증발산(ET)이며, 이는 토양 증발 및 작물 증산(T)의 합으로 구성된다. 이 과정은 강우, 토양 침투 등과 함께 물 수지 균형을 이룬다 [SRC-293].
-**상세 풀이:** ET는 작물이 필요로 하는 물의 주요 배출 경로이다. 작물 시뮬레이션 모델들은 이 ET를 통해 작물의 물 수요를 산출하며, 이는 강우(입력)와 토양 수분 저장량 변화(저장량) 간의 균형을 이루는 핵심 요소이다 [SRC-293].
-
----
-
-## ## 오해와 진실: 현장·이론 핵심 오해 교정
-
-**오해 1:** 질소는 토양에 투입하면 비료 형태 그대로 오랜 기간 동안 안정적으로 작물에게 공급된다.
-**진실:** 질소는 매우 동태적인 원소입니다. 토양 내 유기물 분해 과정([SRC-29])과 화학적/생물학적 전환(질산화, 탈질화)을 거치면서 흡수 가능한 형태(예: NO<sub>3</sub><sup>−</sup>)로 바뀌거나, 혹은 휘발되거나 유실됩니다. 따라서 시기적절한 공급 시점(Timing)이 NUE 확보에 가장 중요합니다.
-
-**오해 2:** 토양의 점토 함량이 높으면 무조건 물을 많이 보유하므로 작물 스트레스가 적다.
-**진실:** 토양 텍스처는 물 보유력과 침투 속도에 복합적으로 영향을 미칩니다 [SRC-295]. 점토질 토양은 물을 많이 보유하지만, 뿌리가 접근하기 어려운 미세 기공에 물이 갇히는 '유효 수분'이 제한될 수 있습니다. 따라서 실제 작물 수분 스트레스는 토양 텍스처뿐만 아니라 작물의 수요 속도와 토양의 통기성 등에 의해 결정됩니다.
-
-**오해 3:** 모든 작물 생육 예측은 기상 조건(온도, 강수량)에만 의존한다.
-**진실:** 작물 생육 모델링은 기상 조건(ET 계산의 입력) 외에도 토양의 물리적 특성(토양 텍스처), 영양소 가용성(질소 동태), 그리고 작물의 내부 생리적 상태(수분 스트레스 수준) 등 다중 변수 시스템을 필요로 합니다 [SRC-293]. 예를 들어, SOC와 질소의 관계(DNDC 모델)와 같이 생지화학적 순환 메커니즘을 포함해야 정확한 예측이 가능합니다 [SRC-62].
-
-## 참고문헌 및 근거 출처 목록
-
-| 출처 ID | 유형 | 제목 | URL | 라이선스 |
-| :--- | :--- | :--- | :--- | :--- |
-| `SRC-100` | web | 농촌진흥청 | https://www.rda.go.kr/ | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-102` | web | 한국식품연구원 | https://www.kfri.re.kr/ | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-104` | web | 농림축산식품부 | https://www.mafra.go.kr/home/index.do | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-106` | web | 한국농촌경제연구원 | https://www.krei.re.kr/krei/index.do | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-283` | web | [2021] Rice phenology and growth simulation using DSSAT- CERES-Rice crop model under the different temperatures changing with climatic condition (International Journal of Agricultural Sciences and Technology) | https://doi.org/10.51483/ijagst.1.2.2021.1-11 | 학술 서지 메타데이터·초록(Crossref) - 정식 인용 목적(원문 무단 복제 금지) |
-| `SRC-284` | web | [2016] A preliminary model of sweet corn growth and yield (New Zealand Journal of Crop and Horticultural Science) | https://doi.org/10.1080/01140671.2016.1264078 | 학술 서지 메타데이터·초록(Crossref) - 정식 인용 목적(원문 무단 복제 금지) |
-| `SRC-285` | web | [2025] Multi-step prediction of greenhouse crop growth based on the SVR_Seq2Seq model (Smart Agricultural Technology) | https://doi.org/10.1016/j.atech.2025.100986 | 학술 서지 메타데이터·초록(Crossref) - 정식 인용 목적(원문 무단 복제 금지) |
-| `SRC-286` | web | [2022] Effects of residual broken roots on the growth and rhizosphere soil of herbaceous peony (European Journal of Horticultural Science) | https://doi.org/10.17660/ejhs.2022/035 | 학술 서지 메타데이터·초록(Crossref) - 정식 인용 목적(원문 무단 복제 금지) |
-| `SRC-287` | web | [2001] Simulation of spring wheat responses to elevated CO2 and temperature by using CERES-wheat crop model (Agricultural and Food Science) | https://doi.org/10.23986/afsci.5692 | 학술 서지 메타데이터·초록(Crossref) - 정식 인용 목적(원문 무단 복제 금지) |
-| `SRC-288` | web | [2025] Assessment of the Effects of Drying Methods on the  Drying Characteristics, Color, Nutritional and  Medicinal Attributes of Dioscorea opposita Thunb (ES Food &amp; Agroforestry) | https://doi.org/10.30919/faf1652 | 학술 서지 메타데이터·초록(Crossref) - 정식 인용 목적(원문 무단 복제 금지) |
-| `SRC-289` | web | [2024] Improving a dynamic farm level model by coupling empirically estimated pre-crop values with crop rotation optimization (Agricultural and Food Science) | https://doi.org/10.23986/afsci.144747 | 학술 서지 메타데이터·초록(Crossref) - 정식 인용 목적(원문 무단 복제 금지) |
-| `SRC-290` | web | [2013] Comparison of Crop Growth and Evapotranspiration Simulations between Noah Multi Physics Model and CERES-Rice Model (Korean Journal of Agricultural and Forest Meteorology) | https://doi.org/10.5532/kjafm.2013.15.4.282 | 학술 서지 메타데이터·초록(Crossref) - 정식 인용 목적(원문 무단 복제 금지) |
-| `SRC-291` | web | [2013] Cassava Nitrogen Requirements in Thailand and Crop Simulation Model Predictions (Soil Science) | https://doi.org/10.1097/ss.0b013e31829a283f | 학술 서지 메타데이터·초록(Crossref) - 정식 인용 목적(원문 무단 복제 금지) |
-| `SRC-86` | web | [2025] Determination of optimal mixing ratio of organic fertilizer and biochar derived from agricultural waste to increase crop growth and soil carbon sequestration (Korean Journal of Soil Science and Fertilizer) | https://doi.org/10.7745/kjssf.2025.58.1.118 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-292` | web | [2022] Korean Model for Estimating Soil Available Water Content of Soybean Cultivation Area with Integrated Soil, Meteorology, and Crop Data (Korean Journal of Soil Science and Fertilizer) | https://doi.org/10.7745/kjssf.2022.55.4.570 | 학술 서지 메타데이터·초록(Crossref) - 정식 인용 목적(원문 무단 복제 금지) |
-| `SRC-293` | web | [연도 미상] Crop simulation model of the second and the third productivity levels (Modelling water and nutrient dynamics in soil–crop systems) | https://doi.org/10.1007/978-1-4020-4479-3_7 | 학술 서지 메타데이터·초록(Crossref) - 정식 인용 목적(원문 무단 복제 금지) |
-| `SRC-294` | web | [2023] Irrigation in the Earth system (Nature Reviews Earth & Environment) | https://doi.org/10.1038/s43017-023-00438-5 | 학술 논문 오픈액세스(OpenAlex) - 변환적 분석 및 정식 학술 인용 |
-| `SRC-295` | pdf | [2024] Global critical soil moisture thresholds of plant water stress (Nature Communications) | https://doi.org/10.1038/s41467-024-49244-7 | 학술 논문 오픈액세스(OpenAlex) - 변환적 분석 및 정식 학술 인용 |
-| `SRC-296` | web | [2021] Statistical upscaling of ecosystem CO 2 fluxes across the terrestrial tundra and boreal domain: Regional patterns and uncertainties (Global Change Biology) | https://doi.org/10.1111/gcb.15659 | 학술 논문 오픈액세스(OpenAlex) - 변환적 분석 및 정식 학술 인용 |
-| `SRC-297` | web | [2023] Effects of Climate Change and Drought Tolerance on Maize Growth (Plants) | https://doi.org/10.3390/plants12203548 | 학술 논문 오픈액세스(OpenAlex) - 변환적 분석 및 정식 학술 인용 |
-| `SRC-298` | web | [2021] Eco‐evolutionary optimality as a means to improve vegetation and land‐surface models (New Phytologist) | https://doi.org/10.1111/nph.17558 | 학술 논문 오픈액세스(OpenAlex) - 변환적 분석 및 정식 학술 인용 |
-| `SRC-136` | web | Technical Platform on the Measurement and Reduction of Food Loss and Waste / Food and Agriculture Organization of the United Nations | https://www.fao.org/platform-food-loss-waste/en/ | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-140` | web | ARS Home : USDA ARS | https://www.ars.usda.gov/ | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-142` | web | NFRI / National Agriculture and Food Research Organization | https://www.naro.go.jp/english/laboratory/nfri/index.html | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-299` | web | [2012] Impacts of climate change on the future of biodiversity (Ecology Letters) | https://doi.org/10.1111/j.1461-0248.2011.01736.x | 학술 논문 오픈액세스(OpenAlex) - 변환적 분석 및 정식 학술 인용 |
-| `SRC-300` | web | [2023] Earth beyond six of nine planetary boundaries (Science Advances) | https://doi.org/10.1126/sciadv.adh2458 | 학술 논문 오픈액세스(OpenAlex) - 변환적 분석 및 정식 학술 인용 |
-| `SRC-301` | pdf | [2005] Europe-wide reduction in primary productivity caused by the heat and drought in 2003 (Nature) | https://insu.hal.science/insu-00373792 | 학술 논문 오픈액세스(OpenAlex) - 변환적 분석 및 정식 학술 인용 |
-| `SRC-302` | pdf | [2017] More than 75 percent decline over 27 years in total flying insect biomass in protected areas (PLoS ONE) | https://doi.org/10.1371/journal.pone.0185809 | 학술 논문 오픈액세스(OpenAlex) - 변환적 분석 및 정식 학술 인용 |
-| `SRC-303` | web | [2001] FLUXNET: A New Tool to Study the Temporal and Spatial Variability of Ecosystem–Scale Carbon Dioxide, Water Vapor, and Energy Flux Densities (Bulletin of the American Meteorological Society) | https://doi.org/10.1175/1520-0477(2001)082<2415:fantts>2.3.co;2 | 학술 논문 오픈액세스(OpenAlex) - 변환적 분석 및 정식 학술 인용 |
+### 참고문헌
+- [SRC-448] Kumar et al. (2024), *Scientific Reports*; [SRC-449] Khaembah et al. (2026), *MethodsX*; [SRC-450] Zhao et al. (2025), *Frontiers in Plant Science*; [SRC-452] Gobezie et al. (2025), *Plants*; [SRC-453] Chen et al. (2025), *Plants*; [SRC-463] Manhou et al. (2026), *Plants*; [SRC-464] Guo & Wu (2023), *IJERPH*; [SRC-466] Li et al. (2026), *Sensors*; [SRC-468] Lu et al. (2026), *Plants*; [SRC-470] Saha et al. (2025), *PLOS ONE*.

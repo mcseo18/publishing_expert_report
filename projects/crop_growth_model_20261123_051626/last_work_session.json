@@ -7,17 +7,17 @@
   "last_stage_id": "stage6_publish_report",
   "last_stage_order": "6",
   "last_stage_title": "최종 출판·보고서",
-  "last_stage_status": "WAITING_REVIEW",
+  "last_stage_status": "DONE",
   "last_stage_progress": 100,
   "last_open_chapter": "",
   "last_visual_filter": "ALL",
   "last_action_summary": "⛔ 배포 보류(검토 필요) — 품질 개선 및 전문가 검토 후 재출판 필요",
   "last_event_message": "《작물 생육모형》 6단계 교재 제작 파이프라인 전체 완료!",
-  "done_stages": 5,
+  "done_stages": 6,
   "total_stages": 6,
-  "overall_status": "WAITING_REVIEW",
+  "overall_status": "DONE",
   "completed_chapters_count": 4,
   "completed_visuals_count": 24,
-  "saved_at": "2026-11-23T12:14:24+00:00",
-  "saved_at_local": "2026-11-23 21:14:24"
+  "saved_at": "2026-11-23T19:40:52+00:00",
+  "saved_at_local": "2026-11-24 04:40:52"
 }

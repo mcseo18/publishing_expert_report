@@ -3,157 +3,68 @@ chapter_id: "ch03"
 title: "제3장. 양파의 생육 단계별 생리 기작과 인경 비대 메커니즘"
 audience: "대학 전공 심화, 대학원생, 연구자 및 선도 현장 실무자"
 evidence_packet: "smart_farm_onion_cultivation_20261123_042527_evidence.json"
+persona: "textbook_distinguished_prof"
 ---
 
 # 제3장. 양파의 생육 단계별 생리 기작과 인경 비대 메커니즘
 
-## 개념 소개 및 이론적 배경
+> **학습 목표**: 본 장을 학습한 후 독자는 ① 종자 프라이밍(할로프라이밍·플라즈마 처리수·미생물 접종)이 양파 발아 대사와 호르몬 신호(GA/ABA)를 조절하는 기작을 설명하고, ② 광합성 엽면적·근권 미생물·수분 수지가 인경 비대 신호와 동화산물 축적으로 이어지는 경로를 분석하며, ③ 구 비대기 가뭄·염류·관개 불균일이 야기하는 생리적 스트레스와 수량 손실을 정량 계산하고, ④ 도복 전후 성숙·대사체 축적 및 저장 휴면 진입 조건을 현장 관리와 연결할 수 있다 [SRC-378, SRC-476, SRC-498, SRC-503].
 
-양파(Allium cepa L.)의 생육 과정은 종자 발아부터 최종적인 인경 성숙 및 휴면 진입에 이르기까지 매우 정교하게 조절되는 일련의 생리적 사건들의 집합체입니다. 이 과정은 단순히 환경 변화에 반응하는 것을 넘어, 특정 호르몬들의 복잡한 상호작용과 광신호 전달계의 정밀한 조절을 통해 이루어집니다. 양파의 생육 특성 이해는 수확 시기 최적화와 상품성 극대화의 핵심 기반이 됩니다.
+## 3.1 맹아, 본엽 전개 및 뿌리 생장 다이내믹스: 프라이밍과 호르몬 상호작용
 
-양파의 초기 생장 단계인 맹아(Germination)와 본엽(True Leaf) 전개 시기에는 생장 조절 호르몬인 옥신(Auxin)과 시토키닌(Cytokinin) 간의 균형 잡힌 상호작용이 뿌리 및 엽체 생장 다이내믹스를 결정하는 중요한 요인으로 작용합니다. 이 호르몬들의 적절한 비율 유지는 초기 뿌리 발달의 성공률과 엽초의 초기 광합성 능력을 결정짓습니다 [SRC-102].
+양파는 종자 수명이 짧고 발아 속도가 균일하지 않아 초기 입모율과 묘소질 균일도가 전 생육기 수량을 좌우한다 [SRC-476, SRC-498]. 발아 초기에는 저장 올리고당(라피노스)과 육탄당(포도당·과당)이 호흡 기질로 동원되며 지베렐린(GA)과 앱시스산(ABA)의 길항적 호르몬 균형이 휴면 타파와 유근 돌출을 결정한다 [SRC-476, SRC-498].
 
-다음으로, 양파의 핵심 생산물인 인경(Bulb)의 형성과 비대는 환경적 신호, 특히 일장(Photoperiod)에 매우 민감하게 반응합니다. 빛의 주기 변화는 피토크롬(Phytochrome) 계열의 광유도 신호 전달 경로를 활성화시켜, 인경 분화 및 팽창을 유도하는 특정한 유전자군, 대표적으로 FT-homolog 유전자들의 발현을 촉진합니다. 이 신호전달 캐스케이드가 성공적으로 작동해야 인경 형성이 촉발됩니다.
+스마트 육묘·직파 공정에서 입모 균일도를 극대화하는 검증된 종자 활성화 기술은 **할로프라이밍(halopriming)**과 **플라즈마 처리수(PTW)**이다 [SRC-476, SRC-498].
 
-또한, 양파가 특정 환경 스트레스, 특히 저온(Low temperature)에 노출될 때 나타나는 생리적 반응은 종종 '불시 추대(Bolting)'나 '분구(Splitting)'와 같은 형태적 변화를 유발합니다. 이러한 반응은 환경 적응 또는 스트레스 회피 메커니즘의 결과로 해석될 수 있으며, 이는 유효 적산온도(Effective accumulated temperature) 및 저온 노출 기간(Vernalization)에 의해 정밀하게 모델링될 수 있습니다.
+| 종자 처리 기술 | 처리 조건 (실증 프로토콜) | 발아·출현 성과 | 핵심 생리·분자 기작 | 출처 |
+|---|---|---|---|---|
+| **할로프라이밍 ($\mathrm{KNO}_3$)** | 150 mM $\mathrm{KNO}_3$, 6일 침지 (cv. Pusa Ridhi) | 무처리 대비 출현 지수 **+42.5%** 향상 | 라피노스·포도당·과당 17.5–59.9% 호흡 소모, 시토크롬 c 산화효소 활성 +40.7–89.8%, 적외선 열지문 $\Delta T$ −4.1 ~ −2.3 °C ($r^2=0.504^{**}$) | [SRC-498] |
+| **삼투·자기장 프라이밍** | −1.5 MPa PEG6000 (7일) / 100 mT (30분) | 무처리 대비 출현 속도·호흡률 유의 개선 | 28·36시간 시토크롬 c 산화효소 활성 +12.5–89.8% 증진 | [SRC-498] |
+| **플라즈마 처리수 (PTW)** | 원통형 c-DBD 플라즈마 처리수(NO·RNS 풍부) | 발아율 **> 98%**, 유묘 바이오매스·엽록소·항산화 상승 | *GA3OX1/2* 상향·*ABI5* 억제, 페닐프로파노이드(*PAL*, *4CL*)·항산화(*RBOH1*, *SOD*) 활성화, $\mathrm{NO}_2^-$/$\mathrm{NO}_3^-$ 신호 조절 | [SRC-476] |
+| **아연 산화물 (ZnO) 처리** | 50–1,600 mg/L 현탁액 (최적 **800 mg/L**) | 800 mg/L 발아율 52–56% vs 3,200 mg/L 독성 11–19% | 입자 크기(나노 vs 서브마이크론)보다 **$\mathrm{Zn}^{2+}$ 이온 농도**가 발아 촉진·독성 임계 결정 | [SRC-475] |
+| **나노 셀레늄 프라이밍 (SeNP)** | 50 ppm SeNP (염분 스트레스 조건) | 염분 하 발아율 **93.3%**, 유묘 활력·항산화효소 향상 | 염류 삼투·산화 스트레스 완화 및 초기 유근 신장 보호 | [SRC-482] |
 
-## 생리·분자 메커니즘 심층 분석
+유묘기 뿌리 생장에서는 근권 유익균(PGPB)의 **옥신(IAA) 생성**과 에틸렌 전구체 분해(ACC 탈아미노효소)가 결정적 역할을 한다. Samayoa et al. (2020)이 양파 뿌리·구·근권 토양에서 분리한 23개 PGPB 균주 중 강한 IAA 생성능을 보인 **ORE8 (*Bacillus megaterium*)**과 **ORTB2 (*Pantoea* sp.)**는 양파 유근과 배축 길이를 동시에 신장시켰으며, 화학비료를 절반으로 줄인 토양 포트에서도 영양생장을 강력히 촉진하였다 [SRC-484]. 반면 중금속(Cu, Cd, Pb, Ni, Co 100–500 μM) 오염 조건에서는 구리(Cu)와 카드뮴(Cd)이 발아율을 각각 77.50%→54.00%, 80.00%→52.67%로 떨어뜨리고 뿌리 신장을 강하게 억제하였으며, 품종 간(Gence 발아율 우세 vs Karbeyazı 뿌리 형질 보존) 내성 차이가 뚜렷하였다 [SRC-479].
 
-### 3.2 일장 감응과 인경 팽창 신호전달 캐스케이드
+## 3.2 일장 감응, 광합성 동화 및 인경 비대 신호전달 캐스케이드
 
-인경의 발달은 일장 신호에 의해 강하게 조절됩니다. 짧은 일장 또는 특정 일조 시간의 결핍은 양파가 영양기관(인경) 생장에 자원을 집중하도록 유도하는 핵심적인 분자 스위치를 켜게 합니다. 이 과정은 피토크롬을 매개로 세포 신호가 핵 내부로 전달되며, 최종적으로 인경 분화 관련 유전자들의 전사 활성화를 유발합니다.
+양파의 인경(bulb)은 본엽 기부의 엽초가 동화산물(프럭탄·자당·포도당)을 축적해 비대한 저장 기관이다 [SRC-494, SRC-498]. 영양생장기 동안 충분한 엽수와 엽면적을 확보한 개체가 품종 고유의 **한계 일장(critical photoperiod)**과 적정 온도 구간에 도달하면, 잎의 피토크롬·광주기 인지 경로가 활성화되어 인경 형성 촉진 *FT* 유사체 신호가 생장점으로 전달되고 새 엽신의 신장이 멈추며 인편(bulb scale) 세포의 팽창이 시작된다.
 
-### 3.3 저온 노출과 불시 추대 생리 모델
+현장 정량 데이터는 지상부 광합성 기관과 지하부 인경 비대 사이의 긴밀한 원천–수용부(source–sink) 결합을 입증한다. Badr et al. (2026)의 양파 상관 분석(원문 표 6)에 따르면 **구 생체중(FW)과 구 건물중(DW)의 상관계수는 $r = 0.975$**, **구경과 구 생체중은 $r = 0.981$**, **총엽면적(TLA)과 구 생체중·건물중·구경은 각각 $r = 0.978$, $0.990$, $0.967$**, **뿌리 길이와 총엽면적은 $r = 0.986$**에 달하였다 [SRC-485]. 이러한 강한 동조성 덕분에 무안군 UAV 초분광 연구에서도 지상부 엽군의 550–680 nm(엽록소 흡수대) 및 730–800 nm(적색경계·근적외선 구조대) 반사율만으로 지하부 생구중을 $R^2 = 0.9656$으로 예측할 수 있다 [SRC-480].
 
-양파 생육에 있어 저온의 영향은 양면적입니다. 적절한 저온 기간(Vernalization)은 특정 생리적 성숙을 유도하는 반면, 과도하거나 부적절한 저온 노출은 불시 추대와 같은 원치 않는 생리 현상을 초래합니다. 이러한 현상에 대한 생리 모델링은 단순한 온도 누적뿐만 아니라, 광 주기와 결합된 동적 반응 모델을 필요로 합니다.
+생육 단계별 수분·광합성 요구량의 전환은 FAO-56 작물계수($K_c$)의 3단계 궤적에 집약된다 [SRC-389]:
+- **초기 활착·월동기 ($K_{c,\mathrm{ini}} = 0.70$)**: 엽면적 피복률이 낮고 근권이 0.15–0.25 m로 얕아 증발 손실 비중이 높음 [SRC-389].
+- **영양생장 말기~인경 비대기 ($K_{c,\mathrm{mid}} = 1.05$)**: 엽면적과 증산량이 연중 최대치에 도달하며(목포권 4–5월 집중), 동화산물이 엽초로 급속 전류되는 핵심 결정기 [SRC-389].
+- **도복·성숙 및 단수기 ($K_{c,\mathrm{end}} = 0.75$)**: 엽신 노화와 도복이 진행되면서 증산 요구량이 감소하고 외피 큐어링을 위해 토양 수분을 단계적으로 낮추는 시기 [SRC-389].
 
-한편, 후기 생육 단계에서 식물의 대사 산물이 재분배되는 메커니즘 역시 중요합니다. 도복(Lodging)과 같은 물리적 스트레스가 발생하기 전후의 광합성 산물(탄소 동화산물)의 저장 기관(인경) 및 엽체 간의 이동 효율성은 최종적인 인경의 크기와 내재적 휴면 진입 품질에 직접적인 영향을 미칩니다.
+## 3.3 저온·가뭄·염분 스트레스와 비정상 생육(추대·분구·비대 저해) 생리
 
-## 현장 적용 및 실전 기술
+월동 양파는 영양생장기 동안 식물체가 일정 크기(줄기 굵기·엽수 임계치) 이상으로 생장한 상태에서 장기간 저온(춘화, vernalization)에 노출되면 화아 분화가 유도되어 봄철 **불시 추대(bolting)**가 발생하고, 이는 인경 비대와 저장성을 치명적으로 떨어뜨린다 [SRC-367]. 따라서 월동 전 적정 파종·정식 시기를 준수해 과번무(대묘 월동)를 피하고 적산온도를 관리하는 것이 핵심이다.
 
-농업 현장에서 이들 생리 기작을 성공적으로 관리하기 위해서는 환경 조건의 정밀 제어가 필수적입니다.
+봄철 구 비대기의 수분·염분 스트레스는 인경 세포 팽압을 직접 저하시켜 수량을 급감시킨다. Sansan et al. (2025)이 구 비대기 30일간 단수 스트레스를 부과한 결과, 14개 품종 전반에서 엽록소·상대수분함량(RWC)·광계 II 활성·기공 개도가 저하되고 과산화수소($\mathrm{H}_2\mathrm{O}_2$)가 급증하면서 **평균 49.58%의 유의한 수량 손실($p < 0.001$)**이 발생하였다 [SRC-503]. 이때 내건성 품종(Prema, Goudami, Red_Jewel)은 삼투 조절 물질인 **프롤린(proline)**과 항산화 효소(**CAT, APX**)를 적극 축적해 구경과 수량을 방어하였다 [SRC-503]. 또한 습윤 기후에서도 포장 내 관개 불균일성이 커지면 수분 부족 구역과 과습 구역이 동시에 생겨 양파 수량과 상품 구 비율이 유의하게 하락하며 [SRC-369], 점적관개와 멀칭을 결합한 적정 관수 관리가 수분 생산성(WP)을 극대화한다 [SRC-366].
 
-1. **파종 및 초기 관리:** 초기 생장 단계에서는 뿌리 및 엽체 발달을 극대화하기 위해 적절한 영양분 및 호르몬 환경을 조성하는 것이 중요하며, 이는 종자 처리 단계에서 관리가 이루어집니다.
-2. **생육기 환경 제어:** 인경 비대 단계에서는 생육 적기 일장 및 온도를 유지하여 불필요한 생리적 변이(예: 불시 추대)를 최소화하고, 광합성 산물 축적을 극대화해야 합니다.
-3. **저온 유통과의 연계:** 수확된 양파와 같은 식료품의 품질 유지를 위해서는 콜드체인(Cold Chain) 시스템을 통한 저온 유통이 필수적입니다 [SRC-107]. 이 과정에서 장기 보관 중에도 에틸렌과 같은 생리 활성 물질의 영향을 최소화하는 기술이 적용될 수 있으며, 일부 연구에서는 특정 물질(예: 1-Methylcyclopropene (1-MCP))을 사용하여 과일의 연화 메커니즘을 지연시키기도 합니다 [SRC-129].
-4. **기타 농업 정책 지원:** 농업 현장의 의사결정 지원을 위해서는 농촌경제연구기관과 같은 곳에서 발간하는 연구 결과를 바탕으로 영농 단계별 최적화 전략을 수립하는 것이 중요하며 [SRC-106], 이러한 연구 결과는 국가 농업 정책 및 기술 지원의 근거가 됩니다.
+## 3.4 도복(Lodging) 전후 동화산물 재분배, 구 성숙 및 내재적 휴면 진입
 
-## 관련 법규 및 정책 지침
+인경 비대 말기에 잎에서 생성된 탄수화물과 질소·황 화합물이 인편으로 집중 전류되면 엽초 목(neck) 부위의 세포 팽압이 감소하면서 지상부가 자연스럽게 꺾이는 **도복(lodging)**이 시작된다 [SRC-378, SRC-493]. 도복이 전체 포장의 70–80% 수준에 이르는 시점은 엽신의 최종 동화산물이 구로 전위되어 건물중과 당도(TSS), 페놀·항산화 대사체 축적이 완료되는 성숙기이다 [SRC-378, SRC-494].
 
-농업 생산 및 유통 과정에서 식품의 안전성과 품질 기준 준수는 법적 의무사항입니다. 양파 등 식료품의 생산과 유통 전반에 걸쳐 「식품의약품안전처」의 안전 기준 준수가 요구됩니다 [SRC-105]. 또한, 농산물 생산에 관한 기준 및 관리는 「농림축산식품부」의 정책 방향에 따라 이루어지며, 농업 기술의 연구 및 검증은 「농촌진흥청」을 중심으로 이루어집니다 [SRC-100, SRC-101]. 식품 및 종자 품질 관리에 대해서는 「국립식량과학원」의 품종 정보 제공 등의 시스템이 운영되고 있습니다 [SRC-103].
+이 시기에 과도한 관수나 질소 추비가 지속되면 목 부위가 굵고 연약하게 남아(neck diameter 증가) 수확 후 건조가 지연되고 병원균 침입과 저장 부패 손실이 급증한다 [SRC-378, SRC-493]. 국내 주산지별 양파 품질 및 저장 손실 상관 분석에서도 구의 건물률·경도·양분 균형이 저장 중 부패 및 맹아 손실과 밀접하게 연관됨이 확인되었다 [SRC-378]. 또한 구 색별 전사체 연구에서 확인되었듯 성숙기에는 페놀류(Y14 3.10 mg/g, R10 3.89 mg/g), 카로티노이드(R12), 황 함유 휘발성 향미 물질이 최종 확정되며, 수확·큐어링 직후 구 내부의 내재적 휴면(endodormancy)이 유지되는 기간 동안 저온·CA 환경으로 진입시켜야 장기 저장성이 보장된다 [SRC-378, SRC-494].
 
----
+### 오해와 진실
+- **오해 (Myth):** 양파 종자에 나노 산화아연(ZnO NP)을 처리하면 일반 서브마이크론 산화아연(ZnO SMP)보다 항상 압도적인 발아 촉진 효과를 낸다.
+- **진실 (Fact):** *Allium cepa* 기내 발아 비교 시험에서 800 mg/L 처리 시 ZnO NP(56%)와 ZnO SMP(52%) 간 유의한 차이가 없었고 3,200 mg/L에서는 둘 다 11–19%로 독성을 보여, 입자 크기보다 **아연 이온($\mathrm{Zn}^{2+}$) 농도 제어**가 본질적 인자임이 입증되었다 [SRC-475].
 
-## 핵심 용어집
+### 핵심 용어집
+| 국문 용어 | 영문 용어 | 정의 |
+|---|---|---|
+| 할로프라이밍 | Halopriming | $\mathrm{KNO}_3$ 등 무기염 용액에 종자를 제어 침지해 호흡·효소 대사를 선행 활성화하는 기술 [SRC-498] |
+| 적외선 열지문 | Infrared Thermal Fingerprint ($\Delta T$) | 종자 흡수·호흡 대사 시 주변 대비 온도차로 프라이밍 활력을 비파괴 진단하는 지표 [SRC-498] |
+| 플라즈마 처리수 | Plasma-Treated Water (PTW) | 유전체장벽방전(c-DBD)으로 NO·활성질소종(RNS)을 용존시켜 GA 합성·발아를 촉진하는 용수 [SRC-476] |
 
-| 용어 | 정의 | 관련 생리 기작 |
-| :--- | :--- | :--- |
-| **맹아 (Germination)** | 종자가 발아하여 초기 생장 단계로 진입하는 과정 | 옥신-시토키닌 상호작용, 초기 뿌리 생장 |
-| **인경 비대 (Bulb Enlargement)** | 양파의 저장 기관인 인경의 크기가 점진적으로 커지는 현상 | 일장 감응, FT-homolog 발현, 탄소 동화산물 축적 |
-| **피토크롬 (Phytochrome)** | 빛의 파장에 따라 형태가 변하며 광 신호를 전달하는 단백질 | 일장 감응, 인경 분화 유도 신호전달계 |
-| **불시 추대 (Bolting)** | 비정상적인 시기에 줄기가 급격히 위로 자라나는 현상 | 저온 스트레스, 적산온도 모델링, 생리적 스트레스 반응 |
-| **콜드체인 (Cold Chain)** | 식료품의 산지부터 소비자까지 저온을 일정하게 유지하는 유통 시스템 | 저온 유통의 필수 요소, 품질 보존 (식료품) |
-| **에틸렌 (Ethylene)** | 식물 호르몬 중 하나로, 숙성 및 노화 과정을 촉진함 | 숙성 및 노화 기작, 저온/보관 조건에 따른 반응 |
+### 이해도 점검
+1. 150 mM $\mathrm{KNO}_3$ 할로프라이밍이 양파 종자의 출현 지수를 42.5% 향상시키는 생화학적 근거를 적외선 열지문($\Delta T$)과 당 대사 관점에서 설명하시오.
+   - **풀이:** 할로프라이밍 종자는 침지 중 시토크롬 c 산화효소 활성이 40.7–89.8% 높아져 라피노스·포도당·과당을 호흡 기질로 17.5–59.9% 더 빠르게 소비하며, 이러한 당 변화와 적외선 열지문 $\Delta T$(−4.1 ~ −2.3 °C) 간에 유의한 양의 상관($r^2 = 0.504^{**}$)이 성립한다 [SRC-498].
+2. 구 비대기 30일간 가뭄 스트레스를 받은 양파에서 내건성 품종이 수량을 방어하는 핵심 생화학 지표 3가지를 제시하시오.
+   - **풀이:** 삼투 조절을 담당하는 **프롤린(proline)** 축적, 과산화수소($\mathrm{H}_2\mathrm{O}_2$)를 해독하는 항산화 효소 **카탈라아제(CAT)** 및 **아스코르브산 과산화효소(APX)** 활성 유지가 핵심 지표이다 [SRC-503].
 
-## 이해도 점검 연습문제 및 해설
-
-**문제 1.** 양파 초기 생육 단계에서 뿌리 및 엽체 생장 다이내믹스를 결정하는 핵심 호르몬들의 상호작용 메커니즘과 그 역할을 서술하시오. (서술형)
-
-**정답 및 상세 풀이:** 맹아 및 본엽 전개 시기에는 옥신(Auxin)과 시토키닌(Cytokinin)의 균형 잡힌 상호작용이 중요하며, 이 호르몬들의 적절한 비율 유지는 초기 뿌리 발달의 성공률과 엽초의 광합성 능력 초기 발현을 결정한다 [SRC-102].
-
-**문제 2.** 인경 형성 및 비대 과정에서 환경적 신호가 분자적 신호로 전환되는 주요 메커니즘을 설명하고, 이와 관련된 주요 신호 전달 단백질의 역할을 기술하시오. (단답형/서술형)
-
-**정답 및 상세 풀이:** 일장 변화는 피토크롬(Phytochrome) 계열의 광유도 신호 전달 경로를 활성화시켜 인경 분화 관련 유전자들, 특히 FT-homolog 유전자들의 전사 활성화를 유도함으로써 인경 팽창 신호전달 캐스케이드가 작동하게 한다.
-
-**문제 3.** 수확된 양파의 장기 보관 시 품질 유지에 필수적인 유통 기술과, 해당 기술에 연관된 식물 생리 현상 또는 보존 화학 물질의 적용 사례를 연결하여 서술하시오. (서술형)
-
-**정답 및 상세 풀이:** 수확된 식료품의 품질 유지를 위해서는 콜드체인(Cold Chain)을 통한 저온 유통이 필수적이다 [SRC-107]. 또한, 보관 중 품질 저하를 늦추기 위해 에틸렌 생리 활성을 조절하는 물질(예: 1-Methylcyclopropene (1-MCP))이 연화 메커니즘 지연에 활용되는 연구 사례가 있다 [SRC-129].
-
-## 오해와 진실: 현장·이론 핵심 오해 교정
-
-**오해 1: 양파의 모든 생리적 변화는 온도에 의해서만 결정된다.**
-**진실:** 양파의 생육 단계별 변화는 온도(적산온도) 외에도 **일장(Photoperiod)**과 같은 광 환경 신호에 의해 피토크롬 계열을 통해 정밀하게 조절된다. 특히 인경 형성과 같은 특화된 기관 분화는 일장 감응이 핵심적인 역할을 한다.
-
-**오해 2: 저온 환경은 항상 양파의 품질 저하만을 유발한다.**
-**진실:** 저온은 품질 저하를 유발하는 스트레스 요인일 수 있지만, 양파 생육 주기에서 **저온 노출 기간(Vernalization)**은 오히려 특정 생리적 성숙을 유도하는 필수적인 생리적 트리거 역할을 한다. (물론 부적절한 저온은 불시 추대를 유발할 수 있다.)
-
-**오해 3: 에틸렌은 양파의 전반적인 생장 촉진 호르몬으로만 작용한다.**
-**진실:** 에틸렌(C<sub>2</sub>H<sub>4</sub>)은 식물 호르몬 중 하나이지만, 주로 **숙성, 노화, 분리(senescence)** 과정을 촉진하는 역할을 수행한다. 저장 중 품질 관리를 위해서는 에틸렌의 활성을 억제하거나 조절하는 기술이 필요하다.
-
-## 참고문헌 및 근거 출처 목록
-
-| 출처 ID | 유형 | 제목 | URL | 라이선스 |
-| :--- | :--- | :--- | :--- | :--- |
-| `SRC-100` | web | 농촌진흥청 | https://www.rda.go.kr/ | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-101` | web | 보도자료 < 새소식 < 정책홍보 < 농촌진흥청 | https://www.rda.go.kr/board/board.do?boardId=farmprmninfo&prgId=day_farmprmninfoEntry | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-102` | web | 한국식품연구원 | https://www.kfri.re.kr/ | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-103` | web | 국립식량과학원 | https://www.nics.go.kr/index.do | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-104` | web | 농림축산식품부 | https://www.mafra.go.kr/home/index.do | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-105` | web | 국민 안심이 기준입니다, 식품의약품안전처 | https://www.mfds.go.kr/index.do | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-106` | web | 한국농촌경제연구원 | https://www.krei.re.kr/krei/index.do | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-107` | web | 저온 유통 - 위키백과, 우리 모두의 백과사전 | https://ko.wikipedia.org/wiki/%EC%BD%9C%EB%93%9C_%EC%B2%B4%EC%9D%B8 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-108` | web | 에틸렌 - 위키백과, 우리 모두의 백과사전 | https://ko.wikipedia.org/wiki/%EC%97%90%ED%8B%B8%EB%A0%8C | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-109` | web | [2021] Inhibition of Ethylene Binding and Biosynthesis Maintains Fruit Quality of ‘Formosa’ Plums during Postharvest Storage (Horticultural Science and Technology) | https://doi.org/10.7235/hort.20210033 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-111` | web | [2010] Cold storage and fruit quality (Postharvest Biology and Technology for Preserving Fruit Quality) | https://doi.org/10.1201/9781439802670-c4 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-110` | web | [1998] Effects of storage temperature and atmosphere on saskatoon (Amelanchier alnifolia Nutt.) fruit quality, respiration and ethylene production (Postharvest Biology and Technology) | https://doi.org/10.1016/s0925-5214(98)00012-x | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-112` | web | [2013] Postharvest treatments for preserving quality of ‘Kinnow’ fruit under different storage conditions (Advances in Horticultural Science) | https://doi.org/10.36253/ahsc-18414 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-117` | web | [2016] Nondestructive Assessment of Fruit Quality (Advances in Postharvest Fruit and Vegetable Technology) | https://doi.org/10.1201/b18489-10 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-118` | web | [2015] Nondestructive Assessment of Fruit Quality (Contemporary Food Engineering) | https://doi.org/10.1201/b18489-4 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-119` | web | [2016] Metabolomics Tools for Postharvest Quality and Safety of Fresh Produce (Advances in Postharvest Fruit and Vegetable Technology) | https://doi.org/10.1201/b18489-20 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-120` | web | [2021] Effects of postharvest ultraviolet-C treatment on shelf-life and quality of bitter gourd fruit during storage (Food Packaging and Shelf Life) | https://doi.org/10.1016/j.fpsl.2021.100665 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-121` | web | [2020] Evaluation of Postharvest Shelf Life and Quality of Lemon Treated with  Different Coatings during Storage (Food Science and Engineering) | https://doi.org/10.37256/fse.122020463 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-122` | web | [2026] Aloe Vera-Honey Composite Edible Coatings Extend Postharvest Shelf Life and Preserve Quality of Roma Tomatoes Under Tropical Ambient Storage in Rwanda (Journal of Food Science and Horticulture) | https://doi.org/10.69739/jfsh.v1i1.1696 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-123` | web | [2024] Different Postharvest Treatments and Storage Conditions for Shelf-life Enhancement and Quality Retention of Litchi (Journal of Food Chemistry &amp; Nanotechnology) | https://doi.org/10.17756/jfcn.2024-s1-015 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-124` | web | [2019] Understanding Food Loss and Waste—Why Are We Losing and Wasting Food? (Foods) | http://dx.doi.org/10.3390/foods8080297 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-125` | pdf | [2020] Nanotechnologies in Food Science: Applications, Recent Trends, and Future Perspectives (Nano-Micro Letters) | https://doi.org/10.1007/s40820-020-0383-9 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-126` | web | [2020] ZnO Nanostructures in Active Antibacterial Food Packaging: Preparation Methods, Antimicrobial Mechanisms, Safety Issues, Future Prospects, and Challenges (Food Reviews International) | https://doi.org/10.1080/87559129.2020.1737709 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-127` | web | [2019] Value-added chemicals from food supply chain wastes: State-of-the-art review and future prospects (Chemical Engineering Journal) | https://doi.org/10.1016/j.cej.2019.121983 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-263` | web | [2020] Citrus Essential Oils (CEOs) and Their Applications in Food: An Overview (Plants) | http://dx.doi.org/10.3390/plants9030357 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-128` | web | [2024] Advances in strawberry postharvest preservation and packaging: A comprehensive review (Comprehensive Reviews in Food Science and Food Safety) | https://doi.org/10.1111/1541-4337.13417 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-129` | pdf | [2019] Characterization of Fruit Quality Attributes and Cell Wall Metabolism in 1-Methylcyclopropene (1-MCP)-Treated ‘Summer King’ and ‘Green Ball’ Apples During Cold Storage (Frontiers in Plant Science) | https://doi.org/10.3389/fpls.2019.01513 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-130` | web | [2014] Shelf life extension and antioxidant activity of ‘Hayward’ kiwi fruit as a result of prestorage conditioning and 1-methylcyclopropene treatment (Journal of Food Science and Technology) | https://doi.org/10.1007/s13197-014-1300-3 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-131` | web | [2012] Effects of Vibration Stress on the Quality of Packaged Apples during Simulated Transport (Journal of Biosystems Engineering) | https://doi.org/10.5307/jbe.2012.37.1.044 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-264` | web | [2025] Plant–Microbe Interactions for Improving Postharvest Shelf Life and Quality of Fresh Produce Through Protective Mechanisms (Horticulturae) | https://doi.org/10.3390/horticulturae11070732 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-132` | web | [2022] Prediction of Total Soluble Solids and pH of Strawberry Fruits Using RGB, HSV and HSL Colour Spaces and Machine Learning Models (Foods) | https://doi.org/10.3390/foods11142086 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-133` | web | [2017] Nondestructive Estimation of Moisture Content, pH and Soluble Solid Contents in Intact Tomatoes Using Hyperspectral Imaging (Applied Sciences) | https://doi.org/10.3390/app7010109 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-134` | web | [2024] Prediction of Soluble-Solid Content in Citrus Fruit Using Visible–Near-Infrared Hyperspectral Imaging Based on Effective-Wavelength Selection Algorithm (Sensors) | https://doi.org/10.3390/s24051512 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-135` | pdf | [2018] Hyperspectral imaging technique to evaluate the firmness and the sweetness index of tomatoes (Korean Journal of Agricultural Science) | https://doi.org/10.7744/kjoas.20180075 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-265` | web | [2022] Field Application of a Vis/NIR Hyperspectral Imaging System for Nondestructive Evaluation of Physicochemical Properties in ‘Madoka’ Peaches (Plants) | https://doi.org/10.3390/plants11172327 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-136` | web | Technical Platform on the Measurement and Reduction of Food Loss and Waste / Food and Agriculture Organization of the United Nations | https://www.fao.org/platform-food-loss-waste/en/ | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-137` | web | FLW Database / Technical Platform on the Measurement and Reduction of Food Loss and Waste / Food and Agriculture Organization of the United Nations | https://www.fao.org/food-loss-and-food-waste/flw-data/en/ | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-138` | web | Codex / Home | https://www.fao.org/fao-who-codexalimentarius/en/ | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-139` | web | Ask IFAS: Topic - Postharvest and Handling | https://edis.ifas.ufl.edu/topics/postharvest | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-140` | web | ARS Home : USDA ARS | https://www.ars.usda.gov/ | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-141` | web | National Programs : USDA ARS | https://www.ars.usda.gov/research/programs/ | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-142` | web | NFRI / National Agriculture and Food Research Organization | https://www.naro.go.jp/english/laboratory/nfri/index.html | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-143` | web | Ministry of Agriculture, Forestry and Fisheries | https://www.maff.go.jp/e/index.html | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-144` | web | Postharvest - Wikipedia | https://en.wikipedia.org/wiki/Postharvest | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-145` | web | Controlled atmosphere - Wikipedia | https://en.wikipedia.org/wiki/Controlled_atmosphere | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-146` | web | Modified atmosphere - Wikipedia | https://en.wikipedia.org/wiki/Modified_atmosphere | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-147` | web | 1-Methylcyclopropene - Wikipedia | https://en.wikipedia.org/wiki/1-Methylcyclopropene | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-148` | web | Cold chain - Wikipedia | https://en.wikipedia.org/wiki/Cold_chain | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-149` | pdf | [2014] Agricultural uses of plant biostimulants (Plant and Soil) | https://doi.org/10.1007/s11104-014-2131-8 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-150` | web | [2017] Biostimulants in Plant Science: A Global Perspective (Frontiers in Plant Science) | https://doi.org/10.3389/fpls.2016.02049 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-151` | web | [1986] The commercial storage of fruits, vegetables, and florist and nursery stocks (Biodiversity Heritage Library (Smithsonian Institution)) | https://www.biodiversitylibrary.org/item/295012 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-152` | web | [2017] Reducing Postharvest Losses during Storage of Grain Crops to Strengthen Food Security in Developing Countries (Foods) | https://doi.org/10.3390/foods6010008 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-266` | web | [2015] Bioactive Compounds and Antioxidant Activity in Different Types of Berries (International Journal of Molecular Sciences) | http://dx.doi.org/10.3390/ijms161024673 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-153` | web | [2019] The role of hydrogen and fuel cells in the global energy system (Energy & Environmental Science) | https://doi.org/10.1039/c8ee01157e | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-154` | web | [2018] Methanol as a fuel for internal combustion engines (Progress in Energy and Combustion Science) | https://doi.org/10.1016/j.pecs.2018.10.001 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-155` | web | [2017] Overview of Ice Nucleating Particles (Meteorological Monographs) | https://doi.org/10.1175/amsmonographs-d-16-0006.1 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-156` | web | [2021] Liquid Hydrogen: A Review on Liquefaction, Storage, Transportation, and Safety (Energies) | https://doi.org/10.3390/en14185917 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-267` | web | [2022] Hydrogen liquefaction: a review of the fundamental physics, engineering practice and future opportunities (Energy & Environmental Science) | https://doi.org/10.1039/d2ee00099g | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-157` | web | [2013] Advances in Fruit Aroma Volatile Research (Molecules) | https://doi.org/10.3390/molecules18078200 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-158` | web | [2019] Tomato Fruit Development and Metabolism (Frontiers in Plant Science) | https://doi.org/10.3389/fpls.2019.01554 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-159` | web | [2019] Chemical Composition of Mango (Mangifera indica L.) Fruit: Nutritional and Phytochemical Compounds (Frontiers in Plant Science) | https://doi.org/10.3389/fpls.2019.01073 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-160` | web | [2016] Induced resistance to control postharvest decay of fruit and vegetables (Postharvest Biology and Technology) | https://www.sciencedirect.com/science/article/pii/S0925521416301946/pdf | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-268` | pdf | [2020] Primary Metabolism in Fresh Fruits During Storage (Frontiers in Plant Science) | https://doi.org/10.3389/fpls.2020.00080 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-161` | web | [2014] Near-infrared spectroscopy and hyperspectral imaging: non-destructive analysis of biological materials (Chemical Society Reviews) | https://doi.org/10.1039/c4cs00062e | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-162` | web | [2020] Visible-NIR ‘point’ spectroscopy in postharvest fruit and vegetable assessment: The science behind three decades of commercial use (Postharvest Biology and Technology) | https://doi.org/10.1016/j.postharvbio.2020.111246 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-163` | web | [2015] Fruit Quality Evaluation Using Spectroscopy Technology: A Review (Sensors) | http://dx.doi.org/10.3390/s150511889 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-164` | web | [2019] Monitoring strategies for quality control of agricultural products using visible and near-infrared spectroscopy: A review (Trends in Food Science & Technology) | https://www.sciencedirect.com/science/article/abs/pii/S0924224418304825 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-269` | web | [2011] Machine vision system: a tool for quality inspection of food and agricultural products (Journal of Food Science and Technology) | https://doi.org/10.1007/s13197-011-0321-4 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-165` | web | [1995] Biosolids–Yard Trimming Composts Increases Bell Pepper (Capsicum annuum L.) and Cucumber (Cucumis sativus L.) Yields (HortScience) | https://doi.org/10.21273/hortsci.30.4.892 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-166` | web | [1995] Physiology of Lightly Processed Fruits and Vegetables (HortScience) | https://doi.org/10.21273/hortsci.30.1.18 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-167` | web | [2006] Nutritional and medicinal use of Cactus pear (Opuntia spp.) cladodes and fruits (Frontiers in bioscience) | https://doi.org/10.2741/1992 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-168` | web | [2017] Antifungal Microbial Agents for Food Biopreservation—A Review (Microorganisms) | https://doi.org/10.3390/microorganisms5030037 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-270` | web | [2010] Effect of hydroxypropylmethylcellulose and chitosan coatings with and without bergamot essential oil on quality and safety of cold-stored grapes (Postharvest Biology and Technology) | https://doi.org/10.1016/j.postharvbio.2010.11.004 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+### 참고문헌
+- [SRC-366] Effect of Deficit Irrigation and Mulching on Drip-Irrigated Onion (2021), *IJSR*; [SRC-367] Variations in Seed Yield in Onion Germplasm (2024), *HST*; [SRC-369] Simulating impacts of irrigation heterogeneity on onion yield (2014), *Irrigation Science*; [SRC-378] Regional Differences in Onion Bulb Quality and Storage Loss (2016), *HST*; [SRC-389] FAO-56 & Irrigation Engineering Standards Anchor; [SRC-475] Tymoszuk & Wojnarowicz (2020), *Materials*; [SRC-476] Khanam et al. (2025), *IJMS*; [SRC-479] Kara (2026), *Scientific Reports*; [SRC-480] Su et al. (2026), *BMC Plant Biology*; [SRC-482] Arivalagan & Das (2026), *Frontiers in Plant Science*; [SRC-484] Samayoa et al. (2020), *Microbes and Environments*; [SRC-485] Badr et al. (2026), *Scientific Reports*; [SRC-493] Kim et al. (2025), *PeerJ*; [SRC-494] Shan et al. (2026), *Plants*; [SRC-498] Thakur et al. (2020), *Frontiers in Plant Science*; [SRC-503] Sansan et al. (2025), *Scientific Reports*.

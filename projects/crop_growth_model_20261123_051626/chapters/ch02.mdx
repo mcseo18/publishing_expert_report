@@ -1,131 +1,68 @@
 ---
 chapter_id: "ch02"
 title: "제2장. 광합성, 에너지 동역학 및 생체량 변화 모델링"
-audience: "대학 전공 심화, 대학원생, 연구자 및 선도 현장 실무자"
-evidence_packet: "crop_growth_model_20261123_051626_evidence.json"
+book_title: "작물 생육모형"
+primary_output_type: "textbook"
+evidence_packet: "crop_growth_model_20261123_051626_evidence"
 ---
 
 # 제2장. 광합성, 에너지 동역학 및 생체량 변화 모델링
 
-**단원 요약:** 이 장은 작물 생장 과정의 핵심인 에너지 변환 과정을 수학적으로 정량화하는 방법을 다룹니다. 광합성률을 결정하는 환경 변수(광량, 온도)의 영향을 분석하고, 이를 생체량 증가로 연결하는 동역학적 방정식을 심층적으로 학습합니다.
-
-**대상 독자:** 대학 전공 심화, 대학원생, 연구자 및 선도 현장 실무자
-
-***
+> **학습 목표**: 본 장에서는 ① 태양 복사 차단(Beer-Lambert 법칙)과 광이용효율(RUE) 기반 건물중 생산 방정식을 유도하고, ② 생화학적 엽광합성 매개변수($V_{cmax}, J_{max}$)와 0D–3D 수관 광합성 모형의 차이를 비교하며, ③ 유효 적산온도(GDD) 기반 생육 단계 진전 및 비엽 녹색기관(꼬투리 등)의 동화산물 분배 모델링을 이해한다 [SRC-457, SRC-459, SRC-467, SRC-469].
 
 ## 2.1 에너지 흐름과 생체량 축적의 기본 원리
 
-작물의 생장은 태양 에너지를 화학 에너지(유기물)로 전환하는 광합성 과정에서 비롯됩니다. 이 과정에서 유입되는 에너지의 총량은 작물의 생체량 증가, 호흡, 증산 등 다양한 생리학적 활동에 사용됩니다. 작물의 생체량(Biomass) 축적은 기본적으로 에너지 투입량과 에너지 소비량 간의 동역학적 균형에 의해 결정됩니다.
+작물 군락의 생체량 축적은 태양 광합성유효복사(PAR)의 수관 차단(interception), 화학 에너지로의 전환(광합성 동화), 유지·생장 호흡 손실 차감, 그리고 각 기관(잎·줄기·뿌리·종실)으로의 동화산물 분배로 이어지는 에너지 흐름에 의해 지배된다 [SRC-457, SRC-459]. 균질한 1차원 수관을 가정한 Beer-Lambert 법칙에서 수관 차단 PAR($\mathrm{IPAR}$, $\mathrm{MJ\ m^{-2}\ d^{-1}}$)과 일일 건물중 증가량($\Delta B$, $\mathrm{g\ m^{-2}\ d^{-1}}$)은 다음과 같이 표현된다 [SRC-457, SRC-459]:
 
-작물에 도달하는 총 태양 복사 에너지 중 광합성에 이용되는 부분은 광량(Light Intensity)과 엽면적 지수(LAI)에 의해 결정되며, 이는 '포획된 복사 에너지(Intercepted Radiation)'로 표현됩니다. 이 포획된 에너지가 실제로 생체량 증가에 얼마나 효과적으로 사용되는지를 나타내는 지표가 바로 광합성 효율(Photosynthetic Efficiency)입니다.
+$$\mathrm{IPAR} = \mathrm{PAR}_0 \cdot \left(1 - e^{-k \cdot \mathrm{LAI}}\right), \qquad \Delta B = \mathrm{RUE} \cdot \mathrm{IPAR} \cdot f_T \cdot f_W \cdot f_N$$
 
-중요하게 고려해야 할 환경적 제약 중 하나는 토양 수분 부족(Soil Water Deficit, D)입니다. 토양 수분 스트레스는 기공을 닫게 하여 CO<sub>2</sub>의 흡수를 제한하고, 궁극적으로 광합성 능력과 생체량 축적률을 저하시킵니다 [SRC-284]. 따라서 작물 성장 모델링에서는 광 에너지 투입과 토양 수분 상태 간의 복잡한 상호작용을 반드시 고려해야 합니다.
+여기서 $\mathrm{PAR}_0$는 입사 광합성유효복사(전천일사량의 약 45–50%), $k$는 군락 소광계수(직립엽 화본과 0.45–0.65, 광엽작물 0.65–0.85), $\mathrm{LAI}$는 엽면적지수($\mathrm{m^2\ m^{-2}}$), $\mathrm{RUE}$는 광이용효율($\mathrm{g\ MJ^{-1}}$), $f_T, f_W, f_N \in [0, 1]$은 각각 온도·수분·질소 스트레스 보정계수이다 [SRC-457, SRC-459].
 
-## 2.2 광합성 메커니즘의 정량화: 빛 이용 효율 및 CO<sub>2</sub> 동화
+## 2.2 광합성 메커니즘의 정량화: 빛 이용 효율(RUE) 및 $\mathrm{CO}_2$ 동화
 
-광합성 과정의 정량적 분석은 빛 이용 효율(Light Use Efficiency, LUE) 및 기체 교환 동역학을 중심으로 이루어집니다. 빛 이용 효율은 흡수된 광 에너지 당 생산되는 생체량의 비율을 나타내며, 이는 광량, 온도, CO<sub>2</sub> 농도 등 여러 환경 변수에 민감하게 반응합니다 [SRC-287].
+작물 생육모형의 광합성 모듈은 크게 **RUE 기반 거시 모형**과 **생화학적 Farquhar–von Caemmerer–Berry(FvCB) 엽광합성 모형**으로 구분된다 [SRC-457, SRC-469]. 생화학적 모형에서는 리불로스-1,5-이인산 카르복실화효소(RuBisCO)의 최대 카르복실화 속도($V_{cmax}$)와 최대 전자전달 속도($J_{max}$)가 $\mathrm{CO}_2$ 동화율을 결정한다 [SRC-469]. He & Matthews (2023)가 장기 노지 기상 조건에서 콩(soybean)의 $V_{cmax}$와 $J_{max}$ 증진 효과를 체계적으로 시뮬레이션한 결과, 엽 수준의 광합성 증진이 실제 수량 증가로 이어지는 폭은 계절별 기상 조건(일사·기온·수분 제한)에 따라 크게 달라짐을 입증하였다 [SRC-469]. 또한 고$\mathrm{CO}_2$와 가뭄 복합 처리 하에서 밀 3개 유전자형을 평가한 연구는 광화학 반사지수(PRI)와 RUE, 열화상 엽온($T_{\mathrm{leaf}}$)과 증산 간의 관계가 환경 스트레스에 따라 변화함을 규명하였다 [SRC-472].
 
-모델링 관점에서, CO<sub>2</sub> 동화 속도를 예측하기 위해서는 작물 생장 모델(Crop Growth Model)을 사용합니다. 예를 들어, CERES-wheat와 같은 시뮬레이션 모델은 대기 중 CO<sub>2</sub> 농도 변화와 온도 변화가 봄 밀의 생육 단계 및 최종 산출량에 미치는 영향을 정량적으로 추정하는 데 활용됩니다 [SRC-287].
+**수관 구조 차원(0D–3D) 및 수직 질소 분포의 RUE 극대화 효과:** Gu et al. (2022)은 0D(대엽 big-leaf)부터 3D 정밀 구조 모형까지 수관 광합성 모형의 차원별 정밀도를 비교하여, 3D 군락 구조 반영이 음엽·양엽의 광포화 비선형성을 정밀하게 포착함을 보였다 [SRC-459]. 나아가 Wang et al. (2024)은 C4 작물인 옥수수 수관에서 기존 균일 엽면적 가정을 탈피해 **수직 엽면적 분포와 엽질소(leaf N) 분포를 광 구배에 최적화 매칭**할 경우 군락 RUE가 유의하게 극대화됨을 시뮬레이션으로 입증하였다 [SRC-457]. 봄밀 수관의 상·중·하층별 광합성·생화학 형질을 부분최소제곱회귀(PLSR)와 고속 표현체(HTP)로 추정한 연구 역시 수관 층위별 광합성 특성이 다름을 확인하였다 [SRC-460].
 
-또한, 광합성 효율과 생체량 축적 간의 연결 고리, 즉 에너지 변환 과정의 효율성은 토양 환경 요인에 의해 복합적으로 영향을 받습니다. 예를 들어, 토양의 물리적 특성인 **토성(soil texture)**은 작물이 겪는 **식물 수분 스트레스(plant water stress)**에 간접적으로 영향을 미치며, 이는 다시 광합성 효율과 에너지 동역학에 영향을 줍니다 [SRC-295].
-
-한편, 토양 생태계 관점에서는 미생물 활동을 통한 탄소 이용 효율(CUE) 및 전체적인 탄소 순환 모델링이 중요하게 다루어지며, 관련 내용은 **Soil Microbiology, Ecology, and Biochemistry (4th Edition)**과 같은 문헌에서 집대성됩니다 [SRC-32].
+| 광합성·수관 모델 유형 | 대표 매개변수 | 장점 | 주요 한계 및 보완 방안 | 출처 |
+|---|---|---|---|---|
+| **RUE 기반 거시 모형** | $\mathrm{RUE}, k, \mathrm{LAI}$ | 입력 단순, 지역·장기 시뮬레이션 빠름 | 고$\mathrm{CO}_2$·광포화·수직 질소 구배 반영 한계 | [SRC-451, SRC-457] |
+| **FvCB 생화학 엽모형** | $V_{cmax}, J_{max}, g_s, C_i$ | $\mathrm{CO}_2$ 상승·온도·기공전도도 기작 정밀 반영 | 계절 수분·온도 스트레스에 따른 수량 전환 편차 | [SRC-469, SRC-472] |
+| **3D 수관 광합성 모형** | 3D 엽각·엽면적 밀도·수직 엽N | 양엽/음엽 광분포·군락 RUE 최적화 정밀 모의 | 연산 부담 높아 1D 모형 매개변수화 보정에 활용 | [SRC-457, SRC-459] |
+| **비엽 녹색기관 확장(TPAI)** | $\mathrm{TPAI} = \mathrm{LAI} + \mathrm{SAI}$ (꼬투리 등) | 유채 등 비엽 광합성 기여 큰 작물의 과소추정 해소 | 작물별 비엽 기관 면적 동태 실측 보정 필요 | [SRC-467] |
 
 ## 2.3 생육 단계별 생체량(Biomass) 및 수확량 예측 모델
 
-작물의 생체량 및 수확량 예측은 시계열적인 접근을 요구하며, 이는 단순히 단일 시점의 환경 조건으로 결정되지 않습니다. 식물의 생장 단계(Phenology)에 따라 에너지 동태가 다르기 때문에, 단계별 예측 모델이 필수적입니다.
+작물의 발육 속도(출아→영양생장→개화→등숙→성숙)는 주로 일별 유효 적산온도(Growing Degree Days, GDD)로 구동된다 [SRC-446, SRC-449]:
 
-현대 정밀 농업에서는 복잡한 비선형적 관계를 모델링하기 위해 고급 머신러닝 기법이 활용됩니다. 예를 들어, **SVR\_Seq2Seq 모델**은 온실 작물의 성장 과정을 단계별로 예측하는 데 사용되어 그 정확성을 높이고 있습니다 [SRC-285]. 이러한 예측 모델들은 과거의 생육 데이터와 환경 데이터를 학습하여 미래의 생체량 및 수확량을 추정합니다.
+$$\mathrm{GDD} = \sum_{i=1}^{n} \max\!\left(0,\ \frac{T_{\max,i} + T_{\min,i}}{2} - T_{\mathrm{base}}\right)$$
 
-생체량 및 수확량 예측 모델을 발전시키는 연구 방향 중 하나는 기존의 경험적 모델에 더 정교한 동역학적 요소를 결합하는 것입니다. 예를 들어, 작물 순환 최적화에 경험적으로 추정된 전작(pre-crop) 값을 결합하여 농장 수준 모델을 개선하는 연구가 진행되고 있습니다 [SRC-289].
+예를 들어 DSSAT-CERES-Rice는 기준온도 $T_{\mathrm{base}} = 9\ ^\circ\mathrm{C}$를 적용하며 [SRC-446], APSIM Next Generation의 SCRUM 모형은 종자·유묘·영양·생식·성숙의 **9단계 생육기**를 누적 열시간 비율(`ProportionTT`)과 최대 건물중 비율(`ProportionMaxDM`)로 정식화한다(예: 출아~유묘기 `ProportionMaxDM` 0.0067, 성숙기 수확지수 $\mathrm{HI} = 0.45$, 수확 시 종실 수분함량 0.14 g/g, 뿌리 건물중 비율 0.10) [SRC-449].
 
-이러한 모델링의 정확성을 높이기 위해 작물의 특성을 반영하는 다양한 메커니즘이 통합됩니다. 예를 들어, 작물의 성장 시뮬레이션 모델(DSSAT-CERES-Rice crop model)은 온도 변화에 따른 등숙기 및 생육 주기 변화를 예측하는 데 사용됩니다 [SRC-283]. 또한, 다른 작물(예: 옥수수)의 성장 및 수확량 예측 모델도 초기 모델을 통해 개발되어 왔습니다 [SRC-284].
+**비엽 녹색기관 광합성과 원격탐사 기반 건물중 동화:** 화본과 중심의 기존 WOFOST 모형을 유채(rapeseed)에 그대로 적용하면 성숙기 꼬투리(silique)의 광합성 기여를 누락해 수량을 과소추정한다. Ruan et al. (2024)은 2년 포장 시험 데이터를 바탕으로 기존 LAI를 **총 광합성면적지수(TPAI)**로 대체하여 WOFOST의 유채 수량 추정 정밀도를 크게 개선하였다 [SRC-467]. 또한 Li & Li (2026)는 UAV 다중시기 영상에 이중분기 인지-하이브리드 주의망을 적용해 관리 이벤트에 따른 단기 생리 변동과 계절 생장 추세를 동시에 포착하며 밀 엽 생체량을 비파괴 정밀 추정하였다 [SRC-473].
 
 ## 2.4 에너지 동역학적 제약 조건과 성장 속도 결정
 
-작물의 성장 속도 결정은 에너지 투입과 작물 내부의 생리적 제약 조건 사이의 역학적 상호작용으로 이해해야 합니다.
+일일 잠재 성장률은 광량(원천 제한, source limitation)과 기관의 동화산물 수용 능력(수용부 제한, sink limitation), 그리고 지온·기온의 열역학적 제약 중 최소 인자에 의해 결정된다. 특히 피복(straw mulching) 재배에서는 지온 변화가 출아와 초기 생장 속도를 크게 좌우하므로, Song et al. (2026)은 기존 AquaCrop에 토양온도 모듈을 통합해 멀칭 조건의 수열 환경과 수량 예측 정확도를 크게 향상시켰다 [SRC-454].
 
-**제약 조건(Constraint)**은 광량, 온도, CO<sub>2</sub> 가용성, 수분 가용성 등의 환경적 변수들이 작물의 광합성 최대 속도를 제한하는 요인입니다. 에너지 동역학적 모델은 이러한 제약 조건들이 생체량 축적 속도(dBiomass/dt)에 어떻게 선형적 또는 비선형적으로 영향을 미치는지를 수학적으로 표현합니다.
+**계산 예제 (RUE 기반 일일 잠재 건물중 산출):** 맑은 날 전천일사량이 $22.0\ \mathrm{MJ\ m^{-2}\ d^{-1}}$($\mathrm{PAR}_0 = 11.0\ \mathrm{MJ\ m^{-2}\ d^{-1}}$), 옥수수 군락 $\mathrm{LAI} = 4.0$, 소광계수 $k = 0.60$, $\mathrm{RUE} = 3.2\ \mathrm{g\ MJ^{-1}}$이고 스트레스 계수 $f_T = f_W = f_N = 1.0$일 때, 차단 광량은 $\mathrm{IPAR} = 11.0 \times (1 - e^{-0.60 \times 4.0}) = 11.0 \times 0.909 = 10.0\ \mathrm{MJ\ m^{-2}\ d^{-1}}$이며, 일일 잠재 건물중 증가량은 $\Delta B = 3.2 \times 10.0 = 32.0\ \mathrm{g\ m^{-2}\ d^{-1}}$ ($320\ \mathrm{kg\ ha^{-1}\ d^{-1}}$)로 산출된다 [SRC-457, SRC-459].
 
-특정 환경 변화에 대한 작물의 반응을 모사하는 것은 기후 변화 시나리오 분석에 필수적입니다. **기후 변화(climate change)**는 광범위한 **생태계(ecosystem)** 및 **공동체(community)** 수준에 영향을 미치며 [SRC-299], 이는 재배되는 특정 작물(예: 옥수수, maize)의 생육 특성에 직접적인 변화를 가져옵니다 [SRC-297].
+### 오해와 진실
+- **오해 (Myth):** 엽면적지수(LAI)만 정확히 측정하면 모든 작물의 종실 수량을 과소추정 없이 모의할 수 있다.
+- **진실 (Fact):** 유채 꼬투리나 밀 이삭처럼 비엽 녹색기관이 등숙기 광합성의 상당 부분을 담당하는 작물에서는 LAI 단독 대신 TPAI를 도입해야 과소추정을 방지할 수 있으며, C4 작물에서는 엽질소의 수직 분포가 RUE를 크게 좌우한다 [SRC-457, SRC-467].
 
-결론적으로, 정확한 생장 모델링은 빛 에너지의 포획 → 광합성을 통한 화학 에너지 저장 → 생체량 축적 및 호흡으로의 소비라는 전체 에너지 흐름을 정밀하게 추적하는 과정입니다.
+### 핵심 용어집
+| 국문 용어 | 영문 용어 | 정의 |
+|---|---|---|
+| 광이용효율 | Radiation Use Efficiency (RUE) | 수관이 차단한 단위 PAR 에너지당 생산되는 건물중($\mathrm{g\ MJ^{-1}}$) [SRC-457] |
+| 총 광합성면적지수 | Total Photosynthetic Area Index (TPAI) | 잎(LAI)뿐 아니라 꼬투리·줄기 등 비엽 녹색기관을 포함한 총 광합성 면적 지수 [SRC-467] |
+| 수확지수 | Harvest Index (HI) | 전체 지상부 건물중 대비 경제적 수확 기관(종실 등) 건물중의 비율 [SRC-449] |
 
-***
+### 이해도 점검
+1. 3D 수관 광합성 모형이 기존 1D 균일 수관 모형보다 RUE 예측에 유리한 생리적 이유를 서술하시오.
+   - **풀이:** 실제 수관에서는 상부 양엽이 광포화에 도달하고 하부 음엽이 광제한을 받으며 엽질소가 수직 구배를 이루므로, 3D 기하와 수직 질소 분포를 반영해야 비선형 광합성 응답을 정확히 적분할 수 있다 [SRC-457, SRC-459].
+2. 멀칭 재배 시 기존 AquaCrop 모형에 토양온도 모듈을 추가해야 하는 이유를 설명하시오.
+   - **풀이:** 짚 멀칭이 토양 수열 환경과 지온을 변화시켜 초기 생육·증발산·수분 이용 효율을 조절하므로, 지온 모듈을 통합해야 실제 생육과 수량을 정확히 모의할 수 있다 [SRC-454].
 
-## ## 핵심 용어집 (표)
-
-| 용어 | 정의 및 주요 역할 | 관련 개념 | 출처 키 |
-| :--- | :--- | :--- | :--- |
-| **포획된 복사 에너지** | 작물 잎에 도달하여 광합성에 사용될 수 있는 태양 복사 에너지 총량. | 광량, LAI | N/A |
-| **광합성 효율 (LUE)** | 투입된 광 에너지 대비 생산된 생체량의 효율성 지표. | CO<sub>2</sub> 동화, 생체량 | SRC-287 |
-| **토양 수분 부족 (D)** | 작물 생장에 부정적인 영향을 미치는 토양 수분 결핍 상태. | 광합성 제약, 생체량 변화 | SRC-284 |
-| **SVR\_Seq2Seq 모델** | 순차적 데이터 예측을 위해 사용되는 심층 학습 모델로, 작물 성장 예측에 적용됨. | 생육 예측, 동역학 | SRC-285 |
-| **토성 (Soil Texture)** | 토양 입자의 크기 분포로, 작물 수분 스트레스 발생 경향에 영향을 줌. | 수분 스트레스, 생리 반응 | SRC-295 |
-| **미생물 탄소이용효율 (CUE)** | 토양 미생물이 유기 탄소를 얼마나 효율적으로 이용하는지를 나타내는 지표. | 탄소 순환, 토양 생태학 | SRC-32 |
-
-***
-
-## ## 이해도 점검 연습문제 및 해설
-
-**문제 1:** 광합성 모델링에서 '포획된 복사 에너지'가 '생체량 증가'로 전환될 때 발생하는 핵심적인 생리적 제약 조건은 무엇이며, 이는 환경 변수와 어떻게 연결되는가? (출처 키를 포함하여 서술하시오.)
-
-**정답 및 상세 풀이 1:**
-핵심적인 제약 조건은 '토양 수분 부족(D)'이다. 토양 수분 스트레스는 기공을 닫게 하여 CO<sub>2</sub> 흡수를 제한하고, 이는 광합성 효율을 저하시켜 궁극적으로 생체량 축적률을 낮춘다 [SRC-284]. 즉, 에너지 투입(복사 에너지)이 있어도 수분 제약이 있을 경우, 에너지 변환 동역학이 제한된다.
-
-**문제 2:** 작물의 생육 단계별 생체량 예측의 정확도를 높이기 위해 연구되는 방법 중 하나인 '모델 개선'과 관련된 동향을 서술하시오. (출처 키를 포함하여 서술하시오.)
-
-**정답 및 상세 풀이 2:**
-최근의 모델 개선 동향 중 하나는 기존의 경험적 생장 모델에 **작물 순환 최적화**와 같은 **동역학적 요소**를 결합하여 농장 수준 모델의 정확도를 높이는 것이다 [SRC-289]. 이는 작물 생장 및 환경 상호작용을 보다 입체적으로 반영하려는 시도이다.
-
-**문제 3:** 정밀 농업에서 사용되는 머신러닝 기반 성장 예측 모델과 관련된 연구 사례를 제시하고, 이 모델이 해결하려는 생물학적 문제를 설명하시오. (출처 키를 포함하여 서술하시오.)
-
-**정답 및 상세 풀이 3:**
-**SVR\_Seq2Seq 모델**은 온실 작물의 성장 과정을 단계별(Multi-step)로 예측하는 데 사용된다 [SRC-285]. 이 모델은 작물 성장 과정의 복잡하고 연속적인 시간 흐름에 따른 생리적 상태 변화를 높은 정확도로 예측하여, 재배 환경에 대한 선제적 관리를 가능하게 한다.
-
-***
-
-## ## 오해와 진실: 현장·이론 핵심 오해 교정
-
-**오해 1:** 광합성량이 많으면 무조건 생체량이 많아진다.
-**진실:** 광합성량이 많더라도 토양 수분 부족(D)과 같은 환경적 제약 조건이 존재하면, 기공을 닫아 CO<sub>2</sub> 흡수를 제한하므로 광합성 효율이 저하되고 생체량 축적은 제한된다 [SRC-284]. 에너지 흐름은 제약 조건의 함수이다.
-
-**오해 2:** 모든 농업 연구는 단순히 화학적 반응(광합성 반응)에 초점을 맞추고 있다.
-**진실:** 현대 작물 동역학 연구는 광화학 반응뿐만 아니라, **토양 미생물 생태학**을 통한 탄소 이용 효율(CUE) 및 **탄소 순환 모델링** 등 토양 및 생태계 수준의 요소까지 포함하여 통합적으로 접근한다 [SRC-32].
-
-**오해 3:** 생체량 예측 모델은 정적인(Static) 환경 변수만을 사용한다.
-**진실:** 고급 모델들은 **시계열적(Temporal)** 접근을 취하며, **SVR\_Seq2Seq**와 같은 동역학적 모델을 사용하여 성장 단계별 변화(Phenology)와 환경 변화에 따른 연속적인 예측을 수행한다 [SRC-285, SRC-283].
-
-## 참고문헌 및 근거 출처 목록
-
-| 출처 ID | 유형 | 제목 | URL | 라이선스 |
-| :--- | :--- | :--- | :--- | :--- |
-| `SRC-100` | web | 농촌진흥청 | https://www.rda.go.kr/ | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-102` | web | 한국식품연구원 | https://www.kfri.re.kr/ | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-104` | web | 농림축산식품부 | https://www.mafra.go.kr/home/index.do | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-106` | web | 한국농촌경제연구원 | https://www.krei.re.kr/krei/index.do | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-283` | web | [2021] Rice phenology and growth simulation using DSSAT- CERES-Rice crop model under the different temperatures changing with climatic condition (International Journal of Agricultural Sciences and Technology) | https://doi.org/10.51483/ijagst.1.2.2021.1-11 | 학술 서지 메타데이터·초록(Crossref) - 정식 인용 목적(원문 무단 복제 금지) |
-| `SRC-284` | web | [2016] A preliminary model of sweet corn growth and yield (New Zealand Journal of Crop and Horticultural Science) | https://doi.org/10.1080/01140671.2016.1264078 | 학술 서지 메타데이터·초록(Crossref) - 정식 인용 목적(원문 무단 복제 금지) |
-| `SRC-285` | web | [2025] Multi-step prediction of greenhouse crop growth based on the SVR_Seq2Seq model (Smart Agricultural Technology) | https://doi.org/10.1016/j.atech.2025.100986 | 학술 서지 메타데이터·초록(Crossref) - 정식 인용 목적(원문 무단 복제 금지) |
-| `SRC-286` | web | [2022] Effects of residual broken roots on the growth and rhizosphere soil of herbaceous peony (European Journal of Horticultural Science) | https://doi.org/10.17660/ejhs.2022/035 | 학술 서지 메타데이터·초록(Crossref) - 정식 인용 목적(원문 무단 복제 금지) |
-| `SRC-287` | web | [2001] Simulation of spring wheat responses to elevated CO2 and temperature by using CERES-wheat crop model (Agricultural and Food Science) | https://doi.org/10.23986/afsci.5692 | 학술 서지 메타데이터·초록(Crossref) - 정식 인용 목적(원문 무단 복제 금지) |
-| `SRC-288` | web | [2025] Assessment of the Effects of Drying Methods on the  Drying Characteristics, Color, Nutritional and  Medicinal Attributes of Dioscorea opposita Thunb (ES Food &amp; Agroforestry) | https://doi.org/10.30919/faf1652 | 학술 서지 메타데이터·초록(Crossref) - 정식 인용 목적(원문 무단 복제 금지) |
-| `SRC-289` | web | [2024] Improving a dynamic farm level model by coupling empirically estimated pre-crop values with crop rotation optimization (Agricultural and Food Science) | https://doi.org/10.23986/afsci.144747 | 학술 서지 메타데이터·초록(Crossref) - 정식 인용 목적(원문 무단 복제 금지) |
-| `SRC-290` | web | [2013] Comparison of Crop Growth and Evapotranspiration Simulations between Noah Multi Physics Model and CERES-Rice Model (Korean Journal of Agricultural and Forest Meteorology) | https://doi.org/10.5532/kjafm.2013.15.4.282 | 학술 서지 메타데이터·초록(Crossref) - 정식 인용 목적(원문 무단 복제 금지) |
-| `SRC-291` | web | [2013] Cassava Nitrogen Requirements in Thailand and Crop Simulation Model Predictions (Soil Science) | https://doi.org/10.1097/ss.0b013e31829a283f | 학술 서지 메타데이터·초록(Crossref) - 정식 인용 목적(원문 무단 복제 금지) |
-| `SRC-86` | web | [2025] Determination of optimal mixing ratio of organic fertilizer and biochar derived from agricultural waste to increase crop growth and soil carbon sequestration (Korean Journal of Soil Science and Fertilizer) | https://doi.org/10.7745/kjssf.2025.58.1.118 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-292` | web | [2022] Korean Model for Estimating Soil Available Water Content of Soybean Cultivation Area with Integrated Soil, Meteorology, and Crop Data (Korean Journal of Soil Science and Fertilizer) | https://doi.org/10.7745/kjssf.2022.55.4.570 | 학술 서지 메타데이터·초록(Crossref) - 정식 인용 목적(원문 무단 복제 금지) |
-| `SRC-293` | web | [연도 미상] Crop simulation model of the second and the third productivity levels (Modelling water and nutrient dynamics in soil–crop systems) | https://doi.org/10.1007/978-1-4020-4479-3_7 | 학술 서지 메타데이터·초록(Crossref) - 정식 인용 목적(원문 무단 복제 금지) |
-| `SRC-294` | web | [2023] Irrigation in the Earth system (Nature Reviews Earth & Environment) | https://doi.org/10.1038/s43017-023-00438-5 | 학술 논문 오픈액세스(OpenAlex) - 변환적 분석 및 정식 학술 인용 |
-| `SRC-295` | pdf | [2024] Global critical soil moisture thresholds of plant water stress (Nature Communications) | https://doi.org/10.1038/s41467-024-49244-7 | 학술 논문 오픈액세스(OpenAlex) - 변환적 분석 및 정식 학술 인용 |
-| `SRC-296` | web | [2021] Statistical upscaling of ecosystem CO 2 fluxes across the terrestrial tundra and boreal domain: Regional patterns and uncertainties (Global Change Biology) | https://doi.org/10.1111/gcb.15659 | 학술 논문 오픈액세스(OpenAlex) - 변환적 분석 및 정식 학술 인용 |
-| `SRC-297` | web | [2023] Effects of Climate Change and Drought Tolerance on Maize Growth (Plants) | https://doi.org/10.3390/plants12203548 | 학술 논문 오픈액세스(OpenAlex) - 변환적 분석 및 정식 학술 인용 |
-| `SRC-298` | web | [2021] Eco‐evolutionary optimality as a means to improve vegetation and land‐surface models (New Phytologist) | https://doi.org/10.1111/nph.17558 | 학술 논문 오픈액세스(OpenAlex) - 변환적 분석 및 정식 학술 인용 |
-| `SRC-136` | web | Technical Platform on the Measurement and Reduction of Food Loss and Waste / Food and Agriculture Organization of the United Nations | https://www.fao.org/platform-food-loss-waste/en/ | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-140` | web | ARS Home : USDA ARS | https://www.ars.usda.gov/ | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-142` | web | NFRI / National Agriculture and Food Research Organization | https://www.naro.go.jp/english/laboratory/nfri/index.html | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-299` | web | [2012] Impacts of climate change on the future of biodiversity (Ecology Letters) | https://doi.org/10.1111/j.1461-0248.2011.01736.x | 학술 논문 오픈액세스(OpenAlex) - 변환적 분석 및 정식 학술 인용 |
-| `SRC-300` | web | [2023] Earth beyond six of nine planetary boundaries (Science Advances) | https://doi.org/10.1126/sciadv.adh2458 | 학술 논문 오픈액세스(OpenAlex) - 변환적 분석 및 정식 학술 인용 |
-| `SRC-301` | pdf | [2005] Europe-wide reduction in primary productivity caused by the heat and drought in 2003 (Nature) | https://insu.hal.science/insu-00373792 | 학술 논문 오픈액세스(OpenAlex) - 변환적 분석 및 정식 학술 인용 |
-| `SRC-302` | pdf | [2017] More than 75 percent decline over 27 years in total flying insect biomass in protected areas (PLoS ONE) | https://doi.org/10.1371/journal.pone.0185809 | 학술 논문 오픈액세스(OpenAlex) - 변환적 분석 및 정식 학술 인용 |
-| `SRC-303` | web | [2001] FLUXNET: A New Tool to Study the Temporal and Spatial Variability of Ecosystem–Scale Carbon Dioxide, Water Vapor, and Energy Flux Densities (Bulletin of the American Meteorological Society) | https://doi.org/10.1175/1520-0477(2001)082<2415:fantts>2.3.co;2 | 학술 논문 오픈액세스(OpenAlex) - 변환적 분석 및 정식 학술 인용 |
+### 참고문헌
+- [SRC-446] Baydar (2026), *PeerJ*; [SRC-449] Khaembah et al. (2026), *MethodsX*; [SRC-451] Li et al. (2026), *Plants*; [SRC-454] Song et al. (2026), *Frontiers in Plant Science*; [SRC-457] Wang et al. (2024), *Plant Phenomics*; [SRC-459] Gu et al. (2022), *Frontiers in Plant Science*; [SRC-460] Robles-Zazueta et al. (2022), *Frontiers in Plant Science*; [SRC-467] Ruan et al. (2024), *Plant Phenomics*; [SRC-469] He & Matthews (2023), *Field Crops Research*; [SRC-472] Mulero et al. (2023), *Plant, Cell & Environment*; [SRC-473] Li & Li (2026), *Frontiers in Plant Science*.

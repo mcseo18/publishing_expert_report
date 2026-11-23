@@ -463,7 +463,10 @@ def _parse_latex_segment(s: str, *, in_script: bool = False) -> str:
                     i += 1
                 if i < n and s[i] == "{":
                     grp, i = _read_brace_group(s, i)
-                    out.append(_format_plain_text_in_math(grp))
+                    if "\\" in grp or "^" in grp or "_" in grp:
+                        out.append(_parse_latex_segment(grp, in_script=True))
+                    else:
+                        out.append(_format_plain_text_in_math(grp))
                 continue
 
             # \mathbb{R}, \mathcal{L} 등 수학 특수 서체

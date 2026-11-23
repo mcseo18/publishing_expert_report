@@ -1,24 +1,35 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" width="800" height="420" style="background:#ffffff;font-family:'Malgun Gothic', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;">
-  <rect x="0" y="0" width="800" height="420" rx="12" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
-  <rect x="0" y="0" width="800" height="58" rx="12" fill="#0f172a"/>
-  <rect x="0" y="42" width="800" height="16" fill="#0f172a"/>
-  <text x="22" y="27" font-size="14.5" font-weight="700" fill="#f8fafc">그림 13-1. 제13장. 스마트 건조(Curing)와 CA/저온 저장 환경 최적화</text>
-  <text x="22" y="47" font-size="11" fill="#cbd5e1">스마트 팜 양파 재배 · 13.1 수확 후 인경의 큐어링(Curing) 생리: 외피 건조 메커니즘과 네크 썩음병균 침입 차단막 형성</text>
-  <defs><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 1 L 10 5 L 0 9 z" fill="#334155"/></marker></defs>
-  <rect x="34" y="128" width="164" height="158" rx="10" fill="#e0f2fe" stroke="#334155" stroke-width="1.4"/>
-  <text x="116" y="162" text-anchor="middle" font-size="11" font-weight="700" fill="#475569">STEP 1</text>
-  <text text-anchor="middle" font-size="12" font-weight="700" fill="#0f172a"><tspan x="116" y="206.0">13.1 수확 후</tspan><tspan x="116" y="224.0">인경의</tspan><tspan x="116" y="242.0">큐어링(Curing)</tspan></text>
-  <line x1="198" y1="208" x2="222" y2="208" stroke="#334155" stroke-width="2" marker-end="url(#ar)"/>
-  <rect x="222" y="128" width="164" height="158" rx="10" fill="#dcfce7" stroke="#334155" stroke-width="1.4"/>
-  <text x="304" y="162" text-anchor="middle" font-size="11" font-weight="700" fill="#475569">STEP 2</text>
-  <text text-anchor="middle" font-size="12" font-weight="700" fill="#0f172a"><tspan x="304" y="206.0">13.2 에너지</tspan><tspan x="304" y="224.0">고효율 스마트 건조</tspan><tspan x="304" y="242.0">챔버의 복합</tspan></text>
-  <line x1="386" y1="208" x2="410" y2="208" stroke="#334155" stroke-width="2" marker-end="url(#ar)"/>
-  <rect x="410" y="128" width="164" height="158" rx="10" fill="#fef3c7" stroke="#334155" stroke-width="1.4"/>
-  <text x="492" y="162" text-anchor="middle" font-size="11" font-weight="700" fill="#475569">STEP 3</text>
-  <text text-anchor="middle" font-size="12" font-weight="700" fill="#0f172a"><tspan x="492" y="206.0">13.3 양파 장기</tspan><tspan x="492" y="224.0">저장을 위한 CA</tspan><tspan x="492" y="242.0">저장 환경</tspan></text>
-  <line x1="574" y1="208" x2="598" y2="208" stroke="#334155" stroke-width="2" marker-end="url(#ar)"/>
-  <rect x="598" y="128" width="164" height="158" rx="10" fill="#f3e8ff" stroke="#334155" stroke-width="1.4"/>
-  <text x="680" y="162" text-anchor="middle" font-size="11" font-weight="700" fill="#475569">STEP 4</text>
-  <text text-anchor="middle" font-size="12" font-weight="700" fill="#0f172a"><tspan x="680" y="206.0">13.4 저장 중</tspan><tspan x="680" y="224.0">생체중량 감모,</tspan><tspan x="680" y="242.0">부패, 조기 맹아</tspan></text>
-  <text x="400" y="348" text-anchor="middle" font-size="11" fill="#64748b">실사진/도해 생성 프롬프트 준비됨 (fal.ai 또는 나노바나나 API 키 활성화 시 실사 PNG 자동 대체)</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 476" width="880" height="476" style="background:#ffffff;font-family:'Malgun Gothic', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;">
+  <rect x="0" y="0" width="880" height="476" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.4"/>
+  <rect x="0" y="0" width="880" height="58" rx="10" fill="#1D3557"/>
+  <rect x="0" y="42" width="880" height="16" fill="#1D3557"/>
+  <text x="22" y="27" font-size="14.5" font-weight="700" fill="#f8fafc">그림 13-1. 양파 수확 후 스마트 큐어링·단계 예냉 및 CA 장기 저장 제어 구조도</text>
+  <text x="22" y="47" font-size="10.8" fill="#cbd5e1">표면 제습 → 외피·목 밀폐 건조(28–30°C) → 결로방지 단계 예냉 → CA 저장(0°C, O2 1–2%, CO2 3–5%)</text>
+  <defs><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M 0 1 L 10 5 L 0 9 z" fill="#1D3557"/></marker></defs>
+  <rect x="24" y="104" width="187" height="228" rx="10" fill="#E0F2FE" stroke="#0072B2" stroke-width="1.6"/>
+  <rect x="24" y="104" width="187" height="32" rx="10" fill="#0072B2"/>
+  <rect x="24" y="124" width="187" height="12" fill="#0072B2"/>
+  <text x="117.5" y="125" text-anchor="middle" font-size="11.5" font-weight="700" fill="#ffffff">1. 표면 제습(1–2일)</text>
+  <text text-anchor="middle" font-size="12.5" font-weight="700" fill="#0f172a"><tspan x="117.5" y="169.0">25–28 °C · RH</tspan><tspan x="117.5" y="187.0">60–65% 차압 송풍</tspan></text>
+  <line x1="211" y1="218" x2="235" y2="218" stroke="#1D3557" stroke-width="2.2" marker-end="url(#ar)"/>
+  <rect x="239" y="104" width="187" height="228" rx="10" fill="#DCFCE7" stroke="#009E73" stroke-width="1.6"/>
+  <rect x="239" y="104" width="187" height="32" rx="10" fill="#009E73"/>
+  <rect x="239" y="124" width="187" height="12" fill="#009E73"/>
+  <text x="332.5" y="125" text-anchor="middle" font-size="11.5" font-weight="700" fill="#ffffff">2. 큐어링(4–7일)</text>
+  <text text-anchor="middle" font-size="12.5" font-weight="700" fill="#0f172a"><tspan x="332.5" y="169.0">28–30 °C · 목</tspan><tspan x="332.5" y="187.0">밀폐 · 감모 3–5%</tspan></text>
+  <line x1="426" y1="218" x2="450" y2="218" stroke="#1D3557" stroke-width="2.2" marker-end="url(#ar)"/>
+  <rect x="454" y="104" width="187" height="228" rx="10" fill="#FEF3C7" stroke="#D55E00" stroke-width="1.6"/>
+  <rect x="454" y="104" width="187" height="32" rx="10" fill="#D55E00"/>
+  <rect x="454" y="124" width="187" height="12" fill="#D55E00"/>
+  <text x="547.5" y="125" text-anchor="middle" font-size="11.5" font-weight="700" fill="#ffffff">3. 단계 예냉(3–5일)</text>
+  <text text-anchor="middle" font-size="12.5" font-weight="700" fill="#0f172a"><tspan x="547.5" y="169.0">일 2–3 °C 하강 ·</tspan><tspan x="547.5" y="187.0">이슬점 결로 차단</tspan></text>
+  <line x1="641" y1="218" x2="665" y2="218" stroke="#1D3557" stroke-width="2.2" marker-end="url(#ar)"/>
+  <rect x="669" y="104" width="187" height="228" rx="10" fill="#F3E8FF" stroke="#CC79A7" stroke-width="1.6"/>
+  <rect x="669" y="104" width="187" height="32" rx="10" fill="#CC79A7"/>
+  <rect x="669" y="124" width="187" height="12" fill="#CC79A7"/>
+  <text x="762.5" y="125" text-anchor="middle" font-size="11.5" font-weight="700" fill="#ffffff">4. CA 장기 저장</text>
+  <text text-anchor="middle" font-size="12.5" font-weight="700" fill="#0f172a"><tspan x="762.5" y="160.0">0 °C · RH</tspan><tspan x="762.5" y="178.0">65–70% · O2</tspan><tspan x="762.5" y="196.0">1–2% · CO2</tspan></text>
+  <path d="M 762 332 L 762 386 L 117 386 L 117 338" fill="none" stroke="#009E73" stroke-width="2.4" stroke-dasharray="6,4" marker-end="url(#ar)"/>
+  <rect x="230" y="372" width="420" height="28" rx="14" fill="#ECFDF5" stroke="#009E73" stroke-width="1.3"/>
+  <text x="440" y="390" text-anchor="middle" font-size="11.2" font-weight="700" fill="#065F46">IoT 상시 감시: 3D 온습도 · O2/CO2/VOC 가스 · 열화상(ΔT 발열 팔레트) ·</text>
+  <text x="22" y="458" font-size="10.2" fill="#475569">자료: 자료: [SRC-378, SRC-389, SRC-493, SRC-494, SRC-499] 수확 후 큐어링·CA 저장·IoT 감시 기준 통합.</text>
 </svg>

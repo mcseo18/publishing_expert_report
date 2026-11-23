@@ -3,178 +3,64 @@ chapter_id: "ch15"
 title: "제15장. 노지 스마트 팜 데이터 표준화 및 지속가능한 디지털 농업 플랫폼"
 audience: "대학 전공 심화, 대학원생, 연구자 및 선도 현장 실무자"
 evidence_packet: "smart_farm_onion_cultivation_20261123_042527_evidence.json"
+persona: "textbook_distinguished_prof"
 ---
 
 # 제15장. 노지 스마트 팜 데이터 표준화 및 지속가능한 디지털 농업 플랫폼
 
-본 장에서는 노지 스마트 팜 운영의 효율성과 지속가능성을 극대화하기 위한 핵심 기술적 접근 방식인 데이터 표준화, 클라우드 기반 빅데이터 아키텍처 구축, 전 과정 평가(LCA)를 통한 탄소 발자국 관리, 그리고 생성형 AI 기반 의사결정 지원 플랫폼의 미래 방향성을 심층적으로 다룬다. 대상 독자는 농업 분야의 심화 연구를 수행하는 대학원생, 연구자 및 선도 현장 실무자임을 전제한다.
+> **학습 목표**: 본 장을 학습한 후 독자는 ① 노지 스마트 팜의 토양·기상·UAV·농기계(ISOBUS) 이종 데이터를 상호운용 가능한 표준 스키마로 통합하는 아키텍처를 설계하고, ② 광역 기상·위성·UAV·분자진단 데이터를 융합하는 클라우드 빅데이터 파이프라인의 구조를 설명하며, ③ 정밀 관개·적정 시비·생물비료·디지털 IPM 도입에 따른 자원 절감과 저탄소 지속가능성(LCA) 효과를 정량 평가하고, ④ AI·농업 온톨로지 기반 전주기 영농 의사결정 지원 플랫폼(FEMS)의 발전 로드맵을 제시할 수 있다 [SRC-389, SRC-480, SRC-484, SRC-490, SRC-491].
 
----
+## 15.1 노지 스마트 팜 센서–액추에이터 및 농기계(ISOBUS) 데이터 표준화
 
-## 15.1 노지 스마트 팜 센서-액추에이터 인터페이스 및 농기계 텔레매틱스(ISOBUS) 데이터 표준화
+노지 양파 스마트 팜이 단일 농가의 시범 사업을 넘어 무안·창녕 등 주산지 전역으로 확산되려면, 서로 다른 제조사의 토양 센서, 기상대, 관비 제어기, 무인 방제기, 자율주행 정식·수확기가 동일한 데이터 규격으로 통신하는 **표준화 인터페이스**가 필수적이다.
+- **현장 계측·제어 표준**: 지중 15·30 cm TDR/FDR·텐시오미터·EC 센서 [SRC-373, SRC-379, SRC-389], 기상 변수($T_a$, RH, 일사량, $u_2$ → $ET_0$ [SRC-385, SRC-389]), 적외선 엽군온도($T_c$ → CWSI [SRC-370, SRC-387])의 단위·샘플링 주기(10–15분)·결측치 품질 플래그를 표준 JSON/MQTT 페이로드로 통일한다.
+- **농기계 텔레매틱스(ISO 11783 / ISOBUS) 연동**: 자율주행 트랙터, 전자동 정식기, 가변 살포기(VRA), 일관 수확기 간에 A–B 주행선, 처방 맵(ISOXML), 실시간 수량·등급 로그를 표준 규격으로 주고받아 기종이 달라도 즉시 플러그-앤-플레이로 작동하게 한다.
+- **표현체·유전자원 데이터 표준**: 무안 AVRI 및 다지역 연구에서 확립된 디지털 형태계측 변수($D_p$, $D_e$, $D_g$, 구형도, 목 두께 [SRC-486, SRC-493])와 분자 마커·qPCR 진단 결과(*SIX9* 검출량 [SRC-499], SSR/ILP [SRC-506])를 공통 작물 온톨로지(Crop Ontology) 코드로 매핑한다.
 
-스마트 농업 시스템이 현장 데이터를 정밀하게 수집하고 제어하기 위해서는 이질적인 장비들 간의 통신 및 데이터 포맷에 대한 엄격한 표준화가 선행되어야 한다. 노지 환경에서 사용되는 포장 센서(예: 토양 수분, 온도), 기상 관측망, 그리고 농기계에 탑재된 텔레매틱스 시스템은 서로 다른 프로토콜을 사용하므로, 데이터의 상호운용성(Interoperability) 확보가 가장 중요하다 [SRC-100].
+## 15.2 이종 농업 데이터 통합을 위한 클라우드 빅데이터 아키텍처
 
-농기계 데이터의 경우, 국제 표준 규격인 ISO 11783이 핵심적인 역할을 수행한다. 이 표준은 트랙터와 농기계 간의 통신을 규정하며, ISOBUS와 같은 인터페이스를 통해 농기계에서 발생하는 정밀 농업 데이터(예: 시비량, 파종 깊이, 작업 경로)를 중앙 시스템으로 정확하게 전송하게 한다. 이러한 표준화는 데이터의 신뢰성을 높이고, 다양한 제조사의 장비가 통합된 플랫폼에서 연동될 수 있는 기반을 제공한다.
+Wayal et al. (2025)이 제시한 UAV–IoT–IoE 통합 프레임워크 [SRC-491]와 광역 원격탐사 증발산·가뭄 모니터링 체계 [SRC-372, SRC-382, SRC-383]를 결합하면 노지 양파 클라우드 플랫폼은 4계층 아키텍처로 구현된다.
 
-또한, 농업 현장의 데이터 생태계는 공공 부문의 데이터 개방 정책과 맞물려 있다. 농촌진흥청 등 정부 기관은 농업 관련 데이터의 개방을 통해 산업 전반의 데이터 활용을 촉진하고 있으며, 이는 표준화된 데이터를 통해 더욱 강력하게 실현될 수 있다 [SRC-101]. 농업 생산 데이터의 표준화된 흐름은 농업 정책 수립 및 연구개발계획 수립의 객관적 근거 자료로 활용된다 [SRC-101].
+| 아키텍처 계층 | 수집·연동 데이터 소스 | 핵심 처리 엔진 · 표준 | 산출 서비스 | 출처 |
+|---|---|---|---|---|
+| **1. 엣지·센싱 계층** | 지중 수분·EC 센서, 미기상대, 열화상, 스마트 트랩, 수확기 비전 | LoRaWAN/LTE-M, MQTT, 이상치 필터, 로컬 밸브 안전 인터록 | 10분 주기 실시간 계측 · 오프라인 자율 관수 유지 | [SRC-373, SRC-379, SRC-389] |
+| **2. 원격탐사·기상 계층** | UAV 초분광(550–800 nm)·다분광, ASOS/CRU 기상, SPEI 가뭄지수 | 기하·방사 보정, Savitzky-Golay, 광역 $ET_a$·식생지수 모자이크 | 필지~주산지 생육·수분·가뭄 공간 지도 | [SRC-372, SRC-382, SRC-383, SRC-480, SRC-491] |
+| **3. 분석·디지털 트윈 계층** | FAO-56 물수지, $G \times L$ 혼합모형, GA-RF/SVM, *SIX9* qPCR·메타게놈 DB | 클라우드 시계열 DB + GIS 래스터 DB + ML 추론 파이프라인 | 수확량 예측($R^2$ 0.76–0.97), 병해충·염류·저장 리스크 경보 | [SRC-480, SRC-483, SRC-486, SRC-491, SRC-499] |
+| **4. 응용·유통 연계 계층** | 농가 모바일 앱, VRA 농기계(ISOBUS), 스마트 APC ERP, 이력추적 원장 | REST/GraphQL API, ISOXML 처방 맵, RFID/QR 디지털 여권 | 원격 제어, 가변 시비·방제, 출하·CA 저장 자동 배정 | [SRC-378, SRC-493, SRC-494] |
 
-## 15.2 이종 농업 데이터(위성, 기상, 센서, 생육) 수집·통합을 위한 클라우드 빅데이터 아키텍처
+## 15.3 투입재 절감에 따른 전과정 환경영향평가(LCA) 및 저탄소 인증
 
-현대 농업 데이터는 단일 소스에서 발생하는 것이 아니라, 위성 영상(원격 탐사), 지상 센서 데이터, 기상 관측 기록, 그리고 농작물의 생육 데이터 등 매우 다양한 이종(Heterogeneous) 소스로부터 유입된다. 이러한 방대한 양과 다양한 형태의 데이터를 효과적으로 처리하고 분석하기 위해 클라우드 기반의 빅데이터 아키텍처가 필수적이다.
+기후 위기 시대 노지 스마트 팜의 가치는 수량 증대뿐만 아니라 단위 생산량(1 kg 양파)당 물 발자국(water footprint)과 온실가스 배출(carbon footprint)을 정량 감축하는 **전과정 환경영향평가(Life Cycle Assessment, LCA)** 성과로 입증된다. 본 교재에서 검증된 5대 친환경·저탄소 레버는 다음과 같다:
+1. **정밀 관개·멀칭을 통한 수자원·양수 에너지 절감**: FAO-56 $ET_c$와 2단 토양수분 센서·멀칭을 결합한 점적관개(EU ≥ 90%)는 심층 용탈과 토면 증발을 차단해 결핍 관개 조건에서도 양파 수분 생산성(WP)을 극대화한다 [SRC-366, SRC-384, SRC-389].
+2. **적정 질소 시비 및 생물비료를 통한 $\mathrm{N}_2\mathrm{O}$·비료 제조 탄소 감축**: 경제적 최적 질소량(예: 82 kg N/ha [SRC-490]) 준수와 함께 양파 유래 PGPB(ORE8·ORTB2, 화학비료 50% 절감 실증 [SRC-484]), *Azotobacter*·*Azospirillum*·PSB [SRC-495], *Pantoea* PF55 + *Trichoderma* ESALQ 1306 [SRC-500], 지렁이분변토 [SRC-485], 바이오차-PSB 담체($\mathrm{BC}_{500}$ 탄소 격리 + 인산 용탈 억제 [SRC-505])를 통합하면 화학 질소·인산 비료 제조 및 토양 아산화질소($\mathrm{N}_2\mathrm{O}$) 배출을 대폭 줄일 수 있다.
+3. **디지털 IPM을 통한 화학농약 감축**: 종 동정 기반 천적(*A. swirskii*, *O. insidiosus* [SRC-487]), 토양 선충+곰팡이 병용(Hb + WG-11 전용 사충률 94.7–97.4% [SRC-489]), 스피노사드+님오일 [SRC-488], *SIX9* qPCR 선제 관리 [SRC-499] 및 VRA 가변 살포로 합성 농약 살포량과 제초제 유전독성 리스크 [SRC-501]를 최소화한다.
+4. **무화학 종자 프라이밍**: c-DBD 플라즈마 처리수(PTW, 발아율 >98% [SRC-476])로 종자 소독·발아 촉진 화학제를 대체한다.
+5. **스마트 큐어링·CA 저장·비파괴 선별을 통한 수확 후 손실(Food Loss) 감축**: 수확 후 부패·맹아 손실을 줄이는 것은 이미 투입된 재배 단계 탄소·물 발자국의 낭비를 직접 회수하는 가장 효율적인 감축 수단이다 [SRC-378, SRC-493].
 
-클라우드 아키텍처는 데이터 수집(Ingestion) 계층, 저장(Storage) 계층, 처리(Processing) 계층, 분석(Analytics) 계층으로 구성된다. 센서와 텔레매틱스에서 수집된 실시간 시계열 데이터는 스트리밍 파이프라인(예: Kafka 기반)을 통해 수집되며, 이는 클라우드 데이터 레이크에 저장된다.
+## 15.4 AI·농업 온톨로지 기반 전주기 영농 의사결정 지원 플랫폼(FEMS)의 미래
 
-특히, 농작물의 생육 정보는 단순히 생장 단계에 국한되지 않고, 광합성 효율, 영양 상태 변화 등 복합적인 생리학적 지표를 포함한다. 이러한 생육 데이터는 특정 작물의 특징(예: Cereal grains가 staple food로서 가지는 특성)과 연관 지어 해석될 때 가장 의미가 크며, 이러한 전문 지식은 데이터셋 구축의 핵심이다 [SRC-152].
+차세대 양파 스마트 팜은 개별 자동화 기기를 넘어 **육종–재배–수확–저장–유통의 전주기 지식을 통합 추론하는 AI 영농 의사결정 지원 플랫폼(Farm Energy & Management System, FEMS)**으로 진화하고 있다.
+- **유전체–표현체–환경 통합 의사결정**: CRISPR-Cas9 *AcDMR6* 내병성 편집 [SRC-478], *A. roylei* 저항성 이입 [SRC-477], 중심썩음병 저항성 DPLD 19-39 [SRC-502], 150 mM NaCl 내염성 [SRC-497] 및 내건성 [SRC-503] 품종 DB를 지역별 $G \times L$ 모델 [SRC-486]과 연결해 농가 필지의 토양 EC·기상 SPEI에 최적화된 품종을 자동 추천한다.
+- **생성형 AI·온톨로지 기반 자연어 영농 어시스턴트**: 센서 시계열 이상(예: 15 cm $\Psi_m \le -20\ \mathrm{kPa}$, EC > 1.85 dS/m, CWSI ≥ 0.30, UAV 730–800 nm 반사율 하락)이 감지되면, 농업 온톨로지와 검증된 표준 매뉴얼(FAO-56·IPM·관비 처방)을 참조한 AI 에이전트가 원인 진단과 함께 실행 가능한 밸브·관비·방제 제어안을 농가에게 자연어로 제안하고 승인 즉시 실행한다.
 
-이러한 데이터 통합 과정에서는 메타데이터 관리와 온톨로지 기반의 지식 그래프 구축이 중요해진다. 각 데이터 조각(센서 측정값, 위성 NDVI 값 등)이 어떤 환경 조건(기상, 토양 타입)에서, 어떤 작물(plant traits)의 어떤 시점(time-series)에 측정되었는지 관계를 명확히 정의하는 것이 데이터의 가치를 결정한다. 이론적으로, 특정 작물의 형질(plant traits)에 대한 데이터베이스(예: TRY database) 구축은 이러한 데이터 통합의 기초를 제공한다 [SRC-56].
+이처럼 기초 식물학·분자육종에서 정밀 관비·디지털 트윈·로봇 수확·CA 저장·클라우드 LCA까지 유기적으로 결합된 스마트 팜 생태계야말로 기후 위기와 농촌 고령화 속에서 한국과 전 세계 양파 산업의 지속가능한 미래를 열어갈 핵심 동력이다.
 
-## 15.3 비료·에너지 투입 절감에 따른 전과정 환경영향평가(LCA) 및 저탄소 농업 인증 프로토콜
+### 오해와 진실
+- **오해 (Myth):** 노지 스마트 팜 플랫폼을 도입하면 센서·드론·클라우드 전력 소비가 늘어나 오히려 농업의 탄소 발자국이 증가한다.
+- **진실 (Fact):** 정밀 관개·적정 질소 시비(82 kg N/ha)·PGPB 생물비료(화학비료 최대 50% 절감)·바이오차 탄소 격리·수확 후 저장 손실 저감으로 절감되는 온실가스 배출량이 IoT·클라우드 소비 전력을 압도하므로 전과정(LCA) 기준 뚜렷한 순감축 효과가 달성된다 [SRC-378, SRC-484, SRC-490, SRC-505].
 
-지속가능한 농업으로의 전환은 생산량 증대뿐만 아니라 환경 부하 감소를 핵심 목표로 한다. 이에 따라 농업 활동의 전 과정(요소 투입부터 최종 생산물까지)에 걸친 환경 영향을 정량적으로 평가하는 전과정 평가(LCA: Life Cycle Assessment) 기법의 도입이 가속화되고 있다.
+### 핵심 용어집
+| 국문 용어 | 영문 용어 | 정의 |
+|---|---|---|
+| ISO 11783 (ISOBUS) | Agricultural Machinery Bus Standard | 트랙터와 작업기·관제 플랫폼 간 주행선·처방 맵·작업 로그를 호환하는 국제 농기계 통신 표준 |
+| 전과정 환경영향평가 | Life Cycle Assessment (LCA) | 종자·비료·관수·수확·저장·유통 전 과정의 온실가스·수자원 영향을 단위 수확량당 정량 평가하는 기법 |
+| 영농 의사결정 지원 플랫폼 | FEMS / Agricultural DSS | 이종 센서·UAV·분자진단·기상 데이터를 AI·온톨로지로 통합해 실시간 영농 처방을 제공하는 시스템 [SRC-480, SRC-491] |
 
-LCA는 투입되는 비료, 에너지, 물 등의 자원 사용량과 이로 인해 발생하는 온실가스(GHG) 배출량을 정밀하게 측정한다. 비료 및 에너지 투입량 감축은 직접적인 탄소 배출량 저감으로 이어진다. 예를 들어, 농산물의 저장 및 유통 과정에서 저온 유통(Cold chain) 기술은 신선도 유지와 더불어 에너지 효율화에 기여하며, 이는 공급망 전체의 환경 발자국을 줄이는 중요한 요소가 된다 [SRC-107, SRC-111].
+### 이해도 점검
+1. 노지 양파 스마트 팜 클라우드 플랫폼의 4개 계층(엣지·원격탐사·디지털 트윈·응용 계층)이 각각 담당하는 핵심 데이터와 연동 표준을 요약하시오.
+   - **풀이:** ① 엣지 계층은 토양 수분·EC·미기상 센서를 MQTT/LoRaWAN으로 수집·로컬 인터록 제어하고, ② 원격탐사 계층은 UAV 초분광·다분광과 ASOS/SPEI 기상을 모자이크·보정하며, ③ 디지털 트윈 계층은 FAO-56·$G \times L$·GA-RF·qPCR DB로 수량과 리스크를 추론하고, ④ 응용 계층은 ISOXML 처방 맵·APC ERP·이력추적 원장으로 실행한다 [SRC-389, SRC-480, SRC-486, SRC-491, SRC-499].
+2. 양파 재배의 전과정(LCA) 탄소·물 발자국을 실질적으로 낮출 수 있는 과학적 실증 수단 3가지를 정량 근거와 함께 제시하시오.
+   - **풀이:** ① 경제적 최적 질소 시비(82 kg N/ha)와 PGPB(ORE8·ORTB2) 접종을 통한 화학비료 최대 50% 절감 [SRC-484, SRC-490], ② 소나무 톱밥 바이오차($\mathrm{BC}_{500}$)+PSB 담체를 통한 탄소 격리 및 인산 용탈 억제 [SRC-505], ③ 토양 선충+곰팡이(Hb+WG-11, 사충률 94.7–97.4%)·천적 IPM 및 플라즈마 처리수(발아율 >98%)를 통한 화학농약 감축 [SRC-476, SRC-487, SRC-489]이다.
 
-더 나아가, 농업 생산 과정에서 발생하는 생화학적 반응에 대한 이해는 손실 및 부산물 저감에 기여한다. 예를 들어, 과일 수확 후 저장 시 에틸렌 가스의 생성 및 관리는 품질 유지에 결정적이며, 적절한 환경 제어를 통해 가스를 제어하는 연구는 부산물 발생을 최소화한다 [SRC-108, SRC-109, SRC-110]. 이러한 최적화된 관리 데이터는 농업 생산 과정의 저탄소 인증(Low-Carbon Farming Certification) 프로토콜의 핵심 증빙 자료가 된다.
-
-이러한 환경 성과는 정책적 관심사이다. 농촌진흥청을 비롯한 관련 기관들은 농업 분야의 규제 혁신을 모색하고 있으며 [SRC-101], LCA와 같은 환경 평가 지표를 농업 정책 및 인증 제도에 통합하려는 노력이 진행 중이다.
-
-## 15.4 거대언어모델(LLM)과 농업 온톨로지 기반 전주기 영농 의사결정 지원 서비스(FEMS)의 미래
-
-미래의 스마트 농업 플랫폼은 단순한 데이터 시각화 도구를 넘어, 인간 전문가의 지식과 의사결정 과정을 보조하는 지능형 시스템으로 진화하고 있다. 이 변화의 중심에는 거대언어모델(LLM)과 농업 분야의 전문 지식을 구조화한 온톨로지(Ontology)가 결합된 지식 그래프 기술이 자리 잡고 있다.
-
-LLM은 비정형 데이터(연구 보고서, 농가 경험담, 정책 문서 등)를 이해하고 자연어로 질문에 답할 수 있는 능력을 제공한다. 여기에 농업 온톨로지를 접목하면, LLM이 추론할 수 있는 답변의 영역이 '일반적인 지식' 수준에서 '특정 작물, 특정 토양 조건에서의 최적 투입량'과 같은 전문적이고 상황 인지적인 영역으로 확장된다.
-
-**농업 전주기 영농 의사결정 지원 서비스(FEMS)**는 이 두 기술의 융합체이다. 예를 들어, 농가가 "이번 주 예상되는 강우량과 토양 수분 데이터를 바탕으로 다음 주에 파종해야 할 A작물의 최적 시기를 알려주세요"와 같이 질문하면, FEMS는 기상 예측 데이터, 작물의 생육 특성(plant traits), 과거의 성공/실패 사례(연구 결과)를 통합 분석하여 최적의 시기와 방법을 제시하게 된다.
-
-더 나아가, 농가의 초기 진입 단계부터 생산, 유통에 이르는 전주기적 문제 해결을 돕는 서비스가 요구된다. 한국농촌경제연구원과 같은 전문 연구기관에서는 이미 청년농의 영농 진입 단계 의사결정 지원 체계를 설계하는 연구를 진행하고 있으며 [SRC-106], 이는 미래 FEMS가 충족해야 할 핵심 기능 중 하나이다. 또한, 이러한 기술적 진보는 글로벌 표준화 동향과도 맞닿아 있어, 한국식품연구원과 같은 기관이 주관하는 국제 포럼 등에서 기술 표준화 논의가 활발하게 이루어지고 있다 [SRC-102].
-
----
-
-## ## 핵심 용어집
-
-| 용어 | 정의 | 관련 핵심 기술/분야 |
-| :--- | :--- | :--- |
-| **ISOBUS** | 농기계 간 데이터 통신을 위한 국제 표준 인터페이스 (ISO 11783 기반). | 농기계 텔레매틱스, 데이터 표준화 |
-| **LCA** | 전 과정 평가 (Life Cycle Assessment). 농업 투입물부터 최종 소비까지의 환경 영향(탄소 발자국 등)을 정량적으로 평가하는 방법론. | 지속가능성 평가, 환경 모니터링 |
-| **FEMS** | Farming Ecosystem Management System의 약자 또는 전주기 영농 의사결정 지원 서비스. LLM과 온톨로지를 결합하여 농업 생산 전반을 지원하는 지능형 플랫폼. | AI, 데이터 통합, 스마트 농업 |
-| **온톨로지 (Ontology)** | 특정 분야(예: 농업)의 개념과 객체들 간의 관계를 형식적으로 정의하여 컴퓨터가 이해할 수 있도록 구조화한 지식 모델. | 지식 그래프, AI 추론 |
-| **이종 데이터 (Heterogeneous Data)** | 출처, 형식, 시간적 특성이 다른 다양한 종류의 데이터 (위성 이미지, 센서 로그, 텍스트 보고서 등). | 빅데이터 아키텍처, 데이터 통합 |
-
-## ## 이해도 점검 연습문제 및 해설
-
-**문제 1.** 스마트 농업 환경에서 ISOBUS 표준이 갖는 핵심적인 기능과 그 이유로 가장 적절한 것은?
-A) 기후 변화 모델링에 필요한 지구 관측 데이터를 수집하는 것.
-B) 다양한 제조사의 농기계가 데이터 상호운용성을 가지고 통신하도록 보장하는 것.
-C) 토양의 생물학적 활성도를 실시간으로 측정하는 센서 데이터를 표준화하는 것.
-D) 저온 유통 과정에서 발생하는 에틸렌 가스의 생화학적 변화를 모니터링하는 것.
-
-**정답:** B
-**상세 풀이:** ISOBUS는 농기계(트랙터, 파종기 등)에서 발생하는 작업 데이터와 제어 정보를 통신할 수 있도록 하는 국제 표준 프로토콜이다 (15.1 참조). 이 표준 덕분에 서로 다른 제조사의 장비라도 하나의 디지털 농장 플랫폼에서 데이터를 주고받을 수 있는 상호운용성(Interoperability)이 확보된다.
-
-**문제 2.** 농업 데이터의 클라우드 빅데이터 아키텍처를 구축할 때, '생육 데이터'를 포함한 다양한 이종 데이터를 효과적으로 통합하고 분석하기 위해 필수적으로 요구되는 개념은 무엇이며, 이는 어떤 연구 분야와 연관성이 높은가?
-A) 표준국어대사전: 농업 용어의 정의를 통일하는 것 (SRC-100)
-B) 온톨로지 및 지식 그래프: 데이터 요소 간의 관계를 논리적으로 정의하고 구조화하는 것 (15.2 참조)
-C) ISO 11783: 농기계 통신 프로토콜을 규정하는 것 (15.1 참조)
-D) LCA: 투입 자원량만 측정하여 배출량을 계산하는 것 (15.3 참조)
-
-**정답:** B
-**상세 풀이:** 이종 데이터의 가치는 데이터 자체뿐만 아니라 '데이터 간의 관계'에 있다. 농작물 생육 단계, 기후 조건, 토양 특성 등의 데이터가 서로 어떻게 연결되는지를 정의하는 것이 온톨로지이며, 이는 FEMS와 같은 고도화된 AI 기반 시스템의 핵심 기반 지식층을 형성한다.
-
-**문제 3.** 지속가능한 농업을 위한 LCA(전과정 평가) 도입 시, 농산물 유통 단계에서 에틸렌 가스 제어 기술이 기여하는 주요 환경적 이점은 무엇인가?
-A) 토양의 미생물 활동을 촉진하여 질소 고정 효율을 높이는 것.
-B) 저장 중 과일 품질 저하를 막고, 불필요한 폐기물 발생을 줄여 자원 손실을 방지하는 것 (15.3 참조).
-C) 농기계의 연료 효율을 높여 직접적인 화석 연료 소비를 감소시키는 것.
-D) 공공 데이터 개방을 통해 농업 생산 과정의 투명성을 높이는 것 (SRC-101).
-
-**정답:** B
-**상세 풀이:** 에틸렌은 과일의 숙성 및 노화 과정에 관여하는 호르몬이다 [SRC-108]. 저장 과정에서 에틸렌 생성을 효과적으로 제어하면 품질 저하로 인한 조기 폐기를 막을 수 있다 [SRC-109, SRC-110]. 이는 곧 농산물 손실을 최소화하여, LCA 상에서 '폐기물 처리'와 관련된 환경 부하를 감소시키는 결과를 가져온다.
-
-## ## 오해와 진실: 현장·이론 핵심 오해 교정
-
-**오해 1:** 스마트 팜의 데이터 표준화는 단순히 기기들이 서로 말하는 언어를 맞추는 것(통신 규약 통일)으로 충분하다.
-**진실:** 통신 규약 통일(예: ISOBUS)은 '데이터 전송의 안정성'을 확보하는 수준에 머문다. 진정한 데이터 표준화는 '의미론적 표준화(Semantic Standardization)'를 포함해야 한다. 즉, 같은 '온도'라는 데이터라도, 이것이 '흙의 온도'인지, '잎의 표면 온도'인지, 측정의 단위와 맥락이 무엇인지를 명확히 정의해야 LLM이나 분석 모델이 정확하게 추론할 수 있다.
-
-**오해 2:** 생성형 AI(LLM)는 현재 농업 분야에서 인간 농업 전문가의 지식을 완전히 대체할 수 있는 기술이다.
-**진실:** LLM은 **강력한 지식 접근 및 추론 보조 도구**이다. 농업 현장은 지역별 토양 특성, 미묘한 기후 패턴, 특정 품종의 숙성 단계에 따른 비정형적 경험 지식이 매우 중요하다. LLM은 이러한 비정형 지식을 구조화된 데이터(온톨로지)와 연결하여 '최적의 가능성'을 제시하지만, 최종적인 현장 판단과 책임은 인간 전문가에게 있다.
-
-**오해 3:** 저온 유통(Cold Chain) 기술 도입은 오로지 상품의 신선도를 높이는 데만 초점이 맞추어져 있다.
-**진실:** 저온 유통은 식품의 품질 유지라는 '직접적 목적' 외에도, 물류 과정에서 발생하는 에너지 소비와 관련하여 '탄소 배출량'을 관리하는 지속가능성 측면에서 매우 중요하다. 온도를 낮게 유지하는 것은 부패 속도를 늦추어 폐기물을 줄이고, 에너지 효율화 설계(예: 단열, 냉매 최적화)와 결합될 때 LCA 목표 달성에 크게 기여한다.
-
-## 참고문헌 및 근거 출처 목록
-
-| 출처 ID | 유형 | 제목 | URL | 라이선스 |
-| :--- | :--- | :--- | :--- | :--- |
-| `SRC-100` | web | 농촌진흥청 | https://www.rda.go.kr/ | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-101` | web | 보도자료 < 새소식 < 정책홍보 < 농촌진흥청 | https://www.rda.go.kr/board/board.do?boardId=farmprmninfo&prgId=day_farmprmninfoEntry | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-102` | web | 한국식품연구원 | https://www.kfri.re.kr/ | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-103` | web | 국립식량과학원 | https://www.nics.go.kr/index.do | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-104` | web | 농림축산식품부 | https://www.mafra.go.kr/home/index.do | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-105` | web | 국민 안심이 기준입니다, 식품의약품안전처 | https://www.mfds.go.kr/index.do | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-106` | web | 한국농촌경제연구원 | https://www.krei.re.kr/krei/index.do | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-107` | web | 저온 유통 - 위키백과, 우리 모두의 백과사전 | https://ko.wikipedia.org/wiki/%EC%BD%9C%EB%93%9C_%EC%B2%B4%EC%9D%B8 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-108` | web | 에틸렌 - 위키백과, 우리 모두의 백과사전 | https://ko.wikipedia.org/wiki/%EC%97%90%ED%8B%B8%EB%A0%8C | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-109` | web | [2021] Inhibition of Ethylene Binding and Biosynthesis Maintains Fruit Quality of ‘Formosa’ Plums during Postharvest Storage (Horticultural Science and Technology) | https://doi.org/10.7235/hort.20210033 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-111` | web | [2010] Cold storage and fruit quality (Postharvest Biology and Technology for Preserving Fruit Quality) | https://doi.org/10.1201/9781439802670-c4 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-110` | web | [1998] Effects of storage temperature and atmosphere on saskatoon (Amelanchier alnifolia Nutt.) fruit quality, respiration and ethylene production (Postharvest Biology and Technology) | https://doi.org/10.1016/s0925-5214(98)00012-x | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-112` | web | [2013] Postharvest treatments for preserving quality of ‘Kinnow’ fruit under different storage conditions (Advances in Horticultural Science) | https://doi.org/10.36253/ahsc-18414 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-117` | web | [2016] Nondestructive Assessment of Fruit Quality (Advances in Postharvest Fruit and Vegetable Technology) | https://doi.org/10.1201/b18489-10 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-118` | web | [2015] Nondestructive Assessment of Fruit Quality (Contemporary Food Engineering) | https://doi.org/10.1201/b18489-4 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-119` | web | [2016] Metabolomics Tools for Postharvest Quality and Safety of Fresh Produce (Advances in Postharvest Fruit and Vegetable Technology) | https://doi.org/10.1201/b18489-20 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-120` | web | [2021] Effects of postharvest ultraviolet-C treatment on shelf-life and quality of bitter gourd fruit during storage (Food Packaging and Shelf Life) | https://doi.org/10.1016/j.fpsl.2021.100665 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-121` | web | [2020] Evaluation of Postharvest Shelf Life and Quality of Lemon Treated with  Different Coatings during Storage (Food Science and Engineering) | https://doi.org/10.37256/fse.122020463 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-122` | web | [2026] Aloe Vera-Honey Composite Edible Coatings Extend Postharvest Shelf Life and Preserve Quality of Roma Tomatoes Under Tropical Ambient Storage in Rwanda (Journal of Food Science and Horticulture) | https://doi.org/10.69739/jfsh.v1i1.1696 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-123` | web | [2024] Different Postharvest Treatments and Storage Conditions for Shelf-life Enhancement and Quality Retention of Litchi (Journal of Food Chemistry &amp; Nanotechnology) | https://doi.org/10.17756/jfcn.2024-s1-015 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-124` | web | [2019] Understanding Food Loss and Waste—Why Are We Losing and Wasting Food? (Foods) | http://dx.doi.org/10.3390/foods8080297 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-125` | pdf | [2020] Nanotechnologies in Food Science: Applications, Recent Trends, and Future Perspectives (Nano-Micro Letters) | https://doi.org/10.1007/s40820-020-0383-9 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-126` | web | [2020] ZnO Nanostructures in Active Antibacterial Food Packaging: Preparation Methods, Antimicrobial Mechanisms, Safety Issues, Future Prospects, and Challenges (Food Reviews International) | https://doi.org/10.1080/87559129.2020.1737709 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-127` | web | [2019] Value-added chemicals from food supply chain wastes: State-of-the-art review and future prospects (Chemical Engineering Journal) | https://doi.org/10.1016/j.cej.2019.121983 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-263` | web | [2020] Citrus Essential Oils (CEOs) and Their Applications in Food: An Overview (Plants) | http://dx.doi.org/10.3390/plants9030357 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-128` | web | [2024] Advances in strawberry postharvest preservation and packaging: A comprehensive review (Comprehensive Reviews in Food Science and Food Safety) | https://doi.org/10.1111/1541-4337.13417 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-129` | pdf | [2019] Characterization of Fruit Quality Attributes and Cell Wall Metabolism in 1-Methylcyclopropene (1-MCP)-Treated ‘Summer King’ and ‘Green Ball’ Apples During Cold Storage (Frontiers in Plant Science) | https://doi.org/10.3389/fpls.2019.01513 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-130` | web | [2014] Shelf life extension and antioxidant activity of ‘Hayward’ kiwi fruit as a result of prestorage conditioning and 1-methylcyclopropene treatment (Journal of Food Science and Technology) | https://doi.org/10.1007/s13197-014-1300-3 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-131` | web | [2012] Effects of Vibration Stress on the Quality of Packaged Apples during Simulated Transport (Journal of Biosystems Engineering) | https://doi.org/10.5307/jbe.2012.37.1.044 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-264` | web | [2025] Plant–Microbe Interactions for Improving Postharvest Shelf Life and Quality of Fresh Produce Through Protective Mechanisms (Horticulturae) | https://doi.org/10.3390/horticulturae11070732 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-132` | web | [2022] Prediction of Total Soluble Solids and pH of Strawberry Fruits Using RGB, HSV and HSL Colour Spaces and Machine Learning Models (Foods) | https://doi.org/10.3390/foods11142086 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-133` | web | [2017] Nondestructive Estimation of Moisture Content, pH and Soluble Solid Contents in Intact Tomatoes Using Hyperspectral Imaging (Applied Sciences) | https://doi.org/10.3390/app7010109 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-134` | web | [2024] Prediction of Soluble-Solid Content in Citrus Fruit Using Visible–Near-Infrared Hyperspectral Imaging Based on Effective-Wavelength Selection Algorithm (Sensors) | https://doi.org/10.3390/s24051512 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-135` | pdf | [2018] Hyperspectral imaging technique to evaluate the firmness and the sweetness index of tomatoes (Korean Journal of Agricultural Science) | https://doi.org/10.7744/kjoas.20180075 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-265` | web | [2022] Field Application of a Vis/NIR Hyperspectral Imaging System for Nondestructive Evaluation of Physicochemical Properties in ‘Madoka’ Peaches (Plants) | https://doi.org/10.3390/plants11172327 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-136` | web | Technical Platform on the Measurement and Reduction of Food Loss and Waste / Food and Agriculture Organization of the United Nations | https://www.fao.org/platform-food-loss-waste/en/ | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-137` | web | FLW Database / Technical Platform on the Measurement and Reduction of Food Loss and Waste / Food and Agriculture Organization of the United Nations | https://www.fao.org/food-loss-and-food-waste/flw-data/en/ | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-138` | web | Codex / Home | https://www.fao.org/fao-who-codexalimentarius/en/ | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-139` | web | Ask IFAS: Topic - Postharvest and Handling | https://edis.ifas.ufl.edu/topics/postharvest | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-140` | web | ARS Home : USDA ARS | https://www.ars.usda.gov/ | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-141` | web | National Programs : USDA ARS | https://www.ars.usda.gov/research/programs/ | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-142` | web | NFRI / National Agriculture and Food Research Organization | https://www.naro.go.jp/english/laboratory/nfri/index.html | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-143` | web | Ministry of Agriculture, Forestry and Fisheries | https://www.maff.go.jp/e/index.html | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-144` | web | Postharvest - Wikipedia | https://en.wikipedia.org/wiki/Postharvest | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-145` | web | Controlled atmosphere - Wikipedia | https://en.wikipedia.org/wiki/Controlled_atmosphere | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-146` | web | Modified atmosphere - Wikipedia | https://en.wikipedia.org/wiki/Modified_atmosphere | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-147` | web | 1-Methylcyclopropene - Wikipedia | https://en.wikipedia.org/wiki/1-Methylcyclopropene | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-148` | web | Cold chain - Wikipedia | https://en.wikipedia.org/wiki/Cold_chain | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-149` | pdf | [2014] Agricultural uses of plant biostimulants (Plant and Soil) | https://doi.org/10.1007/s11104-014-2131-8 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-150` | web | [2017] Biostimulants in Plant Science: A Global Perspective (Frontiers in Plant Science) | https://doi.org/10.3389/fpls.2016.02049 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-151` | web | [1986] The commercial storage of fruits, vegetables, and florist and nursery stocks (Biodiversity Heritage Library (Smithsonian Institution)) | https://www.biodiversitylibrary.org/item/295012 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-152` | web | [2017] Reducing Postharvest Losses during Storage of Grain Crops to Strengthen Food Security in Developing Countries (Foods) | https://doi.org/10.3390/foods6010008 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-266` | web | [2015] Bioactive Compounds and Antioxidant Activity in Different Types of Berries (International Journal of Molecular Sciences) | http://dx.doi.org/10.3390/ijms161024673 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-153` | web | [2019] The role of hydrogen and fuel cells in the global energy system (Energy & Environmental Science) | https://doi.org/10.1039/c8ee01157e | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-154` | web | [2018] Methanol as a fuel for internal combustion engines (Progress in Energy and Combustion Science) | https://doi.org/10.1016/j.pecs.2018.10.001 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-155` | web | [2017] Overview of Ice Nucleating Particles (Meteorological Monographs) | https://doi.org/10.1175/amsmonographs-d-16-0006.1 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-156` | web | [2021] Liquid Hydrogen: A Review on Liquefaction, Storage, Transportation, and Safety (Energies) | https://doi.org/10.3390/en14185917 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-267` | web | [2022] Hydrogen liquefaction: a review of the fundamental physics, engineering practice and future opportunities (Energy & Environmental Science) | https://doi.org/10.1039/d2ee00099g | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-157` | web | [2013] Advances in Fruit Aroma Volatile Research (Molecules) | https://doi.org/10.3390/molecules18078200 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-158` | web | [2019] Tomato Fruit Development and Metabolism (Frontiers in Plant Science) | https://doi.org/10.3389/fpls.2019.01554 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-159` | web | [2019] Chemical Composition of Mango (Mangifera indica L.) Fruit: Nutritional and Phytochemical Compounds (Frontiers in Plant Science) | https://doi.org/10.3389/fpls.2019.01073 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-160` | web | [2016] Induced resistance to control postharvest decay of fruit and vegetables (Postharvest Biology and Technology) | https://www.sciencedirect.com/science/article/pii/S0925521416301946/pdf | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-268` | pdf | [2020] Primary Metabolism in Fresh Fruits During Storage (Frontiers in Plant Science) | https://doi.org/10.3389/fpls.2020.00080 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-161` | web | [2014] Near-infrared spectroscopy and hyperspectral imaging: non-destructive analysis of biological materials (Chemical Society Reviews) | https://doi.org/10.1039/c4cs00062e | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-162` | web | [2020] Visible-NIR ‘point’ spectroscopy in postharvest fruit and vegetable assessment: The science behind three decades of commercial use (Postharvest Biology and Technology) | https://doi.org/10.1016/j.postharvbio.2020.111246 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-163` | web | [2015] Fruit Quality Evaluation Using Spectroscopy Technology: A Review (Sensors) | http://dx.doi.org/10.3390/s150511889 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-164` | web | [2019] Monitoring strategies for quality control of agricultural products using visible and near-infrared spectroscopy: A review (Trends in Food Science & Technology) | https://www.sciencedirect.com/science/article/abs/pii/S0924224418304825 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-269` | web | [2011] Machine vision system: a tool for quality inspection of food and agricultural products (Journal of Food Science and Technology) | https://doi.org/10.1007/s13197-011-0321-4 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-165` | web | [1995] Biosolids–Yard Trimming Composts Increases Bell Pepper (Capsicum annuum L.) and Cucumber (Cucumis sativus L.) Yields (HortScience) | https://doi.org/10.21273/hortsci.30.4.892 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-166` | web | [1995] Physiology of Lightly Processed Fruits and Vegetables (HortScience) | https://doi.org/10.21273/hortsci.30.1.18 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-167` | web | [2006] Nutritional and medicinal use of Cactus pear (Opuntia spp.) cladodes and fruits (Frontiers in bioscience) | https://doi.org/10.2741/1992 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-168` | web | [2017] Antifungal Microbial Agents for Food Biopreservation—A Review (Microorganisms) | https://doi.org/10.3390/microorganisms5030037 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
-| `SRC-270` | web | [2010] Effect of hydroxypropylmethylcellulose and chitosan coatings with and without bergamot essential oil on quality and safety of cold-stored grapes (Postharvest Biology and Technology) | https://doi.org/10.1016/j.postharvbio.2010.11.004 | 기수집 1차 자료 재연결 - 변환적 분석 및 정식 인용 |
+### 참고문헌
+- [SRC-366] Effect of Deficit Irrigation and Mulching on Drip-Irrigated Onion (2021), *IJSR*; [SRC-370] Estimation of ET using crop canopy temperature (2019), *AFM*; [SRC-372] Remote sensing temporal and spatial patterns of ET (2012), *AFM*; [SRC-373] Optimum Installation Depth of Soil Moisture Sensor (2013), *KJSSF*; [SRC-378] Regional Differences in Onion Bulb Quality and Storage Loss (2016), *HST*; [SRC-379] Monitoring of Soil Nutrient Levels by an EC Sensor (2023), *Agronomy*; [SRC-382] SPEI Multiscalar Drought Index (2010), *Journal of Climate*; [SRC-383] CRU TS3.10 Monthly Climatic Dataset (2013), *IJC*; [SRC-384] Irrigation Efficiency and Uniformity (2011), *UNL*; [SRC-385] Evapotranspiration Progress in Measurement and Modeling (2007), *Trans. ASABE*; [SRC-387] Canopy temperature as a crop water stress indicator (1981), *WRR*; [SRC-389] FAO-56 & Irrigation Engineering Standards Anchor; [SRC-476] Khanam et al. (2025), *IJMS*; [SRC-477] Khrustaleva et al. (2019), *Plants*; [SRC-478] De La Mora et al. (2025), *Plant Cell Reports*; [SRC-480] Su et al. (2026), *BMC Plant Biology*; [SRC-483] Patil et al. (2026), *Frontiers in Plant Science*; [SRC-484] Samayoa et al. (2020), *Microbes and Environments*; [SRC-485] Badr et al. (2026), *Scientific Reports*; [SRC-486] Ochar et al. (2026), *Scientific Reports*; [SRC-487] Summerfield et al. (2024), *Insects*; [SRC-488] Iglesias et al. (2021), *Insects*; [SRC-489] Gulzar et al. (2021), *Insects*; [SRC-490] Getaneh et al. (2025), *BMC Plant Biology*; [SRC-491] Wayal et al. (2025), *Frontiers in Plant Science*; [SRC-493] Kim et al. (2025), *PeerJ*; [SRC-494] Shan et al. (2026), *Plants*; [SRC-495] Gedam et al. (2026), *PeerJ*; [SRC-497] Kasar et al. (2025), *Frontiers in Plant Science*; [SRC-499] Kim et al. (2026), *The Plant Pathology Journal*; [SRC-500] Machado et al. (2026), *Archives of Microbiology*; [SRC-501] Azevedo et al. (2026), *Plants*; [SRC-502] Myers et al. (2025), *Frontiers in Plant Science*; [SRC-503] Sansan et al. (2025), *Scientific Reports*; [SRC-505] Blanco-Vargas et al. (2022), *Scientific Reports*; [SRC-506] Sinkovič et al. (2026), *Frontiers in Plant Science*.

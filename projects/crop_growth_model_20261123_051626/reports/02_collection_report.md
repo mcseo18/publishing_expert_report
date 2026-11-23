@@ -1,44 +1,43 @@
 # 2단계 자료 수집 현황 보고서 — 《작물 생육모형》
 
-- **생성 시각**: `2026-11-22T20:27:48+00:00`
+- **생성 시각**: `2026-11-23T19:01:03+00:00`
 - **프로젝트 ID**: `crop_growth_model_20261123_051626`
 - **분리 저장 폴더**: `E:\SMC_Report_Platform_Data\projects\crop_growth_model_20261123_051626\collected`
-- **총 수집 확보 자료**: **29건**
-  - `01_domestic_agencies` (국내 공식기관·웹사이트): **4건**
-  - `02_domestic_journals` (국내 학회지·연구기관): **17건**
-  - `03_international_agencies` (해외 공식기관·국제기구·대학): **3건**
-  - `04_international_journals` (국제 SCI·오픈액세스 저널): **5건**
+- **총 수집 확보 자료**: **28건**
+  - `01_domestic_agencies` (국내 공식기관·웹사이트): **0건**
+  - `02_domestic_journals` (국내 학회지·연구기관): **0건**
+  - `03_international_agencies` (해외 공식기관·국제기구·대학): **0건**
+  - `04_international_journals` (국제 SCI·오픈액세스 저널): **28건**
 
 ## 수집 확보 문헌·웹사이트 목록
 
 | 출처 ID | 분류 폴더 | 제공처/기관 | 연도 | 제목 | URL |
 | :--- | :--- | :--- | :---: | :--- | :--- |
-| `SRC-100` | `01_domestic_agencies` | 국내 기관·웹사이트 (기수집 연계) | - | 농촌진흥청 | https://www.rda.go.kr/ |
-| `SRC-102` | `01_domestic_agencies` | 국내 기관·웹사이트 (기수집 연계) | - | 한국식품연구원 | https://www.kfri.re.kr/ |
-| `SRC-104` | `01_domestic_agencies` | 국내 기관·웹사이트 (기수집 연계) | - | 농림축산식품부 | https://www.mafra.go.kr/home/index.do |
-| `SRC-106` | `01_domestic_agencies` | 국내 기관·웹사이트 (기수집 연계) | - | 한국농촌경제연구원 | https://www.krei.re.kr/krei/index.do |
-| `SRC-283` | `02_domestic_journals` | Crossref (Horticultural Science  | 2021 | Rice phenology and growth simulation using DSSAT- CERES-Rice crop model under th | https://doi.org/10.51483/ijagst.1.2.2021.1-11 |
-| `SRC-284` | `02_domestic_journals` | Crossref (Horticultural Science  | 2016 | A preliminary model of sweet corn growth and yield | https://doi.org/10.1080/01140671.2016.1264078 |
-| `SRC-285` | `02_domestic_journals` | Crossref (Horticultural Science  | 2025 | Multi-step prediction of greenhouse crop growth based on the SVR_Seq2Seq model | https://doi.org/10.1016/j.atech.2025.100986 |
-| `SRC-286` | `02_domestic_journals` | Crossref (Horticultural Science  | 2022 | Effects of residual broken roots on the growth and rhizosphere soil of herbaceou | https://doi.org/10.17660/ejhs.2022/035 |
-| `SRC-287` | `02_domestic_journals` | Crossref (Korean Journal of Food | 2001 | Simulation of spring wheat responses to elevated CO2 and temperature by using CE | https://doi.org/10.23986/afsci.5692 |
-| `SRC-288` | `02_domestic_journals` | Crossref (Korean Journal of Food | 2025 | Assessment of the Effects of Drying Methods on the  Drying Characteristics, Colo | https://doi.org/10.30919/faf1652 |
-| `SRC-289` | `02_domestic_journals` | Crossref (Korean Journal of Food | 2024 | Improving a dynamic farm level model by coupling empirically estimated pre-crop  | https://doi.org/10.23986/afsci.144747 |
-| `SRC-290` | `02_domestic_journals` | Crossref (Korean Journal of Food | 2013 | Comparison of Crop Growth and Evapotranspiration Simulations between Noah Multi  | https://doi.org/10.5532/kjafm.2013.15.4.282 |
-| `SRC-291` | `02_domestic_journals` | Crossref (Korean Journal of Soil | 2013 | Cassava Nitrogen Requirements in Thailand and Crop Simulation Model Predictions | https://doi.org/10.1097/ss.0b013e31829a283f |
-| `SRC-86` | `02_domestic_journals` | Crossref (Korean Journal of Soil | 2025 | Determination of optimal mixing ratio of organic fertilizer and biochar derived  | https://doi.org/10.7745/kjssf.2025.58.1.118 |
-| `SRC-292` | `02_domestic_journals` | Crossref (Korean Journal of Soil | 2022 | Korean Model for Estimating Soil Available Water Content of Soybean Cultivation  | https://doi.org/10.7745/kjssf.2022.55.4.570 |
-| `SRC-293` | `02_domestic_journals` | Crossref (Korean Journal of Soil | - | Crop simulation model of the second and the third productivity levels | https://doi.org/10.1007/978-1-4020-4479-3_7 |
-| `SRC-294` | `02_domestic_journals` | OpenAlex (국내 연구기관 KR) | 2023 | Irrigation in the Earth system | https://doi.org/10.1038/s43017-023-00438-5 |
-| `SRC-295` | `02_domestic_journals` | OpenAlex (국내 연구기관 KR) | 2024 | Global critical soil moisture thresholds of plant water stress | https://doi.org/10.1038/s41467-024-49244-7 |
-| `SRC-296` | `02_domestic_journals` | OpenAlex (국내 연구기관 KR) | 2021 | Statistical upscaling of ecosystem CO 2 fluxes across the terrestrial tundra and | https://doi.org/10.1111/gcb.15659 |
-| `SRC-297` | `02_domestic_journals` | OpenAlex (국내 연구기관 KR) | 2023 | Effects of Climate Change and Drought Tolerance on Maize Growth | https://doi.org/10.3390/plants12203548 |
-| `SRC-298` | `02_domestic_journals` | OpenAlex (국내 연구기관 KR) | 2021 | Eco‐evolutionary optimality as a means to improve vegetation and land‐surface mo | https://doi.org/10.1111/nph.17558 |
-| `SRC-136` | `03_international_agencies` | 해외 기관·국제기구·대학 (기수집 연계) | - | Technical Platform on the Measurement and Reduction of Food Loss and Waste / Foo | https://www.fao.org/platform-food-loss-waste/en/ |
-| `SRC-140` | `03_international_agencies` | 해외 기관·국제기구·대학 (기수집 연계) | - | ARS Home : USDA ARS | https://www.ars.usda.gov/ |
-| `SRC-142` | `03_international_agencies` | 해외 기관·국제기구·대학 (기수집 연계) | - | NFRI / National Agriculture and Food Research Organization | https://www.naro.go.jp/english/laboratory/nfri/index.html |
-| `SRC-299` | `04_international_journals` | OpenAlex (국제 SCI) | 2012 | Impacts of climate change on the future of biodiversity | https://doi.org/10.1111/j.1461-0248.2011.01736.x |
-| `SRC-300` | `04_international_journals` | OpenAlex (국제 SCI) | 2023 | Earth beyond six of nine planetary boundaries | https://doi.org/10.1126/sciadv.adh2458 |
-| `SRC-301` | `04_international_journals` | OpenAlex (국제 SCI) | 2005 | Europe-wide reduction in primary productivity caused by the heat and drought in  | https://insu.hal.science/insu-00373792 |
-| `SRC-302` | `04_international_journals` | OpenAlex (국제 SCI) | 2017 | More than 75 percent decline over 27 years in total flying insect biomass in pro | https://doi.org/10.1371/journal.pone.0185809 |
-| `SRC-303` | `04_international_journals` | OpenAlex (국제 SCI) | 2001 | FLUXNET: A New Tool to Study the Temporal and Spatial Variability of Ecosystem–S | https://doi.org/10.1175/1520-0477(2001)082<2415:fantts>2.3.co;2 |
+| `SRC-446` | `-` | Europe PMC | 2026 | [2026] Assessing rice yield responses to climate change scenarios using a crop s | https://doi.org/10.7717/peerj.20965 |
+| `SRC-447` | `-` | Europe PMC | 2025 | [2025] Evaluation of crop phenology using remote sensing and decision support sy | https://doi.org/10.1038/s41598-025-95109-4 |
+| `SRC-448` | `-` | Europe PMC | 2024 | [2024] Modeling maize growth and nitrogen dynamics using CERES-Maize (DSSAT) und | https://doi.org/10.1038/s41598-024-61976-6 |
+| `SRC-449` | `-` | Europe PMC | 2026 | [2026] SCRUM: A simple model for estimating uptake of nitrogen and water by fiel | https://doi.org/10.1016/j.mex.2026.103981 |
+| `SRC-450` | `-` | Europe PMC | 2025 | [2025] Optimizing nitrogen topdressing for winter wheat by coupling remote sensi | https://doi.org/10.3389/fpls.2025.1658254 |
+| `SRC-451` | `-` | Europe PMC | 2026 | [2026] Crop Growth Models: Development, Applications, Recent Advances, and Futur | https://doi.org/10.3390/plants15152395 |
+| `SRC-452` | `-` | Europe PMC | 2025 | [2025] CERES-Maize (DSSAT) Model Applications for Maize Nutrient Management Acro | https://doi.org/10.3390/plants14050661 |
+| `SRC-453` | `-` | Europe PMC | 2025 | [2025] Rice Growth Estimation and Yield Prediction by Combining the DSSAT Model  | https://doi.org/10.3390/plants14081206 |
+| `SRC-454` | `-` | Europe PMC | 2026 | [2026] Integrating a soil temperature module into AquaCrop improves simulation o | https://doi.org/10.3389/fpls.2026.1968615 |
+| `SRC-455` | `-` | Europe PMC | 2025 | [2025] Sensitivity and uncertainty analysis of wheat cultivar parameters of the  | https://doi.org/10.1038/s41598-025-95260-y |
+| `SRC-456` | `-` | Europe PMC | 2024 | [2024] Effects of different observed datasets on the calibration of crop model p | https://doi.org/10.1371/journal.pone.0302098 |
+| `SRC-457` | `-` | Europe PMC | 2024 | [2024] Maximizing the Radiation Use Efficiency by Matching the Leaf Area and Lea | https://doi.org/10.34133/plantphenomics.0217 |
+| `SRC-458` | `-` | Europe PMC | 2025 | [2025] Comparison of three algorithms for estimating crop model parameters based | https://doi.org/10.1371/journal.pone.0323927 |
+| `SRC-459` | `-` | Europe PMC | 2022 | [2022] Use of 3D modeling to refine predictions of canopy light utilization: A c | https://doi.org/10.3389/fpls.2022.735981 |
+| `SRC-460` | `-` | Europe PMC | 2022 | [2022] Prediction of Photosynthetic, Biophysical, and Biochemical Traits in Whea | https://doi.org/10.3389/fpls.2022.828451 |
+| `SRC-461` | `-` | Europe PMC | 2026 | [2026] Hyperspectral Imaging for Agricultural and Food Sensing: Applications, Da | https://doi.org/10.3390/foods15193396 |
+| `SRC-462` | `-` | Europe PMC | 2026 | [2026] Mechanistic modeling for agroecological adaptation: genetic potential, un | https://doi.org/10.3389/fbinf.2026.1886248 |
+| `SRC-463` | `-` | Europe PMC | 2026 | [2026] Simulation of Winter Wheat (&lt;i&gt;Triticum aestivum&lt;/i&gt; L.) Resp | https://doi.org/10.3390/plants15121899 |
+| `SRC-464` | `-` | Europe PMC | 2023 | [2023] Application of Parameter Optimization Methods Based on Kalman Formula to  | https://doi.org/10.3390/ijerph20054567 |
+| `SRC-465` | `-` | Europe PMC | 2025 | [2025] Study of the rice yield variations under water saving scenarios using DSS | https://doi.org/10.1371/journal.pone.0329509 |
+| `SRC-466` | `-` | Europe PMC | 2026 | [2026] UAV-Based Thermal Inversion for Canopy Temperature Retrieval and Precisio | https://doi.org/10.3390/s26165023 |
+| `SRC-467` | `-` | Europe PMC | 2024 | [2024] Rape Yield Estimation Considering Non-Foliar Green Organs Based on the Ge | https://doi.org/10.34133/plantphenomics.0253 |
+| `SRC-468` | `-` | Europe PMC | 2026 | [2026] A Thermal Infrared Remote Sensing Model for Diagnosing Winter Wheat Water | https://doi.org/10.3390/plants15142201 |
+| `SRC-469` | `-` | Europe PMC | 2023 | [2023] Seasonal climate conditions impact the effectiveness of improving photosy | https://doi.org/10.1016/j.fcr.2023.108907 |
+| `SRC-470` | `-` | Europe PMC | 2025 | [2025] Smart IoT-driven precision agriculture: Land mapping, crop prediction, an | https://doi.org/10.1371/journal.pone.0319268 |
+| `SRC-471` | `-` | Europe PMC | 2025 | [2025] Evaluating a cassava crop growth model by optimizing genotype-specifc par | https://doi.org/10.3389/fpls.2025.1535058 |
+| `SRC-472` | `-` | Europe PMC | 2023 | [2023] Use of thermal imaging and the photochemical reflectance index (PRI) to d | https://doi.org/10.1111/pce.14472 |
+| `SRC-473` | `-` | Europe PMC | 2026 | [2026] A dual-branch perception and hybrid attention integrated framework for te | https://doi.org/10.3389/fpls.2026.1905545 |

@@ -690,7 +690,7 @@ def render_single_blog_html(
         if clean_t and clean_t not in custom_tags:
             custom_tags.append(clean_t)
     final_20_tags = [f"#{t}" for t in custom_tags[:20]]
-    tag_box_html = render_hashtag_box_html(final_20_tags) if otype != "paper" else (
+    tag_box_html = render_hashtag_box_html(final_20_tags, 0) if otype != "paper" else (
         f"<div style='margin-top:20px;padding:12px 16px;background:#f8fafc;border:1px solid #cbd5e1;border-radius:8px;font-size:13px;color:#334155'>"
         f"<strong>Keywords / 해시태그:</strong> {' '.join(html.escape(t) for t in final_20_tags[:10])}</div>"
     )
