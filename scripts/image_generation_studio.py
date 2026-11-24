@@ -865,6 +865,17 @@ def sync_studio_to_pipeline(project_id: str, cfg: PlatformConfig | None = None) 
     for r in ready_items:
         cid = r.get("chapter_id", "ch01")
         by_ch_counts[cid] = by_ch_counts.get(cid, 0) + 1
+        if not str(r.get("data_source") or r.get("source_note") or "").strip():
+            narr_txt = str(r.get("narrative_ko") or "")
+            m_src = re.search(r"\((?:자료|출처)\s*:\s*([^)]+)\)", narr_txt)
+            if m_src:
+                r["data_source"] = m_src.group(1).strip()
+            else:
+                cites_in_narr = re.findall(r"\[SRC-\d+\]", narr_txt)
+                if cites_in_narr:
+                    r["data_source"] = ", ".join(dict.fromkeys(cites_in_narr)) + " 기반 재구성"
+                else:
+                    r["data_source"] = f"《{st.get('topic_ko', '')}》 {r.get('target_section') or cid} 본문 근거 기반"
         if r.get("is_ai_image"):
             ai_cnt += 1
         else:

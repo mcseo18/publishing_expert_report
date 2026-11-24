@@ -1174,6 +1174,15 @@ def audit_visual_assets(
         is_bad = _is_placeholder_or_fake_visual(it, fp)
         title = str(it.get("title_ko") or "")
         src_str = str(it.get("data_source") or it.get("source_note") or "").strip()
+        if not src_str:
+            narr_txt = str(it.get("narrative_ko") or "")
+            m_src = re.search(r"\((?:자료|출처)\s*:\s*([^)]+)\)", narr_txt)
+            if m_src:
+                src_str = m_src.group(1).strip()
+            else:
+                cites_in_narr = re.findall(r"\[SRC-\d+\]", narr_txt)
+                if cites_in_narr:
+                    src_str = ", ".join(dict.fromkeys(cites_in_narr)) + " 기반 재구성"
 
         if is_excluded:
             excluded_count += 1
