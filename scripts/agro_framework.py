@@ -468,7 +468,7 @@ def auto_repair_chapter_citations(
     if not ch_dir.is_dir():
         return {"status": "NO_CHAPTERS", "repaired_files": 0, "replaced_tags": 0}
 
-    valid_ids, _ = _load_evidence_corpus(cfg)
+    valid_ids, _, _ = _load_evidence_corpus(cfg)
     proj_sids = [
         s.get("source_id")
         for s in (st.get("collected_sources") or [])

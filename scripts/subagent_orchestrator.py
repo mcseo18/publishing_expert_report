@@ -547,7 +547,7 @@ def save_project_state(state: dict[str, Any], cfg: PlatformConfig | None = None)
 def _migrate_to_v2_if_needed(state: dict[str, Any], cfg: PlatformConfig) -> dict[str, Any]:
     """기존 7단계 프로젝트 상태를 신규 6단계 워크플로(+체크포인트+보고서)로 무손실 자동 이관한다."""
     cur_ids = [s.get("stage_id") for s in state.get("stages", [])]
-    if cur_ids == STAGE_IDS_ORDER and state.get("workflow_version") == 2:
+    if cur_ids == STAGE_IDS_ORDER and int(state.get("workflow_version") or 0) >= 2:
         return state
 
     old_map = {s.get("stage_id"): s for s in state.get("stages", [])}
@@ -664,7 +664,7 @@ def load_project_state(project_id: str, cfg: PlatformConfig | None = None) -> di
     # 비정상 중단(서버 종료/재시작 등) 자동 복구: 스레드가 없는데 RUNNING이면 INTERRUPTED로 전환해 이어하기 제공
     th = _ACTIVE_THREADS.get(project_id)
     is_live = bool(th and th.is_alive())
-    if not is_live and st.get("overall_status") == "RUNNING":
+    if not is_live and (st.get("overall_status") == "RUNNING" or any(s.get("status") == "RUNNING" for s in st.get("stages", []))):
         st["overall_status"] = "INTERRUPTED"
         st["active_stage_id"] = None
         for s in st.get("stages", []):
@@ -2762,6 +2762,17 @@ def start_pipeline_async(
     if not stage_ids:
         return {"status": "ALREADY_DONE", "project_id": project_id}
 
+    # 오류 상태인 대상 단계의 error 메시지를 사전 초기화
+    err_cleared = False
+    for s in state.get("stages") or []:
+        if s.get("stage_id") in stage_ids and (s.get("error") or s.get("status") == "ERROR"):
+            s["error"] = ""
+            if s.get("status") == "ERROR":
+                s["status"] = "PENDING"
+            err_cleared = True
+    if err_cleared:
+        save_project_state(state, cfg)
+
     # 완료된 단계를 다시 실행하면 덮어쓰기 전에 자동 백업
     done_targets = [s["stage_id"] for s in state["stages"] if s["stage_id"] in stage_ids and s["status"] == "DONE"]
     snapshot = None
@@ -2778,8 +2789,21 @@ def start_pipeline_async(
 
 
 def stop_pipeline(project_id: str, cfg: PlatformConfig | None = None) -> dict[str, Any]:
+    cfg = cfg or get_config()
     th = _ACTIVE_THREADS.get(project_id)
     if not (th and th.is_alive()):
+        # 좀비 RUNNING 상태(서버 재시작/비정상 종료 후 잠금 잔존) 자동 정리
+        st = load_project_state(project_id, cfg)
+        if st and (st.get("overall_status") == "RUNNING" or any(s.get("status") == "RUNNING" for s in (st.get("stages") or []))):
+            for s in st.get("stages") or []:
+                if s.get("status") == "RUNNING":
+                    s["status"] = "INTERRUPTED"
+                    s["current_action"] = "실행 잠금 해제됨 — 저장된 지점부터 이어하기 가능"
+            st["overall_status"] = "INTERRUPTED"
+            st["active_stage_id"] = None
+            save_project_state(st, cfg)
+            append_event(project_id, "orchestrator", "stop", "🔓 멈춘 RUNNING 잠금을 자동 해제했습니다(체크포인트 보존).", level="WARN", cfg=cfg)
+            return {"status": "ZOMBIE_UNLOCKED", "project_id": project_id}
         return {"status": "NOT_RUNNING", "project_id": project_id}
     ev = _STOP_FLAGS.get(project_id)
     if ev:

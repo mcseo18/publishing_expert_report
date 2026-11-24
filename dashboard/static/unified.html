@@ -568,6 +568,7 @@ tr.row-bad td { background: rgba(239,68,68,.06); }
       <button class="btn-sm" onclick="resetDashboardToFreshStart(true)" title="화면을 초기 상태로 비우고 새 작업을 시작합니다">🧹 초기화</button>
       <button class="btn-green" id="btnRunAll" onclick="onMainRunClick()" title="완료되지 않은 단계를 순서대로 이어서 실행합니다">▶ 이어하기</button>
       <button class="btn-amber" id="btnStop" onclick="stopCurrentPipeline()" disabled title="실행 중일 때만 누를 수 있습니다. 현재 단원·그림까지 저장한 뒤 멈춥니다.">⏹ 중단</button>
+      <button class="btn-sm" id="btnRecoveryCenter" onclick="openRecoveryModal()" title="파이프라인 오류·품질 게이트 차단·잠금 상태를 진단하고 원클릭으로 복구합니다">🛠️ 오류·복구</button>
       <button class="btn-sm" onclick="document.getElementById('helpModal').classList.add('open')" title="사용 안내">❓ 도움말</button>
     </div>
   </div>
@@ -1872,6 +1873,24 @@ tr.row-bad td { background: rgba(239,68,68,.06); }
 </div>
 
 <div class="toast" id="toastBox"></div>
+<button id="errorConsoleFab" onclick="openRecoveryModal()" style="display:none;position:fixed;right:20px;bottom:68px;z-index:205;background:#7f1d1d;color:#fecaca;border:1px solid #ef4444;border-radius:999px;padding:8px 14px;font-weight:800;font-size:12.5px;box-shadow:0 8px 24px rgba(0,0,0,.45);cursor:pointer;">🛠️ 오류·복구 센터</button>
+
+<!-- 🛠️ 통합 오류 진단 · 원클릭 자동 복구 센터 모달 -->
+<div class="modal-bg" id="recoveryModal">
+  <div class="modal" style="max-width:920px">
+    <div class="card-head">
+      <div>
+        <h3 class="card-title">🛠️ 오류 진단 &amp; 원클릭 자동 복구 센터</h3>
+        <div class="muted">파이프라인 오류·품질 게이트 차단·좀비 실행 잠금을 자동 진단하고 클릭 한 번으로 안전하게 복구합니다.</div>
+      </div>
+      <div class="flex">
+        <button class="btn-sm" onclick="refreshRecoveryModal()">🔄 다시 진단</button>
+        <button class="btn-sm" onclick="closeRecoveryModal()">닫기</button>
+      </div>
+    </div>
+    <div id="recoveryModalBody" style="max-height:70vh;overflow-y:auto;">진단 중...</div>
+  </div>
+</div>
 
 <!-- 사용 안내 (처음 쓰는 분을 위한 단계 설명) -->
 <div class="modal-bg" id="helpModal">
@@ -1937,6 +1956,9 @@ let LAST_EXPLORER_DATA = {};
 let NLM_SELECTED_NB = null;
 let LOGS_OPEN = true;
 let POLL_TIMER = null;
+let CURRENT_DIAGNOSTICS = null;
+let RECENT_UI_ERRORS = [];
+let RECOVERY_BUSY = false;
 
 const STATUS_META = {
   DONE: { label: "완료", cls: "b-done", pill: "done", icon: "✅" },
@@ -1958,10 +1980,44 @@ const API_KEY_LABELS = [
   { key: "KOSIS_API_KEY", title: "통계청 KOSIS OpenAPI 키", ph: "KOSIS apiKey..." },
 ];
 
-function toast(msg, ms = 3200) {
+function recordUiError(msg, url = "") {
+  const clean = String(msg || "").replace(/^❌\s*/, "").trim();
+  if (!clean) return;
+  RECENT_UI_ERRORS.unshift({
+    time: new Date().toLocaleTimeString("ko-KR", { hour12: false }),
+    message: clean,
+    url: url || "",
+  });
+  if (RECENT_UI_ERRORS.length > 20) RECENT_UI_ERRORS.length = 20;
+  updateErrorConsoleFab();
+}
+
+function updateErrorConsoleFab() {
+  const fab = document.getElementById("errorConsoleFab");
+  if (!fab) return;
+  const critCnt = Number(CURRENT_DIAGNOSTICS?.critical_count || 0);
+  const uiCnt = RECENT_UI_ERRORS.length;
+  const total = critCnt + (critCnt === 0 ? uiCnt : 0);
+  if (critCnt > 0 || uiCnt > 0) {
+    fab.style.display = "inline-flex";
+    fab.textContent = critCnt > 0
+      ? `🛠️ 오류·차단 ${critCnt}건 — 원클릭 복구`
+      : `⚠️ 최근 오류 ${uiCnt}건 — 진단·해결`;
+  } else {
+    fab.style.display = "none";
+  }
+}
+
+function toast(msg, ms = 3600) {
   const el = document.getElementById("toastBox");
-  el.textContent = msg;
+  const s = String(msg || "");
+  el.textContent = s;
   el.classList.add("show");
+  const isErr = s.startsWith("❌") || /오류|실패|차단/.test(s);
+  if (isErr) {
+    ms = Math.max(ms, 6200);
+    recordUiError(s);
+  }
   clearTimeout(window._tTimer);
   window._tTimer = setTimeout(() => el.classList.remove("show"), ms);
 }
@@ -1980,14 +2036,241 @@ async function api(url, opts = {}) {
   } catch (netErr) {
     // 서버가 꺼졌거나 응답이 없을 때 (H4)
     if (typeof setServerDown === "function") setServerDown(true);
-    throw new Error("서버에 연결할 수 없습니다. 교재플랫폼_시작.bat을 실행했는지 확인하세요.");
+    const m = "서버에 연결할 수 없습니다. 교재플랫폼_시작.bat을 실행했는지 확인하세요.";
+    recordUiError(m, url);
+    throw new Error(m);
   }
   if (typeof setServerDown === "function" && SERVER_DOWN) setServerDown(false);
   const text = await res.text();
   let data = {};
   try { data = text ? JSON.parse(text) : {}; } catch { data = { raw: text }; }
-  if (!res.ok) throw new Error(data.detail || `HTTP ${res.status}`);
+  if (!res.ok) {
+    const detail = data.detail || `HTTP ${res.status}`;
+    recordUiError(detail, url);
+    if (CURRENT_PID && !String(url).includes("/diagnostics")) {
+      setTimeout(() => loadProjectDiagnostics(true), 120);
+    }
+    throw new Error(detail);
+  }
   return data;
+}
+
+async function loadProjectDiagnostics(silent = true) {
+  if (!CURRENT_PID) {
+    CURRENT_DIAGNOSTICS = null;
+    updateErrorConsoleFab();
+    return null;
+  }
+  try {
+    CURRENT_DIAGNOSTICS = await api(`/api/projects/${encodeURIComponent(CURRENT_PID)}/diagnostics`);
+    updateErrorConsoleFab();
+    if (!silent) {
+      renderNotices();
+      renderStageDetail();
+    }
+    return CURRENT_DIAGNOSTICS;
+  } catch (e) {
+    if (!silent) console.warn("diagnostics load failed:", e);
+    return null;
+  }
+}
+
+function recoveryBtnCls(style) {
+  if (style === "gold") return "btn-gold btn-sm";
+  if (style === "primary") return "btn-primary btn-sm";
+  if (style === "danger") return "btn-red btn-sm";
+  return "btn-sm";
+}
+
+function renderRecoveryActionButtons(actions) {
+  return (actions || []).map(a => {
+    const pJson = encodeURIComponent(JSON.stringify(a.params || {}));
+    const cMsg = encodeURIComponent(a.confirm_ko || "");
+    return `<button class="${recoveryBtnCls(a.style)}" ${RECOVERY_BUSY ? "disabled" : ""} onclick="executeRecoveryAction('${esc(a.action_id)}', '${pJson}', '${cMsg}')" title="${esc(a.description_ko || a.label_ko)}">${esc(a.label_ko)}</button>`;
+  }).join(" ");
+}
+
+async function executeRecoveryAction(actionId, paramsEncoded = "", confirmEncoded = "") {
+  if (!CURRENT_PID) return toast("먼저 프로젝트를 선택해 주세요.");
+  if (RECOVERY_BUSY) return toast("⏳ 다른 복구 작업이 진행 중입니다. 잠시만 기다려 주세요.");
+  let params = {};
+  try { params = paramsEncoded ? (typeof paramsEncoded === "string" ? JSON.parse(decodeURIComponent(paramsEncoded)) : paramsEncoded) : {}; } catch { params = {}; }
+  const confirmMsg = confirmEncoded ? decodeURIComponent(confirmEncoded) : "";
+  if (confirmMsg && !confirm(confirmMsg)) return;
+  if (actionId === "force_draft_publish" && !confirm("품질 게이트를 임시 우회해 검토용 초안(DOCX + 블로그 HTML)을 생성합니다.\n최종 배포 전에는 반드시 미달 항목을 복구해 주세요.\n계속할까요?")) return;
+  if (actionId === "run_full_auto_heal" && !confirm("미달 항목(불량 도판 제외·출처 보강·저관련도 정리·무관 인용 정리·일괄 검토 완료 등)을 안전하게 자동 복구합니다.\n원고 수정 시 _history 폴더에 자동 백업됩니다. 진행할까요?")) return;
+
+  RECOVERY_BUSY = true;
+  toast("🛠️ 자동 복구 작업을 실행 중입니다... (의미 재감사 포함 시 10~30초 소요될 수 있습니다)", 8000);
+  try {
+    const res = await api(`/api/projects/${encodeURIComponent(CURRENT_PID)}/recovery/execute`, {
+      method: "POST",
+      body: JSON.stringify({ action_id: actionId, params }),
+    });
+    if (res.diagnostics) CURRENT_DIAGNOSTICS = res.diagnostics;
+    if (res.project) CURRENT_STATE = res.project;
+    toast(`✅ ${res.summary_ko || "복구 완료"}`, 6000);
+    await refreshCurrentProject(false);
+    if (document.getElementById("recoveryModal")?.classList.contains("open")) {
+      renderRecoveryModalBody();
+    }
+  } catch (e) {
+    toast("❌ 복구 실행 오류: " + e.message, 6500);
+  } finally {
+    RECOVERY_BUSY = false;
+    updateErrorConsoleFab();
+  }
+}
+
+async function bulkChapterReview(reviewed) {
+  if (!CURRENT_PID) return toast("먼저 프로젝트를 선택해 주세요.");
+  const msg = reviewed
+    ? "집필된 모든 정상 단원(틀 원고 제외)을 [검토 완료] 상태로 일괄 승인할까요?"
+    : "모든 단원의 [검토 완료] 체크를 일괄 해제할까요?";
+  if (!confirm(msg)) return;
+  await executeRecoveryAction(reviewed ? "approve_all_chapters" : "unapprove_all_chapters", "", "");
+}
+
+function renderStageRecoveryPanel(s) {
+  const diag = CURRENT_DIAGNOSTICS;
+  const stageIssues = (diag?.issues || []).filter(x => x.stage_id === s.stage_id || (s.stage_id === "stage6_publish_report" && String(x.code || "").startsWith("QUALITY_GATE_")));
+  const hasErr = !!(s.error || s.status === "ERROR" || stageIssues.length);
+  if (!hasErr) return "";
+
+  const errCards = stageIssues.length
+    ? stageIssues.map(it => `
+      <div style="background:rgba(15,23,42,.85);border:1px solid ${it.severity === "CRITICAL" ? "rgba(239,68,68,.55)" : "rgba(245,158,11,.5)"};border-radius:8px;padding:10px 12px;margin-top:8px;">
+        <div class="flex" style="justify-content:space-between;gap:8px;flex-wrap:wrap;">
+          <strong style="font-size:13px;color:${it.severity === "CRITICAL" ? "#fca5a5" : "#fde68a"}">${it.severity === "CRITICAL" ? "⛔" : "⚠️"} ${esc(it.title_ko)}</strong>
+          <span class="badge ${it.severity === "CRITICAL" ? "b-err" : "b-rev"}" style="font-size:10.5px">${esc(it.code)}</span>
+        </div>
+        <div class="muted" style="font-size:12px;margin-top:4px;line-height:1.5">${esc(it.cause_ko)}</div>
+        ${it.detail ? `<details style="margin-top:5px;font-size:11px;color:#94a3b8"><summary style="cursor:pointer">기술 상세 보기</summary><pre style="white-space:pre-wrap;margin:4px 0 0;background:#020617;padding:6px 8px;border-radius:6px;color:#cbd5e1">${esc(it.detail)}</pre></details>` : ""}
+        <div class="flex mt8" style="gap:6px;flex-wrap:wrap;">${renderRecoveryActionButtons(it.actions)}</div>
+      </div>`).join("")
+    : `<div style="margin-top:6px;font-size:12.5px;color:#fecaca">${esc(s.error)}</div>
+       <div class="flex mt8" style="gap:6px;flex-wrap:wrap;">
+         <button class="btn-primary btn-sm" onclick="executeRecoveryAction('retry_stage', '${encodeURIComponent(JSON.stringify({ stage_id: s.stage_id }))}')">🔄 이 단계 오류 초기화 후 재실행</button>
+         <button class="btn-sm" onclick="executeRecoveryAction('clear_stage_error', '${encodeURIComponent(JSON.stringify({ stage_id: s.stage_id }))}')">🧹 오류 표시 초기화</button>
+       </div>`;
+
+  return `
+    <div class="card" style="border-color:var(--red);background:rgba(127,29,29,.18);margin-bottom:12px;">
+      <div class="card-head" style="margin-bottom:4px">
+        <div>
+          <strong style="font-size:14px;color:#fca5a5">🛠️ 오류 진단 &amp; 즉시 대처 패널 (${stageIssues.length || 1}건)</strong>
+          <div class="muted" style="font-size:12px">아래 버튼을 클릭하면 대시보드에서 바로 원인을 정리하고 복구할 수 있습니다.</div>
+        </div>
+        <div class="flex">
+          <button class="btn-gold btn-sm" onclick="executeRecoveryAction('run_full_auto_heal')">🛠️ 원클릭 자동 복구</button>
+          <button class="btn-sm" onclick="openRecoveryModal()">🔎 전체 진단 센터</button>
+        </div>
+      </div>
+      ${errCards}
+    </div>`;
+}
+
+function renderStage6GatePanel(diag) {
+  if (!diag || !diag.gate_checks) return "";
+  const ready = !!(diag.readiness && diag.readiness.ready);
+  const checks = diag.gate_checks || [];
+  return `
+    <div class="card" style="background:${ready ? "rgba(6,78,59,.28)" : "rgba(127,29,29,.18)"};border-color:${ready ? "rgba(34,197,94,.5)" : "rgba(239,68,68,.55)"};margin-bottom:12px;">
+      <div class="card-head" style="margin-bottom:8px">
+        <div>
+          <h3 class="card-title" style="color:${ready ? "#86efac" : "#fca5a5"}">${ready ? "✅ 6단계 출판 품질 게이트 전원 통과 (출판 가능)" : `🔒 6단계 출판 품질 게이트 점검 (미달 ${(diag.readiness?.blockers || []).length}건 — 아래 버튼으로 즉시 해결)`}</h3>
+          <div class="muted" style="font-size:12px">${ready ? "모든 품질 기준을 충족했습니다. 아래 버튼으로 마스터 DOCX + 블로그 HTML을 바로 생성할 수 있습니다." : "각 미달 항목 오른쪽의 복구 버튼이나 [🛠️ 미달 항목 일괄 자동 복구]를 눌러 차단 사유를 즉시 해결하세요."}</div>
+        </div>
+        <div class="flex" style="gap:6px;flex-wrap:wrap;">
+          ${!ready ? `<button class="btn-gold btn-sm" onclick="executeRecoveryAction('run_full_auto_heal')">🛠️ 미달 항목 일괄 자동 복구</button>` : ""}
+          ${!ready ? `<button class="btn-sm" onclick="executeRecoveryAction('force_draft_publish')" title="품질 게이트를 임시 우회해 검토용 초안 DOCX·HTML만 먼저 생성합니다">📄 초안 임시 출판(게이트 우회)</button>` : ""}
+          <button class="btn-sm" onclick="loadProjectDiagnostics(false)">🔄 게이트 재점검</button>
+        </div>
+      </div>
+      <div style="overflow:auto;">
+        <table class="tbl">
+          <thead><tr><th>품질 게이트 항목</th><th>현재 상태</th><th>합격 기준</th><th>판정</th><th>즉시 대처</th></tr></thead>
+          <tbody>
+            ${checks.map(ck => `
+              <tr>
+                <td><strong>${esc(ck.label_ko)}</strong></td>
+                <td>${esc(ck.value_text)}</td>
+                <td class="muted">${esc(ck.threshold_text)}</td>
+                <td><span class="badge ${ck.passed ? "b-done" : "b-err"}">${ck.passed ? "✅ 통과" : "⛔ 미달"}</span></td>
+                <td>${ck.action ? renderRecoveryActionButtons([ck.action]) : '<span class="muted">조치 불필요</span>'}</td>
+              </tr>
+            `).join("")}
+          </tbody>
+        </table>
+      </div>
+    </div>`;
+}
+
+async function openRecoveryModal() {
+  const m = document.getElementById("recoveryModal");
+  if (!m) return;
+  m.classList.add("open");
+  await refreshRecoveryModal();
+}
+
+function closeRecoveryModal() {
+  document.getElementById("recoveryModal")?.classList.remove("open");
+}
+
+async function refreshRecoveryModal() {
+  const box = document.getElementById("recoveryModalBody");
+  if (box) box.innerHTML = `<div class="muted" style="padding:16px">🔍 프로젝트 상태·품질 게이트·AI 엔진을 진단 중입니다...</div>`;
+  if (CURRENT_PID) await loadProjectDiagnostics(true);
+  renderRecoveryModalBody();
+}
+
+function renderRecoveryModalBody() {
+  const box = document.getElementById("recoveryModalBody");
+  if (!box) return;
+  const diag = CURRENT_DIAGNOSTICS;
+  const issues = diag?.issues || [];
+  const eng = diag?.engines || {};
+  const ollamaOk = eng.ollama?.available;
+  const gemOk = eng.gemini?.configured;
+
+  const topSummary = diag ? `
+    <div class="grid-4 mb8">
+      <div class="kpi"><div class="kpi-val" style="color:${diag.critical_count ? "#fca5a5" : "#86efac"}">${diag.critical_count}건</div><div class="kpi-lbl">치명 오류 · 게이트 차단</div></div>
+      <div class="kpi"><div class="kpi-val" style="font-size:15px">${diag.is_zombie_running ? "⛔ 잠김" : (diag.worker_alive ? "⚙️ 실행중" : "✅ 정상")}</div><div class="kpi-lbl">실행 스레드 상태</div></div>
+      <div class="kpi"><div class="kpi-val" style="font-size:15px">${ollamaOk ? "✅ 연결됨" : "⚠️ 미연결"}</div><div class="kpi-lbl">로컬 AI (Ollama)</div></div>
+      <div class="kpi"><div class="kpi-val" style="font-size:15px">${gemOk ? "✅ 등록됨" : "미등록(0원)"}</div><div class="kpi-lbl">Gemini API 키</div></div>
+    </div>
+    <div class="flex mb8" style="gap:8px;flex-wrap:wrap;">
+      <button class="btn-gold" onclick="executeRecoveryAction('run_full_auto_heal')">🛠️ 원클릭 일괄 자동 복구 (Auto-Heal)</button>
+      <button class="btn-primary btn-sm" onclick="executeRecoveryAction('approve_all_chapters')">✅ 전체 단원 일괄 검토 완료</button>
+      <button class="btn-sm" onclick="executeRecoveryAction('repair_citations_and_reaudit')">🧹 인용·무관출처 자동 정리 &amp; 재감사</button>
+      <button class="btn-sm" onclick="executeRecoveryAction('fix_visual_qa_issues')">🖼️ 불량 도판 제외 &amp; 출처 보강</button>
+      <button class="btn-sm" onclick="executeRecoveryAction('unlock_stuck_running')">🔓 멈춘 실행 잠금 해제</button>
+      <button class="btn-sm" onclick="executeRecoveryAction('clear_stage_error')">🧹 모든 오류 표시 초기화</button>
+    </div>` : `<div class="muted mb8">선택된 프로젝트가 없습니다. 프로젝트를 먼저 열어 주세요.</div>`;
+
+  const issuesHtml = issues.length ? issues.map(it => `
+    <div class="card" style="background:var(--surface);border-color:${it.severity === "CRITICAL" ? "rgba(239,68,68,.55)" : "rgba(245,158,11,.45)"};padding:12px;margin-bottom:8px;">
+      <div class="flex" style="justify-content:space-between;gap:8px;flex-wrap:wrap;">
+        <strong style="color:${it.severity === "CRITICAL" ? "#fca5a5" : "#fde68a"}">${it.severity === "CRITICAL" ? "⛔" : "⚠️"} ${esc(it.title_ko)}</strong>
+        <span class="badge ${it.severity === "CRITICAL" ? "b-err" : "b-rev"}">${esc(it.code)}</span>
+      </div>
+      <div class="muted mt8" style="font-size:12.5px;line-height:1.5">${esc(it.cause_ko)}</div>
+      ${it.detail ? `<pre style="margin-top:6px;white-space:pre-wrap;font-size:11px;background:#020617;padding:6px 8px;border-radius:6px;color:#cbd5e1">${esc(it.detail)}</pre>` : ""}
+      <div class="flex mt8" style="gap:6px;flex-wrap:wrap;">${renderRecoveryActionButtons(it.actions)}</div>
+    </div>`).join("")
+    : `<div class="card" style="background:rgba(6,78,59,.22);border-color:rgba(34,197,94,.45);padding:12px;margin-bottom:8px;">✅ 현재 프로젝트에서 감지된 파이프라인 오류나 품질 게이트 차단 항목이 없습니다.</div>`;
+
+  const uiErrHtml = RECENT_UI_ERRORS.length ? `
+    <div class="card" style="background:var(--surface);padding:12px;margin-top:10px;">
+      <div class="card-head" style="margin-bottom:6px">
+        <strong style="font-size:13px">🧾 최근 대시보드 API 오류 기록 (${RECENT_UI_ERRORS.length}건)</strong>
+        <button class="btn-sm" onclick="RECENT_UI_ERRORS=[];updateErrorConsoleFab();renderRecoveryModalBody();">기록 비우기</button>
+      </div>
+      ${RECENT_UI_ERRORS.map(e => `<div style="font-size:12px;border-top:1px solid var(--border);padding:6px 0;color:#fecaca"><span class="muted">[${esc(e.time)}]</span> ${esc(e.message)} ${e.url ? `<code class="muted">${esc(e.url)}</code>` : ""}</div>`).join("")}
+    </div>` : "";
+
+  box.innerHTML = topSummary + issuesHtml + uiErrHtml;
 }
 
 // 간단한 마크다운 렌더러 (보고서/원고 가독성 향상)
@@ -2147,6 +2430,8 @@ async function resetDashboardToFreshStart(showToast = false) {
   CURRENT_PID = "";
   CURRENT_STATE = null;
   CURRENT_EVENTS = [];
+  CURRENT_DIAGNOSTICS = null;
+  updateErrorConsoleFab();
   STAGE_REPORTS = {};
   VISUALS_CACHE = null;
   CHAPTERS_CACHE = null;
@@ -2423,7 +2708,11 @@ async function refreshCurrentProject(autoFocusStage = false, fromPoll = false) {
     LAST_STAGE_SIG = sig;
 
     if (!fromPoll) {
-      await loadStageSideData(SELECTED_STAGE);
+      await Promise.all([
+        loadStageSideData(SELECTED_STAGE),
+        loadProjectDiagnostics(true),
+      ]);
+      renderNotices();
       renderStageDetail();
       renderLibraryTab();
       renderProjManageTable();
@@ -2503,7 +2792,7 @@ function nextActionInfo(st) {
     return { text: "<strong>지금 할 일:</strong> 1단계 목차를 읽고 필요하면 고친 뒤 <strong>[목차 확정]</strong>을 누르세요. 그러면 2~6단계가 이어서 진행됩니다.", btn: "1단계 목차 확인하기", act: "selectStage('stage1_topic_outline');switchMainTab('workflow')" };
   }
   const err = stages.find(s => s.status === "ERROR");
-  if (err) return { text: `<strong>${err.order}단계에서 오류가 났습니다.</strong> 오류 내용을 확인한 뒤 [이어하기]를 누르면 멈춘 곳부터 다시 시작합니다.`, btn: "오류 확인", act: `selectStage('${err.stage_id}');switchMainTab('workflow')` };
+  if (err) return { text: `<strong>${err.order}단계에서 오류가 발생했습니다.</strong> 대시보드에서 바로 원인을 진단하고 원클릭으로 복구할 수 있습니다.`, btn: "🛠️ 오류 진단 · 자동 복구", act: "openRecoveryModal()" };
   if (st.overall_status === "INTERRUPTED" || stages.some(s => s.status === "INTERRUPTED")) {
     return { text: "<strong>작업이 중간에 멈춰 있습니다.</strong> [이어하기]를 누르면 저장된 지점부터 계속합니다.", btn: "▶ 이어하기", act: "runPipeline('all')" };
   }
@@ -2537,6 +2826,14 @@ function renderNotices() {
   }
   const na = SERVER_DOWN ? null : nextActionInfo(CURRENT_STATE);
   if (na) out.push(`<div class="notice notice-next"><span>👉 ${na.text}</span>${na.btn ? `<button class="btn-primary btn-sm" onclick="${na.act}">${na.btn}</button>` : ""}</div>`);
+  if (CURRENT_STATE && !SERVER_DOWN && CURRENT_DIAGNOSTICS) {
+    if (CURRENT_DIAGNOSTICS.is_zombie_running) {
+      out.push(`<div class="notice notice-conn"><span>🔓 <strong>실행 상태 잠금(좀비 RUNNING) 감지</strong>: 백그라운드 작업이 종료되었는데 화면만 잠겨 있습니다. 잠금을 해제하면 저장된 지점부터 이어할 수 있습니다.</span><button class="btn-gold btn-sm" onclick="executeRecoveryAction('unlock_stuck_running')">🔓 잠금 즉시 해제</button></div>`);
+    } else if (CURRENT_DIAGNOSTICS.critical_count > 0) {
+      const topTitles = (CURRENT_DIAGNOSTICS.issues || []).filter(x => x.severity === "CRITICAL").slice(0, 2).map(x => esc(x.title_ko)).join(" · ");
+      out.push(`<div class="notice notice-warn"><span>🛠️ <strong>즉시 대처 필요 (${CURRENT_DIAGNOSTICS.critical_count}건)</strong>: ${topTitles}</span><div class="flex"><button class="btn-gold btn-sm" onclick="executeRecoveryAction('run_full_auto_heal')">🛠️ 원클릭 자동 복구</button><button class="btn-sm" onclick="openRecoveryModal()">🔎 상세 진단</button></div></div>`);
+    }
+  }
   if (CURRENT_STATE && !SERVER_DOWN && RESTORED_WORK_BANNER && RESTORED_WORK_BANNER.project_id === CURRENT_PID) {
     const lw = RESTORED_WORK_BANNER;
     out.push(`<div class="notice" style="background:rgba(34,197,94,.12);border-color:rgba(34,197,94,.45);color:#bbf7d0"><span>📌 <strong>마지막 작업 기록 복원됨</strong> (${esc(lw.saved_at_local || "")}) — ${lw.last_stage_order ? esc(lw.last_stage_order) + "단계 " : ""}${esc(lw.last_stage_title || "")}${lw.last_open_chapter ? " · " + esc(lw.last_open_chapter) : ""} : ${esc(lw.last_action_summary || "")}</span><button class="btn-sm" onclick="RESTORED_WORK_BANNER=null;renderNotices()">닫기</button></div>`);
@@ -2848,7 +3145,7 @@ function renderStageDetail() {
           <button class="${s.status === "DONE" ? "" : "btn-primary"}" ${isRunning ? "disabled title='다른 작업이 진행 중입니다'" : ""} onclick="runSingleStage('${s.stage_id}')">${runLabel}</button>
         </div>
       </div>
-      ${s.error ? `<div class="card" style="border-color:var(--red);background:rgba(239,68,68,.08);margin-bottom:12px;"><strong>오류:</strong> ${esc(s.error)}<div class="muted mt8">[이 단계 이어서 실행]을 누르면 저장된 지점부터 다시 시도합니다. 같은 오류가 반복되면 아래 실행 기록을 확인하세요.</div></div>` : ""}
+      ${renderStageRecoveryPanel(s)}
       ${bodyHtml}
     </div>`;
 }
@@ -3122,13 +3419,18 @@ function renderStage4Body(st) {
       <div class="kpi"><div class="kpi-val" style="font-size:15px">${auditLabel}</div><div class="kpi-lbl">인용·수식 형식 (오류 ${audit ? (audit.critical_errors || []).length : 0}건${caAll ? ` · 일치율 ${caAll.alignment_rate_pct}% / 무관 ${caAll.unrelated_ratio_pct}%` : ""})</div></div>
     </div>
     ${holdBanner}
-    ${readiness && !readiness.ready ? `<div class="notice notice-warn mb8"><span>🔒 <strong>6단계 출판 게이트 대기</strong>: ${(readiness.blockers || []).map(b => esc(b)).join(" · ")}</span></div>` : ""}
-    ${sm.fallback_count ? `<div class="notice notice-warn mb8"><span>⛔ '틀 원고'는 AI 집필이 실패해 같은 문장이 반복되는 임시 원고입니다. 해당 단원을 열어 직접 고치거나, 설정에서 Ollama가 켜져 있는지 확인한 뒤 다시 집필하세요.</span></div>` : ""}
+    ${readiness && !readiness.ready ? `<div class="notice notice-warn mb8"><span>🔒 <strong>6단계 출판 게이트 대기</strong>: ${(readiness.blockers || []).map(b => esc(b)).join(" · ")}</span><div class="flex"><button class="btn-gold btn-sm" onclick="executeRecoveryAction('run_full_auto_heal')">🛠️ 미달 항목 자동 복구</button><button class="btn-sm" onclick="openRecoveryModal()">🔎 상세 대처</button></div></div>` : ""}
+    ${sm.fallback_count ? `<div class="notice notice-warn mb8"><span>⛔ '틀 원고'는 AI 집필이 실패해 같은 문장이 반복되는 임시 원고입니다.</span><button class="btn-gold btn-sm" onclick="executeRecoveryAction('retry_fallback_chapters')">🔄 틀 원고만 자동 재집필</button></div>` : ""}
     <div class="grid-2">
       <div class="card" style="background:var(--surface);margin-bottom:0">
         <div class="card-head" style="margin-bottom:8px">
           <h3 class="card-title">📑 원고 품질 점검표 (검토 완료 ${sm.reviewed_count || 0}/${doneCnt})</h3>
-          <button class="btn-sm" onclick="openProjectFolder('chapters')">📂 원고 폴더 열기</button>
+          <div class="flex" style="gap:6px;flex-wrap:wrap;">
+            ${doneCnt > 0 && (sm.reviewed_count || 0) < doneCnt ? `<button class="btn-green btn-sm" onclick="bulkChapterReview(true)">✅ 전체 일괄 검토 완료</button>` : ""}
+            ${(sm.reviewed_count || 0) > 0 ? `<button class="btn-sm" onclick="bulkChapterReview(false)">☐ 일괄 해제</button>` : ""}
+            <button class="btn-sm" onclick="executeRecoveryAction('repair_citations_and_reaudit')" title="미등록·무관 인용([SRC-NN])을 안전 정리하고 의미 재감사를 실행합니다">🧹 인용 자동 정리</button>
+            <button class="btn-sm" onclick="openProjectFolder('chapters')">📂 원고 폴더</button>
+          </div>
         </div>
         <div class="muted mb8">단원을 눌러 원고를 확인한 뒤 [검토 완료]를 체크하세요. 기준 미달 또는 미검토 단원은 6단계 출판이 차단됩니다.</div>
         <div style="max-height:460px;overflow:auto;">
@@ -3342,6 +3644,7 @@ function renderStage6Body(st) {
   const convList = Object.values(converted);
 
   return `
+    ${renderStage6GatePanel(CURRENT_DIAGNOSTICS)}
     <div class="card" style="background:linear-gradient(135deg,#07281e,#0f291e);border-color:rgba(234,179,8,.55)">
       <div class="card-head" style="margin-bottom:10px">
         <div>
@@ -3450,9 +3753,10 @@ async function runPublishDefaultTwo() {
     const res = await api(`/api/projects/${encodeURIComponent(CURRENT_PID)}/publish-default`, { method: "POST" });
     const d = res.default_outputs || {};
     toast(`✅ 기본 2종 생성 완료! DOCX(${d.master_docx?.size_kb || 0}KB) + 블로그 HTML(${d.blog_single_html?.size_kb || 0}KB)`, 5000);
-    await loadCurrentProject();
+    await refreshCurrentProject(false);
   } catch (e) {
-    toast("❌ 기본 출판 오류: " + e.message, 5000);
+    toast("❌ 기본 출판 오류: " + e.message, 6000);
+    await loadProjectDiagnostics(false);
   }
 }
 
@@ -3466,9 +3770,9 @@ async function runConvertOutput(targetFormat) {
     });
     const c = res.conversion || {};
     toast(`✅ 변환 완료: ${c.icon || ""} ${c.name_ko || targetFormat} (${c.size_kb || 0} KB)`, 5000);
-    await loadCurrentProject();
+    await refreshCurrentProject(false);
   } catch (e) {
-    toast("❌ 포맷 변환 오류: " + e.message, 5000);
+    toast("❌ 포맷 변환 오류: " + e.message, 6000);
   }
 }
 
@@ -3954,9 +4258,9 @@ async function runSingleStage(stageId) {
     lines.push("• 실행 직전 현재 결과를 자동으로 백업합니다 (⚙️ 설정 > 백업·되돌리기에서 복원 가능).");
   }
   const o = st.options || {};
-  if (stageId === "stage5_visuals_generate" && (o.use_nano_banana !== false || o.use_fal_ai)) {
+  if (stageId === "stage5_visuals_generate" && (o.use_nano_banana === true || o.use_fal_ai)) {
     if (!lines.length) lines.push(`5단계 그림 만들기를 시작합니다.`);
-    lines.push(`• 유료 이미지 AI(${o.use_fal_ai ? "fal.ai" : ""}${o.use_fal_ai && o.use_nano_banana !== false ? "·" : ""}${o.use_nano_banana !== false ? "나노바나나" : ""})를 최대 약 ${estimateAiImages(st)}회 호출할 수 있어 비용이 발생합니다. 이미 만든 그림은 체크포인트로 재사용될 수 있습니다.`);
+    lines.push(`• 유료 이미지 AI(${o.use_fal_ai ? "fal.ai" : ""}${o.use_fal_ai && o.use_nano_banana === true ? "·" : ""}${o.use_nano_banana === true ? "나노바나나" : ""})를 최대 약 ${estimateAiImages(st)}회 호출할 수 있어 비용이 발생합니다. 이미 만든 그림은 체크포인트로 재사용될 수 있습니다.`);
   }
   if (stageId === "stage1_topic_outline" && s.status === "DONE") lines.push("• 확정한 목차가 새 AI 초안으로 바뀔 수 있습니다.");
   if (stageId === "stage6_publish_report") lines.push("• PDF·Word·블로그 파일을 지금 원고·그림으로 다시 만듭니다.");
@@ -3978,8 +4282,11 @@ async function stopCurrentPipeline() {
   if (!CURRENT_STATE || CURRENT_STATE.overall_status !== "RUNNING") return toast("지금 실행 중인 작업이 없습니다.");
   try {
     const res = await api(`/api/projects/${CURRENT_PID}/stop`, { method: "POST" });
-    if (res.status === "NOT_RUNNING") {
-      toast("지금 실행 중인 작업이 없습니다. (서버를 다시 켠 뒤라면 상태 표시만 남아 있을 수 있습니다 — [이어하기]를 누르세요.)", 6000);
+    if (res.status === "ZOMBIE_UNLOCKED") {
+      toast("🔓 멈춰 있던 실행 잠금(좀비 RUNNING)을 자동 해제했습니다. 이제 [이어하기]로 바로 재개할 수 있습니다.", 6000);
+      await refreshCurrentProject(false);
+    } else if (res.status === "NOT_RUNNING") {
+      toast("지금 실행 중인 작업이 없습니다. 화면 상태를 새로고침합니다.", 4500);
       await refreshCurrentProject(false);
     } else {
       toast("⏹ 중단 요청을 보냈습니다. 지금 만들고 있는 단원·그림까지 저장한 뒤 멈춥니다.", 5000);

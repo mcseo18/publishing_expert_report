@@ -137,6 +137,10 @@ from notebooklm_connector import (  # noqa: E402
     list_notebooks,
     query_notebooklm,
 )
+from error_recovery import (  # noqa: E402
+    diagnose_project_issues,
+    execute_recovery_action,
+)
 from plan_chatbot import (  # noqa: E402
     apply_plan_to_project,
     create_project_from_plan,
@@ -2548,6 +2552,60 @@ def api_publish_readiness(project_id: str) -> dict[str, Any]:
         return evaluate_publish_readiness(project_id)
     except FileNotFoundError:
         raise HTTPException(status_code=404, detail="Project not found")
+
+
+class BulkChapterReviewRequest(BaseModel):
+    reviewed: bool = True
+    reviewer: str = "연구자 (일괄 검토)"
+    note: str = ""
+    include_fallback: bool = False
+
+
+@app.post("/api/projects/{project_id}/chapters/review-all")
+def api_set_all_chapters_review(project_id: str, req: BulkChapterReviewRequest) -> dict[str, Any]:
+    try:
+        action_id = "approve_all_chapters" if req.reviewed else "unapprove_all_chapters"
+        return execute_recovery_action(
+            project_id,
+            action_id,
+            params={
+                "reviewer": req.reviewer,
+                "note": req.note,
+                "include_fallback": req.include_fallback,
+            },
+        )
+    except FileNotFoundError:
+        raise HTTPException(status_code=404, detail="Project not found")
+    except Exception as exc:
+        raise HTTPException(status_code=400, detail=f"일괄 검토 처리 오류: {exc}")
+
+
+# ---------- 통합 오류 진단 & 원클릭 자동 복구 API ----------
+@app.get("/api/projects/{project_id}/diagnostics")
+def api_project_diagnostics(project_id: str) -> dict[str, Any]:
+    try:
+        return diagnose_project_issues(project_id)
+    except FileNotFoundError:
+        raise HTTPException(status_code=404, detail="Project not found")
+    except Exception as exc:
+        raise HTTPException(status_code=400, detail=f"프로젝트 오류 진단 실패: {exc}")
+
+
+class RecoveryActionRequest(BaseModel):
+    action_id: str
+    params: dict[str, Any] = Field(default_factory=dict)
+
+
+@app.post("/api/projects/{project_id}/recovery/execute")
+def api_execute_recovery_action(project_id: str, req: RecoveryActionRequest) -> dict[str, Any]:
+    try:
+        return execute_recovery_action(project_id, req.action_id, params=req.params)
+    except FileNotFoundError:
+        raise HTTPException(status_code=404, detail="Project not found")
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc))
+    except Exception as exc:
+        raise HTTPException(status_code=500, detail=f"복구 실행 중 오류({req.action_id}): {exc}")
 
 
 @app.get("/api/projects/{project_id}/visuals/qa")

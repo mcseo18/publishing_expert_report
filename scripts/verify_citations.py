@@ -390,6 +390,15 @@ def audit_file(
     }
 
 
+def _is_excluded_audit_path(p: Path, root: Path) -> bool:
+    """_history, _snapshots, _replaced 등 백업·내부 보관 하위 폴더는 감사 대상에서 제외한다."""
+    try:
+        rel_parts = p.relative_to(root).parts[:-1]
+    except ValueError:
+        rel_parts = p.parts[:-1]
+    return any(part.startswith(("_", ".")) for part in rel_parts)
+
+
 def verify_target(
     target: Path,
     strict: bool = False,
@@ -408,11 +417,17 @@ def verify_target(
                 for ch_dir in sorted(target.glob("*/chapters"))
                 if ch_dir.is_dir()
                 for p in ch_dir.rglob("*")
-                if p.is_file() and p.suffix.lower() in (".md", ".mdx", ".qmd")
+                if p.is_file()
+                and p.suffix.lower() in (".md", ".mdx", ".qmd")
+                and not _is_excluded_audit_path(p, ch_dir)
             )
         else:
             files = sorted(
-                p for p in target.rglob("*") if p.is_file() and p.suffix.lower() in (".md", ".mdx", ".qmd")
+                p
+                for p in target.rglob("*")
+                if p.is_file()
+                and p.suffix.lower() in (".md", ".mdx", ".qmd")
+                and not _is_excluded_audit_path(p, target)
             )
     else:
         files = []
