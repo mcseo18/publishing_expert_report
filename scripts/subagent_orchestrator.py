@@ -827,6 +827,7 @@ def create_project(
         "image_model_tier": "flash",  # flash(gemini-2.5-flash-image, $0.039) | pro(nano-banana-pro-preview, $0.134)
         "visual_budget_limit_usd": 0.0 if is_paper_track else 1.0,
         "visual_generation_mode": "cited_and_redrawn_only" if is_paper_track else "hybrid_cited",
+        "generate_visual_prompt_pack": False,
         "auto_harvest_oa_assets": True,
         "visuals_per_chapter": int(resolved_profile.get("visuals_per_chapter", 2 if is_paper_track else 4)),
         "enable_naver_blog": bool(resolved_profile.get("include_naver_hashtags", not is_paper_track)),
@@ -2348,6 +2349,63 @@ def _run_stage5_visuals_generate(state: dict[str, Any], cfg: PlatformConfig) -> 
         )
         return
     is_paper_track = (state.get("primary_output_type") == "paper")
+    vis_mode = str(opts.get("visual_generation_mode") or "hybrid_cited")
+    want_prompt_pack = bool(opts.get("generate_visual_prompt_pack", False)) or vis_mode in (
+        "prompt_pack_only",
+        "hybrid_with_prompt_pack",
+    )
+
+    # 옵션: [고품질 한·영 시각화 프롬프트 별도 문서 전용 모드] — 저품질 자동 도해 대신
+    # 그래픽·플로우차트·사실적 이미지·인포그래픽·정량 차트의 한·영 마스터 프롬프트 문서(DOCX/MD/JSON)를 생성하고
+    # 원고 본문의 정확한 절 위치에 [그림 번호·연동 코드·상세 설명]을 자동 삽입한다.
+    if vis_mode == "prompt_pack_only":
+        from visual_prompt_pack import build_project_visual_prompt_pack
+
+        _update_stage(
+            state,
+            sid,
+            cfg,
+            status="RUNNING",
+            progress=15,
+            started_at=utc_now_iso(),
+            current_action=f"고품질 한·영 시각화 프롬프트 별도 문서(DOCX/MD) 및 원고 위치 연동 생성 중 (단원당 {per_ch}종)...",
+            error="",
+        )
+        pp_res = build_project_visual_prompt_pack(
+            pid,
+            per_chapter_count=per_ch,
+            inject_manuscript_anchors=True,
+            update_visuals_plan=True,
+            use_llm_enhance=False,
+            cfg=cfg,
+        )
+        fresh = load_project_state(pid, cfg)
+        if fresh:
+            state.clear()
+            state.update(fresh)
+        _update_stage(
+            state,
+            sid,
+            cfg,
+            status="DONE",
+            progress=100,
+            finished_at=utc_now_iso(),
+            current_action=(
+                f"고품질 한·영 시각화 프롬프트 문서 {pp_res['total_prompts']}종 완료 "
+                f"({pp_res['docx_size_kb']} KB · 원고 앵커 {pp_res['anchor_sync']['anchors_inserted']}곳 연동)"
+            ),
+            metrics={
+                "mode": "prompt_pack_only",
+                "total_visuals": pp_res["total_prompts"],
+                "per_chapter": per_ch,
+                "anchors_inserted": pp_res["anchor_sync"]["anchors_inserted"],
+                "docx_url": pp_res["docx_url"],
+                "md_url": pp_res["md_url"],
+            },
+            artifacts=[pp_res["docx_path"], pp_res["md_path"]],
+        )
+        return
+
     use_fal = bool(opts.get("use_fal_ai", False)) and not is_paper_track
     fal_model = opts.get("fal_model") or "fal-ai/nano-banana"
     use_nb = bool(opts.get("use_nano_banana", False)) and not is_paper_track
@@ -2451,6 +2509,26 @@ def _run_stage5_visuals_generate(state: dict[str, Any], cfg: PlatformConfig) -> 
             metrics={"generated": res["total_generated"], "planned": res["total_planned"], "ai_images": res["ai_images_count"], "svg_charts": res["svg_charts_count"]},
         )
         return
+
+    # 하이브리드 + 프롬프트 문서 동시 생성 옵션이 켜져 있으면 한·영 프롬프트 마스터 문서도 함께 생성
+    if want_prompt_pack:
+        try:
+            from visual_prompt_pack import build_project_visual_prompt_pack
+
+            build_project_visual_prompt_pack(
+                pid,
+                per_chapter_count=per_ch,
+                inject_manuscript_anchors=True,
+                update_visuals_plan=False,
+                use_llm_enhance=False,
+                cfg=cfg,
+            )
+            fresh = load_project_state(pid, cfg)
+            if fresh:
+                state.clear()
+                state.update(fresh)
+        except Exception as exc:
+            append_event(pid, "visual-artist", sid, f"한·영 프롬프트 별도 문서 병행 생성 경고: {exc}", level="WARN", cfg=cfg)
 
     _update_stage(
         state,

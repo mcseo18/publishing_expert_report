@@ -1877,6 +1877,14 @@ tr.row-bad td { background: rgba(239,68,68,.06); }
         <div class="muted" style="font-size:11px">비용 절약을 위해 나중에 [🖼️ 이미지 스튜디오]에서 3~5장씩 끊어 만들거나 직접 업로드할 수 있습니다.</div>
       </div>
     </div>
+    <div class="mt8" style="background:#0b2538;border:1px solid rgba(56,189,248,.45);border-radius:8px;padding:9px 11px;">
+      <label class="label" style="color:#7dd3fc">📝 5단계 시각화 제작 방식 (고품질 한·영 프롬프트 별도 문서 옵션)</label>
+      <select id="npVisualMode">
+        <option value="prompt_pack_only">📝 고품질 한·영 프롬프트 별도 문서(DOCX·MD) 생성 + 원고 위치·번호 자동 연동 (0원 · 권장)</option>
+        <option value="hybrid_with_prompt_pack">🎨 0원 출처 차트/도해 + 한·영 프롬프트 문서 동시 생성</option>
+        <option value="hybrid_cited">⚙️ 기존 0원 하이브리드 자동 도판 생성</option>
+      </select>
+    </div>
     <label class="label mt8">핵심 키워드 (국문, 쉼표 구분)</label>
     <input id="npKwKo" placeholder="예: 겨울밀, 정밀농업, 드론 원격탐사, 시비처방, 품질평가" />
     <label class="label mt8">핵심 키워드 (영문, 쉼표 구분)</label>
@@ -3684,6 +3692,32 @@ function renderStage5Body(st) {
           <input type="number" id="s5PerCh" min="0" max="25" value="${opts.visuals_per_chapter !== undefined && opts.visuals_per_chapter !== null ? opts.visuals_per_chapter : 4}" />
         </div>
       </div>
+      <div class="mt8" style="background:rgba(11,37,56,.85);border:1px solid rgba(56,189,248,.45);border-radius:9px;padding:10px 12px;">
+        <div class="grid-2" style="align-items:center;gap:10px">
+          <div>
+            <label class="label" style="color:#7dd3fc">📝 5단계 시각화 제작 방식</label>
+            <select id="s5VisualMode">
+              <option value="prompt_pack_only" ${(opts.visual_generation_mode==="prompt_pack_only")?"selected":""}>📝 고품질 한·영 프롬프트 별도 문서(DOCX·MD) + 원고 위치 연동 (0원 · 최고 품질 권장)</option>
+              <option value="hybrid_with_prompt_pack" ${(opts.visual_generation_mode==="hybrid_with_prompt_pack")?"selected":""}>🎨 0원 출처 차트/도해 + 한·영 프롬프트 문서 동시 생성</option>
+              <option value="hybrid_cited" ${(!opts.visual_generation_mode || opts.visual_generation_mode==="hybrid_cited" || opts.visual_generation_mode==="cited_and_redrawn_only")?"selected":""}>⚙️ 기존 0원 하이브리드 자동 도판 생성</option>
+            </select>
+          </div>
+          <div class="flex" style="justify-content:flex-end;gap:6px;flex-wrap:wrap;">
+            <button class="btn-gold btn-sm" onclick="generateVisualPromptPack(true)">📝 한·영 프롬프트 문서 생성 + 원고 위치 연동</button>
+            <button class="btn-sm" onclick="loadVisualPromptPackPreview()">👁️ 프롬프트 목록 펼치기</button>
+          </div>
+        </div>
+        ${st.visual_prompt_pack ? `
+          <div class="flex mt8" style="justify-content:space-between;background:rgba(6,78,59,.28);border:1px solid rgba(52,211,153,.45);border-radius:8px;padding:8px 11px;">
+            <span style="font-size:12.5px;color:#d1fae5">✅ <strong>한·영 프롬프트 마스터 문서 생성 완료</strong> — 총 <strong>${esc(st.visual_prompt_pack.total_prompts || 0)}종</strong> · 원고 본문 앵커 <strong>${esc(st.visual_prompt_pack.anchors_inserted || 0)}곳</strong> 자동 연동</span>
+            <div class="flex">
+              <a class="badge b-done" style="padding:5px 10px" href="${esc(st.visual_prompt_pack.docx_url || '#')}" download>📝 프롬프트 DOCX (${esc(st.visual_prompt_pack.docx_size_kb || 0)} KB)</a>
+              <a class="badge b-run" style="padding:5px 10px" href="${esc(st.visual_prompt_pack.md_url || '#')}" target="_blank">📋 마크다운 열기</a>
+            </div>
+          </div>
+        ` : `<div class="muted mt8" style="font-size:11.5px">※ [📝 한·영 프롬프트 문서 생성 + 원고 위치 연동]을 누르면 사실적 이미지·인포그래픽·플로우차트·과학 그래픽·정량 차트별 치밀한 한글/영문 프롬프트 별책(DOCX·MD)을 만들고 본문 절 위치에 그림 번호·연동 코드를 자동 삽입합니다.</div>`}
+        <div id="s5PromptPackBox" class="mt8"></div>
+      </div>
       <div class="muted mt8">※ 비용 보호 기본값: <strong>OA 원문 표 재작성(300 DPI) · CC-BY 직접 인용 · SVG 구조도(0원)</strong>가 우선 적용됩니다. 유료 AI 실사가 필요하면 [🖼️ 이미지 스튜디오]에서 저비용 Flash($0.039)로 선택 생성하세요.</div>
     </div>
 
@@ -3733,20 +3767,35 @@ function renderStage5Body(st) {
       <div class="grid-2">
         ${items.slice(0, 60).map(it => {
           const isBound = Number(boundMap[it.chapter_id] || 0) > 0;
-          const isUngen = String(it.status || "").toUpperCase() === "UNGENERATED" || it.exclude_from_publish || it.engine === "svg_blueprint_ready";
+          const isPromptReady = String(it.status || "").toUpperCase() === "PROMPT_READY";
+          const isUngen = !isPromptReady && (String(it.status || "").toUpperCase() === "UNGENERATED" || it.exclude_from_publish || it.engine === "svg_blueprint_ready");
           const imgUrl = it.png_url || it.rel_url || it.web_url || "";
           return `
-          <div class="vis-card" style="${isUngen ? 'border-color:rgba(245,158,11,.55);opacity:.85' : ''}">
+          <div class="vis-card" style="${isUngen ? 'border-color:rgba(245,158,11,.55);opacity:.85' : (isPromptReady ? 'border-color:rgba(56,189,248,.55)' : '')}">
             <div class="flex" style="justify-content:space-between">
-              <strong style="font-size:13px">${esc(it.title_ko)}</strong>
+              <strong style="font-size:13px">${it.prompt_id ? `<span class="badge b-run" style="margin-right:4px">${esc(it.prompt_id)}</span>` : ""}${esc(it.title_ko)}</strong>
               <div class="flex">
-                <span class="badge ${isUngen ? 'b-err' : (isBound?'b-done':'b-wait')}">${isUngen ? '⛔ 미생성(출판 제외)' : (isBound?'🔗 문서결합됨':'미결합')}</span>
-                <span class="badge b-run">${esc(it.engine)}</span>
+                <span class="badge ${isPromptReady ? 'b-done' : (isUngen ? 'b-err' : (isBound?'b-done':'b-wait'))}">${isPromptReady ? '📝 프롬프트 연동됨' : (isUngen ? '⛔ 미생성(출판 제외)' : (isBound?'🔗 문서결합됨':'미결합'))}</span>
+                <span class="badge b-run">${esc(it.category_name_ko || it.engine)}</span>
               </div>
             </div>
-            ${it.target_section ? `<div class="muted" style="font-size:11.5px">📍 문서 결합 절: <strong>${esc(it.target_section)}</strong></div>` : ""}
+            ${it.target_section ? `<div class="muted" style="font-size:11.5px">📍 원고 삽입 위치: <strong>${esc(it.target_section)}</strong></div>` : ""}
             ${it.data_source ? `<div class="muted" style="font-size:11.5px">📚 자료 출처: ${esc(it.data_source)}</div>` : `<div style="font-size:11.5px;color:#fca5a5">⚠ 자료 출처(data_source) 미기재</div>`}
-            ${!isUngen && imgUrl ? `<img id="visImg_${esc(it.figure_id)}" src="${esc(imgUrl)}?v=${encodeURIComponent(it.regenerated_at || (vis.plan && vis.plan.generated_at) || "")}" alt="${esc(it.title_ko)}" loading="lazy" />` : `<div style="padding:26px;text-align:center;background:#0f172a;border:1px dashed #f59e0b;border-radius:8px;color:#fcd34d;font-size:12.5px">⛔ 미생성 도판 — 출판물에서 자동 제외됩니다.<br><small>${esc(it.note || "API 키 설정 후 아래 [이 그림만 다시 만들기]로 생성하세요.")}</small></div>`}
+            ${isPromptReady ? `
+              <div style="padding:10px 12px;background:#0a1929;border:1px solid rgba(56,189,248,.4);border-radius:8px;font-size:12px;">
+                <div class="flex" style="justify-content:space-between;margin-bottom:6px">
+                  <span style="color:#7dd3fc;font-weight:700">📝 고품질 한·영 마스터 프롬프트 준비됨 (${esc(it.aspect_ratio || "16:9")})</span>
+                  <div class="flex">
+                    <button class="btn-sm" onclick="copyTextQuick('${encodeURIComponent(it.prompt_ko || "")}', '한글 프롬프트')">📋 한글 복사</button>
+                    <button class="btn-primary btn-sm" onclick="copyTextQuick('${encodeURIComponent(it.prompt_en || "")}', '영문 프롬프트')">📋 영문 복사</button>
+                  </div>
+                </div>
+                <details style="margin-top:4px"><summary style="cursor:pointer;color:#cbd5e1">🇰🇷 한글 / 🇺🇸 영문 프롬프트 펼치기</summary>
+                  <pre style="white-space:pre-wrap;font-size:11px;background:#020617;padding:8px;border-radius:6px;margin-top:6px;color:#e2e8f0;max-height:200px;overflow:auto">${esc(it.prompt_ko || "")}</pre>
+                  <pre style="white-space:pre-wrap;font-size:11px;background:#020617;padding:8px;border-radius:6px;margin-top:6px;color:#bbf7d0;max-height:180px;overflow:auto">${esc(it.prompt_en || "")}</pre>
+                </details>
+              </div>
+            ` : (!isUngen && imgUrl ? `<img id="visImg_${esc(it.figure_id)}" src="${esc(imgUrl)}?v=${encodeURIComponent(it.regenerated_at || (vis.plan && vis.plan.generated_at) || "")}" alt="${esc(it.title_ko)}" loading="lazy" />` : `<div style="padding:26px;text-align:center;background:#0f172a;border:1px dashed #f59e0b;border-radius:8px;color:#fcd34d;font-size:12.5px">⛔ 미생성 도판 — 출판물에서 자동 제외됩니다.<br><small>${esc(it.note || "API 키 설정 후 아래 [이 그림만 다시 만들기]로 생성하세요.")}</small></div>`)}
             <div class="vis-desc">${esc(it.narrative_ko)}</div>
             ${it.prompt ? `
               <details style="font-size:11.5px;background:#0a1120;border:1px solid var(--border);border-radius:6px;padding:6px 9px;">
@@ -3847,6 +3896,20 @@ function renderStage6Body(st) {
           ` : `<div class="muted">아직 생성되지 않았습니다. 위 [⚡ 기본 2종 지금 생성/갱신] 또는 6단계 실행을 눌러주세요.</div>`}
         </div>
       </div>
+      ${st.visual_prompt_pack || outputs.visual_prompts_docx ? `
+        <div class="card mt12" style="background:rgba(11,37,56,.65);border-color:rgba(56,189,248,.5);margin-bottom:0">
+          <div class="flex" style="justify-content:space-between;gap:8px;flex-wrap:wrap">
+            <div>
+              <div style="font-size:12px;color:#7dd3fc;font-weight:800">연동 별책 · 고품질 한·영 시각화 프롬프트 마스터 문서</div>
+              <div style="font-size:13.5px;font-weight:700;margin-top:2px">원고 각 절의 [그림 번호 · 연동 코드(VP-CHNN-MM)]와 1:1 매핑된 한글·영문 프롬프트 문서 (${esc(st.visual_prompt_pack?.total_prompts || "")}종)</div>
+            </div>
+            <div class="flex">
+              <a class="badge b-done" style="padding:8px 13px;font-size:12.5px" href="${esc(st.visual_prompt_pack?.docx_url || outputs.visual_prompts_docx || '#')}" download>📝 프롬프트 DOCX 다운로드</a>
+              ${(st.visual_prompt_pack?.md_url || outputs.visual_prompts_md) ? `<a class="badge b-run" style="padding:8px 13px;font-size:12.5px" href="${esc(st.visual_prompt_pack?.md_url || outputs.visual_prompts_md)}" target="_blank">📋 마크다운 열기</a>` : ""}
+            </div>
+          </div>
+        </div>
+      ` : ""}
     </div>
 
     <div class="card" style="background:var(--surface);border-color:rgba(56,189,248,.38)">
@@ -4545,13 +4608,81 @@ async function restoreChapterVersion(cid, name) {
   } catch (e) { toast("❌ " + e.message); }
 }
 
+function copyTextQuick(encodedTxt, label = "텍스트") {
+  const txt = decodeURIComponent(encodedTxt || "");
+  if (!txt) return toast("복사할 내용이 없습니다.");
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(txt).then(() => toast(`📋 ${label}를 클립보드에 복사했습니다.`)).catch(() => toast("⚠️ 브라우저 클립보드 권한을 확인하세요."));
+  } else {
+    toast("⚠️ 이 브라우저에서는 자동 복사가 제한됩니다. 펼치기 영역에서 직접 복사해 주세요.");
+  }
+}
+
+async function generateVisualPromptPack(injectAnchors = true) {
+  if (!CURRENT_PID) return toast("먼저 프로젝트를 선택해 주세요.");
+  const perRaw = parseInt(document.getElementById("s5PerCh")?.value, 10);
+  const perCh = Math.max(1, Math.min(12, isNaN(perRaw) ? 4 : perRaw));
+  toast(`📝 전 단원 고품질 한·영 시각화 프롬프트 문서(단원당 ${perCh}종)와 원고 앵커를 생성 중입니다...`, 6000);
+  try {
+    const res = await api(`/api/projects/${encodeURIComponent(CURRENT_PID)}/visuals/prompt-pack`, {
+      method: "POST",
+      body: JSON.stringify({
+        per_chapter_count: perCh,
+        inject_manuscript_anchors: !!injectAnchors,
+        update_visuals_plan: true,
+        use_llm_enhance: false,
+      }),
+    });
+    toast(`✅ 한·영 프롬프트 문서 ${res.total_prompts}종 완료 (${res.docx_size_kb} KB · 원고 앵커 ${res.anchor_sync?.anchors_inserted || 0}곳 연동)`, 5500);
+    await refreshCurrentProject(false);
+    await loadVisualPromptPackPreview();
+  } catch (e) {
+    toast("❌ 프롬프트 문서 생성 실패: " + e.message, 6000);
+  }
+}
+
+async function loadVisualPromptPackPreview() {
+  const box = document.getElementById("s5PromptPackBox");
+  if (!box || !CURRENT_PID) return;
+  box.innerHTML = `<div class="muted" style="font-size:12px">불러오는 중...</div>`;
+  try {
+    const res = await api(`/api/projects/${encodeURIComponent(CURRENT_PID)}/visuals/prompt-pack`);
+    if (!res.exists || !(res.items || []).length) {
+      box.innerHTML = `<div class="muted" style="font-size:12px">아직 생성된 프롬프트 문서가 없습니다. 위 [📝 한·영 프롬프트 문서 생성 + 원고 위치 연동] 버튼을 눌러 주세요.</div>`;
+      return;
+    }
+    const items = res.items || [];
+    box.innerHTML = `
+      <div style="max-height:360px;overflow:auto;border:1px solid var(--border);border-radius:8px;padding:8px;background:#07111e;">
+        <div class="muted mb8" style="font-size:12px">총 <strong>${items.length}종</strong> 연동 프롬프트 (DOCX/MD 동일 수록 · 클릭 한 번으로 영문/한글 복사)</div>
+        ${items.slice(0, 30).map(it => `
+          <div style="border-top:1px solid var(--border);padding:8px 4px;">
+            <div class="flex" style="justify-content:space-between;gap:6px;flex-wrap:wrap">
+              <div><span class="badge b-run">${esc(it.prompt_id)}</span> <strong>${esc(it.title_ko)}</strong> <span class="muted">(${esc(it.category_name_ko)} · ${esc(it.chapter_id)} ${esc(it.target_section)})</span></div>
+              <div class="flex">
+                <button class="btn-sm" onclick="copyTextQuick('${encodeURIComponent(it.prompt_ko || "")}', '${esc(it.prompt_id)} 한글 프롬프트')">📋 한글 복사</button>
+                <button class="btn-primary btn-sm" onclick="copyTextQuick('${encodeURIComponent(it.prompt_en || "")}', '${esc(it.prompt_id)} 영문 프롬프트')">📋 영문 복사</button>
+              </div>
+            </div>
+            <div class="muted" style="font-size:11.5px;margin-top:3px">${esc(it.detailed_description_ko || "")}</div>
+          </div>
+        `).join("")}
+      </div>`;
+  } catch (e) {
+    box.innerHTML = `<div style="color:#fca5a5;font-size:12px">불러오기 실패: ${esc(e.message)}</div>`;
+  }
+}
+
 // --- 5단계: 설정 저장(실행과 분리) · 그림 한 장 다시 만들기(F2) ---
 async function saveStage5VisualOptions() {
   const parsedPer = parseInt(document.getElementById("s5PerCh").value, 10);
+  const vMode = document.getElementById("s5VisualMode")?.value || "hybrid_cited";
   const payload = {
     use_fal_ai: document.getElementById("s5UseFal").checked,
     fal_model: document.getElementById("s5FalModel").value,
     use_nano_banana: document.getElementById("s5UseNb").checked,
+    visual_generation_mode: vMode,
+    generate_visual_prompt_pack: ["prompt_pack_only", "hybrid_with_prompt_pack"].includes(vMode),
     visuals_per_chapter: Math.max(0, Math.min(25, isNaN(parsedPer) ? 4 : parsedPer)),
   };
   try {
@@ -5303,6 +5434,8 @@ async function submitNewProject() {
         keywords_en: document.getElementById("npKwEn").value.split(",").map(x=>x.trim()).filter(Boolean),
         use_gemini_outline: document.getElementById("npUseGemini").checked,
         use_fal_ai: document.getElementById("npUseFal").checked,
+        visual_generation_mode: document.getElementById("npVisualMode")?.value || "prompt_pack_only",
+        generate_visual_prompt_pack: ["prompt_pack_only", "hybrid_with_prompt_pack"].includes(document.getElementById("npVisualMode")?.value || "prompt_pack_only"),
         auto_start: document.getElementById("npAutoStart").checked,
       }),
     });

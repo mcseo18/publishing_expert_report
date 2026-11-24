@@ -212,7 +212,8 @@ class CreateProjectRequest(BaseModel):
     allow_auto_paid_ai: bool = False
     image_model_tier: str = "flash"  # flash | pro
     visual_budget_limit_usd: float = Field(default=1.0, ge=0.0, le=500.0)
-    visual_generation_mode: str = "hybrid_cited"  # cited_and_redrawn_only | hybrid_cited | paid_ai_batch
+    visual_generation_mode: str = "hybrid_cited"  # prompt_pack_only | hybrid_with_prompt_pack | cited_and_redrawn_only | hybrid_cited | paid_ai_batch
+    generate_visual_prompt_pack: bool = False
     auto_harvest_oa_assets: bool = True
     visuals_per_chapter: int = Field(default=4, ge=0, le=25)
     gemma_model: str = "gemma4:26b"
@@ -231,6 +232,8 @@ class UpdateOptionsRequest(BaseModel):
     use_fal_ai: bool | None = None
     fal_model: str | None = None
     use_nano_banana: bool | None = None
+    visual_generation_mode: str | None = None
+    generate_visual_prompt_pack: bool | None = None
     visuals_per_chapter: int | None = None
     gemma_model: str | None = None
     kg_model: str | None = None
@@ -636,7 +639,15 @@ def api_create_project(req: CreateProjectRequest) -> dict[str, Any]:
             "allow_auto_paid_ai": req.allow_auto_paid_ai if req.primary_output_type != "paper" else False,
             "image_model_tier": req.image_model_tier,
             "visual_budget_limit_usd": 0.0 if req.primary_output_type == "paper" else req.visual_budget_limit_usd,
-            "visual_generation_mode": "cited_and_redrawn_only" if req.primary_output_type == "paper" else req.visual_generation_mode,
+            "visual_generation_mode": (
+                req.visual_generation_mode
+                if req.visual_generation_mode in ("prompt_pack_only", "hybrid_with_prompt_pack")
+                else ("cited_and_redrawn_only" if req.primary_output_type == "paper" else req.visual_generation_mode)
+            ),
+            "generate_visual_prompt_pack": bool(
+                req.generate_visual_prompt_pack
+                or req.visual_generation_mode in ("prompt_pack_only", "hybrid_with_prompt_pack")
+            ),
             "auto_harvest_oa_assets": req.auto_harvest_oa_assets,
             "visuals_per_chapter": req.visuals_per_chapter,
             "gemma_model": req.gemma_model,
@@ -2616,6 +2627,42 @@ def api_visuals_qa(project_id: str, chapter_id: str | None = None) -> dict[str, 
         return audit_visual_assets(project_id, chapter_id=chapter_id or None)
     except FileNotFoundError:
         raise HTTPException(status_code=404, detail="Project not found")
+
+
+class VisualPromptPackRequest(BaseModel):
+    per_chapter_count: int | None = Field(default=None, ge=1, le=12)
+    inject_manuscript_anchors: bool = True
+    update_visuals_plan: bool = True
+    use_llm_enhance: bool = False
+
+
+@app.get("/api/projects/{project_id}/visuals/prompt-pack")
+def api_get_visual_prompt_pack(project_id: str) -> dict[str, Any]:
+    from visual_prompt_pack import load_project_visual_prompt_pack
+
+    try:
+        return load_project_visual_prompt_pack(project_id)
+    except FileNotFoundError:
+        raise HTTPException(status_code=404, detail="Project not found")
+
+
+@app.post("/api/projects/{project_id}/visuals/prompt-pack")
+def api_build_visual_prompt_pack(project_id: str, req: VisualPromptPackRequest | None = None) -> dict[str, Any]:
+    from visual_prompt_pack import build_project_visual_prompt_pack
+
+    r = req or VisualPromptPackRequest()
+    try:
+        return build_project_visual_prompt_pack(
+            project_id,
+            per_chapter_count=r.per_chapter_count,
+            inject_manuscript_anchors=r.inject_manuscript_anchors,
+            update_visuals_plan=r.update_visuals_plan,
+            use_llm_enhance=r.use_llm_enhance,
+        )
+    except FileNotFoundError:
+        raise HTTPException(status_code=404, detail="Project not found")
+    except Exception as exc:
+        raise HTTPException(status_code=400, detail=f"고품질 한·영 프롬프트 문서 생성 오류: {exc}")
 
 
 class ConvertOutputRequest(BaseModel):

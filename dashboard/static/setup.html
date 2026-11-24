@@ -405,7 +405,24 @@ input[type="checkbox"] { width: auto; accent-color: var(--accent); transform: sc
       </div>
     </div>
 
-    <div class="grid-3" style="margin-top:14px">
+    <!-- 시각화 전략 선택: 고품질 한·영 프롬프트 별도 문서 + 원고 위치 연동 옵션 -->
+    <div style="margin-top:14px;padding:13px 15px;border-radius:11px;background:linear-gradient(135deg,#0b2538,#102a22);border:1.5px solid rgba(56,189,248,.55)">
+      <div class="grid-2" style="align-items:center;gap:12px">
+        <div>
+          <label class="label" style="color:#7dd3fc;font-size:13.5px;margin-bottom:4px">📝 5단계 시각화 제작 방식 (고품질 한·영 프롬프트 문서 우선 선택 가능)</label>
+          <select id="fVisualMode" onchange="updateSummaryBanner()">
+            <option value="prompt_pack_only">📝 고품질 한·영 프롬프트 별도 문서(DOCX·MD) 생성 + 원고 위치·번호 자동 연동 (0원 · 최고 품질 권장)</option>
+            <option value="hybrid_with_prompt_pack">🎨 0원 출처 차트/도해 생성 + 한·영 프롬프트 별도 문서 동시 생성</option>
+            <option value="hybrid_cited">⚙️ 기존 0원 하이브리드 자동 도판 생성 (차트·SVG·출처 재작성)</option>
+          </select>
+        </div>
+        <div class="muted" style="font-size:12px;line-height:1.55">
+          <strong>프롬프트 별도 문서 모드란?</strong> 저품질 자동 도해 대신 <strong>사실적 이미지·인포그래픽·플로우차트·과학 그래픽·정량 차트</strong>별 치밀한 한글/영문 마스터 프롬프트와 네거티브 프롬프트·Mermaid 코드를 별책 DOCX/MD로 생성하고, 원고 본문의 정확한 절 위치에 <code>[그림 번호 · 연동 코드 · 상세 설명]</code>을 자동 연동합니다.
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-3" style="margin-top:12px">
       <label class="check-box-card"><input type="checkbox" id="fAutoHarvest" checked /> <span><strong>📚 OA 원문 표·CC-BY 그림 자동 추출 (0원)</strong><br><small class="muted">Europe PMC JATS XML · PDF Docling 표 추출 후 그래프 재작성</small></span></label>
       <label class="check-box-card"><input type="checkbox" id="fUseNb" /> <span><strong>🎨 5단계 유료 Gemini 이미지 AI 허용</strong><br><small class="muted" id="fUseNbHint">기본 OFF (0원 출처·차트·SVG 우선 / 논문 모드 자동 비활성)</small></span></label>
       <div>
@@ -788,10 +805,16 @@ function updateSummaryBanner() {
   const pg = parseInt(document.getElementById("fPages").value, 10) || 300;
   const vis = Math.max(0, Math.min(25, parseInt(document.getElementById("fVisPerCh").value, 10) || 0));
   const trim = document.getElementById("fTrim").value;
+  const vMode = document.getElementById("fVisualMode")?.value || "hybrid_cited";
+  const vModeLabel = {
+    prompt_pack_only: "📝 한·영 프롬프트 별도 문서+원고 연동",
+    hybrid_with_prompt_pack: "🎨 도판+한·영 프롬프트 동시 생성",
+    hybrid_cited: "⚙️ 0원 자동 도판",
+  }[vMode] || vMode;
   const topic = document.getElementById("fTopicKo").value.trim();
   const trimLabel = { b5: "B5 교재", shinkuk: "신국판", a4: "A4", web_html: "웹·블로그 HTML" }[trim] || trim;
   document.getElementById("finalSummaryText").textContent =
-    `${spec.icon} ${spec.name_ko}${topic ? ` · 《${topic}》` : ""} — ${ch}${spec.defaults?.unit_label || "장"} · ${pg}쪽 · ${trimLabel} · 시각화 장당 ${vis}종 (총 ${ch * vis}종)`;
+    `${spec.icon} ${spec.name_ko}${topic ? ` · 《${topic}》` : ""} — ${ch}${spec.defaults?.unit_label || "장"} · ${pg}쪽 · ${trimLabel} · 시각화 장당 ${vis}종 (${vModeLabel})`;
 }
 
 async function submitSetupProject() {
@@ -852,7 +875,12 @@ async function submitSetupProject() {
         allow_auto_paid_ai: false,
         image_model_tier: document.getElementById("fImgTier")?.value || "flash",
         visual_budget_limit_usd: SELECTED_TYPE === "paper" ? 0.0 : 1.0,
-        visual_generation_mode: SELECTED_TYPE === "paper" ? "cited_and_redrawn_only" : "hybrid_cited",
+        visual_generation_mode: (function() {
+          const vm = document.getElementById("fVisualMode")?.value || "hybrid_cited";
+          if (vm === "prompt_pack_only" || vm === "hybrid_with_prompt_pack") return vm;
+          return SELECTED_TYPE === "paper" ? "cited_and_redrawn_only" : "hybrid_cited";
+        })(),
+        generate_visual_prompt_pack: ["prompt_pack_only", "hybrid_with_prompt_pack"].includes(document.getElementById("fVisualMode")?.value || ""),
         auto_harvest_oa_assets: !!document.getElementById("fAutoHarvest")?.checked,
         enable_naver_blog: profile.include_naver_hashtags !== false,
         enable_myths: profile.include_myths !== false,

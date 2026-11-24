@@ -1107,6 +1107,28 @@ def audit_visual_assets(
             continue
 
         active_total += 1
+        is_prompt_ready = str(it.get("status", "")).upper() == "PROMPT_READY"
+        if is_prompt_ready:
+            if not src_str:
+                issues.append("자료 출처(data_source) 미기재")
+            else:
+                with_source += 1
+                publishable += 1
+            issues_total += len(issues)
+            audited.append(
+                {
+                    "figure_id": it.get("figure_id", ""),
+                    "chapter_id": it.get("chapter_id", ""),
+                    "title_ko": title,
+                    "status": "PROMPT_READY",
+                    "engine": it.get("engine", "Bilingual Prompt Pack (0원)"),
+                    "has_source": bool(src_str),
+                    "publishable": bool(src_str),
+                    "excluded": False,
+                    "issues": issues,
+                }
+            )
+            continue
         if is_bad:
             issues.append("빈 틀 또는 가짜 수치 차트(출판 제외 대상)")
             has_fake = True
