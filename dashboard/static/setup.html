@@ -433,7 +433,8 @@ input[type="checkbox"] { width: auto; accent-color: var(--accent); transform: sc
         </select>
       </div>
     </div>
-    <div class="flex" style="margin-top:10px;gap:14px">
+    <div class="flex" style="margin-top:10px;gap:14px;flex-wrap:wrap">
+      <label class="check-box-card"><input type="checkbox" id="fUseSmcGraphrag" checked /> <span><strong>🧠 C:\SMC_GRAPHRAG 로컬 DB 자동 참고 (기본 ON)</strong><br><small class="muted">48만+ 지식그래프·통합RAG 선조회 및 집필 프롬프트 자동 주입</small></span></label>
       <label class="check-box-card"><input type="checkbox" id="fUseGemini" checked /> <span><strong>1단계 Gemini API 목차 설계</strong> (실패 시 로컬 Gemma 4)</span></label>
       <label class="check-box-card"><input type="checkbox" id="fUseFal" /> <span><strong>5단계 fal.ai 이미지 AI 사용</strong> (기본 OFF)</span></label>
       <label class="check-box-card"><input type="checkbox" id="fAutoStart" checked /> <span><strong>생성 즉시 1단계 목차 초안 작성 시작</strong></span></label>
@@ -882,6 +883,7 @@ async function submitSetupProject() {
         })(),
         generate_visual_prompt_pack: ["prompt_pack_only", "hybrid_with_prompt_pack"].includes(document.getElementById("fVisualMode")?.value || ""),
         auto_harvest_oa_assets: !!document.getElementById("fAutoHarvest")?.checked,
+        use_smc_graphrag: document.getElementById("fUseSmcGraphrag") ? !!document.getElementById("fUseSmcGraphrag").checked : true,
         enable_naver_blog: profile.include_naver_hashtags !== false,
         enable_myths: profile.include_myths !== false,
         enable_linked_quiz: profile.include_exercises !== false,

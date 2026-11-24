@@ -369,6 +369,7 @@ def fetch_and_clean_url(
     return {
         "status": "OK",
         "source_id": source_id,
+        "source": source_item,
         "parser_engine": parser_engine,
         "title": title,
         "raw_path": source_item["raw_path"],

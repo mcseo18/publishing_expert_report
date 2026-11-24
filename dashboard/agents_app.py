@@ -215,6 +215,7 @@ class CreateProjectRequest(BaseModel):
     visual_generation_mode: str = "hybrid_cited"  # prompt_pack_only | hybrid_with_prompt_pack | cited_and_redrawn_only | hybrid_cited | paid_ai_batch
     generate_visual_prompt_pack: bool = False
     auto_harvest_oa_assets: bool = True
+    use_smc_graphrag: bool = True
     visuals_per_chapter: int = Field(default=4, ge=0, le=25)
     gemma_model: str = "gemma4:26b"
     use_claude_review: bool = False
@@ -234,6 +235,7 @@ class UpdateOptionsRequest(BaseModel):
     use_nano_banana: bool | None = None
     visual_generation_mode: str | None = None
     generate_visual_prompt_pack: bool | None = None
+    use_smc_graphrag: bool | None = None
     visuals_per_chapter: int | None = None
     gemma_model: str | None = None
     kg_model: str | None = None
@@ -649,6 +651,7 @@ def api_create_project(req: CreateProjectRequest) -> dict[str, Any]:
                 or req.visual_generation_mode in ("prompt_pack_only", "hybrid_with_prompt_pack")
             ),
             "auto_harvest_oa_assets": req.auto_harvest_oa_assets,
+            "use_smc_graphrag": req.use_smc_graphrag,
             "visuals_per_chapter": req.visuals_per_chapter,
             "gemma_model": req.gemma_model,
             "kg_model": "gemma4:latest",

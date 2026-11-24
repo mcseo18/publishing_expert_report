@@ -709,6 +709,7 @@ def ingest_paper_record(
     return {
         "status": "OK",
         "source_id": source_id,
+        "source": source_item,
         "title": source_item["title"],
         "journal": journal,
         "year": year,

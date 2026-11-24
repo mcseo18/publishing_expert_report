@@ -769,14 +769,28 @@ def search_unified_smc_rag(
             docs_out.append(dict(r))
     conn.close()
 
-    # 기존 C:\SMC_GRAPHRAG 카탈로그 엔티티 검색 병합
+    # 기존 C:\SMC_GRAPHRAG 카탈로그 엔티티·관계 검색 병합 (12개 그래프, 48만+ 노드 / 96만+ 관계)
     kg_nodes: list[dict[str, Any]] = []
+    kg_relations: list[dict[str, Any]] = []
     try:
         from smc_kg_bridge import _query_smc_catalog
 
         cat_res = _query_smc_catalog(toks or [q], cfg, limit_per_term=5)
+        seen_ents: set[str] = set()
+        seen_rels: set[tuple[str, str, str]] = set()
         for hits in cat_res.values():
-            kg_nodes.extend(hits)
+            if not isinstance(hits, dict):
+                continue
+            for ent in hits.get("matched_entities") or []:
+                ename = str(ent.get("name") or "")
+                if ename and ename not in seen_ents:
+                    seen_ents.add(ename)
+                    kg_nodes.append(ent)
+            for rel in hits.get("matched_relations") or []:
+                rk = (str(rel.get("source") or ""), str(rel.get("relation") or ""), str(rel.get("target") or ""))
+                if rk[0] and rk[2] and rk not in seen_rels:
+                    seen_rels.add(rk)
+                    kg_relations.append(rel)
     except Exception:
         pass
 
@@ -787,7 +801,13 @@ def search_unified_smc_rag(
         "documents": docs_out,
         "kg_nodes_count": len(kg_nodes),
         "kg_nodes": kg_nodes[:20],
+        "kg_relations_count": len(kg_relations),
+        "kg_relations": kg_relations[:24],
     }
+
+
+# 하위 호환 별칭 (구 코드에서 search_unified_rag 이름으로 호출하는 경우 대응)
+search_unified_rag = search_unified_smc_rag
 
 
 def get_unified_rag_status(cfg: PlatformConfig | None = None) -> dict[str, Any]:

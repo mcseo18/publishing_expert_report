@@ -378,22 +378,30 @@ def upsert_evidence_packet(
     kg_store_root: str,
     schema_path: Path,
 ) -> dict[str, Any]:
-    """기존 근거 패킷에 source_item을 추가/갱신하고 스키마 검증 후 저장한다."""
-    now = utc_now_iso()
-    if packet_path.is_file():
-        packet = json.loads(packet_path.read_text(encoding="utf-8"))
-    else:
-        packet = {
-            "packet_id": packet_id,
-            "topic": topic,
-            "created_at": now,
-            "updated_at": now,
-            "storage_root": storage_root,
-            "kg_store_root": kg_store_root,
-            "sources": [],
-        }
+    """기존 근거 패킷에 source_item을 추가/갱신하고 스키마 검증 후 원자적으로 저장한다."""
+    import os
+    import time
 
+    now = utc_now_iso()
+    packet: dict[str, Any] | None = None
+    if packet_path.is_file():
+        try:
+            loaded = json.loads(packet_path.read_text(encoding="utf-8"))
+            if isinstance(loaded, dict):
+                packet = loaded
+        except Exception:
+            packet = None
+    if packet is None:
+        packet = {}
+
+    # 필수 스키마 필드 자동 보정 (과거/단원 병합 패킷에서 created_at 등이 누락된 경우 스키마 오류 원천 차단)
+    packet.setdefault("packet_id", packet_id)
+    packet.setdefault("topic", topic)
+    if not packet.get("created_at"):
+        packet["created_at"] = packet.get("updated_at") or now
     packet["updated_at"] = now
+    packet.setdefault("storage_root", storage_root)
+    packet.setdefault("kg_store_root", kg_store_root)
     if topic:
         packet["topic"] = topic
     sources: list[dict[str, Any]] = packet.setdefault("sources", [])
@@ -411,5 +419,16 @@ def upsert_evidence_packet(
         raise ValueError("Evidence packet schema validation failed:\n" + "\n".join(errors))
 
     packet_path.parent.mkdir(parents=True, exist_ok=True)
-    packet_path.write_text(json.dumps(packet, ensure_ascii=False, indent=2), encoding="utf-8")
+    payload = json.dumps(packet, ensure_ascii=False, indent=2)
+    tmp_path = packet_path.with_suffix(".json.tmp")
+    tmp_path.write_text(payload, encoding="utf-8")
+    for attempt in range(5):
+        try:
+            os.replace(tmp_path, packet_path)
+            break
+        except PermissionError:
+            if attempt == 4:
+                packet_path.write_text(payload, encoding="utf-8")
+                break
+            time.sleep(0.15 * (attempt + 1))
     return packet

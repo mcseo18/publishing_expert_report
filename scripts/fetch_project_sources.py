@@ -200,12 +200,19 @@ DOMAIN_PRESETS: dict[str, dict[str, Any]] = {
         ],
     },
     "wheat": {
-        # 주제(topic)에 '밀'/'wheat'가 단어로 들어 있으면 이 프리셋을 우선 선택한다
-        "topic_patterns": [r"(?<![가-힣])밀(?![가-힣])", r"밀의", r"wheat", r"소맥", r"맥류"],
+        # 주제(topic)에 독립 작물 '밀'/'wheat'가 있을 때만 선택 ('메밀'/'buckwheat'/'정밀'/'밀도' 오매칭 차단)
+        "topic_patterns": [
+            r"(?<![가-힣])밀(?![가-힣])",
+            r"(?<![가-힣])밀(?:의|을|은|이|과|와|에|재배|품종|수확)",
+            r"(?<![a-z])wheat(?![a-z])",
+            r"소맥",
+            r"맥류",
+        ],
         "match_terms": [
-            "밀 재배", "밀의", "밀 양분", "소맥", "맥류", "겨울밀",
+            "밀 재배", "밀 양분", "소맥", "맥류", "겨울밀", "우리밀",
             "wheat", "triticum", "winter wheat", "spring wheat",
         ],
+        "exclude_topic_patterns": [r"메밀", r"buckwheat", r"fagopyrum"],
         # 논문 제목·초록에 아래 단어가 하나도 없으면 주제와 무관한 자료로 보고 수집하지 않는다
         "required_terms": ["wheat", "triticum", "밀", "소맥", "맥류", "cereal"],
         "domestic_agencies": [
@@ -355,6 +362,16 @@ DOMAIN_PRESETS: dict[str, dict[str, Any]] = {
 }
 
 
+def _term_in_text(term: str, text_low: str) -> bool:
+    """영문 용어는 단어 경계(buckwheat!=wheat)를 지키고, 국문 용어는 직접 매칭한다."""
+    t = (term or "").strip().lower()
+    if not t:
+        return False
+    if re.fullmatch(r"[a-z0-9\-\s/]+", t):
+        return bool(re.search(rf"(?<![a-z]){re.escape(t)}(?![a-z])", text_low))
+    return t in text_low
+
+
 def detect_domain_preset(
     topic_ko: str,
     topic_en: str = "",
@@ -369,7 +386,9 @@ def detect_domain_preset(
     for name, spec in DOMAIN_PRESETS.items():
         if name == "general":
             continue
-        score = sum(1 for term in spec.get("match_terms", []) if term.lower() in blob)
+        if any(re.search(pat, topic_blob) for pat in spec.get("exclude_topic_patterns", [])):
+            continue
+        score = sum(1 for term in spec.get("match_terms", []) if _term_in_text(term, blob))
         # 주제명 자체에 프리셋 핵심어가 있으면 크게 가산 (예: '디지털 밀 재배'의 목차에 '수확'이 있어도 밀 프리셋 선택)
         score += 10 * sum(1 for pat in spec.get("topic_patterns", []) if re.search(pat, topic_blob))
         if score > best_score:

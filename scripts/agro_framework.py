@@ -212,59 +212,123 @@ def query_kg_triples_for_chapter(
     limit: int = 24,
     cfg: PlatformConfig | None = None,
 ) -> list[dict[str, Any]]:
-    """C:\\SMC_GRAPHRAG 증분 지식그래프에서 단원 문맥과 관련된 엔티티-관계 트리플을 추출한다."""
+    """C:\\SMC_GRAPHRAG 증분 지식그래프 + 전체 카탈로그 DB(48만+ 노드·96만+ 관계)에서 단원 문맥 관련 트리플을 추출한다."""
+    import sqlite3
+
     cfg = cfg or get_config()
-    inc_path = cfg.smc_incremental_graph_path
-    if not inc_path.is_file():
-        return []
-    try:
-        raw = json.loads(inc_path.read_text(encoding="utf-8"))
-    except Exception:
-        return []
-
-    edges = raw.get("edges") or raw.get("links") or []
-    if not edges:
-        return []
-
-    # 단원 제목 + 본문 앞부분 토큰 추출
     probe_text = f"{chapter_title}\n{chapter_text[:4000]}".lower()
-    tokens = {
+    stopwords = {
+        "단원", "내용", "기준", "방법", "적용", "연구", "분석", "기술", "관리", "결과",
+        "재배", "과학적", "이해", "개요", "원리", "기초", "전략", "체계", "평가", "실무",
+    }
+    tokens = [
         tok
         for tok in re.findall(r"[가-힣a-z0-9]{2,}", probe_text)
-        if tok not in {"단원", "내용", "기준", "방법", "적용", "연구", "분석", "기술", "관리", "결과"}
-    }
+        if tok not in stopwords and not tok.isdigit()
+    ]
+    # 중복 제거하되 앞쪽(단원·절 제목 핵심어) 우선 유지
+    seen_tok: set[str] = set()
+    ordered_tokens: list[str] = []
+    for tok in tokens:
+        if tok not in seen_tok:
+            seen_tok.add(tok)
+            ordered_tokens.append(tok)
+    tok_set = set(ordered_tokens)
 
     scored: list[tuple[int, dict[str, Any]]] = []
-    for e in edges:
-        src = str(e.get("source") or e.get("head") or "").strip()
-        rel = str(e.get("relation") or e.get("label") or e.get("type") or "관련").strip()
-        tgt = str(e.get("target") or e.get("tail") or "").strip()
-        sid = str(e.get("source_id") or "").strip()
-        if not src or not tgt:
-            continue
 
-        score = 0
-        if project_source_ids and sid in project_source_ids:
-            score += 4
-        blob = f"{src} {rel} {tgt}".lower()
-        for tok in tokens:
-            if tok in blob:
-                score += 2
-        if score > 0:
-            scored.append(
-                (
-                    score,
-                    {
-                        "head": src,
-                        "relation": rel,
-                        "tail": tgt,
-                        "source_id": sid or "KG-LOCAL",
-                        "score": score,
-                        "triple_text": f"[{src}] —[{rel}]→ [{tgt}]",
-                        "citation_tag": f"[{sid}]" if sid.startswith("SRC-") else "[KG-LOCAL]",
-                    },
-                )
-            )
+    # 1) 플랫폼 증분 그래프(graph_platform_incremental.json) — 프로젝트 SRC-NN 최우선
+    inc_path = cfg.smc_incremental_graph_path
+    if inc_path.is_file():
+        try:
+            raw = json.loads(inc_path.read_text(encoding="utf-8"))
+            edges = raw.get("edges") or raw.get("links") or []
+            for e in edges:
+                src = str(e.get("source") or e.get("head") or "").strip()
+                rel = str(e.get("relation") or e.get("label") or e.get("type") or "관련").strip()
+                tgt = str(e.get("target") or e.get("tail") or "").strip()
+                sid = str(e.get("source_id") or "").strip()
+                if not src or not tgt:
+                    continue
+                score = 0
+                if project_source_ids and sid in project_source_ids:
+                    score += 6
+                blob = f"{src} {rel} {tgt}".lower()
+                for tok in tok_set:
+                    if tok in blob:
+                        score += 2
+                if score > 0:
+                    has_valid_sid = bool(sid.startswith("SRC-") and (not project_source_ids or sid in project_source_ids))
+                    scored.append(
+                        (
+                            score,
+                            {
+                                "head": src,
+                                "relation": rel,
+                                "tail": tgt,
+                                "source_id": sid if has_valid_sid else "KG-LOCAL",
+                                "source_doc": str(e.get("source_doc") or ""),
+                                "origin": "incremental_kg",
+                                "score": score,
+                                "triple_text": f"[{src}] —[{rel}]→ [{tgt}]",
+                                "citation_tag": f"[{sid}]" if has_valid_sid else "(로컬KG 참고)",
+                            },
+                        )
+                    )
+        except Exception:
+            pass
+
+    # 2) C:\SMC_GRAPHRAG 전체 지식그래프 카탈로그 DB (12개 그래프, 487,627+ 노드 / 969,655+ 관계)
+    cat_db = cfg.smc_catalog_db_path
+    if cat_db.is_file() and ordered_tokens:
+        try:
+            conn = sqlite3.connect(str(cat_db), timeout=5)
+            cur = conn.cursor()
+            # 제목 핵심 키워드 최대 6개로 인덱스 조회 (수 ms 내 완료)
+            query_terms = ordered_tokens[:6]
+            for qt in query_terms:
+                like = f"%{qt}%"
+                rows = cur.execute(
+                    """
+                    SELECT source, relation, target, source_doc, graph_file
+                    FROM relations
+                    WHERE source LIKE ? OR target LIKE ?
+                    LIMIT 24
+                    """,
+                    (like, like),
+                ).fetchall()
+                for src_v, rel_v, tgt_v, sdoc_v, gfile_v in rows:
+                    src = str(src_v or "").strip()
+                    rel = str(rel_v or "관련").strip()
+                    tgt = str(tgt_v or "").strip()
+                    if not src or not tgt or len(src) > 80 or len(tgt) > 80:
+                        continue
+                    blob = f"{src} {rel} {tgt}".lower()
+                    hit_cnt = sum(1 for tok in tok_set if tok in blob)
+                    # 제목의 핵심 주제어가 포함된 관계에 가중치
+                    score = hit_cnt * 2 + (2 if qt in src.lower() or qt in tgt.lower() else 0)
+                    if score <= 0:
+                        continue
+                    doc_lbl = Path(str(sdoc_v or gfile_v or "SMC_GRAPHRAG")).name[:42]
+                    scored.append(
+                        (
+                            score,
+                            {
+                                "head": src,
+                                "relation": rel,
+                                "tail": tgt,
+                                "source_id": "SMC-CATALOG",
+                                "source_doc": str(sdoc_v or gfile_v or ""),
+                                "origin": f"smc_catalog:{gfile_v}",
+                                "score": score,
+                                "triple_text": f"[{src}] —[{rel}]→ [{tgt}]",
+                                "citation_tag": f"(C:\\SMC_GRAPHRAG 참고: {doc_lbl})",
+                            },
+                        )
+                    )
+            conn.close()
+        except Exception:
+            pass
 
     scored.sort(key=lambda x: x[0], reverse=True)
     seen: set[tuple[str, str, str]] = set()
@@ -284,7 +348,9 @@ def format_triples_for_prompt(triples: list[dict[str, Any]], max_items: int = 12
     """엔티티-관계 트리플을 4단계 집필 프롬프트용 지식 컨텍스트 블록으로 변환한다."""
     if not triples:
         return ""
-    lines = ["[로컬 GraphRAG 엔티티-관계 트리플 (본문 서술 시 해당 출처키 1:1 바인딩)]"]
+    lines = [
+        "[C:\\SMC_GRAPHRAG 로컬 지식그래프 엔티티-관계 트리플 (도메인 배경 지식으로 활용하되, 본문 [SRC-NN] 인용키는 반드시 유효 출처 목록의 키만 사용)]"
+    ]
     for t in triples[:max_items]:
         lines.append(f"- {t['triple_text']} {t['citation_tag']}")
     return "\n".join(lines)

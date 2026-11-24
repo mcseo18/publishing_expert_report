@@ -649,6 +649,21 @@ def _migrate_to_v2_if_needed(state: dict[str, Any], cfg: PlatformConfig) -> dict
     return state
 
 
+def is_any_worker_alive(project_id: str) -> bool:
+    """6단계 파이프라인 워커 또는 단원별 심층 파이프라인 워커 중 하나라도 실행 중인지 확인한다."""
+    th = _ACTIVE_THREADS.get(project_id)
+    if th and th.is_alive():
+        return True
+    try:
+        from chapter_pipeline import is_chapter_pipeline_alive
+
+        if is_chapter_pipeline_alive(project_id):
+            return True
+    except Exception:
+        pass
+    return False
+
+
 def load_project_state(project_id: str, cfg: PlatformConfig | None = None) -> dict[str, Any] | None:
     cfg = cfg or get_config()
     sp = _state_path(project_id, cfg)
@@ -661,9 +676,8 @@ def load_project_state(project_id: str, cfg: PlatformConfig | None = None) -> di
 
     st = _migrate_to_v2_if_needed(st, cfg)
 
-    # 비정상 중단(서버 종료/재시작 등) 자동 복구: 스레드가 없는데 RUNNING이면 INTERRUPTED로 전환해 이어하기 제공
-    th = _ACTIVE_THREADS.get(project_id)
-    is_live = bool(th and th.is_alive())
+    # 비정상 중단(서버 종료/재시작 등) 자동 복구: 두 파이프라인 스레드가 모두 없는데 RUNNING이면 INTERRUPTED로 전환
+    is_live = is_any_worker_alive(project_id)
     if not is_live and (st.get("overall_status") == "RUNNING" or any(s.get("status") == "RUNNING" for s in st.get("stages", []))):
         st["overall_status"] = "INTERRUPTED"
         st["active_stage_id"] = None
@@ -671,6 +685,10 @@ def load_project_state(project_id: str, cfg: PlatformConfig | None = None) -> di
             if s.get("status") == "RUNNING":
                 s["status"] = "INTERRUPTED"
                 s["current_action"] = f"중단됨(체크포인트 저장 완료) — [▶ 이어하기]로 재개 가능 ({s.get('current_action','')[:60]})"
+        cp_obj = st.get("chapter_pipeline")
+        if isinstance(cp_obj, dict) and cp_obj.get("running"):
+            cp_obj["running"] = False
+            cp_obj["active_chapter_id"] = ""
         save_project_state(st, cfg)
     return st
 
@@ -829,6 +847,7 @@ def create_project(
         "visual_generation_mode": "cited_and_redrawn_only" if is_paper_track else "hybrid_cited",
         "generate_visual_prompt_pack": False,
         "auto_harvest_oa_assets": True,
+        "use_smc_graphrag": True,  # 기본 ON: 모든 신규 프로젝트에서 C:\SMC_GRAPHRAG(48만+ 노드·통합RAG) 자동 선조회 및 집필 참고
         "visuals_per_chapter": int(resolved_profile.get("visuals_per_chapter", 2 if is_paper_track else 4)),
         "enable_naver_blog": bool(resolved_profile.get("include_naver_hashtags", not is_paper_track)),
         "enable_myths": bool(resolved_profile.get("include_myths", not is_paper_track)),
@@ -1651,6 +1670,54 @@ def _run_stage2_source_collect(state: dict[str, Any], cfg: PlatformConfig) -> No
 
     opts = state.get("options", {})
     limit = int(opts.get("papers_per_query", 5))
+    use_smc_kg = bool(opts.get("use_smc_graphrag", True))
+
+    # Graph-First (기본 ON): 신규 프로젝트도 웹 수집 전에 C:\SMC_GRAPHRAG(카탈로그+통합RAG)를 먼저 조회·재활용
+    smc_reused_cnt = 0
+    if use_smc_kg:
+        try:
+            from compliance import SourcesRegistry
+            from fetch_project_sources import _ensure_duplicate_in_packet, is_portal_homepage_url
+            from rag_capture_unifier import search_unified_smc_rag
+            from smc_kg_bridge import build_smc_catalog
+
+            if not cfg.smc_catalog_db_path.is_file():
+                build_smc_catalog(cfg)
+            probe_q = f"{state['topic_ko']} {state.get('topic_en', '')} {' '.join((state.get('keywords_ko') or [])[:4])}".strip()
+            rag_res = search_unified_smc_rag(probe_q, limit=12, cfg=cfg)
+            rag_docs = rag_res.get("documents") or []
+            rag_nodes = rag_res.get("kg_nodes") or []
+            rag_rels = rag_res.get("kg_relations") or []
+            topic_toks = {t.lower() for t in re.findall(r"[가-힣A-Za-z0-9]{2,}", probe_q)}
+            reg = SourcesRegistry(cfg.sources_registry_path)
+            reg_by_sid = {str(r.get("source_id")): r for r in reg.records if r.get("source_id")}
+            for d in rag_docs:
+                if smc_reused_cnt >= 5:
+                    break
+                d_url = str(d.get("url") or "")
+                if d_url and is_portal_homepage_url(d_url):
+                    continue
+                hay = f"{d.get('title', '')} {d.get('snippet', '')}".lower()
+                if sum(1 for t in topic_toks if t in hay) >= 2:
+                    rec = reg_by_sid.get(str(d.get("source_id") or ""))
+                    if rec:
+                        linked = _ensure_duplicate_in_packet(
+                            existing_rec=rec,
+                            packet_id=state["packet_id"],
+                            topic=state["topic_ko"],
+                            cfg=cfg,
+                        )
+                        if linked and linked.get("source_id"):
+                            smc_reused_cnt += 1
+            append_event(
+                pid,
+                "kg-curator",
+                sid,
+                f"Graph-First 선조회(C:\\SMC_GRAPHRAG): 로컬 통합RAG {smc_reused_cnt}건 재활용 연결 · 지식그래프 노드 {len(rag_nodes)}개 / 관계 {len(rag_rels)}건 확인",
+                cfg=cfg,
+            )
+        except Exception as exc:
+            append_event(pid, "kg-curator", sid, f"C:\\SMC_GRAPHRAG 선조회 생략(계속 진행): {str(exc)[:100]}", level="WARN", cfg=cfg)
 
     def _on_progress(pct: int, action: str, msg: str, level: str = "INFO") -> None:
         _update_stage(state, sid, cfg, progress=min(92, max(8, pct)), current_action=action)
@@ -1837,22 +1904,35 @@ def build_subsection_evidence_checked(
         if sid not in used_ids:
             used_ids.append(sid)
 
-    # C:\SMC_GRAPHRAG 통합 RAG 보강 검색 (동일 프로젝트 근거 출처 내 보강)
+    # C:\SMC_GRAPHRAG 통합 RAG 보강 검색 (unified_rag_corpus.sqlite FTS5 전문 검색)
+    local_rag_used = 0
     try:
-        from rag_capture_unifier import search_unified_rag
+        from rag_capture_unifier import search_unified_smc_rag
 
-        rag_hits = search_unified_rag(query_text[:120], limit=4, cfg=cfg)
+        rag_res = search_unified_smc_rag(query_text[:120], limit=6, cfg=cfg)
+        rag_docs = rag_res.get("documents") or []
         existing_sids = {str(s.get("source_id")) for s in sources if s.get("source_id") and s.get("citable") is not False}
-        for hit in rag_hits:
+        bg_added = 0
+        for hit in rag_docs:
             h_sid = str(hit.get("source_id") or "").strip()
-            h_snip = str(hit.get("snippet") or hit.get("content") or "").strip()[:500]
+            h_snip = str(hit.get("snippet") or hit.get("content") or "").strip()[:520]
             h_title = str(hit.get("title") or "").strip()
-            if h_snip and h_sid in existing_sids and per_source_cap.get(h_sid, 0) < 2:
+            if not h_snip:
+                continue
+            if h_sid in existing_sids and per_source_cap.get(h_sid, 0) < 2:
                 per_source_cap[h_sid] = per_source_cap.get(h_sid, 0) + 1
-                picked_lines.append(f"[{h_sid}] (통합RAG) {h_title}\n{h_snip}")
+                picked_lines.append(f"[{h_sid}] (C:\\SMC_GRAPHRAG 통합RAG) {h_title}\n{h_snip}")
                 relevant_chunks += 1
+                local_rag_used += 1
                 if h_sid not in used_ids:
                     used_ids.append(h_sid)
+            elif bg_added < 2:
+                # 타 프로젝트 기축적 로컬 RAG 문서도 도메인 배경 지식으로 제공 (미등록 [SRC-NN] 인용 오남용 방지를 위해 키 미표기)
+                hay_bg = (h_title + " " + h_snip).lower()
+                if sum(1 for t in tok_set if t in hay_bg) >= 2:
+                    picked_lines.append(f"(C:\\SMC_GRAPHRAG 로컬RAG 배경참고 · 본문 [SRC-NN] 표기 제외) {h_title}\n{h_snip}")
+                    bg_added += 1
+                    local_rag_used += 1
     except Exception:
         pass
 
@@ -1861,6 +1941,7 @@ def build_subsection_evidence_checked(
         "used_ids": used_ids,
         "relevant_chunks": relevant_chunks,
         "anchor_hits": anchor_hits,
+        "local_rag_hits": local_rag_used,
     }
 
 
@@ -2823,8 +2904,7 @@ def start_pipeline_async(
     if not state:
         raise FileNotFoundError(f"Project not found: {project_id}")
 
-    t_existing = _ACTIVE_THREADS.get(project_id)
-    if t_existing and t_existing.is_alive():
+    if is_any_worker_alive(project_id):
         return {"status": "ALREADY_RUNNING", "project_id": project_id, "active_stage_id": state.get("active_stage_id")}
 
     if mode == "single" and target_stage:
@@ -2869,7 +2949,18 @@ def start_pipeline_async(
 def stop_pipeline(project_id: str, cfg: PlatformConfig | None = None) -> dict[str, Any]:
     cfg = cfg or get_config()
     th = _ACTIVE_THREADS.get(project_id)
+    stopped_cp = False
+    try:
+        from chapter_pipeline import is_chapter_pipeline_alive, stop_chapter_pipeline
+
+        if is_chapter_pipeline_alive(project_id):
+            stop_chapter_pipeline(project_id, cfg=cfg)
+            stopped_cp = True
+    except Exception:
+        pass
     if not (th and th.is_alive()):
+        if stopped_cp:
+            return {"status": "STOP_REQUESTED", "project_id": project_id}
         # 좀비 RUNNING 상태(서버 재시작/비정상 종료 후 잠금 잔존) 자동 정리
         st = load_project_state(project_id, cfg)
         if st and (st.get("overall_status") == "RUNNING" or any(s.get("status") == "RUNNING" for s in (st.get("stages") or []))):

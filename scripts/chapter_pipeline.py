@@ -58,6 +58,12 @@ _CP_STOPS: dict[str, threading.Event] = {}
 _CP_LOCK = threading.Lock()
 
 
+def is_chapter_pipeline_alive(project_id: str) -> bool:
+    """해당 프로젝트의 단원별 심층 검색·집필 백그라운드 워커가 현재 실행 중인지 반환한다."""
+    th = _CP_THREADS.get(project_id)
+    return bool(th and th.is_alive())
+
+
 def build_chapter_execution_order(
     chapters: list[dict[str, Any]],
     primary_output_type: str = "textbook",
@@ -303,15 +309,33 @@ def get_chapter_pipeline_board(project_id: str, cfg: PlatformConfig | None = Non
     }
 
 
-def _merge_sources_into_packet(pkt_path: Path, packet_id: str, topic: str, new_sources: list[dict[str, Any]]) -> list[dict[str, Any]]:
+def _merge_sources_into_packet(
+    pkt_path: Path,
+    packet_id: str,
+    topic: str,
+    new_sources: list[dict[str, Any]],
+    cfg: PlatformConfig | None = None,
+) -> list[dict[str, Any]]:
+    import os
+
+    cfg = cfg or get_config()
+    now = _utc_now()
     pkt_path.parent.mkdir(parents=True, exist_ok=True)
     if pkt_path.is_file():
         try:
             pkt = json.loads(pkt_path.read_text(encoding="utf-8"))
+            if not isinstance(pkt, dict):
+                pkt = {}
         except Exception:
-            pkt = {"packet_id": packet_id, "topic": topic, "sources": []}
+            pkt = {}
     else:
-        pkt = {"packet_id": packet_id, "topic": topic, "sources": []}
+        pkt = {}
+    pkt.setdefault("packet_id", packet_id)
+    pkt.setdefault("topic", topic)
+    if not pkt.get("created_at"):
+        pkt["created_at"] = pkt.get("updated_at") or now
+    pkt.setdefault("storage_root", str(cfg.collected_data_root))
+    pkt.setdefault("kg_store_root", str(cfg.smc_graphrag_root))
     existing = list(pkt.get("sources") or [])
     seen = {s.get("source_id") for s in existing if s.get("source_id")}
     for s in new_sources:
@@ -320,8 +344,14 @@ def _merge_sources_into_packet(pkt_path: Path, packet_id: str, topic: str, new_s
             seen.add(sid)
             existing.append(s)
     pkt["sources"] = existing
-    pkt["updated_at"] = _utc_now()
-    pkt_path.write_text(json.dumps(pkt, ensure_ascii=False, indent=2), encoding="utf-8")
+    pkt["updated_at"] = now
+    payload = json.dumps(pkt, ensure_ascii=False, indent=2)
+    tmp_p = pkt_path.with_suffix(".json.tmp")
+    tmp_p.write_text(payload, encoding="utf-8")
+    try:
+        os.replace(tmp_p, pkt_path)
+    except PermissionError:
+        pkt_path.write_text(payload, encoding="utf-8")
     return existing
 
 
@@ -427,11 +457,28 @@ def _research_single_chapter(
     save_project_state(state, cfg)
     append_event(pid, "web-scout", "stage2_source_collect", f"[{cid}] 단원별 심층 검색 시작: {ch['title']} (쿼리 {len(en_queries)+len(ko_queries)}건)", cfg=cfg)
 
-    # 1) Graph-First: 로컬 C:\SMC_GRAPHRAG 선조회
+    # 1) Graph-First: 로컬 C:\SMC_GRAPHRAG 선조회 (통합 RAG 453문서·9,131청크 + 48만노드 카탈로그)
     local_hits = 0
+    local_reusable_docs: list[dict[str, Any]] = []
     try:
+        from fetch_project_sources import is_portal_homepage_url
+
         rag_res = search_unified_smc_rag(f"{state['topic_ko']} {ch['title']}", limit=10, cfg=cfg)
-        local_hits = len(rag_res.get("hits") or rag_res.get("results") or [])
+        rag_docs = rag_res.get("documents") or []
+        rag_nodes = rag_res.get("kg_nodes") or []
+        rag_rels = rag_res.get("kg_relations") or []
+        local_hits = len(rag_docs) + len(rag_nodes) + len(rag_rels)
+        # 포털 첫 화면이 아닌 주제 적합 기축적 문서 최대 3건을 단원 근거 후보로 확보
+        topic_toks = {t.lower() for t in re.findall(r"[가-힣A-Za-z0-9]{2,}", f"{state['topic_ko']} {state.get('topic_en','')} {ch['title']}")}
+        for d in rag_docs:
+            d_url = str(d.get("url") or "")
+            if d_url and is_portal_homepage_url(d_url):
+                continue
+            d_hay = f"{d.get('title','')} {d.get('snippet','')}".lower()
+            if sum(1 for t in topic_toks if t in d_hay) >= 2 and d.get("source_id"):
+                local_reusable_docs.append(d)
+                if len(local_reusable_docs) >= 3:
+                    break
     except Exception:
         local_hits = 0
     r_step["local_rag_hits"] = local_hits
@@ -480,6 +527,46 @@ def _research_single_chapter(
     existing_col = list(state.get("collected_sources") or [])
     existing_urls = {str(s.get("url") or "").strip().lower() for s in existing_col if s.get("url")}
 
+    from compliance import SourcesRegistry
+    from fetch_project_sources import _ensure_duplicate_in_packet
+
+    # Graph-First 재활용: C:\SMC_GRAPHRAG 통합 RAG에서 이미 확보된 주제 적합 문서를 단원 근거 패킷에 우선 연결
+    if local_reusable_docs:
+        try:
+            reg = SourcesRegistry(cfg.sources_registry_path)
+            reg_by_sid = {str(r.get("source_id")): r for r in reg.records if r.get("source_id")}
+            ch_topic_init = f"{state['topic_ko']} — {ch['title']}"
+            for ld in local_reusable_docs:
+                lsid = str(ld.get("source_id") or "")
+                rec = reg_by_sid.get(lsid)
+                if not rec:
+                    continue
+                linked = _ensure_duplicate_in_packet(
+                    existing_rec=rec,
+                    packet_id=ch_pkt_id,
+                    topic=ch_topic_init,
+                    cfg=cfg,
+                )
+                if linked and linked.get("source_id"):
+                    ingested_sources.append(linked)
+                    lu = str(linked.get("url") or "").strip().lower()
+                    if lu:
+                        existing_urls.add(lu)
+                    existing_col.append(
+                        {
+                            "source_id": linked["source_id"],
+                            "title": linked.get("title") or ld.get("title", ""),
+                            "url": linked.get("url") or ld.get("url", ""),
+                            "provider": "C:\\SMC_GRAPHRAG (로컬RAG 재활용)",
+                            "year": rec.get("year"),
+                            "chapter_id": cid,
+                            "tier_folder": "04_international_journals",
+                        }
+                    )
+        except Exception:
+            pass
+
+    ingest_err_logged = 0
     for item in ranked[: harvest_limit * 2]:
         if stop_ev.is_set() or len(ingested_sources) >= harvest_limit:
             break
@@ -496,27 +583,48 @@ def _research_single_chapter(
                 except Exception:
                     pass
         try:
+            ch_topic = f"{state['topic_ko']} — {ch['title']}"
             if item.get("payload_type") == "web_url" and not item.get("doi"):
                 res_w = fetch_and_clean_url(
                     url=u,
                     packet_id=ch_pkt_id,
-                    topic=f"{state['topic_ko']} — {ch['title']}",
-                    project_id=pid,
+                    topic=ch_topic,
                     cfg=cfg,
                 )
-                src_rec = res_w.get("source")
+                if res_w.get("status") == "SKIPPED_DUPLICATE" and res_w.get("existing"):
+                    src_rec = _ensure_duplicate_in_packet(
+                        existing_rec=res_w["existing"],
+                        packet_id=ch_pkt_id,
+                        topic=ch_topic,
+                        cfg=cfg,
+                    )
+                else:
+                    src_rec = res_w.get("source")
             else:
                 res_p = ingest_paper_record(
                     paper=item,
                     packet_id=ch_pkt_id,
-                    topic=f"{state['topic_ko']} — {ch['title']}",
-                    download_pdf=True,
-                    project_id=pid,
+                    topic=ch_topic,
+                    download_oa_pdf=True,
                     cfg=cfg,
                 )
-                src_rec = res_p.get("source")
-                if res_p.get("pdf_downloaded"):
-                    pdfs_cnt += 1
+                if res_p.get("status") == "SKIPPED_DUPLICATE" and res_p.get("existing"):
+                    src_rec = _ensure_duplicate_in_packet(
+                        existing_rec=res_p["existing"],
+                        packet_id=ch_pkt_id,
+                        topic=ch_topic,
+                        cfg=cfg,
+                    )
+                else:
+                    src_rec = res_p.get("source")
+                    if res_p.get("pdf_downloaded"):
+                        pdfs_cnt += 1
+            if not src_rec and ch_pkt_path.is_file():
+                # 하위 호환 폴백: 패킷 파일에서 방금 적재된 source_id 조회
+                res_sid = (res_w if item.get("payload_type") == "web_url" and not item.get("doi") else res_p).get("source_id")
+                if res_sid:
+                    pkt_srcs = json.loads(ch_pkt_path.read_text(encoding="utf-8")).get("sources", [])
+                    src_rec = next((x for x in pkt_srcs if x.get("source_id") == res_sid), None)
             if src_rec and src_rec.get("source_id"):
                 ingested_sources.append(src_rec)
                 if u:
@@ -535,12 +643,24 @@ def _research_single_chapter(
                 r_step["ingested"] = len(ingested_sources)
                 r_step["pdfs"] = pdfs_cnt
                 entry["progress"] = 18 + int((len(ingested_sources) / max(1, harvest_limit)) * 14)
-        except Exception:
+        except Exception as exc:
+            if ingest_err_logged < 3:
+                ingest_err_logged += 1
+                append_event(
+                    pid,
+                    "web-scout",
+                    "stage2_source_collect",
+                    f"[{cid}] 자료 적재 건너뜀({str(item.get('title') or u)[:45]}): {str(exc)[:140]}",
+                    level="WARN",
+                    cfg=cfg,
+                )
             continue
 
-    # 단원 전용 패킷 & 마스터 프로젝트 패킷 동시 병합 저장
-    ch_sources_final = _merge_sources_into_packet(ch_pkt_path, ch_pkt_id, f"{state['topic_ko']} — {ch['title']}", ingested_sources)
-    _merge_sources_into_packet(master_pkt_path, state["packet_id"], state["topic_ko"], ingested_sources)
+    # 단원 전용 패킷 & 마스터 프로젝트 패킷 동시 병합 저장 (+ 프로젝트 전용 E:\evidence 미러링)
+    ch_sources_final = _merge_sources_into_packet(ch_pkt_path, ch_pkt_id, f"{state['topic_ko']} — {ch['title']}", ingested_sources, cfg=cfg)
+    _merge_sources_into_packet(master_pkt_path, state["packet_id"], state["topic_ko"], ingested_sources, cfg=cfg)
+    proj_e_pkt = cfg.project_e_evidence_dir(pid) / f"{state['packet_id']}.json"
+    _merge_sources_into_packet(proj_e_pkt, state["packet_id"], state["topic_ko"], ingested_sources, cfg=cfg)
     state["collected_sources"] = existing_col
 
     entry["evidence_packet_path"] = str(ch_pkt_path)
@@ -836,11 +956,24 @@ def _draft_single_chapter(
                     drafted_body_digest = "\n\n".join(snippets) + "\n\n"
 
             ch_evidence, _ = _build_subsection_evidence_context(merged_sources, f"{state['topic_ko']} {ch['title']}", cfg, max_chunks=10, max_chars_per_chunk=800)
+            kg_triples_sp = (
+                query_kg_triples_for_chapter(
+                    chapter_title=ch["title"],
+                    chapter_text=ch.get("summary_ko", "") + " " + " ".join(secs),
+                    project_source_ids=set(valid_ids),
+                    limit=12,
+                    cfg=cfg,
+                )
+                if bool(state.get("options", {}).get("use_smc_graphrag", True))
+                else []
+            )
+            kg_block_sp = format_triples_for_prompt(kg_triples_sp)
             sys_prompt = compile_persona_system_prompt(state, valid_ids, chapter_role=chapter_role, cfg=cfg)
             user_prompt = (
                 f"단원 제목: {ch['title']}\n단원 요약: {ch.get('summary_ko', '')}\n필수 절: {', '.join(secs)}\n"
                 f"대상 독자: {state['target_audience']}\n\n"
                 + drafted_body_digest
+                + (f"{kg_block_sp}\n\n" if kg_block_sp else "")
                 + f"[검증 근거 자료]\n{ch_evidence or state['topic_ko']}\n\n"
                 "위 실제 집필 본문 및 검증 근거를 바탕으로 지정된 역할에 완벽히 부합하는 고밀도 원고를 작성하십시오."
             )
@@ -934,6 +1067,28 @@ def _audit_single_chapter(
     cite_cnt = len(re.findall(r"\[SRC-\d+", txt))
     crit = len(audit.get("critical_errors", []))
     warns = len(audit.get("warnings", []))
+    all_c3_blocked = (cite_cnt == 0) and ("근거 부족 — 추가 수집 필요" in txt)
+    if all_c3_blocked:
+        grade = "근거부족"
+        a_step.update(
+            {
+                "status": "ERROR",
+                "audit_status": "NEEDS_EVIDENCE",
+                "citation_count": 0,
+                "critical_errors": crit,
+                "warnings": warns,
+                "quality_grade": grade,
+                "message": "근거 부족(C3 차단) — 자료 재수집 후 이 단원을 다시 집필해 주세요",
+            }
+        )
+        entry["current_step"] = "ERROR"
+        entry["status"] = "ERROR"
+        entry["error"] = "단원 관련 1차 근거 부족(C3 차단) — 2단계 자료 수집 확인 후 재시도 필요"
+        entry["progress"] = 85
+        save_project_state(state, cfg)
+        append_event(pid, "citation-auditor", "stage4_manuscript_draft", f"[{cid}] 감사 경고: 근거 부족으로 전 절 차단됨 (인용 0건)", level="WARN", cfg=cfg)
+        return
+
     grade = "우수" if (crit == 0 and len(txt) >= 4500) else ("양호" if crit == 0 else "확인필요")
 
     a_step.update(
@@ -1007,7 +1162,7 @@ def start_chapter_pipeline_async(
     cfg: PlatformConfig | None = None,
 ) -> dict[str, Any]:
     """단원별 순차 심층 검색 → KG → 절별 집필 → 감사 파이프라인을 백그라운드에서 시작한다."""
-    from subagent_orchestrator import append_event, load_project_state, save_project_state, start_pipeline_async
+    from subagent_orchestrator import append_event, is_any_worker_alive, load_project_state, save_project_state, start_pipeline_async
 
     cfg = cfg or get_config()
     st = load_project_state(project_id, cfg)
@@ -1017,8 +1172,7 @@ def start_chapter_pipeline_async(
         raise ValueError("1단계 목차·계획서를 먼저 확정한 뒤 단원별 검색·집필을 실행해 주세요.")
 
     with _CP_LOCK:
-        existing_t = _CP_THREADS.get(project_id)
-        if existing_t and existing_t.is_alive():
+        if is_any_worker_alive(project_id):
             return {"status": "ALREADY_RUNNING", "board": get_chapter_pipeline_board(project_id, cfg)}
 
         cp = _ensure_chapter_pipeline_state(st, cfg)
@@ -1051,6 +1205,7 @@ def start_chapter_pipeline_async(
         save_project_state(st, cfg)
 
         def _worker() -> None:
+            should_continue_56 = False
             try:
                 cur_state = load_project_state(project_id, cfg)
                 if not cur_state:
@@ -1111,26 +1266,30 @@ def start_chapter_pipeline_async(
                         save_project_state(cur_state, cfg)
                         continue
 
+                should_continue_56 = False
                 cur_cp["running"] = False
                 cur_cp["active_chapter_id"] = ""
                 cur_cp["active_step"] = "DONE"
                 cur_cp["finished_at"] = _utc_now()
                 all_done = all(c.get("status") == "DONE" for c in cur_cp["chapters"].values())
+                has_sources = len(cur_state.get("collected_sources") or []) > 0
                 if not stop_ev.is_set():
                     cur_cp["current_message"] = (
                         f"✅ 전체 {len(cur_cp['chapters'])}개 단원 심층 검색·집필·감사 완료!"
                         if all_done
-                        else "단원별 심층 검색·집필 세션 종료 (미완료 단원은 이어하기로 재개 가능)"
+                        else "단원별 심층 검색·집필 세션 종료 (오류·미완료 단원은 이어하기로 재개 가능)"
                     )
-                    cur_state["overall_status"] = "PAUSED"
+                    cur_state["overall_status"] = "PAUSED" if all_done else "ERROR"
                 _sync_stages_from_chapter_board(cur_state, cfg)
                 save_project_state(cur_state, cfg)
 
-                if all_done and cur_cp.get("auto_continue_stages56") and not stop_ev.is_set():
-                    append_event(project_id, "orchestrator", "stage5_visuals_generate", "전체 단원 집필 완료 → 5단계(시각화) · 6단계(기본 2종 출판) 자동 이어가기 시작", cfg=cfg)
-                    start_pipeline_async(project_id, mode="resume", cfg=cfg)
+                if all_done and has_sources and cur_cp.get("auto_continue_stages56") and not stop_ev.is_set():
+                    should_continue_56 = True
             finally:
                 _CP_THREADS.pop(project_id, None)
+            if should_continue_56:
+                append_event(project_id, "orchestrator", "stage5_visuals_generate", "전체 단원 집필 완료 → 5단계(시각화) · 6단계(기본 2종 출판) 자동 이어가기 시작", cfg=cfg)
+                start_pipeline_async(project_id, mode="resume", cfg=cfg)
 
         th = threading.Thread(target=_worker, name=f"chapter-pipeline-{project_id}", daemon=True)
         _CP_THREADS[project_id] = th

@@ -32,10 +32,9 @@ from config import PlatformConfig, get_config
 
 
 def _is_worker_alive(project_id: str) -> bool:
-    from subagent_orchestrator import _ACTIVE_THREADS
+    from subagent_orchestrator import is_any_worker_alive
 
-    th = _ACTIVE_THREADS.get(project_id)
-    return bool(th and th.is_alive())
+    return is_any_worker_alive(project_id)
 
 
 def _classify_stage_error(stage: dict[str, Any]) -> dict[str, Any]:

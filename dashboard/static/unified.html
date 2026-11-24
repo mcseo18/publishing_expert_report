@@ -1889,7 +1889,8 @@ tr.row-bad td { background: rgba(239,68,68,.06); }
     <input id="npKwKo" placeholder="예: 겨울밀, 정밀농업, 드론 원격탐사, 시비처방, 품질평가" />
     <label class="label mt8">핵심 키워드 (영문, 쉼표 구분)</label>
     <input id="npKwEn" placeholder="예: winter wheat, precision agriculture, UAV NDVI, nitrogen management" />
-    <div class="flex mt12">
+    <div class="flex mt12" style="flex-wrap:wrap">
+      <label class="flex"><input type="checkbox" id="npUseSmcGraphrag" checked /> 🧠 C:\SMC_GRAPHRAG 로컬 지식그래프·통합RAG 자동 참고 (기본 ON)</label>
       <label class="flex"><input type="checkbox" id="npUseGemini" checked /> 1단계 Google Gemini API로 목차·요약·키워드 설계 (실패 시 로컬 Gemma 4)</label>
       <label class="flex"><input type="checkbox" id="npUseFal" /> 5단계 fal.ai API 시각화 사용</label>
       <label class="flex"><input type="checkbox" id="npAutoStart" checked /> 생성 즉시 1단계 초안 작성</label>
@@ -5432,6 +5433,7 @@ async function submitNewProject() {
         visuals_per_chapter,
         keywords_ko: document.getElementById("npKwKo").value.split(",").map(x=>x.trim()).filter(Boolean),
         keywords_en: document.getElementById("npKwEn").value.split(",").map(x=>x.trim()).filter(Boolean),
+        use_smc_graphrag: document.getElementById("npUseSmcGraphrag") ? document.getElementById("npUseSmcGraphrag").checked : true,
         use_gemini_outline: document.getElementById("npUseGemini").checked,
         use_fal_ai: document.getElementById("npUseFal").checked,
         visual_generation_mode: document.getElementById("npVisualMode")?.value || "prompt_pack_only",
