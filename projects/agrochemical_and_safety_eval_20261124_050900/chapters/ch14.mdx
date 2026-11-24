@@ -1,0 +1,72 @@
+---
+chapter_id: "ch14"
+title: "제14장. 농작업자 노출 평가 및 농약관리법 기반 등록·재평가 규제 체계"
+audience: "대학 전공 심화, 대학원생, 연구자 및 선도 현장 실무자"
+evidence_packet: "agrochemical_and_safety_eval_20261124_050900_evidence.json"
+persona: "textbook_distinguished_prof"
+---
+
+# 제14장. 농작업자 노출 평가 및 농약관리법 기반 등록·재평가 규제 체계
+
+> **학습 목표**: 본 장을 학습한 후 독자는 ① 농약 조제·살포·재출입(re-entry) 단계별 농작업자·거주민·행인의 노출 경로(경피·흡입)와 개인보호구(PPE) 차단 원리를 설명하고, ② 한국형 농작업자 노출 모델(KoPOEM)과 유럽 EFSA AOEM의 구조·차이점을 비교하며, ③ 총 전신 노출량과 작업자노출허용량(AOEL)을 비교해 위해지수(HQ)를 정량 산출하고, ④ 농약관리법상 4대 등록 시험성적서 심사 체계와 농약 안전성 재평가(Re-evaluation)·취소·회수 프로토콜을 체계적으로 이해할 수 있다 [SRC-542, SRC-543, SRC-552, SRC-558, SRC-566, SRC-571, SRC-572, SRC-575].
+
+## 14.1 농작업자 노출 평가: 조제, 살포 및 재출입 단계별 노출 경로
+
+일반 소비자가 농산물을 통해 미량의 잔류농약에 노출되는 것과 달리, 농약 살포 작업자(operator)와 살포 후 포장에 들어가는 수확·관리 작업자(worker)는 **고농도 원액 및 살포 미스트에 경피(dermal)와 흡입(inhalation) 경로로 직접 노출**된다 [SRC-542, SRC-552].
+- **조제 단계 (Mixing / Loading)**: 원액 계량·희석 과정에서 손과 팔에 대한 경피 노출이 전체 노출량의 과반을 차지하며, 수화제(WP)는 분진 흡입 위험이, 유제(EC)는 유기용매 촉진 피부 투과 위험이 높다 [SRC-550]. 수계 액상수화제(SC)·입상수화제(WG)·수용성 필름 포장(WSP) 도입과 내화학성 장갑 착용이 조제 노출을 90% 이상 저감한다.
+- **살포 단계 (Application)**: 동력분무기·SS기(스피드스프레이어)·배부식 분무기·트랙터 붐스프레이어 등 살포 장비와 작물 높이(과수 상향 살포 vs 노지 하향 살포)에 따라 피부·호흡기 노출량이 수십 배 차이 난다.
+- **재출입 단계 (Re-entry / Worker Exposure)**: 살포 후 건조된 엽면 잔류물(Dislodgeable Foliar Residue, DFR)과의 피부 접촉으로 발생하며, 위해도가 높으면 **재출입 제한기간(Restricted-Entry Interval, REI)**을 라벨에 의무 표기한다 [SRC-542].
+- **거주민·행인 노출 (Resident / Bystander)**: 살포 시 비산 드리프트, 대기 휘발 증기, 표면 접촉을 통한 비식이 노출로, EFSA의 Clodinafop-propargyl 2026년 재평가(원문 표 5)에서도 **작업자(operator)·포장근로자(worker)·거주민/행인(resident/bystander) 3개 비식이 집단 모두에서 위해 우려**가 핵심 심사 쟁점으로 식별되었다 [SRC-542].
+
+## 14.2 노출 예측 수치 모델: 한국형 KoPOEM 및 유럽 EFSA AOEM 비교
+
+모든 농약 등록 품목에 대해 매번 인체 현장 패치·에어샘플러 실측 노출 시험을 수행하기는 현실적으로 어려우므로, 표준 실측 데이터베이스를 통계 모형화한 **노출 예측 수치 모델**을 사용한다 [SRC-542, SRC-543].
+
+| 비교 항목 | 한국형 모델 (**KoPOEM**, 농촌진흥청) | 유럽 표준 모델 (**EFSA AOEM**) |
+|---|---|---|
+| **개발·운영 기관** | 농촌진흥청 국립농업과학원 | 유럽식품안전청 (EFSA, 2014/2022 개정) |
+| **반영 영농 환경** | 한국 고유 소규모 필지, **시설 하우스**, 배부식·동력분무기·과수 SS기·무인항공방제(드론) | 유럽 대규모 트랙터 붐스프레이어·밀폐 캐빈·대형 과수원 기준 |
+| **노출 통계 분위수** | 75백분위수(표준 작업 조건 기반) | 75백분위수(장기) 및 95백분위수(급성 AAOEL 평가) |
+| **핵심 입력 변수** | 제형(EC/WP/SC/WG), 1일 처리 면적(ha), 살포량(kg a.i./ha), 경피흡수율($D_{\mathrm{abs}}$), PPE 착용 단계 | 동일 핵심 변수 + 밀폐 캐빈·드리프트 저감 노즐·재출입 DFR 반감기 통합 |
+
+## 14.3 위해도 판정: 전신 노출량 및 위해지수(HQ = Exposure / AOEL) 도출
+
+경피 및 흡입 외부 노출량에 각각의 인체 흡수율을 곱해 **1일 총 전신 노출량(Total Systemic Exposure, $\mathrm{mg/kg\ bw/day}$)**을 구하고, 제11장에서 도출한 **작업자노출허용량(AOEL)**과 비교해 **위해지수(Hazard Quotient, HQ 또는 %AOEL)**를 산정한다 [SRC-542, SRC-552].
+
+$$E_{\mathrm{sys}} = \frac{\left(E_{\mathrm{dermal,ML}} \cdot (1 - \mathrm{PF}_d) + E_{\mathrm{dermal,App}} \cdot (1 - \mathrm{PF}_d')\right) \cdot D_{\mathrm{abs}} + \left(E_{\mathrm{inh,ML}} + E_{\mathrm{inh,App}}\right) \cdot (1 - \mathrm{PF}_i) \cdot I_{\mathrm{abs}}}{\mathrm{BW}}$$
+
+$$\mathrm{HQ} = \frac{E_{\mathrm{sys}}}{\mathrm{AOEL}}, \quad \%\mathrm{AOEL} = \mathrm{HQ} \times 100$$
+
+여기서 $D_{\mathrm{abs}}$는 경피흡수율(OECD TG 428 시험 또는 기본값: 원액 10–25%, 희석액 50–75%), $I_{\mathrm{abs}}$는 흡입흡수율(기본값 100% = 1.0), $\mathrm{PF}_d, \mathrm{PF}_i$는 방제복·장갑·방독마스크의 보호계수(protection factor), $\mathrm{BW} = 60\ \mathrm{kg}$이다. **$\mathrm{HQ} \le 1.0$ ($\%\mathrm{AOEL} \le 100\%$)**이면 안전한 작업 조건으로 판정하며, 1.0을 초과하면 PPE 의무 강화, 제형 변경(WP→SC/WG), 1일 살포 면적 제한, 또는 등록 불허 조치가 내려진다 [SRC-542].
+
+- **계산 예제 (PPE 착용 전·후 HQ 비교)**: AOEL이 $0.030\ \mathrm{mg/kg\ bw/day}$, 체중 60 kg인 농작업자의 비보호 상태 외부 노출이 경피 45.0 mg/day($D_{\mathrm{abs}} = 0.05$, 5%), 흡입 0.40 mg/day($I_{\mathrm{abs}} = 1.0$)라 하자.
+  1. **보호구 미착용 시**:
+     $$E_{\mathrm{sys,0}} = \frac{45.0 \times 0.05 + 0.40 \times 1.0}{60} = \frac{2.25 + 0.40}{60} = 0.0442\ \mathrm{mg/kg\ bw/day}$$
+     $$\mathrm{HQ}_0 = \frac{0.0442}{0.030} = 1.47\ (147\%\ \mathrm{AOEL} > 100\% \rightarrow \textbf{부적합})$$
+  2. **내화학 장갑·방제복($\mathrm{PF}_d = 0.90$, 90% 차단) 및 방진·방독 마스크($\mathrm{PF}_i = 0.80$, 80% 차단) 착용 시**:
+     $$E_{\mathrm{sys,PPE}} = \frac{45.0 \times (1 - 0.90) \times 0.05 + 0.40 \times (1 - 0.80) \times 1.0}{60} = \frac{0.225 + 0.080}{60} = 0.00508\ \mathrm{mg/kg\ bw/day}$$
+     $$\mathrm{HQ}_{\mathrm{PPE}} = \frac{0.00508}{0.030} = 0.17\ (17\%\ \mathrm{AOEL} \le 100\% \rightarrow \textbf{안전 적합})$$
+
+## 14.4 농약관리법에 따른 농약 등록 심사 체계 (4대 시험성적서)
+
+대한민국 **농약관리법** 및 농촌진흥청 고시(「농약 및 원제의 등록기준」)에 따라 모든 신규 농약 품목과 원제는 공인 시험연구기관(GLP 포함)이 발행한 **4대 핵심 시험성적서**를 제출해 농약안전성심의위원회의 심사를 통과해야 등록·판매할 수 있다.
+
+| 4대 심사 분야 | 필수 제출 시험성적서 및 핵심 검증 항목 | 관련 국제 기준·장 연계 |
+|---|---|---|
+| **1. 이화학 분석 · 약효·약해** | 유효성분·불순물 규격(5-batch), CIPAC 물리성·54 °C 가속저장안정성, 다지역 포장 약효 및 작물 약해 시험 | 제1–3장 · CIPAC MT [SRC-551] |
+| **2. 잔류성 (작물·토양)** | 포장 잔류 감쇄 시험($DT_{50}$), 가공계수, QuEChERS LC/GC-MS/MS 분석법 검증, MRL·PHI 제안 | 제8–10·13장 · OECD MRL [SRC-544, SRC-545, SRC-558] |
+| **3. 인체 독성 · 노출 평가** | 급성 6종, 아만성·만성·발암, 유전독성 3종, 생식·발생, ADME, ADI/ARfD/AOEL, KoPOEM 작업자 위해성 | 제11·14장 · OECD TG · EFSA [SRC-542, SRC-566] |
+| **4. 환경 거동 · 생태독성** | 토양 흡착($K_{F\mathrm{oc}}$)·분해($DT_{50}$)·용탈(GUS), 꿀벌·어류·물벼룩·조류·지렁이 독성 및 TER 판정 | 제9·12장 · FOCUS/SWAT+ [SRC-542, SRC-559, SRC-568] |
+
+## 14.5 농약 안전성 재평가(Re-evaluation) 제도 및 최신 규제 개정 동향
+
+한번 등록된 농약이라도 영구적으로 유지되지 않고, 최신 독성학·환경과학 기준에 따라 주기적(한국 보통 10년 주기 및 수시 직권 재평가; EU Commission Implementing Regulation (EU) No 844/2012 기반 갱신 심사 [SRC-542, SRC-543])으로 **농약 안전성 재평가**를 받는다.
+- **재평가 트리거 및 행정 처분**: 신규 연구에서 **유전독성/염색체 이상** 우려(예: carbendazim·thiophanate-methyl [SRC-572, SRC-575]), **내분비계 장애(ED) 또는 AOEL 초과** 우려(예: clodinafop-propargyl [SRC-542]), **꿀벌·수생 생태계 심각 피해**(예: 네오니코티노이드·피프로닐 [SRC-560, SRC-574]), **시설 작물 MRL/PHI 부적합**(예: 국내 시설 참다래 iminoctadine [SRC-558])이 확인되면, 규제 당국은 ① 추가 자료 제출 명령 → ② 적용 작물·살포량·PHI·PPE 변경 등록 → ③ 위해 해소 불가 시 **등록 취소 및 시중 유통품 전량 회수·폐기** 프로토콜을 집행한다.
+- **최신 규제 과학 진화 방향**: ① 90일 개 독성시험 면제 등 동물시험 축소 및 신규접근법(NAMs) 도입 [SRC-566], ② 단일 물질을 넘어선 다성분 누적 식이위해성 평가(EFSA CAG) [SRC-561] 및 토양 혼합 잔류 생태평가 [SRC-555, SRC-559], ③ 유기불소·녹색화학·생물농약·pH 응답 방출제어 제형으로의 산업 전환 [SRC-550, SRC-556, SRC-557, SRC-567]이 21세기 농약 안전성 규제의 핵심 축으로 자리 잡고 있다.
+
+### 오해와 진실
+- **오해 (Myth):** 국가 기관에 정식으로 등록된 농약은 한 번 허가를 받으면 안전성이 영구히 보증되므로 추가 규제가 필요 없다.
+- **진실 (Fact):** 분석 기술과 독성·생태 평가 기준이 계속 고도화됨에 따라 등록 농약도 주기적·수시 **안전성 재평가**를 거쳐 Clodinafop-propargyl(ED·AOEL 재검토) [SRC-542], Carbendazim(유전독성·MRL 재평가) [SRC-572, SRC-575], 시설 참다래 Iminoctadine(MRL·PHI 재설정) [SRC-558]처럼 기준이 강화되거나 등록이 취소된다.
+
+### 참고문헌
+- [SRC-542] Álvarez et al. (2026), *EFSA Journal*; [SRC-543] Anastassiadou et al. (2020), *EFSA Journal*; [SRC-544] Sharma et al. (2020), *Ecotoxicology and Environmental Safety*; [SRC-545] Li et al. (2022), *Scientific Reports*; [SRC-550] Wang et al. (2020), *Polymers*; [SRC-551] Guo et al. (2019), *RSC Advances*; [SRC-552] Meftaul et al. (2022), *Environmental Geochemistry and Health*; [SRC-555] Silva et al. (2018), *Science of the Total Environment*; [SRC-556] Ogawa et al. (2020), *iScience*; [SRC-557] Ayilara et al. (2023), *Frontiers in Microbiology*; [SRC-558] Lee et al. (2026), *The Korean Journal of Pesticide Science*; [SRC-559] Wan et al. (2025), *Nature Communications*; [SRC-560] Pisa et al. (2017), *ESPR*; [SRC-561] EFSA (2020), *EFSA Journal*; [SRC-566] Coja et al. (2026), *EFSA Journal*; [SRC-567] Song et al. (2023), *Annual Review of Food Science and Technology*; [SRC-568] Wendell et al. (2024), *STOTEN*; [SRC-571] EFSA (2016), *EFSA Journal*; [SRC-572] EFSA (2021), *EFSA Journal*; [SRC-574] Sánchez-Bayo et al. (2016), *Frontiers in Environmental Science*; [SRC-575] EFSA (2024), *EFSA Journal*.

@@ -551,8 +551,10 @@ def build_chapter_visual_specs(
     chapter: dict[str, Any],
     per_chapter_count: int = 4,
     manuscript_path: Path | None = None,
+    allow_ai_images: bool = True,
 ) -> list[dict[str, Any]]:
-    """V1/V8/V9: 원고의 실제 절·주장을 기반으로 간결한 제목과 3문장 해설을 갖춘 시각화 명세(권장 3~6장)를 구성한다."""
+    """V1/V8/V9: 원고의 실제 절·주장을 기반으로 간결한 제목과 3문장 해설을 갖춘 시각화 명세(권장 3~6장)를 구성한다.
+    allow_ai_images=False(0원 기본 모드)일 때는 유료 AI 빈 틀(UNGENERATED)을 만들지 않고 0원 내용 구조도 템플릿만 배정한다."""
     cid = chapter.get("chapter_id", "ch01")
     ch_num = int(chapter.get("chapter_number") or 1)
     ch_title = chapter.get("title", f"제{ch_num}장")
@@ -562,7 +564,14 @@ def build_chapter_visual_specs(
     if count == 0:
         return []
 
-    # 원고가 존재하면 실제 절 본문에서 인용키와 핵심 요지를 발췌
+    # 0원 모드(allow_ai_images=False)에서는 비-AI 내용 구조도 템플릿만 사용 (빈 틀 UNGENERATED 스텁 생성 원천 차단)
+    active_templates = (
+        CHAPTER_VISUAL_TEMPLATES
+        if allow_ai_images
+        else [t for t in CHAPTER_VISUAL_TEMPLATES if t.get("kind") not in ("photo_ai", "infographic_ai")]
+    ) or CHAPTER_VISUAL_TEMPLATES
+
+    # 원고가 존재하면 실제 절 본문에서 인용키와 핵심 요지를 발췌 (근거 부족 경고 배너·주석 제외)
     sec_claims: dict[str, tuple[str, str]] = {}
     if manuscript_path and manuscript_path.is_file():
         raw_md = manuscript_path.read_text(encoding="utf-8", errors="ignore")
@@ -571,13 +580,23 @@ def build_chapter_visual_specs(
             h_txt = m.group(1).strip()
             s_body = m.group(2).strip()
             cites = sorted(set(re.findall(r"\[SRC-\d+\]", s_body)))
-            first_para = next((p.strip() for p in s_body.split("\n\n") if p.strip() and not p.strip().startswith(("#", "|", "<", "*"))), "")
-            first_sent = re.split(r"(?<=[.다])\s+", re.sub(r"\s+", " ", first_para))[0][:140]
+            first_para = next(
+                (
+                    p.strip()
+                    for p in s_body.split("\n\n")
+                    if p.strip()
+                    and not p.strip().startswith(("#", "|", "<", "*", ">"))
+                    and "근거 부족" not in p
+                    and "NEED_EVIDENCE" not in p
+                ),
+                "",
+            )
+            first_sent = re.split(r"(?<=[.다])\s+", re.sub(r"\s+", " ", first_para))[0][:140] if first_para else ""
             sec_claims[h_txt] = (first_sent, ", ".join(cites[:4]) if cites else "본문 분석")
 
     specs: list[dict[str, Any]] = []
     for idx in range(count):
-        tmpl = CHAPTER_VISUAL_TEMPLATES[idx % len(CHAPTER_VISUAL_TEMPLATES)]
+        tmpl = active_templates[idx % len(active_templates)]
         v_num = idx + 1
         fig_id = f"fig_{cid}_v{v_num:02d}"
         fig_no = f"그림 {ch_num}-{v_num}"
@@ -707,6 +726,7 @@ def generate_project_visuals(
 
     fal_key = resolve_api_key("FAL_KEY", None, cfg) if use_fal_ai else ""
     gemini_key = resolve_api_key("GEMINI_API_KEY", None, cfg) if use_nano_banana else ""
+    allow_ai = bool((use_fal_ai and fal_key) or (use_nano_banana and gemini_key))
     done_set = set(completed_ids or set())
 
     all_specs: list[dict[str, Any]] = []
@@ -720,6 +740,7 @@ def generate_project_visuals(
                 chapter=ch,
                 per_chapter_count=per_chapter_count,
                 manuscript_path=mdx_p if mdx_p.is_file() else None,
+                allow_ai_images=allow_ai,
             )
         )
 
@@ -1054,23 +1075,45 @@ def audit_visual_assets(
 
     audited: list[dict[str, Any]] = []
     publishable = 0
+    excluded_count = 0
+    active_total = 0
     with_source = 0
     has_fake = False
     issues_total = 0
 
     for it in raw_items:
         issues: list[str] = []
+        is_excluded = bool(it.get("exclude_from_publish"))
         fp = Path(it.get("path") or "") if it.get("path") else Path("")
         is_bad = _is_placeholder_or_fake_visual(it, fp)
+        title = str(it.get("title_ko") or "")
+        src_str = str(it.get("data_source") or it.get("source_note") or "").strip()
+
+        if is_excluded:
+            excluded_count += 1
+            audited.append(
+                {
+                    "figure_id": it.get("figure_id", ""),
+                    "chapter_id": it.get("chapter_id", ""),
+                    "title_ko": title,
+                    "status": it.get("status", "EXCLUDED"),
+                    "engine": it.get("engine", ""),
+                    "has_source": bool(src_str),
+                    "publishable": False,
+                    "excluded": True,
+                    "issues": [],
+                }
+            )
+            continue
+
+        active_total += 1
         if is_bad:
             issues.append("빈 틀 또는 가짜 수치 차트(출판 제외 대상)")
             has_fake = True
         if str(it.get("status", "")).upper() == "UNGENERATED" or not fp.is_file():
             issues.append("이미지 파일 미생성")
-        title = str(it.get("title_ko") or "")
         if "— 현장" in title or len(title) > 68:
             issues.append("그림 제목 과장/잘림 위험(장 제목 반복 제거 필요)")
-        src_str = str(it.get("data_source") or it.get("source_note") or "").strip()
         if not src_str:
             issues.append("자료 출처(data_source) 미기재")
         else:
@@ -1087,18 +1130,22 @@ def audit_visual_assets(
                 "engine": it.get("engine", ""),
                 "has_source": bool(src_str),
                 "publishable": (not is_bad and fp.is_file()),
+                "excluded": False,
                 "issues": issues,
             }
         )
 
     tot = len(raw_items)
+    denom = active_total if active_total > 0 else tot
     return {
         "project_id": project_id,
         "chapter_id": chapter_id,
         "total": tot,
+        "active_total": active_total,
+        "excluded_count": excluded_count,
         "publishable": publishable,
         "issues_count": issues_total,
-        "source_coverage_pct": round((with_source / max(1, tot)) * 100.0, 1) if tot else 100.0,
+        "source_coverage_pct": round((with_source / max(1, denom)) * 100.0, 1) if denom else 100.0,
         "has_placeholder_or_fake": has_fake,
         "contact_sheets": plan.get("contact_sheets") or {},
         "items": audited,

@@ -1,0 +1,280 @@
+book_metadata:
+  title_ko: 농약학 및 안정성 평가
+  title_en: Agrochemical and safety evaluation
+  target_audience: 대학 전공 심화, 대학원생, 연구자 및 선도 현장 실무자
+  book_summary_ko: 본 교재는 농약화학의 기초 이론부터 유효성분의 작용기작, 제형공학, 환경 동태, 독성학적 안전성 평가 및 규제 정책에 이르기까지 농약학 전 분야를 체계적으로 집대성한 전공 심화 표준 교과서이다. 분자 수준의 생리·생화학적
+    메커니즘 규명과 수학적 모형에 기반한 정량적 위해성 평가 기법을 유기적으로 연계하여 학문적 엄밀성과 포장 실무 해결 능력을 동시에 배양하도록 설계하였다. 특히 급성·만성 독성시험 데이터로부터 무작용량(NOAEL)을 도출하고 잔류허용기준(MRL),
+    일일섭취허용량(ADI), 농작업자노출허용량(AOEL)을 산출하는 계산 절차와 농약관리법령 및 농촌진흥청 고시 지침을 심층 반영하였다. 이를 통해 대학 전공자, 대학원생, 농업 연구직 및 공공·민간 규제 과학 전문가가 포괄적인 독자적 전문성을 확보할
+    수 있는 표준 지침을 제공한다.
+  target_pages: 602
+  target_total_pages: 602
+  chapter_count: 14
+  engine_used: Gemini (gemini-3.8-flash)
+  generated_at: '2026-11-23T20:10:55+00:00'
+domain_keywords:
+- domain: 농약화학 및 제형공학
+  keywords_ko:
+  - 유효성분
+  - 계면활성제
+  - 유제
+  - 수화제
+  - 액상수화제
+  - 저장안정성
+  - CIPAC 물리화학시험법
+  keywords_en:
+  - active ingredient
+  - surfactant
+  - emulsifiable concentrate
+  - wettable powder
+  - suspension concentrate
+  - storage stability
+  - CIPAC physico-chemical testing
+- domain: 생리작용기작 및 저항성
+  keywords_ko:
+  - IRAC 살충제 작용기작
+  - FRAC 살균제 작용기작
+  - HRAC 제초제 작용기작
+  - 표적부위 변이
+  - 대사적 저항성
+  - 교차저항성
+  keywords_en:
+  - IRAC mode of action
+  - FRAC mode of action
+  - HRAC mode of action
+  - target-site mutation
+  - metabolic resistance
+  - cross-resistance
+- domain: 환경동태 및 잔류분석
+  keywords_ko:
+  - 생체 내 이물질 대사
+  - 흡착계수(Koc)
+  - 용탈지수(GUS)
+  - 잔류소실반감기(DT50)
+  - QuEChERS 다성분 잔류분석
+  - LC-MS/MS 정량
+  keywords_en:
+  - xenobiotic metabolism
+  - organic carbon partition coefficient
+  - groundwater ubiquity score
+  - dissipation half-life
+  - QuEChERS multiresidue analysis
+  - LC-MS/MS quantification
+- domain: 독성학 및 위해성평가
+  keywords_ko:
+  - 최대무작용량(NOAEL)
+  - 안전계수(UF)
+  - 일일섭취허용량(ADI)
+  - 농작업자노출허용량(AOEL)
+  - 급성참조용량(ARfD)
+  - 생태위해성평가(TER)
+  keywords_en:
+  - no-observed-adverse-effect level
+  - uncertainty factor
+  - acceptable daily intake
+  - acceptable operator exposure level
+  - acute reference dose
+  - toxicity exposure ratio
+- domain: 농약규제 및 등록제도
+  keywords_ko:
+  - 농약관리법
+  - 농약등록시험
+  - 농약 재평가
+  - 잔류허용기준(MRL)
+  - 농약 허용물질목록관리제도(PLS)
+  - 농촌진흥청 고시
+  keywords_en:
+  - Pesticide Control Act
+  - pesticide registration trial
+  - pesticide re-evaluation
+  - maximum residue limit
+  - positive list system
+  - RDA regulatory standards
+parts:
+- part_number: 1
+  title: 제1부. 농약의 화학적 분류, 물리화학적 특성 및 제형공학
+  pages: 129
+  chapters:
+  - chapter_id: ch01
+    chapter_number: 1
+    title: 제1장. 농약의 정의, 화학구조별 분류 체계 및 물리화학적 특성
+    target_pages: 43
+    summary_ko: 농약의 법적·학술적 정의와 유기인계, 카바메이트계, 합성피레스로이드계, 트리아졸계 등 주요 화학군별 구조적 특성을 체계적으로 정립한다. 수용해도, 옥탄올-물 분배계수(log Kow), 증기압, 해리상수(pKa) 등 핵심 물리화학적
+      상수의 열역학적 측정 원리와 분자 구조 간의 상관관계를 규명한다.
+    sections:
+    - 1.1 농약관리법 및 FAO/WHO 기준에 따른 농약의 법적·학문적 정의와 범주
+    - 1.2 합성 유기화합물 및 천연물 기원 유효성분의 화학구조별 계통 분류 체계
+    - 1.3 주요 물리화학적 파라미터(log Kow, 수용해도, 증기압, Henry 상수, pKa)의 이론적 기초
+    - 1.4 물리화학적 물성치 측정 표준 프로토콜(OECD 시험가이드라인) 및 데이터베이스 해석
+    - 1.5 화학구조-물성 상관관계(QSPR)를 활용한 화합물 환경 분배 거동의 기초 예측
+  - chapter_id: ch02
+    chapter_number: 2
+    title: 제2장. 농약 계면활성제 화학, 제제 보조제 및 현대 제형화 기술
+    target_pages: 43
+    summary_ko: 유효성분의 표적 도달성과 생물학적 활성을 극대화하기 위한 계면활성제의 열역학적 계면 흡착 및 제형화 메커니즘을 심층 분석한다. 유제(EC), 수화제(WP), 입제(GR) 등 전통 제형부터 액상수화제(SC), 입상수화제(WG),
+      미탁제(ME), 마이크로캡슐제(CS) 등 환경친화적 첨단 제형의 분산 안정화 공학을 정량적으로 다룬다.
+    sections:
+    - '2.1 유효성분 분산 안정화 이론: DLVO 이론, 입체장애 효과 및 제타전위(Zeta Potential)'
+    - 2.2 계면활성제의 친수성-친유성 평형값(HLB), 임계미셀농도(CMC) 및 동적 표면장력 조절 기작
+    - 2.3 전통 제형(EC, WP, GR, DP)의 조성 구성비, 제조 공정 및 포장 내 물리적 거동 한계
+    - 2.4 수계 첨단 제형(SC, WG, EW, SE) 및 방출제어형 제형(CS)의 나노·마이크로 가공 공학
+    - 2.5 혼용성 증진제, 침투이행 촉진제, 비산방지제 등 제제 보조제의 계면물리학적 작용 메커니즘
+  - chapter_id: ch03
+    chapter_number: 3
+    title: 제3장. 농약의 물리화학적 품질관리 지표 및 저장안정성 역학
+    target_pages: 43
+    summary_ko: 농약 완제품의 유통 기간 중 유효성분 분해와 물리적 상분리를 방지하기 위한 반응속도론적 화학 안정성 및 분산 역학을 분석한다. CIPAC 국제 공인 시험법에 기반한 가속 저장시험, 저온 시험 프로토콜과 유효성분 분해 반응속도
+      상수(k) 및 아레니우스 활성화 에너지를 정량 계산한다.
+    sections:
+    - 3.1 CIPAC(국제공인농약분석협의회) 기반 물리화학적 품질 규격 시험법 체계
+    - '3.2 제형별 물리적 품질지표: 입도분포(PSD), 현수율, 유화안정성, 붕괴성, 젖음성 정량 평가'
+    - '3.3 화학적 열화 반응속도론: 가수분해, 광분해, 산화 메커니즘과 반응 차수 결정'
+    - 3.4 아레니우스 식을 활용한 가속저장시험(54℃ 14일 등) 결과의 상온 유통수명(Shelf-life) 외삽 추정
+    - 3.5 농약관리법 품질 보증 지표 기준, 불합격 제형의 원인 분석 및 현장 품질 클레임 진단
+- part_number: 2
+  title: 제2부. 농약의 표적 생리·생화학적 작용기작 및 저항성 기전
+  pages: 172
+  chapters:
+  - chapter_id: ch04
+    chapter_number: 4
+    title: 제4장. 살충제 및 살비제의 작용기작(IRAC)과 신경·대사 저해 메커니즘
+    target_pages: 43
+    summary_ko: IRAC(살충제저항성대책위원회) 분류 체계에 입각하여 곤충 신경계 축삭 전도 및 시냅스 전달, 에너지 대사, 성장 탈피 호르몬 제어 경로를 규명한다. 아세틸콜린에스테라제 저해, 나트륨 채널 조절, GABA성 염소이온 채널 길항,
+      라이아노딘 수용체 활성화 등 분자 결합 부위의 생화학적 반응을 비교 평가한다.
+    sections:
+    - '4.1 곤충 신경계 생리학 개요: 축삭 전도, 시냅스 전달 기전 및 수용체 표적 단백질 구조'
+    - '4.2 시냅스 표적제(IRAC Group 1, 4, 5): AChE 억제(유기인계·카바메이트계) 및 nAChR 조절(네오니코티노이드계·스피노신계)'
+    - '4.3 축삭 및 이온채널 표적제(IRAC Group 2, 3, 22): GABA 수용체 길항제, 전압의존성 Na+ 채널 조절제(합성피레스로이드계)'
+    - '4.4 근육 수축 및 세포호흡 저해제(IRAC Group 6, 28, 12-13, 20): 라이아노딘 수용체 활성화제(디아마이드계) 및 미토콘드리아 전자전달계 차단제'
+    - '4.5 곤충 성장조절제(IGR, IRAC Group 15-18, 23): 키틴 생합성 억제제, 유약호르몬 유사체, 지질생합성 억제제 메커니즘'
+  - chapter_id: ch05
+    chapter_number: 5
+    title: 제5장. 살균제의 작용기작(FRAC)과 병원균 세포 대사·증식 저해 메커니즘
+    target_pages: 43
+    summary_ko: FRAC(살균제저항성대책위원회) 분류 체계를 바탕으로 식물병원성 진균의 핵산 합성, 세포분열, 세포호흡, 스테롤 생합성 저해 기전을 규명한다. 단일작용점 살균제와 다작용점(Multi-site) 보호살균제의 효소 반응 동력학적
+      차이 및 병원균 막 투과성 붕괴 기전을 심층 분석한다.
+    sections:
+    - '5.1 진균 생화학적 표적 개요: 세포벽 및 원형질막 합성계, 미토콘드리아 호흡 사슬의 생화학'
+    - '5.2 호흡 저해제(FRAC Group 7, 11, 21): 복합체 II(SDHI계), 복합체 III QoI(스트로빌루린계) 및 QiI 살균제의 전자전달 차단 기작'
+    - '5.3 세포막 스테롤 생합성 저해제(DMI, FRAC Group 3): C14-탈메틸화 효소(CYP51) 결합 동태 및 구조 활성 관계'
+    - '5.4 세포골격 및 분열 저해제(FRAC Group 1, 22): 베타-튜블린 중합 억제 기전과 유사분열 정지 현상'
+    - '5.5 다작용점 접촉 살균제(FRAC Group M): 티올기(-SH) 비특이적 결합 단백질 변성 및 생체 면역 유도제(유도저항성 물질)'
+  - chapter_id: ch06
+    chapter_number: 6
+    title: 제6장. 제초제의 작용기작(HRAC)과 식물 생육·대사 차단 메커니즘
+    target_pages: 43
+    summary_ko: HRAC(제초제저항성대책위원회) 최신 수치-문자 통합 분류 체계를 기준으로 광합성 전자전달계, 아미노산 생합성, 지질 생합성, 미소관 형성 저해 메커니즘을 규명한다. 활성산소종(ROS) 발생을 통한 막지질 과산화 유도 및 표적
+      효소 억제에 따른 식물 고사 과정을 정량적 효소 동력학으로 설명한다.
+    sections:
+    - '6.1 식물 생리학적 대사 표적과 제초 활성: 엽록체 내 광화학계 및 필수 아미노산 생합성 대사도'
+    - '6.2 아미노산 생합성 억제제(HRAC Group 2, 9, 10): ALS/AHAS 억제제(설포닐우레아계), EPSPS 억제제(글리포세이트), GS 억제제(글루포시네이트)'
+    - '6.3 광합성 저해제(HRAC Group 5, 6, 22): PS II 결합 저해제(트리아진계, 우레아계) 및 PS I 전자 전용제(파라콰트)의 광동역학적 세포 파괴'
+    - '6.4 색소 및 지질 생합성 저해제(HRAC Group 1, 12, 14, 27): ACCase 억제제, PPO 억제제, HPPD 억제제의 ROS 형성 및 막 파괴 메커니즘'
+    - 6.5 합성 옥신 및 호르몬 조절제(HRAC Group 4)와 미소관 조립 저해제(HRAC Group 3)의 비정상적 분열 유도
+  - chapter_id: ch07
+    chapter_number: 7
+    title: 제7장. 작물보호제 저항성 발달 유전·생화학 기전 및 포장 관리 전략
+    target_pages: 43
+    summary_ko: 병해충 및 잡초 집단 내에서 반복 살포로 유도되는 도태압과 저항성 유전자 빈도 변화를 집단유전학적 모형으로 분석한다. 표적 부위 점돌연변이(TSR)와 사이토크롬 P450, ABC 수송체에 의한 비표적 부위 대사 저항성(NTSR)
+      메커니즘 및 교차·다제 저항성 포장 방제 프로토콜을 제시한다.
+    sections:
+    - '7.1 저항성 진화의 집단유전학: 돌연변이 발생률, 도태압(Selection Pressure) 및 하디-바인베르크 평형 이탈 모형'
+    - '7.2 표적 부위 변이 기작(TSR): 아미노산 단일염기치환(SNP), 표적 유전자 증폭(Copy Number Variation)'
+    - '7.3 비표적 부위 저항성(NTSR): Phase I/II 해독 효소계(P450, GST, Esterase) 과발현 및 수송체 축적 기전'
+    - '7.4 저항성 모니터링 기법: 분자생물학적 진단(dPCR, NGS), 생물검정(Bioassay) 및 저항성비(Resistance Ratio, RR) 산출'
+    - 7.5 작용기작 교호살포(Rotation), 혼합살포(Tank-mix), 피난처(Refuge) 전략 수립 및 국가 저항성 관리 가이드라인
+- part_number: 3
+  title: 제3부. 포장 환경 동태, 식물 대사 및 다성분 잔류 분석화학
+  pages: 129
+  chapters:
+  - chapter_id: ch08
+    chapter_number: 8
+    title: 제8장. 식물체 내 농약의 흡수·침투이행 및 생체 이물질(Xenobiotics) 대사 경로
+    target_pages: 43
+    summary_ko: 큐티클층 및 기공을 통한 농약의 경엽 흡수와 물관·체관을 통한 전신 침투이행(Systemic Translocation) 메커니즘을 열역학적으로 규명한다. 식물체 내 3단계 생체이물 대사(Phase I 산화·가수분해, Phase
+      II 포합, Phase III 액포 격리)에 따른 잔류대사산물의 구조적 변환을 추적한다.
+    sections:
+    - 8.1 식물 큐티클층의 생화학적 구조(왁스, 큐틴)와 친유성·친수성 분자의 침투 열역학
+    - 8.2 물관부(Apoplast) 및 체관부(Symplast)를 통한 전신 침투이행성의 물리화학적 결정 요인(Bromilow 모델)
+    - '8.3 식물 해독 대사 제1상(Phase I): Cytochrome P450 모노옥시게나아제 및 퍼옥시다아제에 의한 작용기 도입'
+    - '8.4 식물 해독 대사 제2상(Phase II): 글루코실전이효소(GT) 및 글루타티온 S-전이효소(GST)에 의한 극성 포합'
+    - '8.5 식물 해독 대사 제3상(Phase III) 및 제4상: ABC 수송체를 통한 액포 내 격리, 세포벽 불용화 결합잔류물(Bound Residue) 형성'
+  - chapter_id: ch09
+    chapter_number: 9
+    title: 제9장. 토양 및 수계 환경 중 농약의 흡착·용탈, 생물학적 분해 및 환경 거동 모형
+    target_pages: 43
+    summary_ko: 토양 교질 입자와 유기물에 대한 농약의 흡착 등온선(Freundlich, Langmuir)과 유기탄소 분배계수(Koc)를 정량화한다. 토양 잔류 소실 반감기(DT50), 용탈 전이 지수(GUS 지수) 및 환경 거동 모의 예측
+      모형(PRZM, FOCUS PEARL)을 활용한 지하수·지표수 오염 노출 농도를 산정한다.
+    sections:
+    - '9.1 토양-물 계면에서의 흡착·탈착 평형 이론: Freundlich 등온 흡착식 및 유기탄소 보정 분배계수(Koc)'
+    - '9.2 토양 내 비생물적 분해: 점토 광물 촉매 가수분해, 산화환원 반응 및 토양 표면 광분해 역학'
+    - '9.3 미생물 분해(Biodegradation): 공대사(Cometabolism), 생물학적 광물화(Mineralization) 및 분해 효소 유전자 클러스터'
+    - '9.4 토양 내 이동 및 지하수 용탈 모델링: GUS 지수 산정, 수치 해석적 대류-분산 방정식(CDE)'
+    - '9.5 수계 거동 예측: 농경지 지표 유출(Runoff), 부유물질 흡착 침전 및 FOCUS 유럽/미국 EPA 환경노출모형 활용'
+  - chapter_id: ch10
+    chapter_number: 10
+    title: 제10장. 농약 다성분 잔류 분석화학과 잔류 감쇄 동태 모형
+    target_pages: 43
+    summary_ko: QuEChERS 추출법과 고분해능 LC-MS/MS, GC-MS/MS를 결합한 농산물 중 미량 잔류농약 초정밀 다성분 기기분석법을 상세히 정립한다. 수확 전 포장 살포 농약의 경시적 잔류 감쇄 경향을 일차 반응속도식으로 피팅하여
+      반감기(DT50) 및 수확전 살포제한기준(PHI)을 역학적으로 도출한다.
+    sections:
+    - '10.1 잔류농약 분석 전처리 이론: 고체상 추출법(SPE) 및 개질 QuEChERS(EN 15662, AOAC 2007.01) 추출·정제 메커니즘'
+    - '10.2 질량분석 기기분석: LC-MS/MS(ESI 전리원) 및 GC-MS/MS(EI 전리원) 다중반응검지법(MRM) 분석 최적화'
+    - '10.3 잔류분석 유효성 검증(Method Validation): 직선성, 검출한계(LOD), 정량한계(LOQ), 회수율, 정밀도 및 매트릭스 효과(Matrix Effect) 평가'
+    - '10.4 포장 잔류 소실 동태 모형: 단일 1차 속도식(SFO), 2차 2상 소실 모형(FOMC, DFOP, HS) 피팅 알고리즘'
+    - 10.5 잔류반감기(DT50) 계산 실무 및 잔류 감소 추이에 따른 수확전 살포일수(PHI) 설정 통계 분석
+- part_number: 4
+  title: 제4부. 독성학적 안전성 평가 및 환경생태 위해성 평가
+  pages: 86
+  chapters:
+  - chapter_id: ch11
+    chapter_number: 11
+    title: 제11장. 포유류 독성학적 안전성 평가 및 독성 기준점(NOAEL·ADI·AOEL) 도출
+    target_pages: 43
+    summary_ko: OECD 독성시험 가이드라인에 따른 급성독성, 아만성·만성독성, 발암성, 유전독성, 생식발생독성 시험법과 표적 장기 병리 독성평가를 기술한다. 용량-반응(Dose-Response) 곡선으로부터 최대무작용량(NOAEL) 및 벤치마크용량(BMD)을
+      산출하고 불확실성계수를 적용한 ADI, ARfD, AOEL 산출 수리 모델을 정립한다.
+    sections:
+    - '11.1 급성 독성시험: 경구·경피·흡입 LC50/LD50 산출(Probit 통계 분석) 및 피부·안점막 자극성·과민성 시험'
+    - '11.2 아만성·만성 독성 및 발암성 시험: 90일 반복투여, 2년 만성독성·발암성 복합시험과 표적장기 독성병리학'
+    - '11.3 특수독성 평가: 유전독성 3종 표준 배터리(Ames, 염색체이상, 소핵시험) 및 2세대 생식독성·최기형성 시험'
+    - '11.4 용량-반응 관계 평가: NOAEL/LOAEL 결정 및 벤치마크 용량(BMD/BMDL10) 수리 통계 모델링'
+    - '11.5 독성 기준치 산정 알고리즘: 종간(10x)·개체간(10x) 안전계수(UF) 적용을 통한 ADI, ARfD, AOEL 도출 정량 연습'
+  - chapter_id: ch12
+    chapter_number: 12
+    title: 제12장. 비표적 생물 및 수생·육상 생태독성 평가와 환경위해성 지표
+    target_pages: 43
+    summary_ko: 화분매개곤충(꿀벌), 천적 곤충, 수생생물(어류, 물벼룩, 조류), 조류 및 토양 무척추동물에 대한 농약의 생태독성 표준 시험 체계를 규명한다. 환경예측농도(PEC)와 예측무영향농도(PNEC) 또는 독성노출비(TER)를 이용한
+      계단식(Tiered) 생태위해성 평가 기법을 학습한다.
+    sections:
+    - '12.1 꿀벌(Apis mellifera) 생태독성: 급성 접촉·경구 독성, 유충 독성 및 만성 아치사 영향(행동·항법 교란)'
+    - '12.2 수생 생물군 독성시험: 잉어·송어 급성·초기배유어 독성(OECD 203/210), 물벼룩 유영저해 및 조류(Algae) 생장저해'
+    - '12.3 토양 생물 및 야생 조류 영향: 지렁이 급성·번식 독성, 토양 미생물 질소전환 영향, 조류 1회 급성 경구 및 식이 독성'
+    - '12.4 수계·토양 예측환경농도(PEC) 산정: 포장 살포량, 드리프트율, 수심 희석 및 토양 깊이별 모델 계산'
+    - '12.5 단계별(Tier 1-3) 생태위해성 판정: 독성노출비(TER = LC50/PEC) 산출 및 트리거(Trigger) 기준치 비교 진단'
+- part_number: 5
+  title: 제5부. 인체 위해성 평가, 규제 정책 및 농약 등록 제도
+  pages: 86
+  chapters:
+  - chapter_id: ch13
+    chapter_number: 13
+    title: 제13장. 식이섭취 위해성 평가 및 잔류허용기준(MRL) 설정 원리
+    target_pages: 43
+    summary_ko: 국민영양조사 식품섭취량 데이터와 잔류농약 실측치를 결합한 만성(NEDI) 및 급성(NESTI) 식이노출 평가 수리식을 규명한다. OECD MRL 계산기 통계 알고리즘에 기초한 잔류허용기준(MRL) 산출 원리와 미등록 농약에 대한
+      허용물질목록관리제도(PLS, 0.01 mg/kg) 운영 지침을 분석한다.
+    sections:
+    - '13.1 식이노출 평가 기본 원리: 만성 식이섭취 추정량(NEDI) 및 급성 식이섭취 추정량(NESTI)의 수리 모델식'
+    - 13.2 결정론적(Deterministic) 노출평가 점추정법과 확률론적(Probabilistic, 몬테카를로 시뮬레이션) 노출평가
+    - '13.3 잔류허용기준(MRL) 설정 이론: OECD MRL Calculator 통계적 절차(평균 잔류량, 표준편차, 95백분위수 반영)'
+    - 13.4 Codex, 한국, EU, 미국, 일본의 MRL 산정 정책 비교 및 식품무역 상 위생검역(SPS) 협정 이슈
+    - 13.5 농약 허용물질목록관리제도(PLS) 도입 배경, 불검출 기준(0.01 mg/kg 일률기준) 법적 적용 및 비의도적 오염 대책
+  - chapter_id: ch14
+    chapter_number: 14
+    title: 제14장. 농작업자 노출 평가 및 농약관리법 기반 등록·재평가 규제 체계
+    target_pages: 43
+    summary_ko: 살포 작업자 및 수확 농작업자의 노출량을 정량화하는 계산 모델(AOEM, 농촌진흥청 KoPOEM)과 개인보호구(PPE) 차단 계수를 분석한다. 국내 농약관리법령상 농약 등록 시험기준, 위해성 재평가 주기 및 취소 처분 프로토콜
+      등 과학 기반의 행정 규제 지침을 총망라한다.
+    sections:
+    - '14.1 농작업자 노출 평가 메커니즘: 조제(Mixing/Loading), 살포(Application), 재출입(Re-entry) 작업 단계별 노출 경로'
+    - '14.2 노출 예측 수치 모델: 농촌진흥청 한국형 농작업자 노출 모델(KoPOEM) 및 유럽 EFSA AOEM 비교 분석'
+    - '14.3 위해도 판정 기준: 총노출량과 작업자노출허용량(AOEL) 비교를 통한 위해지수(Hazard Quotient, HQ) 도출'
+    - '14.4 농약관리법에 따른 농약 등록 심사 체계: 약효·약해, 잔류성, 독성, 환경영향 4대 시험성적서 평가 규격'
+    - '14.5 농약 안전성 재평가(Re-evaluation) 제도: 안전기준 부적합 농약의 취소·회수 프로토콜 및 최신 규제 개정 동향'

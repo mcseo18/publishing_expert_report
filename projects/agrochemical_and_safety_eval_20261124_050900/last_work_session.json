@@ -1,0 +1,23 @@
+{
+  "project_id": "agrochemical_and_safety_eval_20261124_050900",
+  "topic_ko": "농약학 및 안정성 평가",
+  "workspace_dir": "C:\\smc_drive_desk\\smc_drive\\report_publishing_platform\\projects\\agrochemical_and_safety_eval_20261124_050900",
+  "last_tab": "workflow",
+  "last_subtab": "",
+  "last_stage_id": "stage6_publish_report",
+  "last_stage_order": "6",
+  "last_stage_title": "최종 출판·보고서",
+  "last_stage_status": "DONE",
+  "last_stage_progress": 100,
+  "last_open_chapter": "",
+  "last_visual_filter": "ALL",
+  "last_action_summary": "오류 발생(체크포인트 보존): 품질 게이트 미달로 6단계 출판이 차단되었습니다: 출처와 무관한 인용 비율(42.4%)이 기준(30% 이하)을 초과합니다. / 전문가 [검토 완료] 체크된 단원이 0개입니다(4단계 점검표에서 1개 이상 검토 완료 필요).",
+  "last_event_message": "폴더에서 이전 프로젝트 불러오기 완료: 오류 발생(체크포인트 보존): 품질 게이트 미달로 6단계 출판이 차단되었습니다: 출처와 무관한 인용 비율(42.4%)이 기준(30% 이하)을 초과합니다. / 전문가 [검토 완료] 체크된 단원이 0개입니다(4단계 점검표에서 1개 이상 검토 완료 필요).",
+  "done_stages": 6,
+  "total_stages": 6,
+  "overall_status": "DONE",
+  "completed_chapters_count": 14,
+  "completed_visuals_count": 56,
+  "saved_at": "2026-11-24T00:07:12+00:00",
+  "saved_at_local": "2026-11-24 09:07:12"
+}

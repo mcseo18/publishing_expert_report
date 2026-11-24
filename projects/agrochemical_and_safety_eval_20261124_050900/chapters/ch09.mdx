@@ -1,0 +1,72 @@
+---
+chapter_id: "ch09"
+title: "제9장. 토양 및 수계 환경 중 농약의 흡착·용탈, 생물학적 분해 및 환경 거동 모형"
+audience: "대학 전공 심화, 대학원생, 연구자 및 선도 현장 실무자"
+evidence_packet: "agrochemical_and_safety_eval_20261124_050900_evidence.json"
+persona: "textbook_distinguished_prof"
+---
+
+# 제9장. 토양 및 수계 환경 중 농약의 흡착·용탈, 생물학적 분해 및 환경 거동 모형
+
+> **학습 목표**: 본 장을 학습한 후 독자는 ① 토양–물 계면의 Freundlich 흡착 등온선과 유기탄소 보정 분배계수($K_{\mathrm{oc}}$·$K_{F\mathrm{oc}}$)를 계산·해석하고, ② 토양 내 비생물적 분해(가수분해·광분해)와 미생물 분해($DT_{50}$)에 영향을 미치는 토양 물리화학 인자(유기탄소·점토·pH·Fe/Al 산화물)를 정량 분석하며, ③ 지하수 용탈 지수(GUS)와 대류–분산 방정식(CDE)으로 지하수 오염 잠재력을 평가하고, ④ 유럽 농지 토양 다성분 잔류 실태와 유역 수계 거동 모형(SWAT+·FOCUS)의 적용 원리를 설명할 수 있다 [SRC-542, SRC-552, SRC-553, SRC-555, SRC-565, SRC-568, SRC-569].
+
+## 9.1 토양–물 계면 흡착·탈착 평형: Freundlich 등온식과 $K_{\mathrm{oc}}$
+
+살포된 농약이 토양 입자에 얼마나 강하게 붙잡히는지(흡착, sorption)는 지하수 용탈, 지표 유출, 식물 흡수 및 미생물 분해 속도를 결정짓는 일차적 관문이다 [SRC-553, SRC-569]. 비균질한 토양 고상 표면에서의 비선형 흡착 평형은 **Freundlich 등온 흡착식**으로 기술한다 [SRC-553].
+
+$$C_s = K_f \cdot C_e^{1/n}, \quad K_{F\mathrm{oc}} = \frac{K_f}{f_{\mathrm{oc}}} = \frac{K_f \times 100}{\%\mathrm{OC}}$$
+
+여기서 $C_s$는 토양 흡착 농도(mg/kg), $C_e$는 토양 용액 평형 농도(mg/L), $K_f$는 Freundlich 흡착 계수, $1/n$은 비선형 지수(보통 0.7–1.0), $f_{\mathrm{oc}}$는 토양 유기탄소 질량 분율이다 [SRC-553]. 토양 유기탄소 함량으로 정규화한 **$K_{\mathrm{oc}}$ (또는 $K_{F\mathrm{oc}}$, mL/g)**는 토양 종류에 관계없이 유효성분 고유의 이동성을 비교하는 국제 규제 기준이 된다.
+
+- **실증 사례 1 — Thiobencarb 흡착·탈착 이력현상**: El-Aswad et al. (2023)의 이집트 점토(clay) vs 사질식양토(sandy clay loam) 비교 시험에서 thiobencarb의 흡착·탈착은 유사 2차 속도식과 Freundlich 모델에 정밀 부합하였으며, 점토에서는 흡착이 크고(S형 등온선) 탈착이 낮아(C형 등온선) 이동성이 제한된 반면 사질식양토에서는 용탈이 유의하게 높았다 [SRC-553].
+- **실증 사례 2 — Diuron 다변량 토양 흡착 예측**: Chagas et al. (2019)이 브라질 27개 토양을 분석한 결과, 유기물·점토·양이온교환용량 등 토양 조성 변수가 디우론의 흡착·탈착 용량을 선형 판별식으로 유의하게 예측하였다 [SRC-569].
+- **실증 사례 3 — 모화합물 vs 대사체 $K_{F\mathrm{oc}}$ 급변**: EFSA Clodinafop-propargyl 평가(원문 표 2)에서 모화합물($K_{F\mathrm{oc}}$ 252–2,364 mL/g)보다 산성 대사체 CGA 193469($K_{F\mathrm{oc}}$ **25.3–81.0 mL/g**)와 피리디놀 대사체 CGA 302371(**25.1–98.0 mL/g**)의 토양 이동성이 훨씬 높게 나타났다 [SRC-542].
+
+## 9.2 토양 내 비생물적 분해 및 미생물 생분해($DT_{50}$)
+
+토양 중 농약 소실은 화학적 **가수분해·토양 표면 광분해·산화환원**과 토양 세균·진균에 의한 **미생물 분해(공대사 cometabolism 및 완전 광물화 $\mathrm{CO}_2$·$\mathrm{H}_2\mathrm{O}$ 전환)**의 합으로 진행된다 [SRC-542, SRC-552, SRC-553].
+
+Meftaul et al. (2022)이 5개 토양에서 4종 대표 농약(glyphosate, 2,4-D, chlorothalonil, dimethoate)의 1차 분해속도 상수($k$)와 반감기($DT_{50}$)를 측정한 결과, **$k$는 토양 유기탄소(OC)·미사·점토·Fe/Al 산화물과 음의 상관, 토양 pH 및 모래 함량과 양의 상관**을 보였고, 반대로 **$DT_{50}$은 OC·점토·미사·Fe/Al 산화물과 양의 상관**을 나타냈다 [SRC-552]. 이는 유기물과 점토·산화물에 강하게 흡착된 농약은 토양 용액 내 생물유효도(bioavailability)가 낮아져 미생물 접근과 분해가 지연되기 때문이다 [SRC-552, SRC-553].
+
+| 유효성분 / 대사체 | 시험 토양 / 환경 조건 | 토양 반감기 ($DT_{50}$) | $K_{F\mathrm{oc}}$ / 이동성 판정 | 출처 |
+|---|---|---|---|---|
+| **Clodinafop-propargyl** (모화합물) | 20 °C, pF2 토양 수분 | **< 1일** (극저잔류) | 252–2,364 mL/g (중~저이동성) | [SRC-542] |
+| **CGA 193469** (산성 대사체) | 20–25 °C, 40% MWHC / 75% FC | **2.2–13.3일** ($DT_{90}$ 27.6–112일, 2상 소실) | 25.3–81.0 mL/g (극고~고이동성; 1 m 지하수 < 0.1 μg/L) | [SRC-542] |
+| **Thiobencarb** | 점토 vs 사질식양토 (1차 속도식) | **10.61일** (점토) / **10.24일** (사질식양토) | 중등도 용탈 (사질식양토 유의하게 높음) | [SRC-553] |
+| **Glyphosate·AMPA·Boscalid·Tebuconazole·DDTs** | EU 11개국 317개 농지 표토 (76종 분석) | 다성분 혼합 장기 잔류 | **80% 이상 토양 검출**(58% 2종 이상 혼합, 최대 단일 2.05 / 총합 2.87 mg/kg) | [SRC-555] |
+| **잔류성유기오염물질(POPs) 농약** | 한국 논·밭 토양 모니터링 | 과거 사용 유기염소계 장기 잔류 | 국내 논·밭 토양 노출 평가 및 지속 모니터링 필요 | [SRC-565] |
+
+## 9.3 토양 내 이동 및 지하수 용탈 모델링: GUS 지수와 대류–분산 방정식
+
+지하수 오염 잠재력을 신속하게 선별하는 대표 지표는 Gustafson(1989)의 **지하수 편재 지수(Groundwater Ubiquity Score, GUS)**이다 [SRC-552].
+
+$$\mathrm{GUS} = \log_{10}(DT_{50}) \times \left[4 - \log_{10}(K_{\mathrm{oc}})\right]$$
+
+- **$\mathrm{GUS} > 2.8$**: 고위험 용탈성(leacher) — 심층 지하수 정밀 모의(FOCUS PEARL 등) 필수
+- **$1.8 \le \mathrm{GUS} \le 2.8$**: 전이 영역(transition) — 토성·강우 조건에 따라 용탈 가능
+- **$\mathrm{GUS} < 1.8$**: 비유출·비용탈성(non-leacher)
+
+- **계산 예제 (GUS 산출)**: Clodinafop의 산성 대사체 CGA 193469의 중앙값 $DT_{50} = 7.8\ \mathrm{일}$, $K_{F\mathrm{oc}} = 50\ \mathrm{mL/g}$을 대입하면 [SRC-542]:
+  $$\mathrm{GUS} = \log_{10}(7.8) \times [4 - \log_{10}(50)] = 0.892 \times (4 - 1.699) = 0.892 \times 2.301 = 2.05$$
+  전이 영역($1.8\text{–}2.8$)에 해당하므로 유럽 규제 심사에서는 1 m 토심 지하수 침출 농도가 음용수 한계인 **0.1 μg/L**를 초과하는지 수치 모델로 필수 검증한다 [SRC-542].
+
+1차원 토양 단면에서의 용질 이동은 **대류–분산 방정식(Convection–Dispersion Equation, CDE)**으로 정식화한다.
+
+$$R \frac{\partial C}{\partial t} = D_h \frac{\partial^2 C}{\partial z^2} - v \frac{\partial C}{\partial z} - \mu C, \quad R = 1 + \frac{\rho_b K_d}{\theta}$$
+
+여기서 $R$은 지연계수(retardation factor), $\rho_b$는 토양 가비중, $K_d = K_{\mathrm{oc}} f_{\mathrm{oc}}$는 분배계수, $\theta$는 체적수분함량, $D_h$는 수리동역학적 분산계수, $v$는 공극 유속, $\mu$는 1차 분해계수이다.
+
+## 9.4 유역 수계 거동 예측: 지표 유출, 암거 배수 및 SWAT+·FOCUS 모형
+
+농경지에 살포된 농약과 변환산물(transformation products, TPs)은 **지표 유출(surface runoff)**, **부유 토사 흡착 이동**, 그리고 평야지 논·밭의 **지하 암거 배수(subsurface tile drainage)**를 통해 하천과 호소로 유입된다 [SRC-563, SRC-568, SRC-574]. Wendell et al. (2024)은 암거 배수가 발달한 저지대 농업 유역에 **SWAT+ 생태수문 모형**을 적용해 서로 다른 물리화학적 물성을 가진 농약과 변환산물의 시공간적 분해·이동 과정을 모의하고, 배수 저지대가 지표수·지하수 오염의 핵심 핫스팟임을 입증하였다 [SRC-568]. 유럽의 **FOCUS(PRZM·PEARL·TOXSWA)** 및 미국 **EPA PRZM/EXAMS** 모델 역시 강우·토성·경사·물성($K_{F\mathrm{oc}}, DT_{50}$)을 입력받아 제12장의 생태위해성 평가에 쓰이는 수계·토양 **예측환경농도(PEC)**를 산출한다 [SRC-542, SRC-563].
+
+## 9.5 다성분 토양 혼합 잔류와 통합 환경 관리 시사점
+
+Silva et al. (2018)이 유럽 11개국 6대 작부체계의 317개 표토를 조사한 결과 **80% 이상에서 농약이 검출되었고 58%는 2종 이상의 혼합 잔류(총 166가지 조합, 최대 단일 2.05 mg/kg, 최대 총합 2.87 mg/kg)** 상태였다 [SRC-555]. 비록 개별 성분이 표준 토양생물 독성 종말점 미만이었더라도, 실제 농경지에서는 **혼합 잔류물(mixtures)의 상가·상승 독성**과 암거 배수·관개수 관리(예: 논 thiobencarb 관개 조절 [SRC-553])를 반영한 환경위해성 평가 고도화가 필수적이다 [SRC-555, SRC-559, SRC-568].
+
+### 오해와 진실
+- **오해 (Myth):** 토양 유기물과 점토 함량이 높은 비옥한 토양에서는 토양 미생물이 풍부하므로 모든 농약이 사질토보다 항상 더 빠르게 분해된다.
+- **진실 (Fact):** 5개 토양에서 4종 농약(glyphosate, 2,4-D, chlorothalonil, dimethoate)을 비교한 실측 연구에서 반감기($DT_{50}$)는 오히려 **유기탄소·점토·Fe/Al 산화물과 양의 상관**을 보였는데, 이는 강한 흡착이 용액 내 생물유효 농도를 낮춰 미생물 분해를 지연시키기 때문이다 [SRC-552].
+
+### 참고문헌
+- [SRC-542] Álvarez et al. (2026), *EFSA Journal*; [SRC-552] Meftaul et al. (2022), *Environmental Geochemistry and Health*; [SRC-553] El-Aswad et al. (2023), *IJEST*; [SRC-555] Silva et al. (2018), *Science of the Total Environment*; [SRC-559] Wan et al. (2025), *Nature Communications*; [SRC-563] Zubrod et al. (2019), *Environmental Science & Technology*; [SRC-565] Lim et al. (2017), *Korean Journal of Environmental Agriculture*; [SRC-568] Wendell et al. (2024), *STOTEN*; [SRC-569] Chagas et al. (2019), *Scientific Reports*; [SRC-574] Sánchez-Bayo et al. (2016), *Frontiers in Environmental Science*.

@@ -1,0 +1,12 @@
+chapter_id: ch09
+chapter_number: 9
+title: 제9장. 토양 및 수계 환경 중 농약의 흡착·용탈, 생물학적 분해 및 환경 거동 모형
+target_pages: 43
+summary_ko: 토양 교질 입자와 유기물에 대한 농약의 흡착 등온선(Freundlich, Langmuir)과 유기탄소 분배계수(Koc)를 정량화한다. 토양 잔류 소실 반감기(DT50), 용탈 전이 지수(GUS 지수) 및 환경 거동 모의 예측 모형(PRZM,
+  FOCUS PEARL)을 활용한 지하수·지표수 오염 노출 농도를 산정한다.
+sections:
+- '9.1 토양-물 계면에서의 흡착·탈착 평형 이론: Freundlich 등온 흡착식 및 유기탄소 보정 분배계수(Koc)'
+- '9.2 토양 내 비생물적 분해: 점토 광물 촉매 가수분해, 산화환원 반응 및 토양 표면 광분해 역학'
+- '9.3 미생물 분해(Biodegradation): 공대사(Cometabolism), 생물학적 광물화(Mineralization) 및 분해 효소 유전자 클러스터'
+- '9.4 토양 내 이동 및 지하수 용탈 모델링: GUS 지수 산정, 수치 해석적 대류-분산 방정식(CDE)'
+- '9.5 수계 거동 예측: 농경지 지표 유출(Runoff), 부유물질 흡착 침전 및 FOCUS 유럽/미국 EPA 환경노출모형 활용'

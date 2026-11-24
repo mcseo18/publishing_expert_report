@@ -1,0 +1,69 @@
+---
+chapter_id: "ch01"
+title: "제1장. 농약의 정의, 화학구조별 분류 체계 및 물리화학적 특성"
+audience: "대학 전공 심화, 대학원생, 연구자 및 선도 현장 실무자"
+evidence_packet: "agrochemical_and_safety_eval_20261124_050900_evidence.json"
+persona: "textbook_distinguished_prof"
+---
+
+# 제1장. 농약의 정의, 화학구조별 분류 체계 및 물리화학적 특성
+
+> **학습 목표**: 본 장을 학습한 후 독자는 ① 농약관리법 및 국제 기준(FAO/WHO·EU)에 따른 농약의 법적·학술적 정의와 적용 범주를 구분하고, ② 합성 유기화합물(유기불소계·헤테로고리 등)과 생물농약·녹색농약의 화학구조별 분류 체계를 설명하며, ③ 핵심 물리화학적 파라미터($\log K_{\mathrm{ow}}$, 수용해도, 증기압, Henry 상수, $\mathrm{p}K_a$)와 OECD 표준 측정 원리 및 QSPR 기반 환경 분배 예측 기법을 정량적으로 적용할 수 있다 [SRC-554, SRC-556, SRC-557, SRC-567].
+
+## 1.1 농약관리법 및 FAO/WHO 기준에 따른 농약의 법적·학문적 정의와 범주
+
+농약(pesticide / agrochemical)은 농작물(수목 및 농산물 포함)을 해치는 균·곤충·응애·선충·바이러스·잡초 등 병해충을 방제하는 데 사용하는 살균제·살충제·제초제와, 농작물의 생리 기능을 증진하거나 억제하는 생장조정제(예: 1-methylcyclopropene [SRC-551]) 및 약효 증진 보조제를 포괄하는 물질로 정의된다 [SRC-554, SRC-557]. 현대 농업에서 전 세계적으로 등재·활용되는 농약 유효성분은 **1,200종 이상**에 달하며, 식량안보를 지탱하는 핵심 투입재이자 동시에 인체·비표적 생태계 안전성 관리의 최우선 규제 대상이다 [SRC-548, SRC-556].
+
+한국의 **농약관리법**과 유럽연합(EU) 규정(Regulation (EC) No 1107/2009 · Implementing Regulation (EU) No 844/2012 [SRC-542, SRC-543]) 및 FAO/WHO 국제 기준은 농약을 단순 화학제품이 아니라 **약효·약해, 잔류성, 인체 독성, 환경 거동 및 생태독성**이 사전 검증된 등록 물질로 관리한다 [SRC-542, SRC-566]. 최근에는 합성 화학농약의 환경 부하를 줄이기 위해 녹색화학(green chemistry) 공정으로 설계된 **녹색농약(green pesticides)** [SRC-567]과 미생물·식물 유래 **생물농약(biopesticides)** [SRC-557]으로 범주가 확장되고 있다.
+
+## 1.2 합성 유기화합물 및 천연물 기원 유효성분의 화학구조별 계통 분류 체계
+
+농약 유효성분은 표적 생물별(살충제·살균제·제초제·생장조정제) 분류와 화학구조 계통별(chemotype) 분류로 이원화된다 [SRC-554, SRC-556]. 특히 지난 20년간 신농약 개발에서는 분자의 대사 안정성, 막 투과성, 표적 선택성을 극대화하는 **유기불소(organofluorine) 및 질소·산소 헤테로고리 구조**가 핵심 축으로 부상하였다 [SRC-556]. Ogawa et al. (2020)의 글로벌 농약 화학 데이터베이스 분석에 따르면 전체 1,200여 종의 농약 중 **424종이 불소 원자를 함유한 유기불소 농약**이며, 키랄성(chirality)과 헤테로고리 치환을 통해 저약량·고선택성·저독성화를 달성하였다 [SRC-556].
+
+| 화학구조 계통 | 대표 유효성분 사례 | 주요 용도 · 특징 | 환경·독성 관리 핵심 | 출처 |
+|---|---|---|---|---|
+| **유기인계 · 카바메이트계** | Dimethoate, Thiobencarb | AChE 저해 살충제 및 카바메이트 제초제 | 급성 신경독성 누적평가 대상, 토양 반감기·용탈 관리 | [SRC-552, SRC-553, SRC-561] |
+| **합성 피레스로이드계 · 벤조일우레아계** | Lambda-cyhalothrin, Novaluron | 나트륨 채널 조절 및 키틴 합성 저해(혼합제 활용) | 고친유성($\log K_{\mathrm{ow}}$ 높음), 수생 무척추동물 고독성 | [SRC-544] |
+| **네오니코티노이드계 · 테트람산계** | Thiacloprid, Spirotetramat | 전신 침투이행성 살충제(nAChR·지질합성 저해) | 수용성 높음, 꿀벌·수생 곤충 아치사 영향 및 대사체 잔류 | [SRC-545, SRC-560, SRC-574] |
+| **아릴옥시페녹시프로피오네이트계 · 유기불소계** | Clodinafop-propargyl (Cl·F 피리딘 고리) | ACCase 저해 화본과 제초제, 광학이성질체 $(R)$-형 | 토양 가수분해 빠름($DT_{50}<1$일), 극성 대사체(CGA 193469) 이동성 평가 | [SRC-542, SRC-556] |
+| **벤즈이미다졸계 · 트리아졸계 · SDHI계** | Carbendazim, Tebuconazole, Boscalid | 세포분열·스테롤·호흡 저해 살균제 | 염색체 이상(clastogenicity) 재평가, 유럽 농지 토양 최다 잔류군 | [SRC-555, SRC-572, SRC-575] |
+| **생물농약 · 나노생물농약** | 미생물 대사체, 식물 정유, 나노담체 | 높은 표적 특이성·생분해성·온실가스 저배출 | 방출 제어·제형 안정성 확보가 상용화 핵심 | [SRC-557, SRC-567] |
+
+## 1.3 주요 물리화학적 파라미터($\log K_{\mathrm{ow}}$, $S_w$, $P_v$, $H$, $\mathrm{p}K_a$)의 이론적 기초
+
+농약 분자가 토양·수계·대기·식물체·생체막 사이를 어떻게 분배·이동할지는 5대 핵심 열역학 파라미터로 정량 결정된다 [SRC-542, SRC-552, SRC-568].
+
+1. **옥탄올-물 분배계수 ($\log K_{\mathrm{ow}}$)**: 친유성(lipophilicity)의 대표 지표로, $K_{\mathrm{ow}} = C_{\mathrm{octanol}} / C_{\mathrm{water}}$로 정의된다. $\log K_{\mathrm{ow}} > 3$이면 토양 유기탄소 흡착($K_{\mathrm{oc}}$)과 생물농축성(BCF)이 커지고, $\log K_{\mathrm{ow}} < 1$이면 수용성이 높아 지하수 용탈 위험이 커진다 [SRC-553, SRC-568].
+2. **수용해도 ($S_w$, mg/L)**: 특정 온도(보통 20 °C)에서 순수한 물에 포화 용해되는 농도로, 뿌리 흡수·침투이행성 및 강우 시 지표 유출·배수 이동량을 좌우한다 [SRC-568, SRC-574].
+3. **증기압 ($P_v$, Pa) 및 Henry 법칙 상수 ($H$, $\mathrm{Pa\cdot m^3/mol}$)**: 증기압은 순수 물질의 휘발성을, Henry 상수는 수용액에서 대기로 휘발되는 경향을 나타낸다.
+   $$H = \frac{P_v \cdot M_w}{S_w}$$
+   여기서 $M_w$는 분자량(g/mol)이다. $H > 10\ \mathrm{Pa\cdot m^3/mol}$이면 수면·습윤 토양에서의 휘발 손실이 지배적이며, 1-MCP 같은 기체상 생장조정제는 밀폐 또는 유상 마이크로캡슐화(MCOD)가 필수적이다 [SRC-551].
+4. **산 해리상수 ($\mathrm{p}K_a$)**: 약산성(예: 2,4-D, 클로디나포프 산 대사체 CGA 193469 [SRC-542, SRC-552]) 또는 약염기성 농약의 이온화 비율을 결정하는 상수로, Henderson-Hasselbalch 식에 따른다.
+   $$\mathrm{pH} = \mathrm{p}K_a + \log_{10}\frac{[\mathrm{A}^-]}{[\mathrm{HA}]}$$
+   약산성 농약은 토양 pH가 $\mathrm{p}K_a$보다 높을수록 음이온($\mathrm{A}^-$) 비중이 증가해 음전하 점토·유기물과의 반발로 흡착이 줄어들고 지하수 이동성이 급증한다 [SRC-542, SRC-552]. 실제로 EFSA Clodinafop-propargyl 평가(원문 표 2)에서 중성 에스터 모화합물의 토양 흡착계수 $K_{F\mathrm{oc}}$는 **252–2,364 mL/g**(중~저이동성)인 반면, 가수분해로 생성된 산성 대사체 CGA 193469의 $K_{F\mathrm{oc}}$는 **25.3–81.0 mL/g**(극고~고이동성)으로 10배 이상 급감하였다 [SRC-542].
+
+## 1.4 물리화학적 물성치 측정 표준 프로토콜(OECD 가이드라인) 및 해석
+
+등록 심사 기관(농촌진흥청·EFSA·EPA)은 물성 데이터의 재현성과 국제 상호인정(MAD)을 위해 GLP(우수실험실운영기준) 환경에서 OECD 시험가이드라인(TG)에 따라 측정한 물성치만 인정한다 [SRC-542, SRC-566].
+
+| 물성 항목 | OECD 표준 시험법 | 측정 원리 및 핵심 주의점 | 규제·안전성 평가 연계 |
+|---|---|---|---|
+| **옥탄올-물 분배계수 ($\log K_{\mathrm{ow}}$)** | OECD TG 107 (진탕플라스크) / TG 117 (HPLC) / TG 123 (저속교반) | $\log K_{\mathrm{ow}} > 4$인 고친유성·계면활성 농약은 유화 오차 방지를 위해 TG 123 적용 | 생물농축시험(OECD 305) 면제 여부 판정 기준($\log K_{\mathrm{ow}} < 3$) |
+| **수용해도 ($S_w$)** | OECD TG 105 (칼럼용출법 / 플라스크법) | 난용성(<10 mg/L)은 칼럼용출법, 가용성은 플라스크법(pH 4·7·9 구분) | 환경 거동 모형(SWAT+·FOCUS) 입력 및 관수·유출 위험 판정 [SRC-568] |
+| **증기압 ($P_v$)** | OECD TG 104 (증기압 균형·가스포화법) | 20 °C·25 °C 다온도 측정으로 Clausius-Clapeyron 외삽 | 대기 휘발·비산 노출 및 흡입 독성 시험 트리거 [SRC-542] |
+| **해리상수 ($\mathrm{p}K_a$)** | OECD TG 112 (적정법·분광광도법) | pH 2–12 구간 전위차·UV 흡광 변화 측정 | 이온성 농약의 토양 pH별 흡착($K_{F\mathrm{oc}}$) 및 체관 이행 예측 [SRC-552] |
+
+## 1.5 화학구조-물성 상관관계(QSPR)를 활용한 환경 분배 기초 예측
+
+신규 유효성분 합성 초기 단계에서 모든 물성을 실험 측정하기 전에 분자 기술자(극성 표면적 TPSA, 수소결합 공여·수용체 수, 불소·염소 치환 패턴, 분자량)로부터 $\log K_{\mathrm{ow}}$, $S_w$, $K_{\mathrm{oc}}$, 반감기를 예측하는 **정량적 구조-물성 상관관계(QSPR)**가 널리 활용된다 [SRC-556, SRC-569]. 불소 원자($\mathrm{F}$)나 트리플루오로메틸기($-\mathrm{CF}_3$) 도입은 강한 전기음성도와 C–F 결합 에너지 덕분에 친유성과 대사 안정성을 정밀하게 조율하지만, 과도한 잔류성을 초래하지 않도록 대사 취약 부위(예: 에스터 결합)를 병행 설계하는 것이 최신 녹색농약 분자 설계의 원칙이다 [SRC-542, SRC-556, SRC-567].
+
+- **계산 예제 (Henry 상수 산출)**: 분자량 $M_w = 349.7\ \mathrm{g/mol}$, 25 °C 증기압 $P_v = 3.2 \times 10^{-6}\ \mathrm{Pa}$, 수용해도 $S_w = 4.0\ \mathrm{mg/L}\ (= 4.0\ \mathrm{g/m^3})$인 아릴옥시페녹시프로피오네이트계 제초제의 Henry 상수는 다음과 같다.
+  $$H = \frac{3.2 \times 10^{-6}\ \mathrm{Pa} \times 349.7\ \mathrm{g/mol}}{4.0\ \mathrm{g/m^3}} \approx 2.80 \times 10^{-4}\ \mathrm{Pa\cdot m^3/mol}$$
+  $H \ll 10^{-1}\ \mathrm{Pa\cdot m^3/mol}$이므로 수계에서 대기로의 휘발 손실은 극히 미미하며, 수중 가수분해 및 토양 흡착이 주된 환경 거동 경로로 판정된다 [SRC-542, SRC-568].
+
+### 오해와 진실
+- **오해 (Myth):** 모화합물(parent active substance)의 토양 흡착계수($K_{F\mathrm{oc}}$)가 높고 반감기가 1일 미만으로 짧다면 지하수 오염 위험을 추가로 평가할 필요가 없다.
+- **진실 (Fact):** EFSA의 Clodinafop-propargyl 평가에서 보듯 모화합물은 $DT_{50} < 1$일·$K_{F\mathrm{oc}}$ 252–2,364 mL/g이지만, 가수분해 대사체 CGA 193469는 $DT_{50}$ 2.2–13.3일·$K_{F\mathrm{oc}}$ 25.3–81.0 mL/g의 고이동성을 보이므로 반드시 **주요 대사체(transformation products)**의 물성과 지하수 농도(0.1 μg/L 기준)를 함께 평가해야 한다 [SRC-542, SRC-568].
+
+### 참고문헌
+- [SRC-542] Álvarez et al. (2026), *EFSA Journal* (Clodinafop updated peer review); [SRC-543] Anastassiadou et al. (2020), *EFSA Journal*; [SRC-544] Sharma et al. (2020), *Ecotoxicology and Environmental Safety*; [SRC-545] Li et al. (2022), *Scientific Reports*; [SRC-548] Alengebawy et al. (2021), *Toxics*; [SRC-551] Guo et al. (2019), *RSC Advances*; [SRC-552] Meftaul et al. (2022), *Environmental Geochemistry and Health*; [SRC-553] El-Aswad et al. (2023), *IJEST*; [SRC-554] Hassaan & El Nemr (2020), *EJAR*; [SRC-555] Silva et al. (2018), *Science of the Total Environment*; [SRC-556] Ogawa et al. (2020), *iScience*; [SRC-557] Ayilara et al. (2023), *Frontiers in Microbiology*; [SRC-560] Pisa et al. (2017), *ESPR*; [SRC-561] EFSA (2020), *EFSA Journal*; [SRC-566] Coja et al. (2026), *EFSA Journal*; [SRC-567] Song et al. (2023), *Annual Review of Food Science and Technology*; [SRC-568] Wendell et al. (2024), *STOTEN*; [SRC-569] Chagas et al. (2019), *Scientific Reports*; [SRC-572] EFSA (2021), *EFSA Journal*; [SRC-574] Sánchez-Bayo et al. (2016), *Frontiers in Environmental Science*; [SRC-575] EFSA (2024), *EFSA Journal*.

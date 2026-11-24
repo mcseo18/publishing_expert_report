@@ -576,6 +576,45 @@ def search_official_web_pages(query: str, limit: int = 8) -> list[dict[str, Any]
     return results
 
 
+def search_korean_journals_extended(
+    query: str,
+    limit: int = 8,
+    year_from: int = 2015,
+) -> list[dict[str, Any]]:
+    """국내 주요 농학·농약학·식품·토양 학회지(Crossref DOI 색인)를 병렬 탐색한다 (chapter_pipeline 호환)."""
+    from fetch_scholar import search_crossref_korean_society
+
+    journals = [
+        "Korean Journal of Pesticide Science",
+        "Korean Journal of Environmental Agriculture",
+        "Korean Journal of Soil Science and Fertilizer",
+        "Horticultural Science and Technology",
+        "Korean Journal of Food Science and Technology",
+    ]
+    per_j = max(2, (int(limit) + len(journals) - 1) // len(journals))
+    results: list[dict[str, Any]] = []
+    seen: set[str] = set()
+    for jname in journals:
+        try:
+            items = search_crossref_korean_society(query=query, limit=per_j, journal_name=jname) or []
+            for it in items:
+                yr = it.get("year")
+                if yr and isinstance(yr, int) and yr < year_from:
+                    continue
+                key = (it.get("url") or it.get("title") or "").strip().lower()
+                if not key or key in seen:
+                    continue
+                seen.add(key)
+                it.setdefault("category", "domestic_journals")
+                it.setdefault("provider", f"Crossref ({jname})")
+                results.append(it)
+                if len(results) >= limit:
+                    return results
+        except Exception:
+            continue
+    return results[:limit]
+
+
 # ============================================================
 # Wave 3: Citation Snowballing (인용 눈덩이 추적 — Backward + Forward)
 # ============================================================

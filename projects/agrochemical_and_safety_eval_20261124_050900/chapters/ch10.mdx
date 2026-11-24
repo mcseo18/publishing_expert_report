@@ -1,0 +1,70 @@
+---
+chapter_id: "ch10"
+title: "제10장. 농약 다성분 잔류 분석화학과 잔류 감쇄 동태 모형"
+audience: "대학 전공 심화, 대학원생, 연구자 및 선도 현장 실무자"
+evidence_packet: "agrochemical_and_safety_eval_20261124_050900_evidence.json"
+persona: "textbook_distinguished_prof"
+---
+
+# 제10장. 농약 다성분 잔류 분석화학과 잔류 감쇄 동태 모형
+
+> **학습 목표**: 본 장을 학습한 후 독자는 ① 개질 QuEChERS(EN 15662·AOAC 2007.01) 다성분 전처리와 d-SPE 정제의 화학적 원리를 설명하고, ② LC-MS/MS(ESI) 및 GC-MS/MS(EI) 다중반응검지법(MRM)의 분석법 유효성 검증(직선성·LOQ·회수율·RSD·매트릭스 효과) 기준을 적용하며, ③ 포장 잔류 소실 동태 모형(SFO·FOMC·DFOP)을 이용해 반감기($t_{1/2}$·$DT_{50}$)를 계산하고, ④ 잔류 감쇄 곡선으로부터 수확전 살포일수(PHI)와 MRL 적합성을 통계적으로 도출할 수 있다 [SRC-542, SRC-544, SRC-545, SRC-554, SRC-558].
+
+## 10.1 잔류농약 분석 전처리: QuEChERS 추출 및 분산 고체상 정제(d-SPE)
+
+농산물 중 수 μg/kg(ppb) 수준의 미량 잔류농약을 수백 종 동시에 정량하기 위한 국제 표준 전처리법은 **QuEChERS(Quick, Easy, Cheap, Effective, Rugged, and Safe)**이다 [SRC-544, SRC-545, SRC-554].
+1. **추출 및 염석 상분리 (Extraction & Salting-out)**: 균질화한 농산물 시료에 **아세토니트릴(MeCN)**을 가해 극성~비극성 농약을 광범위하게 추출하고, 무수 황산마그네슘($\mathrm{MgSO}_4$)과 염화나트륨($\mathrm{NaCl}$)을 넣어 수분 제거 및 물–유기층 상분리를 유도한다.
+   - **유럽 표준 EN 15662 (구연산 완충법)**: $\mathrm{pH} \approx 5.0\text{–}5.5$로 완충해 염기·산 민감성 농약의 가수분해를 동시 억제한다.
+   - **미국 표준 AOAC 2007.01 (초산염 완충법)**: 아세트산·초산나트륨 완충으로 $\mathrm{pH} \approx 4.8$을 유지해 산성 제초제 회수율을 높인다.
+2. **분산 고체상 정제 (d-SPE Cleanup)**: 상등액에 목적별 흡착제를 분산 혼합해 방해 물질을 선택 제거한다.
+   - **PSA (Primary Secondary Amine)**: 유기산·당류·지방산 제거
+   - **$\mathrm{C}_{18}$**: 비극성 지질·왁스 제거
+   - **GCB (Graphitized Carbon Black)**: 엽록소·카로티노이드 색소 제거(단, 평면 방향족 농약 흡착 주의)
+
+## 10.2 질량분석 기기분석: LC-MS/MS 및 GC-MS/MS 다중반응검지(MRM)
+
+전처리된 추출액은 유효성분의 열안정성과 휘발성에 따라 **LC-MS/MS(전기분무 이온화, ESI)**와 **GC-MS/MS(전자충격 이온화, EI)**로 이원화 분석한다 [SRC-544, SRC-545, SRC-554].
+- **LC-MS/MS (ESI+/ESI−)**: 극성·비휘발성·열불안정 농약(예: thiacloprid, spirotetramat 및 4종 극성 대사체 [SRC-545]) 분석의 주력 기기이다. 삼중사중극자(QqQ)의 **다중반응검지법(Multiple Reaction Monitoring, MRM)**은 Q1에서 특정 선구 이온(precursor ion)만 통과시킨 뒤 Q2 충돌실에서 조각화하고 Q3에서 정량 이온(quantifier) 1개와 정성 확인 이온(qualifier) 1개 이상을 모니터링해 신호 대 잡음비(S/N)와 선택성을 극대화한다.
+- **GC-MS/MS · GC-ECD**: 휘발성·비극성·할로겐 함유 농약(예: lambda-cyhalothrin, novaluron [SRC-544], thiobencarb [SRC-553]) 분석에 높은 분리능과 감도를 제공한다.
+
+## 10.3 잔류분석 유효성 검증(Method Validation) 및 매트릭스 효과 평가
+
+국제 가이드라인(SANTE/11312/2021 및 식품의약품안전처·농촌진흥청 분석법 검증 기준)은 다음 5대 지표를 만족해야 정량 데이터의 법적·학술적 신뢰성을 인정한다 [SRC-545].
+
+| 검증 지표 | 국제 표준 허용 기준 (SANTE / 국내 기준) | 실증 사례: 동부 중 Thiacloprid·Spirotetramat + 4대사체 [SRC-545] |
+|---|---|---|
+| **직선성 ($R^2$)** | 검량선 상관계수 $R^2 \ge 0.99$ (잔차 ±20% 이내) | 0.005–0.5 mg/kg 구간 우수 직선성 확보 |
+| **정량한계 (LOQ)** | PLS 일률기준(0.01 mg/kg) 이하 또는 해당 MRL 이하 | **0.005 mg/kg** (PLS 기준의 1/2 수준 달성) |
+| **회수율 (Recovery)** | 평균 **70–120%** (다성분 기준) | **81.3–95.1%** (0.005–0.5 mg/kg 전 구간) |
+| **정밀도 (RSD%)** | 반복성·재현성 상대표준편차 **$\le 20\%$** | **2.1–9.5%** (매우 높은 재현성) |
+| **매트릭스 효과 (ME%)** | $\mathrm{ME}(\%) = (\text{매트릭스 기울기} / \text{용매 기울기} - 1) \times 100$; $|\mathrm{ME}| > 20\%$ 시 매트릭스 보정 검량선 필수 | 시료 추출액 바탕 검량선(matrix-matched calibration)으로 이온 억제·증강 오차 보정 |
+
+## 10.4 포장 잔류 소실 동태 모형: SFO, FOMC, DFOP 피팅 알고리즘
+
+포장 작물에 살포된 농약은 희석(작물 비대 생장), 광분해, 휘발, 강우 유실, 효소 대사 등의 복합 작용으로 경시적으로 감소한다 [SRC-544, SRC-545]. FOCUS 잔류 감쇄 가이드라인은 다음 3가지 핵심 동태 모형을 사용한다:
+1. **단일 1차 속도식 (Simple First-Order, SFO)**: 가장 기본적인 지수 감쇄 모형으로 $C(t) = C_0 e^{-k t}$, $DT_{50} = \ln 2 / k$이다 [SRC-544, SRC-545, SRC-553].
+2. **1차 다구획 모형 (First-Order Multi-Compartment, FOMC)**: 초기 급감 후 꼬리(tailing)가 길게 남는 2상 소실에 적합하다.
+   $$C(t) = C_0 \left(\frac{t}{\beta} + 1\right)^{-\alpha}, \quad DT_{50} = \beta\left(2^{1/\alpha} - 1\right)$$
+3. **이중 1차 병렬 모형 (Double First-Order in Parallel, DFOP)**: 빠른 구획($k_1$, 비율 $g$)과 느린 구획($k_2$, 비율 $1-g$)의 합으로 표현된다(예: EFSA CGA 193469의 2상 $DT_{50}$ 2.2–13.3일, $DT_{90}$ 27.6–112일 [SRC-542]).
+   $$C(t) = C_0 \left(g e^{-k_1 t} + (1 - g) e^{-k_2 t}\right)$$
+
+## 10.5 잔류반감기($DT_{50}$) 계산 실무 및 수확전 살포일수(PHI) 설정
+
+포장 잔류성 시험에서 산출된 반감기와 최종 잔류량은 **수확전 살포제한일수(Pre-Harvest Interval, PHI)** 및 MRL 설정의 직접 근거이다 [SRC-544, SRC-545, SRC-558].
+
+| 작물 · 유효성분 (제형) | 분석 기기 | 포장 잔류 반감기 ($t_{1/2}$) | 설정 PHI 및 최종 잔류량 / MRL | 출처 |
+|---|---|---|---|---|
+| **양배추** · Novaluron (9.45%) + Lambda-cyhalothrin (1.9%) | 개질 QuEChERS + GC-ECD / GC-MS | Novaluron **1.77–2.51일**(기준량), **2.00–3.38일**(배량); Lambda-cyhalothrin **1.36–2.24일**(기준량), **1.69–3.82일**(배량) | **PHI 3일** 기준 OECD MRL 산출: Novaluron **0.6 mg/kg**(기존 FSSAI 0.7/PHI 5일), Lambda-cyhalothrin **1.5 mg/kg** | [SRC-544] |
+| **동부(Cowpea)** · Thiacloprid + Spirotetramat (4대사체 포함) | QuEChERS + HPLC-MS/MS | Thiacloprid **1.14–1.54일**; Spirotetramat **1.25–2.79일** | 2회 살포 **PHI 3일** 최종 잔류: 0.0255–0.4570 mg/kg / 0.0314–0.3070 mg/kg (만성·급성 RQ 모두 < 100%) | [SRC-545] |
+| **한국 시설 참다래** · Iminoctadine 살균제 | 국내 잔류성 시험 | 시설 재배 저감쇄 특성 반영 | 국내 안전사용기준에 따른 **MRL 및 PHI 재평가** 수행 | [SRC-558] |
+
+- **계산 예제 (최소 안전 PHI 산출)**: 어떤 살충제의 살포 직후 초기 잔류농도 $C_0 = 2.40\ \mathrm{mg/kg}$, SFO 감쇄속도 상수 $k = 0.32\ \mathrm{day}^{-1}$($t_{1/2} = 0.693 / 0.32 = 2.17\ \mathrm{일}$), 해당 작물 MRL이 $0.50\ \mathrm{mg/kg}$이라면 MRL 이하로 떨어지는 이론 최소 경과일수($t_{\min}$)는 다음과 같다.
+  $$t_{\min} = \frac{\ln(C_0 / \mathrm{MRL})}{k} = \frac{\ln(2.40 / 0.50)}{0.32} = \frac{1.5686}{0.32} = 4.90\ \mathrm{일}$$
+  기상·포장 변이와 안전 여유를 반영해 수확전 살포일수(PHI)는 올림 보정한 **5–7일**로 설정한다.
+
+### 오해와 진실
+- **오해 (Myth):** 시설 하우스 재배와 노지 재배의 농약 잔류 반감기는 동일하므로 노지 기준의 PHI를 시설 작물에 그대로 적용해도 안전하다.
+- **진실 (Fact):** 시설 재배는 강우에 의한 씻김(wash-off)이 없고 자외선 투과가 차단되어 광분해가 느려지므로 잔류 반감기가 노지보다 길어지는 경향이 있으며, 이에 따라 국내 시설 참다래 이미녹타딘 사례처럼 시설 재배 전용 MRL·PHI 재평가가 별도로 수행된다 [SRC-558].
+
+### 참고문헌
+- [SRC-542] Álvarez et al. (2026), *EFSA Journal*; [SRC-544] Sharma et al. (2020), *Ecotoxicology and Environmental Safety*; [SRC-545] Li et al. (2022), *Scientific Reports*; [SRC-553] El-Aswad et al. (2023), *IJEST*; [SRC-554] Hassaan & El Nemr (2020), *EJAR*; [SRC-558] Lee et al. (2026), *The Korean Journal of Pesticide Science*.

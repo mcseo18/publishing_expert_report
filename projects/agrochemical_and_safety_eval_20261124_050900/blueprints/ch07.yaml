@@ -1,0 +1,12 @@
+chapter_id: ch07
+chapter_number: 7
+title: 제7장. 작물보호제 저항성 발달 유전·생화학 기전 및 포장 관리 전략
+target_pages: 43
+summary_ko: 병해충 및 잡초 집단 내에서 반복 살포로 유도되는 도태압과 저항성 유전자 빈도 변화를 집단유전학적 모형으로 분석한다. 표적 부위 점돌연변이(TSR)와 사이토크롬 P450, ABC 수송체에 의한 비표적 부위 대사 저항성(NTSR) 메커니즘
+  및 교차·다제 저항성 포장 방제 프로토콜을 제시한다.
+sections:
+- '7.1 저항성 진화의 집단유전학: 돌연변이 발생률, 도태압(Selection Pressure) 및 하디-바인베르크 평형 이탈 모형'
+- '7.2 표적 부위 변이 기작(TSR): 아미노산 단일염기치환(SNP), 표적 유전자 증폭(Copy Number Variation)'
+- '7.3 비표적 부위 저항성(NTSR): Phase I/II 해독 효소계(P450, GST, Esterase) 과발현 및 수송체 축적 기전'
+- '7.4 저항성 모니터링 기법: 분자생물학적 진단(dPCR, NGS), 생물검정(Bioassay) 및 저항성비(Resistance Ratio, RR) 산출'
+- 7.5 작용기작 교호살포(Rotation), 혼합살포(Tank-mix), 피난처(Refuge) 전략 수립 및 국가 저항성 관리 가이드라인

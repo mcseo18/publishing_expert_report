@@ -1,0 +1,59 @@
+---
+chapter_id: "ch08"
+title: "제8장. 식물체 내 농약의 흡수·침투이행 및 생체 이물질(Xenobiotics) 대사 경로"
+audience: "대학 전공 심화, 대학원생, 연구자 및 선도 현장 실무자"
+evidence_packet: "agrochemical_and_safety_eval_20261124_050900_evidence.json"
+persona: "textbook_distinguished_prof"
+---
+
+# 제8장. 식물체 내 농약의 흡수·침투이행 및 생체 이물질(Xenobiotics) 대사 경로
+
+> **학습 목표**: 본 장을 학습한 후 독자는 ① 식물 엽면 큐티클층(왁스·큐틴)의 물리화학적 장벽 구조와 제형·접촉각이 경엽 흡수 속도에 미치는 영향을 설명하고, ② 물관부(apoplast) 및 체관부(symplast) 침투이행성을 결정하는 $\log K_{\mathrm{ow}}$·$\mathrm{p}K_a$ 원리(Bromilow 모델)를 해석하며, ③ 식물 체내 생체이물(xenobiotics) 3단계 해독 대사(Phase I 산화·가수분해 → Phase II 포합 → Phase III 액포 격리·결합잔류물)와 잔류 정의(residue definition) 설정의 연계성을 규명할 수 있다 [SRC-542, SRC-545, SRC-548, SRC-550, SRC-551, SRC-560].
+
+## 8.1 식물 큐티클층의 생화학적 구조와 친유·친수 분자의 침투 열역학
+
+경엽 살포된 농약 액적이 작물 조직 내부로 들어가기 위해 넘어야 하는 첫 번째 물리적 장벽은 잎 표피 외곽의 **큐티클층(cuticle)**이다 [SRC-550]. 큐티클은 소수성 지방산 폴리에스터 고분자인 **큐틴(cutin)** 매트릭스 내부와 표면에 초장쇄 지방족 **왁스(epicuticular & intracuticular wax)**가 결정 구조로 배열된 복합 지질막이다.
+
+Fick의 제1확산법칙에 따라 단위 면적당 경엽 투과 플럭스($J$)는 큐티클–물 분배계수($K_{cw}$), 큐티클 내 확산계수($D$), 엽면 액적 농도($C_0$)에 비례하고 큐티클 두께($\delta$)에 반비례한다.
+
+$$J = \frac{K_{cw} \cdot D}{\delta}(C_0 - C_{\mathrm{in}})$$
+
+- **친유성 분자 ($\log K_{\mathrm{ow}} > 2$)**: 큐티클 왁스층으로의 분배($K_{cw}$)가 잘 일어나 지질 경로로 투과하지만, 지나치게 친유성($\log K_{\mathrm{ow}} > 5$)이면 왁스층에 강하게 포획되어 하부 수성 세포벽으로 빠져나오지 못한다 [SRC-548, SRC-550].
+- **친수성·이온성 분자 ($\log K_{\mathrm{ow}} < 0$)**: 지질 왁스를 통과하기 어렵고 수화된 극성 공극(aqueous pores)이나 기공을 통해 투과하므로, 계면활성제와 습윤제를 첨가해 엽면 접촉각을 낮추고 건조 시간을 지연시켜야 흡수율이 높아진다 [SRC-550, SRC-551]. 실제로 양배추 잎 접촉각 및 SEM 부착 시험에서 PU/SA 나노에멀젼과 1-MCP/MCOD 제형은 엽면 습윤성과 피막 부착성을 크게 개선하였다 [SRC-550, SRC-551].
+
+## 8.2 물관부(Apoplast) 및 체관부(Symplast) 전신 침투이행성 (Bromilow 모델)
+
+뿌리 또는 잎으로 흡수된 유효성분의 식물체 내 장거리 이동은 크게 **물관부 상향 이동(xylem / apoplastic translocation)**과 **체관부 양방향 이동(phloem / symplastic translocation)**으로 나뉜다 [SRC-545, SRC-560].
+
+| 이행 경로 | 구동력 · 방향 | 최적 물리화학적 영역 (Bromilow 모델) | 대표 유효성분 및 방제·잔류 특성 | 출처 |
+|---|---|---|---|---|
+| **비침투성 (Contact)** | 엽면 잔류 (이동 극미) | $\log K_{\mathrm{ow}} > 4.5$ (강소수성) | Lambda-cyhalothrin, Chlorothalonil 등 엽면 보호·접촉 살충/살균 | [SRC-544, SRC-552] |
+| **물관부 이행 (Xylem-mobile)** | 증산류(transpiration stream), 뿌리 → 잎 상향 | 중성 분자, **$\log K_{\mathrm{ow}} \approx 0.5\text{–}3.5$** | 네오니코티노이드(**Thiacloprid** 등), 트리아졸계; 뿌리·종자 처리 시 신엽·화분·화밀까지 상향 이행 | [SRC-545, SRC-560, SRC-562] |
+| **체관부 양방향 이행 (Phloem-mobile)** | 광합성 동화산물 압력류, 잎 → 신초·뿌리·과실 | **약산성 ($\mathrm{p}K_a \approx 3\text{–}6$)** + **$\log K_{\mathrm{ow}} \approx -1\text{–}3$** (이온 포획 원리) | **Spirotetramat** (체내 에놀 산 전환 후 양방향 이행), **Glyphosate**, **2,4-D** | [SRC-545, SRC-547, SRC-552] |
+
+체관부 이동의 핵심 열역학 원리는 **약산 이온 포획(weak-acid ion trapping)**이다. 세포 외 아포플라스트($\mathrm{pH} \approx 5.5$)에서는 약산성 농약(예: spirotetramat의 활성 대사체 spirotetramat-enol 또는 2,4-D)이 비이온화 중성형($\mathrm{HA}$) 비율이 높아 체관부 원형질막을 쉽게 투과한다. 일단 알칼리성인 체관부 액($\mathrm{pH} \approx 8.0$)으로 들어가면 Henderson-Hasselbalch 평형에 의해 음이온($\mathrm{A}^-$)으로 해리되어 막을 다시 빠져나가지 못하고 갇힌 채 신생 조직과 지하부 뿌리까지 장거리 수송된다 [SRC-545].
+
+## 8.3 식물 해독 대사 제1상(Phase I): 산화·가수분해·환원 작용기 도입
+
+식물체 내부로 유입된 농약(생체이물, xenobiotics)은 효소적 변환을 거쳐 독성이 약화(해독, detoxification)되거나 경우에 따라 활성형으로 전환(bioactivation, 예: 에스터 전구체 clodinafop-propargyl → 활성 산형 clodinafop CGA 193469 [SRC-542], spirotetramat → spirotetramat-enol [SRC-545])된다. **제1상 대사(Phase I)**는 친유성 모화합물에 극성 반응기($-\mathrm{OH}$, $-\mathrm{COOH}$, $-\mathrm{NH}_2$)를 도입하는 단계이다:
+- **시토크롬 P450 모노옥시게나아제(CYP450)**: 방향족 고리 수산화, $N$-/$O$-탈알킬화, 황 산화 반응의 주역으로, 작물과 잡초 간의 P450 대사 속도 차이가 제초제 선택성(selectivity)의 핵심 생화학 근거이다 [SRC-542, SRC-547].
+- **카르복실에스터라아제 및 가수분해효소**: Clodinafop-propargyl의 프로파길 에스터 결합을 신속히 절단해 카르복실산 대사체(CGA 193469)로 변환하고, 추가 에터 결합 절단을 통해 페놀 유도체(CGA 193468) 및 피리디놀(CGA 302371)로 순차 분해한다 [SRC-542].
+
+## 8.4 식물 해독 대사 제2상(Phase II): 글루코실화 및 글루타티온 포합
+
+제1상 대사에서 생성된 극성 대사체는 **제2상 대사(Phase II)**에서 식물 내재성 친수성 분자와 공유결합(포합, conjugation)되어 수용성이 극대화되고 세포 독성이 상실된다:
+- **글루코실전이효소(UDP-glucosyltransferase, UGT)**: 수산기($-\mathrm{OH}$)나 카르복실기($-\mathrm{COOH}$)에 포도당(glucose) 또는 말로닐글루코스를 결합시킨다(예: spirotetramat-enol-glucoside 등 4종 주요 대사체 [SRC-545]).
+- **글루타티온 S-전이효소(GST)**: 친전자성 농약 분자에 트리펩타이드인 글루타티온(GSH)을 결합시켜 무독화한다. 밀·옥수수 등의 제초제 약해경감제(safener)는 작물의 GST 및 P450 발현을 선택적으로 유도해 제초제 해독 속도를 높인다 [SRC-542].
+
+## 8.5 제3상·제4상 대사(액포 격리·결합잔류물)와 잔류 정의(Residue Definition)
+
+동물은 배설 기관으로 포합 대사체를 체외 배출하지만, 배설계가 없는 식물은 **제3상 대사(Phase III)**에서 세포질 내 포합체를 액포막(tonoplast)의 **ABC 수송체**를 이용해 액포(vacuole) 내부로 능동 수송해 격리하며, **제4상 대사**에서는 리그닌·셀룰로스 등 세포벽 고분자에 공유 결합된 불용성 **결합잔류물(bound residues)** 형태로 영구 고정한다.
+
+이 식물 대사 경로는 **농약 잔류 분석 및 소비자 위해성 평가의 '잔류 정의(Residue Definition)'**를 결정하는 직접 근거이다 [SRC-542, SRC-545]. 예를 들어 Li et al. (2022)이 동부(cowpea)에서 스피로테트라맷(spirotetramat)을 분석할 때 모화합물 단독이 아니라 **모화합물 + 4종 주요 식물 대사체(enol, ketohydroxy, monohydroxy, enol-glucoside)**를 QuEChERS HPLC-MS/MS로 동시 정량하여 총잔류량과 소비자 식이위해도(만성 RQ 1.03–1.87%, 급성 RQ 0.18–0.32%)를 산정하였다 [SRC-545]. 또한 전신 침투이행성 네오니코티노이드는 잎·뿌리에서 화분(bee pollen)과 화밀로 이행되어 꿀벌과 양봉 산물 안전성 평가의 대상이 된다 [SRC-560, SRC-562].
+
+### 오해와 진실
+- **오해 (Myth):** 농약 잔류 검사는 작물 표면에 묻은 원래 유효성분(모화합물)만 분석하면 소비자 안전성을 충분히 보장할 수 있다.
+- **진실 (Fact):** Spirotetramat이나 clodinafop-propargyl처럼 식물 체내에서 빠르게 대사되는 전신 침투성 농약은 활성·독성 대사체(예: spirotetramat 4종 대사체, CGA 193469 등)가 모화합물보다 높은 농도로 잔류할 수 있으므로, 등록 심사 시 **모화합물과 독성학적 주요 대사체를 합산한 잔류 정의**에 따라 정량·위해성 평가를 수행한다 [SRC-542, SRC-545].
+
+### 참고문헌
+- [SRC-542] Álvarez et al. (2026), *EFSA Journal*; [SRC-544] Sharma et al. (2020), *Ecotoxicology and Environmental Safety*; [SRC-545] Li et al. (2022), *Scientific Reports*; [SRC-547] Busi et al. (2018), *Pest Management Science*; [SRC-548] Alengebawy et al. (2021), *Toxics*; [SRC-550] Wang et al. (2020), *Polymers*; [SRC-551] Guo et al. (2019), *RSC Advances*; [SRC-552] Meftaul et al. (2022), *Environmental Geochemistry and Health*; [SRC-560] Pisa et al. (2017), *ESPR*; [SRC-562] Végh et al. (2021), *Trends in Food Science & Technology*.

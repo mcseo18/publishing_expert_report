@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 476" width="880" height="476" style="background:#ffffff;font-family:'Malgun Gothic', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;">
+  <rect x="0" y="0" width="880" height="476" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.4"/>
+  <rect x="0" y="0" width="880" height="58" rx="10" fill="#1D3557"/>
+  <rect x="0" y="42" width="880" height="16" fill="#1D3557"/>
+  <text x="22" y="27" font-size="14.5" font-weight="700" fill="#f8fafc">그림 1-1. 농약 5대 물리화학적 파라미터와 QSPR 환경 거동 예측 체계</text>
+  <text x="22" y="47" font-size="10.8" fill="#cbd5e1">분자 구조(유기불소·작용기) → OECD 5대 물성 측정 → QSPR 환경 분배·생물농축·용탈 선별</text>
+  <defs><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M 0 1 L 10 5 L 0 9 z" fill="#1D3557"/></marker></defs>
+  <rect x="24" y="104" width="187" height="228" rx="10" fill="#E0F2FE" stroke="#0072B2" stroke-width="1.6"/>
+  <rect x="24" y="104" width="187" height="32" rx="10" fill="#0072B2"/>
+  <rect x="24" y="124" width="187" height="12" fill="#0072B2"/>
+  <text x="117.5" y="125" text-anchor="middle" font-size="11.5" font-weight="700" fill="#ffffff">1. 분자 구조 설계</text>
+  <text text-anchor="middle" font-size="12.5" font-weight="700" fill="#0f172a"><tspan x="117.5" y="178.0">유기인·피레스로이드·유기불소</tspan></text>
+  <line x1="211" y1="218" x2="235" y2="218" stroke="#1D3557" stroke-width="2.2" marker-end="url(#ar)"/>
+  <rect x="239" y="104" width="187" height="228" rx="10" fill="#DCFCE7" stroke="#009E73" stroke-width="1.6"/>
+  <rect x="239" y="104" width="187" height="32" rx="10" fill="#009E73"/>
+  <rect x="239" y="124" width="187" height="12" fill="#009E73"/>
+  <text x="332.5" y="125" text-anchor="middle" font-size="11.5" font-weight="700" fill="#ffffff">2. OECD 5대 물성</text>
+  <text text-anchor="middle" font-size="12.5" font-weight="700" fill="#0f172a"><tspan x="332.5" y="160.0">log Kow · Sw</tspan><tspan x="332.5" y="178.0">· Pv · KH ·</tspan><tspan x="332.5" y="196.0">pKa</tspan></text>
+  <line x1="426" y1="218" x2="450" y2="218" stroke="#1D3557" stroke-width="2.2" marker-end="url(#ar)"/>
+  <rect x="454" y="104" width="187" height="228" rx="10" fill="#FEF3C7" stroke="#D55E00" stroke-width="1.6"/>
+  <rect x="454" y="104" width="187" height="32" rx="10" fill="#D55E00"/>
+  <rect x="454" y="124" width="187" height="12" fill="#D55E00"/>
+  <text x="547.5" y="125" text-anchor="middle" font-size="11.5" font-weight="700" fill="#ffffff">3. QSPR 분배 예측</text>
+  <text text-anchor="middle" font-size="12.5" font-weight="700" fill="#0f172a"><tspan x="547.5" y="169.0">토양 Koc · 휘발 ·</tspan><tspan x="547.5" y="187.0">생물농축</tspan></text>
+  <line x1="641" y1="218" x2="665" y2="218" stroke="#1D3557" stroke-width="2.2" marker-end="url(#ar)"/>
+  <rect x="669" y="104" width="187" height="228" rx="10" fill="#F3E8FF" stroke="#CC79A7" stroke-width="1.6"/>
+  <rect x="669" y="104" width="187" height="32" rx="10" fill="#CC79A7"/>
+  <rect x="669" y="124" width="187" height="12" fill="#CC79A7"/>
+  <text x="762.5" y="125" text-anchor="middle" font-size="11.5" font-weight="700" fill="#ffffff">4. 규제·제형 연계</text>
+  <text text-anchor="middle" font-size="12.5" font-weight="700" fill="#0f172a"><tspan x="762.5" y="169.0">수계 제형 · 지하수</tspan><tspan x="762.5" y="187.0">0.1 μg/L</tspan></text>
+  <path d="M 762 332 L 762 386 L 117 386 L 117 338" fill="none" stroke="#009E73" stroke-width="2.4" stroke-dasharray="6,4" marker-end="url(#ar)"/>
+  <rect x="230" y="372" width="420" height="28" rx="14" fill="#ECFDF5" stroke="#009E73" stroke-width="1.3"/>
+  <text x="440" y="390" text-anchor="middle" font-size="11.2" font-weight="700" fill="#065F46">핵심 기준: log Kow &gt; 3 생물농축 평가 | pKa 3–6 토양 pH 의존 이동</text>
+  <text x="22" y="458" font-size="10.2" fill="#475569">자료: 자료: [SRC-542, SRC-552, SRC-553, SRC-554, SRC-556] 농약 분자 물성·OECD 시험·QSPR 환경 거동 체계 재구성.</text>
+</svg>
