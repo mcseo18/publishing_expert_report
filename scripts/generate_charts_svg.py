@@ -25,11 +25,11 @@ FONT = "'Malgun Gothic', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif"
 
 def _svg_wrap(title: str, subtitle: str, body: str, width: int = 760, height: int = 380) -> str:
     return f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width} {height}" width="{width}" height="{height}" style="background:#ffffff;font-family:{FONT};">
-  <rect x="0" y="0" width="{width}" height="{height}" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
-  <rect x="0" y="0" width="{width}" height="52" rx="10" fill="#0f172a"/>
-  <rect x="0" y="38" width="{width}" height="14" fill="#0f172a"/>
-  <text x="20" y="24" font-size="14" font-weight="700" fill="#f8fafc">{html.escape(title)}</text>
-  <text x="20" y="43" font-size="10.5" fill="#94a3b8">{html.escape(subtitle)}</text>
+  <rect x="1" y="1" width="{width - 2}" height="{height - 2}" rx="10" fill="#ffffff" stroke="#94a3b8" stroke-width="2"/>
+  <rect x="1" y="1" width="{width - 2}" height="58" rx="10" fill="#0f172a"/>
+  <rect x="1" y="42" width="{width - 2}" height="17" fill="#0f172a"/>
+  <text x="20" y="26" font-size="16" font-weight="700" fill="#ffffff">{html.escape(title)}</text>
+  <text x="20" y="47" font-size="11.8" font-weight="500" fill="#cbd5e1">{html.escape(subtitle)}</text>
   {body}
 </svg>"""
 
@@ -43,36 +43,38 @@ def _hbar_chart(
 ) -> str:
     mv = max_val or max(v for _, v, _, _ in items) * 1.15
     y0 = 78
-    row_h = min(46, int(265 / max(len(items), 1)))
+    row_h = min(52, int(280 / max(len(items), 1)))
     parts: list[str] = []
     for idx, (label, val, color, note) in enumerate(items):
         y = y0 + idx * row_h
-        bar_w = max(8, int((val / mv) * 380))
-        parts.append(f'<text x="22" y="{y + 18}" font-size="11.5" font-weight="600" fill="#1e293b">{html.escape(label)}</text>')
-        parts.append(f'<rect x="215" y="{y + 4}" width="380" height="22" rx="4" fill="#f1f5f9"/>')
-        parts.append(f'<rect x="215" y="{y + 4}" width="{bar_w}" height="22" rx="4" fill="{color}"/>')
-        parts.append(f'<text x="{222 + bar_w}" y="{y + 19}" font-size="11" font-weight="700" fill="#0f172a">{val:g}{html.escape(unit)}</text>')
+        bar_w = max(10, int((val / mv) * 355))
+        parts.append(f'<text x="20" y="{y + 19}" font-size="13" font-weight="700" fill="#0f172a">{html.escape(label)}</text>')
+        parts.append(f'<rect x="220" y="{y + 3}" width="355" height="24" rx="5" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>')
+        parts.append(f'<rect x="220" y="{y + 3}" width="{bar_w}" height="24" rx="5" fill="{color}" stroke="#0f172a" stroke-width="0.9"/>')
+        parts.append(f'<text x="{228 + bar_w}" y="{y + 20}" font-size="12.5" font-weight="700" fill="#0f172a">{val:g}{html.escape(unit)}</text>')
         if note:
-            parts.append(f'<text x="22" y="{y + 33}" font-size="9.5" fill="#64748b">{html.escape(note)}</text>')
+            parts.append(f'<text x="20" y="{y + 36}" font-size="10.8" fill="#334155">{html.escape(note)}</text>')
     return _svg_wrap(title, subtitle, "\n  ".join(parts))
 
 
 def _flow_diagram(title: str, subtitle: str, nodes: list[tuple[int, int, int, int, str, str, str]], arrows: list[tuple[int, int, int, int, str]]) -> str:
     parts = [
-        '<defs><marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">'
-        '<path d="M 0 1 L 10 5 L 0 9 z" fill="#334155"/></marker></defs>'
+        '<defs><marker id="arr" viewBox="0 0 16 14" refX="13" refY="7" markerWidth="14" markerHeight="12" orient="auto-start-reverse" markerUnits="userSpaceOnUse">'
+        '<path d="M 1 1 L 15 7 L 1 13 L 4.2 7 Z" fill="#0f172a"/></marker></defs>'
     ]
     for x1, y1, x2, y2, lbl in arrows:
-        parts.append(f'<line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" stroke="#334155" stroke-width="1.8" marker-end="url(#arr)"/>')
+        parts.append(f'<line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" stroke="#0f172a" stroke-width="2.8" stroke-linecap="round" marker-end="url(#arr)"/>')
         if lbl:
-            mx, my = (x1 + x2) // 2, (y1 + y2) // 2 - 5
-            parts.append(f'<text x="{mx}" y="{my}" text-anchor="middle" font-size="9.5" font-weight="600" fill="#1d4ed8">{html.escape(lbl)}</text>')
+            mx, my = (x1 + x2) // 2, (y1 + y2) // 2 - 7
+            bw = max(44, len(lbl) * 11 + 12)
+            parts.append(f'<rect x="{mx - bw // 2}" y="{my - 13}" width="{bw}" height="18" rx="9" fill="#ffffff" stroke="#1d4ed8" stroke-width="1.2"/>')
+            parts.append(f'<text x="{mx}" y="{my}" text-anchor="middle" font-size="10.8" font-weight="700" fill="#1e3a8a">{html.escape(lbl)}</text>')
     for x, y, w, h, head, sub, bg in nodes:
-        parts.append(f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="8" fill="{bg}" stroke="#1e293b" stroke-width="1.2"/>')
-        parts.append(f'<text x="{x + w//2}" y="{y + 22}" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0f172a">{html.escape(head)}</text>')
+        parts.append(f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="9" fill="{bg}" stroke="#0f172a" stroke-width="2.0"/>')
+        parts.append(f'<text x="{x + w//2}" y="{y + 23}" text-anchor="middle" font-size="12.8" font-weight="700" fill="#0f172a">{html.escape(head)}</text>')
         if sub:
             for si, sl in enumerate(sub.split("\n")):
-                parts.append(f'<text x="{x + w//2}" y="{y + 38 + si*13}" text-anchor="middle" font-size="9.5" fill="#334155">{html.escape(sl)}</text>')
+                parts.append(f'<text x="{x + w//2}" y="{y + 40 + si*14.5:.1f}" text-anchor="middle" font-size="10.8" font-weight="500" fill="#1e293b">{html.escape(sl)}</text>')
     return _svg_wrap(title, subtitle, "\n  ".join(parts))
 
 
@@ -84,7 +86,7 @@ def _line_chart(
     x_label: str,
     y_label: str,
 ) -> str:
-    left, top, plot_w, plot_h = 72, 74, 620, 225
+    left, top, plot_w, plot_h = 78, 76, 616, 218
     all_y = [v for _, ys, _ in series for v in ys]
     ymin, ymax = min(0.0, min(all_y)), max(all_y) * 1.12
     xmin, xmax = min(xs), max(xs)
@@ -98,31 +100,31 @@ def _line_chart(
         return top + plot_h - (y - ymin) / y_span * plot_h
 
     parts = [
-        f'<rect x="{left}" y="{top}" width="{plot_w}" height="{plot_h}" fill="#f8fafc" stroke="#cbd5e1"/>'
+        f'<rect x="{left}" y="{top}" width="{plot_w}" height="{plot_h}" fill="#f8fafc" stroke="#475569" stroke-width="1.4"/>'
     ]
     # Grid lines
     for i in range(5):
         yv = ymin + y_span * i / 4
         yy = py(yv)
-        parts.append(f'<line x1="{left}" y1="{yy:.1f}" x2="{left + plot_w}" y2="{yy:.1f}" stroke="#e2e8f0" stroke-dasharray="3,3"/>')
-        parts.append(f'<text x="{left - 8}" y="{yy + 4:.1f}" text-anchor="end" font-size="9.5" fill="#475569">{yv:.1f}</text>')
+        parts.append(f'<line x1="{left}" y1="{yy:.1f}" x2="{left + plot_w}" y2="{yy:.1f}" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4,3"/>')
+        parts.append(f'<text x="{left - 10}" y="{yy + 4:.1f}" text-anchor="end" font-size="11.2" font-weight="600" fill="#1e293b">{yv:.1f}</text>')
     for x in xs:
         xx = px(x)
-        parts.append(f'<text x="{xx:.1f}" y="{top + plot_h + 16}" text-anchor="middle" font-size="9.5" fill="#475569">{x:g}</text>')
+        parts.append(f'<text x="{xx:.1f}" y="{top + plot_h + 18}" text-anchor="middle" font-size="11.2" font-weight="600" fill="#1e293b">{x:g}</text>')
 
-    parts.append(f'<text x="{left + plot_w/2:.1f}" y="{top + plot_h + 34}" text-anchor="middle" font-size="10.5" font-weight="600" fill="#1e293b">{html.escape(x_label)}</text>')
-    parts.append(f'<text x="18" y="{top + plot_h/2:.1f}" text-anchor="middle" font-size="10.5" font-weight="600" fill="#1e293b" transform="rotate(-90 18 {top + plot_h/2:.1f})">{html.escape(y_label)}</text>')
+    parts.append(f'<text x="{left + plot_w/2:.1f}" y="{top + plot_h + 38}" text-anchor="middle" font-size="12.5" font-weight="700" fill="#0f172a">{html.escape(x_label)}</text>')
+    parts.append(f'<text x="20" y="{top + plot_h/2:.1f}" text-anchor="middle" font-size="12.5" font-weight="700" fill="#0f172a" transform="rotate(-90 20 {top + plot_h/2:.1f})">{html.escape(y_label)}</text>')
 
     # Plot series & legend
     for s_idx, (name, ys, color) in enumerate(series):
         pts = " ".join(f"{px(x):.1f},{py(y):.1f}" for x, y in zip(xs, ys))
-        parts.append(f'<polyline fill="none" stroke="{color}" stroke-width="2.6" points="{pts}"/>')
+        parts.append(f'<polyline fill="none" stroke="{color}" stroke-width="3.4" stroke-linejoin="round" stroke-linecap="round" points="{pts}"/>')
         for x, y in zip(xs, ys):
-            parts.append(f'<circle cx="{px(x):.1f}" cy="{py(y):.1f}" r="3.5" fill="{color}"/>')
-        lx = left + s_idx * 205
-        ly = 354
-        parts.append(f'<rect x="{lx}" y="{ly - 8}" width="14" height="4" fill="{color}"/>')
-        parts.append(f'<text x="{lx + 20}" y="{ly - 3}" font-size="10" font-weight="600" fill="#1e293b">{html.escape(name)}</text>')
+            parts.append(f'<circle cx="{px(x):.1f}" cy="{py(y):.1f}" r="5.0" fill="{color}" stroke="#ffffff" stroke-width="1.5"/>')
+        lx = left + s_idx * 208
+        ly = 358
+        parts.append(f'<rect x="{lx}" y="{ly - 9}" width="18" height="5" rx="2" fill="{color}"/>')
+        parts.append(f'<text x="{lx + 24}" y="{ly - 2}" font-size="11.5" font-weight="700" fill="#0f172a">{html.escape(name)}</text>')
 
     return _svg_wrap(title, subtitle, "\n  ".join(parts))
 

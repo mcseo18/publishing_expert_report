@@ -11,6 +11,7 @@ from __future__ import annotations
 import csv
 import math
 import sqlite3
+import textwrap
 from pathlib import Path
 from typing import Any
 
@@ -63,25 +64,36 @@ def apply_academic_matplotlib_style(*, paper_mode: bool = False) -> Any:
             "axes.unicode_minus": False,
             "figure.dpi": 300,
             "savefig.dpi": 300,
-            "axes.edgecolor": "#334155",
-            "axes.linewidth": 0.9,
+            "axes.edgecolor": "#1E293B",
+            "axes.linewidth": 1.5,
             "axes.spines.top": False,
             "axes.spines.right": False,
             "axes.grid": True,
-            "grid.color": ACADEMIC_PALETTE["grid"],
+            "grid.color": "#CBD5E1",
             "grid.linestyle": "--",
-            "grid.linewidth": 0.6,
-            "grid.alpha": 0.85,
-            "axes.titlesize": 11.5,
+            "grid.linewidth": 0.85,
+            "grid.alpha": 0.78,
+            "axes.titlesize": 15.5,
             "axes.titleweight": "bold",
-            "axes.labelsize": 10.0,
+            "axes.titlecolor": "#0F172A",
+            "axes.labelsize": 13.5,
             "axes.labelweight": "bold",
-            "xtick.labelsize": 9.0,
-            "ytick.labelsize": 9.0,
-            "legend.fontsize": 8.8,
+            "axes.labelcolor": "#0F172A",
+            "xtick.labelsize": 11.8,
+            "ytick.labelsize": 11.8,
+            "xtick.color": "#0F172A",
+            "ytick.color": "#0F172A",
+            "xtick.major.width": 1.35,
+            "ytick.major.width": 1.35,
+            "xtick.major.size": 5.5,
+            "ytick.major.size": 5.5,
+            "legend.fontsize": 11.2,
             "legend.frameon": True,
+            "legend.framealpha": 0.96,
             "legend.facecolor": "#FFFFFF",
-            "legend.edgecolor": "#CBD5E1",
+            "legend.edgecolor": "#94A3B8",
+            "legend.borderpad": 0.55,
+            "legend.handlelength": 2.2,
             "figure.facecolor": "#FFFFFF",
             "axes.facecolor": "#FFFFFF",
         }
@@ -130,7 +142,7 @@ def render_data_chart_png(
         raise ValueError("학술 차트는 반드시 단위가 포함된 x축·y축 제목을 명시해야 합니다.")
 
     plt = apply_academic_matplotlib_style(paper_mode=paper_mode)
-    fig, ax = plt.subplots(figsize=(8.53, 4.8), dpi=300)
+    fig, ax = plt.subplots(figsize=(9.8, 5.8), dpi=300)
 
     colors = PAPER_GRAYSCALE_CYCLE if paper_mode else ACADEMIC_COLOR_CYCLE
     n_x = len(x_values)
@@ -140,7 +152,9 @@ def render_data_chart_png(
     if highlight_band:
         hb = highlight_band
         if hb.get("axis", "x") == "x":
-            ax.axvspan(hb["min"], hb["max"], color=hb.get("color", "#D1FAE5"), alpha=float(hb.get("alpha", 0.45)), zorder=1)
+            ax.axvspan(hb["min"], hb["max"], color=hb.get("color", "#D1FAE5"), alpha=float(hb.get("alpha", 0.50)), zorder=1)
+            ax.axvline(hb["min"], color="#059669", linestyle=":", linewidth=1.5, alpha=0.8, zorder=2)
+            ax.axvline(hb["max"], color="#059669", linestyle=":", linewidth=1.5, alpha=0.8, zorder=2)
             if hb.get("label"):
                 y_top = hb.get("label_y_frac", 0.94)
                 x_mid = math.sqrt(hb["min"] * hb["max"]) if (x_log and hb["min"] > 0 and hb["max"] > 0) else (hb["min"] + hb["max"]) / 2.0
@@ -151,13 +165,17 @@ def render_data_chart_png(
                     transform=ax.get_xaxis_transform(),
                     ha="center",
                     va="top",
-                    fontsize=8.3,
+                    fontsize=11.0,
                     fontweight="bold",
                     color="#065F46",
-                    bbox=dict(boxstyle="round,pad=0.25", facecolor="#ECFDF5", edgecolor="#10B981", lw=0.8),
+                    bbox=dict(boxstyle="round,pad=0.35", facecolor="#ECFDF5", edgecolor="#059669", lw=1.3),
+                    zorder=6,
                 )
         else:
-            ax.axhspan(hb["min"], hb["max"], color=hb.get("color", "#D1FAE5"), alpha=float(hb.get("alpha", 0.45)), zorder=1)
+            ax.axhspan(hb["min"], hb["max"], color=hb.get("color", "#D1FAE5"), alpha=float(hb.get("alpha", 0.50)), zorder=1)
+
+    total_bars_drawn = sum(len(s["y"]) for s in series if (s.get("kind") or chart_type) == "bar")
+    show_bar_labels = (total_bars_drawn <= 16) and (not y2_series)
 
     for idx, s in enumerate(series):
         y_vals = [float(v) for v in s["y"]]
@@ -171,21 +189,39 @@ def render_data_chart_png(
         if s_kind == "bar":
             n_bars = sum(1 for ss in series if (ss.get("kind") or chart_type) == "bar")
             bar_idx = sum(1 for ss in series[:idx] if (ss.get("kind") or chart_type) == "bar")
-            width = 0.72 / max(1, n_bars)
-            offsets = [xp - 0.36 + width * (bar_idx + 0.5) for xp in x_pos]
-            ax.bar(
+            width = 0.74 / max(1, n_bars)
+            offsets = [xp - 0.37 + width * (bar_idx + 0.5) for xp in x_pos]
+            bars = ax.bar(
                 offsets,
                 y_vals,
                 width=width * 0.9,
                 color=col,
-                edgecolor="#1E293B" if paper_mode else "none",
-                alpha=0.85,
+                edgecolor="#0F172A",
+                linewidth=0.95,
+                alpha=0.94,
                 yerr=y_err,
-                capsize=3 if y_err else 0,
-                error_kw={"elinewidth": 0.9, "ecolor": "#334155"},
+                capsize=4.5 if y_err else 0,
+                error_kw={"elinewidth": 1.6, "ecolor": "#0F172A", "capthick": 1.5},
                 label=lbl,
                 zorder=3,
             )
+            if show_bar_labels:
+                for b_i, rect in enumerate(bars):
+                    yv = y_vals[b_i]
+                    err_pad = y_err[b_i] if y_err else 0.0
+                    lbl_txt = f"{yv:.1f}" if abs(yv) < 100 and (yv % 1 != 0) else f"{yv:,.0f}"
+                    ax.annotate(
+                        lbl_txt,
+                        xy=(rect.get_x() + rect.get_width() / 2.0, yv + err_pad),
+                        xytext=(0, 5),
+                        textcoords="offset points",
+                        ha="center",
+                        va="bottom",
+                        fontsize=10.4,
+                        fontweight="bold",
+                        color="#0F172A",
+                        zorder=6,
+                    )
         else:
             if y_err:
                 ax.errorbar(
@@ -195,10 +231,13 @@ def render_data_chart_png(
                     color=col,
                     linestyle=ls,
                     marker=mk,
-                    markersize=5.2,
-                    linewidth=2.0,
-                    capsize=3,
-                    elinewidth=0.9,
+                    markersize=8.2,
+                    markeredgecolor="#FFFFFF",
+                    markeredgewidth=1.2,
+                    linewidth=3.1,
+                    capsize=4.5,
+                    elinewidth=1.6,
+                    capthick=1.5,
                     label=lbl,
                     zorder=4,
                 )
@@ -209,27 +248,37 @@ def render_data_chart_png(
                     color=col,
                     linestyle=ls,
                     marker=mk if len(x_pos) <= 24 else None,
-                    markersize=5.0,
-                    linewidth=2.1,
+                    markersize=8.2,
+                    markeredgecolor="#FFFFFF",
+                    markeredgewidth=1.2,
+                    linewidth=3.2,
                     label=lbl,
                     zorder=4,
                 )
 
     if is_cat:
         ax.set_xticks(x_pos)
-        ax.set_xticklabels([str(v) for v in x_values])
+        cat_labels = [str(v) for v in x_values]
+        max_lbl_len = max((max(len(part) for part in s.split("\n")) for s in cat_labels), default=0)
+        if n_x >= 6 and max_lbl_len >= 9:
+            ax.set_xticklabels(cat_labels, rotation=20, ha="right")
+        else:
+            ax.set_xticklabels(cat_labels)
     if x_log:
         ax.set_xscale("log")
 
-    ax.set_xlabel(x_label, labelpad=6)
-    ax.set_ylabel(y_label, labelpad=6)
-    ax.set_title(title, pad=12, loc="left", color="#0F172A")
+    ax.tick_params(axis="both", which="major", pad=6)
+    ax.set_xlabel(x_label, labelpad=10)
+    ax.set_ylabel(y_label, labelpad=10)
+    wrapped_title = "\n".join(textwrap.wrap(title.strip(), width=54)) if len(title.strip()) > 56 else title.strip()
+    ax.set_title(wrapped_title, pad=14, loc="left", color="#0F172A", linespacing=1.28)
 
     handles, labels = ax.get_legend_handles_labels()
     if y2_series:
         ax2 = ax.twinx()
         ax2.spines["top"].set_visible(False)
-        ax2.spines["right"].set_color("#475569")
+        ax2.spines["right"].set_color("#1E293B")
+        ax2.spines["right"].set_linewidth(1.5)
         ax2.grid(False)
         for j, s2 in enumerate(y2_series):
             col2 = s2.get("color") or colors[(len(series) + j) % len(colors)]
@@ -241,12 +290,15 @@ def render_data_chart_png(
                 color=col2,
                 linestyle=ls2,
                 marker=mk2,
-                markersize=5.2,
-                linewidth=2.1,
+                markersize=8.2,
+                markeredgecolor="#FFFFFF",
+                markeredgewidth=1.2,
+                linewidth=3.2,
                 label=s2.get("label") or f"보조계열 {j + 1}",
                 zorder=5,
             )
-        ax2.set_ylabel(y2_label, labelpad=6, color="#334155")
+        ax2.set_ylabel(y2_label, labelpad=10, color="#0F172A", fontsize=13.5, fontweight="bold")
+        ax2.tick_params(axis="y", labelsize=11.8, width=1.35, length=5.5, colors="#0F172A", pad=6)
         h2, l2 = ax2.get_legend_handles_labels()
         handles += h2
         labels += l2
@@ -255,24 +307,31 @@ def render_data_chart_png(
         ax.set_ylim(y_lim[0], y_lim[1])
     elif chart_type == "bar" and not y2_series:
         ymin, ymax = ax.get_ylim()
+        ax.set_ylim(ymin, ymax * (1.28 if show_bar_labels else 1.22))
+    elif chart_type == "bar" and y2_series:
+        ymin, ymax = ax.get_ylim()
         ax.set_ylim(ymin, ymax * 1.18)
 
     if handles:
-        leg_loc = legend_loc or ("lower left" if chart_type == "line" and y2_series else "upper right" if chart_type == "bar" and not y2_series else "upper left")
-        ax.legend(handles, labels, loc=leg_loc, frameon=True, framealpha=0.94)
+        leg_loc = legend_loc or ("lower left" if chart_type == "line" and y2_series else "upper right" if chart_type == "bar" and not y2_series else "best")
+        leg = ax.legend(handles, labels, loc=leg_loc, frameon=True, framealpha=0.96, fancybox=True)
+        leg.get_frame().set_linewidth(1.2)
 
     sn_clean = source_note.strip()
     footer_txt = sn_clean if sn_clean.startswith(("자료:", "출처:")) else f"자료: {sn_clean}"
+    footer_wrapped = "\n".join(textwrap.wrap(footer_txt, width=88)[:2])
     fig.text(
         0.015,
-        0.012,
-        footer_txt,
-        fontsize=7.3,
-        color="#475569",
+        0.014,
+        footer_wrapped,
+        fontsize=9.6,
+        color="#334155",
         ha="left",
         va="bottom",
+        linespacing=1.25,
     )
-    plt.tight_layout(rect=[0.0, 0.045, 1.0, 0.98])
+    bottom_margin = 0.095 if "\n" in footer_wrapped else 0.068
+    plt.tight_layout(rect=[0.005, bottom_margin, 0.995, 0.985])
 
     out_png.parent.mkdir(parents=True, exist_ok=True)
     fig.savefig(str(out_png), dpi=300, facecolor="#FFFFFF")

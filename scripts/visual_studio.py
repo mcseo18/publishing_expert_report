@@ -335,20 +335,31 @@ def _generate_with_nano_banana(
 
 
 def _svg_canvas(title: str, subtitle: str, body: str, accent: str = "#1D3557", source_note: str = "") -> str:
-    t_clean = _wrap_svg_lines(title, max_chars=56, max_lines=1)[0]
-    s_clean = _wrap_svg_lines(subtitle, max_chars=82, max_lines=1)[0]
+    t_clean = _wrap_svg_lines(title, max_chars=48, max_lines=1)[0]
+    s_clean = _wrap_svg_lines(subtitle, max_chars=74, max_lines=1)[0]
     footer = ""
     if source_note:
-        sn = _wrap_svg_lines(f"자료: {source_note}", max_chars=96, max_lines=1)[0]
-        footer = f'  <text x="22" y="458" font-size="10.2" fill="#475569">{html.escape(sn)}</text>\n'
+        sn = _wrap_svg_lines(f"자료: {source_note}", max_chars=86, max_lines=1)[0]
+        footer = f'  <text x="30" y="660" font-size="13.5" font-weight="500" fill="#334155">{html.escape(sn)}</text>\n'
     return (
-        f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 476" width="880" height="476" '
+        f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 680" width="1200" height="680" '
         f'style="background:#ffffff;font-family:{FONT};">\n'
-        f'  <rect x="0" y="0" width="880" height="476" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.4"/>\n'
-        f'  <rect x="0" y="0" width="880" height="58" rx="10" fill="{accent}"/>\n'
-        f'  <rect x="0" y="42" width="880" height="16" fill="{accent}"/>\n'
-        f'  <text x="22" y="27" font-size="14.5" font-weight="700" fill="#f8fafc">{html.escape(t_clean)}</text>\n'
-        f'  <text x="22" y="47" font-size="10.8" fill="#cbd5e1">{html.escape(s_clean)}</text>\n'
+        f'  <defs>\n'
+        f'    <filter id="cardShadow" x="-6%" y="-6%" width="112%" height="116%">\n'
+        f'      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#0f172a" flood-opacity="0.10"/>\n'
+        f'    </filter>\n'
+        f'    <marker id="ar" viewBox="0 0 18 16" refX="14" refY="8" markerWidth="18" markerHeight="16" orient="auto" markerUnits="userSpaceOnUse">\n'
+        f'      <path d="M 1 1.5 L 16.5 8 L 1 14.5 L 4.8 8 Z" fill="#0F172A"/>\n'
+        f'    </marker>\n'
+        f'    <marker id="ar-green" viewBox="0 0 18 16" refX="14" refY="8" markerWidth="18" markerHeight="16" orient="auto" markerUnits="userSpaceOnUse">\n'
+        f'      <path d="M 1 1.5 L 16.5 8 L 1 14.5 L 4.8 8 Z" fill="#047857"/>\n'
+        f'    </marker>\n'
+        f'  </defs>\n'
+        f'  <rect x="1" y="1" width="1198" height="678" rx="14" fill="#ffffff" stroke="#94a3b8" stroke-width="2.2"/>\n'
+        f'  <rect x="1" y="1" width="1198" height="92" rx="14" fill="{accent}"/>\n'
+        f'  <rect x="1" y="70" width="1198" height="23" fill="{accent}"/>\n'
+        f'  <text x="30" y="40" font-size="22" font-weight="700" fill="#ffffff">{html.escape(t_clean)}</text>\n'
+        f'  <text x="30" y="70" font-size="15" font-weight="500" fill="#e2e8f0">{html.escape(s_clean)}</text>\n'
         f'  {body}\n'
         f'{footer}'
         f'</svg>'
@@ -380,7 +391,7 @@ def _extract_content_nodes_from_spec(spec: dict[str, Any], sections: list[str]) 
 
 
 def render_content_diagram_svg(spec: dict[str, Any], sections: list[str] | None = None) -> str:
-    """원고 내용 기반 구조도·피드백 흐름도·계층 비교도 SVG를 생성한다 (V2/V4: 가짜 수치 차트 및 고정 문구 완전 삭제)."""
+    """원고 내용 기반 구조도·피드백 흐름도·계층 비교도 SVG를 고가독성·고시인성 규격(1200×680)으로 생성한다 (V2/V4)."""
     style = str(spec.get("style") or "content_diagram")
     if style in ("comparison_bar", "response_curve"):
         raise ValueError(
@@ -395,83 +406,158 @@ def render_content_diagram_svg(spec: dict[str, Any], sections: list[str] | None 
     edges = spec.get("diagram_edges") or []
     feedback_label = str(spec.get("feedback_label") or "")
 
-    # 색맹 안전 Okabe-Ito 기반 연색 박스 + 진색 테두리
+    # 색맹 안전 Okabe-Ito 기반 선명한 연색 배경 + 고대비 진색 테두리
     palette = [
-        ("#E0F2FE", "#0072B2"),
-        ("#DCFCE7", "#009E73"),
-        ("#FEF3C7", "#D55E00"),
-        ("#F3E8FF", "#CC79A7"),
+        ("#E0F2FE", "#00629B"),
+        ("#DCFCE7", "#047857"),
+        ("#FEF3C7", "#C2410C"),
+        ("#F3E8FF", "#9D174D"),
         ("#E2E8F0", "#1D3557"),
     ]
 
     if style == "layered_comparison" and len(nodes) >= 2:
         n_cols = min(3, len(nodes))
-        col_w = int((832 - (n_cols - 1) * 16) / n_cols)
+        col_gap = 26
+        col_w = int((1140 - (n_cols - 1) * col_gap) / n_cols)
         parts: list[str] = []
         for idx, nd in enumerate(nodes[:n_cols]):
             bg, bd = palette[idx % len(palette)]
-            x = 24 + idx * (col_w + 16)
-            parts.append(f'<rect x="{x}" y="84" width="{col_w}" height="346" rx="10" fill="{bg}" stroke="{bd}" stroke-width="1.6"/>')
-            parts.append(f'<rect x="{x}" y="84" width="{col_w}" height="38" rx="10" fill="{bd}"/>')
-            parts.append(f'<rect x="{x}" y="108" width="{col_w}" height="14" fill="{bd}"/>')
-            parts.append(f'<text x="{x + col_w / 2:.1f}" y="108" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">{html.escape(nd["tag"])}</text>')
-            l_lines = _wrap_svg_lines(nd["label"], max_chars=max(12, col_w // 14), max_lines=3)
-            parts.append(_svg_multiline_text(x + col_w / 2, 164, l_lines, font_size=13, line_height=19, fill="#0f172a", weight="700"))
+            x = 30 + idx * (col_w + col_gap)
+            parts.append(
+                f'<rect x="{x}" y="116" width="{col_w}" height="504" rx="14" fill="{bg}" stroke="{bd}" '
+                f'stroke-width="2.8" filter="url(#cardShadow)"/>'
+            )
+            parts.append(f'<rect x="{x}" y="116" width="{col_w}" height="52" rx="14" fill="{bd}"/>')
+            parts.append(f'<rect x="{x}" y="150" width="{col_w}" height="18" fill="{bd}"/>')
+            tag_clean = _wrap_svg_lines(nd["tag"], max_chars=max(10, int((col_w - 30) / 18.5)), max_lines=1)[0]
+            parts.append(
+                f'<text x="{x + col_w / 2:.1f}" y="149" text-anchor="middle" font-size="18.5" font-weight="700" '
+                f'fill="#ffffff">{html.escape(tag_clean)}</text>'
+            )
+            l_lines = _wrap_svg_lines(nd["label"], max_chars=max(10, int((col_w - 38) / 19.5)), max_lines=3)
+            parts.append(_svg_multiline_text(x + col_w / 2, 224, l_lines, font_size=19.5, line_height=27, fill="#0f172a", weight="700"))
+            parts.append(f'<line x1="{x + 22}" y1="274" x2="{x + col_w - 22}" y2="274" stroke="{bd}" stroke-opacity="0.32" stroke-width="1.6"/>')
             if nd.get("detail"):
-                d_lines = _wrap_svg_lines(nd["detail"], max_chars=max(16, col_w // 11), max_lines=5)
-                parts.append(_svg_multiline_text(x + 16, 260, d_lines, font_size=11.3, line_height=17, fill="#1e293b", weight="500", anchor="start"))
+                d_lines = _wrap_svg_lines(nd["detail"], max_chars=max(14, int((col_w - 48) / 16.2)), max_lines=6)
+                parts.append(
+                    _svg_multiline_text(
+                        x + 24,
+                        394,
+                        d_lines,
+                        font_size=16.5,
+                        line_height=26,
+                        fill="#1e293b",
+                        weight="500",
+                        anchor="start",
+                    )
+                )
             if nd.get("metric"):
-                parts.append(f'<rect x="{x + 14}" y="366" width="{col_w - 28}" height="46" rx="7" fill="#ffffff" stroke="{bd}" stroke-width="1.1"/>')
-                m_lines = _wrap_svg_lines(nd["metric"], max_chars=max(16, col_w // 11), max_lines=2)
-                parts.append(_svg_multiline_text(x + col_w / 2, 389, m_lines, font_size=11, line_height=15, fill=bd, weight="700"))
+                parts.append(
+                    f'<rect x="{x + 18}" y="534" width="{col_w - 36}" height="68" rx="10" fill="#ffffff" '
+                    f'stroke="{bd}" stroke-width="2.0"/>'
+                )
+                m_lines = _wrap_svg_lines(nd["metric"], max_chars=max(14, int((col_w - 50) / 14.5)), max_lines=2)
+                parts.append(_svg_multiline_text(x + col_w / 2, 568, m_lines, font_size=16.0, line_height=22, fill=bd, weight="700"))
         return _svg_canvas(title, sub, "\n  ".join(parts), "#1D3557", source_note=source_note)
 
-    # 기본: 내용 기반 프로세스·피드백 루프 흐름도 (V4)
+    # 기본: 내용 기반 프로세스·피드백 루프 흐름도 (V4 — 굵은 화살표·대형 글꼴·고대비 카드)
     n_cnt = max(1, min(4, len(nodes)))
-    gap = 28
-    box_w = int((832 - (n_cnt - 1) * gap) / n_cnt)
-    box_y = 104
-    box_h = 228 if feedback_label else 284
+    gap = 68 if n_cnt <= 3 else 62
+    box_w = int((1144 - (n_cnt - 1) * gap) / n_cnt)
+    box_y = 122 if feedback_label else 128
+    box_h = 372 if feedback_label else 468
 
-    parts = [
-        '<defs><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">'
-        '<path d="M 0 1 L 10 5 L 0 9 z" fill="#1D3557"/></marker></defs>'
-    ]
+    parts = []
+    arrow_parts: list[str] = []
     for i, nd in enumerate(nodes[:n_cnt]):
         bg, bd = palette[i % len(palette)]
-        x = 24 + i * (box_w + gap)
-        parts.append(f'<rect x="{x}" y="{box_y}" width="{box_w}" height="{box_h}" rx="10" fill="{bg}" stroke="{bd}" stroke-width="1.6"/>')
-        parts.append(f'<rect x="{x}" y="{box_y}" width="{box_w}" height="32" rx="10" fill="{bd}"/>')
-        parts.append(f'<rect x="{x}" y="{box_y + 20}" width="{box_w}" height="12" fill="{bd}"/>')
-        parts.append(f'<text x="{x + box_w / 2:.1f}" y="{box_y + 21}" text-anchor="middle" font-size="11.5" font-weight="700" fill="#ffffff">{html.escape(nd["tag"])}</text>')
-        l_lines = _wrap_svg_lines(nd["label"], max_chars=max(10, box_w // 14), max_lines=3)
-        parts.append(_svg_multiline_text(x + box_w / 2, box_y + 74, l_lines, font_size=12.5, line_height=18, fill="#0f172a", weight="700"))
+        x = 28 + i * (box_w + gap)
+        parts.append(
+            f'<rect x="{x}" y="{box_y}" width="{box_w}" height="{box_h}" rx="14" fill="{bg}" stroke="{bd}" '
+            f'stroke-width="2.8" filter="url(#cardShadow)"/>'
+        )
+        parts.append(f'<rect x="{x}" y="{box_y}" width="{box_w}" height="48" rx="14" fill="{bd}"/>')
+        parts.append(f'<rect x="{x}" y="{box_y + 32}" width="{box_w}" height="16" fill="{bd}"/>')
+        tag_clean = _wrap_svg_lines(nd["tag"], max_chars=max(9, int((box_w - 22) / 15.5)), max_lines=1)[0]
+        parts.append(
+            f'<text x="{x + box_w / 2:.1f}" y="{box_y + 31}" text-anchor="middle" font-size="16.5" font-weight="700" '
+            f'fill="#ffffff">{html.escape(tag_clean)}</text>'
+        )
+        lbl_y = box_y + (108 if feedback_label else 126)
+        l_lines = _wrap_svg_lines(nd["label"], max_chars=max(8, int((box_w - 24) / 18.2)), max_lines=3)
+        parts.append(_svg_multiline_text(x + box_w / 2, lbl_y, l_lines, font_size=18.5, line_height=26, fill="#0f172a", weight="700"))
+        parts.append(
+            f'<line x1="{x + 18}" y1="{lbl_y + 48}" x2="{x + box_w - 18}" y2="{lbl_y + 48}" '
+            f'stroke="{bd}" stroke-opacity="0.28" stroke-width="1.5"/>'
+        )
         if nd.get("detail"):
-            d_lines = _wrap_svg_lines(nd["detail"], max_chars=max(13, box_w // 11), max_lines=4)
-            parts.append(_svg_multiline_text(x + box_w / 2, box_y + 148, d_lines, font_size=10.8, line_height=15.5, fill="#334155", weight="500"))
+            det_y = box_y + (224 if feedback_label else 268)
+            d_lines = _wrap_svg_lines(nd["detail"], max_chars=max(10, int((box_w - 26) / 14.8)), max_lines=4 if feedback_label else 6)
+            parts.append(_svg_multiline_text(x + box_w / 2, det_y, d_lines, font_size=15.0, line_height=22.5, fill="#1e293b", weight="500"))
         if nd.get("metric"):
-            my = box_y + box_h - 38
-            parts.append(f'<rect x="{x + 10}" y="{my}" width="{box_w - 20}" height="28" rx="6" fill="#ffffff" stroke="{bd}" stroke-width="1"/>')
-            m_clean = _wrap_svg_lines(nd["metric"], max_chars=max(12, box_w // 10), max_lines=1)[0]
-            parts.append(f'<text x="{x + box_w / 2:.1f}" y="{my + 18}" text-anchor="middle" font-size="10.2" font-weight="700" fill="{bd}">{html.escape(m_clean)}</text>')
+            my = box_y + box_h - 60
+            parts.append(
+                f'<rect x="{x + 12}" y="{my}" width="{box_w - 24}" height="46" rx="9" fill="#ffffff" '
+                f'stroke="{bd}" stroke-width="1.9"/>'
+            )
+            # ASCII 수식/영문 비율이 높을수록 가로 폭을 더 효율적으로 허용
+            m_txt = str(nd["metric"])
+            ascii_ratio = sum(1 for ch in m_txt if ord(ch) < 128) / max(1, len(m_txt))
+            char_px = 10.2 if ascii_ratio >= 0.65 else 13.8
+            m_lines = _wrap_svg_lines(m_txt, max_chars=max(12, int((box_w - 34) / char_px)), max_lines=2)
+            parts.append(_svg_multiline_text(x + box_w / 2, my + 23, m_lines, font_size=14.5, line_height=19, fill=bd, weight="700"))
         if i < n_cnt - 1:
             ay = box_y + box_h // 2
-            parts.append(f'<line x1="{x + box_w}" y1="{ay}" x2="{x + box_w + gap - 4}" y2="{ay}" stroke="#1D3557" stroke-width="2.2" marker-end="url(#ar)"/>')
+            ax1 = x + box_w + 4
+            ax2 = x + box_w + gap - 6
+            # 모든 카드 위에 최상단 Z-순서로 선명한 대형 화살표와 배지를 배치
+            arrow_parts.append(f'<line x1="{ax1}" y1="{ay}" x2="{ax2 - 4}" y2="{ay}" stroke="#FFFFFF" stroke-width="10" stroke-linecap="round"/>')
+            arrow_parts.append(
+                f'<line x1="{ax1}" y1="{ay}" x2="{ax2}" y2="{ay}" stroke="#0F172A" stroke-width="5.0" '
+                f'stroke-linecap="round" marker-end="url(#ar)"/>'
+            )
             if i < len(edges) and edges[i]:
-                elbl = _wrap_svg_lines(str(edges[i]), max_chars=8, max_lines=1)[0]
-                parts.append(f'<text x="{x + box_w + gap / 2:.1f}" y="{ay - 8}" text-anchor="middle" font-size="9.5" font-weight="700" fill="#1D3557">{html.escape(elbl)}</text>')
+                elbl = _wrap_svg_lines(str(edges[i]), max_chars=7, max_lines=1)[0]
+                cx = x + box_w + gap / 2.0
+                bw = max(64, len(elbl) * 14 + 22)
+                arrow_parts.append(
+                    f'<rect x="{cx - bw / 2:.1f}" y="{ay - 44}" width="{bw}" height="28" rx="14" '
+                    f'fill="#FFFFFF" stroke="#0F172A" stroke-width="1.8" filter="url(#cardShadow)"/>'
+                )
+                arrow_parts.append(
+                    f'<text x="{cx:.1f}" y="{ay - 25}" text-anchor="middle" font-size="13.0" font-weight="700" '
+                    f'fill="#0F172A">{html.escape(elbl)}</text>'
+                )
+
+    parts.extend(arrow_parts)
 
     if feedback_label and n_cnt >= 2:
-        x_start = 24 + (n_cnt - 1) * (box_w + gap) + box_w // 2
-        x_end = 24 + box_w // 2
+        x_start = 28 + (n_cnt - 1) * (box_w + gap) + box_w // 2
+        x_end = 28 + box_w // 2
         y_bot = box_y + box_h
-        y_loop = y_bot + 54
+        y_loop = y_bot + 82
+        r = 18
+        # 둥근 모서리 + 굵은 점선 + 전용 에메랄드 화살촉(#ar-green) 피드백 경로
         parts.append(
-            f'<path d="M {x_start} {y_bot} L {x_start} {y_loop} L {x_end} {y_loop} L {x_end} {y_bot + 6}" '
-            f'fill="none" stroke="#009E73" stroke-width="2.4" stroke-dasharray="6,4" marker-end="url(#ar)"/>'
+            f'<path d="M {x_start} {y_bot + 2} L {x_start} {y_loop - r} '
+            f'Q {x_start} {y_loop} {x_start - r} {y_loop} '
+            f'L {x_end + r} {y_loop} '
+            f'Q {x_end} {y_loop} {x_end} {y_loop - r} '
+            f'L {x_end} {y_bot + 7}" '
+            f'fill="none" stroke="#047857" stroke-width="4.2" stroke-dasharray="11,7" '
+            f'stroke-linecap="round" marker-end="url(#ar-green)"/>'
         )
-        parts.append(f'<rect x="230" y="{y_loop - 14}" width="420" height="28" rx="14" fill="#ECFDF5" stroke="#009E73" stroke-width="1.3"/>')
-        parts.append(f'<text x="440" y="{y_loop + 4}" text-anchor="middle" font-size="11.2" font-weight="700" fill="#065F46">{html.escape(_wrap_svg_lines(feedback_label, max_chars=52, max_lines=1)[0])}</text>')
+        fb_clean = _wrap_svg_lines(feedback_label, max_chars=58, max_lines=1)[0]
+        pill_w = min(920, max(460, len(fb_clean) * 15 + 72))
+        pill_x = 600 - pill_w // 2
+        parts.append(
+            f'<rect x="{pill_x}" y="{y_loop - 22}" width="{pill_w}" height="44" rx="22" '
+            f'fill="#ECFDF5" stroke="#047857" stroke-width="2.4" filter="url(#cardShadow)"/>'
+        )
+        parts.append(
+            f'<text x="600" y="{y_loop + 6}" text-anchor="middle" font-size="15.5" font-weight="700" '
+            f'fill="#064E3B">{html.escape(fb_clean)}</text>'
+        )
 
     return _svg_canvas(title, sub, "\n  ".join(parts), "#1D3557", source_note=source_note)
 
@@ -495,7 +581,7 @@ def overlay_korean_labels_pillow(
     overlay = Image.new("RGBA", (w, h), (0, 0, 0, 0))
     draw = ImageDraw.Draw(overlay)
     try:
-        font = ImageFont.truetype("C:/Windows/Fonts/malgunbd.ttf", max(18, int(w * 0.015)))
+        font = ImageFont.truetype("C:/Windows/Fonts/malgunbd.ttf", max(24, int(w * 0.020)))
     except Exception:
         font = ImageFont.load_default()
 
@@ -508,20 +594,20 @@ def overlay_korean_labels_pillow(
         ly = int(float(lb.get("y", 0.5)) * h)
         tx = lb.get("target_x")
         ty = lb.get("target_y")
-        accent = lb.get("color", (29, 53, 87, 255))
+        accent = lb.get("color", (15, 23, 42, 255))
         if tx is not None and ty is not None:
             px, py = int(float(tx) * w), int(float(ty) * h)
-            draw.line([(lx, ly), (px, py)], fill=(255, 255, 255, 220), width=5)
-            draw.line([(lx, ly), (px, py)], fill=accent, width=3)
-            r = max(5, int(w * 0.004))
-            draw.ellipse([px - r, py - r, px + r, py + r], fill=accent, outline=(255, 255, 255, 255), width=2)
+            draw.line([(lx, ly), (px, py)], fill=(255, 255, 255, 240), width=8)
+            draw.line([(lx, ly), (px, py)], fill=accent, width=4)
+            r = max(7, int(w * 0.0055))
+            draw.ellipse([px - r, py - r, px + r, py + r], fill=accent, outline=(255, 255, 255, 255), width=3)
         bbox = draw.textbbox((0, 0), text, font=font)
         tw, th = bbox[2] - bbox[0], bbox[3] - bbox[1]
-        pad_x, pad_y = 12, 7
+        pad_x, pad_y = 16, 10
         bx0 = max(6, min(w - tw - pad_x * 2 - 6, lx - (tw // 2) - pad_x))
         by0 = max(6, min(h - th - pad_y * 2 - 6, ly - (th // 2) - pad_y))
         bx1, by1 = bx0 + tw + pad_x * 2, by0 + th + pad_y * 2
-        draw.rounded_rectangle([bx0, by0, bx1, by1], radius=8, fill=(255, 255, 255, 236), outline=accent, width=2)
+        draw.rounded_rectangle([bx0, by0, bx1, by1], radius=10, fill=(255, 255, 255, 245), outline=accent, width=3)
         draw.text((bx0 + pad_x, by0 + pad_y - 1), text, fill=(15, 23, 42, 255), font=font)
 
     merged = Image.alpha_composite(img, overlay).convert("RGB")
@@ -669,7 +755,7 @@ def _rasterize_svgs_batch(
 
         with sync_playwright() as p:
             browser = p.chromium.launch(headless=True)
-            page = browser.new_page(viewport={"width": 960, "height": 540}, device_scale_factor=2)
+            page = browser.new_page(viewport={"width": 1280, "height": 740}, device_scale_factor=2)
             for svg_p, png_p in svg_targets:
                 if not svg_p.is_file():
                     continue
