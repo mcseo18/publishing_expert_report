@@ -11,13 +11,13 @@
   "last_stage_progress": 100,
   "last_open_chapter": "",
   "last_visual_filter": "ch01",
-  "last_action_summary": "5단계 옥수수 130종 시각화 완료 및 ch01 검수",
+  "last_action_summary": "문맥 기반 나노바나나 전량 재제작 완료 (130종 · 단원별 해설/프롬프트 별도 폴더 저장)",
   "last_event_message": "6단계 교재 생성 완료 종합 보고서 작성 완료: 06_final_book_report.md",
   "done_stages": 6,
   "total_stages": 6,
-  "overall_status": "PAUSED",
+  "overall_status": "DONE",
   "completed_chapters_count": 13,
   "completed_visuals_count": 130,
-  "saved_at": "2026-11-22T08:31:49+00:00",
-  "saved_at_local": "2026-11-22 17:31:49"
+  "saved_at": "2026-11-24T12:46:48+00:00",
+  "saved_at_local": "2026-11-24 21:46:48"
 }

@@ -192,11 +192,16 @@ def test_zombie_running_auto_reconcile_and_diagnostics(tmp_path: Path):
     assert diag["overall_status"] in ("INTERRUPTED", "PAUSED")
     assert diag["is_zombie_running"] is False
     codes = {i["code"] for i in diag["issues"]}
-    assert "QUALITY_GATE_BLOCKED" in codes
+    assert "QUALITY_GATE_BLOCKED" not in codes  # deduplicated in favor of concrete QUALITY_GATE_* issues
     assert "QUALITY_GATE_NO_REVIEW" in codes
     assert "QUALITY_GATE_VISUAL_QA" in codes
     assert "QUALITY_GATE_LOW_RELEVANCE" in codes
     assert "QUALITY_GATE_UNRELATED_CITATIONS" in codes
+    wg = diag["workflow_guide"]
+    assert wg["phase"] == "NEEDS_REPAIR"
+    assert wg["step2_recovery"]["has_auto_fix"] is True
+    assert wg["step3_restart"]["can_restart_now"] is False
+    assert wg["step3_restart"]["target_stage_id"] == "stage6_publish_report"
 
     # Explicit unlock_stuck_running action works safely even when already interrupted
     res_unlock = execute_recovery_action(pid, "unlock_stuck_running", cfg=cfg)
@@ -223,11 +228,46 @@ def test_full_auto_heal_recovers_all_quality_gate_blockers(tmp_path: Path):
     assert diag["readiness"]["metrics"]["avg_evidence_relevance_pct"] >= 40.0
     assert (diag["readiness"]["metrics"]["unrelated_ratio_pct"] or 0.0) <= 30.0
 
-    # Stage 6 error should be cleared cleanly
+    # Stage 6 error should be cleared cleanly and workflow_guide should move to READY_TO_RESTART
     st = res["project"]
     s6 = next(s for s in st["stages"] if s["stage_id"] == "stage6_publish_report")
     assert s6["error"] == ""
     assert s6["status"] != "ERROR"
+    assert diag["workflow_guide"]["phase"] == "READY_TO_RESTART"
+    assert diag["workflow_guide"]["step2_recovery"]["done"] is True
+    assert diag["workflow_guide"]["step3_restart"]["can_restart_now"] is True
+    assert res["details"]["critical_before"] >= 4
+    assert res["details"]["critical_after"] == 0
+    assert res["details"]["no_progress"] is False
+
+
+def test_manual_error_sets_no_progress_anti_loop_guard(tmp_path: Path):
+    cfg = _make_isolated_cfg(tmp_path)
+    st = create_project(
+        topic_ko="수동 오류 테스트",
+        topic_en="Manual Error Test",
+        keywords_ko=["테스트"],
+        keywords_en=["test"],
+        target_pages=20,
+        chapter_count=2,
+        cfg=cfg,
+    )
+    pid = st["project_id"]
+    for s in st["stages"]:
+        if s["stage_id"] == "stage4_manuscript_draft":
+            s["status"] = "ERROR"
+            s["error"] = "Ollama Connection refused on 127.0.0.1:11434"
+    st["overall_status"] = "ERROR"
+    save_project_state(st, cfg)
+
+    diag = diagnose_project_issues(pid, cfg=cfg)
+    assert diag["workflow_guide"]["phase"] == "MANUAL_ACTION_REQUIRED"
+    assert diag["workflow_guide"]["step2_recovery"]["has_auto_fix"] is False
+    assert len(diag["workflow_guide"]["step2_recovery"]["manual_hints"]) >= 1
+
+    res = execute_recovery_action(pid, "run_full_auto_heal", cfg=cfg)
+    assert res["details"]["no_progress"] is True
+    assert "반복 실행 중단" in res["summary_ko"]
 
 
 def test_dashboard_api_diagnostics_and_bulk_review_endpoints(tmp_path: Path, monkeypatch):

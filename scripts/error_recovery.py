@@ -169,15 +169,110 @@ def _classify_stage_error(stage: dict[str, Any]) -> dict[str, Any]:
         }
     )
 
+    auto_fixable_codes = {
+        "QUALITY_GATE_BLOCKED",
+        "STAGE5_VISUAL_ERROR",
+        "STUCK_RUNNING_LOCK",
+    }
     return {
         "code": code,
         "severity": "CRITICAL",
+        "auto_fixable": code in auto_fixable_codes,
         "stage_id": sid,
         "stage_order": order,
         "title_ko": title_ko,
         "cause_ko": cause_ko,
         "detail": err,
         "actions": actions,
+    }
+
+
+def _build_workflow_guide(
+    st: dict[str, Any],
+    issues: list[dict[str, Any]],
+    readiness: dict[str, Any],
+    is_zombie_running: bool,
+) -> dict[str, Any]:
+    """오류 발생 시 [① 원인 진단 → ② 복구 실행 → ③ 단계 재시작] 3단계 명확한 진행 가이드를 생성한다."""
+    stages = st.get("stages") or []
+    errored_stage = next((s for s in stages if s.get("status") == "ERROR" or (s.get("error") or "").strip()), None)
+    interrupted_stage = next((s for s in stages if s.get("status") == "INTERRUPTED"), None)
+    next_pending_stage = next((s for s in stages if s.get("status") != "DONE"), None)
+
+    crit_issues = [x for x in issues if x.get("severity") == "CRITICAL"]
+    auto_fixable_issues = [x for x in crit_issues if x.get("auto_fixable", False)]
+    manual_issues = [x for x in crit_issues if not x.get("auto_fixable", False)]
+
+    # 재시작 대상 단계 결정 (오류 단계 > 중단 단계 > 게이트 미달이면 6단계 > 다음 미완료 단계)
+    target_stage = errored_stage or interrupted_stage
+    if not target_stage and not readiness.get("ready", True) and any(
+        str(x.get("code") or "").startswith("QUALITY_GATE_") for x in crit_issues
+    ):
+        target_stage = next((s for s in stages if s.get("stage_id") == "stage6_publish_report"), None)
+    if not target_stage:
+        target_stage = next_pending_stage
+
+    target_sid = str(target_stage.get("stage_id") or "") if target_stage else ""
+    target_label = (
+        f"{target_stage.get('order', '')}단계({target_stage.get('short_title') or target_stage.get('title') or target_sid})"
+        if target_stage
+        else ""
+    )
+
+    # 현재 3단계 상태 판정
+    if not crit_issues and not is_zombie_running:
+        if target_stage and target_stage.get("status") != "DONE":
+            phase = "READY_TO_RESTART"
+            step1_summary = "오류·차단 원인이 모두 해소되었습니다."
+            step2_done = True
+            can_restart = True
+            restart_reason = f"모든 사전 점검이 완료되어 지금 바로 {target_label}를 재시작할 수 있습니다."
+        else:
+            phase = "HEALTHY"
+            step1_summary = "감지된 오류나 품질 게이트 차단 항목이 없습니다."
+            step2_done = True
+            can_restart = False
+            restart_reason = "모든 단계가 정상 완료 상태입니다."
+    elif auto_fixable_issues:
+        phase = "NEEDS_REPAIR"
+        step1_summary = f"자동 복구 가능한 원인 {len(auto_fixable_issues)}건" + (
+            f" + 수동 확인 {len(manual_issues)}건 감지" if manual_issues else " 감지"
+        )
+        step2_done = False
+        can_restart = False
+        restart_reason = "먼저 2단계 [자동 복구 실행]을 완료한 뒤 재시작해야 같은 오류가 반복되지 않습니다."
+    else:
+        phase = "MANUAL_ACTION_REQUIRED"
+        step1_summary = f"외부·수동 확인이 필요한 오류 {len(manual_issues)}건 감지 (자동 반복 불가)"
+        step2_done = False
+        can_restart = bool(target_sid and not is_zombie_running)
+        restart_reason = "아래 수동 조치 안내(Ollama 실행·파일 닫기·API 키 확인 등)를 먼저 확인한 뒤 재시작하세요."
+
+    manual_hints = [
+        f"[{x.get('title_ko', '')}] {x.get('cause_ko', '')}"
+        for x in manual_issues
+    ]
+
+    return {
+        "phase": phase,
+        "auto_fixable_count": len(auto_fixable_issues),
+        "manual_count": len(manual_issues),
+        "step1_diagnosis": {
+            "done": True,
+            "summary_ko": step1_summary,
+        },
+        "step2_recovery": {
+            "done": step2_done,
+            "has_auto_fix": len(auto_fixable_issues) > 0,
+            "manual_hints": manual_hints,
+        },
+        "step3_restart": {
+            "ready": can_restart,
+            "can_restart_now": can_restart,
+            "target_stage_id": target_sid,
+            "target_stage_label": target_label,
+            "reason_ko": restart_reason,
+        },
     }
 
 
@@ -211,6 +306,7 @@ def diagnose_project_issues(
             {
                 "code": "STUCK_RUNNING_LOCK",
                 "severity": "CRITICAL",
+                "auto_fixable": True,
                 "stage_id": st.get("active_stage_id") or next((s.get("stage_id") for s in stages if s.get("status") == "RUNNING"), ""),
                 "stage_order": "",
                 "title_ko": "실행 상태 잠금(좀비 RUNNING) 감지됨",
@@ -285,6 +381,7 @@ def diagnose_project_issues(
             {
                 "code": "QUALITY_GATE_CRITICAL_ERRORS",
                 "severity": "CRITICAL",
+                "auto_fixable": True,
                 "stage_id": "stage4_manuscript_draft",
                 "stage_order": "4",
                 "title_ko": f"인용·수식 치명 오류 {crit_cnt}건 감지",
@@ -327,6 +424,7 @@ def diagnose_project_issues(
             {
                 "code": "QUALITY_GATE_LOW_RELEVANCE",
                 "severity": "CRITICAL",
+                "auto_fixable": True,
                 "stage_id": "stage2_source_collect",
                 "stage_order": "2",
                 "title_ko": f"수집 근거 평균 관련도 미달 ({avg_rel}% < 40%)",
@@ -376,6 +474,7 @@ def diagnose_project_issues(
             {
                 "code": "QUALITY_GATE_UNRELATED_CITATIONS",
                 "severity": "CRITICAL",
+                "auto_fixable": True,
                 "stage_id": "stage4_manuscript_draft",
                 "stage_order": "4",
                 "title_ko": f"출처와 무관한 인용 비율 초과 ({unrel}% > 30%)",
@@ -427,6 +526,7 @@ def diagnose_project_issues(
             {
                 "code": "QUALITY_GATE_VISUAL_QA",
                 "severity": "CRITICAL",
+                "auto_fixable": True,
                 "stage_id": "stage5_visuals_generate",
                 "stage_order": "5",
                 "title_ko": "5단계 도판 품질 미달 (빈 틀/미생성 도판 또는 출처 기재율 부족)",
@@ -477,6 +577,7 @@ def diagnose_project_issues(
             {
                 "code": "QUALITY_GATE_NO_REVIEW",
                 "severity": "CRITICAL",
+                "auto_fixable": True,
                 "stage_id": "stage4_manuscript_draft",
                 "stage_order": "4",
                 "title_ko": f"전문가 [검토 완료] 체크된 단원이 0개 (총 {ch_cnt}개 단원 대기 중)",
@@ -501,6 +602,7 @@ def diagnose_project_issues(
             {
                 "code": "STAGE4_FALLBACK_CHAPTERS",
                 "severity": "WARN",
+                "auto_fixable": True,
                 "stage_id": "stage4_manuscript_draft",
                 "stage_order": "4",
                 "title_ko": f"AI 집필 실패 틀 원고(임시 템플릿) {len(fb_chs)}개 단원 잔존",
@@ -523,8 +625,17 @@ def diagnose_project_issues(
         ev for ev in load_events(project_id, limit=80, cfg=cfg) if str(ev.get("level", "")).upper() == "ERROR"
     ][-12:]
 
+    # Stage 6 QUALITY_GATE_BLOCKED 요약 카드와 개별 QUALITY_GATE_* 카드가 중복 표시되지 않도록 정리
+    has_specific_gate = any(
+        str(x.get("code") or "").startswith("QUALITY_GATE_") and x.get("code") != "QUALITY_GATE_BLOCKED"
+        for x in issues
+    )
+    if has_specific_gate:
+        issues = [x for x in issues if x.get("code") != "QUALITY_GATE_BLOCKED"]
+
     crit_issues = [x for x in issues if x.get("severity") == "CRITICAL"]
     health_status = "ERROR" if crit_issues else ("WARN" if issues else "OK")
+    workflow_guide = _build_workflow_guide(st, issues, readiness, is_zombie_running)
 
     try:
         engines = get_ai_engines_status(cfg)
@@ -543,6 +654,7 @@ def diagnose_project_issues(
         "readiness": readiness,
         "gate_checks": gate_checks,
         "issues": issues,
+        "workflow_guide": workflow_guide,
         "recent_errors": list(reversed(recent_errors)),
         "engines": engines,
         "checked_at": utc_now_iso(),
@@ -861,16 +973,33 @@ def execute_recovery_action(
                 if found:
                     ch_sids[p.stem] = found[:4]
 
+        # 사전 시각 QA 결과에서 출판 불가(빈 틀/가짜 수치 차트/미생성) 도판 ID 확보
+        pre_qa = audit_visual_assets(project_id, cfg=cfg)
+        non_pub_fids = {
+            str(x.get("figure_id") or "")
+            for x in (pre_qa.get("items") or [])
+            if (not x.get("publishable"))
+            or any(("빈 틀" in str(iss) or "가짜" in str(iss) or "미생성" in str(iss)) for iss in (x.get("issues") or []))
+        }
+
+        # 프로젝트 수집 출처 폴백(단원 내 인용이 없는 도판 보강용)
+        proj_col_sids = [
+            str(s.get("source_id"))
+            for s in (st.get("collected_sources") or [])
+            if s.get("source_id")
+        ][:4]
+
         excluded_cnt = 0
         source_filled_cnt = 0
         for it in items:
             if it.get("exclude_from_publish"):
                 continue
+            fid = str(it.get("figure_id") or "")
             status = str(it.get("status") or "").upper()
             engine = str(it.get("engine") or "")
             p_raw = str(it.get("docx_image_path") or it.get("path") or "")
             file_ok = bool(p_raw and Path(p_raw).is_file())
-            if status == "UNGENERATED" or engine in ("svg_blueprint_ready", "fake_numeric_chart") or not file_ok:
+            if fid in non_pub_fids or status == "UNGENERATED" or engine in ("svg_blueprint_ready", "fake_numeric_chart") or not file_ok:
                 it["exclude_from_publish"] = True
                 it["note"] = (it.get("note") or "") + " [자동 QA 정리로 출판 제외]"
                 excluded_cnt += 1
@@ -885,13 +1014,15 @@ def execute_recovery_action(
                 source_filled_cnt += 1
             elif not ds and not sn:
                 cid = str(it.get("chapter_id") or "")
-                sids = ch_sids.get(cid) or []
+                sids = ch_sids.get(cid) or proj_col_sids
                 if sids:
                     tag_str = ", ".join(sids)
                     src_line = f"자료: 해당 단원({cid}) 검증 문헌 [{tag_str}] 기반 재구성."
-                    it["data_source"] = src_line
-                    it["source_note"] = src_line
-                    source_filled_cnt += 1
+                else:
+                    src_line = f"자료: 《{st.get('topic_ko', project_id)}》 {cid} 집필 근거 문헌 기반 재구성."
+                it["data_source"] = src_line
+                it["source_note"] = src_line
+                source_filled_cnt += 1
 
         plan_txt = json.dumps(plan, ensure_ascii=False, indent=2)
         plan_p.write_text(plan_txt, encoding="utf-8")
@@ -957,8 +1088,12 @@ def execute_recovery_action(
             details = {"retried": fb, "run": run_res}
 
     elif action_id == "run_full_auto_heal":
+        auto_restart = bool(params.get("auto_restart", False))
         steps_log: list[str] = []
         diag_pre = diagnose_project_issues(project_id, cfg=cfg)
+        crit_before = int(diag_pre.get("critical_count") or 0)
+        target_restart_sid = str((diag_pre.get("workflow_guide") or {}).get("step3_restart", {}).get("target_stage_id") or "")
+
         if diag_pre.get("is_zombie_running"):
             r = execute_recovery_action(project_id, "unlock_stuck_running", cfg=cfg)
             steps_log.append(r["summary_ko"])
@@ -989,26 +1124,54 @@ def execute_recovery_action(
             r = execute_recovery_action(project_id, "approve_all_chapters", cfg=cfg)
             steps_log.append(r["summary_ko"])
 
-        # 남아 있는 오류 표시 정리
+        # 자동 복구 후 완료/게이트 통과 단계의 잔여 오류 메시지 정리
         st_post = load_project_state(project_id, cfg)
         if st_post:
             gate_post = evaluate_publish_readiness(project_id, cfg=cfg)
-            if gate_post.get("ready"):
-                for s in st_post.get("stages") or []:
-                    if s.get("stage_id") == "stage6_publish_report" and s.get("status") == "ERROR":
-                        s["error"] = ""
-                        s["status"] = "PENDING"
-                        s["current_action"] = "자동 복구 완료 — 6단계 출판 가능"
-                if st_post.get("overall_status") == "ERROR":
+            changed_st = False
+            for s in st_post.get("stages") or []:
+                if s.get("status") == "DONE" and s.get("error"):
+                    s["error"] = ""
+                    changed_st = True
+                elif s.get("stage_id") == "stage6_publish_report" and s.get("status") == "ERROR" and gate_post.get("ready"):
+                    s["error"] = ""
+                    s["status"] = "PENDING"
+                    s["current_action"] = "자동 복구 완료 — 6단계 출판 가능"
+                    changed_st = True
+            if changed_st:
+                if st_post.get("overall_status") == "ERROR" and not any(
+                    x.get("status") == "ERROR" for x in (st_post.get("stages") or [])
+                ):
                     st_post["overall_status"] = "PAUSED"
                 save_project_state(st_post, cfg)
 
-        if not steps_log:
-            r = execute_recovery_action(project_id, "clear_stage_error", cfg=cfg)
-            steps_log.append(r["summary_ko"])
+        diag_mid = diagnose_project_issues(project_id, cfg=cfg)
+        crit_after = int(diag_mid.get("critical_count") or 0)
+        no_progress = bool(crit_before > 0 and crit_after >= crit_before and not steps_log)
 
-        summary_ko = "원클릭 자동 복구 완료: " + " / ".join(steps_log)
-        details = {"steps": steps_log}
+        restarted_info = None
+        if auto_restart and crit_after == 0 and target_restart_sid:
+            restarted_info = start_pipeline_async(project_id, mode="single", target_stage=target_restart_sid, cfg=cfg)
+            steps_log.append(f"3단계 재시작 시작: {target_restart_sid}")
+
+        if no_progress:
+            manual_hints = (diag_mid.get("workflow_guide") or {}).get("step2_recovery", {}).get("manual_hints") or []
+            summary_ko = (
+                "자동으로 해결할 수 없는 외부/수동 확인 오류가 남아 있습니다(반복 실행 중단). "
+                + (" / ".join(manual_hints[:2]) if manual_hints else "상세 원인을 확인해 주세요.")
+            )
+        else:
+            if not steps_log:
+                steps_log.append("해결할 자동 복구 항목이 없어 현재 상태를 점검 완료했습니다.")
+            summary_ko = f"복구 결과(치명 오류 {crit_before}건 → {crit_after}건): " + " / ".join(steps_log)
+
+        details = {
+            "steps": steps_log,
+            "critical_before": crit_before,
+            "critical_after": crit_after,
+            "no_progress": no_progress,
+            "restarted": restarted_info,
+        }
 
     elif action_id == "force_draft_publish":
         pub_res = publish_default_outputs(project_id, only_reviewed=False, check_quality_gate=False, cfg=cfg)
