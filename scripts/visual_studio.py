@@ -406,14 +406,36 @@ def render_content_diagram_svg(spec: dict[str, Any], sections: list[str] | None 
     edges = spec.get("diagram_edges") or []
     feedback_label = str(spec.get("feedback_label") or "")
 
-    # 색맹 안전 Okabe-Ito 기반 선명한 연색 배경 + 고대비 진색 테두리
+    # Scientific-Figure-Design (qhy991) 시맨틱 팔레트 + Lucide 단일 패밀리 벡터 아이콘 연동
     palette = [
         ("#E0F2FE", "#00629B"),
         ("#DCFCE7", "#047857"),
         ("#FEF3C7", "#C2410C"),
-        ("#F3E8FF", "#9D174D"),
-        ("#E2E8F0", "#1D3557"),
+        ("#F3E8FF", "#7C3AED"),
+        ("#F1F5F9", "#334155"),
     ]
+    _icon_matcher = None
+    _icon_loader = None
+    try:
+        from scientific_figure_engine import load_recolored_lucide_inner_svg, match_lucide_icon_for_text
+
+        _icon_matcher = match_lucide_icon_for_text
+        _icon_loader = load_recolored_lucide_inner_svg
+    except Exception:
+        pass
+
+    def _render_header_icon(x_px: float, y_px: float, probe: str, idx_n: int, size_px: float = 24.0) -> str:
+        if not (_icon_matcher and _icon_loader):
+            return ""
+        ico_id = _icon_matcher(probe, idx=idx_n)
+        inner = _icon_loader(ico_id, stroke_color="#FFFFFF", stroke_width=2.1)
+        if not inner:
+            return ""
+        scale = size_px / 24.0
+        return (
+            f'<g transform="translate({x_px:.1f},{y_px:.1f}) scale({scale:.3f})" '
+            f'aria-label="{html.escape(ico_id)}">{inner}</g>'
+        )
 
     if style == "layered_comparison" and len(nodes) >= 2:
         n_cols = min(3, len(nodes))
@@ -429,9 +451,12 @@ def render_content_diagram_svg(spec: dict[str, Any], sections: list[str] | None 
             )
             parts.append(f'<rect x="{x}" y="116" width="{col_w}" height="52" rx="14" fill="{bd}"/>')
             parts.append(f'<rect x="{x}" y="150" width="{col_w}" height="18" fill="{bd}"/>')
-            tag_clean = _wrap_svg_lines(nd["tag"], max_chars=max(10, int((col_w - 30) / 18.5)), max_lines=1)[0]
+            ico_svg = _render_header_icon(x + 18, 129, f"{nd['tag']} {nd['label']} {nd.get('detail','')}", idx, size_px=25.0)
+            if ico_svg:
+                parts.append(ico_svg)
+            tag_clean = _wrap_svg_lines(nd["tag"], max_chars=max(10, int((col_w - 64) / 18.5)), max_lines=1)[0]
             parts.append(
-                f'<text x="{x + col_w / 2:.1f}" y="149" text-anchor="middle" font-size="18.5" font-weight="700" '
+                f'<text x="{x + (col_w + 22) / 2:.1f}" y="149" text-anchor="middle" font-size="18.5" font-weight="700" '
                 f'fill="#ffffff">{html.escape(tag_clean)}</text>'
             )
             l_lines = _wrap_svg_lines(nd["label"], max_chars=max(10, int((col_w - 38) / 19.5)), max_lines=3)
@@ -478,9 +503,12 @@ def render_content_diagram_svg(spec: dict[str, Any], sections: list[str] | None 
         )
         parts.append(f'<rect x="{x}" y="{box_y}" width="{box_w}" height="48" rx="14" fill="{bd}"/>')
         parts.append(f'<rect x="{x}" y="{box_y + 32}" width="{box_w}" height="16" fill="{bd}"/>')
-        tag_clean = _wrap_svg_lines(nd["tag"], max_chars=max(9, int((box_w - 22) / 15.5)), max_lines=1)[0]
+        ico_svg = _render_header_icon(x + 14, box_y + 12, f"{nd['tag']} {nd['label']} {nd.get('detail','')}", i, size_px=23.0)
+        if ico_svg:
+            parts.append(ico_svg)
+        tag_clean = _wrap_svg_lines(nd["tag"], max_chars=max(8, int((box_w - 54) / 15.5)), max_lines=1)[0]
         parts.append(
-            f'<text x="{x + box_w / 2:.1f}" y="{box_y + 31}" text-anchor="middle" font-size="16.5" font-weight="700" '
+            f'<text x="{x + (box_w + (24 if ico_svg else 0)) / 2:.1f}" y="{box_y + 31}" text-anchor="middle" font-size="16.5" font-weight="700" '
             f'fill="#ffffff">{html.escape(tag_clean)}</text>'
         )
         lbl_y = box_y + (108 if feedback_label else 126)

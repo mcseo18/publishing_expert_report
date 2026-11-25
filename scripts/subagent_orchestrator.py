@@ -112,8 +112,9 @@ _LOCK = threading.Lock()
 
 
 def _runs_root(cfg: PlatformConfig | None = None) -> Path:
+    """v2 전용 깨끗한 프로젝트 실행 상태 저장소 (이전 프로젝트 기록과 완전 분리)."""
     cfg = cfg or get_config()
-    root = cfg.index_dir / "subagent_runs"
+    root = cfg.index_dir / "subagent_runs_v2"
     root.mkdir(parents=True, exist_ok=True)
     return root
 
@@ -300,7 +301,7 @@ def scan_project_folders(include_archived: bool = False, cfg: PlatformConfig | N
     results: list[dict[str, Any]] = []
     seen_paths: set[str] = set()
 
-    roots: list[tuple[Path, bool]] = [(cfg.workspace_root / "projects", False)]
+    roots: list[tuple[Path, bool]] = [(cfg.projects_dir, False)]
     if include_archived:
         arch = cfg.e_data_root / "_archived_projects"
         if arch.is_dir():
@@ -362,7 +363,7 @@ def scan_project_folders(include_archived: bool = False, cfg: PlatformConfig | N
                 {
                     "project_id": pid,
                     "folder_path": resolved,
-                    "rel_folder": f"projects/{pid}" if not is_arch else str(p),
+                    "rel_folder": f"projects_v2/{pid}" if not is_arch else str(p),
                     "is_archived": is_arch,
                     "is_registered": bool(st),
                     "hidden": bool((st or {}).get("hidden_from_list", False)),
@@ -391,7 +392,7 @@ def load_project_from_folder(folder_path: str, cfg: PlatformConfig | None = None
         if cand.is_dir():
             raw_p = cand
         else:
-            cand2 = (cfg.workspace_root / "projects" / raw_p).resolve()
+            cand2 = (cfg.projects_dir / raw_p).resolve()
             if cand2.is_dir():
                 raw_p = cand2
     else:
@@ -786,9 +787,9 @@ def reset_projects_keep_only(keep_ids: list[str], cfg: PlatformConfig | None = N
             continue
         delete_project(d.name, archive=True, cfg=cfg)
         removed.append(d.name)
-    # active_project.json 도 유지 프로젝트로 동기화
+    # active_project_v2.json 도 유지 프로젝트로 동기화
     if kept:
-        ap = cfg.index_dir / "active_project.json"
+        ap = cfg.index_dir / "active_project_v2.json"
         ap.write_text(json.dumps({"project_id": kept[0], "updated_at": utc_now_iso()}, ensure_ascii=False, indent=2), encoding="utf-8")
     return {"status": "OK", "kept": kept, "removed": removed}
 
@@ -826,6 +827,13 @@ def create_project(
         (e_proj_col / tdir).mkdir(parents=True, exist_ok=True)
     e_proj_ev = cfg.project_e_evidence_dir(pid)
     e_proj_ev.mkdir(parents=True, exist_ok=True)
+    # publishing_DB/<pid>/ 동일 구조 자동 생성 (캡처·PDF·참고이미지·웹문서·지식그래프)
+    try:
+        from publishing_db import init_publishing_db_project
+
+        init_publishing_db_project(pid, cfg=cfg)
+    except Exception:
+        pass
 
     kw_ko = [k.strip() for k in (keywords_ko or []) if k.strip()] or [topic_ko.strip()]
     kw_en = [k.strip() for k in (keywords_en or []) if k.strip()] or ([topic_en.strip()] if topic_en.strip() else [topic_ko.strip()])
@@ -1775,6 +1783,21 @@ def _run_stage2_source_collect(state: dict[str, Any], cfg: PlatformConfig) -> No
         except Exception as exc:
             append_event(pid, "web-scout", sid, f"OA 표·그림 자동 추출 생략: {exc}", level="WARN", cfg=cfg)
 
+    # publishing_DB/<pid>/ 에 PDF·웹문서·근거·참고이미지 미러링 동기화
+    try:
+        from publishing_db import sync_existing_project_sources_to_publishing_db
+
+        pdb_sync = sync_existing_project_sources_to_publishing_db(pid, cfg=cfg)
+        append_event(
+            pid,
+            "web-scout",
+            sid,
+            f"publishing_DB/{pid} 동기화 완료: PDF {pdb_sync.get('pdfs', 0)}건 · 참고이미지 {pdb_sync.get('reference_images', 0)}건 · 문서 {pdb_sync.get('web_pages', 0)}건",
+            cfg=cfg,
+        )
+    except Exception as exc:
+        append_event(pid, "web-scout", sid, f"publishing_DB 동기화 생략: {exc}", level="WARN", cfg=cfg)
+
     _update_stage(state, sid, cfg, progress=95, current_action="2단계 자료 수집 현황 보고서(02_collection_report.md) 작성 중...")
     rep_md = _write_stage2_report(state, cfg)
     append_event(pid, "web-scout", sid, f"2단계 자료 수집 현황 보고서 생성 완료: {rep_md.name} (총 {manifest['total_collected']}건)", cfg=cfg)
@@ -1826,10 +1849,32 @@ def _run_stage3_kg_build(state: dict[str, Any], cfg: PlatformConfig) -> None:
 
     rep_json = Path(state["workspace_dir"]) / "reports" / "kg_ingest_report.json"
     rep_json.write_text(json.dumps({"project_id": pid, **res}, ensure_ascii=False, indent=2), encoding="utf-8")
+
+    # publishing_DB/<pid>/knowledge_graph/kg_graph.json 인터랙티브 지식그래프 자동 구축
+    kg_viz_path = ""
+    try:
+        from publishing_db import build_project_knowledge_graph
+
+        kg_viz = build_project_knowledge_graph(pid, cfg=cfg)
+        kg_viz_path = str(kg_viz.get("graph_path") or "")
+        kg_stats = kg_viz.get("stats") or {}
+        append_event(
+            pid,
+            "kg-builder",
+            sid,
+            f"publishing_DB/{pid} 인터랙티브 지식그래프 생성 완료: 노드 {kg_stats.get('nodes', 0)} · 엣지 {kg_stats.get('edges', 0)}",
+            cfg=cfg,
+        )
+    except Exception as exc:
+        append_event(pid, "kg-builder", sid, f"publishing_DB 인터랙티브 KG 생성 생략: {exc}", level="WARN", cfg=cfg)
+
     _update_stage(state, sid, cfg, progress=92, current_action="3단계 지식그래프 구축 보고서(03_kg_report.md) 작성 중...")
     rep_md = _write_stage3_report(state, metrics, cfg)
 
     append_event(pid, "kg-builder", sid, f"3단계 지식그래프 구축 & 보고서 완료: 노드 +{nodes_added} / 관계 +{edges_added}", cfg=cfg)
+    stage3_artifacts = [str(rep_md), str(rep_json), str(cfg.smc_incremental_graph_path)]
+    if kg_viz_path:
+        stage3_artifacts.append(kg_viz_path)
     _update_stage(
         state,
         sid,
@@ -1839,7 +1884,7 @@ def _run_stage3_kg_build(state: dict[str, Any], cfg: PlatformConfig) -> None:
         finished_at=utc_now_iso(),
         current_action=f"KG 증분 완료 (노드 +{nodes_added} / 관계 +{edges_added}) · 보고서 생성 완료",
         metrics={**metrics, "report": rep_md.name},
-        artifacts=[str(rep_md), str(rep_json), str(cfg.smc_incremental_graph_path)],
+        artifacts=stage3_artifacts,
     )
 
 

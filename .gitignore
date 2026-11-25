@@ -54,6 +54,10 @@ projects/*/assets/by_chapter/*/*
 !projects/*/assets/by_chapter/*/manifest.json
 !projects/sweet_potato_20261122_083401/assets/by_chapter/*/*.png
 
+# v2 runtime workspaces & publishing_DB collected binaries (auto-created by config.py)
+projects_v2/
+publishing_DB/
+
 # Node / Dashboard
 dashboard/node_modules/
 dashboard/.next/

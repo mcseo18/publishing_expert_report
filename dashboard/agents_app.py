@@ -7,12 +7,14 @@
 """
 from __future__ import annotations
 
+import base64
 import io
 import json
 import os
 import re
 import shutil
 import sys
+import threading
 import zipfile
 from datetime import datetime
 from pathlib import Path
@@ -179,9 +181,11 @@ from subagent_orchestrator import (  # noqa: E402
 )
 
 app = FastAPI(
-    title="참참살이 영농 AI 출판도우미 · 통합 출판 프레임워크 대시보드",
-    version="3.0.0",
+    title="SMC 출판 스튜디오 v2 · 반응형 지식 리서치·출판 웹 플랫폼",
+    version="4.0.0",
 )
+FRONTEND_DIR = ROOT / "frontend"
+FRONTEND_INDEX = FRONTEND_DIR / "index.html"
 STATIC_DIR = Path(__file__).resolve().parent / "static"
 STATIC_UNIFIED = STATIC_DIR / "unified.html"
 STATIC_SETUP = STATIC_DIR / "setup.html"
@@ -489,14 +493,57 @@ class PlanChatCreateProjectRequest(BaseModel):
 
 
 # ============================================================
-# 단일 HTML 페이지 라우팅
+# 반응형 프론트엔드 v2 & 정적 자산 · publishing_DB 라우팅
 # ============================================================
 @app.get("/", response_class=HTMLResponse)
-def unified_index() -> HTMLResponse:
+def modern_frontend_index() -> HTMLResponse:
+    if FRONTEND_INDEX.is_file():
+        return HTMLResponse(FRONTEND_INDEX.read_text(encoding="utf-8"))
+    target = STATIC_UNIFIED if STATIC_UNIFIED.is_file() else STATIC_AGENTS
+    if not target.is_file():
+        return HTMLResponse("<h1>frontend/index.html missing</h1>", status_code=500)
+    return HTMLResponse(target.read_text(encoding="utf-8"))
+
+
+@app.get("/legacy", response_class=HTMLResponse)
+def legacy_unified_index() -> HTMLResponse:
     target = STATIC_UNIFIED if STATIC_UNIFIED.is_file() else STATIC_AGENTS
     if not target.is_file():
         return HTMLResponse("<h1>unified.html missing</h1>", status_code=500)
     return HTMLResponse(target.read_text(encoding="utf-8"))
+
+
+@app.get("/app-assets/{subpath:path}")
+def serve_frontend_asset(subpath: str):
+    base = FRONTEND_DIR.resolve()
+    target = (base / subpath).resolve()
+    if not str(target).startswith(str(base)) or not target.is_file():
+        raise HTTPException(status_code=404, detail="Frontend asset not found")
+    suffix = target.suffix.lower()
+    media_map = {
+        ".css": "text/css; charset=utf-8",
+        ".js": "application/javascript; charset=utf-8",
+        ".svg": "image/svg+xml",
+        ".png": "image/png",
+        ".jpg": "image/jpeg",
+        ".jpeg": "image/jpeg",
+        ".webp": "image/webp",
+        ".json": "application/json; charset=utf-8",
+        ".html": "text/html; charset=utf-8",
+    }
+    return FileResponse(path=str(target), media_type=media_map.get(suffix))
+
+
+@app.get("/publishing-db/{project_id}/{subpath:path}")
+def serve_publishing_db_file(project_id: str, subpath: str):
+    cfg = get_config()
+    base = cfg.project_publishing_db_dir(project_id).resolve()
+    target = (base / subpath).resolve()
+    if not str(target).startswith(str(base)) or not target.is_file():
+        raise HTTPException(status_code=404, detail="publishing_DB asset not found")
+    if target.suffix.lower() == ".html":
+        return HTMLResponse(target.read_text(encoding="utf-8"))
+    return FileResponse(path=str(target), filename=target.name)
 
 
 @app.get("/setup", response_class=HTMLResponse)
@@ -531,10 +578,10 @@ def api_list_projects(include_hidden: bool = False) -> dict[str, Any]:
 
 @app.get("/api/projects/folders")
 def api_scan_project_folders(include_archived: bool = False) -> dict[str, Any]:
-    """projects/ 폴더(및 선택 시 아카이브 폴더)를 스캔해 각 프로젝트의 마지막 작업 기록과 함께 반환한다."""
+    """projects_v2/ 폴더(및 선택 시 아카이브 폴더)를 스캔해 각 프로젝트의 마지막 작업 기록과 함께 반환한다."""
     cfg = get_config()
     return {
-        "projects_root": str((cfg.workspace_root / "projects").resolve()),
+        "projects_root": str(cfg.projects_dir.resolve()),
         "folders": scan_project_folders(include_archived=include_archived, cfg=cfg),
     }
 
@@ -559,7 +606,7 @@ def api_load_project_folder(req: LoadFolderRequest) -> dict[str, Any]:
 def api_browse_folder_dialog() -> dict[str, Any]:
     """Windows 기본 폴더 선택 창을 열어 사용자가 직접 프로젝트 폴더를 고를 수 있게 한다."""
     cfg = get_config()
-    initial_dir = str((cfg.workspace_root / "projects").resolve())
+    initial_dir = str(cfg.projects_dir.resolve())
     try:
         import subprocess
 
@@ -733,7 +780,7 @@ def api_get_project(project_id: str, limit_events: int = 120) -> dict[str, Any]:
             lw = build_last_work_summary(st, cfg=cfg)
     st["last_work_session"] = lw
     try:
-        ap = cfg.index_dir / "active_project.json"
+        ap = cfg.index_dir / "active_project_v2.json"
         ap.write_text(
             json.dumps({"project_id": project_id, "topic_ko": st.get("topic_ko", "")}, ensure_ascii=False, indent=2),
             encoding="utf-8",
@@ -1262,16 +1309,222 @@ def api_open_folder(project_id: str, req: OpenFolderRequest) -> dict[str, Any]:
 
 
 # ---------- F2: 그림 한 장만 다시 만들기 ----------
+PAID_VISUAL_ENGINES: dict[str, dict[str, Any]] = {
+    "gemini_flash": {
+        "label_ko": "Gemini 2.5 Flash Image (저비용 표준)",
+        "provider": "gemini",
+        "model": "gemini-2.5-flash-image",
+        "unit_cost_usd": 0.039,
+    },
+    "gemini_pro": {
+        "label_ko": "Google Nano Banana Pro (최고화질 2K)",
+        "provider": "gemini",
+        "model": "nano-banana-pro-preview",
+        "unit_cost_usd": 0.134,
+    },
+    "fal_nano_banana": {
+        "label_ko": "fal.ai Nano Banana (고속)",
+        "provider": "fal",
+        "model": "fal-ai/nano-banana",
+        "unit_cost_usd": 0.04,
+    },
+    "fal_flux_pro": {
+        "label_ko": "fal.ai FLUX Pro v1.1 (극사실 실사)",
+        "provider": "fal",
+        "model": "fal-ai/flux-pro/v1.1",
+        "unit_cost_usd": 0.055,
+    },
+}
+
+_PAID_REPLACE_JOBS: dict[str, dict[str, Any]] = {}
+_PAID_REPLACE_STOPS: dict[str, threading.Event] = {}
+
+
+def _load_prompt_pack_lookup(assets_dir: Path) -> dict[str, dict[str, Any]]:
+    out: dict[str, dict[str, Any]] = {}
+    for fname in ("visual_prompt_pack.json", "visual_prompts_manifest.json"):
+        vp_p = assets_dir / fname
+        if not vp_p.is_file():
+            continue
+        try:
+            vp = json.loads(vp_p.read_text(encoding="utf-8"))
+            for it in vp.get("items") or vp.get("prompts") or []:
+                fid = str(it.get("figure_id") or "")
+                if fid and fid not in out:
+                    out[fid] = it
+                cid = str(it.get("chapter_id") or "")
+                idx = int(it.get("index") or 0)
+                if cid and idx > 0 and f"{cid}#{idx}" not in out:
+                    out[f"{cid}#{idx}"] = it
+        except Exception:
+            pass
+    return out
+
+
+def _resolve_paid_prompt(rec: dict[str, Any], req_prompt: str | None, st: dict[str, Any], assets_dir: Path) -> str:
+    from visual_studio import ZERO_TEXT_RULE
+
+    if req_prompt and req_prompt.strip():
+        return req_prompt.strip()
+    if str(rec.get("prompt_en") or "").strip():
+        return str(rec["prompt_en"]).strip()
+    if str(rec.get("prompt") or "").strip():
+        return str(rec["prompt"]).strip()
+    vp_map = _load_prompt_pack_lookup(assets_dir)
+    hit = vp_map.get(str(rec.get("figure_id") or "")) or vp_map.get(f"{rec.get('chapter_id', '')}#{int(rec.get('index') or 0)}")
+    if hit and str(hit.get("prompt_en") or "").strip():
+        return str(hit["prompt_en"]).strip()
+    topic_en = str(st.get("topic_en") or st.get("topic_ko") or "agricultural science").strip()
+    sec = str(rec.get("target_section") or rec.get("title_ko") or rec.get("figure_id") or "").strip()
+    narr = str(rec.get("narrative_ko") or "")[:240]
+    return (
+        f"Publication-grade scientific agricultural illustration and photorealistic editorial figure for '{topic_en}'. "
+        f"Subject focus: {sec}. Context: {narr}. "
+        f"High precision, crisp daylight or clean pure white laboratory diagram backdrop, 16:9 composition, magazine textbook aesthetic. {ZERO_TEXT_RULE}"
+    )
+
+
+def _replace_visual_file_and_sync(
+    *,
+    project_id: str,
+    rec: dict[str, Any],
+    new_png_tmp: Path,
+    engine_label: str,
+    prompt_used: str,
+    is_ai: bool,
+    plan: dict[str, Any],
+    plan_p: Path,
+    assets_dir: Path,
+    cfg: Any,
+) -> str:
+    ts = datetime.now().strftime("%Y%m%d_%H%M%S")
+    fid = rec["figure_id"]
+    cid = str(rec.get("chapter_id") or "ch01")
+    fig_dir = assets_dir / "figures"
+    fig_dir.mkdir(parents=True, exist_ok=True)
+    out_png = fig_dir / f"{fid}.png"
+
+    # 기존 PNG 또는 SVG를 assets/_replaced 에 안전 백업
+    rep_dir = assets_dir / "_replaced"
+    old_candidates = [out_png]
+    old_p_str = str(rec.get("path") or "")
+    if old_p_str and Path(old_p_str).is_file() and Path(old_p_str) != out_png:
+        old_candidates.append(Path(old_p_str))
+    for old_f in old_candidates:
+        if old_f.is_file():
+            rep_dir.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(old_f, rep_dir / f"{old_f.stem}_{ts}{old_f.suffix}")
+
+    os.replace(new_png_tmp, out_png)
+
+    # 단원별 로컬 폴더 + E 드라이브 백업 폴더에 PNG 덮어쓰기 (이전 .svg 충돌 방지)
+    ch_local = Path(rec.get("chapter_dir_local") or (assets_dir / "by_chapter" / cid))
+    ch_e = Path(rec.get("chapter_dir_e") or (cfg.e_projects_dir / project_id / "visuals" / "by_chapter" / cid))
+    for d in (ch_local, ch_e):
+        try:
+            d.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(out_png, d / out_png.name)
+            stale_svg = d / f"{fid}.svg"
+            if stale_svg.is_file():
+                stale_svg.unlink()
+        except Exception:
+            pass
+
+    rec["path"] = str(out_png)
+    rec["filename"] = out_png.name
+    rec["docx_image_path"] = str(out_png)
+    rec["rel_url"] = rec["png_url"] = f"/project-files/{project_id}/assets/figures/{out_png.name}"
+    rec["engine"] = engine_label
+    rec["is_ai_image"] = is_ai
+    rec["status"] = "GENERATED" if is_ai else "UPLOADED"
+    rec["exclude_from_publish"] = False
+    if prompt_used:
+        rec["prompt"] = prompt_used
+    rec["regenerated_at"] = ts
+    rec["updated_at"] = datetime.now().strftime("%Y-%m-%dT%H:%M:%SZ")
+    if not str(rec.get("data_source") or "").strip():
+        narr = str(rec.get("narrative_ko") or "")
+        m_src = re.search(r"\((?:자료|출처)\s*:\s*([^)]+)\)", narr)
+        rec["data_source"] = m_src.group(1).strip() if m_src else f"본문 {rec.get('target_section') or cid} 근거 기반 제작"
+
+    # visuals_plan.json (로컬 + E:\) 동시 갱신
+    plan_items = plan.get("visuals") or plan.get("items") or []
+    plan["ai_images_count"] = sum(1 for x in plan_items if x.get("is_ai_image"))
+    plan["png_rasterized_count"] = sum(1 for x in plan_items if str(x.get("filename", "")).lower().endswith(".png"))
+    plan_text = json.dumps(plan, ensure_ascii=False, indent=2)
+    plan_p.write_text(plan_text, encoding="utf-8")
+    try:
+        e_plan = cfg.e_projects_dir / project_id / "visuals" / "visuals_plan.json"
+        e_plan.parent.mkdir(parents=True, exist_ok=True)
+        e_plan.write_text(plan_text, encoding="utf-8")
+    except Exception:
+        pass
+
+    # image_studio_queue.json 도 존재하면 함께 동기화
+    q_path = assets_dir / "image_studio_queue.json"
+    if q_path.is_file():
+        try:
+            q_data = json.loads(q_path.read_text(encoding="utf-8"))
+            for qi in q_data.get("items") or []:
+                if qi.get("figure_id") == fid:
+                    qi.update({k: rec[k] for k in ("path", "filename", "docx_image_path", "rel_url", "png_url", "engine", "is_ai_image", "status", "prompt", "data_source", "updated_at") if k in rec})
+                    break
+            q_path.write_text(json.dumps(q_data, ensure_ascii=False, indent=2), encoding="utf-8")
+        except Exception:
+            pass
+    return ts
+
+
+def _invoke_paid_image_engine(*, engine: str, prompt: str, tmp_png: Path, opts: dict[str, Any], cfg: Any) -> tuple[bool, str]:
+    from data_connectors import resolve_api_key
+    from visual_studio import _generate_with_fal_ai, _generate_with_nano_banana
+
+    spec = PAID_VISUAL_ENGINES.get(engine) or PAID_VISUAL_ENGINES["gemini_flash"]
+    fal_key = resolve_api_key("FAL_KEY", None, cfg)
+    gem_key = resolve_api_key("GEMINI_API_KEY", None, cfg)
+    errors: list[str] = []
+
+    if spec["provider"] == "fal":
+        if not fal_key:
+            return False, "FAL_KEY가 등록되어 있지 않습니다 (설정 탭에서 등록)."
+        try:
+            ok, msg = _generate_with_fal_ai(prompt=prompt, out_path=tmp_png, fal_model=spec["model"], api_key=fal_key)
+            if ok:
+                return True, msg
+            errors.append(msg)
+        except Exception as exc:
+            errors.append(f"fal.ai: {str(exc)[:120]}")
+        return False, " / ".join(errors)
+
+    if not gem_key:
+        if fal_key:
+            try:
+                ok, msg = _generate_with_fal_ai(prompt=prompt, out_path=tmp_png, fal_model=opts.get("fal_model") or "fal-ai/nano-banana", api_key=fal_key)
+                if ok:
+                    return True, msg
+            except Exception as exc:
+                errors.append(f"fal.ai 폴백: {str(exc)[:120]}")
+        return False, "GEMINI_API_KEY가 등록되어 있지 않습니다 (설정 탭에서 등록)."
+
+    try:
+        ok, msg = _generate_with_nano_banana(prompt=prompt, out_path=tmp_png, model=spec["model"], api_key=gem_key)
+        if ok:
+            return True, msg
+        errors.append(msg)
+    except Exception as exc:
+        errors.append(f"Gemini: {str(exc)[:120]}")
+    return False, " / ".join(errors)
+
+
 class RegenerateVisualRequest(BaseModel):
     figure_id: str
-    prompt: str | None = None  # 비우면 기존 프롬프트 그대로 사용
+    prompt: str | None = None  # 비우면 프롬프트 팩 또는 자동 생성 프롬프트 사용
+    engine: str = "gemini_flash"  # gemini_flash | gemini_pro | fal_nano_banana | fal_flux_pro
+    auto_republish: bool = False
 
 
 @app.post("/api/projects/{project_id}/visuals/regenerate")
 def api_regenerate_visual(project_id: str, req: RegenerateVisualRequest) -> dict[str, Any]:
-    from data_connectors import resolve_api_key
-    from visual_studio import _generate_with_fal_ai, _generate_with_nano_banana
-
     cfg = get_config()
     st = load_project_state(project_id, cfg)
     if not st:
@@ -1285,73 +1538,443 @@ def api_regenerate_visual(project_id: str, req: RegenerateVisualRequest) -> dict
     rec = next((r for r in items if r.get("figure_id") == req.figure_id), None)
     if not rec:
         raise HTTPException(status_code=404, detail="해당 그림을 찾을 수 없습니다.")
-    if str(rec.get("is_ai_image")).lower() not in ("true", "1"):
-        raise HTTPException(status_code=400, detail="이 그림은 AI 이미지가 아닌 자동 도표(SVG)라 다시 만들 필요가 없습니다.")
-    prompt = (req.prompt or rec.get("prompt") or "").strip()
-    if not prompt:
-        raise HTTPException(status_code=400, detail="이미지 프롬프트가 없습니다.")
 
-    out_png = assets_dir / "figures" / f"{rec['figure_id']}.png"
-    tmp_png = out_png.with_name(out_png.stem + "_regen_tmp.png")
+    prompt = _resolve_paid_prompt(rec, req.prompt, st, assets_dir)
+    fig_dir = assets_dir / "figures"
+    fig_dir.mkdir(parents=True, exist_ok=True)
+    tmp_png = fig_dir / f"{rec['figure_id']}_regen_tmp.png"
     opts = st.get("options") or {}
-    engine_txt = str(rec.get("engine") or "")
-    ok, msg = False, ""
-    errors: list[str] = []
-    fal_key = resolve_api_key("FAL_KEY", None, cfg)
-    gem_key = resolve_api_key("GEMINI_API_KEY", None, cfg)
-    if "fal.ai" in engine_txt and fal_key:
-        try:
-            ok, msg = _generate_with_fal_ai(prompt=prompt, out_path=tmp_png, fal_model=opts.get("fal_model") or "fal-ai/nano-banana", api_key=fal_key)
-        except Exception as exc:
-            errors.append(f"fal.ai: {str(exc)[:120]}")
-    if not ok and gem_key:
-        m = re.search(r"Nano Banana \(([^)]+)\)", engine_txt)
-        model = m.group(1) if m else "nano-banana-pro-preview"
-        try:
-            ok, msg = _generate_with_nano_banana(prompt=prompt, out_path=tmp_png, model=model, api_key=gem_key)
-        except Exception as exc:
-            errors.append(f"나노바나나: {str(exc)[:120]}")
-    if not ok and fal_key and "fal.ai" not in engine_txt:
-        try:
-            ok, msg = _generate_with_fal_ai(prompt=prompt, out_path=tmp_png, fal_model=opts.get("fal_model") or "fal-ai/nano-banana", api_key=fal_key)
-        except Exception as exc:
-            errors.append(f"fal.ai: {str(exc)[:120]}")
-    if not ok:
-        if not (fal_key or gem_key):
-            errors.append("FAL_KEY 또는 GEMINI_API_KEY가 등록되어 있지 않습니다 (설정 탭에서 등록)")
-        raise HTTPException(status_code=502, detail="그림 생성 실패: " + (" / ".join(errors) or msg or "알 수 없는 오류"))
 
-    # 기존 그림은 assets/_replaced 에 보관
-    ts = datetime.now().strftime("%Y%m%d_%H%M%S")
-    if out_png.is_file():
-        rep_dir = assets_dir / "_replaced"
-        rep_dir.mkdir(parents=True, exist_ok=True)
-        shutil.copy2(out_png, rep_dir / f"{out_png.stem}_{ts}.png")
-    os.replace(tmp_png, out_png)
-    for key in ("chapter_dir_local", "chapter_dir_e"):
-        d = rec.get(key)
-        if d:
-            try:
-                Path(d).mkdir(parents=True, exist_ok=True)
-                shutil.copy2(out_png, Path(d) / out_png.name)
-            except Exception:
-                pass
-    rec["path"] = str(out_png)
-    rec["filename"] = out_png.name
-    rec["docx_image_path"] = str(out_png)
-    rec["rel_url"] = rec["png_url"] = f"/project-files/{project_id}/assets/figures/{out_png.name}"
-    rec["engine"] = msg
-    rec["prompt"] = prompt
-    rec["regenerated_at"] = ts
+    ok, msg = _invoke_paid_image_engine(engine=req.engine, prompt=prompt, tmp_png=tmp_png, opts=opts, cfg=cfg)
+    if not ok or not tmp_png.is_file():
+        raise HTTPException(status_code=502, detail=f"유료 AI 그림 생성 실패: {msg}")
+
+    ts = _replace_visual_file_and_sync(
+        project_id=project_id,
+        rec=rec,
+        new_png_tmp=tmp_png,
+        engine_label=msg,
+        prompt_used=prompt,
+        is_ai=True,
+        plan=plan,
+        plan_p=plan_p,
+        assets_dir=assets_dir,
+        cfg=cfg,
+    )
+
+    republished = False
+    if req.auto_republish:
+        try:
+            from output_converter import publish_default_outputs
+
+            publish_default_outputs(project_id, cfg=cfg)
+            republished = True
+        except Exception:
+            republished = False
+
+    unit_cost = (PAID_VISUAL_ENGINES.get(req.engine) or PAID_VISUAL_ENGINES["gemini_flash"])["unit_cost_usd"]
+    return {
+        "status": "REGENERATED",
+        "figure_id": rec["figure_id"],
+        "engine": msg,
+        "estimated_cost_usd": unit_cost,
+        "republished": republished,
+        "png_url": rec["png_url"] + f"?v={ts}",
+        "note": "DOCX·블로그 HTML까지 즉시 재출판 완료!" if republished else "DOCX·블로그에 반영하려면 상단 [📖 교체된 그림 반영 — 즉시 재출판] 버튼을 눌러주세요.",
+    }
+
+
+class ReplaceVisualUploadRequest(BaseModel):
+    figure_id: str
+    image_base64: str
+    filename: str = "replaced.png"
+    auto_republish: bool = False
+
+
+@app.post("/api/projects/{project_id}/visuals/replace-upload")
+def api_replace_visual_upload(project_id: str, req: ReplaceVisualUploadRequest) -> dict[str, Any]:
+    """사용자가 외부 유료 툴(Midjourney·Nano Banana·GPT 등)이나 직접 제작한 PNG/JPG로 기존 그림을 0원으로 즉시 대체한다."""
+    from PIL import Image
+
+    cfg = get_config()
+    st = load_project_state(project_id, cfg)
+    if not st:
+        raise HTTPException(status_code=404, detail="Project not found")
+    assets_dir = Path(st["workspace_dir"]) / "assets"
+    plan_p = assets_dir / "visuals_plan.json"
+    if not plan_p.is_file():
+        raise HTTPException(status_code=404, detail="시각화 목록(visuals_plan.json)이 없습니다.")
+    plan = json.loads(plan_p.read_text(encoding="utf-8"))
+    items = plan.get("visuals") or plan.get("items") or []
+    rec = next((r for r in items if r.get("figure_id") == req.figure_id), None)
+    if not rec:
+        raise HTTPException(status_code=404, detail="해당 그림을 찾을 수 없습니다.")
+
+    b64_clean = re.sub(r"^data:image/[^;]+;base64,", "", (req.image_base64 or "").strip())
+    if not b64_clean:
+        raise HTTPException(status_code=400, detail="이미지 데이터가 비어 있습니다.")
+    try:
+        raw_bytes = base64.b64decode(b64_clean)
+        fig_dir = assets_dir / "figures"
+        fig_dir.mkdir(parents=True, exist_ok=True)
+        tmp_png = fig_dir / f"{rec['figure_id']}_upload_tmp.png"
+        with Image.open(io.BytesIO(raw_bytes)) as im:
+            rgb = im.convert("RGB") if im.mode not in ("RGB", "RGBA") else im
+            rgb.save(tmp_png, format="PNG", dpi=(300, 300), optimize=True)
+    except Exception as exc:
+        raise HTTPException(status_code=400, detail=f"이미지 변환 오류: {exc}")
+
+    ts = _replace_visual_file_and_sync(
+        project_id=project_id,
+        rec=rec,
+        new_png_tmp=tmp_png,
+        engine_label=f"직접 업로드 대체 ({req.filename})",
+        prompt_used=str(rec.get("prompt") or ""),
+        is_ai=False,
+        plan=plan,
+        plan_p=plan_p,
+        assets_dir=assets_dir,
+        cfg=cfg,
+    )
+    republished = False
+    if req.auto_republish:
+        try:
+            from output_converter import publish_default_outputs
+
+            publish_default_outputs(project_id, cfg=cfg)
+            republished = True
+        except Exception:
+            republished = False
+    return {
+        "status": "REPLACED_BY_UPLOAD",
+        "figure_id": rec["figure_id"],
+        "png_url": rec["png_url"] + f"?v={ts}",
+        "republished": republished,
+        "note": "DOCX·HTML까지 즉시 재출판 완료!" if republished else "이미지 대체 완료! 상단 [📖 교체된 그림 반영 — 즉시 재출판]으로 문서에 반영하세요.",
+    }
+
+
+class BatchPaidReplaceRequest(BaseModel):
+    engine: str = "gemini_flash"  # gemini_flash | gemini_pro | fal_nano_banana | fal_flux_pro
+    figure_ids: list[str] | None = None
+    chapter_id: str | None = None  # "ALL" 또는 "ch01" 등
+    only_non_ai: bool = False
+    max_count: int = Field(default=5, ge=1, le=50)
+    budget_limit_usd: float = Field(default=1.0, ge=0.05, le=100.0)
+    auto_republish: bool = True
+
+
+@app.post("/api/projects/{project_id}/visuals/batch-paid-replace")
+def api_batch_paid_replace(project_id: str, req: BatchPaidReplaceRequest) -> dict[str, Any]:
+    """선택한 그림 또는 특정 단원의 그림을 예산 상한 내에서 유료 AI로 일괄 재생성·대체하고 자동 재출판한다."""
+    cfg = get_config()
+    st = load_project_state(project_id, cfg)
+    if not st:
+        raise HTTPException(status_code=404, detail="Project not found")
+    cur_job = _PAID_REPLACE_JOBS.get(project_id)
+    if cur_job and cur_job.get("running"):
+        return {"status": "ALREADY_RUNNING", "job": cur_job}
+
+    assets_dir = Path(st["workspace_dir"]) / "assets"
+    plan_p = assets_dir / "visuals_plan.json"
+    if not plan_p.is_file():
+        raise HTTPException(status_code=404, detail="시각화 목록(visuals_plan.json)이 없습니다.")
+    plan = json.loads(plan_p.read_text(encoding="utf-8"))
+    items = plan.get("visuals") or plan.get("items") or []
+
+    fid_set = set(req.figure_ids) if req.figure_ids else None
+    targets: list[dict[str, Any]] = []
+    for it in items:
+        if fid_set is not None and it.get("figure_id") not in fid_set:
+            continue
+        if fid_set is None and req.chapter_id and req.chapter_id != "ALL" and it.get("chapter_id") != req.chapter_id:
+            continue
+        if req.only_non_ai and it.get("is_ai_image"):
+            continue
+        targets.append(it)
+    targets = targets[: req.max_count]
+    if not targets:
+        raise HTTPException(status_code=400, detail="교체 대상 그림이 없습니다. 필터 또는 선택 항목을 확인하세요.")
+
+    spec = PAID_VISUAL_ENGINES.get(req.engine) or PAID_VISUAL_ENGINES["gemini_flash"]
+    unit_cost = float(spec["unit_cost_usd"])
+    stop_ev = _PAID_REPLACE_STOPS.setdefault(project_id, threading.Event())
+    stop_ev.clear()
+
+    job = {
+        "running": True,
+        "engine": req.engine,
+        "engine_label": spec["label_ko"],
+        "total": len(targets),
+        "processed": 0,
+        "succeeded": 0,
+        "failed": 0,
+        "spent_usd_est": 0.0,
+        "budget_limit_usd": req.budget_limit_usd,
+        "current_figure": "",
+        "republished": False,
+        "message": f"{len(targets)}장 유료 AI 일괄 교체 시작 ({spec['label_ko']})...",
+        "errors": [],
+    }
+    _PAID_REPLACE_JOBS[project_id] = job
+    target_fids = [str(t["figure_id"]) for t in targets]
+
+    def _worker() -> None:
+        spent = 0.0
+        try:
+            plan_live = json.loads(plan_p.read_text(encoding="utf-8"))
+            live_items = plan_live.get("visuals") or plan_live.get("items") or []
+            by_id = {str(x.get("figure_id")): x for x in live_items}
+            opts = st.get("options") or {}
+            fig_dir = assets_dir / "figures"
+            fig_dir.mkdir(parents=True, exist_ok=True)
+            for idx, fid in enumerate(target_fids, 1):
+                if stop_ev.is_set():
+                    job["message"] = f"사용자 중단 — {job['succeeded']}/{len(target_fids)}장 교체 완료"
+                    break
+                if spent + unit_cost > req.budget_limit_usd + 1e-6:
+                    job["message"] = f"예산 상한(${req.budget_limit_usd:.2f}) 도달로 안전 정지 ({job['succeeded']}장 완료)"
+                    break
+                rec = by_id.get(fid)
+                if not rec:
+                    continue
+                job["current_figure"] = fid
+                job["message"] = f"[{idx}/{len(target_fids)}] {fid} ({spec['label_ko']}) 생성 중..."
+                try:
+                    prompt = _resolve_paid_prompt(rec, None, st, assets_dir)
+                    tmp_png = fig_dir / f"{fid}_batch_tmp.png"
+                    ok, msg = _invoke_paid_image_engine(engine=req.engine, prompt=prompt, tmp_png=tmp_png, opts=opts, cfg=cfg)
+                    if not ok or not tmp_png.is_file():
+                        raise RuntimeError(msg)
+                    _replace_visual_file_and_sync(
+                        project_id=project_id,
+                        rec=rec,
+                        new_png_tmp=tmp_png,
+                        engine_label=msg,
+                        prompt_used=prompt,
+                        is_ai=True,
+                        plan=plan_live,
+                        plan_p=plan_p,
+                        assets_dir=assets_dir,
+                        cfg=cfg,
+                    )
+                    spent = round(spent + unit_cost, 3)
+                    job["spent_usd_est"] = spent
+                    job["succeeded"] += 1
+                except Exception as exc:
+                    job["failed"] += 1
+                    job["errors"].append(f"{fid}: {str(exc)[:100]}")
+                job["processed"] = idx
+
+            if req.auto_republish and job["succeeded"] > 0:
+                job["message"] = f"교체된 {job['succeeded']}장 반영하여 마스터 DOCX·블로그 HTML 재출판 중..."
+                try:
+                    from output_converter import publish_default_outputs
+
+                    publish_default_outputs(project_id, cfg=cfg)
+                    job["republished"] = True
+                except Exception as exc:
+                    job["errors"].append(f"재출판 오류: {str(exc)[:100]}")
+            if not stop_ev.is_set() and "예산 상한" not in job["message"]:
+                job["message"] = (
+                    f"완료: 성공 {job['succeeded']}장 · 실패 {job['failed']}장 (추정 ${spent:.2f})"
+                    + (" · DOCX/HTML 재출판 완료!" if job["republished"] else "")
+                )
+        finally:
+            job["running"] = False
+            job["current_figure"] = ""
+
+    threading.Thread(target=_worker, daemon=True, name=f"paid-vis-{project_id}").start()
+    return {"status": "STARTED", "job": job}
+
+
+@app.get("/api/projects/{project_id}/visuals/batch-status")
+def api_batch_paid_status(project_id: str) -> dict[str, Any]:
+    return {"job": _PAID_REPLACE_JOBS.get(project_id), "engines": PAID_VISUAL_ENGINES}
+
+
+@app.post("/api/projects/{project_id}/visuals/batch-stop")
+def api_batch_paid_stop(project_id: str) -> dict[str, Any]:
+    ev = _PAID_REPLACE_STOPS.get(project_id)
+    if ev:
+        ev.set()
+    return {"status": "STOP_REQUESTED"}
+
+
+class UpgradeScientificDrawioRequest(BaseModel):
+    figure_ids: list[str] | None = None
+    chapter_id: str | None = None  # "ALL" 또는 "ch01"
+    only_non_ai: bool = True
+    rerender_svg_png: bool = True
+    auto_republish: bool = False
+
+
+@app.post("/api/projects/{project_id}/visuals/upgrade-scientific-drawio")
+def api_upgrade_scientific_drawio(project_id: str, req: UpgradeScientificDrawioRequest) -> dict[str, Any]:
+    """qhy991/Scientific-Figure-Design 모델(frozen paper-palette.yaml + Lucide 581 벡터 아이콘 + 편집 가능 .drawio + 검증기)로 0원 업그레이드한다."""
+    from scientific_figure_engine import (
+        audit_project_palette_consistency,
+        ensure_project_paper_palette,
+        generate_editable_drawio_for_spec,
+    )
+    from visual_studio import _extract_content_nodes_from_spec, _rasterize_svgs_batch, render_content_diagram_svg
+
+    cfg = get_config()
+    st = load_project_state(project_id, cfg)
+    if not st:
+        raise HTTPException(status_code=404, detail="Project not found")
+    ws = Path(st["workspace_dir"])
+    assets_dir = ws / "assets"
+    plan_p = assets_dir / "visuals_plan.json"
+    if not plan_p.is_file():
+        raise HTTPException(status_code=404, detail="시각화 목록(visuals_plan.json)이 없습니다.")
+    plan = json.loads(plan_p.read_text(encoding="utf-8"))
+    items = plan.get("visuals") or plan.get("items") or []
+
+    fid_set = set(req.figure_ids) if req.figure_ids else None
+    targets: list[dict[str, Any]] = []
+    for it in items:
+        if fid_set is not None and it.get("figure_id") not in fid_set:
+            continue
+        if fid_set is None and req.chapter_id and req.chapter_id != "ALL" and it.get("chapter_id") != req.chapter_id:
+            continue
+        if req.only_non_ai and it.get("is_ai_image"):
+            continue
+        targets.append(it)
+    if not targets:
+        raise HTTPException(status_code=400, detail="Draw.io로 변환할 대상 도해가 없습니다.")
+
+    pal_path, _ = ensure_project_paper_palette(project_id, cfg)
+    chart_dir = assets_dir / "charts"
+    png_dir = assets_dir / "charts_png"
+    chart_dir.mkdir(parents=True, exist_ok=True)
+    png_dir.mkdir(parents=True, exist_ok=True)
+
+    upgraded: list[dict[str, Any]] = []
+    raster_pairs: list[tuple[Path, Path]] = []
+    errors: list[str] = []
+
+    for rec in targets:
+        fid = str(rec.get("figure_id") or "")
+        cid = str(rec.get("chapter_id") or "ch01")
+        # 단원 본문/해설에서 구조 노드 자동 보강
+        secs_fallback = [str(rec.get("target_section") or rec.get("title_ko") or cid)]
+        narr = str(rec.get("narrative_ko") or "")
+        m_elems = re.search(r"핵심 요소\(([^)]+)\)", narr)
+        if m_elems and not rec.get("diagram_nodes"):
+            raw_els = [x.strip() for x in m_elems.group(1).split(",") if x.strip() and not x.strip().startswith("제목 헤더")]
+            if len(raw_els) >= 2:
+                rec["diagram_nodes"] = [
+                    {
+                        "tag": f"STEP {idx}" if rec.get("style") != "layered_comparison" else f"구분 {idx}",
+                        "label": el[:26],
+                        "detail": str(rec.get("target_section") or "")[:36] if idx == 1 else "",
+                        "metric": "",
+                    }
+                    for idx, el in enumerate(raw_els[:4], 1)
+                ]
+        nodes = _extract_content_nodes_from_spec(rec, secs_fallback)
+        if len(nodes) < 2:
+            t_clean = re.sub(r"^그림\s*\d+-\d+\.\s*", "", str(rec.get("title_ko") or cid)).strip()
+            nodes = [
+                {"tag": "STEP 1 · 입력", "label": f"{t_clean[:18]} 조건", "detail": str(rec.get("target_section") or "")[:36], "metric": ""},
+                {"tag": "STEP 2 · 기작", "label": "핵심 작용 및 원리", "detail": narr[:48], "metric": ""},
+                {"tag": "STEP 3 · 적용", "label": "현장 진단 및 활용", "detail": str(rec.get("data_source") or "본문 근거 기반")[:38], "metric": ""},
+            ]
+        spec_for_render = {
+            **rec,
+            "style": "layered_comparison" if rec.get("style") == "layered_comparison" else "content_diagram",
+            "diagram_nodes": nodes,
+            "data_source": rec.get("data_source") or f"《{st.get('topic_ko', '')}》 {rec.get('target_section') or cid}",
+        }
+        try:
+            d_res = generate_editable_drawio_for_spec(
+                project_id=project_id,
+                figure_id=fid,
+                spec=spec_for_render,
+                nodes=nodes,
+                edges=rec.get("diagram_edges") or [],
+                feedback_label=str(rec.get("feedback_label") or ""),
+                validate=True,
+                cfg=cfg,
+            )
+            if d_res.get("status") != "OK":
+                errors.append(f"{fid}: {d_res.get('error', 'drawio 생성 실패')}")
+                continue
+            rec["drawio_path"] = d_res["drawio_path"]
+            rec["drawio_url"] = d_res["drawio_url"]
+            rec["icons_manifest_path"] = d_res["icons_manifest_path"]
+            rec["palette_id"] = d_res["palette_id"]
+            rec["palette_sha256"] = d_res["palette_sha256"]
+
+            if req.rerender_svg_png:
+                svg_txt = render_content_diagram_svg(spec_for_render, secs_fallback)
+                svg_p = chart_dir / f"{fid}.svg"
+                png_p = png_dir / f"{fid}.png"
+                svg_p.write_text(svg_txt, encoding="utf-8")
+                raster_pairs.append((svg_p, png_p))
+                rec["path"] = str(png_p)
+                rec["filename"] = png_p.name
+                rec["docx_image_path"] = str(png_p)
+                rec["rel_url"] = rec["png_url"] = f"/project-files/{project_id}/assets/charts_png/{png_p.name}"
+                rec["engine"] = "Scientific-Figure-Design (Draw.io + Lucide SVG · 0원)"
+                rec["status"] = "GENERATED"
+                rec["regenerated_at"] = datetime.now().strftime("%Y%m%d_%H%M%S")
+            upgraded.append(d_res)
+        except Exception as exc:
+            errors.append(f"{fid}: {str(exc)[:100]}")
+
+    if raster_pairs:
+        _rasterize_svgs_batch(raster_pairs, force=True)
+        for svg_p, png_p in raster_pairs:
+            fid = svg_p.stem
+            rec = next((x for x in targets if x.get("figure_id") == fid), None)
+            if not rec or not png_p.is_file():
+                continue
+            cid = str(rec.get("chapter_id") or "ch01")
+            for dest_dir in (assets_dir / "by_chapter" / cid, cfg.e_projects_dir / project_id / "visuals" / "by_chapter" / cid):
+                try:
+                    dest_dir.mkdir(parents=True, exist_ok=True)
+                    shutil.copy2(png_p, dest_dir / png_p.name)
+                except Exception:
+                    pass
+
     plan_text = json.dumps(plan, ensure_ascii=False, indent=2)
     plan_p.write_text(plan_text, encoding="utf-8")
     try:
         e_plan = cfg.e_projects_dir / project_id / "visuals" / "visuals_plan.json"
-        if e_plan.parent.is_dir():
-            e_plan.write_text(plan_text, encoding="utf-8")
+        e_plan.parent.mkdir(parents=True, exist_ok=True)
+        e_plan.write_text(plan_text, encoding="utf-8")
     except Exception:
         pass
-    return {"status": "REGENERATED", "figure_id": rec["figure_id"], "engine": msg, "png_url": rec["png_url"] + f"?v={ts}", "note": "PDF·DOCX·블로그에 반영하려면 6단계(출판)를 다시 실행하세요."}
+
+    pal_audit = audit_project_palette_consistency(project_id, cfg=cfg)
+    republished = False
+    if req.auto_republish and upgraded:
+        try:
+            from output_converter import publish_default_outputs
+
+            publish_default_outputs(project_id, cfg=cfg)
+            republished = True
+        except Exception:
+            pass
+
+    return {
+        "status": "OK",
+        "upgraded_count": len(upgraded),
+        "errors_count": len(errors),
+        "errors": errors[:10],
+        "palette_audit": pal_audit,
+        "republished": republished,
+        "drawio_items": [{"figure_id": x["figure_id"], "drawio_url": x["drawio_url"]} for x in upgraded],
+    }
+
+
+@app.get("/api/projects/{project_id}/visuals/palette")
+def api_get_visual_palette(project_id: str) -> dict[str, Any]:
+    from scientific_figure_engine import audit_project_palette_consistency
+
+    return audit_project_palette_consistency(project_id)
 
 
 @app.get("/api/health")
@@ -1369,6 +1992,28 @@ def api_get_visuals(project_id: str) -> dict[str, Any]:
     plan_p = assets_dir / "visuals_plan.json"
     guide_p = assets_dir / "visuals_text_guide.md"
     plan = json.loads(plan_p.read_text(encoding="utf-8")) if plan_p.is_file() else {"visuals": [], "total_generated": 0}
+    # 한·영 프롬프트 매니페스트가 있으면 각 그림 항목에 prompt_en/prompt_ko/prompt_id를 자동 보강해 유료 AI 재생성 시 즉시 활용
+    vp_map = _load_prompt_pack_lookup(assets_dir)
+    if vp_map:
+        for it in (plan.get("visuals") or plan.get("items") or []):
+            hit = vp_map.get(str(it.get("figure_id") or "")) or vp_map.get(f"{it.get('chapter_id', '')}#{int(it.get('index') or 0)}")
+            if hit:
+                if not it.get("prompt_en") and hit.get("prompt_en"):
+                    it["prompt_en"] = hit["prompt_en"]
+                if not it.get("prompt_ko") and hit.get("prompt_ko"):
+                    it["prompt_ko"] = hit["prompt_ko"]
+                if not it.get("prompt") and hit.get("prompt_en"):
+                    it["prompt"] = hit["prompt_en"]
+                if not it.get("prompt_id") and hit.get("prompt_id"):
+                    it["prompt_id"] = hit["prompt_id"]
+    # 기존 생성된 편집 가능 .drawio 파일이 있으면 자동 연결
+    drawio_dir = assets_dir / "drawio"
+    if drawio_dir.is_dir():
+        for it in (plan.get("visuals") or plan.get("items") or []):
+            fid = str(it.get("figure_id") or "")
+            dp = drawio_dir / f"{fid}.drawio"
+            if dp.is_file() and not it.get("drawio_url"):
+                it["drawio_url"] = f"/project-files/{project_id}/assets/drawio/{dp.name}"
     guide = guide_p.read_text(encoding="utf-8") if guide_p.is_file() else ""
     e_vis_dir = str(cfg.e_projects_dir / project_id / "visuals")
     local_vis_dir = str(assets_dir / "by_chapter")
@@ -2827,3 +3472,163 @@ def api_start_chapter_pipeline(project_id: str, req: ChapterPipelineStartRequest
 @app.post("/api/projects/{project_id}/chapter-pipeline/stop")
 def api_stop_chapter_pipeline(project_id: str) -> dict[str, Any]:
     return stop_chapter_pipeline(project_id)
+
+
+# ============================================================
+# v2 플랫폼 전용 REST API: Bootstrap · publishing_DB · 지식그래프 · eco-browser · NotebookLM 스튜디오
+# ============================================================
+@app.get("/api/v2/bootstrap")
+def api_v2_bootstrap() -> dict[str, Any]:
+    """신규 반응형 프론트엔드 초기 부트스트랩 (1회 왕복으로 프로젝트·유형·페르소나·엔진 상태 반환)."""
+    cfg = get_config()
+    cfg.ensure_directories()
+    personas_data: list[dict[str, Any]] = []
+    try:
+        personas_data = list_personas()
+    except Exception:
+        personas_data = []
+    return {
+        "version": "4.0.0",
+        "workspace_info": {
+            "projects_dir": str(cfg.projects_dir),
+            "projects_dir_name": cfg.projects_dir.name,
+            "legacy_projects_dir": str(cfg.legacy_projects_dir),
+            "publishing_db_dir": str(cfg.publishing_db_dir),
+            "publishing_db_name": cfg.publishing_db_dir.name,
+            "smc_graphrag_root": str(cfg.smc_graphrag_root),
+            "smc_graphrag_exists": cfg.smc_graphrag_root.is_dir(),
+        },
+        "projects": list_projects(include_hidden=False),
+        "output_types": PRIMARY_OUTPUT_TYPES,
+        "personas": personas_data,
+        "engines": get_ai_engines_status(),
+        "api_keys": get_api_keys_status(),
+    }
+
+
+@app.get("/api/v2/projects/{project_id}/publishing-db")
+def api_v2_publishing_db(project_id: str) -> dict[str, Any]:
+    from publishing_db import list_publishing_db_assets
+
+    cfg = get_config()
+    if not load_project_state(project_id, cfg):
+        raise HTTPException(status_code=404, detail="Project not found")
+    return list_publishing_db_assets(project_id, cfg=cfg)
+
+
+@app.post("/api/v2/projects/{project_id}/publishing-db/sync")
+def api_v2_publishing_db_sync(project_id: str) -> dict[str, Any]:
+    from publishing_db import list_publishing_db_assets, sync_existing_project_sources_to_publishing_db
+
+    cfg = get_config()
+    if not load_project_state(project_id, cfg):
+        raise HTTPException(status_code=404, detail="Project not found")
+    synced = sync_existing_project_sources_to_publishing_db(project_id, cfg=cfg)
+    assets = list_publishing_db_assets(project_id, cfg=cfg)
+    return {"status": "SYNCED", "synced": synced, "db": assets}
+
+
+@app.get("/api/v2/projects/{project_id}/knowledge-graph")
+def api_v2_knowledge_graph(project_id: str) -> dict[str, Any]:
+    from publishing_db import load_or_build_project_knowledge_graph
+
+    cfg = get_config()
+    if not load_project_state(project_id, cfg):
+        raise HTTPException(status_code=404, detail="Project not found")
+    return load_or_build_project_knowledge_graph(project_id, force_rebuild=False, cfg=cfg)
+
+
+@app.post("/api/v2/projects/{project_id}/knowledge-graph/rebuild")
+def api_v2_knowledge_graph_rebuild(project_id: str) -> dict[str, Any]:
+    from publishing_db import build_project_knowledge_graph
+
+    cfg = get_config()
+    if not load_project_state(project_id, cfg):
+        raise HTTPException(status_code=404, detail="Project not found")
+    return build_project_knowledge_graph(project_id, cfg=cfg)
+
+
+class EcoCrawlRequest(BaseModel):
+    query: str = ""
+    urls: list[str] = Field(default_factory=list)
+    max_pages: int = Field(default=4, ge=1, le=12)
+    capture_screenshot: bool = True
+    extract_images: bool = True
+    download_pdfs: bool = True
+    sync_smc_kg: bool = True
+
+
+@app.post("/api/v2/projects/{project_id}/eco-crawl")
+def api_v2_eco_crawl_start(project_id: str, req: EcoCrawlRequest) -> dict[str, Any]:
+    from eco_browser_research import start_eco_browser_crawl_async
+
+    cfg = get_config()
+    if not load_project_state(project_id, cfg):
+        raise HTTPException(status_code=404, detail="Project not found")
+    if not (req.query.strip() or [u for u in req.urls if str(u).strip()]):
+        raise HTTPException(status_code=400, detail="검색어(query) 또는 직접 크롤링할 URL을 입력해 주세요.")
+    return start_eco_browser_crawl_async(
+        project_id,
+        query=req.query.strip(),
+        urls=[u.strip() for u in req.urls if str(u).strip()],
+        max_pages=req.max_pages,
+        capture_screenshot=req.capture_screenshot,
+        extract_images=req.extract_images,
+        download_pdfs=req.download_pdfs,
+        sync_smc_kg=req.sync_smc_kg,
+        cfg=cfg,
+    )
+
+
+@app.get("/api/v2/projects/{project_id}/eco-crawl/status")
+def api_v2_eco_crawl_status(project_id: str) -> dict[str, Any]:
+    from eco_browser_research import get_eco_crawl_status
+
+    cfg = get_config()
+    if not load_project_state(project_id, cfg):
+        raise HTTPException(status_code=404, detail="Project not found")
+    return get_eco_crawl_status(project_id)
+
+
+class NotebookAskRequest(BaseModel):
+    question: str
+    selected_source_ids: list[str] = Field(default_factory=list)
+    include_smc_graphrag: bool = True
+
+
+@app.post("/api/v2/projects/{project_id}/notebook/ask")
+def api_v2_notebook_ask(project_id: str, req: NotebookAskRequest) -> dict[str, Any]:
+    from eco_browser_research import notebook_ask_sources
+
+    cfg = get_config()
+    if not load_project_state(project_id, cfg):
+        raise HTTPException(status_code=404, detail="Project not found")
+    if not req.question.strip():
+        raise HTTPException(status_code=400, detail="질문 내용을 입력해 주세요.")
+    return notebook_ask_sources(
+        project_id,
+        question=req.question.strip(),
+        selected_source_ids=req.selected_source_ids or None,
+        include_smc_graphrag=req.include_smc_graphrag,
+        cfg=cfg,
+    )
+
+
+class NotebookBriefRequest(BaseModel):
+    mode: str = "briefing"  # briefing | study_guide | faq
+    selected_source_ids: list[str] = Field(default_factory=list)
+
+
+@app.post("/api/v2/projects/{project_id}/notebook/brief")
+def api_v2_notebook_brief(project_id: str, req: NotebookBriefRequest) -> dict[str, Any]:
+    from eco_browser_research import notebook_generate_brief
+
+    cfg = get_config()
+    if not load_project_state(project_id, cfg):
+        raise HTTPException(status_code=404, detail="Project not found")
+    return notebook_generate_brief(
+        project_id,
+        mode=req.mode,
+        selected_source_ids=req.selected_source_ids or None,
+        cfg=cfg,
+    )

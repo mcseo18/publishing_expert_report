@@ -146,7 +146,21 @@ class PlatformConfig:
 
     @property
     def projects_dir(self) -> Path:
+        """v2 신규 프로젝트 전용 루트 (기존 projects/ 폴더는 그대로 보존)."""
+        return self.workspace_root / "projects_v2"
+
+    @property
+    def legacy_projects_dir(self) -> Path:
+        """보존된 구버전 프로젝트 폴더 (읽기 전용 참고용)."""
         return self.workspace_root / "projects"
+
+    @property
+    def publishing_db_dir(self) -> Path:
+        """프로젝트별 캡처·PDF·참고이미지·웹문서·지식그래프 통합 DB 루트 (publishing_DB/)."""
+        return self.workspace_root / "publishing_DB"
+
+    def project_publishing_db_dir(self, project_slug: str) -> Path:
+        return self.publishing_db_dir / project_slug
 
     def project_dir(self, project_slug: str) -> Path:
         return self.projects_dir / project_slug
@@ -186,11 +200,7 @@ class PlatformConfig:
             self.smc_unified_rag_dir,
             self.reports_dir,
             self.projects_dir,
-            self.active_project_dir,
-            self.chapters_dir,
-            self.blueprints_dir,
-            self.assets_dir,
-            self.workspace_exports_dir,
+            self.publishing_db_dir,
         ):
             path.mkdir(parents=True, exist_ok=True)
 

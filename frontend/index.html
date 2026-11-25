@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SMC 출판 스튜디오 v2 · 리서치·지식그래프·전문 출판 웹 앱</title>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
+  <link rel="stylesheet" href="/app-assets/styles.css" />
+</head>
+<body>
+  <div class="app-shell" id="appShell">
+    <!-- 모바일 사이드바 오버레이 -->
+    <div class="sidebar-backdrop" id="sidebarBackdrop" aria-hidden="true"></div>
+
+    <!-- 좌측 네비게이션 사이드바 -->
+    <aside class="sidebar" id="sidebar" aria-label="주 메뉴">
+      <div class="sidebar-header">
+        <a href="#home" class="brand" data-route="home">
+          <div class="brand-logo" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/>
+              <path d="M8 7h8"/>
+              <path d="M8 11h6"/>
+            </svg>
+          </div>
+          <div class="brand-text">
+            <strong>SMC 출판 스튜디오</strong>
+            <span>v2 · projects_v2 &amp; publishing_DB</span>
+          </div>
+        </a>
+        <button type="button" class="icon-btn mobile-only" id="btnCloseSidebar" aria-label="메뉴 닫기">✕</button>
+      </div>
+
+      <!-- 프로젝트 전환기 -->
+      <div class="sidebar-project">
+        <label class="field-label" for="projectSelect">작업 프로젝트</label>
+        <div class="project-switcher">
+          <select id="projectSelect" class="select-input" aria-label="프로젝트 선택">
+            <option value="">새 프로젝트를 시작하세요</option>
+          </select>
+          <button type="button" class="btn-icon-primary" id="btnQuickNew" title="새 프로젝트 만들기" aria-label="새 프로젝트 만들기">＋</button>
+        </div>
+        <div class="project-meta-line" id="sidebarProjectMeta">
+          <span>projects_v2 · 초기화된 작업공간</span>
+        </div>
+      </div>
+
+      <!-- 진행 단계 & 핵심 메뉴 -->
+      <nav class="sidebar-nav">
+        <div class="nav-group-label">시작</div>
+        <button type="button" class="nav-item active" data-route="home">
+          <span class="nav-icon">🏠</span>
+          <span class="nav-label">홈 · 새 프로젝트</span>
+        </button>
+
+        <div class="nav-group-label">출판 워크플로 (1~6단계)</div>
+        <button type="button" class="nav-item" data-route="stage1">
+          <span class="nav-step">1</span>
+          <span class="nav-label">기획 · 목차 설계</span>
+          <span class="nav-pill" id="pill-stage1">대기</span>
+        </button>
+        <button type="button" class="nav-item" data-route="stage2">
+          <span class="nav-step">2</span>
+          <span class="nav-label">리서치 · eco-browser</span>
+          <span class="nav-pill" id="pill-stage2">대기</span>
+        </button>
+        <button type="button" class="nav-item" data-route="stage3">
+          <span class="nav-step">3</span>
+          <span class="nav-label">지식그래프 · DB</span>
+          <span class="nav-pill" id="pill-stage3">대기</span>
+        </button>
+        <button type="button" class="nav-item" data-route="stage4">
+          <span class="nav-step">4</span>
+          <span class="nav-label">원고 집필 · 검수</span>
+          <span class="nav-pill" id="pill-stage4">대기</span>
+        </button>
+        <button type="button" class="nav-item" data-route="stage5">
+          <span class="nav-step">5</span>
+          <span class="nav-label">시각화 · 도판 스튜디오</span>
+          <span class="nav-pill" id="pill-stage5">대기</span>
+        </button>
+        <button type="button" class="nav-item" data-route="stage6">
+          <span class="nav-step">6</span>
+          <span class="nav-label">최종 출판 · 변환</span>
+          <span class="nav-pill" id="pill-stage6">대기</span>
+        </button>
+
+        <div class="nav-group-label">운영 · 관리</div>
+        <button type="button" class="nav-item" data-route="system">
+          <span class="nav-icon">⚙️</span>
+          <span class="nav-label">시스템 · 진단/복구</span>
+          <span class="nav-pill subtle" id="pill-system">확인</span>
+        </button>
+      </nav>
+
+      <!-- 사이드바 푸터 -->
+      <div class="sidebar-footer">
+        <div class="engine-badges" id="sidebarEngineBadges">
+          <span class="status-dot-chip" id="chipGraphRag" title="C:\SMC_GRAPHRAG 연동 상태">● GraphRAG</span>
+          <span class="status-dot-chip" id="chipOllama" title="로컬 Ollama 상태">● Ollama</span>
+        </div>
+        <div class="sidebar-footer-actions">
+          <button type="button" class="btn-ghost-sm" id="btnToggleTheme">🌙 다크 모드</button>
+          <a href="/legacy" class="btn-ghost-sm" target="_blank" rel="noopener">구 대시보드 ↗</a>
+        </div>
+      </div>
+    </aside>
+
+    <!-- 우측 메인 영역 -->
+    <div class="main-shell">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button type="button" class="icon-btn mobile-only" id="btnOpenSidebar" aria-label="메뉴 열기">☰</button>
+          <div class="topbar-title-wrap">
+            <h1 class="topbar-title" id="topbarTitle">홈 · 새 프로젝트</h1>
+            <p class="topbar-subtitle" id="topbarSubtitle">projects_v2와 publishing_DB 기반으로 깔끔하게 시작합니다.</p>
+          </div>
+        </div>
+        <div class="topbar-right">
+          <div class="progress-stepper" id="topbarStepper" aria-label="진행 단계 요약"></div>
+          <div class="topbar-actions" id="topbarActions">
+            <button type="button" class="btn btn-secondary btn-sm" id="btnRefreshAll">↻ 새로고침</button>
+          </div>
+        </div>
+      </header>
+
+      <!-- 실시간 실행 배너 (파이프라인/크롤링 동작 시에만 표시) -->
+      <div class="live-banner hidden" id="liveBanner" role="status">
+        <div class="live-banner-left">
+          <span class="pulse-dot"></span>
+          <strong id="liveBannerTitle">작업 실행 중...</strong>
+          <span id="liveBannerDetail">진행 상황을 불러오는 중입니다.</span>
+        </div>
+        <div class="live-banner-right">
+          <div class="mini-progress"><div class="mini-progress-bar" id="liveBannerBar" style="width: 15%"></div></div>
+          <button type="button" class="btn btn-danger btn-xs" id="btnStopRunning">중지</button>
+        </div>
+      </div>
+
+      <!-- 동적 페이지 뷰 컨테이너 -->
+      <main class="main-content" id="appView" tabindex="-1">
+        <div class="loading-state">
+          <div class="spinner"></div>
+          <p>스튜디오 작업공간을 불러오는 중입니다...</p>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- 이미지·캡처 라이트박스 모달 -->
+  <div class="modal-backdrop hidden" id="lightboxModal" role="dialog" aria-modal="true" aria-label="미리보기">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-header">
+        <div>
+          <h3 id="lightboxTitle">미리보기</h3>
+          <p id="lightboxMeta" class="muted-sm"></p>
+        </div>
+        <div class="modal-header-actions">
+          <a id="lightboxDownload" href="#" target="_blank" rel="noopener" class="btn btn-secondary btn-sm">새 창 / 다운로드 ↗</a>
+          <button type="button" class="icon-btn" id="btnCloseLightbox" aria-label="닫기">✕</button>
+        </div>
+      </div>
+      <div class="modal-body lightbox-body" id="lightboxBody"></div>
+    </div>
+  </div>
+
+  <!-- 토스트 알림 스택 -->
+  <div class="toast-stack" id="toastStack" aria-live="polite"></div>
+
+  <script src="/app-assets/graph_view.js"></script>
+  <script src="/app-assets/app.js"></script>
+</body>
+</html>

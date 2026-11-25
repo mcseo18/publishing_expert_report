@@ -564,23 +564,52 @@ def _render_single_paid_ai(
 
     out_png = fig_dir / f"{fid}.png"
     tmp_png = out_png.with_name(f"{fid}_studio_tmp.png")
-    prompt = str(item.get("prompt") or "").strip()
+    prompt = str(item.get("prompt_en") or item.get("prompt") or "").strip()
     if not prompt:
-        raise ValueError("이미지 영문 프롬프트가 비어 있습니다.")
+        # 한·영 프롬프트 매니페스트(visual_prompt_pack.json)에서 영문 마스터 프롬프트 자동 조회
+        for vp_name in ("visual_prompt_pack.json", "visual_prompts_manifest.json"):
+            vp_path = ws / "assets" / vp_name
+            if not vp_path.is_file():
+                continue
+            try:
+                vp_data = json.loads(vp_path.read_text(encoding="utf-8"))
+                vp_items = vp_data.get("items") or vp_data.get("prompts") or []
+                hit = next(
+                    (
+                        x for x in vp_items
+                        if x.get("figure_id") == fid
+                        or (x.get("chapter_id") == cid and int(x.get("index") or 0) == int(item.get("index") or -1))
+                    ),
+                    None,
+                )
+                if hit and hit.get("prompt_en"):
+                    prompt = str(hit["prompt_en"]).strip()
+                    break
+            except Exception:
+                pass
+    if not prompt:
+        from visual_studio import ZERO_TEXT_RULE
+
+        subj = str(item.get("title_ko") or item.get("target_section") or fid).strip()
+        prompt = (
+            f"Publication-grade scientific editorial illustration and documentary agricultural visualization depicting: {subj}. "
+            f"Clean white background or crisp natural daylight, high anatomical and technical precision, textbook figure quality, 16:9 composition. {ZERO_TEXT_RULE}"
+        )
 
     gem_key = resolve_api_key("GEMINI_API_KEY", None, cfg)
     fal_key = resolve_api_key("FAL_KEY", None, cfg)
 
     ok, msg = False, ""
     errs: list[str] = []
-    if engine_mode == "fal_ai":
+    if engine_mode in ("fal_ai", "fal_nano_banana", "fal_flux_pro"):
         if not fal_key:
             raise RuntimeError("FAL_KEY가 등록되어 있지 않습니다 (설정 탭에서 등록).")
-        ok, msg = _generate_with_fal_ai(prompt=prompt, out_path=tmp_png, fal_model=fal_model, api_key=fal_key)
+        eff_fal = "fal-ai/flux-pro/v1.1" if engine_mode == "fal_flux_pro" else (fal_model or "fal-ai/nano-banana")
+        ok, msg = _generate_with_fal_ai(prompt=prompt, out_path=tmp_png, fal_model=eff_fal, api_key=fal_key)
     else:
         if gem_key:
             # 이중 폴백 루프 제거 + 저비용 flash 기본 / 명시적 pro 옵션 분리
-            target_mdl = "nano-banana-pro-preview" if engine_mode == "nano_banana_pro" else "gemini-2.5-flash-image"
+            target_mdl = "nano-banana-pro-preview" if engine_mode in ("nano_banana_pro", "gemini_pro") else "gemini-2.5-flash-image"
             try:
                 ok, msg = _generate_with_nano_banana(prompt=prompt, out_path=tmp_png, model=target_mdl, api_key=gem_key)
             except Exception as exc:
@@ -596,10 +625,19 @@ def _render_single_paid_ai(
             raise RuntimeError("GEMINI_API_KEY 또는 FAL_KEY가 등록되어 있지 않습니다 (무료 로컬 도표 모드나 직접 업로드를 이용해 보세요).")
         raise RuntimeError(" / ".join(errs) or msg or "이미지 AI 응답 실패")
 
+    # 기존 이미지가 있으면 assets/_replaced/에 안전 백업 후 교체
+    if out_png.is_file():
+        rep_dir = ws / "assets" / "_replaced"
+        rep_dir.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(out_png, rep_dir / f"{fid}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.png")
+
     os.replace(tmp_png, out_png)
     for dest_dir in (by_ch_dir, e_ch_dir):
         try:
             shutil.copy2(out_png, dest_dir / out_png.name)
+            old_svg = dest_dir / f"{fid}.svg"
+            if old_svg.is_file():
+                old_svg.unlink()
         except Exception:
             pass
 
@@ -609,6 +647,7 @@ def _render_single_paid_ai(
     item["docx_image_path"] = str(out_png)
     item["rel_url"] = url
     item["png_url"] = url
+    item["prompt"] = prompt
     item["engine"] = msg
     item["is_ai_image"] = True
     item["status"] = "GENERATED"

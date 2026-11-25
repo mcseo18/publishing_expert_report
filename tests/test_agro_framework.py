@@ -77,7 +77,7 @@ def test_monetization_revenue_simulator():
 def test_agents_dashboard_v3_ui_and_endpoints():
     client = TestClient(agents_app)
 
-    r_home = client.get("/")
+    r_home = client.get("/legacy")
     assert r_home.status_code == 200
     assert "참참살이 영농 AI 출판도우미" in r_home.text
     assert "#063b2c" in r_home.text
@@ -160,7 +160,7 @@ def test_decoupled_image_studio_custom_count_and_upload(tmp_path: Path):
 
     # UI에 이미지 스튜디오 탭과 0~25 개수 입력 항목이 존재하는지 검증
     client = TestClient(agents_app)
-    r_home = client.get("/")
+    r_home = client.get("/legacy")
     assert r_home.status_code == 200
     assert "tab-imgstudio" in r_home.text
     assert "isPerChapter" in r_home.text
@@ -271,7 +271,7 @@ def test_deep_research_engine_v3_fanout_rank_and_api():
     assert ranked[0]["doi"] == "10.1000/abc"
 
     client = TestClient(agents_app)
-    r_home = client.get("/")
+    r_home = client.get("/legacy")
     assert r_home.status_code == 200
     assert "tab-deepresearch" in r_home.text
     assert "drDepth" in r_home.text
@@ -457,7 +457,7 @@ def test_default_two_outputs_korean_journal_pdf_and_converter():
     assert "docx" in r_fmt.json()["formats"]
     assert r_fmt.json()["korean_journal_pdf_spec"]["column_count"] == 2
 
-    r_ui = client.get("/")
+    r_ui = client.get("/legacy")
     assert r_ui.status_code == 200
     assert "runPublishDefaultTwo" in r_ui.text
     assert "runConvertOutput" in r_ui.text
@@ -542,7 +542,7 @@ def test_persona_studio_presets_deep_prompts_and_api():
     assert "personaPresetCards" in r_setup.text
     assert "previewCompiledPersonaPrompt" in r_setup.text
 
-    r_main = client.get("/")
+    r_main = client.get("/legacy")
     assert r_main.status_code == 200
     assert "saveStage4Persona" in r_main.text
 
@@ -567,7 +567,7 @@ def test_chapter_by_chapter_pipeline_and_progress_board():
     assert build_chapter_execution_order(paper_chs[:3], "textbook") == ["ch01", "ch02", "ch03"]
 
     client = TestClient(agents_app)
-    r_ui = client.get("/")
+    r_ui = client.get("/legacy")
     assert r_ui.status_code == 200
     assert "tab-chapterboard" in r_ui.text
     assert "renderChapterPipelineBoard" in r_ui.text

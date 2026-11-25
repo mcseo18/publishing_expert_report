@@ -772,6 +772,10 @@ def api_blueprint(project: str = Query(default="")) -> dict[str, Any]:
     st, cfg = _resolve_project_ctx(project)
     bp_path = cfg.blueprints_dir / "master_outline.yaml"
     if not bp_path.is_file():
+        legacy_bp = cfg.legacy_projects_dir / cfg.active_project / "blueprints" / "master_outline.yaml"
+        if legacy_bp.is_file():
+            bp_path = legacy_bp
+    if not bp_path.is_file():
         return {
             "exists": False,
             "project_id": st["project_id"],
@@ -995,6 +999,10 @@ def api_save_blueprint(req: BlueprintSaveRequest, project: str = Query(default="
 def api_get_blueprint_yaml(project: str = Query(default="")) -> dict[str, Any]:
     st, cfg = _resolve_project_ctx(project)
     bp_path = cfg.blueprints_dir / "master_outline.yaml"
+    if not bp_path.is_file():
+        legacy_bp = cfg.legacy_projects_dir / cfg.active_project / "blueprints" / "master_outline.yaml"
+        if legacy_bp.is_file():
+            bp_path = legacy_bp
     if not bp_path.is_file():
         return {"exists": False, "project_id": st["project_id"], "yaml_text": ""}
     # alias 없이 깔끔하게 직렬화해 편집 편의 제공

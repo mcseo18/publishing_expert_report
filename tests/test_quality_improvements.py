@@ -301,7 +301,7 @@ def test_source_visual_harvester_jats_redraw_and_license_gate(tmp_path: Path, mo
     cfg.ensure_directories()
     pid = "paper_test"
     (cfg.project_dir(pid) / "assets").mkdir(parents=True, exist_ok=True)
-    state_dir = cfg.index_dir / "subagent_runs" / pid
+    state_dir = cfg.index_dir / "subagent_runs_v2" / pid
     state_dir.mkdir(parents=True, exist_ok=True)
     (state_dir / "state.json").write_text(
         json.dumps({"project_id": pid, "primary_output_type": "paper", "workspace_dir": str(cfg.project_dir(pid))}, ensure_ascii=False),

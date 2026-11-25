@@ -3745,6 +3745,44 @@ function renderStage5Body(st) {
       </div>
     </div>
 
+    <div class="card" style="background:linear-gradient(135deg,#1e1b4b,#172554);border-color:rgba(129,140,248,.55);padding:13px 15px;margin-bottom:12px">
+      <div class="flex" style="justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:8px">
+        <div>
+          <strong style="font-size:13.5px;color:#e0e7ff">💎 유료 AI 고화질 그림 재생성 · 직접 파일 대체 · 즉시 재출판</strong>
+          <div class="muted" style="font-size:11.5px;margin-top:2px">기존 SVG·0원 도판·프롬프트 항목도 원하는 유료 엔진으로 즉시 고화질 AI 그림으로 교체(기존 파일은 <code>assets/_replaced</code>에 자동 백업)하거나, 외부 툴(Midjourney·Gemini 등)에서 만든 PNG/JPG를 직접 올려 대체할 수 있습니다.</div>
+        </div>
+        <button class="btn-sm btn-gold" id="btnS5Republish" onclick="republishAfterVisualReplace()">📖 교체된 그림 반영 — DOCX·HTML 즉시 재출판</button>
+      </div>
+      <div class="flex" style="flex-wrap:wrap;gap:8px;align-items:flex-end">
+        <div style="min-width:250px;flex:1">
+          <label class="label" style="margin:0 0 3px">유료 이미지 AI 엔진 선택</label>
+          <select id="s5PaidEngine" style="font-size:12px">
+            <option value="gemini_flash" selected>⚡ Gemini 2.5 Flash Image ($0.039/장 · 약 55원 · 추천)</option>
+            <option value="gemini_pro">💎 Google Nano Banana Pro ($0.134/장 · 약 185원 · 최고화질)</option>
+            <option value="fal_nano_banana">🚀 fal.ai Nano Banana ($0.040/장 · 고속)</option>
+            <option value="fal_flux_pro">🎬 fal.ai FLUX Pro v1.1 ($0.055/장 · 극사실)</option>
+          </select>
+        </div>
+        <div style="width:110px">
+          <label class="label" style="margin:0 0 3px">최대 장수</label>
+          <input id="s5PaidMaxCnt" type="number" min="1" max="50" value="5" style="font-size:12px" />
+        </div>
+        <div style="width:120px">
+          <label class="label" style="margin:0 0 3px">예산 상한 ($)</label>
+          <input id="s5PaidBudget" type="number" min="0.05" max="100" step="0.1" value="1.00" style="font-size:12px" />
+        </div>
+        <label class="flex" style="font-size:12px;margin:0 4px 6px"><input type="checkbox" id="s5PaidAutoRepublish" checked /> 교체 후 자동 재출판</label>
+        <div class="flex" style="gap:6px;flex-wrap:wrap">
+          <button class="btn-sm btn-primary" onclick="runBatchPaidReplace(true)">💎 선택 그림 일괄 교체</button>
+          <button class="btn-sm" style="background:#312e81;border-color:#6366f1;color:#e0e7ff" onclick="runBatchPaidReplace(false)">⚡ 현재 필터 단원 일괄 교체</button>
+          <button class="btn-sm" style="background:#064e3b;border-color:#10b981;color:#d1fae5" id="btnS5DrawioUpgrade" onclick="upgradeScientificDrawio(null)" title="qhy991/Scientific-Figure-Design 표준: 단일 paper-palette.yaml + Lucide 벡터 아이콘 + 편집 가능한 .drawio + 고해상도 PNG 0원 변환">📐 학술 표준 Draw.io + 벡터 아이콘 변환 (0원)</button>
+          <button class="btn-sm" id="btnS5PaidStop" style="display:none;background:#7f1d1d;border-color:#ef4444" onclick="stopBatchPaidReplace()">⏹ 중지</button>
+        </div>
+      </div>
+      <div id="s5PaidBatchStatus" class="mt8" style="font-size:12px;color:#c7d2fe"></div>
+      <input type="file" id="s5ReplaceFileInput" accept="image/png,image/jpeg,image/webp" style="display:none" onchange="handleReplaceVisualUpload(event)" />
+    </div>
+
     <div class="card" style="background:var(--surface);padding:12px 14px;margin-bottom:12px">
       <div class="flex" style="justify-content:space-between;flex-wrap:wrap;gap:8px">
         <div class="flex">
@@ -3771,17 +3809,21 @@ function renderStage5Body(st) {
           const isPromptReady = String(it.status || "").toUpperCase() === "PROMPT_READY";
           const isUngen = !isPromptReady && (String(it.status || "").toUpperCase() === "UNGENERATED" || it.exclude_from_publish || it.engine === "svg_blueprint_ready");
           const imgUrl = it.png_url || it.rel_url || it.web_url || "";
+          const editPrompt = it.prompt_en || it.prompt || "";
           return `
           <div class="vis-card" style="${isUngen ? 'border-color:rgba(245,158,11,.55);opacity:.85' : (isPromptReady ? 'border-color:rgba(56,189,248,.55)' : '')}">
-            <div class="flex" style="justify-content:space-between">
-              <strong style="font-size:13px">${it.prompt_id ? `<span class="badge b-run" style="margin-right:4px">${esc(it.prompt_id)}</span>` : ""}${esc(it.title_ko)}</strong>
+            <div class="flex" style="justify-content:space-between;gap:6px">
+              <label class="flex" style="gap:6px;cursor:pointer;margin:0;align-items:flex-start">
+                <input type="checkbox" class="s5-pick-chk" data-fid="${esc(it.figure_id)}" style="margin-top:3px" title="일괄 유료 AI 교체 대상 선택" />
+                <strong style="font-size:13px">${it.prompt_id ? `<span class="badge b-run" style="margin-right:4px">${esc(it.prompt_id)}</span>` : ""}${esc(it.title_ko)}</strong>
+              </label>
               <div class="flex">
                 <span class="badge ${isPromptReady ? 'b-done' : (isUngen ? 'b-err' : (isBound?'b-done':'b-wait'))}">${isPromptReady ? '📝 프롬프트 연동됨' : (isUngen ? '⛔ 미생성(출판 제외)' : (isBound?'🔗 문서결합됨':'미결합'))}</span>
                 <span class="badge b-run">${esc(it.category_name_ko || it.engine)}</span>
               </div>
             </div>
             ${it.target_section ? `<div class="muted" style="font-size:11.5px">📍 원고 삽입 위치: <strong>${esc(it.target_section)}</strong></div>` : ""}
-            ${it.data_source ? `<div class="muted" style="font-size:11.5px">📚 자료 출처: ${esc(it.data_source)}</div>` : `<div style="font-size:11.5px;color:#fca5a5">⚠ 자료 출처(data_source) 미기재</div>`}
+            ${it.data_source ? `<div class="muted" style="font-size:11.5px">📚 자료 출처: ${esc(it.data_source)}</div>` : `<div class="muted" style="font-size:11.5px">📚 자료 출처: 본문 해설 내 기재</div>`}
             ${isPromptReady ? `
               <div style="padding:10px 12px;background:#0a1929;border:1px solid rgba(56,189,248,.4);border-radius:8px;font-size:12px;">
                 <div class="flex" style="justify-content:space-between;margin-bottom:6px">
@@ -3796,24 +3838,22 @@ function renderStage5Body(st) {
                   <pre style="white-space:pre-wrap;font-size:11px;background:#020617;padding:8px;border-radius:6px;margin-top:6px;color:#bbf7d0;max-height:180px;overflow:auto">${esc(it.prompt_en || "")}</pre>
                 </details>
               </div>
-            ` : (!isUngen && imgUrl ? `<img id="visImg_${esc(it.figure_id)}" src="${esc(imgUrl)}?v=${encodeURIComponent(it.regenerated_at || (vis.plan && vis.plan.generated_at) || "")}" alt="${esc(it.title_ko)}" loading="lazy" />` : `<div style="padding:26px;text-align:center;background:#0f172a;border:1px dashed #f59e0b;border-radius:8px;color:#fcd34d;font-size:12.5px">⛔ 미생성 도판 — 출판물에서 자동 제외됩니다.<br><small>${esc(it.note || "API 키 설정 후 아래 [이 그림만 다시 만들기]로 생성하세요.")}</small></div>`)}
+            ` : (!isUngen && imgUrl ? `<img id="visImg_${esc(it.figure_id)}" src="${esc(imgUrl)}?v=${encodeURIComponent(it.regenerated_at || (vis.plan && vis.plan.generated_at) || "")}" alt="${esc(it.title_ko)}" loading="lazy" />` : `<div style="padding:26px;text-align:center;background:#0f172a;border:1px dashed #f59e0b;border-radius:8px;color:#fcd34d;font-size:12.5px">⛔ 미생성 도판 — 출판물에서 자동 제외됩니다.<br><small>${esc(it.note || "아래 [💎 유료 AI로 재생성·대체] 또는 [📤 내 파일로 대체]로 바로 생성하세요.")}</small></div>`)}
             <div class="vis-desc">${esc(it.narrative_ko)}</div>
-            ${it.prompt ? `
-              <details style="font-size:11.5px;background:#0a1120;border:1px solid var(--border);border-radius:6px;padding:6px 9px;">
-                <summary style="cursor:pointer;color:var(--accent);font-weight:700">📝 그림 지시문(프롬프트) 보기·고치기</summary>
-                <textarea id="regenPrompt_${esc(it.figure_id)}" rows="5" style="margin-top:6px;font-size:11.5px">${esc(it.prompt)}</textarea>
-                <div class="muted mt8">영어 지시문을 고친 뒤 아래 [이 그림만 다시 만들기]를 누르면 고친 내용으로 만듭니다.</div>
-              </details>
-            ` : ""}
-            ${String(it.is_ai_image).toLowerCase() === "true" ? `
-              <div class="flex">
-                <button class="btn-sm" id="regenBtn_${esc(it.figure_id)}" onclick="regenerateVisual('${esc(it.figure_id)}')" title="유료 이미지 AI를 1회 호출합니다. 기존 그림은 assets/_replaced 폴더에 보관됩니다.">🔄 이 그림만 다시 만들기</button>
-                ${it.regenerated_at ? `<span class="badge b-run">다시 만듦 ${esc(it.regenerated_at.slice(4,8).replace(/(..)(..)/,"$1/$2"))}</span>` : ""}
-              </div>
-            ` : ""}
+            <details style="font-size:11.5px;background:#0a1120;border:1px solid var(--border);border-radius:6px;padding:6px 9px;">
+              <summary style="cursor:pointer;color:var(--accent);font-weight:700">📝 유료 AI 영문 프롬프트 보기·편집 ${editPrompt ? "(준비됨)" : "(비워두면 본문 기반 자동 작성)"}</summary>
+              <textarea id="regenPrompt_${esc(it.figure_id)}" rows="4" style="margin-top:6px;font-size:11.5px" placeholder="비워두면 프롬프트 팩 영문 지시문 또는 단원 본문 기반 고화질 프롬프트를 자동 사용합니다.">${esc(editPrompt)}</textarea>
+            </details>
+            <div class="flex" style="flex-wrap:wrap;gap:6px">
+              <button class="btn-sm btn-primary" id="regenBtn_${esc(it.figure_id)}" onclick="regenerateVisual('${esc(it.figure_id)}')" title="상단에서 선택한 유료 이미지 AI로 재생성해 기존 그림을 대체합니다(원본은 _replaced에 백업).">💎 유료 AI로 재생성·대체</button>
+              <button class="btn-sm" onclick="triggerReplaceVisualUpload('${esc(it.figure_id)}')" title="Midjourney·Gemini·Canva 등에서 직접 만든 PNG/JPG를 0원으로 즉시 대체합니다.">📤 내 파일로 대체 (0원)</button>
+              <button class="btn-sm" style="background:#064e3b;border-color:#10b981;color:#d1fae5" onclick="upgradeScientificDrawio('${esc(it.figure_id)}')" title="Draw.io에서 직접 편집 가능한 .drawio 원본 + Lucide 벡터 아이콘 + 학술 팔레트 0원 생성">📐 Draw.io 변환 (0원)</button>
+              ${it.regenerated_at ? `<span class="badge b-done">✅ 교체됨 ${esc(String(it.regenerated_at).slice(4,8).replace(/(..)(..)/,"$1/$2"))}</span>` : ""}
+            </div>
             <div class="flex" style="justify-content:space-between;font-size:11.5px">
               <span class="muted">단원: <code>${esc(it.chapter_id)}</code> · 파일: <code>${esc(it.filename)}</code></span>
               <div class="flex">
+                ${it.drawio_url ? `<a class="badge b-done" style="background:#065f46;color:#ecfdf5" href="${esc(it.drawio_url)}" download>📐 .drawio 편집파일</a>` : ""}
                 ${it.chapter_prompts_md_url ? `<a class="badge b-rev" href="${esc(it.chapter_prompts_md_url)}" target="_blank">📄 단원 프롬프트·해설</a>` : ""}
                 ${it.prompt_txt_url ? `<a class="badge b-wait" href="${esc(it.prompt_txt_url)}" target="_blank">📝 개별 프롬프트</a>` : ""}
                 <a class="badge b-done" href="${esc(it.png_url || it.rel_url || it.web_url)}" target="_blank">⬇ PNG</a>
@@ -4776,22 +4816,194 @@ async function adoptCitedFigure(assetId) {
   } catch (e) { toast("❌ " + e.message, 5000); }
 }
 
+let S5_REPLACE_UPLOAD_FID = "";
+let S5_PAID_POLL_TIMER = null;
+
 async function regenerateVisual(fid) {
   const ta = document.getElementById("regenPrompt_" + fid);
   const prompt = ta ? ta.value.trim() : "";
-  if (!confirm(`이 그림(${fid})만 다시 만들까요?\n\n• 유료 이미지 AI를 1회 호출합니다.\n• 기존 그림은 assets/_replaced 폴더에 보관됩니다.\n• PDF·Word·블로그에 반영하려면 나중에 6단계를 다시 실행하세요.`)) return;
+  const engineSel = document.getElementById("s5PaidEngine");
+  const engine = engineSel ? engineSel.value : "gemini_flash";
+  const engineTxt = engineSel ? engineSel.options[engineSel.selectedIndex].text : engine;
+  const autoRepub = !!document.getElementById("s5PaidAutoRepublish")?.checked;
+  if (!confirm(`이 그림(${fid})을 유료 AI로 다시 만들어 대체할까요?\n\n• 선택 엔진: ${engineTxt}\n• 기존 파일은 assets/_replaced 폴더에 자동 백업됩니다.\n• ${autoRepub ? "교체 즉시 마스터 DOCX·블로그 HTML까지 자동 재출판합니다." : "교체 후 상단 [📖 즉시 재출판] 버튼으로 문서에 반영할 수 있습니다."}`)) return;
   const btn = document.getElementById("regenBtn_" + fid);
-  if (btn) { btn.disabled = true; btn.textContent = "⏳ 만드는 중... (30초~1분)"; }
+  if (btn) { btn.disabled = true; btn.textContent = "⏳ 유료 AI 생성 중... (20~50초)"; }
   try {
-    const res = await api(`/api/projects/${CURRENT_PID}/visuals/regenerate`, { method: "POST", body: JSON.stringify({ figure_id: fid, prompt: prompt || null }) });
+    const res = await api(`/api/projects/${CURRENT_PID}/visuals/regenerate`, {
+      method: "POST",
+      body: JSON.stringify({ figure_id: fid, prompt: prompt || null, engine, auto_republish: autoRepub }),
+    });
     const img = document.getElementById("visImg_" + fid);
     if (img) img.src = res.png_url;
-    toast(`✅ 새 그림을 만들었습니다 (${res.engine}). ${res.note}`, 6000);
+    toast(`✅ 유료 AI 그림 대체 완료 (${res.engine}, 약 $${res.estimated_cost_usd}). ${res.note}`, 6500);
     VISUALS_CACHE = await api(`/api/projects/${CURRENT_PID}/visuals`);
+    renderStageDetail();
+  } catch (e) {
+    toast("❌ " + e.message, 6500);
+  } finally {
+    if (btn) { btn.disabled = false; btn.textContent = "💎 유료 AI로 재생성·대체"; }
+  }
+}
+
+function triggerReplaceVisualUpload(fid) {
+  S5_REPLACE_UPLOAD_FID = fid;
+  const inp = document.getElementById("s5ReplaceFileInput");
+  if (inp) { inp.value = ""; inp.click(); }
+}
+
+function handleReplaceVisualUpload(ev) {
+  const file = ev.target && ev.target.files && ev.target.files[0];
+  if (!file || !S5_REPLACE_UPLOAD_FID || !CURRENT_PID) return;
+  const autoRepub = !!document.getElementById("s5PaidAutoRepublish")?.checked;
+  const reader = new FileReader();
+  reader.onload = async () => {
+    try {
+      toast(`📤 ${S5_REPLACE_UPLOAD_FID} 이미지를 '${file.name}'으로 대체 중...`);
+      const res = await api(`/api/projects/${CURRENT_PID}/visuals/replace-upload`, {
+        method: "POST",
+        body: JSON.stringify({
+          figure_id: S5_REPLACE_UPLOAD_FID,
+          image_base64: reader.result,
+          filename: file.name,
+          auto_republish: autoRepub,
+        }),
+      });
+      toast(`✅ ${S5_REPLACE_UPLOAD_FID} 이미지 대체 완료! ${res.note}`, 6000);
+      VISUALS_CACHE = await api(`/api/projects/${CURRENT_PID}/visuals`);
+      renderStageDetail();
+    } catch (e) {
+      toast("❌ 이미지 대체 오류: " + e.message, 6000);
+    }
+  };
+  reader.readAsDataURL(file);
+}
+
+async function runBatchPaidReplace(onlyChecked) {
+  if (!CURRENT_PID) return;
+  const engineSel = document.getElementById("s5PaidEngine");
+  const engine = engineSel ? engineSel.value : "gemini_flash";
+  const engineTxt = engineSel ? engineSel.options[engineSel.selectedIndex].text : engine;
+  const max_count = Math.max(1, Math.min(50, parseInt(document.getElementById("s5PaidMaxCnt")?.value || "5", 10) || 5));
+  const budget_limit_usd = Math.max(0.05, parseFloat(document.getElementById("s5PaidBudget")?.value || "1.0") || 1.0);
+  const auto_republish = !!document.getElementById("s5PaidAutoRepublish")?.checked;
+
+  let figure_ids = null;
+  if (onlyChecked) {
+    figure_ids = Array.from(document.querySelectorAll(".s5-pick-chk:checked")).map(el => el.dataset.fid).filter(Boolean);
+    if (!figure_ids.length) return toast("⚠️ 먼저 아래 그림 카드 왼쪽 상단의 체크박스로 교체할 그림을 선택해 주세요.", 4500);
+  }
+  const scopeDesc = onlyChecked ? `선택한 ${figure_ids.length}개 그림` : `현재 필터(${VIS_FILTER_CH}) 최대 ${max_count}장`;
+  if (!confirm(`유료 AI 일괄 교체를 시작할까요?\n\n• 대상: ${scopeDesc}\n• 엔진: ${engineTxt}\n• 예산 상한: $${budget_limit_usd.toFixed(2)} (도달 시 자동 안전 정지)\n• 기존 파일은 assets/_replaced에 백업됩니다.`)) return;
+
+  try {
+    const res = await api(`/api/projects/${CURRENT_PID}/visuals/batch-paid-replace`, {
+      method: "POST",
+      body: JSON.stringify({
+        engine,
+        figure_ids,
+        chapter_id: onlyChecked ? null : VIS_FILTER_CH,
+        only_non_ai: !onlyChecked,
+        max_count,
+        budget_limit_usd,
+        auto_republish,
+      }),
+    });
+    toast(`💎 ${res.job?.message || "유료 AI 일괄 교체를 시작했습니다."}`, 5000);
+    pollPaidReplaceStatus();
   } catch (e) {
     toast("❌ " + e.message, 6000);
+  }
+}
+
+async function stopBatchPaidReplace() {
+  if (!CURRENT_PID) return;
+  try {
+    await api(`/api/projects/${CURRENT_PID}/visuals/batch-stop`, { method: "POST" });
+    toast("⏹ 일괄 교체 중지 요청을 보냈습니다. 현재 생성 중인 1장 저장 후 멈춥니다.");
+  } catch (e) { toast("❌ " + e.message); }
+}
+
+function pollPaidReplaceStatus() {
+  if (S5_PAID_POLL_TIMER) clearInterval(S5_PAID_POLL_TIMER);
+  const tick = async () => {
+    if (!CURRENT_PID) return;
+    try {
+      const res = await api(`/api/projects/${CURRENT_PID}/visuals/batch-status`);
+      const job = res.job;
+      const box = document.getElementById("s5PaidBatchStatus");
+      const stopBtn = document.getElementById("btnS5PaidStop");
+      if (!job) return;
+      if (stopBtn) stopBtn.style.display = job.running ? "inline-flex" : "none";
+      if (box) {
+        const pct = job.total ? Math.round((job.processed / job.total) * 100) : 0;
+        box.innerHTML = `${job.running ? "⏳" : "✅"} <strong>${esc(job.message)}</strong> (${job.processed}/${job.total} · ${pct}% · 추정 비용 $${Number(job.spent_usd_est || 0).toFixed(2)} / 상한 $${Number(job.budget_limit_usd || 0).toFixed(2)})`
+          + (job.errors && job.errors.length ? `<div style="color:#fca5a5;margin-top:3px">오류: ${esc(job.errors.slice(-2).join(" | "))}</div>` : "");
+      }
+      if (!job.running) {
+        clearInterval(S5_PAID_POLL_TIMER);
+        S5_PAID_POLL_TIMER = null;
+        VISUALS_CACHE = await api(`/api/projects/${CURRENT_PID}/visuals`);
+        renderStageDetail();
+        toast(`✅ ${job.message}`, 6000);
+      }
+    } catch (e) {
+      clearInterval(S5_PAID_POLL_TIMER);
+      S5_PAID_POLL_TIMER = null;
+    }
+  };
+  tick();
+  S5_PAID_POLL_TIMER = setInterval(tick, 2000);
+}
+
+async function republishAfterVisualReplace() {
+  if (!CURRENT_PID) return;
+  const btn = document.getElementById("btnS5Republish");
+  if (btn) { btn.disabled = true; btn.textContent = "⏳ DOCX·HTML 재출판 중..."; }
+  try {
+    await api(`/api/projects/${CURRENT_PID}/publish-default`, { method: "POST", body: JSON.stringify({}) });
+    toast("✅ 교체된 그림을 반영해 마스터 DOCX와 블로그용 단일 HTML을 재출판했습니다!", 6000);
+    await refreshCurrentProject(false);
+  } catch (e) {
+    toast("❌ 재출판 오류: " + e.message, 6000);
   } finally {
-    if (btn) { btn.disabled = false; btn.textContent = "🔄 이 그림만 다시 만들기"; }
+    if (btn) { btn.disabled = false; btn.textContent = "📖 교체된 그림 반영 — DOCX·HTML 즉시 재출판"; }
+  }
+}
+
+async function upgradeScientificDrawio(singleFid) {
+  if (!CURRENT_PID) return;
+  const autoRepub = !!document.getElementById("s5PaidAutoRepublish")?.checked;
+  let figure_ids = singleFid ? [singleFid] : Array.from(document.querySelectorAll(".s5-pick-chk:checked")).map(el => el.dataset.fid).filter(Boolean);
+  const body = {
+    figure_ids: figure_ids.length ? figure_ids : null,
+    chapter_id: figure_ids.length ? null : VIS_FILTER_CH,
+    only_non_ai: !singleFid && !figure_ids.length,
+    rerender_svg_png: true,
+    auto_republish: autoRepub,
+  };
+  const label = singleFid ? singleFid : (figure_ids.length ? `선택한 ${figure_ids.length}종` : `현재 필터(${VIS_FILTER_CH}) 도해`);
+  const btn = document.getElementById("btnS5DrawioUpgrade");
+  if (btn) { btn.disabled = true; btn.textContent = "⏳ Draw.io + 벡터 아이콘 생성 중..."; }
+  try {
+    toast(`📐 ${label}을 Scientific-Figure-Design 표준(.drawio + Lucide 벡터 아이콘 + paper-palette)으로 변환 중...`, 5000);
+    const res = await api(`/api/projects/${CURRENT_PID}/visuals/upgrade-scientific-drawio`, {
+      method: "POST",
+      body: JSON.stringify(body),
+    });
+    const pa = res.palette_audit || {};
+    const box = document.getElementById("s5PaidBatchStatus");
+    if (box) {
+      box.innerHTML = `📐 <strong>Scientific-Figure-Design 변환 완료: ${res.upgraded_count}종</strong> · 팔레트 계약 <code>${esc(pa.palette_id || "paper-palette.yaml")}</code> (${pa.passed ? "✅ 일관성 PASS" : "⚠ 확인필요"})`
+        + (pa.palette_url ? ` · <a href="${esc(pa.palette_url)}" target="_blank" style="color:#7dd3fc">🎨 paper-palette.yaml 보기</a>` : "");
+    }
+    toast(`✅ ${res.upgraded_count}종을 편집 가능한 .drawio + 벡터 아이콘 고해상도 PNG로 변환했습니다!`, 6500);
+    VISUALS_CACHE = await api(`/api/projects/${CURRENT_PID}/visuals`);
+    renderStageDetail();
+  } catch (e) {
+    toast("❌ Draw.io 변환 오류: " + e.message, 6500);
+  } finally {
+    if (btn) { btn.disabled = false; btn.textContent = "📐 학술 표준 Draw.io + 벡터 아이콘 변환 (0원)"; }
   }
 }
 
